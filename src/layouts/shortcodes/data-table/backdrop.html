@@ -1,0 +1,32 @@
+{{/*
+    Insert the data table for backdrops.
+*/}}
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Present on Maps</th>
+    </tr>
+    {{ range $index, $_ := $.Site.Data.description.backdrop_name }}
+        <tr>
+            <th>{{ $index }}</th>
+            <td>{{ . }}</td>
+            <td>
+                {{ with index $.Site.Data.description.backdrop (int $index) }}
+                    {{ . | markdownify }}
+                {{ else }}
+                    (not present in any group files)
+                {{ end }}
+            </td>
+            <td>
+                {{ with index $.Site.Data.map.index.backdrop (string $index) }}
+                    {{ delimit . ", " }}
+                {{ else }}
+                    &mdash;
+                {{ end }}
+            </td>
+        </tr>
+    {{ end }}
+</table>

@@ -1,0 +1,11 @@
+{{/*
+    Wraps the inner markdown content in an <aside> tag with an optional class
+    name. Returns HTML containing this wrapped content.
+
+    Named parameters:
+        class (optional): Class value to add to the <aside> tag.
+*/}}
+
+<aside{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+{{ .Inner | markdownify }}
+</aside>

@@ -1,0 +1,30 @@
+{{/*
+    Insert the data table for music.
+*/}}
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Duration (Min:Sec)</th>
+        <th>AdLib Writes</th>
+        <th>Present on Maps</th>
+    </tr>
+    {{ range $index, $_ := $.Site.Data.music.table }}
+        <tr>
+            <th>{{ $index }}</th>
+            <td>{{ .music_name }}</td>
+            <td>{{ index $.Site.Data.description.music (int $index) | markdownify }}</td>
+            <td>{{ .duration }}</td>
+            <td>{{ .writes | lang.NumFmt 0 }}</td>
+            <td>
+                {{ with index $.Site.Data.map.index.music (string $index) }}
+                    {{ delimit . ", " }}
+                {{ else }}
+                    &mdash;
+                {{ end }}
+            </td>
+        </tr>
+    {{ end }}
+</table>

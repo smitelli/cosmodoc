@@ -1,0 +1,914 @@
+# 303 function-like symbols in complete source?
+ActArrowPiston() <void ActArrowPiston () at src/game1.c:1806>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBabyGhost() <void ActBabyGhost () at src/game1.c:2624>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBabyGhostEgg() <void ActBabyGhostEgg () at src/game1.c:2816> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBird() <void ActBird () at src/game1.c:4859>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBombIdle() <void ActBombIdle () at src/game1.c:2557>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActCabbage() <void ActCabbage () at src/game1.c:2090>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActClamPlant() <void ActClamPlant () at src/game1.c:2899>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActDoor() <void ActDoor () at src/game1.c:1929>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActDragonfly() <void ActDragonfly () at src/game1.c:4411>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActEpisode1End() <void ActEpisode1End () at src/game1.c:4773>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActExitLineHorizontal() <void ActExitLineHorizontal () at src/game1.c:4630>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActExitLineVertical() <void ActExitLineVertical () at src/game1.c:4616>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActExitMonsterWest() <void ActExitMonsterWest () at src/game1.c:4570>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActExitPlant() <void ActExitPlant () at src/game1.c:4821>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActEyePlant() <void ActEyePlant () at src/game1.c:3221>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActFallingFloor() <void ActFallingFloor () at src/game1.c:4732>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActFireball() <void ActFireball () at src/game1.c:1844>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActFlamePulse() <void ActFlamePulse () at src/game1.c:5297>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActFlyingWisp() <void ActFlyingWisp () at src/game1.c:2215>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActFootSwitch() <void ActFootSwitch () at src/game1.c:1652> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActGhost() <void ActGhost () at src/game1.c:2453>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActHeadSwitch() <void ActHeadSwitch () at src/game1.c:1915>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActHeartPlant() <void ActHeartPlant () at src/game1.c:2522>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActHintGlobe() <void ActHintGlobe () at src/game1.c:4204>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActHorizontalMover() <void ActHorizontalMover () at src/game1.c:1738>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActInvincibilityBubble() <void ActInvincibilityBubble () at src/game1.c:5065>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActIvyPlant() <void ActIvyPlant () at src/game1.c:4529>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActJumpPad() <void ActJumpPad () at src/game1.c:1781>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActJumpPadRobot() <void ActJumpPadRobot () at src/game1.c:1948>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActJumpingBullet() <void ActJumpingBullet () at src/game1.c:2324>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActMoon() <void ActMoon () at src/game1.c:2502>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActMysteryWall() <void ActMysteryWall () at src/game1.c:2585>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActParachuteBall() <void ActParachuteBall () at src/game1.c:2942>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPedestal() <void ActPedestal () at src/game1.c:5021>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPinkWorm() <void ActPinkWorm () at src/game1.c:4145>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPinkWormSlime() <void ActPinkWormSlime () at src/game1.c:4393>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPipeCorner() <void ActPipeCorner () at src/game1.c:2806>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPipeEnd() <void ActPipeEnd () at src/game1.c:3613>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPrize() <void ActPrize () at src/game1.c:4657>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActProjectile() <void ActProjectile () at src/game1.c:2676>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActReciprocatingSpear() <void ActReciprocatingSpear () at src/game1.c:2148>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActReciprocatingSpikes() <void ActReciprocatingSpikes () at src/game1.c:1981>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActRedChomper() <void ActRedChomper () at src/game1.c:4023>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActRedGreenSlime() <void ActRedGreenSlime () at src/game1.c:2171>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActRedJumper() <void ActRedJumper () at src/game1.c:3246>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActRoamerSlug() <void ActRoamerSlug () at src/game1.c:2720>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSatellite() <void ActSatellite () at src/game1.c:4483>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActScooter() <void ActScooter () at src/game1.c:3993>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActScoreEffect() <void ActScoreEffect () at src/game1.c:4788>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSharpRobot() <void ActSharpRobot () at src/game1.c:2860>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSmallFlame() <void ActSmallFlame () at src/game1.c:4646>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSmokeEmitter() <void ActSmokeEmitter () at src/game1.c:5350>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSpark() <void ActSpark () at src/game1.c:3171>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSpeechBubble() <void ActSpeechBubble () at src/game1.c:5324>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSpittingTurret() <void ActSpittingTurret () at src/game1.c:3916> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSpittingWallPlant() <void ActSpittingWallPlant () at src/game1.c:3887> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSplittingPlatform() <void ActSplittingPlatform () at src/game1.c:3108>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActStoneHeadCrusher() <void ActStoneHeadCrusher () at src/game1.c:2352>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActTransporter() <void ActTransporter () at src/game1.c:3823> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActVerticalMover() <void ActVerticalMover () at src/game1.c:2012>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+AddScore() <void AddScore () at src/game2.c:1170>:
+    ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
+    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
+    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+    ActSpeechBubble() <void ActSpeechBubble () at src/game1.c:5324>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    AddScoreForSprite() <void AddScoreForSprite () at src/game2.c:3253>:
+    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
+AddScoreForSprite() <void AddScoreForSprite () at src/game2.c:3253>:
+    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
+    ActHorizontalMover() <void ActHorizontalMover () at src/game1.c:1738>:
+    ActJumpPadRobot() <void ActJumpPadRobot () at src/game1.c:1948>:
+    ActCabbage() <void ActCabbage () at src/game1.c:2090>:
+    ActParachuteBall() <void ActParachuteBall () at src/game1.c:2942>:
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActRedChomper() <void ActRedChomper () at src/game1.c:4023>:
+    ActPinkWorm() <void ActPinkWorm () at src/game1.c:4145>:
+    ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
+    ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
+AnimatePalette() <void AnimatePalette () at src/game1.c:332>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
+    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
+    ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+    InnerMain() <void InnerMain () at src/game1.c:10217>:
+ClearGameScreen() <void ClearGameScreen () at src/game1.c:7995>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+ClearPlayerDizzy() <void ClearPlayerDizzy () at src/game1.c:286>:
+    ActSplittingPlatform() <void ActSplittingPlatform () at src/game1.c:3108>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    SetPlayerPush() <void SetPlayerPush () at src/game1.c:8028>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+    ProcessPlayerDizzy() <void ProcessPlayerDizzy () at src/game1.c:8797>:
+    InitializePlayer() <void InitializePlayer () at src/game1.c:10047>:
+ClearPlayerPush() <void ClearPlayerPush () at src/game1.c:8007>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+ClearScreen() <void ClearScreen () at src/game2.c:756>:
+    Startup() <void Startup () at src/game1.c:7893>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    NextLevel() <void NextLevel () at src/game1.c:9652>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowStory() <void ShowStory () at src/game2.c:1677>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
+ConstructActor() <void ConstructActor () at src/game1.c:1519>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+CopyTilesToEGA() <void CopyTilesToEGA () at src/game1.c:608>:
+    Startup() <void Startup () at src/game1.c:7893>:
+    LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
+DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
+    ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+DrawCartoon() <void DrawCartoon () at src/game1.c:1218>:
+    DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
+DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawFountains() <void DrawFountains () at src/game1.c:1433>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawFullscreenImage() <void DrawFullscreenImage () at src/game1.c:502>:
+    Startup() <void Startup () at src/game1.c:7893>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    NextLevel() <void NextLevel () at src/game1.c:9652>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+DrawFullscreenText() <void DrawFullscreenText () at src/game1.c:7772>:
+    ExitClean() <void ExitClean () at src/game1.c:7789>:
+    ValidateSystem() <void ValidateSystem () at src/game1.c:7851>:
+DrawLights() <void DrawLights () at src/game1.c:1474>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawMapRegion() <void DrawMapRegion () at src/game1.c:644>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawNumberFlushRight() <void DrawNumberFlushRight () at src/game2.c:1129>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    DrawStatusBarScore() <void DrawStatusBarScore () at src/game2.c:1150>:
+    DrawStatusBarStars() <void DrawStatusBarStars () at src/game2.c:1180>:
+    DrawStatusBarBombs() <void DrawStatusBarBombs () at src/game2.c:1208>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    TestSound() <void TestSound () at src/game2.c:2602>:
+    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
+    ShowLevelIntro() <void ShowLevelIntro () at src/game2.c:3457>:
+DrawPlayer() <void DrawPlayer () at src/game1.c:1102>:
+    DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
+    DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
+DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawSBarHealthHelper() <void DrawSBarHealthHelper () at src/game2.c:1273>:
+    UpdateHealth() <void UpdateHealth () at src/game2.c:1281>:
+DrawScancodeCharacter() <void DrawScancodeCharacter () at src/game2.c:1821>:
+    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
+    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    ReadAndEchoText() <void ReadAndEchoText () at src/game2.c:992>:
+DrawSprite() <void DrawSprite () at src/game1.c:976>:
+    DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
+    DrawFountains() <void DrawFountains () at src/game1.c:1433>:
+    ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
+    ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
+    ActParachuteBall() <void ActParachuteBall () at src/game1.c:2942>:
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActSplittingPlatform() <void ActSplittingPlatform () at src/game1.c:3108>:
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActPipeEnd() <void ActPipeEnd () at src/game1.c:3613>:
+    ActTransporter() <void ActTransporter () at src/game1.c:3823> (R):
+    ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+    ActHintGlobe() <void ActHintGlobe () at src/game1.c:4204>:
+    ActExitMonsterWest() <void ActExitMonsterWest () at src/game1.c:4570>:
+    ActScoreEffect() <void ActScoreEffect () at src/game1.c:4788>:
+    ActExitPlant() <void ActExitPlant () at src/game1.c:4821>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    ActSpeechBubble() <void ActSpeechBubble () at src/game1.c:5324>:
+    MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
+    DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
+    MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
+    MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
+    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+    DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+DrawStatusBarBombs() <void DrawStatusBarBombs () at src/game2.c:1208>:
+    UpdateBombs() <void UpdateBombs () at src/game2.c:1235>:
+DrawStatusBarHealth() <void DrawStatusBarHealth () at src/game2.c:1246>:
+    DrawSBarHealthHelper() <void DrawSBarHealthHelper () at src/game2.c:1273>:
+DrawStatusBarScore() <void DrawStatusBarScore () at src/game2.c:1150>:
+    AddScore() <void AddScore () at src/game2.c:1170>:
+DrawStatusBarStars() <void DrawStatusBarStars () at src/game2.c:1180>:
+    UpdateStars() <void UpdateStars () at src/game2.c:1198>:
+DrawTextFrame() <word DrawTextFrame () at src/game2.c:906>:
+    UnfoldTextFrame() <word UnfoldTextFrame () at src/game2.c:960>:
+    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
+DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
+    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
+    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+    DrawTextFrame() <word DrawTextFrame () at src/game2.c:906>:
+    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowStory() <void ShowStory () at src/game2.c:1677>:
+    DrawScancodeCharacter() <void DrawScancodeCharacter () at src/game2.c:1821>:
+    PromptKeyBind() <bbool PromptKeyBind () at src/game2.c:1838>:
+    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
+    ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+    ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
+    UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
+    UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
+    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
+    ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
+    TestSound() <void TestSound () at src/game2.c:2602>:
+    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+    ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
+    ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
+    ShowMainMenu() <void ShowMainMenu () at src/game2.c:3366>:
+    ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
+    ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
+    ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:
+EraseWaitSpinner() <void EraseWaitSpinner () at src/game2.c:663>:
+    WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
+    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
+    TestSound() <void TestSound () at src/game2.c:2602>:
+FadeIn() <void FadeIn () at src/game2.c:687>:
+    DrawFullscreenImage() <void DrawFullscreenImage () at src/game1.c:502>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+    ShowStory() <void ShowStory () at src/game2.c:1677>:
+    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+FadeInCustom() <void FadeInCustom () at src/game2.c:630>:
+    FadeIn() <void FadeIn () at src/game2.c:687>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+FadeOut() <void FadeOut () at src/game2.c:695>:
+    DrawFullscreenImage() <void DrawFullscreenImage () at src/game1.c:502>:
+    ExitClean() <void ExitClean () at src/game1.c:7789>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowStory() <void ShowStory () at src/game2.c:1677>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+    ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+FadeOutCustom() <void FadeOutCustom () at src/game2.c:674>:
+    NextLevel() <void NextLevel () at src/game1.c:9652>:
+    FadeOut() <void FadeOut () at src/game2.c:695>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+FadeToWhite() <void FadeToWhite () at src/game2.c:650>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+GameLoop() <void GameLoop () at src/game1.c:9730>:
+    InnerMain() <void InnerMain () at src/game1.c:10217>:
+GameRand() <word GameRand () at src/game1.c:300>:
+    ActRoamerSlug() <void ActRoamerSlug () at src/game1.c:2720>:
+    ActBabyGhostEgg() <void ActBabyGhostEgg () at src/game1.c:2816> (R):
+    ActParachuteBall() <void ActParachuteBall () at src/game1.c:2942>:
+    CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
+    ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+    ActTransporter() <void ActTransporter () at src/game1.c:3823> (R):
+    ActRedChomper() <void ActRedChomper () at src/game1.c:4023>:
+    ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
+    ActSmokeEmitter() <void ActSmokeEmitter () at src/game1.c:5350>:
+    NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+    DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+GetMapTile() <word GetMapTile () at src/game1.c:1463>:
+    MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
+    DrawLights() <void DrawLights () at src/game1.c:1474>:
+    AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
+    ActDoor() <void ActDoor () at src/game1.c:1929>:
+    CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
+    ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+    ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+    ActFallingFloor() <void ActFallingFloor () at src/game1.c:4732>:
+    DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+GodModeToggle() <void GodModeToggle () at src/game2.c:2665>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
+    DrawFountains() <void DrawFountains () at src/game1.c:1433>:
+    ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+InitializeBackdropTable() <void InitializeBackdropTable () at src/game1.c:7683>:
+    Startup() <void Startup () at src/game1.c:7893>:
+InitializeDecorations() <void InitializeDecorations () at src/game1.c:6495>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+InitializeExplosions() <void InitializeExplosions () at src/game1.c:6323>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+InitializeGame() <void InitializeGame () at src/game1.c:10197>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+InitializePlayer() <void InitializePlayer () at src/game1.c:10047>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+InitializeShards() <void InitializeShards () at src/game1.c:6187>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+InitializeSpawners() <void InitializeSpawners () at src/game1.c:6421>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+IsIntersecting() <bool IsIntersecting () at src/game1.c:938>:
+    IsNearExplosion() <bool IsNearExplosion () at src/game1.c:6397>:
+IsNearExplosion() <bool IsNearExplosion () at src/game1.c:6397>:
+    ActFootSwitch() <void ActFootSwitch () at src/game1.c:1652> (R):
+    ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
+    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    ActBombIdle() <void ActBombIdle () at src/game1.c:2557>:
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
+    ActIvyPlant() <void ActIvyPlant () at src/game1.c:4529>:
+    ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
+    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
+    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+    ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+IsNewBackdrop() <bbool IsNewBackdrop () at src/game1.c:9994>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+IsSpriteVisible() <bool IsSpriteVisible () at src/game1.c:708>:
+    ActHorizontalMover() <void ActHorizontalMover () at src/game1.c:1738>:
+    ActArrowPiston() <void ActArrowPiston () at src/game1.c:1806>:
+    ActFireball() <void ActFireball () at src/game1.c:1844>:
+    ActJumpPadRobot() <void ActJumpPadRobot () at src/game1.c:1948>:
+    ActVerticalMover() <void ActVerticalMover () at src/game1.c:2012>:
+    ActRedGreenSlime() <void ActRedGreenSlime () at src/game1.c:2171>:
+    ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
+    ActJumpingBullet() <void ActJumpingBullet () at src/game1.c:2324>:
+    ActStoneHeadCrusher() <void ActStoneHeadCrusher () at src/game1.c:2352>:
+    ActBabyGhost() <void ActBabyGhost () at src/game1.c:2624>:
+    ActProjectile() <void ActProjectile () at src/game1.c:2676>:
+    ActRedJumper() <void ActRedJumper () at src/game1.c:3246>:
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActExitMonsterWest() <void ActExitMonsterWest () at src/game1.c:4570>:
+    ActScoreEffect() <void ActScoreEffect () at src/game1.c:4788>:
+    ActExitPlant() <void ActExitPlant () at src/game1.c:4821>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
+    MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+IsTouchingPlayer() <bool IsTouchingPlayer () at src/game1.c:908>:
+    DrawFountains() <void DrawFountains () at src/game1.c:1433>:
+    ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+    ActHintGlobe() <void ActHintGlobe () at src/game1.c:4204>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+LoadGameState() <bbool LoadGameState () at src/game1.c:8990>:
+    DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
+    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
+    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
+LoadMapData() <void LoadMapData () at src/game1.c:9917>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+MAP_CELL_ADDR():
+    TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MoveFountains() <void MoveFountains () at src/game1.c:1385>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+MovePlayerPlatform() <void MovePlayerPlatform () at src/game1.c:1262>:
+    MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
+    MoveFountains() <void MoveFountains () at src/game1.c:1385>:
+MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+NewActor() <void NewActor () at src/game1.c:6128> (R):
+    ActFootSwitch() <void ActFootSwitch () at src/game1.c:1652> (R):
+    ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
+    ActBabyGhostEgg() <void ActBabyGhostEgg () at src/game1.c:2816> (R):
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActTransporter() <void ActTransporter () at src/game1.c:3823> (R):
+    ActSpittingWallPlant() <void ActSpittingWallPlant () at src/game1.c:3887> (R):
+    ActSpittingTurret() <void ActSpittingTurret () at src/game1.c:3916> (R):
+    ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
+    ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+    MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
+    PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
+    HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
+    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
+    DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
+    NewActor() <void NewActor () at src/game1.c:6128> (R):
+    NewMapActor() <void NewMapActor () at src/game1.c:9849>:
+NewDecoration() <void NewDecoration () at src/game1.c:6507>:
+    ActFireball() <void ActFireball () at src/game1.c:1844>:
+    UpdateDoors() <void UpdateDoors () at src/game1.c:1890>:
+    ActStoneHeadCrusher() <void ActStoneHeadCrusher () at src/game1.c:2352>:
+    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    ActMysteryWall() <void ActMysteryWall () at src/game1.c:2585>:
+    ActBabyGhostEgg() <void ActBabyGhostEgg () at src/game1.c:2816> (R):
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActTransporter() <void ActTransporter () at src/game1.c:3823> (R):
+    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
+    ActPrize() <void ActPrize () at src/game1.c:4657>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
+    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    ActFlamePulse() <void ActFlamePulse () at src/game1.c:5297>:
+    ActSmokeEmitter() <void ActSmokeEmitter () at src/game1.c:5350>:
+    DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
+    DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
+    NewPounceDecoration() <void NewPounceDecoration () at src/game1.c:6666>:
+    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+NewExplosion() <void NewExplosion () at src/game1.c:6335>:
+    ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
+    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    ActBombIdle() <void ActBombIdle () at src/game1.c:2557>:
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+NewMapActor() <void NewMapActor () at src/game1.c:9849>:
+    LoadMapData() <void LoadMapData () at src/game1.c:9917>:
+NewPounceDecoration() <void NewPounceDecoration () at src/game1.c:6666>:
+    ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
+    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+NewShard() <void NewShard () at src/game1.c:6199>:
+    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
+    ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
+    ActFallingFloor() <void ActFallingFloor () at src/game1.c:4732>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
+    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+    ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
+    DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+NewSpawner() <void NewSpawner () at src/game1.c:6433>:
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
+    ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
+    DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+NextLevel() <void NextLevel () at src/game1.c:9652>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+PauseMessage() <void PauseMessage () at src/game2.c:2648>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+PrepareBackdropHScroll() <void PrepareBackdropHScroll () at src/game2.c:1980>:
+    LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
+PrepareBackdropVScroll() <void PrepareBackdropVScroll () at src/game2.c:1928>:
+    LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
+ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+    MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
+ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+    ProcessGameInputHelper() <byte ProcessGameInputHelper () at src/game1.c:7664>:
+ProcessGameInputHelper() <byte ProcessGameInputHelper () at src/game1.c:7664>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+ProcessPlayerDizzy() <void ProcessPlayerDizzy () at src/game1.c:8797>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+PromptKeyBind() <bbool PromptKeyBind () at src/game2.c:1838>:
+    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
+PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+PromptQuitConfirm() <bbool PromptQuitConfirm () at src/game2.c:2534>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+ReadAndEchoText() <void ReadAndEchoText () at src/game2.c:992>:
+    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
+    ClearGameScreen() <void ClearGameScreen () at src/game1.c:7995>:
+SET_PLAYER_DIZZY():
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+SaveGameState() <void SaveGameState () at src/game1.c:9031>:
+    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+SetMapTile() <void SetMapTile () at src/game1.c:2577>:
+    MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
+    SetMapTileRepeat() <void SetMapTileRepeat () at src/game1.c:1361>:
+    SetMapTile4() <void SetMapTile4 () at src/game1.c:1373>:
+    MoveFountains() <void MoveFountains () at src/game1.c:1385>:
+    UpdateDoors() <void UpdateDoors () at src/game1.c:1890>:
+    ActDoor() <void ActDoor () at src/game1.c:1929>:
+    ActMysteryWall() <void ActMysteryWall () at src/game1.c:2585>:
+    ActFallingFloor() <void ActFallingFloor () at src/game1.c:4732>:
+    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
+SetMapTile4() <void SetMapTile4 () at src/game1.c:1373>:
+    ActFootSwitch() <void ActFootSwitch () at src/game1.c:1652> (R):
+SetMapTileRepeat() <void SetMapTileRepeat () at src/game1.c:1361>:
+    ActSplittingPlatform() <void ActSplittingPlatform () at src/game1.c:3108>:
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
+SetPlayerPush() <void SetPlayerPush () at src/game1.c:8028>:
+    ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+ShowAlteredFileError() <void ShowAlteredFileError () at src/game2.c:2369>:
+    LoadGameState() <bbool LoadGameState () at src/game1.c:8990>:
+ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
+    Startup() <void Startup () at src/game1.c:7893>:
+ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
+    ActEpisode1End() <void ActEpisode1End () at src/game1.c:4773>:
+ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
+    ActHintGlobe() <void ActHintGlobe () at src/game1.c:4204>:
+ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+ShowLevelIntro() <void ShowLevelIntro () at src/game2.c:3457>:
+    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+ShowMainMenu() <void ShowMainMenu () at src/game2.c:3366>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
+    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
+ShowRestoreGameError() <void ShowRestoreGameError () at src/game2.c:2339>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    NextLevel() <void NextLevel () at src/game1.c:9652>:
+ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+ShowStory() <void ShowStory () at src/game2.c:1677>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+StepPalette() <void StepPalette () at src/game1.c:317>:
+    AnimatePalette() <void AnimatePalette () at src/game1.c:332>:
+StepWaitSpinner() <byte StepWaitSpinner () at src/game2.c:704>:
+    WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
+    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
+SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
+    DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
+    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+    InnerMain() <void InnerMain () at src/game1.c:10217>:
+TILE_BLOCK_EAST():
+    TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+TILE_BLOCK_NORTH():
+    TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    ActForceField() <void ActForceField () at src/game1.c:4098> (R):
+TILE_BLOCK_SOUTH():
+    TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    DrawLights() <void DrawLights () at src/game1.c:1474>:
+    AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
+    CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
+    ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+TILE_BLOCK_WEST():
+    TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
+    ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+TILE_CAN_CLING():
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+TILE_IN_FRONT():
+    DrawSprite() <void DrawSprite () at src/game1.c:976>:
+    DrawPlayer() <void DrawPlayer () at src/game1.c:1102>:
+TILE_SLIPPERY():
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+TILE_SLOPED():
+    TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
+TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
+    MovePlayerPlatform() <void MovePlayerPlatform () at src/game1.c:1262>:
+    MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+    ProcessPlayerDizzy() <void ProcessPlayerDizzy () at src/game1.c:8797>:
+    GameLoop() <void GameLoop () at src/game1.c:9730>:
+TestSound() <void TestSound () at src/game2.c:2602>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
+    AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
+    ActFireball() <void ActFireball () at src/game1.c:1844>:
+    ActVerticalMover() <void ActVerticalMover () at src/game1.c:2012>:
+    ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
+    ActCabbage() <void ActCabbage () at src/game1.c:2090>:
+    ActStoneHeadCrusher() <void ActStoneHeadCrusher () at src/game1.c:2352>:
+    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
+    ActMysteryWall() <void ActMysteryWall () at src/game1.c:2585>:
+    ActBabyGhost() <void ActBabyGhost () at src/game1.c:2624>:
+    ActRoamerSlug() <void ActRoamerSlug () at src/game1.c:2720>:
+    ActSharpRobot() <void ActSharpRobot () at src/game1.c:2860>:
+    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
+    ActSpark() <void ActSpark () at src/game1.c:3171>:
+    ActRedJumper() <void ActRedJumper () at src/game1.c:3246>:
+    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
+    ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
+    ActScooter() <void ActScooter () at src/game1.c:3993>:
+    ActDragonfly() <void ActDragonfly () at src/game1.c:4411>:
+    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
+    ActFallingFloor() <void ActFallingFloor () at src/game1.c:4732>:
+    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
+    MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
+    MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
+    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    InnerMain() <void InnerMain () at src/game1.c:10217>:
+ToggleMusic() <void ToggleMusic () at src/game2.c:2573>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+ToggleSound() <void ToggleSound () at src/game2.c:2553>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
+UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
+    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
+UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
+    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
+UnfoldTextFrame() <word UnfoldTextFrame () at src/game2.c:960>:
+    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
+    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
+    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowStory() <void ShowStory () at src/game2.c:1677>:
+    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
+    ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+    ShowRestoreGameError() <void ShowRestoreGameError () at src/game2.c:2339>:
+    ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
+    ShowAlteredFileError() <void ShowAlteredFileError () at src/game2.c:2369>:
+    UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
+    UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
+    ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
+    PromptQuitConfirm() <bbool PromptQuitConfirm () at src/game2.c:2534>:
+    ToggleSound() <void ToggleSound () at src/game2.c:2553>:
+    ToggleMusic() <void ToggleMusic () at src/game2.c:2573>:
+    TestSound() <void TestSound () at src/game2.c:2602>:
+    PauseMessage() <void PauseMessage () at src/game2.c:2648>:
+    GodModeToggle() <void GodModeToggle () at src/game2.c:2665>:
+    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+    ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
+    ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
+    ShowMainMenu() <void ShowMainMenu () at src/game2.c:3366>:
+    ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
+    ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
+    ShowLevelIntro() <void ShowLevelIntro () at src/game2.c:3457>:
+    ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:
+UpdateBombs() <void UpdateBombs () at src/game2.c:1235>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
+    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
+UpdateDoors() <void UpdateDoors () at src/game1.c:1890>:
+    ActHeadSwitch() <void ActHeadSwitch () at src/game1.c:1915>:
+UpdateHealth() <void UpdateHealth () at src/game2.c:1281>:
+    HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
+    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
+UpdateStars() <void UpdateStars () at src/game2.c:1198>:
+    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
+    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
+WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
+    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
+    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
+    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
+    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
+    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
+    ReadAndEchoText() <void ReadAndEchoText () at src/game2.c:992>:
+    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
+    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
+    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
+    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
+    ShowStory() <void ShowStory () at src/game2.c:1677>:
+    PromptKeyBind() <bbool PromptKeyBind () at src/game2.c:1838>:
+    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
+    ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
+    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
+    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
+    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
+    ShowRestoreGameError() <void ShowRestoreGameError () at src/game2.c:2339>:
+    ShowAlteredFileError() <void ShowAlteredFileError () at src/game2.c:2369>:
+    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
+    ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
+    PromptQuitConfirm() <bbool PromptQuitConfirm () at src/game2.c:2534>:
+    ToggleSound() <void ToggleSound () at src/game2.c:2553>:
+    ToggleMusic() <void ToggleMusic () at src/game2.c:2573>:
+    TestSound() <void TestSound () at src/game2.c:2602>:
+    PauseMessage() <void PauseMessage () at src/game2.c:2648>:
+    GodModeToggle() <void GodModeToggle () at src/game2.c:2665>:
+    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
+    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
+    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
+    ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
+    ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
+    ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
+    ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
+    ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:

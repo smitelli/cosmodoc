@@ -1,0 +1,3 @@
+@function gray-from-lightness($lightness) {
+    @return scale-color(#000, $lightness: $lightness);
+}

@@ -1,0 +1,8 @@
+{{/*
+    Wraps the inner markdown content in an <aside> tag with a "Note:" prefix.
+    Returns HTML containing this wrapped content.
+*/}}
+
+<aside class="note">
+    <strong>Note:</strong> {{ .Inner | markdownify }}
+</aside>

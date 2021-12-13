@@ -1,0 +1,13 @@
+{{ define "pageTitle" }}
+    Page Not Found | {{ .Site.Title }}
+{{ end }}
+
+{{ define "pageContent" }}
+    <article class="markdown">
+        <img src="/img/404.png" alt="COSMIC HINT! 404 Not Found..." title="COSMIC HINT! 404 Not Found...">
+
+        <p style="text-align: center"><a href="/">Go Home</a></p>
+    </article>
+
+    {{ partial "footer" . }}
+{{ end }}

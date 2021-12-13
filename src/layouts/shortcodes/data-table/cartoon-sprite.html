@@ -1,0 +1,22 @@
+{{/*
+    Insert the data table for cartoon sprites.
+*/}}
+
+<table>
+    <tr>
+        <th>Sprite Type</th>
+        <th>Frame Number</th>
+        <th>Width x Height</th>
+        <th>Description</th>
+    </tr>
+    {{ range $.Site.Data.cartoon_sprite.table }}
+        {{ range . }}
+            <tr>
+                <th>{{ .sprite_type }}</th>
+                <td>{{ .sprite_frame }}</td>
+                <td>{{ .width_tiles }}x{{ .height_tiles }}</td>
+                <td>{{ index $.Site.Data.description.cartoon_sprite (int .sprite_frame) | markdownify }}</td>
+            </tr>
+        {{ end }}
+    {{ end }}
+</table>

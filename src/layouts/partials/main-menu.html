@@ -1,0 +1,17 @@
+<aside id="main-menu">
+    {{ if ne .RelPermalink "/" }}
+    <style>
+        #main-menu a[href$="{{ .RelPermalink }}"] {
+            color: #b40;
+        }
+    </style>
+    {{ end }}
+
+    <nav>
+        <h2>
+            <a href="/" title="{{ .Site.Params.Subtitle }}">{{ .Site.Title }}</a>
+        </h2>
+
+        {{ partial "list-pages-recursive" (.Site.GetPage "/topics") }}
+    </nav>
+</aside>

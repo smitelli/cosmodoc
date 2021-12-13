@@ -1,0 +1,24 @@
+{{/*
+    Inserts an <audio> element and download link for the provided base name.
+    This shortcode assumes that x.mp3, x.m4a, and x.wav (where x is the base
+    name) all exist as valid and playable audio files. Returns HTML content.
+
+    Positional parameters:
+        0 (required): Base name of an audio file *without* the file extension.
+*/}}
+
+{{- "" -}}
+
+<audio controls>
+    {{- "" -}}
+    <source src="{{ .Get 0 }}.mp3" type="audio/mpeg">
+    {{- "" -}}
+    <source src="{{ .Get 0 }}.m4a" type="audio/mp4">
+    {{- "" -}}
+    <source src="{{ .Get 0 }}.wav" type="audio/wav">
+    {{- "" -}}
+</audio>
+
+{{- "" -}}
+
+{{ with .Get 1 }}<strong>{{ . }}</strong> {{ end }}(Download <a href="{{ .Get 0 }}.mp3">MP3</a>, <a href="{{ .Get 0 }}.m4a">AAC</a>, or <a href="{{ .Get 0 }}.wav">WAV</a>.)

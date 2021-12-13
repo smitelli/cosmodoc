@@ -1,0 +1,24 @@
+{{/*
+    Insert the data table for the game font.
+*/}}
+
+<table>
+    <tr>
+        <th>Index</th>
+        <th>Offset (Bytes)</th>
+        <th>Character</th>
+    </tr>
+    {{ range $.Site.Data.font.table }}
+        <tr>
+            <th>{{ .index }}</th>
+            <td>{{ printf "%04xh" (int .offset_bytes) }}</td>
+            <td>
+                {{ if .literal }}
+                    <code>{{ .character }}</code>
+                {{ else }}
+                    {{ .character | markdownify }}
+                {{ end }}
+            </td>
+        </tr>
+    {{ end }}
+</table>

@@ -1,0 +1,35 @@
+{{/*
+    Takes one numeric argument, which is interpreted as an actor type. Returns a
+    formatted string containing the actor's name.
+
+    Positional usage is for simple cases where the actor's name is inserted,
+    unmodified, from the database content. Named usage is for cases where the
+    context requires pluralization, stripping of parentheticals, or both.
+
+    Positional usage:
+        0 (required): Numeric actor type.
+
+    Named usage:
+        type (required): Numeric actor type.
+        strip (optional): If set to a truthy value, strips any parenthetical
+            details off the trailing end of the return value.
+        plural (optional): If set to a truthy value, pluralize the return value.
+*/}}
+
+{{- $out := "" -}}
+
+{{- if $.IsNamedParams -}}
+    {{- $out = index $.Site.Data.description.actor (int ($.Get "type")) -}}
+
+    {{- if $.Get "strip" -}}
+        {{- $out = (replaceRE "\\s+\\(.*$" "" $out) -}}
+    {{- end -}}
+
+    {{- if $.Get "plural" -}}
+        {{- $out = (pluralize $out) -}}
+    {{- end -}}
+{{- else -}}
+    {{- $out = index $.Site.Data.description.actor (int ($.Get 0)) -}}
+{{- end -}}
+
+{{- $out | markdownify -}}

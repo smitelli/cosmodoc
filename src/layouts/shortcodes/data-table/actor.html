@@ -1,0 +1,46 @@
+{{/*
+    Insert the data table for actors.
+*/}}
+
+<table>
+    {{ range $index, $element := $.Site.Data.actor.table }}
+        {{ if modBool $index $.Site.Params.dataTableHeaderFreq }}
+            <tr>
+                <th rowspan="2">Actor Type</th>
+                <th rowspan="2">Sprite Type</th>
+                <th colspan="2">Shift</th>
+                <th rowspan="2">Always Active</th>
+                <th rowspan="2">Remains Active</th>
+                <th rowspan="2">Ledge Eager</th>
+                <th rowspan="2">Has Gravity</th>
+                <th colspan="5">Data</th>
+                <th rowspan="2">Description</th>
+            </tr>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+            </tr>
+        {{ end }}
+        <tr>
+            <th>{{ .actor_type }}</th>
+            <td>{{ .sprite_type }}</td>
+            <td>{{ .xshift_tiles }}</td>
+            <td>{{ .yshift_tiles }}</td>
+            <td>{{ if .always_active_flag }}yes{{ else }}no{{ end }}</td>
+            <td>{{ if .remains_active_flag }}yes{{ else }}no{{ end }}</td>
+            <td>{{ if .ledge_eager_flag }}yes{{ else }}no{{ end }}</td>
+            <td>{{ if .has_gravity_flag }}yes{{ else }}no{{ end }}</td>
+            <td>{{ .data1 }}</td>
+            <td>{{ .data2 }}</td>
+            <td>{{ .data3 }}</td>
+            <td>{{ .data4 }}</td>
+            <td>{{ .data5 }}</td>
+            <td>{{ index $.Site.Data.description.actor (int .actor_type) | markdownify }}</td>
+        </tr>
+    {{ end }}
+</table>

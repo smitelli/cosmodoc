@@ -1,0 +1,9 @@
+{{ define "pageContent" }}
+    <article class="markdown">
+        {{ .Content }}
+
+        {{ partial "prev-next" . }}
+    </article>
+
+    {{ partial "footer" . }}
+{{ end }}

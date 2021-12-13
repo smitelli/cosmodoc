@@ -1,0 +1,15 @@
+{{ define "pageContent" }}
+    <article class="markdown">
+        {{ .Content }}
+
+        {{ partial "list-pages-recursive" . }}
+
+        <nav id="prev-next">
+            <ul>
+                {{ with .Parent }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+            </ul>
+        </nav>
+    </article>
+
+    {{ partial "footer" . }}
+{{ end }}

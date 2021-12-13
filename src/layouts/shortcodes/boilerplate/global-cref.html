@@ -1,0 +1,19 @@
+{{/*
+    Provide as much data as possible for the "Global Variables" page from the
+    cref data file.
+*/}}
+
+{{- $param_name := $.Get 0 -}}
+{{- $text := (index $.Site.Data.cref $param_name).text -}}
+{{- $definition := (index $.Site.Data.cref $param_name).def -}}
+{{- $description := (index $.Site.Data.cref $param_name).desc -}}
+
+<hr>
+
+<h2 id="{{- $param_name -}}"><code>{{- $text -}}</code></h2>
+
+{{- highlight $definition "c" "" -}}
+
+<p>{{- $description | markdownify -}}</p>
+
+{{- "" -}}

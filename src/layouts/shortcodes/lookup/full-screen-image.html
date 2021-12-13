@@ -1,0 +1,11 @@
+{{/*
+    Takes one numeric argument, which is interpreted as an full screen image ID.
+    Returns a formatted string containing the full screen image's description.
+
+    Positional parameters:
+        0 (required): Numeric full screen image ID.
+*/}}
+
+{{- "" -}}
+{{ index $.Site.Data.description.full_screen_image (int ($.Get 0)) | markdownify }}
+{{- "" -}}

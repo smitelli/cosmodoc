@@ -1,0 +1,11 @@
+{{/*
+    Takes one numeric argument, which is interpreted as an music ID. Returns a
+    formatted string containing the music's title.
+
+    Positional parameters:
+        0 (required): Numeric music ID.
+*/}}
+
+{{- "" -}}
+{{ index $.Site.Data.description.music (int ($.Get 0)) | markdownify }}
+{{- "" -}}

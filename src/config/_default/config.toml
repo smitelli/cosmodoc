@@ -1,0 +1,6 @@
+baseURL = "/"
+disableKinds = ["taxonomy", "term", "RSS"]
+enableGitInfo = true
+enableRobotsTXT = true
+publishDir = "../public"
+title = "Cosmodoc"

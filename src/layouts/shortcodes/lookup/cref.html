@@ -1,0 +1,37 @@
+{{/*
+    Takes one string argument, which is interpreted as a C symbol name. Returns
+    a formatted link to the documentation page/section that defines the symbol.
+
+    Positional parameters:
+        0 (required): Name of a symbol defined in a some C file.
+
+    Named usage:
+        name (required): Name of a symbol defined in a some C file.
+        text (optional): If set to a truthy value, overrides the displayed text
+            returned within the link.
+*/}}
+
+{{- $param_name := "" -}}
+{{- $param_text := "" -}}
+
+{{- if $.IsNamedParams -}}
+    {{- $param_name = $.Get "name" -}}
+    {{- $param_text = $.Get "text" -}}
+{{- else -}}
+    {{- $param_name = $.Get 0 -}}
+{{- end -}}
+
+{{- if not (isset $.Site.Data.cref $param_name) -}}
+    {{- warnf "No definition for lookup/cref \"%s\"" $param_name -}}
+    {{- $text := default $param_name $param_text -}}
+
+    <code>{{ $text }}</code>
+{{- else -}}
+    {{- $text := default (index $.Site.Data.cref $param_name).text $param_text -}}
+    {{- $desc := (index $.Site.Data.cref $param_name).desc -}}
+    {{- $def := (index $.Site.Data.cref $param_name).def -}}
+    {{- $ref := (index $.Site.Data.cref $param_name).ref -}}
+
+    <a href="{{ $ref }}" title="{{ $def }}
+{{ $desc }}"><code>{{ $text }}</code></a>
+{{- end -}}

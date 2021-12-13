@@ -1,0 +1,5 @@
+minifyOutput = true
+
+[tdewolff.html]
+keepQuotes = true
+keepWhitespace = false

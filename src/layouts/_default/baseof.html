@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="generator" content="Hugo {{ hugo.Version }}">
+        <meta name="viewport" content="width=device-width, initial-scale=0.85">
+        {{ template "_internal/twitter_cards.html" . }}
+        {{ template "_internal/opengraph.html" . }}
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
+        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+        {{ $cssOptions := (dict "targetPath" "css/main.css" "outputStyle" "compressed") }}
+        {{ $css := resources.Get "scss/main.scss" | toCSS $cssOptions }}
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+        <title>{{ block "pageTitle" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    </head>
+
+    <body>
+        <input type="checkbox" style="display: none" id="main-menu-control">
+        <main>
+            {{ partial "main-menu" . }}
+
+            <div id="main-page">
+                <header class="responsive-header">
+                    <label for="main-menu-control">
+                        <img src="/img/menu.svg" alt="Menu">
+                    </label>
+                </header>
+
+                {{ block "pageContent" . }}{{ end }}
+            </div>
+        </main>
+        {{ $js := resources.Get "js/main.js" | minify }}
+        <script src="{{ $js.RelPermalink }}" async></script>
+    </body>
+</html>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1020.7294"
+   height="722.08954"
+   viewBox="0 0 270.06798 191.05286"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="key-on-and-envelope.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.5"
+     inkscape:cx="395"
+     inkscape:cy="358"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="true"
+     units="px"
+     showborder="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-14.453294,-134.96725)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 14.453294,296.99999 H 243.45794"
+       id="path4797"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:label="ADSR Min" />
+    <path
+       inkscape:label="ADSR SLev"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4817"
+       d="M 68.881865,226.3184 H 243.45794"
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:label="ADSR Max"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4815"
+       d="M 14.453294,191.16665 H 243.45794"
+       style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 142.9652,137.61683 H 243.45794"
+       id="path4595"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:label="KON Lev" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 36.090227,148.22859 V 309.24645"
+       id="path4803"
+       inkscape:connector-curvature="0"
+       inkscape:label="Key On"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:label="Decay Start"
+       inkscape:connector-curvature="0"
+       id="path4807"
+       d="m 55.652756,191.16665 -2.8e-5,118.0798"
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 79.464958,215.38181 3.1e-5,93.86464"
+       id="path4809"
+       inkscape:connector-curvature="0"
+       inkscape:label="Sustain Start"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:label="Key Off"
+       inkscape:connector-curvature="0"
+       id="path4805"
+       d="M 145.61106,148.22859 V 309.24645"
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.79375, 0.79375;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 229.43291,286.10133 -3e-5,23.14512"
+       id="path4813"
+       inkscape:connector-curvature="0"
+       inkscape:label="All Off"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#0500aa;stroke-width:1.05833;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 14.453394,296.99999 h 21.636831 l 19.562472,-105.83334 23.812501,35.15175 66.145862,3e-5 83.81263,70.68156 h 14.03425"
+       id="path4799"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:label="ADSR" />
+    <path
+       style="fill:none;stroke:#aa0000;stroke-width:1.05833;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 14.453394,153.52017 H 36.090225 V 137.64525 H 145.61106 v 15.875 l 97.84688,-8e-5"
+       id="path4801"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:label="Key State" />
+    <g
+       id="g4557"
+       inkscape:label="X Axis Labels"
+       style="display:inline">
+      <text
+         inkscape:label="Attack"
+         id="text832"
+         y="306.94714"
+         x="37.241138"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6388px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.85553px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           y="306.94714"
+           x="37.241138"
+           id="tspan830"
+           sodipodi:role="line">Attack</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6388px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="59.343094"
+         y="306.94714"
+         id="text4539"
+         inkscape:label="Decay"><tspan
+           sodipodi:role="line"
+           id="tspan4537"
+           x="59.343094"
+           y="306.94714"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.85553px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583">Decay</tspan></text>
+      <text
+         inkscape:label="Sustain"
+         id="text4543"
+         y="306.94714"
+         x="102.66824"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6388px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.85553px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           y="306.94714"
+           x="102.66824"
+           id="tspan4541"
+           sodipodi:role="line">Sustain</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6388px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="176.93741"
+         y="306.94714"
+         id="text4547"
+         inkscape:label="Release"><tspan
+           sodipodi:role="line"
+           id="tspan4545"
+           x="176.93741"
+           y="306.94714"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.85553px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583">Release</tspan></text>
+    </g>
+    <g
+       id="g4581"
+       inkscape:label="Y Axis Labels">
+      <text
+         inkscape:label="Min"
+         id="text4561"
+         y="299.02307"
+         x="244.72354"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           id="tspan4563"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           y="299.02307"
+           x="244.72354"
+           sodipodi:role="line">Silence</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="244.72354"
+         y="228.37941"
+         id="text4569"
+         inkscape:label="Sus"><tspan
+           sodipodi:role="line"
+           x="244.72354"
+           y="228.37941"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           id="tspan4567">Sustain Level</tspan></text>
+      <text
+         inkscape:label="Max"
+         id="text4573"
+         y="193.24397"
+         x="244.72354"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           id="tspan4571"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           y="193.24397"
+           x="244.72354"
+           sodipodi:role="line">Maximum Level</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="244.72354"
+         y="154.957"
+         id="text4585"
+         inkscape:label="Off"><tspan
+           sodipodi:role="line"
+           x="244.72354"
+           y="154.957"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           id="tspan4583">Key Off</tspan></text>
+      <text
+         inkscape:label="On"
+         id="text4589"
+         y="139.03522"
+         x="244.72354"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583"
+           y="139.03522"
+           x="244.72354"
+           sodipodi:role="line"
+           id="tspan4591">Key On</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="71.977974"
+       y="324.06296"
+       id="text4599"
+       inkscape:label="Caption"><tspan
+         sodipodi:role="line"
+         id="tspan4597"
+         x="71.977974"
+         y="324.06296"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.17222px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';stroke-width:0.264583">Key-On Signal and Envelope Behavior</tspan></text>
+  </g>
+</svg>

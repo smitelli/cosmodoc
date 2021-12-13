@@ -1,0 +1,16 @@
+{{/*
+    Insert the data table for special actors.
+*/}}
+
+<table>
+    <tr>
+        <th>Special Actor Type</th>
+        <th>Description</th>
+    </tr>
+    {{ range $index, $_ := $.Site.Data.description.special_actor }}
+        <tr>
+            <th>{{ $index }}</th>
+            <td>{{ . | markdownify }}</td>
+        </tr>
+    {{ end }}
+</table>

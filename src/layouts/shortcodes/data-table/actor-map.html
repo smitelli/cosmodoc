@@ -1,0 +1,24 @@
+{{/*
+    Insert the data table for actors/maps. The positional parameter switches
+    between showing `actor` and `special_actor` data.
+
+    Positional parameters:
+        0 (required): One of `actor` (show data for regular actors) or
+            `special_actor` (show data for special actors).
+*/}}
+
+{{ $dataSort := index $.Site.Data.map.sort (.Get 0) }}
+{{ $dataIndex := index $.Site.Data.map.index (.Get 0) }}
+
+<table>
+    <tr>
+        <th>{{ if eq (.Get 0) "special_actor" }}Special {{ end }}Actor Type</th>
+        <th>Present on Maps</th>
+    </tr>
+    {{ range $dataSort }}
+        <tr>
+            <th>{{ . }}</th>
+            <td>{{ delimit (index $dataIndex (string .)) ", " }}</td>
+        </tr>
+    {{ end }}
+</table>

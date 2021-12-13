@@ -1,0 +1,36 @@
+{{/*
+    Insert the data table for sounds.
+*/}}
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Group Entry</th>
+        <th>Index</th>
+        <th>Sound Name</th>
+        <th>Offset (Bytes)</th>
+        <th>Size (Bytes)</th>
+        <th>Priority</th>
+        <th>Length (ms)</th>
+        <th>Description</th>
+    </tr>
+    {{ range $index, $_ := $.Site.Data.sound.table }}
+        <tr>
+            <th>{{ with .game_index }}{{ . }}{{ else }}&mdash;{{ end }}</th>
+            <td>{{ .groupent_name }}</td>
+            <td>{{ .groupent_index }}</td>
+            <td>{{ .name }}</td>
+            <td>{{ .offset_bytes | lang.NumFmt 0  }}</td>
+            <td>{{ .size_bytes | lang.NumFmt 0  }}</td>
+            <td>{{ .priority }}</td>
+            <td>{{ .length_ms | lang.NumFmt 0 }}</td>
+            <td>
+                {{ with index $.Site.Data.description.sound (int $index) }}
+                    {{ . | markdownify }}
+                {{ else }}
+                    &mdash;
+                {{ end }}
+            </td>
+        </tr>
+    {{ end }}
+</table>

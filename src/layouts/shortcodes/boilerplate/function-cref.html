@@ -1,0 +1,10 @@
+{{/*
+    Provide a section header (and not much else) from the cref data file.
+*/}}
+
+{{- $param_name := $.Get 0 -}}
+{{- $text := (index $.Site.Data.cref $param_name).text -}}
+
+<h2 id="{{- $param_name -}}"><code>{{- $text -}}</code></h2>
+
+{{- "" -}}

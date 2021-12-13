@@ -1,0 +1,32 @@
+{{/*
+    Generates an <img> element and link for the provided image file. Supports,
+    but does not require, the use of multiple image resolutions for responsive
+    purposes. Returns an HTML image tag wrapped in a link.
+
+    Each file name must be recognized as a Hugo page resource.
+
+    Named parameters:
+        src (required): File name of an image. This will be used as the
+            <img src="..."> attribute and the target of the <a href="...">
+            attribute.
+        alt (optional): Text to use for the alt/title attributes.
+        1x (optional): If provided, the "1x" scale file name for the srcset
+            attribute.
+        2x (optional): If provided, the "2x" scale file name.
+        3x (optional): If provided, the "3x" scale file name.
+*/}}
+
+{{ $src := ($.Page.Resources.GetMatch (.Get "src")).RelPermalink }}
+{{ $alt := .Get "alt" }}
+
+{{ $srcset := slice }}
+{{ range $x := (slice "1x" "2x" "3x") }}
+    {{ with $.Get . }}
+        {{ $srcset = $srcset | append (printf "%s %s" ($.Page.Resources.GetMatch .).RelPermalink $x) }}
+    {{ end }}
+{{ end }}
+
+<a href="{{ $src }}"><img
+    src="{{ $src }}" srcset="{{ delimit $srcset ", " }}"
+    alt="{{ $alt }}" title="{{ $alt }}"
+></a>

@@ -1,0 +1,254 @@
+* Eventually will be more than semi-complete
+* Word count
+* Investigate JS ToC
+* Appendix/glossary
+* Unused tiles and masktile
+
+=============================================================================
+
+* high-level draw
+    * LoadVideoMemory: copy "size" bytes from "source" into EGA memory at "offset"
+    * ClearScreen: draw a black tile to the entire screen.
+    * FullscreenImage: given an image number, blast the entire thing to the screen.
+    * FadeIn: enable EGA color regs, one at a time.
+    * FadeToWhite: whiten EGA color regs, one at a time.
+    * FadeOut: blacken EGA color regs, one at a time.
+    * FadeInStandard: FadeIn, delay=3
+    * FadeOutStandard: FadeOut, delay=3
+    * AnimatePalette: dispatch to PS (or directly set regs for lightning) based on paletteAnimationType.
+    * PaletteStep: take one step through palette array, and update EGA regs
+
+* UI frame
+    * PlaceTextFrame: draw bray box with blue shiny border around it
+    * AnimateTextFrame: wrap PlaceTextFrame() w/ an animation loop
+* text rendering
+    * description of the font file and the charset
+    * LoadFonts: given groupent name, load into specified buffer. inverts mask
+    * PlaceTextLine: place a one-line string at XY (left origin). control codes handled here
+    * PlaceRightAlignNumber: draw integer at XY (right origin).
+    * EchoTextChar: draw one-char representation of KB scancode at XY.
+    * MultiCharInput: accept keyboard input, up to max length, echoing at XY (left origin).
+* cartoon rendering
+    * LoadCartoons: given groupent name, load cartoons into fixed location: mapData
+    * PlaceCartoon: load cartoons if needed. draw cartoon at XY (bottom left origin) one tile at a time.
+* wait spinner
+    * WaitSpinner: call DrawWaitSpinner() in a busy loop until any key cycles. clear global keypress, erase wait spinner, and return pressed key.
+    * DrawWaitSpinner: sleep, advance, and draw one wai spinner frame at XY. return most recent scancode seen.
+    * EraseWaitSpinner: clear one XY cell where wait spinner (or any character) was.
+* menus
+    * MainMenu: the title screen, real main menu, and key input processing.
+    * DrawMainMenu: place text lines for main menu, and that's it.
+    * GameRedefineMenu: inner menu for changing controls/config
+    * ConfirmQuit: Y/N prompt
+    * InGameMenu: ESC menu in the game.
+    * SaveGamePrompt: menu UI for saving a game.
+    * RestoreGamePrompt: menu UI for loading a game.
+    * RestoreGameNotFound: restore game error.
+    * AlteredFileError: restore game error.
+    * KeyboardConfigPrompt: "enter new key"
+    * KeyboardConfig: keyboard redefine menu.
+    * SoundToggle: UI text for sound toggle.
+    * TestSound: UI menu for testing each sound.
+    * MusicToggle: UI for music on/off message.
+* story/help
+    * Copyright
+    * HelpStory
+    * Instructions
+    * HelpHints
+    * OrderingInfo
+    * ForeignOrders
+    * PublisherBBS
+    * EndGameStory
+    * EndGameCongrats
+* intermissions
+    * NowEnteringLevel: you've seen it a lot.
+    * SectionIntermission: variable message, followed by star tally.
+    * StarBonusTally: count up the number of stars collected.
+    * HighScoreTable, EnterHighScore: view/modify high scores.
+
+* game setup
+    * GameRand: predictable PRNG
+    * GameKeysAndMenu: does something goofy with the pages and calls ReadGameKeys
+    * NextLevel: determine next level to play, optionally with star bonus tally.
+    * GameLoop: runs once per frame.
+    * LoadLevel: given level number, open groupent file. read flags. init player. load BD, map data. "now entering level." init game. so on and so forth.
+    * InitializeGameState: reset player-specific game stuff for brand new game.
+    * GiveScore: given an actor type, add a certain amount to player's score.
+* map management
+    * LoadTileAttributes: load 7,000 bytes into tileAttributesData.
+    * LoadMaskTile: load 40,000 bytes into maskTileData.
+    * SetMapBlockRepeat: SetMapBlock to one value, repeated arbitrarily many times.
+    * SetMapBlock4: set 4 consecutive map blocks to 4 different values.
+    * GetMapBlock: get one map block.
+    * SetMapBlock: set one map block.
+    * AddMapActor: handle player start, platforms, fountains, lights. if none of those, dispatch to CreateActorAtIndex.
+    * LoadMapData: given a level number, open the groupent file containing the map, set the width, add actors, and fill the map data block. initialize the platform saved blocks, and finally set current level and height.
+    * MAP_BLOCK_ADDR: XY to linear address.
+    * TILEATTR_BlockSouth
+    * TILEATTR_BlockNorth
+    * TILEATTR_BlockWest
+    * TILEATTR_BlockEast
+    * TILEATTR_Slippery
+    * TILEATTR_InFront
+    * TILEATTR_Sloped
+    * TILEATTR_CanCling
+* level display
+    * DrawBackdropLayer: does more than you think!
+    * DrawRandomEffects: make slippery tiles sparkle sometimes. spawn raindrops if warranted.
+* player move
+    * ReadGameKeys: handle the large majority of the game's input/cheats.
+    * InitializePlayerState: reset more esoteric player vars, mostly to zero.
+    * ResetPlayerHeadShake: stop player's head from shaking.
+    * TestPlayerMove: determine if the player can move in a given direction, and set a bunch of global vars in the process.
+    * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
+    * ResetPush: reset push-related vars.
+    * SetPush: set up a push.
+    * PushPlayer: handle one tick of player push movement.
+    * MovePlayer: handle one tick of basically all player input.
+    * MovePlayerScooter: handle one tick of player movement on the scooter.
+    * ShakePlayerHead: handle landing on the ground and maybe shaking head.
+* player display
+    * DrawPlayerSprite: player sprite control, with some checks for the various ways to die.
+    * PlacePlayer: draw one player sprite at XY.
+* player/actor
+    * TestPlayerHit: return true if actor type/frame/XY is touching the player
+    * PounceHelper: imparts the springiness into actor pounces.
+    * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
+
+* status bar
+    * mention format of status.mni
+    * PlayerScore: defines position, UpdateStatusScore: GIVES POINTS. for each display page, place score line at XY.
+    * PlayerStars: defines position, UpdateStatusStars: for each display page, place stars line at XY.
+    * PlayerBombs: defines position, UpdateStatusBombs: for each display page, draw a font char, then place bombs line at XY.
+    * PlayerHealth: calls IPH for each display page, InnerPlayerHealth: defines position, UpdateStatusHealth: draw health bars, two lines high.
+    * InitializeGameWindow: calls DGW for each display page, DrawGameWindow: clear screen, draw status bar BG, call score/stars/bombs/health.
+* backdrop
+    * InitializeBackdropTable: i have no earthly idea.
+    * LoadBackdrop: open groupent by name, install to video memory via scratch space. calls other functions i don't yet understand.
+    * InstallBackdropVert: i have no earthly idea.
+    * InstallBackdropHoriz: i have no earthly idea.
+    * IsBackdropChanged: did any pertinent info regarding the backdrop change?
+* game dialogs
+    * PlayerDialogFrame
+    * DNDialogFrame
+    * RescuedDNMessage
+    * Episode1EndMessage
+    * PauseMessage
+    * HintGlobeMessage
+    * BombHint
+    * PounceHint
+    * HealthHint
+* debug and cheats
+    * WarpPrompt
+    * GodModeToggle
+    * CheatMessage
+    * MemoryUsage
+
+* platforms/fountains
+    * ProcessAllPlatforms: for all platforms -- remove platform from map, conditionally call PPT, move platform, reinsert platform into map
+    * PlayerPlatformTouch: handle player riding platform, including scrolling the screen.
+    * ProcessAllFountains: for all fountains -- sleep, change direction if needed. remove fountain head from map. conditionally call PPT. change height. reinsert fountain head into map.
+    * DrawFountains: for all fountains -- draw fountain head. for each unit of height, draw fountain stream. if player is touching any part of the stream, hurt them.
+* lights
+    * DrawLights: for each light: draw correct shape for topmost tile. cast down from there, drawing solid light. stop after hitting a solid block, or max distance reached. do not draw off screen.
+* shards
+    * ResetShards: deactivate every shard in the array.
+    * InsertShard: assign shard number 0-4, then insert into next free spot in array.
+    * ProcessAllShards: move/bounce each shard, playing sounds, and drawing them.
+* explosions
+    * ResetExplosions: deactivate every explosion in the array.
+    * InsertExplosion: insert explosion into next free spot in array. play sound.
+    * ProcessAllExplosions: for each explosion -- if ep3, conditionally animate the palette. draw sparkle on first frame. place the explosion frame, hurt the player if too close. once animation has run, emit smoke and make that slot go idle.
+    * IsExplosionTouchingActor: returns true if any explosion is close to the specified actor type/frame/XY.
+    * ActorExplosionTouch: given actor type/frame/XY, handles explosion damage. Usually gives points/shards, or is a no-op. hint globes and eye plants have special code here. returns true if the explosion had an effect.
+* spawners
+    * ResetSpawners: deactivate every spawner in the array.
+    * InsertSpawner: insert spawner into next free spot in array.
+    * ProcessAllSpawners: for all spawners -- move up. if recently spawned, move up faster. if something is hit, or spawner ages out, go inactive and spawn a real actor at that position. otherwise draw spawning sprite.
+* decorations
+    * ResetDecorations: deactivate every decoration in the array.
+    * InsertDecoration: insert decoration into next free spot in array.
+    * ProcessAllDecorations: for each decoration -- draw at XY (sparkles are always in-front, rain moves faster and with randomness). move decoration according to given dir. handle cycling animation, and loop limit. once it's looped enough, go inactive.
+    * PounceDecoration: insert six decoration spores in all directions.
+* actors
+    * LoadActors: open named groupent file, load actor graphics data into three blocks.
+    * CreateActor: set all members of actor slot specified by actorIndexCursor. does not change cursor in any way.
+    * CreateActorAtIndex: sets actorIndexCursor, calls CA based on actor type.
+    * InsertActor: looks for dead actor slot, then calls CAAI to install new actor there. if no dead actors in used area, call CAAI at the first free slot.
+    * SetMovementState: fudge actor XY based on planned move direction. set word10/12 to indicate available space to move to.
+    * ProcessAllActors: for each actor -- call PA. also clears global hint globe/question mark state.
+    * ProcessActor: one actor -- handle falling off the map. decrement pounce cooldown. determine if actor is onscreen/should activate. if affected by gravity, apply it. think. if hit by explosion, die. unless something special occurred, call draw fn.
+    * AreActorsTouching: given two actor defs, determine if they are touching.
+    * IsActorVisible: given one actor def, determine if it is in the screen area.
+    * TestActorMove: can an actor def move in the requested direction?
+    * PlaceActor: draw one actor sprite at XY.
+    * thinkers
+        * ActFootSwitch: used for 4 real switches. all other references are no-op.
+        * ActHorizontalMover: big saw blade, robotic spike
+        * ActFloorSpring: floor/ceiling spring
+        * ActArrowPiston: E/W variants
+        * ActFireBallLauncher: E/W variants
+        * ActHeadSwitch, ActHeadSwitchInner, ActDoor: 4 colors
+        * ActCartSpring
+        * ActRetractingSpikes: in ground or W wall
+        * ActVerticalMover: big saw blade
+        * ActArmedBomb
+        * ActBarrel, DestroyBarrel: barrels and baskets, different type depending on contents
+        * ActCabbageBall: 2 types, be careful!
+        * ActCeilingSpear
+        * ActDrips: leaking/dripping red/green acid
+        * ActHailSprite
+        * ActTwoTons
+        * ActJumpingBullet
+        * ActStoneHead
+        * ActPyramidSpike: falling ceiling or fixed floor. (fixed ceiling is different!)
+        * ActGhost
+        * ActFloatingMoon
+        * ActRedHeartPlant
+        * ActBomb
+        * ActQuestionMark
+        * ActBabyGhost
+        * ActFlashingProjectile: 5 types, depending on direction
+        * ActTreasureWorm
+        * ActPipeDirection, ActPipeEnd: four directions, two ends
+        * ActBabyGhostEgg: two types
+        * ActCeilingRobot
+        * ActClamPlant: floor/ceiling variants
+        * ActBlueBall
+        * ActVerticalArcRobot
+        * ActSplittingPlatform
+        * ActSpark
+        * ActEyePlant: floor/ceiling variants
+        * ActRedJumper
+        * ActBoss
+        * ActSuctionCupWalker, SuctionCupWalkerCanFlip
+        * ActTransporter: three types
+        * ActSpittingWallPlant: E/W variants
+        * ActSpittingTurret
+        * ActScooter
+        * ActRedChomper
+        * ActForceField: H/V variants
+        * ActPinkWorm, ActPinkWormGoo
+        * ActHintGlobe: 26 of them
+        * ActPusherRobot
+        * ActSecurityRobot
+        * ActDragonfly
+        * ActPinkWormBox
+        * ActSatellite
+        * ActIvyPlant
+        * ActExitJaws, ActExitLineVertical, ActExitLineHorizontal, ActEpisode1EndTrigger, ActExitFlytrap: horiz exit has two variants
+        * ActSmallFlame
+        * ActPrize: 21 of these
+        * ActBearTrap
+        * ActFallingFloor
+        * ActFloatingScore: 8 of these
+        * ActBlueBird
+        * ActRocket
+        * ActPedestal: 3 of these
+        * ActInvincibilityShield
+        * ActMonument
+        * ActSpittingTulip
+        * ActFrozenDN
+        * ActPulsingFlame: E/W variants
+        * ActSpeechBubble: 4 variants
+        * ActSmokeEmitter: 2 variants

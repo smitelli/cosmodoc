@@ -1,0 +1,32 @@
+{{/*
+    Insert the data table for actor sprites.
+*/}}
+
+
+{{ $maxFrames := 15 }}
+
+<table>
+    {{ range $index, $element := $.Site.Data.actor_sprite.table }}
+        {{ if modBool $index $.Site.Params.dataTableHeaderFreq }}
+            <tr>
+                <th>Sprite Type</th>
+                <th>Frames</th>
+                <th colspan="{{ $maxFrames }}">Width x Height of Each Frame (0-{{ sub $maxFrames 1 }})</th>
+                <th>Description</th>
+            </tr>
+        {{ end }}
+        <tr>
+            {{ $numUsed := len . }}
+            {{ $numFree := sub $maxFrames $numUsed }}
+            <th>{{ (index . 0).sprite_type }}</th>
+            <td>{{ $numUsed }}</td>
+            {{ range . }}
+                <td>{{ .width_tiles }}x{{ .height_tiles }}</td>
+            {{ end }}
+            {{ with $numFree }}
+                <td colspan="{{ . }}"></td>
+            {{ end }}
+            <td>{{ index $.Site.Data.description.actor_sprite (int (index . 0).sprite_type) | markdownify }}</td>
+        </tr>
+    {{ end }}
+</table>

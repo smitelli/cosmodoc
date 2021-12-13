@@ -1,0 +1,16 @@
+{{/*
+    Insert the data table for palette animations.
+*/}}
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+    {{ range $index, $_ := $.Site.Data.description.palette_animation }}
+        <tr>
+            <th>{{ $index }}</th>
+            <td>{{ . | markdownify }}</td>
+        </tr>
+    {{ end }}
+</table>

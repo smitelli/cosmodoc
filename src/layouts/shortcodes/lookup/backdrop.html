@@ -1,0 +1,11 @@
+{{/*
+    Takes one numeric argument, which is interpreted as an backdrop ID. Returns
+    a formatted string containing the backdrop's description.
+
+    Positional parameters:
+        0 (required): Numeric backdrop ID.
+*/}}
+
+{{- "" -}}
+{{ index $.Site.Data.description.backdrop (int ($.Get 0)) | markdownify }}
+{{- "" -}}

@@ -1,0 +1,11 @@
+{{ $children := .Pages }}
+{{ if $children }}
+    <ul>
+        {{ range sort $children "Weight" "asc" }}
+            <li>
+                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . }}"{{ end }}>{{ .LinkTitle }}</a>
+                {{ partial "list-pages-recursive" . }}
+            </li>
+        {{ end }}
+    </ul>
+{{ end }}

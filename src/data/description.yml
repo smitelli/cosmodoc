@@ -1,0 +1,791 @@
+actor:
+    - Basket (contains nothing)
+    - Star (floating)
+    - Jump Pad (floor mounted)
+    - Arrow Piston (extends west)
+    - Arrow Piston (extends east)
+    - Fireball Projectile (moves west)
+    - Fireball Projectile (moves east)
+    - Blue Head Switch
+    - Red Head Switch
+    - Green Head Switch
+    - Yellow Head Switch
+    - Blue Locked Door
+    - Red Locked Door
+    - Green Locked Door
+    - Yellow Locked Door
+    - null
+    - Jump Pad Robot
+    - Floor Spikes (stationary)
+    - Floor Spikes (retracting)
+    - null
+    - Large Circular Saw Blade (moves vertically)
+    - null
+    - Large Circular Saw Blade (moves horizontally)
+    - null
+    - Armed Bomb
+    - Hopping Cabbage Creature (takes one pounce)
+    - null
+    - null
+    - Power-Up Module (on floor)
+    - Barrel (contains power-up module)
+    - null
+    - Basket (contains green tomato)
+    - Green Tomato (on floor)
+    - Basket (contains red tomato)
+    - Red Tomato (on floor)
+    - Barrel (contains yellow/teal striped pear)
+    - Yellow/Teal Striped Pear (on floor)
+    - Barrel (contains teal onion)
+    - Teal Onion
+    - Exit Sign
+    - Spear (stationary)
+    - Spear (moves vertically)
+    - Green Liquid Leak (throbbing)
+    - Green Liquid Leak (dripping)
+    - Flying Wisp Creature
+    - '"Two Tons" Crusher'
+    - Jumping Bullet Creature
+    - Stone Head Crusher
+    - Pyramid Spike (on ceiling, stationary)
+    - Pyramid Spike (on ceiling, falling)
+    - Pyramid Spike (on floor)
+    - Ghost
+    - Basket (contains green/red spots gourd)
+    - Basket (contains blue stacked spheres)
+    - Floating Moon
+    - Red Heart Plant
+    - Barrel (contains idle bomb)
+    - Idle Bomb
+    - Barrel (contains jump pad)
+    - Foot Switch (activates platforms)
+    - null
+    - Foot Switch (activates question mark wall)
+    - Question Mark Block
+    - Bent Floor Spikes
+    - Monument
+    - Jumping Baby Ghost
+    - Flashing Ball Projectile (moving southwest)
+    - Flashing Ball Projectile (moving southeast)
+    - Flashing Ball Projectile (moving south)
+    - Flying Roamer Slug
+    - Pipe System Travel Direction (north)
+    - Pipe System Travel Direction (south)
+    - Pipe System Travel Direction (west)
+    - Pipe System Travel Direction (east)
+    - Baby Ghost Egg (cracks when pounced or player is near)
+    - Baby Ghost Egg (cracks when pounced)
+    - null
+    - null
+    - Sharp Spike Robot (floor type)
+    - null
+    - Sharp Spike Robot (ceiling type)
+    - Basket (contains hamburger)
+    - Hamburger
+    - Clam Plant (floor mounted)
+    - Clam Plant (ceiling mounted)
+    - Purple Grapes
+    - Blue Ball/Parachute Creature
+    - Wall Spikes (pointing east, stationary)
+    - Wall Spikes (pointing east, retracting)
+    - Wall Spikes (pointing west, stationary)
+    - Electric Beam Robot
+    - Blue/Green Splitting Block
+    - Spark
+    - Basket (contains dancing mushroom)
+    - Dancing Mushroom
+    - Eye Plant (floor mounted)
+    - Eye Plant (ceiling mounted)
+    - null
+    - null
+    - null
+    - Barrel (contains two-pounce hopping cabbage creature)
+    - Red Jumper Creature
+    - Boss
+    - null
+    - Pipe System Outlet
+    - Pipe System Inlet
+    - Suction Feet Creature
+    - 'Transporter #1'
+    - 'Transporter #2'
+    - Flashing Ball Projectile (moving west)
+    - Flashing Ball Projectile (moving east)
+    - Spitting Wall Plant (facing east)
+    - Spitting Wall Plant (facing west)
+    - Spitting Turret Creature
+    - Scooter
+    - Basket (contains green pea pile)
+    - Basket (contains three-fingered yellow/cyan fruit)
+    - Barrel (contains yellow horn)
+    - Red Chomper Creature
+    - Basket (contains green pod)
+    - Foot Switch (activates lights)
+    - Foot Switch (deactivates force fields)
+    - Force Field Beam (vertical)
+    - Force Field Beam (horizontal)
+    - Pink Worm
+    - 'Hint Globe #0'
+    - Translucent Pusher Robot
+    - Sentry Robot
+    - Pink Worm Goo
+    - Dragonfly
+    - Worm Crate
+    - null
+    - null
+    - null
+    - Orange Bottled Drink
+    - Gourd (green with red spots)
+    - Blue Stacked Spheres
+    - Green Pod
+    - Green Pea Pile
+    - Three-Fingered Yellow/Cyan Fruit
+    - Yellow Horn
+    - Blue Vine/Red Berries
+    - Barrel (contains orange bottled drink)
+    - Satellite (contains hamburger)
+    - null
+    - Ivy Plant
+    - Green Vine/Yellow Fruit
+    - Headdress
+    - Basket (contains headdress)
+    - Exit Monster (facing west)
+    - Exit Line (vertical, exit when east of the line)
+    - Small Flame
+    - Tulip Launcher Plant
+    - Rotating Red/Green Ornament
+    - Blue Crystal
+    - Red Crystal (on floor)
+    - Barrel (contains rotating red/green ornament)
+    - Barrel (contains blue crystal)
+    - Barrel (contains red crystal)
+    - Green Tomato (floating)
+    - Red Tomato (floating)
+    - Yellow/Teal Striped Pear (floating)
+    - Bear Trap
+    - Falling Floor Block
+    - 'Episode 1 End Trigger Line #1 (horizontal)'
+    - 'Episode 1 End Trigger Line #2 (horizontal)'
+    - 'Episode 1 End Trigger Line #3 (horizontal)'
+    - Basket (contains red/pink root)
+    - Red/Pink Root
+    - Basket (contains red berries/green vine)
+    - Red Berries/Green Vine
+    - Basket (contains red with yellow spots gourd)
+    - Gourd (red with yellow spots)
+    - Barrel (contains green emerald)
+    - Green Emerald
+    - Barrel (contains transparent diamond)
+    - Transparent Diamond
+    - Floating Score (100)
+    - Floating Score (200)
+    - Floating Score (400)
+    - Floating Score (800)
+    - Floating Score (1,600)
+    - Floating Score (3,200)
+    - Floating Score (6,400)
+    - Floating Score (12,800)
+    - null
+    - Exit Plant
+    - Blue Bird
+    - Rocket
+    - Invincibility Cube
+    - Pedestal (14 tiles high)
+    - Pedestal (20 tiles high)
+    - Pedestal (26 tiles high)
+    - Barrel (contains cyan/white diamond)
+    - Cyan/White Diamond (on floor)
+    - Barrel (contains red berry diamond)
+    - Red Berry Diamond (on floor)
+    - Barrel (contains gray octahedron)
+    - Gray Octahedron (on floor)
+    - Barrel (contains blue emerald/yellow diamond)
+    - Blue Emerald/Yellow Diamond (on floor)
+    - Invincibility Sphere
+    - Rocket Thruster
+    - Transporter Exit
+    - 'Hint Globe #1'
+    - 'Hint Globe #2'
+    - 'Hint Globe #3'
+    - 'Hint Globe #4'
+    - 'Hint Globe #5'
+    - 'Hint Globe #6'
+    - 'Hint Globe #7'
+    - 'Hint Globe #8'
+    - 'Hint Globe #9'
+    - Cyan/White Diamond (floating)
+    - Red Berry Diamond (floating)
+    - Gray Octahedron (floating)
+    - Blue Emerald/Yellow Diamond (floating)
+    - Jump Pad (ceiling mounted)
+    - Barrel (contains headphones)
+    - Headphones (floating)
+    - Headphones (on floor)
+    - Frozen Duke
+    - null
+    - Three Small Bananas
+    - Basket (contains red leafy vegetable)
+    - Red Leafy Vegetable (floating)
+    - Red Leafy Vegetable (on floor)
+    - Basket (contains brown pear)
+    - Brown Pear (floating)
+    - Brown Pear (on floor)
+    - Basket (contains candy corn)
+    - Candy Corn (floating)
+    - Candy Corn (on floor)
+    - Intermittent Flame (extends west)
+    - Intermittent Flame (extends east)
+    - 'Speech Bubble: Ouch!'
+    - Red Liquid Leak (throbbing)
+    - Red Liquid Leak (dripping)
+    - 'Hint Globe #10'
+    - 'Hint Globe #11'
+    - 'Hint Globe #12'
+    - 'Hint Globe #13'
+    - 'Hint Globe #14'
+    - 'Hint Globe #15'
+    - 'Speech Bubble: Whoa!'
+    - 'Speech Bubble: Umph!'
+    - 'Speech Bubble: Wow! 50,000 points!'
+    - E1L11 Exit Monster (facing north)
+    - Smoke Emitter
+    - Large Smoke Emitter
+    - Exit Line (horizontal, exit when south of the line)
+    - Hopping Cabbage Creature (takes two pounces)
+    - Red Crystal (on ceiling)
+    - 'Hint Globe #16'
+    - 'Hint Globe #17'
+    - 'Hint Globe #18'
+    - 'Hint Globe #19'
+    - 'Hint Globe #20'
+    - 'Hint Globe #21'
+    - 'Hint Globe #22'
+    - 'Hint Globe #23'
+    - 'Hint Globe #24'
+    - 'Hint Globe #25'
+    - Power-Up Module (falling)
+    - Star (falling)
+    - 'Episode 2 End Trigger Line (horizontal)'
+actor_sprite:
+    - Basket
+    - Star
+    - Jump Pad
+    - Arrow Piston (extends west)
+    - Arrow Piston (extends east)
+    - Fireball Projectile
+    - Unused (references fireball projectile)
+    - Blue Head Switch
+    - Red Head Switch
+    - Green Head Switch
+    - Yellow Head Switch
+    - Blue Locked Door
+    - Red Locked Door
+    - Green Locked Door
+    - Yellow Locked Door
+    - 'Decoration: Sparkles after prize is picked up'
+    - Jump Pad Robot
+    - Floor Spikes
+    - Floor Spikes
+    - 'Decoration: Scooter exhaust smoke'
+    - Large Circular Saw Blade
+    - 'Decoration: Debris after actor is pounced (frames 1/5 and 2/4 have identical data)'
+    - Unused (references decoration sprite 23)
+    - 'Decoration: Sparkle on shiny prizes'
+    - Armed Bomb
+    - Hopping Cabbage Creature
+    - Explosion
+    - 'Decoration: Raindrop'
+    - Power-Up Module
+    - Barrel
+    - Barrel Shards
+    - Unused (references green tomato)
+    - Green Tomato
+    - Unused (references red tomato)
+    - Red Tomato
+    - Unused (references yellow/teal striped pear)
+    - Yellow/Teal Striped Pear
+    - Unused (references teal onion)
+    - Teal Onion
+    - Exit Sign
+    - Unused (references spear)
+    - Spear
+    - Unused (references green liquid leak)
+    - Green Liquid Leak
+    - Flying Wisp Creature
+    - '"Two Tons" Crusher (spring in frames 0-3, weight in frame 4)'
+    - Jumping Bullet Creature
+    - Stone Head Crusher
+    - Unused (references pyramid spike)
+    - Pyramid Spike
+    - Unused (references ghost)
+    - Ghost
+    - Unused (references floating moon)
+    - Unused (references floating moon)
+    - Floating Moon
+    - Red Heart Plant
+    - Unused (references idle bomb)
+    - Idle Bomb
+    - Unused (references foot switch)
+    - Unused (references foot switch)
+    - Foot Switch
+    - Unused (references question mark block)
+    - Question Mark Block
+    - Bent Floor Spikes
+    - Monument (actor in frames 0-2, shards in frames 3-8)
+    - Jumping Baby Ghost
+    - Unused (references flashing ball projectile)
+    - Unused (references flashing ball projectile)
+    - Flashing Ball Projectile
+    - Flying Roamer Slug
+    - Up Arrow (pipe system)
+    - Down Arrow (pipe system)
+    - Left Arrow (pipe system)
+    - Right Arrow (pipe system)
+    - Unused (references baby ghost egg)
+    - Baby Ghost Egg
+    - 'Shard: Baby ghost egg #1'
+    - 'Shard: Baby ghost egg #2'
+    - Sharp Spike Robot (floor type)
+    - Fountain (head in frames 0-1, column in frames 2-3)
+    - Sharp Spike Robot (ceiling type)
+    - Unused (references hamburger)
+    - Hamburger
+    - Clam Plant
+    - Unused (references purple grapes)
+    - Purple Grapes
+    - Blue Ball/Parachute Creature (normal in frames 0-7, parachuting in frames 8-10)
+    - Wall Spikes (pointing east)
+    - Wall Spikes (pointing east)
+    - Wall Spikes (pointing west)
+    - Electric Beam Robot (robot in frames 0-1, beam in frames 2-7)
+    - Blue/Green Splitting Block
+    - Spark
+    - Unused (references dancing mushroom)
+    - Dancing Mushroom
+    - Eye Plant
+    - Unused (references decoration sprite 97)
+    - 'Decoration: Smoke'
+    - 'Decoration: Large Smoke'
+    - 'Decoration: Sparkle on slippery surfaces (frames 0/4 and 1/3 have identical data)'
+    - Unused (references red jumper creature)
+    - Red Jumper Creature
+    - Boss (ship in frames 0-1, creature in frames 2-5)
+    - Unused (references pipe system inlet/outlet)
+    - Unused (references pipe system inlet/outlet)
+    - Pipe System Inlet/Outlet (pipe in frames 0 and 4, suction animation in frames 1-3)
+    - Suction Feet Creature
+    - Transporter (whole unit in frame 0, globes/spark in frames 1-2)
+    - Transporter (whole unit in frame 0, globes/spark in frames 1-2)
+    - Unused (references east-facing spitting wall plant)
+    - Unused (references east-facing spitting wall plant)
+    - Spitting Wall Plant (facing east)
+    - Spitting Wall Plant (facing west)
+    - Spitting Turret Creature
+    - Scooter
+    - Unused (references red chomper creature)
+    - Unused (references red chomper creature)
+    - Unused (references red chomper creature)
+    - Red Chomper Creature
+    - Unused (references vertical force field beam)
+    - Unused (references vertical force field beam)
+    - Unused (references vertical force field beam)
+    - Force Field Beam (vertical)
+    - Force Field Beam (horizontal)
+    - Pink Worm
+    - Hint Globe (globe in frames 0 and 4-6, stalk in frames 1-3)
+    - Translucent Pusher Robot
+    - Sentry Robot
+    - Pink Worm Goo
+    - Dragonfly
+    - Worm Crate
+    - 'Shards: Worm Crate'
+    - 'Shard: Baby ghost egg #3'
+    - 'Shard: Baby ghost egg #4'
+    - Orange Bottled Drink
+    - Gourd (green with red spots)
+    - Blue Stacked Spheres
+    - Green Pod
+    - Green Pea Pile
+    - Three-Fingered Yellow/Cyan Fruit
+    - Yellow Horn
+    - Blue Vine/Red Berries
+    - Unused (references satellite)
+    - Satellite
+    - 'Shards: Satellite'
+    - Ivy Plant
+    - Green Vine/Yellow Fruit
+    - Headdress
+    - Unused (references west-facing exit monster)
+    - Exit Monster (facing west, jaws in frames 0-1, tongue in frames 2-4)
+    - Unused (references small flame)
+    - Small Flame
+    - Tulip Launcher Plant
+    - Rotating Red/Green Ornament
+    - Blue Crystal
+    - Red Crystal
+    - Unused (references bear trap)
+    - Unused (references bear trap)
+    - Unused (references bear trap)
+    - Unused (references bear trap)
+    - Unused (references bear trap)
+    - Unused (references bear trap)
+    - Bear Trap
+    - Falling Floor Block (block in frame 0, shards in frames 1-2)
+    - Red/Pink Root (never visible under normal circumstances)
+    - Unused (references red/pink root)
+    - Unused (references red/pink root)
+    - Unused (references red/pink root)
+    - Red/Pink Root
+    - Unused (references red berries/green vine)
+    - Red Berries/Green Vine
+    - Unused (references red/yellow gourd)
+    - Gourd (red with yellow spots)
+    - Unused (references green emerald)
+    - Green Emerald
+    - Unused (references transparent diamond)
+    - Transparent Diamond
+    - Floating Score (100)
+    - Floating Score (200)
+    - Floating Score (400)
+    - Floating Score (800)
+    - Floating Score (1,600)
+    - Floating Score (3,200)
+    - Floating Score (6,400)
+    - Floating Score (12,800)
+    - 'Shards: Basket'
+    - Exit Plant (body in frames 0-4, tongue in frames 5-8)
+    - Blue Bird
+    - Rocket (rocket in frame 0, shards in frames 1-3, exhaust in frames 4-5)
+    - Invincibility Cube
+    - Unused (references pedestal)
+    - Unused (references pedestal)
+    - Pedestal (platform in frame 0, pole in frame 1)
+    - Unused (references cyan/white diamond)
+    - Cyan/White Diamond
+    - Unused (references red berry diamond)
+    - Red Berry Diamond
+    - Unused (references gray octahedron)
+    - Gray Octahedron
+    - Unused (references blue emerald/yellow diamond)
+    - Blue Emerald/Yellow Diamond
+    - Invincibility Sphere
+    - Rocket Thruster
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Unused (references headphones)
+    - Headphones
+    - Duke (frozen character in frame 0, character in frames 1-3, jetpack exhaust in frames 4-5, ice shards in frames 6-11)
+    - 'Speech Bubbles: Fell off map (0: Yikes! 1: Oh no! 2: Yeow! 3: Uh Oh! 4: Mommy!)'
+    - Three Small Bananas
+    - Unused (references red leafy vegetable)
+    - Unused (references red leafy vegetable)
+    - Red Leafy Vegetable
+    - Unused (references brown pear)
+    - Unused (references brown pear)
+    - Brown Pear
+    - Unused (references candy corn)
+    - Unused (references candy corn)
+    - Candy Corn
+    - Intermittent Flame (extends west)
+    - Intermittent Flame (extends east)
+    - 'Speech Bubble: Ouch!'
+    - Unused (references red liquid leak)
+    - Red Liquid Leak
+    - Unused (references speech bubble sprite 244)
+    - Unused (references speech bubble sprite 244)
+    - Unused (references speech bubble sprite 244)
+    - Unused (references speech bubble sprite 244)
+    - Unused (references speech bubble sprite 244)
+    - Unused (references speech bubble sprite 244)
+    - 'Speech Bubble: Whoa!'
+    - 'Speech Bubble: Umph!'
+    - 'Speech Bubble: Wow! 50,000 points!'
+    - E1L11 Exit Monster (facing north)
+    - Unused (identical data from hopping cabbage creature's zeroth frame)
+    - Unused (references sprite 248)
+    - Unused (references sprite 248)
+    - Unused (references sprite 248)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - Unused (references "demo" overlay message)
+    - '"DEMO" Overlay Message'
+backdrop_name:
+    - BDBLANK
+    - BDPIPE
+    - BDREDSKY
+    - BDROCKTK
+    - BDJUNGLE
+    - BDSTAR
+    - BDWIERD
+    - BDCAVE
+    - BDICE
+    - BDSHRUM
+    - BDTECHMS
+    - BDNEWSKY
+    - BDSTAR2
+    - BDSTAR3
+    - BDFOREST
+    - BDMOUNTN
+    - BDGUTS
+    - BDBRKTEC
+    - BDCLOUDS
+    - BDFUTCTY
+    - BDICE2
+    - BDCLIFF
+    - BDSPOOKY
+    - BDCRYSTL
+    - BDCIRCUT
+    - BDCIRCPC
+backdrop:
+    - null
+    - Dark gray pipes on black background.
+    - null
+    - Tech devices mounted to rock, with magenta highlights for color animation effect.
+    - Jungle vines with large magenta areas for explosion effect.
+    - null
+    - Molecules or neurons.
+    - Cave with stalactites and stalagmites.
+    - Diagonal ice spires, with magenta stars for twinkling effect.
+    - Mushrooms at night, with magenta stars for twinkling effect.
+    - Panels with dense conduit, and magenta areas for lighting effect.
+    - Brown mountains and blue sky.
+    - Small bonus stage stars.
+    - Large bonus stage stars.
+    - Dense, tall trees.
+    - Gray and blue mountains and teal sky.
+    - Various internal organs.
+    - Blue bricks and conduit.
+    - Clouds in blue sky.
+    - City skyscrapers at night, with magenta stars for twinkling effect.
+    - Ice cavern.
+    - Brown dirt with roots.
+    - Scraggy trees with magenta background for lightning effect.
+    - Blue and transparent crystals on black background.
+    - Panels connected with conduit.
+    - A fairly accurate rendering of a printed circuit board.
+cartoon_sprite:
+    - Family's ship, large view.
+    - Family's ship, small view.
+    - Family viewed from outside ship's windows.
+    - Side view of family's ship speeding along.
+    - Blazing comet.
+    - Family's ship, "kapow"'d by comet.
+    - Family's ship, damaged, heading toward planet.
+    - Cosmo's dad working on ship; Cosmo walking away.
+    - Cosmo sitting on a rock, holding some device.
+    - Cosmo looking at large footprints.
+    - Cosmo imagining an encounter with a huge monster.
+    - Family's ship leaving planet.
+    - Family's ship hovering over Earth.
+    - Family at Disney World; child says "Look Ma! New Disney characters!"
+    - Visa logo.
+    - MasterCard logo.
+    - Cosmo, chomped by episode 1 cliffhanger creature.
+    - Large yellow question mark on red background.
+    - Episode 3 boss in pain, surrounded by explosions.
+    - Zonk talking to Cosmo.
+    - Family reunited and hugging.
+    - Cosmo leaping through episode 2 cave ceiling.
+full_screen_image_name:
+    - PRETITLE
+    - TITLEx
+    - CREDIT
+    - BONUS
+    - ENDx
+    - ONEMOMNT
+full_screen_image:
+    - "\"Apogee Software Productions Presents - Cosmo's Cosmic Adventure\""
+    - |
+        TITLE1: "Forbidden Planet - Adventure 1 of 3"
+
+        TITLE2: "Forbidden Planet - Adventure 2 of 3"
+
+        TITLE3: "Forbidden Planet - Adventure 3 of 3"
+    - "\"Credits\""
+    - "\"Bonus Stage - Get Ready!\""
+    - |
+        END1: Cosmo falling toward creature.
+
+        END2: Cosmo overlooking a city at night.
+
+        END3: Cosmo on a roller coaster with other children.
+    - "\"One Moment\""
+music:
+    - "\"Caves\""
+    - "\"Scarry\""
+    - "\"Boss\""
+    - "\"Run Away\""
+    - "\"Circus\""
+    - "\"Tek World\""
+    - "\"Easy Level\""
+    - "\"Rock It\""
+    - "\"Just About Going Wacky\""
+    - "\"Devo\""
+    - "\"Da Do Da\""
+    - "\"Bells\""
+    - "\"Drums\""
+    - "\"Cosmo's Foggy Cosmic Breakdown\""
+    - "\"Easy 2\""
+    - "\"Teck 2\""
+    - "\"Teck 3\""
+    - "\"Teck 4\""
+    - Rendition of "Tush" by ZZ Top.
+palette_animation:
+    - No color replacements.
+    - 'Random: Lightning with thunder sound effect.'
+    - 'Ping-Pong: Red, bright red, bright yellow, bright white.'
+    - 'Loop: Black, red, bright red, red, black, green, bright green, green, black, blue, bright blue, blue.'
+    - 'Ping-Pong: Black, bright black, white, bright white.'
+    - 'Loop: Bright white, red, bright magenta.'
+    - 'Normal: Black. During Explosions: Alternate bright white, bright yellow, black. Only implemented in the third episode.'
+player_sprite:
+    - Facing west, walking, frame 1.
+    - Facing west, walking, frame 2.
+    - Facing west, walking, frame 3.
+    - Facing west, walking, frame 4.
+    - Facing west, standing, neutral.
+    - Facing west, standing, looking up.
+    - Facing west, standing, looking down.
+    - Facing west, in-air, moving up.
+    - Facing west, in-air, moving down.
+    - Facing west, clinging to wall, neutral.
+    - Facing west, clinging to wall, looking east.
+    - Facing west, clinging to wall, looking up.
+    - Facing west, clinging to wall, looking down.
+    - Facing west, in-air, moving down fast.
+    - Facing west, planting bomb.
+    - Facing west, pain.
+    - Facing west, in-air, moving down with eyes covered.
+    - Facing west, force-pushed toward east.
+    - Facing west, standing, neutral with eyes closed.
+    - Facing west, shaking head, frame 1.
+    - Facing west, shaking head, frame 2.
+    - Facing west, shaking head, frame 3.
+    - Facing west, in-air, moving up fast.
+    - Facing east, walking, frame 1.
+    - Facing east, walking, frame 2.
+    - Facing east, walking, frame 3.
+    - Facing east, walking, frame 4.
+    - Facing east, standing, neutral.
+    - Facing east, standing, looking up.
+    - Facing east, standing, looking down.
+    - Facing east, in-air, moving up.
+    - Facing east, in-air, moving down.
+    - Facing east, clinging to wall, neutral.
+    - Facing east, clinging to wall, looking west.
+    - Facing east, clinging to wall, looking up.
+    - Facing east, clinging to wall, looking down.
+    - Facing east, in-air, moving down fast.
+    - Facing east, planting bomb.
+    - Facing east, pain.
+    - Facing east, in-air, moving down with eyes covered.
+    - Facing east, force-pushed toward west.
+    - Facing east, standing, neutral with eyes closed.
+    - Facing east, shaking head, frame 1.
+    - Facing east, shaking head, frame 2.
+    - Facing east, shaking head, frame 3.
+    - Facing east, in-air, moving up fast.
+    - Angel with wings and halo, frame 1.
+    - Angel with wings and halo, frame 2.
+sound:
+    - Pick up stars/power up modules/invincibility cubes.
+    - Player jumps.
+    - Player lands.
+    - Player clings to wall.
+    - Player hits head.
+    - Player recoils after pouncing on actor.
+    - Player angel flies up, or finishes falling off map.
+    - Door becomes unlocked.
+    - Retracting spikes/arrow pistons move.
+    - Explosion spawns.
+    - Finish level.
+    - Barrel/basket destroyed, variant 1.
+    - Pick up prize/hamburger/bomb.
+    - Player takes damage or begins falling off map.
+    - Foot switch, first three pounces.
+    - Foot switch, final pounce.
+    - Prize given by roamer slug.
+    - Destroy satellite.
+    - Player makes footstep.
+    - Actor pushes player.
+    - Ceiling pipe drips.
+    - Player changes direction in pipe system.
+    - Transporter activates.
+    - Unused.
+    - Scooter exhaust putt.
+    - Monument/worm box/falling floor block destroyed.
+    - Actor launches new flashing projectile.
+    - Fireball hits wall/falling pyramid spike hits floor.
+    - Player fails to place bomb.
+    - Player places bomb.
+    - Hint dialog box alert.
+    - Red jumper jumps up.
+    - Red jumper lands.
+    - Egg cracks.
+    - Egg hatches.
+    - Big saw blade moves.
+    - Fireball launches.
+    - Jumping bullet/"two tons"/stone head/boss hits floor.
+    - Exit jaws open.
+    - Exit jaws/flytrap swallows player.
+    - Bear trap closes.
+    - Debug mode/pause/cheat alert.
+    - Episode 3 end story, final effect.
+    - Player pounces on jump pad robot.
+    - Dialog text typewriter effect.
+    - Bonus level intro effect.
+    - Shard bounces off floor.
+    - null
+    - Tulip launches new blue ball.
+    - Begin new game effect.
+    - Rocket/Duke jetpack burns.
+    - Frozen Duke ice breaks, or boss hits floor.
+    - High score table appears.
+    - High score table "Enter your name" prompt appears.
+    - Ivy plant rises.
+    - Flame pipe burns.
+    - Top of boss ship breaks away.
+    - Boss moves.
+    - Player speech bubble appears.
+    - Baby ghost jumps up.
+    - Baby ghost lands.
+    - Thunder effect.
+    - Barrel/basket destroyed, variant 2.
+    - Tulip ingests player.
+    - Clam plant/red heart plant opens mouth.
+    - '"Now entering level" digit effect.'
+    - Boss spawns blue ball.
+special_actor:
+    - Player Start Position
+    - Moving Platform
+    - Mud Fountain (6 tiles high)
+    - Mud Fountain (9 tiles high)
+    - Mud Fountain (12 tiles high)
+    - Mud Fountain (15 tiles high)
+    - Light Beam (west edge)
+    - Light Beam (center)
+    - Light Beam (east edge)

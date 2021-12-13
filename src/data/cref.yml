@@ -1,0 +1,1342 @@
+################################################################################
+# C STANDARD LIBRARY                                                           #
+################################################################################
+
+EXIT_SUCCESS:
+  text: EXIT_SUCCESS
+  def: '#define EXIT_SUCCESS 0'
+  desc: Indicates successful execution of a program.
+  ref: https://en.cppreference.com/w/c/program/EXIT_status
+atoi:
+  text: atoi()
+  def: int atoi(const char *s);
+  desc: Interprets an integer value in a byte string pointed to by `s`.
+  ref: https://en.cppreference.com/w/c/string/byte/atoi
+exit:
+  text: exit()
+  def: void exit(int status);
+  desc: Causes normal program termination to occur.
+  ref: https://en.cppreference.com/w/c/program/exit
+fclose:
+  text: fclose()
+  def: int fclose(FILE *stream);
+  desc: Closes the given file `stream`. Returns 0 on success, `EOF` otherwise.
+  ref: https://en.cppreference.com/w/c/io/fclose
+feof:
+  text: feof()
+  def: int feof(FILE *stream);
+  desc: Checks if the end of the given file stream has been reached.
+  ref: https://en.cppreference.com/w/c/io/feof
+ferror:
+  text: ferror()
+  def: int ferror(FILE *stream);
+  desc: Checks the given stream for errors.
+  ref: https://en.cppreference.com/w/c/io/ferror
+fgetc:
+  text: fgetc()
+  def: int fgetc(FILE *stream);
+  desc: Reads the next character from the given input stream.
+  ref: https://en.cppreference.com/w/c/io/fgetc
+fopen:
+  text: fopen()
+  def: FILE *fopen(const char *path, const char *mode);
+  desc: Opens a file indicated by `path` and returns a pointer to the file stream associated with that file. `mode` is used to determine the file access mode.
+  ref: https://en.cppreference.com/w/c/io/fopen
+fprintf:
+  text: fprintf()
+  def: int fprintf(FILE *stream, const char *format, ...);
+  desc: Loads the data from the given locations, converts them to character string equivalents and writes the results to the output stream `stream`.
+  ref: https://en.cppreference.com/w/c/io/fprintf
+fputc:
+  text: fputc()
+  def: int fputc(int c, FILE *stream);
+  desc: Writes a character `c` to the given output stream `stream`.
+  ref: https://en.cppreference.com/w/c/io/fputc
+fread:
+  text: fread()
+  def: size_t fread(void *ptr, size_t size, size_t n, FILE *stream);
+  desc: Reads up to `n` objects into the array `ptr` from the given input stream `stream` as if by calling fgetc() `size` times for each object, and storing the results, in the order obtained, into the successive positions of `ptr`, which is reinterpreted as an array of unsigned char. Returns the number of objects read successfully.
+  ref: https://en.cppreference.com/w/c/io/fread
+fscanf:
+  text: fscanf()
+  def: int fscanf(FILE *stream, const char *format, ...);
+  desc: Reads the data from file stream `stream`, interprets it according to `format` and stores the results into given locations.
+  ref: https://en.cppreference.com/w/c/io/fscanf
+fseek:
+  text: fseek()
+  def: int fseek(FILE *stream, long offset, int whence);
+  desc: Sets the file position indicator for the file stream `stream` to the value pointed to by `offset`.
+  ref: https://en.cppreference.com/w/c/io/fseek
+fwrite:
+  text: fwrite()
+  def: size_t fwrite(const void *ptr, size_t size, size_t n, FILE *stream);
+  desc: Writes `n` of objects from the given array `ptr` to the output stream `stream`. The objects are written as if by reinterpreting each object as an array of unsigned char and calling fputc() `size` times for each object to write those unsigned chars into `stream`, in order.
+  ref: https://en.cppreference.com/w/c/io/fwrite
+malloc:
+  text: malloc()
+  def: void *malloc(size_t size);
+  desc: Allocates `size` bytes of uninitialized storage.
+  ref: https://en.cppreference.com/w/c/memory/malloc
+memmove:
+  text: memmove()
+  def: void *memmove(void *dest, const void *src, size_t n);
+  desc: Copies `n` characters from the object pointed to by `src` to the object pointed to by `dest`.
+  ref: https://en.cppreference.com/w/c/string/byte/memmove
+printf:
+  text: printf()
+  def: int printf(const char *format, ...);
+  desc: Loads the data from the given locations, converts them to character string equivalents and writes the results to the output stream `stdout`. Returns the number of characters transmitted to the output stream or negative value if an error occurred.
+  ref: https://en.cppreference.com/w/c/io/fprintf
+rand:
+  text: rand()
+  def: int rand(void);
+  desc: Returns a pseudo-random integer value between 0 and `RAND_MAX` (0 and `RAND_MAX` included).
+  ref: https://en.cppreference.com/w/c/numeric/random/rand
+remove:
+  text: remove()
+  def: int remove(const char *path);
+  desc: Deletes the file identified by character string pointed to by `path`.
+  ref: https://en.cppreference.com/w/c/io/remove
+sprintf:
+  text: sprintf()
+  def: int sprintf(char *buffer, const char *format, ...);
+  desc: Loads the data from the given locations, converts them to character string equivalents and writes the results to a character string `buffer`.
+  ref: https://en.cppreference.com/w/c/io/fprintf
+strcpy:
+  text: strcpy()
+  def: char strcpy(char *dest, const char *src);
+  desc: Copies the null-terminated byte string pointed to by `src`, including the null terminator, to the character array whose first element is pointed to by `dest`.
+  ref: https://en.cppreference.com/w/c/string/byte/strcpy
+strlen:
+  text: strlen()
+  def: size_t strlen(const char *s);
+  desc: Returns the length of the given null-terminated byte string, that is, the number of characters in a character array whose first element is pointed to by `s` up to and not including the first null character.
+  ref: https://en.cppreference.com/w/c/string/byte/strlen
+strncmp:
+  text: strncmp()
+  def: int strncmp(const char *s1, const char *s2, size_t maxlen);
+  desc: Compares at most `maxlen` characters of two possibly null-terminated arrays.
+  ref: https://en.cppreference.com/w/c/string/byte/strncmp
+
+################################################################################
+# BORLAND STANDARD LIBRARY                                                     #
+################################################################################
+
+COLORS:
+  text: enum COLORS
+  def: |-
+    #define BLINK 128
+    enum COLORS {
+        BLACK, BLUE, GREEN, CYAN,
+        RED, MAGENTA, BROWN, LIGHTGRAY,
+        DARKGRAY, LIGHTBLUE, LIGHTGREEN, LIGHTCYAN,
+        LIGHTRED, LIGHTMAGENTA, YELLOW, WHITE
+    };
+  desc: Defines the colors available for console text output.
+  ref: /topics/borland-c-nonstandard-library/#COLORS
+MK_FP:
+  text: MK_FP()
+  def: |-
+    #define MK_FP(seg, ofs) \
+        ((void far *) (((unsigned long)(seg) << 16) | (unsigned)(ofs)))
+  desc: Makes a far pointer from its component segment (`seg`) and offset (`ofs`) parts.
+  ref: /topics/borland-c-nonstandard-library/#MK_FP
+REGS:
+  text: union REGS
+  def: |-
+    union REGS {
+        struct WORDREGS x;
+        struct BYTEREGS h;
+    };
+  desc: Provides an interface to read and write x86 registers through C functions.
+  ref: /topics/borland-c-nonstandard-library/#REGS
+coreleft:
+  text: coreleft()
+  def: unsigned long coreleft(void);
+  desc: Returns a measure of RAM memory not in use.
+  ref: /topics/borland-c-nonstandard-library/#coreleft
+disable:
+  text: disable()
+  def: void disable(void);
+  desc: Disables hardware interrupts.
+  ref: /topics/borland-c-nonstandard-library/#disable
+enable:
+  text: enable()
+  def: void enable(void);
+  desc: Enables hardware interrupts, allowing any device interrupts to occur.
+  ref: /topics/borland-c-nonstandard-library/#enable
+farmalloc:
+  text: farmalloc()
+  def: void far *farmalloc(unsigned long nbytes);
+  desc: Allocates a block of memory `nbytes` bytes long from the far heap.
+  ref: /topics/borland-c-nonstandard-library/#farmalloc
+filelength:
+  text: filelength()
+  def: long filelength(int handle);
+  desc: Returns the length (in bytes) of the file associated with `handle`.
+  ref: /topics/borland-c-nonstandard-library/#filelength
+fileno:
+  text: fileno()
+  def: '#define fileno(f) ((f)->fd)'
+  desc: Returns the file handle for the given stream.
+  ref: /topics/borland-c-nonstandard-library/#fileno
+getch:
+  text: getch()
+  def: int getch(void);
+  desc: Reads a single character directly from the console (keyboard), without echoing to the screen.
+  ref: /topics/borland-c-nonstandard-library/#getch
+getvect:
+  text: getvect()
+  def: void interrupt (*getvect(int interruptno))();
+  desc: Reads the value of the interrupt vector given by `interruptno` and returns that value as a far pointer to an interrupt function.
+  ref: /topics/borland-c-nonstandard-library/#getvect
+getw:
+  text: getw()
+  def: int getw(FILE *stream);
+  desc: Returns the next integer (machine word) in the named input stream. It assumes no special alignment in the file.
+  ref: /topics/borland-c-nonstandard-library/#getw
+inportb:
+  text: inportb()
+  def: unsigned char inportb(int portid);
+  desc: Reads a byte from the hardware I/O port specified by `portid`.
+  ref: /topics/borland-c-nonstandard-library/#inportb
+int86:
+  text: int86()
+  def: int int86(int intno, union REGS *inregs, union REGS *outregs);
+  desc: Executes an 8086 software interrupt specified by the argument `intno`.
+  ref: /topics/borland-c-nonstandard-library/#int86
+movmem:
+  text: movmem()
+  def: void movmem(void *src, void *dest, unsigned length);
+  desc: Copies a block of `length` bytes from `src` to `dest`.
+  ref: /topics/borland-c-nonstandard-library/#movmem
+outport:
+  text: outport()
+  def: void outport(int portid, int value);
+  desc: Writes the word given by `value` to the hardware I/O port specified by `portid`.
+  ref: /topics/borland-c-nonstandard-library/#outport
+outportb:
+  text: outportb()
+  def: void outportb(int portid, unsigned char value);
+  desc: Writes the byte given by `value` to the hardware I/O port specified by `portid`.
+  ref: /topics/borland-c-nonstandard-library/#outportb
+putw:
+  text: putw()
+  def: int putw(int w, FILE *stream);
+  desc: Outputs the integer `w` (machine word) to the given stream.
+  ref: /topics/borland-c-nonstandard-library/#putw
+random:
+  text: random()
+  def: '#define random(num) (rand() % (num))'
+  desc: Returns a random number between 0 and (`num` - 1).
+  ref: /topics/borland-c-nonstandard-library/#random
+setvect:
+  text: setvect()
+  def: void setvect(int interruptno, void interrupt (*isr)());
+  desc: Sets the value of the interrupt vector named by `interruptno` to a new value, `isr`, which is a far pointer containing the address of a new interrupt function.
+  ref: /topics/borland-c-nonstandard-library/#setvect
+strupr:
+  text: strupr()
+  def: char *strupr(char *s);
+  desc: Converts lowercase letters (`a`--`z`) in string `s` to uppercase (`A`--`Z`). No other characters are changed.
+  ref: /topics/borland-c-nonstandard-library/#strupr
+text_modes:
+  text: enum text_modes
+  def: enum text_modes {LASTMODE=-1, BW40=0, C40, BW80, C80, MONO=7};
+  desc: Defines the available screen text modes.
+  ref: /topics/borland-c-nonstandard-library/#text_modes
+textmode:
+  text: textmode()
+  def: void textmode(int newmode);
+  desc: Selects a specific screen text mode.
+  ref: /topics/borland-c-nonstandard-library/#textmode
+ultoa:
+  text: ultoa()
+  def: char *ultoa(unsigned long value, char *string, int radix);
+  desc: Converts `value` to a null-terminated string and stores the result in `string`.
+  ref: /topics/borland-c-nonstandard-library/#ultoa
+
+################################################################################
+# GAME FUNCTIONS                                                               #
+################################################################################
+
+#ActArrowPiston:
+#ActBabyGhost:
+#ActBabyGhostEgg:
+#ActBarrel:
+#ActBeamRobot:
+#ActBearTrap:
+#ActBird:
+#ActBombArmed:
+#ActBombIdle:
+#ActBoss:
+#ActCabbage:
+#ActClamPlant:
+#ActDoor:
+#ActDragonfly:
+#ActEpisode1End:
+#ActExitLineHorizontal:
+#ActExitLineVertical:
+#ActExitMonsterWest:
+#ActExitPlant:
+#ActEyePlant:
+#ActFallingFloor:
+#ActFireball:
+#ActFlamePulse:
+#ActFlyingWisp:
+#ActFootSwitch:
+#ActForceField:
+#ActFrozenDN:
+#ActGhost:
+#ActHeadSwitch:
+#ActHeartPlant:
+#ActHintGlobe:
+#ActHorizontalMover:
+#ActInvincibilityBubble:
+#ActIvyPlant:
+#ActJumpPad:
+#ActJumpPadRobot:
+#ActJumpingBullet:
+#ActMonument:
+#ActMoon:
+#ActMysteryWall:
+#ActParachuteBall:
+#ActPedestal:
+#ActPinkWorm:
+#ActPinkWormSlime:
+#ActPipeCorner:
+#ActPipeEnd:
+#ActPrize:
+#ActProjectile:
+#ActPusherRobot:
+#ActPyramid:
+#ActReciprocatingSpear:
+#ActReciprocatingSpikes:
+#ActRedChomper:
+#ActRedGreenSlime:
+#ActRedJumper:
+#ActRoamerSlug:
+#ActRocket:
+#ActSatellite:
+#ActScooter:
+#ActScoreEffect:
+#ActSentryRobot:
+#ActSharpRobot:
+#ActSmallFlame:
+#ActSmokeEmitter:
+#ActSpark:
+#ActSpeechBubble:
+#ActSpittingTurret:
+#ActSpittingWallPlant:
+#ActSplittingPlatform:
+#ActStoneHeadCrusher:
+#ActSuctionWalker:
+#ActTransporter:
+#ActTulipLauncher:
+#ActTwoTonsCrusher:
+#ActVerticalMover:
+#ActWormCrate:
+AdLibService:
+  text: AdLibService()
+  def: void AdLibService(void);
+  desc: Streams chunks of music data to the AdLib hardware at the appropriate time.
+  ref: /topics/adlib-functions/#AdLibService
+#AddScore:
+#AddScoreForSprite:
+#AnimatePalette:
+#CanBeExploded:
+#CanSuctionWalkerFlip:
+#CheckHighScore:
+#ClearGameScreen:
+#ClearPlayerDizzy:
+#ClearScreen:
+#ConstructActor:
+#CopyTilesToEGA:
+DetectAdLib:
+  text: DetectAdLib()
+  def: bool DetectAdLib(void);
+  desc: Interrogates the default AdLib I/O address to check if one is installed, and initializes the hardware if it is there. Returns true if an AdLib is installed, and false otherwise.
+  ref: /topics/adlib-functions/#DetectAdLib
+#DrawCartoon:
+#DrawExplosions:
+#DrawFountains:
+#DrawFullscreenImage:
+#DrawMapRegion:
+DrawMaskedTile:
+  text: DrawMaskedTile()
+  def: void DrawMaskedTile(byte *src, word x, word y);
+  desc: Copies an 8x8 pixel masked tile from the byte pointer `src` minus 16,000 to the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#DrawMaskedTile
+#DrawNumberFlushRight:
+#DrawRandomEffects:
+#DrawSBarHealthHelper:
+#DrawScancodeCharacter:
+DrawSolidTile:
+  text: DrawSolidTile()
+  def: void DrawSolidTile(word src_offset, word dst_offset);
+  desc: Copies an 8x8 pixel solid tile from the tile storage area byte offset `src_offset` to the video memory byte offset `dst_offset`. Both offsets refer to locations within the EGA's memory space. The EGA hardware must be in "latched write" mode for this function to work correctly.
+  ref: /topics/assembly-drawing-functions/#DrawSolidTile
+#DrawSprite:
+DrawSpriteTile:
+  text: DrawSpriteTile()
+  def: void DrawSpriteTile(byte *src, word x, word y);
+  desc: Copies an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#DrawSpriteTile
+DrawSpriteTileFlipped:
+  text: DrawSpriteTileFlipped()
+  def: void DrawSpriteTileFlipped(byte *src, word x, word y);
+  desc: Copies a vertically-flipped 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#DrawSpriteTileFlipped
+DrawSpriteTileTranslucent:
+  text: DrawSpriteTileTranslucent()
+  def: void DrawSpriteTileTranslucent(byte *src, word x, word y);
+  desc: Copies a translucent outline of an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#DrawSpriteTileTranslucent
+DrawSpriteTileWhite:
+  text: DrawSpriteTileWhite()
+  def: void DrawSpriteTileWhite(byte *src, word x, word y);
+  desc: Copies a solid white outline of an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#DrawSpriteTileWhite
+#DrawStatusBarBombs:
+#DrawStatusBarHealth:
+#DrawStatusBarScore:
+#DrawStatusBarStars:
+#DrawTextFrame:
+EGA_CLEAR_BIT_MASK:
+  text: EGA_CLEAR_BIT_MASK()
+  def: '#define EGA_CLEAR_BIT_MASK() { outport(0x03ce, (0xff << 8) | 0x08); }'
+  desc: Resets the EGA's bit mask to its default state.
+  ref: /topics/ega-functions/#EGA_CLEAR_BIT_MASK
+EGA_MODE_DEFAULT:
+  text: EGA_MODE_DEFAULT()
+  def: '#define EGA_MODE_DEFAULT() { outport(0x03ce, (0x00 << 8) | 0x05); }'
+  desc: Resets the EGA's read and write modes to their default state.
+  ref: /topics/ega-functions/#EGA_MODE_DEFAULT
+EGA_MODE_LATCHED_WRITE:
+  text: EGA_MODE_LATCHED_WRITE()
+  def: '#define EGA_MODE_LATCHED_WRITE() { outport(0x03c4, (0x0f << 8) | 0x02); outport(0x03ce, (0x01 << 8) | 0x05); }'
+  desc: Resets the EGA's map mask to its default state and enables latched writes from the CPU.
+  ref: /topics/ega-functions/#EGA_MODE_LATCHED_WRITE
+#EraseWaitSpinner:
+ExitClean:
+  text: ExitClean()
+  def: void ExitClean(void);
+  desc: Cleans up game state and exits back to DOS.
+  ref: /topics/startup-and-exit/#ExitClean
+#FadeIn:
+#FadeInCustom:
+FadeOutAdLibPlayback:
+  text: FadeOutAdLibPlayback()
+  def: void FadeOutAdLibPlayback(void);
+  desc: Nominally fades any playing music to silence over a period of time, but as implemented it simply cuts the music off immediately.
+  ref: /topics/adlib-functions/#FadeOutAdLibPlayback
+#FadeOutCustom:
+#GameRand:
+#GameRedefineMenu:
+GetProcessorType:
+  text: GetProcessorType()
+  def: word GetProcessorType(void);
+  desc: Tests the system processor and returns a value indicating its model. Returns `CPUTYPE_*`.
+  ref: /topics/processor-detection/#GetProcessorType
+GroupEntryFp:
+  text: GroupEntryFp()
+  def: FILE *GroupEntryFp(char *entry_name);
+  desc: Returns a file stream pointer to the data that a group file's `entry_name` refers to.
+  ref: /topics/group-file-functions/#GroupEntryFp
+GroupEntryLength:
+  text: GroupEntryLength()
+  def: dword GroupEntryLength(char *entry_name);
+  desc: Locates a group file `entry_name` and returns the size of its data in bytes.
+  ref: /topics/group-file-functions/#GroupEntryLength
+#HurtPlayer:
+#InitializeBackdropTable:
+#InitializeDecorations:
+#InitializeExplosions:
+#InitializeGame:
+InitializeInterruptRate:
+  text: InitializeInterruptRate()
+  def: void InitializeInterruptRate(void);
+  desc: Sets up the system timer interrupt rate depending on whether or not the AdLib hardware is enabled.
+  ref: /topics/adlib-functions/#InitializeInterruptRate
+#InitializePlayer:
+#InitializeShards:
+#InitializeSpawners:
+InnerMain:
+  text: InnerMain()
+  def: void InnerMain(int argc, char *argv[]);
+  desc: Main game function, once CPU testing has passed.
+  ref: /topics/main-and-outer-loop/#InnerMain
+IsAdLibAbsent:
+  text: IsAdLibAbsent()
+  def: bbool IsAdLibAbsent(void);
+  desc: Returns *TRUE* if an AdLib or compatible card was *NOT* detected in the system.
+  ref: /topics/adlib-functions/#IsAdLibAbsent
+IsAnyKeyDown:
+  text: IsAnyKeyDown()
+  def: bbool IsAnyKeyDown(void);
+  desc: Returns true if any key is currently pressed, without regard to which key it is.
+  ref: /topics/keyboard-functions/#IsAnyKeyDown
+#IsIntersecting:
+#IsNearExplosion:
+#IsSpriteVisible:
+JoinPath:
+  text: JoinPath()
+  def: char *JoinPath(char *dir, char *file);
+  desc: Combines a string `dir` with a string `file`, creating and returning an absolute pathname.
+  ref: /topics/configuration-file-functions/#JoinPath
+KeyboardInterruptService:
+  text: KeyboardInterruptService()
+  def: void interrupt KeyboardInterruptService(void);
+  desc: Maintains the state of the keyboard variables. Called in response to the keyboard interrupt event.
+  ref: /topics/keyboard-functions/#KeyboardInterruptService
+LightenScreenTile:
+  text: LightenScreenTile()
+  def: void LightenScreenTile(word x, word y);
+  desc: Lightens the entire area at the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#LightenScreenTile
+LightenScreenTileEast:
+  text: LightenScreenTileEast()
+  def: void LightenScreenTileEast(word x, word y);
+  desc: Lightens the lower-left half of an 8x8 tile at the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#LightenScreenTileEast
+LightenScreenTileWest:
+  text: LightenScreenTileWest()
+  def: void LightenScreenTileWest(word x, word y);
+  desc: Lightens the lower-right half of an 8x8 tile at the video memory tile location identified by column `x` and row `y`.
+  ref: /topics/assembly-drawing-functions/#LightenScreenTileWest
+LoadActorTileData:
+  text: LoadActorTileData()
+  def: void LoadActorTileData(char *entry_name);
+  desc: Loads actor tile data into system memory.
+  ref: /topics/group-file-functions/#LoadActorTileData
+#LoadBackdropData:
+LoadCartoonData:
+  text: LoadCartoonData()
+  def: void LoadCartoonData(char *entry_name);
+  desc: Loads the cartoon masked tile image data from the group file `entry_name`.
+  ref: /topics/group-file-functions/#LoadCartoonData
+LoadConfigurationData:
+  text: LoadConfigurationData()
+  def: void LoadConfigurationData(char *filename);
+  desc: Loads and parses the contents of the configuration file named `filename` into several global variables.
+  ref: /topics/configuration-file-functions/#LoadConfigurationData
+LoadDemoData:
+  text: LoadDemoData()
+  def: void LoadDemoData(void);
+  desc: Copies the data from the PREVDEMO.MNI group file entry into system memory.
+  ref: /topics/demo-functions/#LoadDemoData
+LoadFontTileData:
+  text: LoadFontTileData()
+  def: void LoadFontTileData(char *entry_name, byte *dest, word length);
+  desc: Loads font data into system memory.
+  ref: /topics/group-file-functions/#LoadFontTileData
+#LoadGameState:
+LoadGroupEntryData:
+  text: LoadGroupEntryData()
+  def: void LoadGroupEntryData(char *entry_name, byte *dest, word length);
+  desc: Reads data from an `entry_name` inside a group file and stores it in the memory block pointed to by `dest`. `length` controls how much data is copied.
+  ref: /topics/group-file-functions/#LoadGroupEntryData
+LoadInfoData:
+  text: LoadInfoData()
+  def: void LoadInfoData(char *entry_name, word *dest, word length);
+  desc: Reads a group file `entry_name` containing "info" data into the memory block pointed to by `dest`.
+  ref: /topics/group-file-functions/#LoadInfoData
+#LoadMapData:
+LoadMaskedTileData:
+  text: LoadMaskedTileData()
+  def: void LoadMaskedTileData(char *entry_name);
+  desc: Loads data from the group file entry named `entry_name` and stores it in the masked tile data block.
+  ref: /topics/group-file-functions/#LoadMaskedTileData
+LoadMusicData:
+  text: LoadMusicData()
+  def: Music *LoadMusicData(word music_num, Music *dest);
+  desc: Opens music data from a group file entry (whose name is indexed by a numerical `music_num`), loads the data into the Music structure pointed to by `dest`, and prepares the AdLib service to receive new music data. Returns a pointer to `dest`.
+  ref: /topics/group-file-functions/#LoadMusicData
+LoadSoundData:
+  text: LoadSoundData()
+  def: void LoadSoundData(char *entry_name, word *dest, int skip);
+  desc: Reads data from the group file entry named by `entry_name` and stores it in the `dest` memory block along with index structures.
+  ref: /topics/group-file-functions/#LoadSoundData
+LoadTileAttributeData:
+  text: LoadTileAttributeData()
+  def: void LoadTileAttributeData(char *entry_name);
+  desc: Loads data from the group file entry named `entry_name` and stores it in the tile attribute data block.
+  ref: /topics/group-file-functions/#LoadTileAttributeData
+#MAP_CELL_ADDR:
+#MoveAndDrawActors:
+#MoveAndDrawDecorations:
+#MoveAndDrawShards:
+#MoveAndDrawSpawners:
+#MoveFountains:
+#MovePlatforms:
+#MovePlayer:
+#MovePlayerPlatform:
+#MovePlayerScooter:
+#NewActor:
+#NewExplosion:
+#NewMapActor:
+#NewPounceDecoration:
+#NewShard:
+#NewSpawner:
+#NextLevel:
+PCSpeakerService:
+  text: PCSpeakerService()
+  def: void PCSpeakerService(void);
+  desc: Sends a new fragment of sound effect data to the PC speaker.
+  ref: /topics/pc-speaker-and-timing-functions/#PCSpeakerService
+#PauseMessage:
+#PounceHelper:
+#PrepareBackdropVScroll:
+#ProcessActor:
+#ProcessGameInput:
+#ProcessGameInputHelper:
+#ProcessPlayerDizzy:
+ProfileCPU:
+  text: ProfileCPU()
+  def: void ProfileCPU(void);
+  desc: Measures the execution speed of the CPU relative to the system's Programmable Interval Timer, and records the number of busy loop iterations the CPU requires to generate various delay times.
+  ref: /topics/adlib-functions/#ProfileCPU
+ProfileCPUService:
+  text: ProfileCPUService()
+  def: void interrupt ProfileCPUService(void);
+  desc: Benchmarks the timing characteristics of the CPU relative to the system's Programmable Interval Timer.
+  ref: /topics/adlib-functions/#ProfileCPUService
+#PromptKeyBind:
+#PromptLevelWarp:
+#PromptQuitConfirm:
+#ReadAndEchoText:
+ReadJoystickTimes:
+  text: ReadJoystickTimes()
+  def: void ReadJoystickTimes(word stick, int *x_time, int *y_time);
+  desc: Triggers a timing interval on the joystick hardware and returns the raw interval lengths for the one joystick, identified by `stick`, in `x_time` and `y_time`.
+  ref: /topics/joystick-functions/#ReadJoystickTimes
+ReadDemoFrame:
+  text: ReadDemoFrame()
+  def: bbool ReadDemoFrame(void);
+  desc: Reads the next byte from the demo data and updates the global input command state. Returns true on end of data.
+  ref: /topics/demo-functions/#ReadDemoFrame
+ReadJoystickState:
+  text: ReadJoystickState()
+  def: JoystickState ReadJoystickState(word stick);
+  desc: Polls the joystick identified by `stick` for its current position and button state, and updates the player control variables accordingly.
+  ref: /topics/demo-functions/#ReadJoystickState
+#SET_PLAYER_DIZZY:
+SaveConfigurationData:
+  text: SaveConfigurationData()
+  def: void SaveConfigurationData(char *filename);
+  desc: Saves the state of the global game configuration variables to the configuration file named `filename`.
+  ref: /topics/configuration-file-functions/#SaveConfigurationData
+SaveDemoData:
+  text: SaveDemoData()
+  def: void SaveDemoData(void);
+  desc: Flushes all of the in-memory demo data to the PREVDEMO.MNI file on disk -- it does not modify any group file contents.
+  ref: /topics/demo-functions/#SaveDemoData
+#SaveGameState:
+SelectActivePage:
+  text: SelectActivePage()
+  def: void SelectActivePage(word page_num);
+  desc: Switches the actively-displayed video memory page to `page_num`, causing its contents to appear on the screen, using a BIOS interrupt call.
+  ref: /topics/ega-functions/#SelectActivePage
+SelectDrawPage:
+  text: SelectDrawPage()
+  def: void SelectDrawPage(word page_num);
+  desc: Changes the draw page to `page_num` and updates the memory address that subsequent drawing procedures should operate on.
+  ref: /topics/ega-functions/#SelectDrawPage
+SetPIT0Value:
+  text: SetPIT0Value()
+  def: void SetPIT0Value(word value);
+  desc: Configures channel 0 of the system's Programmable Interval Timer with the provided counter `value`.
+  ref: /topics/adlib-functions/#SetPIT0Value
+SetAdLibRegister:
+  text: SetAdLibRegister()
+  def: void SetAdLibRegister(byte addr, byte data);
+  desc: Writes one `data` byte to the AdLib register at address `addr`, assuming the hardware is present at the standard I/O ports.
+  ref: /topics/adlib-functions/#SetAdLibRegister
+SetBorderColorRegister:
+  text: SetBorderColorRegister()
+  def: void SetBorderColorRegister(word color_value);
+  desc: Configures the display adapter to use `color_value` to fill the overscan area at the edges of the screen, using a BIOS interrupt call.
+  ref: /topics/ega-functions/#SetBorderColorRegister
+SetInterruptRate:
+  text: SetInterruptRate()
+  def: void SetInterruptRate(word ints_second);
+  desc: Configures channel 0 of the system's Programmable Interval Timer with an interrupts-per-second value specified by `ints_second`.
+  ref: /topics/adlib-functions/#SetInterruptRate
+#SetMapTile4:
+#SetMapTileRepeat:
+SetMusic:
+  text: SetMusic()
+  def: bool SetMusic(bool state);
+  desc: Enables or disables AdLib output based on the value of `state`.
+  ref: /topics/adlib-functions/#SetMusic
+SetPaletteRegister:
+  text: SetPaletteRegister()
+  def: void SetPaletteRegister(word palette_index, word color_value);
+  desc: Configures the display adapter to use `color_value` as the screen display color at positions where the video memory contains `palette_index`, using a BIOS interrupt call.
+  ref: /topics/ega-functions/#SetPaletteRegister
+#SetPlayerPush:
+SetVideoMode:
+  text: SetVideoMode()
+  def: void SetVideoMode(word mode_num);
+  desc: Changes the system's video mode to the mode number specified by `mode_num`, using a BIOS interrupt call.
+  ref: /topics/ega-functions/#SetVideoMode
+#ShowAlteredFileError:
+#ShowBombHint:
+#ShowCheatMessage:
+#ShowCongratulations:
+#ShowCopyright:
+#ShowE1CliffhangerMessage:
+#ShowEnding:
+#ShowForeignOrders:
+#ShowGameMenu:
+#ShowHealthHint:
+#ShowHighScoreTable:
+#ShowHintGlobeMessage:
+#ShowHintsAndKeys:
+ShowJoystickConfiguration:
+  text: ShowJoystickConfiguration()
+  def: void ShowJoystickConfiguration(word stick);
+  desc: Pprompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`.
+  ref: /topics/joystick-functions/#ShowJoystickConfiguration
+#ShowKeyboardConfiguration:
+#ShowLevelIntro:
+#ShowMainMenu:
+#ShowOrderingInformation:
+#ShowPublisherBBS:
+#ShowRescuedDNMessage:
+#ShowRestoreGameError:
+#ShowStarBonus:
+StartAdLib:
+  text: StartAdLib()
+  def: void StartAdLib(void);
+  desc: Detects and initializes the AdLib hardware if it is present, installs the interrupt handler necessary to run the AdLib and PC speaker services, and measures values for CPU-based time delays.
+  ref: /topics/adlib-functions/#StartAdLib
+StartAdLibPlayback:
+  text: StartAdLibPlayback()
+  def: void StartAdLibPlayback(void);
+  desc: Sets the `enableAdLib` variable to true, permitting the AdLib service to play music.
+  ref: /topics/adlib-functions/#StartAdLibPlayback
+StartGameMusic:
+  text: StartGameMusic()
+  def: void StartGameMusic(word music_num);
+  desc: Starts playing the music identified by the numeric `music_num` if the AdLib hardware is available. This function is only safe to use while gameplay is occurring.
+  ref: /topics/adlib-functions/#StartGameMusic
+StartMenuMusic:
+  text: StartMenuMusic()
+  def: void StartMenuMusic(word music_num);
+  desc: Starts playing the music identified by the numeric `music_num` if the AdLib hardware is available. This function is only safe to use on the title screens, main menu, and its submenus.
+  ref: /topics/adlib-functions/#StartMenuMusic
+StartSound:
+  text: StartSound()
+  def: void StartSound(word sound_num);
+  desc: Queues the new sound effect identified by `sound_num` for playback and immediately returns.
+  ref: /topics/pc-speaker-and-timing-functions/#StartSound
+Startup:
+  text: Startup()
+  def: void Startup(void);
+  desc: Initializes the game environment and shows pre-title/copyright screens.
+  ref: /topics/startup-and-exit/#Startup
+#StepPalette:
+#StepWaitSpinner:
+StopAdLib:
+  text: StopAdLib()
+  def: void StopAdLib(void);
+  desc: Stops all playback from the AdLib card and restores the original system timer interrupt handler.
+  ref: /topics/adlib-functions/#StopAdLib
+StopAdLibPlayback:
+  text: StopAdLibPlayback()
+  def: void StopAdLibPlayback(void);
+  desc: Clears all the AdLib parameter values that could produce note sounds.
+  ref: /topics/adlib-functions/#StopAdLibPlayback
+StopMusic:
+  text: StopMusic()
+  def: void StopMusic(void);
+  desc: Silences any active music and prevents the AdLib service from processing any new chunks of music.
+  ref: /topics/adlib-functions/#StopMusic
+SwitchMusic:
+  text: SwitchMusic()
+  def: void SwitchMusic(Music *music);
+  desc: Stops any currently playing music and starts playing the music specified by `music`.
+  ref: /topics/adlib-functions/#SwitchMusic
+#TILE_BLOCK_EAST:
+#TILE_BLOCK_SOUTH:
+#TILE_BLOCK_WEST:
+#TILE_CAN_CLING:
+#TILE_SLOPED:
+#TestPlayerMove:
+#TestSound:
+#TestSpriteMove:
+TimerInterruptService:
+  text: TimerInterruptService()
+  def: void interrupt TimerInterruptService(void);
+  desc: Handles interrupts that occur on interrupt vector 8 (IRQ 0), which is wired to channel 0 of the system's Programmable Interval Timer. Each time the timer ticks, this function updates the sounds being played by the PC speaker and/or the AdLib.
+  ref: /topics/adlib-functions/#TimerInterruptService
+#TitleLoop:
+#ToggleMusic:
+#UnfoldDNFrame:
+#UnfoldPlayerFrame:
+#UnfoldTextFrame:
+#UpdateBombs:
+UpdateDrawPageSegment:
+  text: UpdateDrawPageSegment()
+  def: void UpdateDrawPageSegment(void);
+  desc: Recalculates the segment address of the video memory where drawing should occur.
+  ref: /topics/ega-functions/#UpdateDrawPageSegment
+#UpdateHealth:
+#UpdateStars:
+ValidateSystem:
+  text: ValidateSystem()
+  def: void ValidateSystem(void);
+  desc: Ensures the system has an EGA adapter, and verifies there is enough free memory. If either are not true, exits back to DOS.
+  ref: /topics/startup-and-exit/#ValidateSystem
+WaitForAnyKey:
+  text: WaitForAnyKey()
+  def: byte WaitForAnyKey(void);
+  desc: Waits indefinitely for any key to be pressed and released, then returns the scancode of that key.
+  ref: /topics/keyboard-functions/#WaitForAnyKey
+WaitHard:
+  text: WaitHard()
+  def: void WaitHard(word delay);
+  desc: Pauses execution for `delay` game ticks with no provision for the user to skip the wait.
+  ref: /topics/pc-speaker-and-timing-functions/#WaitHard
+WaitSoft:
+  text: WaitSoft()
+  def: void WaitSoft(word delay);
+  desc: Pauses execution for `delay` game ticks, returning early if the user presses a key.
+  ref: /topics/pc-speaker-and-timing-functions/#WaitSoft
+#WaitSpinner:
+WaitWallclock:
+  text: WaitWallclock()
+  def: void WaitWallclock(word loops);
+  desc: Creates an artificial delay using a CPU busy loop, controlled by the iteration count specified in `loops`.
+  ref: /topics/adlib-functions/#WaitWallclock
+WriteDemoFrame:
+  text: WriteDemoFrame()
+  def: bbool WriteDemoFrame(void);
+  desc: Captures a snapshot of the global input command state (from the keyboard or joystick) and encodes it into a stream of demo data bytes. Returns true on error.
+  ref: /topics/demo-functions/#WriteDemoFrame
+main:
+  text: main()
+  def: void main(int argc, char *argv[]);
+  desc: Main entry point for the program.
+  ref: /topics/main-and-outer-loop/#main
+
+################################################################################
+# GAME GLOBALS                                                                 #
+################################################################################
+
+CPUTYPE:
+  text: CPUTYPE_*
+  def: |-
+    #define CPUTYPE_8088  0  /* Intel 8088 */
+    #define CPUTYPE_8086  1  /* Intel 8086 */
+    #define CPUTYPE_V20   2  /* NEC V20 */
+    #define CPUTYPE_V30   3  /* NEC V30 */
+    #define CPUTYPE_80188 4  /* Intel 80188 */
+    #define CPUTYPE_80186 5  /* Intel 80186 */
+    #define CPUTYPE_80286 6  /* Intel 80286 */
+    #define CPUTYPE_80386 7  /* Intel 80386 or above */
+  desc: Provides meaningful names for the detected processor type.
+  ref: /topics/global-variables-and-constants/#CPUTYPE
+FILENAME_BASE:
+  text: FILENAME_BASE
+  def: |-
+    #define FILENAME_BASE "COSMO1"  /* episode 1, or */
+    #define FILENAME_BASE "COSMO2"  /* episode 2, or */
+    #define FILENAME_BASE "COSMO3"  /* episode 3 */
+  desc: Defines the base file name (without extension) used for the group, configuration, and save files.
+  ref: /topics/global-variables-and-constants/#FILENAME_BASE
+IMAGE:
+  text: IMAGE_*
+  def: |-
+    #define IMAGE_PRETITLE   0
+    #define IMAGE_TITLE      1
+    #define IMAGE_CREDITS    2
+    #define IMAGE_BONUS      3
+    #define IMAGE_END        4
+    #define IMAGE_ONE_MOMENT 5
+    #define IMAGE_TILEATTR   0x1111
+    #define IMAGE_DEMO       0xfff1
+    #define IMAGE_NONE       0xffff
+  desc: Provides meaningful names for various full-screen image files.
+  ref: /topics/global-variables-and-constants/#IMAGE
+JOYSTICK:
+  text: JOYSTICK_*
+  def: |-
+    #define JOYSTICK_A 1
+    #define JOYSTICK_B 2
+  desc: Identifiers for joystick 1 (A) and 2 (B). `JOYSTICK_B` is not used by name anywhere in the game.
+  ref: /topics/global-variables-and-constants/#JOYSTICK
+JoystickState:
+  text: JoystickState
+  def: |-
+    typedef struct {
+        bool button1;
+        bool button2;
+    } JoystickState;
+  desc: Holds the state of two buttons (`button1` and `button2`) on a single joystick. The values are true if the corresponding button is currently pressed, or false if it is unpressed.
+  ref: /topics/global-variables-and-constants/#JoystickState
+MUSIC:
+  text: MUSIC_*
+  def: |-
+    #define MUSIC_CAVES   0
+    #define MUSIC_SCARRY  1
+    #define MUSIC_BOSS    2
+    #define MUSIC_RUNAWAY 3
+    #define MUSIC_CIRCUS  4
+    #define MUSIC_TEKWRD  5
+    #define MUSIC_EASYLEV 6
+    #define MUSIC_ROCKIT  7
+    #define MUSIC_HAPPY   8
+    #define MUSIC_DEVO    9
+    #define MUSIC_DADODA  10
+    #define MUSIC_BELLS   11
+    #define MUSIC_DRUMS   12
+    #define MUSIC_BANJO   13
+    #define MUSIC_EASY2   14
+    #define MUSIC_TECK2   15
+    #define MUSIC_TECK3   16
+    #define MUSIC_TECK4   17
+    #define MUSIC_ZZTOP   18
+  desc: Provides meaningful names for all of the music available in the game.
+  ref: /topics/global-variables-and-constants/#MUSIC
+Music:
+  text: Music
+  def: |-
+    typedef struct {
+        word length;
+        word datahead;
+    } Music;
+  desc: Holds the `length` in bytes and first word of music data (`datahead`). Memory blocks that are cast to this structure type are generally much larger than the struct, and reading beyond `datahead` is typical and expected.
+  ref: /topics/global-variables-and-constants/#Music
+activeMusic:
+  text: activeMusic
+  def: Music *activeMusic;
+  desc: Holds a pointer to the structure containing the length and data bytes of the most recent piece of music that has been started.
+  ref: /topics/global-variables-and-constants/#activeMusic
+activeSoundIndex:
+  text: activeSoundIndex
+  def: word activeSoundIndex;
+  desc: Holds the zero-indexed sound number of the PC speaker sound effect that is currently playing.
+  ref: /topics/global-variables-and-constants/#activeSoundIndex
+activeSoundPriority:
+  text: activeSoundPriority
+  def: word activeSoundPriority;
+  desc: Holds the priority value of the PC speaker sound effect that is currently playing.
+  ref: /topics/global-variables-and-constants/#activeSoundPriority
+actorTileData:
+  text: actorTileData[]
+  def: byte *actorTileData[3];
+  desc: Points to masked tile image data used to draw actors, decorations, spawners, explosions, shards, and miscellaneous UI sprites.
+  ref: /topics/global-variables-and-constants/#actorTileData
+cmdBomb:
+  text: cmdBomb
+  def: bbool cmdBomb;
+  desc: Controls the state of the player's "drop bomb" action command.
+  ref: /topics/global-variables-and-constants/#cmdBomb
+cmdEast:
+  text: cmdEast
+  def: bbool cmdEast;
+  desc: Controls the state of the player's "walk east" movement command.
+  ref: /topics/global-variables-and-constants/#cmdEast
+cmdJump:
+  text: cmdJump
+  def: bbool cmdJump;
+  desc: Controls the state of the player's "jump" movement command.
+  ref: /topics/global-variables-and-constants/#cmdJump
+cmdNorth:
+  text: cmdNorth
+  def: bbool cmdNorth;
+  desc: Controls the state of the player's "look north" action command.
+  ref: /topics/global-variables-and-constants/#cmdNorth
+cmdSouth:
+  text: cmdSouth
+  def: bbool cmdSouth;
+  desc: Controls the state of the player's "look south" action command.
+  ref: /topics/global-variables-and-constants/#cmdSouth
+cmdWest:
+  text: cmdWest
+  def: bbool cmdWest;
+  desc: Controls the state of the player's "walk west" movement command.
+  ref: /topics/global-variables-and-constants/#cmdWest
+demoDataLength:
+  text: demoDataLength
+  def: word demoDataLength;
+  desc: Holds the size, in bytes, of the demo data currently loaded into memory.
+  ref: /topics/global-variables-and-constants/#demoDataLength
+demoDataPos:
+  text: demoDataPos
+  def: word demoDataPos;
+  desc: Holds the byte offset of the current read/write position within the demo data while playing/recording a demo.
+  ref: /topics/global-variables-and-constants/#demoDataPos
+demoState:
+  text: demoState
+  def: byte demoState;
+  desc: Indicates the current state of input handling for gameplay.
+  ref: /topics/global-variables-and-constants/#demoState
+drawPageNumber:
+  text: drawPageNumber
+  def: word drawPageNumber;
+  desc: Holds the zero-indexed number (0 or 1) of the graphics page that the drawing procedures will operate on.
+  ref: /topics/global-variables-and-constants/#drawPageNumber
+drawPageSegment:
+  text: drawPageSegment
+  def: word drawPageSegment;
+  desc: Holds the memory segment address of the graphics page that the drawing procedures will operate on.
+  ref: /topics/global-variables-and-constants/#drawPageSegment
+enableAdLib:
+  text: enableAdLib
+  def: bool enableAdLib;
+  desc: When true, this permits the AdLib service to actually send music data to the AdLib hardware. When false, this inhibits these transfers, holding the AdLib hardware "frozen" in its current state.
+  ref: /topics/global-variables-and-constants/#enableAdLib
+enableSpeaker:
+  text: enableSpeaker
+  def: bool enableSpeaker;
+  desc: When true, this permits the PC speaker hardware to actually emit sounds. When false, this unconditionally silences the speaker output.
+  ref: /topics/global-variables-and-constants/#enableSpeaker
+fontTileData:
+  text: fontTileData
+  def: byte *fontTileData;
+  desc: Points to a 4,000 byte block of memory used to hold masked tile image data for the UI font.
+  ref: /topics/global-variables-and-constants/#fontTileData
+gameTickCount:
+  text: gameTickCount
+  def: word gameTickCount;
+  desc: Holds a running counter that increments precisely 140 times per second, regardless of the state of program execution.
+  ref: /topics/global-variables-and-constants/#gameTickCount
+highScoreNames:
+  text: highScoreNames[]
+  def: |-
+    typedef byte HighScoreName[16];
+    HighScoreName highScoreNames[11];
+  desc: Points to the first element of an 11-element fixed-length string array. Each element is 16 bytes long, and holds one of the names on the high score table.
+  ref: /topics/global-variables-and-constants/#highScoreNames
+highScoreValues:
+  text: highScoreValues[]
+  def: dword highScoreValues[11];
+  desc: Points to the first element of an 11-element numeric array. Each element is a doubleword value, and holds one of the scores on the high score table.
+  ref: /topics/global-variables-and-constants/#highScoreValues
+isAdLibPresent:
+  text: isAdLibPresent
+  def: bbool isAdLibPresent;
+  desc: Holds a true value if an AdLib card was detected in the system, and false otherwise.
+  ref: /topics/global-variables-and-constants/#isAdLibPresent
+isAdLibPresentPrivate:
+  text: isAdLibPresentPrivate
+  def: bool isAdLibPresentPrivate;
+  desc: Holds a true value if an AdLib card was detected in the system, and false otherwise.
+  ref: /topics/global-variables-and-constants/#isAdLibPresentPrivate
+isAdLibServiceRunning:
+  text: isAdLibServiceRunning
+  def: bool isAdLibServiceRunning;
+  desc: Holds a true value if the system timer is running at the faster AdLib rate and the AdLib service is being called. Otherwise, holds false to indicate that the timer is running slowly and only the PC speaker service is being called.
+  ref: /topics/global-variables-and-constants/#isAdLibServiceRunning
+isAdLibStarted:
+  text: isAdLibStarted
+  def: bool isAdLibStarted;
+  desc: Holds a true value if the AdLib startup code has executed, and false if the AdLib has either never been started or was explicitly stopped.
+  ref: /topics/global-variables-and-constants/#isAdLibStarted
+isDebugMode:
+  text: isDebugMode
+  def: bbool isDebugMode;
+  desc: Holds a true value if the debug/cheat mode has been activated by the player, and false during normal gameplay.
+  ref: /topics/global-variables-and-constants/#isDebugMode
+isInGame:
+  text: isInGame
+  def: bbool isInGame;
+  desc: Holds a true value if a game is currently being played, and false if the main menu is being shown.
+  ref: /topics/global-variables-and-constants/#isInGame
+isJoystickReady:
+  text: isJoystickReady
+  def: bool isJoystickReady;
+  desc: Controls whether game input should come from the keyboard or the joystick.
+  ref: /topics/global-variables-and-constants/#isJoystickReady
+isKeyDown:
+  text: isKeyDown[]
+  def: bbool isKeyDown[255];
+  desc: Holds the down/up state of each keyboard key. Elements are indexed by the key's "make" code, and each element holds a true value if the key is down and false if it is up.
+  ref: /topics/global-variables-and-constants/#isKeyDown
+isMusicEnabled:
+  text: isMusicEnabled
+  def: bool isMusicEnabled;
+  desc: Controls whether or not the AdLib music should be sent to the hardware.
+  ref: /topics/global-variables-and-constants/#isMusicEnabled
+isNewSound:
+  text: isNewSound
+  def: bool isNewSound;
+  desc: Indicates that the currently-playing PC speaker sound effect has been changed.
+  ref: /topics/global-variables-and-constants/#isNewSound
+isSoundEnabled:
+  text: isSoundEnabled
+  def: bool isSoundEnabled;
+  desc: Controls whether or not the PC speaker sound effects should be sent to the hardware.
+  ref: /topics/global-variables-and-constants/#isSoundEnabled
+joinPathBuffer:
+  text: joinPathBuffer[]
+  def: byte joinPathBuffer[80];
+  desc: Holds an 80-byte scratch area used for joining directory and file names into full path names.
+  ref: /topics/global-variables-and-constants/#joinPathBuffer
+joystickBandBottom:
+  text: joystickBandBottom[]
+  def: int joystickBandBottom[3];
+  desc: Holds the timer values for the bottom edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
+  ref: /topics/global-variables-and-constants/#joystickBandBottom
+joystickBandLeft:
+  text: joystickBandLeft[]
+  def: int joystickBandLeft[3];
+  desc: Holds the timer values for the left edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
+  ref: /topics/global-variables-and-constants/#joystickBandLeft
+joystickBandRight:
+  text: joystickBandRight[]
+  def: int joystickBandRight[3];
+  desc: Holds the timer values for the right edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
+  ref: /topics/global-variables-and-constants/#joystickBandRight
+joystickBandTop:
+  text: joystickBandTop[]
+  def: int joystickBandTop[3];
+  desc: Holds the timer values for the top edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
+  ref: /topics/global-variables-and-constants/#joystickBandTop
+joystickBtn1Bombs:
+  text: joystickBtn1Bombs
+  def: bool joystickBtn1Bombs;
+  desc: Controls which action the primary joystick button performs. When true, this button places a bomb. When false, this button makes the player jump. In either case, the secondary button takes the opposite action.
+  ref: /topics/global-variables-and-constants/#joystickBtn1Bombs
+lastGroupEntryLength:
+  text: lastGroupEntryLength
+  def: dword lastGroupEntryLength;
+  desc: Holds the file size, in bytes, of the most recent group file entry that was opened.
+  ref: /topics/global-variables-and-constants/#lastGroupEntryLength
+lastScancode:
+  text: lastScancode
+  def: byte lastScancode;
+  desc: Holds the most recent byte of data received by the system's keyboard controller.
+  ref: /topics/global-variables-and-constants/#lastScancode
+levelNum:
+  text: levelNum
+  def: word levelNum;
+  desc: Holds the current level number being played.
+  ref: /topics/global-variables-and-constants/#levelNum
+mapData:
+  text: mapData
+  def: |-
+    union {
+        byte *b;
+        word *w;
+    } mapData;
+  desc: Points to a 65,535 byte block of memory used to hold map data during the game OR temporary data in the main menu.
+  ref: /topics/global-variables-and-constants/#mapData
+maskedTileData:
+  text: maskedTileData
+  def: byte *maskedTileData;
+  desc: Points to a 40,000 byte block of memory used to hold masked tile image data during the game OR music data in the main menu.
+  ref: /topics/global-variables-and-constants/#maskedTileData
+miscData:
+  text: miscData
+  def: byte *miscData;
+  desc: Points to a 35,000 byte block of memory used to hold a variety of different unrelated things.
+  ref: /topics/global-variables-and-constants/#miscData
+miscDataContents:
+  text: miscDataContents
+  def: word miscDataContents;
+  desc: Provides an indication of the last data that was loaded into the miscellaneous data block.
+  ref: /topics/global-variables-and-constants/#miscDataContents
+musicDataHead:
+  text: musicDataHead
+  def: word *musicDataHead;
+  desc: Holds the memory address of the first word of the current music data. Used to rewind the music playback pointer each time the music loops.
+  ref: /topics/global-variables-and-constants/#musicDataHead
+musicDataLeft:
+  text: musicDataLeft
+  def: word musicDataLeft;
+  desc: Tracks the number of bytes of music data that still remain to be played. Once this value reaches zero, the music must restart from the beginning.
+  ref: /topics/global-variables-and-constants/#musicDataLeft
+musicDataLength:
+  text: musicDataLength
+  def: word musicDataLength;
+  desc: Tracks the total length of the current music data, in bytes.
+  ref: /topics/global-variables-and-constants/#musicDataLength
+musicDataPtr:
+  text: musicDataPtr
+  def: word *musicDataPtr;
+  desc: Points to the next word of music data that is going to be sent to the AdLib hardware.
+  ref: /topics/global-variables-and-constants/#musicDataPtr
+musicNames:
+  text: musicNames[]
+  def: |-
+    char *musicNames[] = {
+        "mcaves.mni", "mscarry.mni", "mboss.mni", "mrunaway.mni",
+        "mcircus.mni", "mtekwrd.mni", "measylev.mni", "mrockit.mni",
+        "mhappy.mni", "mdevo.mni", "mdadoda.mni", "mbells.mni", "mdrums.mni",
+        "mbanjo.mni", "measy2.mni", "mteck2.mni", "mteck3.mni", "mteck4.mni",
+        "mzztop.mni"
+    };
+  desc: Holds a list of all group file entry names that refer to music data.
+  ref: /topics/global-variables-and-constants/#musicNames
+musicNextDue:
+  text: musicNextDue
+  def: dword musicNextDue;
+  desc: Tracks the timestamp, in music ticks, when the next chunk of music is scheduled to be sent to the AdLib hardware.
+  ref: /topics/global-variables-and-constants/#musicNextDue
+musicTickCount:
+  text: musicTickCount
+  def: dword musicTickCount;
+  desc: Tracks the current timestamp, in music ticks. Increments each time the AdLib service runs.
+  ref: /topics/global-variables-and-constants/#musicTickCount
+pit0Value:
+  text: pit0Value
+  def: dword pit0Value;
+  desc: Holds a copy of the most recent value used to reconfigure channel 0 of the system's Programmable Interval Timer.
+  ref: /topics/global-variables-and-constants/#pit0Value
+playerTileData:
+  text: playerTileData
+  def: byte *playerTileData;
+  desc: Points to a block of memory matching the size and content of the PLAYERS.MNI group file entry, nominally 30,000 bytes.
+  ref: /topics/global-variables-and-constants/#playerTileData
+profCountCPU:
+  text: profCountCPU
+  def: word profCountCPU;
+  desc: Used temporarily during CPU profiling to track the number of busy loop iterations the CPU has performed so far.
+  ref: /topics/global-variables-and-constants/#profCountCPU
+profCountPIT:
+  text: profCountPIT
+  def: word profCountPIT;
+  desc: Used temporarily during CPU profiling to track the number of timer interrupts that have been raised by the Programmable Interval Timer so far.
+  ref: /topics/global-variables-and-constants/#profCountPIT
+savedInt8:
+  text: savedInt8
+  def: |-
+    typedef void interrupt (*InterruptFunction)(void);
+    InterruptFunction savedInt8;
+  desc: Holds a reference to the old interrupt service routine for interrupt vector 8.
+  ref: /topics/global-variables-and-constants/#savedInt8
+savedInt9:
+  text: savedInt9
+  def: |-
+    typedef void interrupt (*InterruptFunction)(void);
+    InterruptFunction savedInt9;
+  desc: Holds a reference to the old interrupt service routine for interrupt vector 9.
+  ref: /topics/global-variables-and-constants/#savedInt9
+scancodeBomb:
+  text: scancodeBomb
+  def: byte scancodeBomb;
+  desc: Holds the keyboard scancode that the user has selected for the player's "bomb" action.
+  ref: /topics/global-variables-and-constants/#scancodeBomb
+scancodeEast:
+  text: scancodeEast
+  def: byte scancodeEast;
+  desc: Holds the keyboard scancode that the user has selected for the player's "walk east" movement command.
+  ref: /topics/global-variables-and-constants/#scancodeEast
+scancodeJump:
+  text: scancodeJump
+  def: byte scancodeJump;
+  desc: Holds the keyboard scancode that the user has selected for the player's "jump" movement command.
+  ref: /topics/global-variables-and-constants/#scancodeJump
+scancodeNorth:
+  text: scancodeNorth
+  def: byte scancodeNorth;
+  desc: Holds the keyboard scancode that the user has selected for the player's "look north" action.
+  ref: /topics/global-variables-and-constants/#scancodeNorth
+scancodeSouth:
+  text: scancodeSouth
+  def: byte scancodeSouth;
+  desc: Holds the keyboard scancode that the user has selected for the player's "look south" action.
+  ref: /topics/global-variables-and-constants/#scancodeSouth
+scancodeWest:
+  text: scancodeWest
+  def: byte scancodeWest;
+  desc: Holds the keyboard scancode that the user has selected for the player's "walk west" movement command.
+  ref: /topics/global-variables-and-constants/#scancodeWest
+skipDetectAdLib:
+  text: skipDetectAdLib
+  def: bool skipDetectAdLib;
+  desc: Always false; part of an unused piece of code that would allow AdLib detection to be skipped based on a command-line switch.
+  ref: /topics/global-variables-and-constants/#skipDetectAdLib
+soundData1:
+  text: soundData1
+  def: word *soundData1;
+  desc: Points to a block of memory matching the size and content of the SOUNDS.MNI group file entry, nominally 3,332 bytes.
+  ref: /topics/global-variables-and-constants/#soundData1
+soundData2:
+  text: soundData2
+  def: word *soundData2;
+  desc: Points to a block of memory matching the size and content of the SOUNDS2.MNI group file entry, nominally 3,876 bytes.
+  ref: /topics/global-variables-and-constants/#soundData2
+soundData3:
+  text: soundData3
+  def: word *soundData3;
+  desc: Points to a block of memory matching the size and content of the SOUNDS3.MNI group file entry, nominally 4,020 bytes.
+  ref: /topics/global-variables-and-constants/#soundData3
+soundDataPtr:
+  text: soundDataPtr[]
+  def: word *soundDataPtr[80];
+  desc: Zero-indexed array of 80 elements, although not all are used. Each element points to the first data word of a PC speaker sound effect. Unused elements are null pointers.
+  ref: /topics/global-variables-and-constants/#soundDataPtr
+soundPriority:
+  text: soundPriority[]
+  def: byte soundPriority[81];
+  desc: One-indexed array of 81 elements, although not all are used. Each element holds the priority value of a PC speaker sound effect. Unused elements are zero.
+  ref: /topics/global-variables-and-constants/#soundPriority
+stnGroupFilename:
+  text: stnGroupFilename
+  def: char *stnGroupFilename = FILENAME_BASE ".STN";
+  desc: Holds the name of the STN group file; this is a value like COSMOx.STN.
+  ref: /topics/global-variables-and-constants/#stnGroupFilename
+tileAttributeData:
+  text: tileAttributeData
+  def: byte *tileAttributeData;
+  desc: If an AdLib card is installed, points to a dedicated 7,000 byte block of memory. If an AdLib card is not installed, points to the address 5,000 bytes into `miscData`.
+  ref: /topics/global-variables-and-constants/#tileAttributeData
+timerTickCount:
+  text: timerTickCount
+  def: dword timerTickCount;
+  desc: Holds a computed running tally of how many 1.1931818... MHz timer ticks have occurred so far. Its range is artificially limited to 16 bits.
+  ref: /topics/global-variables-and-constants/#timerTickCount
+totalMemFreeAfter:
+  text: totalMemFreeAfter
+  def: dword totalMemFreeAfter;
+  desc: Captures the amount of free memory, in bytes, after all allocations have been completed.
+  ref: /topics/global-variables-and-constants/#totalMemFreeAfter
+totalMemFreeBefore:
+  text: totalMemFreeBefore
+  def: dword totalMemFreeBefore;
+  desc: Captures the amount of free memory, in bytes, immediately after the program started running.
+  ref: /topics/global-variables-and-constants/#totalMemFreeBefore
+volGroupFilename:
+  text: volGroupFilename
+  def: char *volGroupFilename = FILENAME_BASE ".VOL";
+  desc: Holds the name of the VOL group file; this is a value like COSMOx.VOL.
+  ref: /topics/global-variables-and-constants/#volGroupFilename
+wallclock10us:
+  text: wallclock10us
+  def: word wallclock10us;
+  desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 10 microseconds.
+  ref: /topics/global-variables-and-constants/#wallclock10us
+wallclock25us:
+  text: wallclock25us
+  def: word wallclock25us;
+  desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 25 microseconds.
+  ref: /topics/global-variables-and-constants/#wallclock25us
+wallclock100us:
+  text: wallclock100us
+  def: word wallclock100us;
+  desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 100 microseconds.
+  ref: /topics/global-variables-and-constants/#wallclock100us
+winLevel:
+  text: winLevel
+  def: bool winLevel;
+  desc: Indicates if the conditions have been met for the current level to be "won," allowing the player to advance to the next level in the progression.
+  ref: /topics/global-variables-and-constants/#winLevel
+writePath:
+  text: writePath
+  def: char *writePath;
+  desc: Holds the value of the write path.
+  ref: /topics/global-variables-and-constants/#writePath
+yOffsetTable:
+  text: yOffsetTable[]
+  def: |-
+    word yOffsetTable[] = {
+        0, 320, 640, 960, 1280, 1600, 1920, 2240, 2560, 2880, 3200, 3520, 3840,
+        4160, 4480, 4800, 5120, 5440, 5760, 6080, 6400, 6720, 7040, 7360, 7680
+    };
+  desc: Holds a list of the first 25 multiples of 320, used to translate a tile's Y coordinate on the screen to a video memory address offset.
+  ref: /topics/global-variables-and-constants/#yOffsetTable

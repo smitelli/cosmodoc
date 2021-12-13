@@ -1,0 +1,9 @@
+{{ define "pageTitle" }}
+    {{ .Site.Title }}: {{ .Site.Params.Subtitle }}
+{{ end }}
+
+{{ define "pageContent" }}
+    <article class="markdown">
+        {{ .Content }}
+    </article>
+{{ end }}
