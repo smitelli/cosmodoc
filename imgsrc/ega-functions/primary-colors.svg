@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1050.5465"
+   height="720.67224"
+   viewBox="0 0 277.95709 190.67787"
+   version="1.1"
+   id="svg24624"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="primary-colors.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview24626"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="px"
+     showgrid="false"
+     units="px"
+     showborder="true"
+     inkscape:zoom="0.5811014"
+     inkscape:cx="510.23797"
+     inkscape:cy="332.12792"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs24621">
+    <rect
+       x="-209.04684"
+       y="619.86029"
+       width="847.62781"
+       height="53.041737"
+       id="rect47978" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect28826" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect30542" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect31186" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect34274" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect39662" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect41134" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect42026" />
+    <rect
+       x="-311.59009"
+       y="2.8673935"
+       width="161.52983"
+       height="74.552231"
+       id="rect44738" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(86.061874,4.7491999)">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529167"
+       id="rect43670"
+       width="277.95709"
+       height="190.67786"
+       x="-86.061874"
+       y="-4.7491999"
+       ry="0"
+       rx="0" />
+    <g
+       id="g27414"
+       inkscape:label="Circles">
+      <path
+         id="path24650"
+         style="mix-blend-mode:screen;fill:#ff0000;fill-opacity:1;stroke-width:0.529167"
+         d="M 105.83334,52.916668 A 52.916668,52.916668 0 0 1 52.916668,105.83334 52.916668,52.916668 0 0 1 0,52.916668 52.916668,52.916668 0 0 1 52.916668,0 52.916668,52.916668 0 0 1 105.83334,52.916668 Z"
+         inkscape:label="R" />
+      <path
+         id="circle24864"
+         style="mix-blend-mode:screen;fill:#00ff00;fill-opacity:1;stroke-width:0.529167"
+         d="M 79.375002,105.83334 A 52.916668,52.916668 0 0 1 26.458334,158.75001 52.916668,52.916668 0 0 1 -26.458334,105.83334 52.916668,52.916668 0 0 1 26.458334,52.916676 52.916668,52.916668 0 0 1 79.375002,105.83334 Z"
+         inkscape:label="G" />
+      <path
+         id="circle25766"
+         style="mix-blend-mode:screen;fill:#0000ff;fill-opacity:1;stroke-width:0.529167"
+         d="M 132.29168,105.83334 A 52.916668,52.916668 0 0 1 79.375008,158.75001 52.916668,52.916668 0 0 1 26.45834,105.83334 52.916668,52.916668 0 0 1 79.375008,52.916676 52.916668,52.916668 0 0 1 132.29168,105.83334 Z"
+         inkscape:label="B" />
+    </g>
+    <g
+       id="g54412"
+       inkscape:label="Labels">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,145.91648,65.797706)"
+         id="text28824"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect28826);fill:#ffffff;fill-opacity:1"><tspan
+           x="-273.03867"
+           y="21.533825"
+           id="tspan54451">Magenta</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,82.416452,65.797706)"
+         id="text30540"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect30542)"><tspan
+           x="-262.37202"
+           y="21.533825"
+           id="tspan54453">Yellow</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,114.01397,80.529119)"
+         id="text31184"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect31186)"><tspan
+           x="-258.31994"
+           y="21.533825"
+           id="tspan54455">White</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,114.01949,118.74221)"
+         id="text34272"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect34274)"><tspan
+           x="-254.77307"
+           y="21.533825"
+           id="tspan54457">Cyan</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,113.96574,29.842202)"
+         id="text39660"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect39662);fill:#ffffff;fill-opacity:1"><tspan
+           x="-249.4085"
+           y="21.533825"
+           id="tspan54459">Red</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,64.972387,109.56833)"
+         id="text41132"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect41134)"><tspan
+           x="-259.38765"
+           y="21.533825"
+           id="tspan54461">Green</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,165.5141,109.56833)"
+         id="text42024"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect42026);fill:#ffffff;fill-opacity:1"><tspan
+           x="-252.19495"
+           y="21.533825"
+           id="tspan54463">Blue</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,188.36783,39.147662)"
+         id="text44736"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect44738);fill:#ffffff;fill-opacity:1"><tspan
+           x="-257.43974"
+           y="21.533825"
+           id="tspan54465">Black</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-4.0348884,9.9063247)"
+       id="text47976"
+       style="font-weight:bold;font-size:32px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect47978)"
+       inkscape:label="Caption"><tspan
+         x="12.290039"
+         y="647.85938"
+         id="tspan54469"><tspan
+           style="fill:#ffffff"
+           id="tspan54467">The Primary Additive Colors</tspan></tspan></text>
+  </g>
+</svg>

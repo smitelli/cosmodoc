@@ -26,21 +26,35 @@ The picture on a CRT is generated principally by a device called an **electron g
 
 The human eye can't see electrons as emitted from the electron gun, so the inside of the screen is coated in something we _can_ see: **phosphor**. Normally phosphor looks like a plain crystal or powder, but when it gets hit with a beam of electrons, it converts the kinetic energy into visible light. By turning electricity into high-velocity electrons, then using that energy to light up bits of phosphor, the building blocks of image generation are realized.
 
-TODO electron beam to phosphor dot
+{{< image src="crt-dot-2052x.png"
+    alt="Simple cathode ray tube (CRT) displaying a centered dot."
+    1x="crt-dot-684x.png"
+    2x="crt-dot-1368x.png"
+    3x="crt-dot-2052x.png" >}}
 
 Putting all this together, we get... a dot. A single, tiny, bright dot at the center of the screen. The electron gun only emits in one direction, and the beam is about as narrow the period at the end of this sentence. Clearly we need something else if we want to light up the whole surface of the screen.
 
-It turns out that the electron beam is highly susceptible to magnetic fields, and one can use a carefully-placed magnet to attract or repel the beam (**deflect** it) pretty much anywhere along the face of the screen. In fact, anything that emits a magnetic field can deflect the beam, including an electrical current through a coil of wire. By carefully winding wire to create an **electromagnet**, then mounting that magnet to the CRT between the electron gun and the screen, we can move the dot from side to side by varying the voltage through the electromagnet's coils. Adding a second, separate electromagnet rotated 90&deg; from the first one, we can independently move the dot up and down as well. The apparatus that holds these two electromagnets is called a **deflection yoke**.
+It turns out that the electron beam is highly susceptible to magnetic fields, and one can use a carefully-placed magnet to attract or repel the beam (**deflect** it) pretty much anywhere along the face of the screen. In fact, anything that emits a magnetic field can deflect the beam, including an electrical current through a coil of wire. By carefully winding wire to create an **electromagnet**, then mounting that magnet to the CRT between the electron gun and the screen, we can move the dot up and down by varying the voltage through the electromagnet's coils.
 
-TODO tube with deflection yoke
+{{< image src="crt-dot-deflected-2052x.png"
+    alt="Cathode ray tube with vertical deflection yoke (side view)."
+    1x="crt-dot-deflected-684x.png"
+    2x="crt-dot-deflected-1368x.png"
+    3x="crt-dot-deflected-2052x.png" >}}
+
+Adding a second, separate electromagnet rotated 90&deg; around the neck of the tube from the first one, we can independently move the dot left and right as well. The apparatus that holds these two electromagnets is called a **deflection yoke**.
 
 Managing the dot by hand is a lot of work and not that much fun, so let's automate that. By constructing an oscillator that generates a **triangle wave** -- consisting of a linear rise in voltage followed by a linear fall, repeating -- and connecting that to the horizontal deflection magnet, we can make the dot "ping-pong" back and forth across the width of the screen. By changing the triangle wave into a **sawtooth wave** -- a linear rise in voltage followed by an immediate fall -- we can make the dot move from left to right over a span of time, then immediately "fly back" to the left almost instantaneously and repeat that motion.
 
 Now let's feed a sawtooth wave to the vertical deflection magnet instead, but do it about 400 times more slowly. The beam starts high on the screen, works its way down to the bottom, then snaps back up to the top.
 
-Running both oscillators together, making sure they're running at the precise frequencies and they don't drift out of phase, a useful behavior emerges. The dot starts at the upper left corner, moves horizontally to the right edge of the screen, then snaps back to the left edge about 1 dot-height below where it previously was. After it travels horizontally across the screen 400 times, the dot ends up reaching the bottom-right corner before it snaps back to the top-left edge to repeat the process again. The dot continues in this left-to-right, top-to-bottom **raster** pattern in the same way words are read from the pages of a book.
+Running both oscillators together, making sure they're running at the precise frequencies and they don't drift out of phase, a useful behavior emerges. The dot starts at the upper left corner, moves horizontally to the right edge of the screen, then snaps back to the left edge about 1 dot-height below where it previously was. After it travels horizontally across the screen 400 times, the dot ends up reaching the bottom-right corner before it snaps back to the top-left edge to repeat the process again. (Each "snap back" is referred to as a **retrace**.) The dot continues in this left-to-right, top-to-bottom **raster** pattern in the same way words are read from the pages of a book.
 
-TODO deflection signals and raster
+{{< image src="raster-scanning-2052x.png"
+    alt="Horizontal/vertical deflection signals and resulting raster screen image."
+    1x="raster-scanning-684x.png"
+    2x="raster-scanning-1368x.png"
+    3x="raster-scanning-2052x.png" >}}
 
 So, now we can light up every part of the screen, but it's still just a moving dot. Let's crank up the speed and see what happens. By taking the horizontal oscillator up to 24,000 Hz and the vertical oscillator to 60 Hz, the same raster scanning behavior is preserved but now the screen is being fully traversed 60 times every second. The dot is now moving so fast that we no longer perceive its motion at all. (In fact, if the screen is, say, one foot wide, the dot would be moving at a horizontal speed of over 16,000 miles per hour.)
 
@@ -56,7 +70,13 @@ The previous description was accurate for a monochrome display, which has one co
 
 The screen of a color display is coated with _three_ different types of phosphor, arranged in a very fine and precise pattern. When each of these phosphors is hit by an electron beam, they glow either red, green, or blue. By lighting multiple phosphors in close proximity, other colors can be created (red + green = yellow, green + blue = cyan, blue + red = magenta, red + green + blue = white). By finely mixing the ratios of these three primary **additive colors**, it is possible to reproduce every color in the spectrum visible to the human eye.
 
-TODO primary colors
+{{< image src="primary-colors-2052x.png"
+    alt="The primary additive colors."
+    1x="primary-colors-684x.png"
+    2x="primary-colors-1368x.png"
+    3x="primary-colors-2052x.png" >}}
+
+{{< note >}}This is contrary to what your art teacher may have taught you in school. When dealing with ink or paint on a surface, those are **subtractive colors** which behave differently than additive colors do.{{< /note >}}
 
 In order to facilitate this mixing, there are _three_ separate electron guns in a color CRT display, each responsible for one of the red/green/blue components of the image. All three beams are deflected and focused as a unit by a single deflection yoke, in the same manner as on a monochrome display. In a properly-functioning CRT, running all three electron beams simultaneously will create a white dot that can be placed anywhere on the screen.
 

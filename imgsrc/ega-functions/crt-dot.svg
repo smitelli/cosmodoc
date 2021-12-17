@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="10.583115in"
+   height="6.926538in"
+   viewBox="0 0 268.81112 175.93407"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="crt-dot.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="in"
+     showgrid="false"
+     showborder="true"
+     units="in"
+     inkscape:zoom="0.90814255"
+     inkscape:cx="499.37094"
+     inkscape:cy="341.3561"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="-64.967773"
+       y="675.00415"
+       width="650.77887"
+       height="82.586151"
+       id="rect28033" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect24304"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00474444"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect22795"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00474444"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <rect
+       x="43.709995"
+       y="643.55994"
+       width="384.08994"
+       height="68.819992"
+       id="rect18869" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect16895"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00474444"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <rect
+       x="-334.96783"
+       y="119.96093"
+       width="348.80945"
+       height="49.829922"
+       id="rect14147" />
+    <rect
+       x="-221.40259"
+       y="294.46545"
+       width="60.332207"
+       height="52.02961"
+       id="rect11513" />
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(1.1,0,0,1.1,1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path9716" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.4,0,0,0.4,4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path9704" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path9707" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path9719" />
+    </marker>
+    <rect
+       x="-55.146927"
+       y="572.14935"
+       width="379.13513"
+       height="135.56953"
+       id="rect8228" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Blur"
+       id="filter6854"
+       x="-0.183"
+       y="-0.183"
+       width="1.366"
+       height="1.366">
+      <feGaussianBlur
+         stdDeviation="0.61 0.61"
+         result="blur"
+         id="feGaussianBlur6852" />
+    </filter>
+    <rect
+       x="43.709995"
+       y="643.55994"
+       width="384.08994"
+       height="68.819992"
+       id="rect22797" />
+    <rect
+       x="43.709995"
+       y="643.55994"
+       width="384.08994"
+       height="68.819992"
+       id="rect24306" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(44.067709,-25.796926)">
+    <path
+       id="rect3663"
+       style="fill:#258000;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 180.24115,30.262435 4.30424,-2.672717 V 184.08781 l -4.30424,-2.69099 z"
+       sodipodi:nodetypes="ccccc"
+       inkscape:label="Phosphor" />
+    <path
+       style="fill:none;stroke:#a87a00;stroke-width:0.79375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.5875, 1.5875;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="M 44.251188,105.83333 H 179.49702"
+       id="path5611"
+       sodipodi:nodetypes="cc"
+       inkscape:label="Beam" />
+    <circle
+       style="fill:#4aff00;fill-opacity:1;stroke:none;stroke-width:0.793752;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.5875, 1.5875;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter6854)"
+       id="path6448"
+       cx="184.82523"
+       cy="105.82013"
+       r="4"
+       inkscape:label="Dot" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.32292;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 0,119.0625 h 79.375 l 105.83333,66.14583 V 26.458333 L 79.375,92.604167 H 0 Z"
+       id="path861"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:label="Tube" />
+    <g
+       id="g6970"
+       inkscape:label="Electron Gun">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow2Lend)"
+         d="M -23.283334,105.83333 H 14.750395"
+         id="path2854"
+         sodipodi:nodetypes="cc"
+         inkscape:label="- Wire" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lstart)"
+         d="M 42.251299,99.792836 V 85.31512 h -65.534633"
+         id="path3216"
+         sodipodi:nodetypes="ccc"
+         inkscape:label="+ Wire" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect2565"
+         width="29.50079"
+         height="12.068506"
+         x="14.750396"
+         y="99.79908"
+         inkscape:label="Gun" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.2447688,0,0,0.2447688,-3.4249156,-36.435186)"
+         id="text8226"
+         style="font-weight:bold;font-size:18px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect8228);stroke-width:1.08095"
+         inkscape:label="Label"><tspan
+           x="82.670898"
+           y="587.89844"
+           id="tspan29553">Electron Gun</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,21.675942,4.3337736)"
+         id="text11511"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect11513)"
+         inkscape:label="S+"><tspan
+           x="-197.05924"
+           y="313.13148"
+           id="tspan29555">+</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.54307px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
+         x="-24.939363"
+         y="124.67168"
+         id="text12611"
+         transform="scale(1.1592077,0.86265818)"
+         inkscape:label="S-"><tspan
+           sodipodi:role="line"
+           id="tspan12609"
+           style="stroke-width:0.264583"
+           x="-24.939363"
+           y="124.67168">-</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.23033704,0,0,0.23033704,7.9610704,65.390989)"
+         id="text14145"
+         style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect14147);stroke-width:1.14868"
+         inkscape:label="Source"><tspan
+           x="-227.23525"
+           y="138.62757"
+           id="tspan29557">Power Source</tspan></text>
+    </g>
+    <g
+       id="g22785"
+       inkscape:label="Beam Label">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart)"
+         d="m 96.402786,107.83156 c 0.240566,1.91157 0.724085,3.87284 1.908604,5.43636 0.982823,1.29729 2.45676,2.11445 3.97404,2.63248 1.44379,0.49294 2.94538,0.78893 4.44015,1.07909"
+         id="path16893"
+         inkscape:path-effect="#path-effect16895"
+         inkscape:original-d="m 96.402786,107.83156 c 0.85208,6.92739 4.369034,8.00811 10.322794,9.14793"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,59.042427,-55.47375)"
+         id="text18867"
+         style="font-weight:bold;font-size:16px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect18869)"><tspan
+           x="183.51758"
+           y="657.56055"
+           id="tspan29559">Electron Beam</tspan></text>
+    </g>
+    <g
+       id="g22791"
+       inkscape:label="Phosphor Label"
+       transform="translate(87.713849,-68.259853)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart)"
+         d="m 94.644588,108.88708 c 0.240565,-1.91156 0.724093,-3.87282 1.908596,-5.43633 0.982818,-1.29729 2.456752,-2.11444 3.974026,-2.63248 1.44377,-0.49294 2.94536,-0.78892 4.44012,-1.079082"
+         id="path22787"
+         inkscape:path-effect="#path-effect22795"
+         inkscape:original-d="m 94.644588,108.88708 c 0.852076,-6.92736 4.369017,-8.00808 10.322742,-9.147892"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,58.410188,-73.015692)"
+         id="text22789"
+         style="font-weight:bold;font-size:16px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect22797)"><tspan
+           x="179.29883"
+           y="657.56055"
+           id="tspan29561">Phosphor Layer</tspan></text>
+    </g>
+    <g
+       id="g24300"
+       inkscape:label="Dot Label"
+       transform="translate(95.250003)">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Mstart)"
+         d="m 94.68667,109.54768 c 1.21106,1.67485 2.328958,3.4197 3.632925,5.02583 0.912225,1.12361 2.034265,2.07784 3.316665,2.75777 1.07378,0.56932 2.22005,0.98795 3.3732,1.36433"
+         id="path24296"
+         inkscape:path-effect="#path-effect24304"
+         inkscape:original-d="m 94.68667,109.54768 c 4.062877,5.7095 4.590469,7.28844 10.32279,9.14793"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,55.672077,-54.176082)"
+         id="text24298"
+         style="font-weight:bold;font-size:16px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect24306)"><tspan
+           x="192.19727"
+           y="657.56055"
+           id="tspan29563">Glowing Dot</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,21.393483,16.992937)"
+       id="text28031"
+       style="font-weight:bold;font-size:21.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect28033)"
+       inkscape:label="Caption"><tspan
+         x="11.134834"
+         y="693.67054"
+         id="tspan29565">Simple Cathode Ray Tube Displaying a Centered Dot</tspan></text>
+  </g>
+</svg>
