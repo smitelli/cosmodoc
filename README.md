@@ -2,6 +2,10 @@
 
 The Doc for Cosmo.
 
+## Requirements
+
+This project requires the Hugo Extended build, either version v0.90.0 or v0.90.1. Older versions do not support downloading via `resources.Get`, and newer verions change this call to `GetRemote` and break 302 redirects.
+
 ## Build the site
 
 This requires a working `hugo` binary.

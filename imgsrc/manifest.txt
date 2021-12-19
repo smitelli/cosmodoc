@@ -18,6 +18,7 @@ adlib-functions/waveforms.svg 684x 1368x 2052x
 assembly-drawing-functions/romero-tweet.svg 684x 1368x 2052x
 b800-text-format/b800-example.svg 684x 1368x 2052x
 b800-text-format/b800-low-memory.svg 684x 1368x 2052x
+ega-functions/aperture-grille.svg 684x 1368x 2052x
 ega-functions/crt-dot.svg 684x 1368x 2052x
 ega-functions/crt-dot-deflected.svg 684x 1368x 2052x
 ega-functions/primary-colors.svg 684x 1368x 2052x
