@@ -69,7 +69,7 @@ The call to {{< lookup/cref DrawFullscreenImage >}} draws the pre-title image ({
 
 ```c
     LoadConfigurationData(JoinPath(writePath, FILENAME_BASE ".CFG"));
-    SetBorderColorRegister(BLACK);
+    SetBorderColorRegister(MODE1_BLACK);
     InitializeBackdropTable();
     maskedTileData = malloc(40000U);
 ```
@@ -78,7 +78,7 @@ The call to {{< lookup/cref DrawFullscreenImage >}} draws the pre-title image ({
 
 {{< lookup/cref LoadConfigurationData >}} loads the values in the named configuration file and updates the global game state variables.
 
-{{< lookup/cref SetBorderColorRegister >}} is a bit out of place here. Although it's not often recreated in modern emulations, CRT displays had a blank area around the perimeter of the screen where pixel data could not be drawn. The graphics adapter could fill it with a solid color, however, and that is what this function controls. {{< lookup/cref name="COLORS" text="BLACK" >}} is the default color, so most of the time this has no visible effect. Also, this probably should've been done before the pre-title image was shown.
+{{< lookup/cref SetBorderColorRegister >}} is a bit out of place here. Although it's not often recreated in modern emulations, CRT displays had a blank area around the perimeter of the screen where pixel data could not be drawn. The graphics adapter could fill it with a solid color, however, and that is what this function controls. {{< lookup/cref name="MODE1_COLORS" text="MODE1_BLACK" >}} is the default color, so most of the time this has no visible effect. Also, this probably should've been done before the pre-title image was shown.
 
 {{< lookup/cref InitializeBackdropTable >}} creates a lookup table used when drawing the parallax scrolling backdrop images during gameplay.
 
@@ -333,3 +333,46 @@ The function ends with an attempt to {{< lookup/cref remove >}} (delete) the tem
 {{< lookup/cref DrawFullscreenText >}} draws a page of [B800 text]({{< relref "b800-text-format" >}}) to the screen. In this case either the shareware info banner in episode one or the registered game info in episodes two and three.
 
 Finally, {{< lookup/cref exit >}} returns control to DOS with a well-deserved {{< lookup/cref EXIT_SUCCESS >}} status code. Note that none of the allocated memory is explicitly freed -- the program assumes that will happen automatically as the process exits and hands control back to the OS.
+
+{{< boilerplate/function-cref DrawFullscreenText >}}
+
+Right before the game exits, the {{< lookup/cref DrawFullscreenText >}} function is typically called to draw a page of [B800 text]({{< relref "b800-text-format" >}}) to the screen above the DOS prompt. This function loads the entry identified by `entry_name` from a [group file]({{< relref "group-file-format" >}}) and copies it to text mode video memory. It then moves the cursor down to ensure that any future interactions with DOS will not interfere with what was just drawn.
+
+```c
+void DrawFullscreenText(char *entry_name)
+{
+    FILE *fp = GroupEntryFp(entry_name);
+    byte *dest = MK_FP(0xb800, 0);
+```
+
+The function begins by calling {{< lookup/cref GroupEntryFp >}} to load the group file data specified by `entry_name`. A file stream pointer to this data is returned in `fp`. Next, a pointer to the destination video memory is constructed using {{< lookup/cref MK_FP >}} to point `dest` at the memory address B800:0000.
+
+Unlike EGA modes (like Dh, the graphical mode for this game), most of the text modes store video data in the B800h segment of memory. This disparity dates back to the earliest graphics adapters for the IBM PC (the MDA and the CGA), and ostensibly permits a user to install both adapters into the system simultaneously. In fact, with careful configuration, it is possible to run a dual-display IBM PC with graphics output on one screen and text on the other. These differing memory segments are an important piece of that functionality.
+
+Segment B800h marks the beginning of a 4,000 byte block of data -- 2,000 bytes of 80 &times; 25 character data, interleaved with 2,000 bytes of attribute data. (Attributes control the color and blinking in these video modes.) The group file entry data is encoded in exactly this format, so displaying it is a relatively simple matter of copying that data straight into the video memory.
+
+```c
+    fread(backdropTable, 4000, 1, fp);
+    movmem(backdropTable, dest, 4000);
+```
+
+{{< lookup/cref fread >}} copies 4,000 bytes of data from the file stream `fp` into a scratch buffer in main memory ({{< lookup/cref backdropTable >}}). The Borland-specific {{< lookup/cref movmem >}} then copies that same data into the video memory at `dest`. There isn't really any technical requirement for the data to pass through {{< lookup/cref backdropTable >}} on its way to video memory. This might be a vestige of an earlier implementation.
+
+Once the copy completes, the entire text screen has been overwritten with the data from the group file entry.
+
+```c
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+}
+```
+
+When the video hardware is switched from graphics mode back to text mode, most of the hardware registers and relevant BIOS memory areas are reset to the default values for that video mode. Among those values are the cursor position, which is zeroed to return the cursor to the top-leftmost position. This means that, the next time a program writes something to the screen, it will do so at the top-left of the screen.
+
+This situation is not ideal, because there is now content on the screen that BIOS is not aware of. If the hardware were left in this state, the DOS prompt and any user input would be overlaid on top of the text page that was just drawn, creating a mishmash of content that is hard to read. Even more unfortunately, the attribute bytes are not usually rewritten while DOS is in control of the console output, meaning that anything the user types (and anything DOS writes to the screen) will appear in whatever color the text content left the memory in. It looks weird:
+
+{{< image src="b800-mishmash-2052x.png"
+    alt="Sample a B800 text screen without cursor repositioning."
+    1x="b800-mishmash-684x.png"
+    2x="b800-mishmash-1368x.png"
+    3x="b800-mishmash-2052x.png" >}}
+
+To combat this, {{< lookup/cref printf >}} is called to write 22 newline characters to the console. Since there is no printable content in the string, nothing in display memory is actually changed. The only effect here is that the cursor position is advanced by 22 lines, placing it on the last line of significant content in the text page. When the program exits, DOS emits one additional newline and the command prompt appears at the desired position in the blank area of the screen.

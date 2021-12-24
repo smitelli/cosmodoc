@@ -3,20 +3,10 @@
 * Investigate JS ToC
 * Appendix/glossary
 * Unused tiles and masktile
+* Is CSS (text/css) being gzipped?
+* Add cache policy -- 84 hrs?
 
 =============================================================================
-
-* high-level draw
-    * LoadVideoMemory: copy "size" bytes from "source" into EGA memory at "offset"
-    * ClearScreen: draw a black tile to the entire screen.
-    * FullscreenImage: given an image number, blast the entire thing to the screen.
-    * FadeIn: enable EGA color regs, one at a time.
-    * FadeToWhite: whiten EGA color regs, one at a time.
-    * FadeOut: blacken EGA color regs, one at a time.
-    * FadeInStandard: FadeIn, delay=3
-    * FadeOutStandard: FadeOut, delay=3
-    * AnimatePalette: dispatch to PS (or directly set regs for lightning) based on paletteAnimationType.
-    * PaletteStep: take one step through palette array, and update EGA regs
 
 * UI frame
     * PlaceTextFrame: draw bray box with blue shiny border around it

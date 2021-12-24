@@ -436,12 +436,12 @@ The AX register receives the value from `page_num`, and the high bits in AH are 
 
 The BIOS code figures out what the memory address for a given page number should be based on the current video mode.
 
-{{< boilerplate/function-cref EGA_CLEAR_BIT_MASK >}}
+{{< boilerplate/function-cref EGA_BIT_MASK_DEFAULT >}}
 
-The {{< lookup/cref EGA_CLEAR_BIT_MASK >}} macro resets the EGA's bit mask to its default state.
+The {{< lookup/cref EGA_BIT_MASK_DEFAULT >}} macro resets the EGA's bit mask to its default state.
 
 ```c
-#define EGA_CLEAR_BIT_MASK() { outport(0x03ce, (0xff << 8) | 0x08); }
+#define EGA_BIT_MASK_DEFAULT() { outport(0x03ce, (0xff << 8) | 0x08); }
 ```
 
 The {{< lookup/cref outport >}} call performs two byte-sized I/O writes using a single word-sized write. Port 3CEh gets the byte 8h, and port 3CFh gets the byte FFh. I/O port 3CEh is the graphics controller address register, which receives the index value 8h. This points to the "Bit Mask" parameter. I/O port 3CFh is the graphics controller data register, now pointing to that bit mask, and FFh is written there.

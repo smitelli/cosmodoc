@@ -343,15 +343,27 @@ AdLibService:
   ref: /topics/adlib-functions/#AdLibService
 #AddScore:
 #AddScoreForSprite:
-#AnimatePalette:
+AnimatePalette:
+  text: AnimatePalette()
+  def: void AnimatePalette(void);
+  desc: Cycles through any palette animations that have been requested by the map.
+  ref: /topics/c-drawing-functions/#AnimatePalette
 #CanBeExploded:
 #CanSuctionWalkerFlip:
 #CheckHighScore:
 #ClearGameScreen:
 #ClearPlayerDizzy:
-#ClearScreen:
+ClearScreen:
+  text: ClearScreen()
+  def: void ClearScreen(void);
+  desc: Overwrites the EGA memory for the current draw page with solid black tiles.
+  ref: /topics/c-drawing-functions/#ClearScreen
 #ConstructActor:
-#CopyTilesToEGA:
+CopyTilesToEGA:
+  text: CopyTilesToEGA()
+  def: void CopyTilesToEGA(byte *source, word dest_length, word dest_offset);
+  desc: Reads solid tile image data from the memory pointed to by `source`, and installs it into a block of `dest_length` bytes of the EGA's memory starting at `dest_offset`. Because the destination memory is planar, each byte of address space covered by `dest_length` consumes four bytes from `source`.
+  ref: /topics/c-drawing-functions/#CopyTilesToEGA
 DetectAdLib:
   text: DetectAdLib()
   def: bool DetectAdLib(void);
@@ -360,7 +372,16 @@ DetectAdLib:
 #DrawCartoon:
 #DrawExplosions:
 #DrawFountains:
-#DrawFullscreenImage:
+DrawFullscreenImage:
+  text: DrawFullscreenImage()
+  def: void DrawFullscreenImage(word image_num);
+  desc: Loads and displays the full-screen image identified by `image_num`, fading the screen contents between what has already been drawn and the new image. If the requested `image_num` is anything other than `IMAGE_TITLE` or `IMAGE_CREDITS`, any playing music is stopped.
+  ref: /topics/c-drawing-functions/#DrawFullscreenImage
+DrawFullscreenText:
+  text: DrawFullscreenText()
+  def: void DrawFullscreenText(char *entry_name);
+  desc: Draws a page of B800 text to the screen and clears space for the DOS prompt.
+  ref: /topics/startup-and-exit/#DrawFullscreenText
 #DrawMapRegion:
 DrawMaskedTile:
   text: DrawMaskedTile()
@@ -402,11 +423,11 @@ DrawSpriteTileWhite:
 #DrawStatusBarScore:
 #DrawStatusBarStars:
 #DrawTextFrame:
-EGA_CLEAR_BIT_MASK:
-  text: EGA_CLEAR_BIT_MASK()
-  def: '#define EGA_CLEAR_BIT_MASK() { outport(0x03ce, (0xff << 8) | 0x08); }'
+EGA_BIT_MASK_DEFAULT:
+  text: EGA_BIT_MASK_DEFAULT()
+  def: '#define EGA_BIT_MASK_DEFAULT() { outport(0x03ce, (0xff << 8) | 0x08); }'
   desc: Resets the EGA's bit mask to its default state.
-  ref: /topics/ega-functions/#EGA_CLEAR_BIT_MASK
+  ref: /topics/ega-functions/#EGA_BIT_MASK_DEFAULT
 EGA_MODE_DEFAULT:
   text: EGA_MODE_DEFAULT()
   def: '#define EGA_MODE_DEFAULT() { outport(0x03ce, (0x00 << 8) | 0x05); }'
@@ -423,14 +444,36 @@ ExitClean:
   def: void ExitClean(void);
   desc: Cleans up game state and exits back to DOS.
   ref: /topics/startup-and-exit/#ExitClean
-#FadeIn:
-#FadeInCustom:
+FadeIn:
+  text: FadeIn()
+  def: void FadeIn(void);
+  desc: Calls `FadeInCustom()` with a fixed delay of three game ticks per palette entry.
+  ref: /topics/c-drawing-functions/#FadeIn
+FadeInCustom:
+  text: FadeInCustom()
+  def: void FadeInCustom(word delay);
+  desc: "\"Fades\" the screen image into view by rebuilding the EGA's default palette, one entry at a time, pausing `delay` game ticks between each entry."
+  ref: /topics/c-drawing-functions/#FadeInCustom
+FadeOut:
+  text: FadeOut()
+  def: void FadeOut(void);
+  desc: Calls `FadeOutCustom()` with a fixed delay of three game ticks per palette entry.
+  ref: /topics/c-drawing-functions/#FadeOut
 FadeOutAdLibPlayback:
   text: FadeOutAdLibPlayback()
   def: void FadeOutAdLibPlayback(void);
   desc: Nominally fades any playing music to silence over a period of time, but as implemented it simply cuts the music off immediately.
   ref: /topics/adlib-functions/#FadeOutAdLibPlayback
-#FadeOutCustom:
+FadeOutCustom:
+  text: FadeOutCustom()
+  def: void FadeOutCustom(word delay);
+  desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to black, one entry at a time, pausing `delay` game ticks between each entry."
+  ref: /topics/c-drawing-functions/#FadeOutCustom
+FadeToWhite:
+  text: FadeToWhite()
+  def: void FadeToWhite(word delay);
+  desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry."
+  ref: /topics/c-drawing-functions/#FadeToWhite
 #GameRand:
 #GameRedefineMenu:
 GetProcessorType:
@@ -696,7 +739,7 @@ SetVideoMode:
 ShowJoystickConfiguration:
   text: ShowJoystickConfiguration()
   def: void ShowJoystickConfiguration(word stick);
-  desc: Pprompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`.
+  desc: Prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`.
   ref: /topics/joystick-functions/#ShowJoystickConfiguration
 #ShowKeyboardConfiguration:
 #ShowLevelIntro:
@@ -736,7 +779,11 @@ Startup:
   def: void Startup(void);
   desc: Initializes the game environment and shows pre-title/copyright screens.
   ref: /topics/startup-and-exit/#Startup
-#StepPalette:
+StepPalette:
+  text: StepPalette()
+  def: void StepPalette(byte *pal_table);
+  desc: During each frame of gameplay, steps through each element of the passed palette table `pal_table` and sets the palette key color accordingly, repeating once the `END_ANIMATION` marker has been reached.
+  ref: /topics/c-drawing-functions/#StepPalette
 #StepWaitSpinner:
 StopAdLib:
   text: StopAdLib()
@@ -838,6 +885,20 @@ CPUTYPE:
     #define CPUTYPE_80386 7  /* Intel 80386 or above */
   desc: Provides meaningful names for the detected processor type.
   ref: /topics/global-variables-and-constants/#CPUTYPE
+END_ANIMATION:
+  text: END_ANIMATION
+  def: |-
+    #define END_ANIMATION BYTE_MAX
+  desc: Define the marker that terminates palette animation tables. In Turbo C, this value is FFh.
+  ref: /topics/global-variables-and-constants/#END_ANIMATION
+END_SCREEN:
+  text: END_SCREEN
+  def: |-
+    #define END_SCREEN "END1.MNI"  /* episode 1, or */
+    #define END_SCREEN "END2.MNI"  /* episode 2, or */
+    #define END_SCREEN "END3.MNI"  /* episode 3 */
+  desc: Defines the group file entry name of the full-screen image to show when the game has been won.
+  ref: /topics/global-variables-and-constants/#END_SCREEN
 FILENAME_BASE:
   text: FILENAME_BASE
   def: |-
@@ -876,6 +937,18 @@ JoystickState:
     } JoystickState;
   desc: Holds the state of two buttons (`button1` and `button2`) on a single joystick. The values are true if the corresponding button is currently pressed, or false if it is unpressed.
   ref: /topics/global-variables-and-constants/#JoystickState
+MODE1_COLORS:
+  text: enum MODE1_COLORS
+  def: |-
+    enum MODE1_COLORS {
+        MODE1_BLACK = BLACK, MODE1_BLUE, MODE1_GREEN, MODE1_CYAN,
+        MODE1_RED, MODE1_MAGENTA, MODE1_BROWN, MODE1_LIGHTGRAY,
+        MODE1_DARKGRAY = DARKGRAY + 8, MODE1_LIGHTBLUE, MODE1_LIGHTGREEN,
+        MODE1_LIGHTCYAN, MODE1_LIGHTRED, MODE1_LIGHTMAGENTA, MODE1_YELLOW,
+        MODE1_WHITE
+    };
+  desc: Defines the colors available for the EGA "display mode 1" palette. Display mode 1 is used in all 200-line modes (like the mode used by this game) and only supports the 16 RGBI output combinations.
+  ref: /topics/global-variables-and-constants/#MODE1_COLORS
 MUSIC:
   text: MUSIC_*
   def: |-
@@ -909,6 +982,57 @@ Music:
     } Music;
   desc: Holds the `length` in bytes and first word of music data (`datahead`). Memory blocks that are cast to this structure type are generally much larger than the struct, and reading beyond `datahead` is typical and expected.
   ref: /topics/global-variables-and-constants/#Music
+PALANIM:
+  text: PALANIM_*
+  def: |-
+    #define PALANIM_NONE       0
+    #define PALANIM_LIGHTNING  1
+    #define PALANIM_R_Y_W      2
+    #define PALANIM_R_G_B      3
+    #define PALANIM_MONO       4
+    #define PALANIM_W_R_M      5
+    #define PALANIM_EXPLOSIONS 6
+  desc: Provides meaningful names for all of the palette animation types available in the game.
+  ref: /topics/global-variables-and-constants/#PALANIM
+TILE:
+  text: TILE_*
+  def: |-
+    #define TILE_EMPTY              0x0000
+    #define TILE_INVISIBLE_PLATFORM 0x0048
+    #define TILE_STRIPED_PLATFORM   0x0050
+    #define TILE_SWITCH_FREE_1N     0x3d68
+    #define TILE_SWITCH_BLOCK_1     0x3d88
+    #define TILE_SWITCH_BLOCK_2     0x3d90
+    #define TILE_SWITCH_BLOCK_3     0x3d98
+    #define TILE_SWITCH_BLOCK_4     0x3da0
+    #define TILE_SWITCH_FREE_1L     0x3da8
+    #define TILE_DOOR_BLOCK         0x3dc8
+    #define TILE_BLUE_PLATFORM      0x3dd0
+    #define TILE_MYSTERY_BLOCK_NW   0x3df8
+    #define TILE_MYSTERY_BLOCK_NE   0x3e00
+    #define TILE_MYSTERY_BLOCK_SW   0x3e08
+    #define TILE_MYSTERY_BLOCK_SE   0x3e10
+    #define TILE_WAIT_SPINNER_1     0x3e18
+    #define TILE_TXTFRAME_NORTHWEST 0x3e38
+    #define TILE_TXTFRAME_NORTHEAST 0x3e40
+    #define TILE_TXTFRAME_SOUTHWEST 0x3e48
+    #define TILE_TXTFRAME_SOUTHEAST 0x3e50
+    #define TILE_TXTFRAME_NORTH     0x3e58
+    #define TILE_TXTFRAME_SOUTH     0x3e60
+    #define TILE_TXTFRAME_WEST      0x3e68
+    #define TILE_TXTFRAME_EAST      0x3e70
+    #define TILE_GRAY               0x3e78
+    #define TILE_MASKED_0           0x3e80  /* aka 16,000 */
+  desc: Provides meaningful names for certain map tile values.
+  ref: /topics/global-variables-and-constants/#TILE
+TITLE_SCREEN:
+  text: TITLE_SCREEN
+  def: |-
+    #define TITLE_SCREEN "TITLE1.MNI"  /* episode 1, or */
+    #define TITLE_SCREEN "TITLE2.MNI"  /* episode 2, or */
+    #define TITLE_SCREEN "TITLE3.MNI"  /* episode 3 */
+  desc: Defines the group file entry name of the full-screen image to show during the main title sequence.
+  ref: /topics/global-variables-and-constants/#TITLE_SCREEN
 activeMusic:
   text: activeMusic
   def: Music *activeMusic;
@@ -929,6 +1053,11 @@ actorTileData:
   def: byte *actorTileData[3];
   desc: Points to masked tile image data used to draw actors, decorations, spawners, explosions, shards, and miscellaneous UI sprites.
   ref: /topics/global-variables-and-constants/#actorTileData
+backdropTable:
+  text: backdropTable[]
+  def: word backdropTable[2880];
+  desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop.
+  ref: /topics/global-variables-and-constants/#backdropTable
 cmdBomb:
   text: cmdBomb
   def: bbool cmdBomb;
@@ -999,6 +1128,15 @@ fontTileData:
   def: byte *fontTileData;
   desc: Points to a 4,000 byte block of memory used to hold masked tile image data for the UI font.
   ref: /topics/global-variables-and-constants/#fontTileData
+fullscreenImageNames:
+  text: fullscreenImageNames[]
+  def: |-
+    char *fullscreenImageNames[] = {
+        "PRETITLE.MNI", TITLE_SCREEN, "CREDIT.MNI", "BONUS.MNI", END_SCREEN,
+        "ONEMOMNT.MNI"
+    };
+  desc: Holds a list of all group file entry names that refer to full-screen image data.
+  ref: /topics/global-variables-and-constants/#fullscreenImageNames
 gameTickCount:
   text: gameTickCount
   def: word gameTickCount;
@@ -1182,6 +1320,16 @@ musicTickCount:
   def: dword musicTickCount;
   desc: Tracks the current timestamp, in music ticks. Increments each time the AdLib service runs.
   ref: /topics/global-variables-and-constants/#musicTickCount
+paletteAnimationNum:
+  text: paletteAnimationNum
+  def: byte paletteAnimationNum;
+  desc: Holds the current palette animation number that was specified by the map being played.
+  ref: /topics/global-variables-and-constants/#paletteAnimationNum
+paletteStepCount:
+  text: paletteStepCount
+  def: dword paletteStepCount;
+  desc: Holds the current position within the palette animation table.
+  ref: /topics/global-variables-and-constants/#paletteStepCount
 pit0Value:
   text: pit0Value
   def: dword pit0Value;

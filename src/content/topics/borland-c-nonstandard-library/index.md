@@ -1,7 +1,7 @@
 +++
 title = "The Borland C Nonstandard Library"
 description = "Documentation for every nonstandard Borland Turbo C library function used in the game."
-weight = 370
+weight = 380
 +++
 
 # The Borland C Nonstandard Library

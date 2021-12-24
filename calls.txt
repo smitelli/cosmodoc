@@ -174,8 +174,6 @@ AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
     ActPinkWorm() <void ActPinkWorm () at src/game1.c:4145>:
     ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
     ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
-AnimatePalette() <void AnimatePalette () at src/game1.c:332>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
 CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
 CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
@@ -197,28 +195,8 @@ ClearPlayerPush() <void ClearPlayerPush () at src/game1.c:8007>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-ClearScreen() <void ClearScreen () at src/game2.c:756>:
-    Startup() <void Startup () at src/game1.c:7893>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    NextLevel() <void NextLevel () at src/game1.c:9652>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowStory() <void ShowStory () at src/game2.c:1677>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
 ConstructActor() <void ConstructActor () at src/game1.c:1519>:
     NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
-CopyTilesToEGA() <void CopyTilesToEGA () at src/game1.c:608>:
-    Startup() <void Startup () at src/game1.c:7893>:
-    LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
 DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
     ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
@@ -228,15 +206,6 @@ DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawFountains() <void DrawFountains () at src/game1.c:1433>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawFullscreenImage() <void DrawFullscreenImage () at src/game1.c:502>:
-    Startup() <void Startup () at src/game1.c:7893>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-    NextLevel() <void NextLevel () at src/game1.c:9652>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-DrawFullscreenText() <void DrawFullscreenText () at src/game1.c:7772>:
-    ExitClean() <void ExitClean () at src/game1.c:7789>:
-    ValidateSystem() <void ValidateSystem () at src/game1.c:7851>:
 DrawLights() <void DrawLights () at src/game1.c:1474>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawMapRegion() <void DrawMapRegion () at src/game1.c:644>:
@@ -341,48 +310,6 @@ EraseWaitSpinner() <void EraseWaitSpinner () at src/game2.c:663>:
     WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
     ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
     TestSound() <void TestSound () at src/game2.c:2602>:
-FadeIn() <void FadeIn () at src/game2.c:687>:
-    DrawFullscreenImage() <void DrawFullscreenImage () at src/game1.c:502>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
-    ShowStory() <void ShowStory () at src/game2.c:1677>:
-    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-FadeInCustom() <void FadeInCustom () at src/game2.c:630>:
-    FadeIn() <void FadeIn () at src/game2.c:687>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-FadeOut() <void FadeOut () at src/game2.c:695>:
-    DrawFullscreenImage() <void DrawFullscreenImage () at src/game1.c:502>:
-    ExitClean() <void ExitClean () at src/game1.c:7789>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowStory() <void ShowStory () at src/game2.c:1677>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-    ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-FadeOutCustom() <void FadeOutCustom () at src/game2.c:674>:
-    NextLevel() <void NextLevel () at src/game1.c:9652>:
-    FadeOut() <void FadeOut () at src/game2.c:695>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-FadeToWhite() <void FadeToWhite () at src/game2.c:650>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
 GameLoop() <void GameLoop () at src/game1.c:9730>:
     InnerMain() <void InnerMain () at src/game1.c:10217>:
 GameRand() <word GameRand () at src/game1.c:300>:
@@ -723,8 +650,6 @@ ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
     ShowEnding() <void ShowEnding () at src/game2.c:2853>:
 ShowStory() <void ShowStory () at src/game2.c:1677>:
     TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-StepPalette() <void StepPalette () at src/game1.c:317>:
-    AnimatePalette() <void AnimatePalette () at src/game1.c:332>:
 StepWaitSpinner() <byte StepWaitSpinner () at src/game2.c:704>:
     WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
     ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:

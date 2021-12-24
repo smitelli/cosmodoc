@@ -2,4 +2,6 @@ __pycache__/
 bin/
 public/
 src/resources/
+
+*.bak
 .hugo_build.lock

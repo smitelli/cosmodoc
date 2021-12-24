@@ -2,7 +2,7 @@
 title = "Font Database"
 linkTitle = "Font"
 description = "A table listing every character in the game font."
-weight = 490
+weight = 500
 +++
 
 # Font Database

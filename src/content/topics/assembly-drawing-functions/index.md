@@ -468,11 +468,11 @@ void LightenScreenTile(word x, word y)
 Like most of the drawing procedures (e.g. {{< lookup/cref DrawSpriteTile >}}), this uses {{< lookup/cref MK_FP >}} to construct the `dst` pointer to the video memory byte to be written.
 
 ```c
-    EGA_CLEAR_BIT_MASK();
+    EGA_BIT_MASK_DEFAULT();
     outportb(0x03c5, 0x08);
 ```
 
-The call to {{< lookup/cref EGA_CLEAR_BIT_MASK >}} allows all eight pixel positions in each byte to be modified during memory writes from the CPU.
+The call to {{< lookup/cref EGA_BIT_MASK_DEFAULT >}} allows all eight pixel positions in each byte to be modified during memory writes from the CPU.
 
 The subsequent {{< lookup/cref outportb >}} writes the byte 8h to I/O port 3C5h. This is the sequencer data register, _which has not been explicitly set here to point to a specific parameter._ Something should have set the index value at port 3C4h prior to this to specify which parameter should receive this byte.
 

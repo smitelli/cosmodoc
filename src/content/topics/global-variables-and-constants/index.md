@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 320
+weight = 330
 +++
 
 # Global Variables and Constants
@@ -27,6 +27,10 @@ typedef byte bbool;           /* Boolean stored in a byte */
 
 These are the return values for the {{< lookup/cref GetProcessorType >}} function.
 
+{{< boilerplate/global-cref END_ANIMATION >}}
+
+{{< boilerplate/global-cref END_SCREEN >}}
+
 {{< boilerplate/global-cref FILENAME_BASE >}}
 
 {{< boilerplate/global-cref IMAGE >}}
@@ -39,9 +43,28 @@ The values for `IMAGE_TILEATTR`, `IMAGE_DEMO`, and `IMAGE_NONE` do not refer to 
 
 {{< boilerplate/global-cref JoystickState >}}
 
+{{< boilerplate/global-cref MODE1_COLORS >}}
+
+The colors here are based on the Borland {{< lookup/cref COLORS >}} members, with the "light" variants shifted by 8 to compensate for the EGA's color requirements. See {{< lookup/cref SetPaletteRegister >}} for more information about this difference.
+
 {{< boilerplate/global-cref MUSIC >}}
 
 {{< boilerplate/global-cref Music >}}
+
+{{< boilerplate/global-cref PALANIM >}}
+
+{{< boilerplate/global-cref TILE >}}
+
+For space reasons, some of the names are a bit obtuse:
+
+* `TILE_SWITCH_FREE_1N` has **no** ("N") line at its top.
+* `TILE_SWITCH_FREE_1L` has a light-colored ("L") line at its top.
+* Names that include `EMPTY` or `FREE` do not restrict movement, and essentially behave as "air."
+* Names including `PLATFORM` only block movement in the southern direction.
+* Names including `BLOCK` are solid, and block movement in all directions.
+* Names with a direction indicate that they are meant to be used in conjunction with other, similarly named tiles, and the directions indicate the correct relative position for each tile.
+
+{{< boilerplate/global-cref TITLE_SCREEN >}}
 
 {{< boilerplate/global-cref activeMusic >}}
 
@@ -56,6 +79,10 @@ This is checked and updated during calls to {{< lookup/cref StartSound >}}. If t
 {{< boilerplate/global-cref actorTileData >}}
 
 Its allocations are divided into three distinct byte-aligned memory blocks due to the overall size of the data. The first two blocks each hold 65,535 bytes and the final block holds 60,840 bytes.
+
+{{< boilerplate/global-cref backdropTable >}}
+
+This is also used as scratch storage during calls to {{< lookup/cref DrawFullscreenText >}}.
 
 {{< boilerplate/global-cref cmdBomb >}}
 
@@ -94,6 +121,10 @@ When set to `DEMOSTATE_RECORD` or `DEMOSTATE_PLAY`, this suppresses the "Now ent
 {{< boilerplate/global-cref enableSpeaker >}}
 
 {{< boilerplate/global-cref fontTileData >}}
+
+{{< boilerplate/global-cref fullscreenImageNames >}}
+
+The values for {{< lookup/cref TITLE_SCREEN >}} and {{< lookup/cref END_SCREEN >}} are different depending on the episode; typically these will be `"TITLEx.MNI"` and `"ENDx.MNI"` (respectively) with `x` matching the episode number.
 
 {{< boilerplate/global-cref gameTickCount >}}
 
@@ -250,6 +281,12 @@ Each array index matches with a {{< lookup/cref MUSIC >}} constant.
 
 {{< boilerplate/global-cref musicTickCount >}}
 
+{{< boilerplate/global-cref paletteAnimationNum >}}
+
+{{< boilerplate/global-cref paletteStepCount >}}
+
+Once the end of the palette table has been reached (as indicated by encountering an {{< lookup/cref END_ANIMATION >}} marker) this resets to 0 and the pattern repeats.
+
 {{< boilerplate/global-cref pit0Value >}}
 
 This is modified during calls to {{< lookup/cref SetPIT0Value >}}, and takes the `value` that is passed during each call. It is treated as a 16-bit value in all contexts where it appears.
@@ -268,7 +305,7 @@ This is updated when the {{< lookup/cref ProfileCPUService >}} function runs, an
 
 {{< boilerplate/global-cref savedInt8 >}}
 
-This function was the systemtimer interrupt handler when the program was started.
+This function was the system timer interrupt handler when the program was started.
 
 {{< boilerplate/global-cref savedInt9 >}}
 
@@ -300,7 +337,7 @@ This setting can be configured by the user in the "keyboard redefine" menu, and 
 
 {{< boilerplate/global-cref skipDetectAdLib >}}
 
-If the feature were implemented, it would suppress only the first (of two) AdLib detection attempts and the assigment of its return value to {{< lookup/cref isAdLibPresentPrivate >}}.
+If the feature were implemented, it would suppress only the first (of two) AdLib detection attempts and the assignment of its return value to {{< lookup/cref isAdLibPresentPrivate >}}.
 
 {{< boilerplate/global-cref soundData1 >}}
 
