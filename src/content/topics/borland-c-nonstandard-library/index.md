@@ -1,7 +1,7 @@
 +++
 title = "The Borland C Nonstandard Library"
 description = "Documentation for every nonstandard Borland Turbo C library function used in the game."
-weight = 380
+weight = 390
 +++
 
 # The Borland C Nonstandard Library
@@ -9,6 +9,8 @@ weight = 380
 Version 2.0 of Borland Turbo C was released in 1988, around the same time that the ANSI C standard was being finalized. Most of Turbo C's language features were influenced by the earlier specifications by Brian W. Kernighan and Dennis M. Ritchie ("K&R C"), but early ANSI draft standards no doubt played a part as well. While most of the functions provided by Borland's standard library ended up matching the final ANSI standard closely, many functions were vendor-specific and never appeared in any published standard. Most of these functions are specific to either the IBM PC hardware, the DOS API, or both. The game uses about 20 of these functions throughout its code.
 
 This page collects information and examples on these obsolete and/or nonstandard library functions directly from the Borland manuals. Functions with standard behavior, and details that still apply to modern C implementations or POSIX-compliant environments, have been omitted.
+
+{{< table-of-contents >}}
 
 {{< boilerplate/global-cref COLORS >}}
 

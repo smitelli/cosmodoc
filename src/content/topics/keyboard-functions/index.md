@@ -8,6 +8,8 @@ weight = 270
 
 The keyboard subsystem on IBM computers was surprisingly complicated. This was due in no small part to a number of changes in key layout and function, as well as compatibility requirements between not just the IBM Personal Computer product line, but with the PS/2 and mainframe terminals as well.
 
+{{< table-of-contents >}}
+
 ## The (Relatively) Simple World of the IBM PC/AT
 
 The original IBM PC and XT keyboards were 83-key units. After incorporating feedback from users who were frustrated by the layout, the keys were rearranged for the 84-key keyboard released with the IBM Personal Computer/AT:
@@ -135,7 +137,7 @@ The AT system, which the game was designed for, used an 8042 Universal Periphera
 At this point, whether requested explicitly by writing to port 61h or implicitly by reading from port 60h, the keyboard controller's "output buffer full" status flag has been cleared. It is ready to receive a new byte of keyboard data, whenever it comes.
 
 ```c
-    if (lastScancode != 0xe0) {
+    if (lastScancode != SCANCODE_EXTENDED) {
         if ((lastScancode & 0x80) != 0) {
             isKeyDown[lastScancode & 0x7f] = false;
         } else {
@@ -146,7 +148,7 @@ At this point, whether requested explicitly by writing to port 61h or implicitly
 
 This new scancode is parsed to determine if it represents a make, break, or extended code.
 
-As the keyboard design evolved from the 83-key PC layout to the 101-key PS/2 layout, some new keys were added while others were duplicated from existing keys. The duplicated keys were assigned multi-byte scancodes: The first byte is E0h, and the second byte is the scancode of the older key it duplicates. In this way, regular <kbd>Enter</kbd> is 1Ch, while the <kbd>Enter</kbd> key on the numeric keypad is E0h, 1Ch. This allows software that wishes to differentiate the keys to do so, while older software that isn't aware of the extension would discard the E0h prefix and handle both <kbd>Enter</kbd> keys in the same, presumably reasonable, way. This code is framed with such an E0h check, discarding the byte whenever it appears. This permits (more or less) all of the keys on a 101-key keyboard to do something rational.
+As the keyboard design evolved from the 83-key PC layout to the 101-key PS/2 layout, some new keys were added while others were duplicated from existing keys. The duplicated keys were assigned multi-byte scancodes: The first byte is E0h, and the second byte is the scancode of the older key it duplicates. In this way, regular <kbd>Enter</kbd> is 1Ch, while the <kbd>Enter</kbd> key on the numeric keypad is E0h, 1Ch. This allows software that wishes to differentiate the keys to do so, while older software that isn't aware of the extension would discard the E0h prefix and handle both <kbd>Enter</kbd> keys in the same, presumably reasonable, way. This code is framed with such an E0h ({{< lookup/cref name="SCANCODE" text="SCANCODE_EXTENDED" >}}) check, discarding the byte whenever it appears. This permits (more or less) all of the keys on a 101-key keyboard to do something rational.
 
 Scancodes in the range 0h&ndash;7Fh represent make codes, while scancodes in the range 80h&ndash;FFh represent break codes. The low seven bits of a break code are the same as the make code for that key, so the high bit can be thought of as the make/break flag with the low seven bits uniquely identifying one of the keys.
 
@@ -217,7 +219,7 @@ The {{< lookup/cref WaitForAnyKey >}} function waits indefinitely for any key to
 ```c
 byte WaitForAnyKey(void)
 {
-    lastScancode = 0;
+    lastScancode = SCANCODE_NULL;
 
     while ((lastScancode & 0x80) == 0) ;
 
@@ -225,7 +227,7 @@ byte WaitForAnyKey(void)
 }
 ```
 
-The function begins by zeroing out the {{< lookup/cref lastScancode >}} variable, setting it to a value that should never be stored by any keyboard event.
+The function begins by zeroing out the {{< lookup/cref lastScancode >}} variable, setting it to a value that should never be stored by any keyboard event ({{< lookup/cref name="SCANCODE" text="SCANCODE_NULL" >}}).
 
 A `while` loop is entered which continually tests the highest bit of {{< lookup/cref lastScancode >}} -- as long as it is zero, the loop repeats. The zero value previously written satisfies this test, as do any keyboard make code(s) that arrive during this wait. As long as the user does nothing, or presses and holds keys, execution stays here.
 

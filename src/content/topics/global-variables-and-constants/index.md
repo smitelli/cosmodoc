@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 330
+weight = 340
 +++
 
 # Global Variables and Constants
@@ -9,6 +9,10 @@ weight = 330
 This page contains a listing of every global variable defined in the game, along with the declarations and a brief description of what each one does.
 
 For our purposes, a global variable is anything that is defined outside of a function, whether it is declared `static` (private to its compilation unit) or not. This page also includes `enum`s, `#define`s, and really anything else that seems useful to document.
+
+{{< table-of-contents >}}
+
+---
 
 ## Common Types
 
@@ -27,11 +31,27 @@ typedef byte bbool;           /* Boolean stored in a byte */
 
 These are the return values for the {{< lookup/cref GetProcessorType >}} function.
 
+{{< boilerplate/global-cref DRAWMODE >}}
+
+Symbolic Constant      | Value | Description
+-----------------------|-------|------------
+`DRAWMODE_NORMAL`      | 0     | Draw the sprite unmodified, with X/Y positions measured relative to the game world. If the map data contains a "draw in front" tiles that intersect the sprite, the map tiles will prevail.
+`DRAWMODE_HIDDEN`      | 1     | Do not draw any part of the sprite.
+`DRAWMODE_WHITE`       | 2     | Same as `DRAWMODE_NORMAL`, but all opaque pixel positions in the sprite are drawn in bright white.
+`DRAWMODE_TRANSLUCENT` | 3     | Same as `DRAWMODE_WHITE`, but the sprite color is translucent.
+`DRAWMODE_FLIPPED`     | 4     | Same as `DRAWMODE_NORMAL`, but the sprite is drawn flipped vertically.
+`DRAWMODE_IN_FRONT`    | 5     | Same as `DRAWMODE_NORMAL`, but the sprite will cover _all_ map tiles, regardless of their "draw in front" attribute.
+`DRAWMODE_ABSOLUTE`    | 6     | Draw the sprite unmodified, with X/Y positions measured relative to the screen. Since there is no relationship to the game world in this mode, "draw in front" attributes from the map (if present) have no effect.
+
 {{< boilerplate/global-cref END_ANIMATION >}}
 
 {{< boilerplate/global-cref END_SCREEN >}}
 
 {{< boilerplate/global-cref FILENAME_BASE >}}
+
+{{< boilerplate/global-cref FONT >}}
+
+The [game font]({{< relref "databases/font" >}}) is built from 100 [masked tiles]({{< relref "tile-image-format#masked-tiles" >}}), each beginning on a 40-byte boundary. Only a handful of these tiles are referenced directly in the game code; all other tile offsets are calculated by adding a multiple of 40 to one of the above base values.
 
 {{< boilerplate/global-cref IMAGE >}}
 
@@ -53,16 +73,22 @@ The colors here are based on the Borland {{< lookup/cref COLORS >}} members, wit
 
 {{< boilerplate/global-cref PALANIM >}}
 
+{{< boilerplate/global-cref SCANCODE >}}
+
+{{< boilerplate/global-cref SND >}}
+
+These constants should be passed to {{< lookup/cref StartSound >}} to start playing a [PC speaker sound effect]({{< relref "pc-speaker-sound-format" >}}). Each sound number is described in more detail on the [sound database]({{< relref "databases/sound" >}}) page.
+
 {{< boilerplate/global-cref TILE >}}
 
 For space reasons, some of the names are a bit obtuse:
 
 * `TILE_SWITCH_FREE_1N` has **no** ("N") line at its top.
-* `TILE_SWITCH_FREE_1L` has a light-colored ("L") line at its top.
+* `TILE_SWITCH_FREE_1L` has a **light**-colored ("L") line at its top.
 * Names that include `EMPTY` or `FREE` do not restrict movement, and essentially behave as "air."
-* Names including `PLATFORM` only block movement in the southern direction.
+* Names including `PLATFORM` only block movement in the southern direction. The player may jump up through them freely, but movement will stop if they land on it from above.
 * Names including `BLOCK` are solid, and block movement in all directions.
-* Names with a direction indicate that they are meant to be used in conjunction with other, similarly named tiles, and the directions indicate the correct relative position for each tile.
+* Names with a direction indicate that they are meant to be used in conjunction with other, similarly named tiles to draw larger constructions. The directions indicate the correct relative position for each tile.
 
 {{< boilerplate/global-cref TITLE_SCREEN >}}
 
@@ -199,6 +225,17 @@ Sound effects may play when this is true, and sound effects are silenced when fa
 {{< boilerplate/global-cref joystickBandTop >}}
 
 {{< boilerplate/global-cref joystickBtn1Bombs >}}
+
+{{< boilerplate/global-cref keyNames >}}
+
+Generally keys are named using their base (unshifted) case, but all letters are stored capitalized. There are some exceptions and oddities:
+
+* <kbd>NULL</kbd> is not a key, and is generally indicative of an error condition. There shouldn't be any circumstance in the game where this name is shown.
+* The keys <kbd>[</kbd>, <kbd>]</kbd>, <kbd>&grave;</kbd>, and <kbd>&bsol;</kbd> are defined as blank spaces. The [game font]({{< relref "databases/font" >}}) does not contain any tiles for these characters or their shifted companions.
+* The <kbd>'</kbd> key renders as `"`, despite both characters being available in the game font.
+* The <kbd>/</kbd> key renders as `?`.
+* The numeric keypad keys render as their non-numeric functions, if available.
+* The character codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&#8593;</code>, <code>&#8595;</code>, <code>&#8592;</code>, and <code>&#8594;</code> respectively.
 
 {{< boilerplate/global-cref lastGroupEntryLength >}}
 

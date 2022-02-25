@@ -6,6 +6,8 @@ weight = 70
 
 # LZEXE
 
+{{< table-of-contents >}}
+
 The [EXE files]({{< relref "exe-file-format" >}}) for episodes one and two were compressed before publication. The utility used to compress these files was LZEXE version 0.91, written by Fabrice Bellard. If that name sounds familiar, it may be because Bellard later went on to create projects like FFmpeg (a multimedia file conversion suite) and QEMU (a hardware emulator).
 
 In his own words:

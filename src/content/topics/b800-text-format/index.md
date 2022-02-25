@@ -6,6 +6,8 @@ weight = 160
 
 # `B800` Text Format
 
+{{< table-of-contents >}}
+
 Most shareware (and registered!) games of the era displayed a full-screen text page immediately before returning to the DOS prompt, and _Cosmo_ was no exception:
 
 {{< image src="b800-example-2052x.png"

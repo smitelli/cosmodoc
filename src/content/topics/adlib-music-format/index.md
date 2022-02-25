@@ -6,6 +6,8 @@ weight = 180
 
 # AdLib Music Format
 
+{{< table-of-contents >}}
+
 There are 19 different songs across all three episodes, with a total of just over 19 minutes of music in total. The music is stored in a format that some sources call the id Music Format (**IMF**) in honor of its creators, id Software. The code to handle this file format was originally written by Jason Blochowiak, and he most likely designed the whole scheme. IMF music first appeared in _Catacomb 3-D_ in November 1991, and could have appeared earlier in _Commander Keen in Keen Dreams_ if the music hadn't been stripped out before the game's release.
 
 The following is a list of songs within the [group files]({{< relref "group-file-format" >}}):

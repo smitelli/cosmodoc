@@ -6,6 +6,8 @@ weight = 50
 
 # The IBM PC
 
+{{< table-of-contents >}}
+
 The original IBM Personal Computer Model 5150 (**IBM PC**) was released in September 1981. In many respects, the PC was cobbled together from common off-the-shelf components: a processor and chipset from Intel, various memory and glue chips (sourced from Advanced Micro Devices, Motorola, Texas Instruments, Fairchild Semiconductor, etc.), and a smattering of run-of-the-mill support parts from whichever manufacturers had adequate supply at a good price. The design specifications were thorough and, somewhat surprisingly, open to anybody who cared to request them.
 
 If you wired the correct components together in the correct way, you'd end up with a machine that could run the same software, in the same way, as a real IBM PC. The PC's BIOS software was built to an open specification as well, making it feasible and even practical to build such a machine and get it to run useful programs. (This is what led to the explosion in the "PC clone" industry that followed.) Since the design of the hardware and the BIOS had such a profound impact on the way the machine behaved and the way software needed to be written to run on it, the techniques, idioms, limitations and quirks became ingrained in the minds of anybody who programmed for the platform.

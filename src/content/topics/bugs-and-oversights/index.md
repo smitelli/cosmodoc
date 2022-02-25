@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 340
+weight = 350
 +++
 
 # Bugs and Oversights
@@ -9,6 +9,8 @@ weight = 340
 For all the time and attention paid to the game by its developers and testers, there were many errors that were left unfixed in the final version. The majority of them are relatively minor and do not diminish the overall experience of playing. Some of the issues are downright trivial.
 
 This is the listing of every oversight I discovered during the course of my research.
+
+{{< table-of-contents >}}
 
 ## Player cannot fall off the map in E2L6.
 

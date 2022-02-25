@@ -1,12 +1,14 @@
 +++
 title = "Unused Actors"
 description = "A list of defined actor types that never appear in the game."
-weight = 360
+weight = 370
 +++
 
 # Unused Actors
 
 There are a number of actor types that the game accepts and appears to implement (to varying degrees), but for whatever reason they do not appear in any of the original map files or as in-game spawners.
+
+{{< table-of-contents >}}
 
 ## Completely Unused
 

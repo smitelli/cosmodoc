@@ -1,10 +1,12 @@
 +++
 title = "The apogee Parameter"
 description = "What happens when you run the game with the `apogee` parameter, as so many cheat sites suggest."
-weight = 350
+weight = 360
 +++
 
 # The `apogee` Parameter
+
+{{< table-of-contents >}}
 
 Many online cheat guides (a notable example being 3D Realms[^3drealms] themselves) refer to a special cheat mode where running the game with `apogee` as a command line argument will unlock a special mode of operation. It doesn't. Providing `apogee` (or anything that doesn't resolve to a valid directory) as the [write path]({{< relref "main-and-outer-loop#write-path" >}}) makes it so that the game cannot load or save its configuration or save files, and this results in strange behavior:
 

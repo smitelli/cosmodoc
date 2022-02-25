@@ -6,6 +6,8 @@ weight = 300
 
 # EGA Functions
 
+{{< table-of-contents >}}
+
 Neither the original IBM Personal Computer nor the PC/XT came with any sort of onboard video hardware. If the owner of one of these systems wanted to see anything (and they most certainly would've wanted to), they could choose between IBM's **Monochrome Display Adapter** (MDA) or their **Color Graphics Adapter** (CGA) expansion cards. Each adapter required a different display: either the black-and-green IBM 5151 **Monochrome Display** for MDA, or the IBM 5153 **Color Display** for CGA.
 
 When the Personal Computer/AT came around in 1984, it still lacked any onboard video capabilities. The MDA and CGA cards were still available, as was IBM's brand-new **Enhanced Graphics Adapter** (EGA). The EGA card supported all of the functionality of the older MDA and CGA cards, and could drive displays that were originally designed for those cards if that's what the user had. For the full EGA experience, the IBM 5154 **Enhanced Color Display** was necessary.

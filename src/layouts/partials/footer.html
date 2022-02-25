@@ -11,16 +11,18 @@
     {{ end }}
 {{ end }}
 
-<footer>
-    <address>
-        <p><strong>{{ $.Site.Title }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>.</p>
+{{ if $.Site.Params.enableNav }}
+    <footer>
+        <address>
+            <p><strong>{{ $.Site.Title }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>.</p>
 
-        <p><a href="{{ $cosmoreZip }}">Download <strong>Cosmore</strong></a>, my reconstruction of the game's source code.</p>
-    </address>
+            <p><a href="{{ $cosmoreZip }}">Download <strong>Cosmore</strong></a>, my reconstruction of the game's source code.</p>
+        </address>
 
-    <p>This page was last modified on {{ $lastMod }}. <a href="{{ $gitUrl }}">See it on GitHub.</a></p>
+        <p>This page was last modified on {{ $lastMod }}. <a href="{{ $gitUrl }}">See it on GitHub.</a></p>
 
-    <p><code>git clone {{ $.Site.Params.gitCloneUrl }}</code></p>
+        <p><code>git clone {{ $.Site.Params.gitCloneUrl }}</code></p>
 
-    <p><code>wget -mkp {{ absURL "/" }}</code></p>
-</footer>
+        <p><code>wget -mkp {{ absURL "/" }}</code></p>
+    </footer>
+{{ end }}

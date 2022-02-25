@@ -6,6 +6,8 @@ weight = 170
 
 # PC Speaker Sound Format
 
+{{< table-of-contents >}}
+
 All of the sound effects in the game were played through the **PC speaker**, a small device inside the computer case that was really only designed to play single beeps to provide audible feedback to a user. By rapidly varying the **frequency** (sometimes colloquially called "pitch") of the beep, interesting **sound effects** could be produced. A total of 65 sound effects are included in the game.
 
 Individual sound effects are packed together into **sound files**. Each sound file in the game contains up to 23 sound effects, and the [group files]({{< relref "group-file-format" >}}) contain three sound file entries in total:

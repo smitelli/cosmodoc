@@ -8,6 +8,8 @@ weight = 260
 
 The functions for [PC speaker sound effect]({{< relref "pc-speaker-sound-format" >}}) playback are inextricably linked to those responsible for game timing due to the fact that they all use the same underlying hardware.
 
+{{< table-of-contents >}}
+
 ## A Taste of the Programmable Interval Timer
 
 The Intel 8253 Programmable Interval Timer (**PIT**) of the IBM PC was a complex beast. If we limit the scope of our discussion to just the necessary information to understand sound generation, things will be much easier.

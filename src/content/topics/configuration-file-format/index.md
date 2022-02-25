@@ -6,6 +6,8 @@ weight = 80
 
 # Configuration File Format
 
+{{< table-of-contents >}}
+
 Each episode of the game has a configuration file named `COSMO1.CFG`, `COSMO2.CFG`, or `COSMO3.CFG`, respectively. The configuration file records the user's preferred keyboard layout, the on/off state of the sound effects/music, and the contents of the high score table.
 
 The configuration file does *not* record anything pertaining to the joystick, nor does it contain anything specific to the environment or location where the game runs. Configuration files are freely movable from location to location, and computer to computer.

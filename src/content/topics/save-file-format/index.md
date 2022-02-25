@@ -6,6 +6,8 @@ weight = 90
 
 # Save File Format
 
+{{< table-of-contents >}}
+
 Saved games are stored in individual files named `COSMOx.SV?`, where `x` is the episode number (1-3) and `?` is the save slot number (1-9). A total of nine saved games are supported for each episode and, as the in-game text specifically calls out, each game is saved "at BEGINNING of level." The game will overwrite existing saved games without prompting.
 
 Renaming a file by changing the number in the `.SV?` extension has the effect of "moving" the saved game to a different slot.

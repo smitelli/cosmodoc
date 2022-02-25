@@ -17,37 +17,44 @@ def run(args):
 
 def generate_font_table():
     specials = {
+        0: 'Solid Black Tile',
+        1: 'Solid Black Tile',
         2: '\u2191',
         3: '\u2193',
+        4: 'Solid Black Tile',
         5: '\u2190',
         6: '\u2192',
+        7: 'Solid Black Tile',
         8: 'Empty Health Bar, Bottom',
         9: 'Empty Health Bar, Top',
-        10: 'Space',
         25: '\u00a3',
         95: 'Filled Health Bar, Top',
         96: 'Filled Health Bar, Bottom',
+        97: 'Solid Gray Tile',
+        98: 'Solid Gray Tile',
+        99: 'Solid Gray Tile'
     }
 
     table = []
 
     for i in range(100):
+        ascii_code = None
+
         if i in specials:
             char = specials[i]
-        elif i in (0, 1, 4, 7):
-            char = 'Solid Black Tile'
         elif 10 <= i < 69:
-            char = chr(i + 22)
+            ascii_code = i + 22
+            char = chr(ascii_code)
         elif 69 <= i < 95:
-            char = chr(i + 28)
-        elif 97 <= i < 100:
-            char = 'Solid Gray Tile'
+            ascii_code = i + 28
+            char = chr(ascii_code)
         else:
             raise RuntimeError('huh?')
 
         table.append({
             'index': i,
             'offset_bytes': i * 40,
+            'ascii_code': ascii_code,
             'character': char,
             'literal': len(char) == 1
         })

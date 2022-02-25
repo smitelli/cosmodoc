@@ -29,7 +29,7 @@
 {{- else -}}
     {{- $text := default (index $.Site.Data.cref $param_name).text $param_text -}}
     {{- $desc := (index $.Site.Data.cref $param_name).desc -}}
-    {{- $def := (index $.Site.Data.cref $param_name).def -}}
+    {{- $def := (index $.Site.Data.cref $param_name).def | truncate 500 -}}
     {{- $ref := (index $.Site.Data.cref $param_name).ref -}}
 
     <a href="{{ $ref }}" title="{{ $def }}

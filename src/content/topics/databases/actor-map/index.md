@@ -2,12 +2,14 @@
 title = "Actor/Map Database"
 linkTitle = "Actors/Maps"
 description = "A table containing a list of all actor types and the maps they appear on."
-weight = 460
+weight = 470
 +++
 
 # Actor/Map Database
 
 This page contains a pair of tables that cross-reference actor types with the list of maps that each one appears on.
+
+{{< table-of-contents >}}
 
 ## Special Actors
 

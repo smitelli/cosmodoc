@@ -106,6 +106,13 @@ main {
     }
 }
 
+#toc-container {
+    display: inline-block;
+    padding-right: 2rem;
+    border: 1px solid gray-from-lightness(80%);
+    background: gray-from-lightness(95%);
+}
+
 #prev-next {
     text-align: center;
 
@@ -167,12 +174,15 @@ main {
     }
 
     h1, h2, h3, h4, h5, h6 {
-        font-weight: normal;
         line-height: normal;
 
         &:first-child {
             margin-top: 0;
         }
+    }
+
+    h1, h2, h3 {
+        font-weight: normal;
     }
 
     img {

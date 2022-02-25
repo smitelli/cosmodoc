@@ -10,6 +10,8 @@ Many players have experienced the music output of the game through a Sound Blast
 
 The AdLib card is really nothing more than a bundle of off-the-shelf components stitched together to function with the PC's bus interface. At the heart of the unit is a **Yamaha YM3812** music synthesis chip, which Yamaha called the **FM Operator Type-L&#8545;** or **OPL2**. The AdLib's interface is exactly the same as the OPL2's, and any programming techniques that work on the OPL2 will work on the AdLib (or any AdLib compatible hardware) with suitable I/O address translation.
 
+{{< table-of-contents >}}
+
 ## Making Waves
 
 In order to understand what the OPL2 chip does and what causes its characteristic sound, it's necessary to get a bit into the weeds and explore the math behind sound and music. The building blocks of synthesis are simple -- the same output could be produced on a graphing calculator with little effort -- but artful tuning of the input parameters produces effects that are pleasing to the ear.
@@ -260,7 +262,7 @@ The modified waves do not contain any negative values, which has the effect of r
 
 Up until this point, we've been treating the units for frequency and amplitude a little loosely. As the description of the OPL2 becomes more concrete, it's going to be necessary to understand precisely the quantities being measured and how they relate to real sounds.
 
-#### **Frequency**
+#### Frequency
 
 As briefly mentioned earlier, frequency is measured in hertz (Hz) and it describes the number of times a signal repeats itself in one second. The inverse of frequency is the period, which is the amount of time required for one repetition of the signal. This is all pretty cut and dry, and everything makes good clear linear sense until the signal reaches our ears. Human ears are logarithmic.
 
@@ -276,7 +278,7 @@ If we wanted to find the frequency of the note that was five steps below A4, we 
 
 The formula can be inverted: **Steps to note _n_ = 12 &times; log<sub>2</sub>(_f_ &divide; 440 Hz).** Here _f_ is some frequency in hertz, and _n_ is the note-step distance (again positive or negative) away from the A4 reference note.
 
-#### **Amplitude**
+#### Amplitude
 
 We've been taking the output of the sine function, calling it "amplitude" or "level," and passing it directly to a speaker that moves proportionally by the same amount. This much is actually accurate, but once again it is not the way our ears perceive things. Human ears are able to detect surprisingly faint sounds, while at the same time tolerating (at least for brief periods) other sounds that are many orders of magnitude louder. As with frequency, the response can best be modeled as a logarithmic one.
 

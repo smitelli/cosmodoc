@@ -369,6 +369,11 @@ DetectAdLib:
   def: bool DetectAdLib(void);
   desc: Interrogates the default AdLib I/O address to check if one is installed, and initializes the hardware if it is there. Returns true if an AdLib is installed, and false otherwise.
   ref: /topics/adlib-functions/#DetectAdLib
+DRAW_SOLID_TILE_XY:
+  text: DRAW_SOLID_TILE_XY()
+  def: '#define DRAW_SOLID_TILE_XY(src, x, y) { DrawSolidTile((src), (x) + ((y) * 320)); }'
+  desc: Wraps a call to `DrawSolidTile()`, converting `x` and `y` tile coordinates into the linear offset form expected by that function.
+  ref: /topics/assembly-drawing-functions/#DRAW_SOLID_TILE_XY
 #DrawCartoon:
 #DrawExplosions:
 #DrawFountains:
@@ -388,10 +393,18 @@ DrawMaskedTile:
   def: void DrawMaskedTile(byte *src, word x, word y);
   desc: Copies an 8x8 pixel masked tile from the byte pointer `src` minus 16,000 to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawMaskedTile
-#DrawNumberFlushRight:
+DrawNumberFlushRight:
+  text: DrawNumberFlushRight()
+  def: void DrawNumberFlushRight(word x_origin, word y_origin, dword value);
+  desc: Draws a numeric `value` with the rightmost (least significant) digit anchored at screen coordinates (`x_origin`, `y_origin`). `value` is interpreted as an unsigned long integer.
+  ref: /topics/user-interface-functions/#DrawNumberFlushRight
 #DrawRandomEffects:
 #DrawSBarHealthHelper:
-#DrawScancodeCharacter:
+DrawScancodeCharacter:
+  text: DrawScancodeCharacter()
+  def: void DrawScancodeCharacter(word x, word y, byte scancode);
+  desc: Draws a single-character representation of `scancode` at screen tile position (`x`, `y`).
+  ref: /topics/user-interface-functions/#DrawScancodeCharacter
 DrawSolidTile:
   text: DrawSolidTile()
   def: void DrawSolidTile(word src_offset, word dst_offset);
@@ -422,7 +435,16 @@ DrawSpriteTileWhite:
 #DrawStatusBarHealth:
 #DrawStatusBarScore:
 #DrawStatusBarStars:
-#DrawTextFrame:
+DrawTextFrame:
+  text: DrawTextFrame()
+  def: word DrawTextFrame(word left, word top, int height, int width, char *top_text, char *bottom_text, bbool centered);
+  desc: Draws an empty text frame to the current draw page with the upper-left corner at tile position (`left`, `top`) and a total size of `width` x `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively, aligned according to the `centered` flag. Returns the X tile coordinate of the inside-left edge of the frame.
+  ref: /topics/user-interface-functions/#DrawTextFrame
+DrawTextLine:
+  text: DrawTextLine()
+  def: void DrawTextLine(word x_origin, word y_origin, char *text);
+  desc: Draws a single line of `text` with the first character anchored at screen coordinates (`x_origin`, `y_origin`). A limited form of markup is supported to allow insertion of cartoon images, player/actor sprites, and text animation effects.
+  ref: /topics/user-interface-functions/#DrawTextLine
 EGA_BIT_MASK_DEFAULT:
   text: EGA_BIT_MASK_DEFAULT()
   def: '#define EGA_BIT_MASK_DEFAULT() { outport(0x03ce, (0xff << 8) | 0x08); }'
@@ -438,7 +460,11 @@ EGA_MODE_LATCHED_WRITE:
   def: '#define EGA_MODE_LATCHED_WRITE() { outport(0x03c4, (0x0f << 8) | 0x02); outport(0x03ce, (0x01 << 8) | 0x05); }'
   desc: Resets the EGA's map mask to its default state and enables latched writes from the CPU.
   ref: /topics/ega-functions/#EGA_MODE_LATCHED_WRITE
-#EraseWaitSpinner:
+EraseWaitSpinner:
+  text: EraseWaitSpinner()
+  def: void EraseWaitSpinner(word x, word y);
+  desc: Erases an area previously occupied by a wait spinner by drawing a tile of solid dark gray at screen tile position (`x`, `y`).
+  ref: /topics/user-interface-functions/#EraseWaitSpinner
 ExitClean:
   text: ExitClean()
   def: void ExitClean(void);
@@ -647,7 +673,11 @@ ProfileCPUService:
 #PromptKeyBind:
 #PromptLevelWarp:
 #PromptQuitConfirm:
-#ReadAndEchoText:
+ReadAndEchoText:
+  text: ReadAndEchoText()
+  def: void ReadAndEchoText(word x_origin, word y_origin, char *dest, word max_length);
+  desc: Presents a wait spinner near (`x_origin`, `y_origin`) that accepts at most `max_length` characters of keyboard input. The typed characters are echoed to the screen and stored in the memory pointed to by `dest`, which should be large enough to hold `max_length` + 1 bytes of data.
+  ref: /topics/user-interface-functions/#ReadAndEchoText
 ReadJoystickTimes:
   text: ReadJoystickTimes()
   def: void ReadJoystickTimes(word stick, int *x_time, int *y_time);
@@ -784,7 +814,11 @@ StepPalette:
   def: void StepPalette(byte *pal_table);
   desc: During each frame of gameplay, steps through each element of the passed palette table `pal_table` and sets the palette key color accordingly, repeating once the `END_ANIMATION` marker has been reached.
   ref: /topics/c-drawing-functions/#StepPalette
-#StepWaitSpinner:
+StepWaitSpinner:
+  text: StepWaitSpinner()
+  def: byte StepWaitSpinner(word x, word y);
+  desc: Draws one frame of the wait spinner, immediately returning the most recent scancode seen by the keyboard hardware (even if that scancode is stale).
+  ref: /topics/user-interface-functions/#StepWaitSpinner
 StopAdLib:
   text: StopAdLib()
   def: void StopAdLib(void);
@@ -822,7 +856,11 @@ TimerInterruptService:
 #ToggleMusic:
 #UnfoldDNFrame:
 #UnfoldPlayerFrame:
-#UnfoldTextFrame:
+UnfoldTextFrame:
+  text: UnfoldTextFrame()
+  def: word UnfoldTextFrame(int top, int height, int width, char *top_text, char *bottom_text);
+  desc: Draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width` x `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
+  ref: /topics/user-interface-functions/#UnfoldTextFrame
 #UpdateBombs:
 UpdateDrawPageSegment:
   text: UpdateDrawPageSegment()
@@ -851,7 +889,11 @@ WaitSoft:
   def: void WaitSoft(word delay);
   desc: Pauses execution for `delay` game ticks, returning early if the user presses a key.
   ref: /topics/pc-speaker-and-timing-functions/#WaitSoft
-#WaitSpinner:
+WaitSpinner:
+  text: WaitSpinner()
+  def: byte WaitSpinner(word x, word y);
+  desc: Draws a rotating green icon at tile position (`x`, `y`) on the screen, blocking until a key is pressed. Once that occurs, the scancode of the pressed key is returned.
+  ref: /topics/user-interface-functions/#WaitSpinner
 WaitWallclock:
   text: WaitWallclock()
   def: void WaitWallclock(word loops);
@@ -885,6 +927,18 @@ CPUTYPE:
     #define CPUTYPE_80386 7  /* Intel 80386 or above */
   desc: Provides meaningful names for the detected processor type.
   ref: /topics/global-variables-and-constants/#CPUTYPE
+DRAWMODE:
+  text: DRAWMODE_*
+  def: |-
+    #define DRAWMODE_NORMAL      0
+    #define DRAWMODE_HIDDEN      1
+    #define DRAWMODE_WHITE       2
+    #define DRAWMODE_TRANSLUCENT 3
+    #define DRAWMODE_FLIPPED     4
+    #define DRAWMODE_IN_FRONT    5
+    #define DRAWMODE_ABSOLUTE    6
+  desc: Defines the drawing modes available for the sprite drawing functions.
+  ref: /topics/global-variables-and-constants/#DRAWMODE
 END_ANIMATION:
   text: END_ANIMATION
   def: |-
@@ -907,6 +961,19 @@ FILENAME_BASE:
     #define FILENAME_BASE "COSMO3"  /* episode 3 */
   desc: Defines the base file name (without extension) used for the group, configuration, and save files.
   ref: /topics/global-variables-and-constants/#FILENAME_BASE
+FONT:
+  text: FONT_*
+  def: |-
+    #define FONT_UP_ARROW        0x0050
+    #define FONT_LOWER_BAR_0     0x0140
+    #define FONT_UPPER_BAR_0     0x0168
+    #define FONT_0               0x0410
+    #define FONT_LOWER_A         0x0ac8
+    #define FONT_UPPER_BAR_1     0x0ed8
+    #define FONT_LOWER_BAR_1     0x0f00
+    #define FONT_BACKGROUND_GRAY 0x0f28
+  desc: Provides meaningful names for some, but not all, of the font tile graphics.
+  ref: /topics/global-variables-and-constants/#FONT
 IMAGE:
   text: IMAGE_*
   def: |-
@@ -994,6 +1061,169 @@ PALANIM:
     #define PALANIM_EXPLOSIONS 6
   desc: Provides meaningful names for all of the palette animation types available in the game.
   ref: /topics/global-variables-and-constants/#PALANIM
+SCANCODE:
+  text: SCANCODE_*
+  def: |-
+    #define SCANCODE_NULL        0x00
+    #define SCANCODE_ESC         0x01
+    #define SCANCODE_1           0x02  /* 1  ! */
+    #define SCANCODE_2           0x03  /* 2  @ */
+    #define SCANCODE_3           0x04  /* 3  # */
+    #define SCANCODE_4           0x05  /* 4  $ */
+    #define SCANCODE_5           0x06  /* 5  % */
+    #define SCANCODE_6           0x07  /* 6  ^ */
+    #define SCANCODE_7           0x08  /* 7  & */
+    #define SCANCODE_8           0x09  /* 8  * */
+    #define SCANCODE_9           0x0a  /* 9  ( */
+    #define SCANCODE_0           0x0b  /* 0  ) */
+    #define SCANCODE_MINUS       0x0c  /* -  _ */
+    #define SCANCODE_EQUAL       0x0d  /* =  + */
+    #define SCANCODE_BACKSPACE   0x0e
+    #define SCANCODE_TAB         0x0f
+    #define SCANCODE_Q           0x10  /* q  Q */
+    #define SCANCODE_W           0x11  /* w  W */
+    #define SCANCODE_E           0x12  /* e  E */
+    #define SCANCODE_R           0x13  /* r  R */
+    #define SCANCODE_T           0x14  /* t  T */
+    #define SCANCODE_Y           0x15  /* y  Y */
+    #define SCANCODE_U           0x16  /* u  U */
+    #define SCANCODE_I           0x17  /* i  I */
+    #define SCANCODE_O           0x18  /* o  O */
+    #define SCANCODE_P           0x19  /* p  P */
+    #define SCANCODE_LEFT_BRACE  0x1a  /* [  { */
+    #define SCANCODE_RIGHT_BRACE 0x1b  /* ]  } */
+    #define SCANCODE_ENTER       0x1c
+    #define SCANCODE_CTRL        0x1d
+    #define SCANCODE_A           0x1e  /* a  A */
+    #define SCANCODE_S           0x1f  /* s  S */
+    #define SCANCODE_D           0x20  /* d  D */
+    #define SCANCODE_F           0x21  /* f  F */
+    #define SCANCODE_G           0x22  /* g  G */
+    #define SCANCODE_H           0x23  /* h  H */
+    #define SCANCODE_J           0x24  /* j  J */
+    #define SCANCODE_K           0x25  /* k  K */
+    #define SCANCODE_L           0x26  /* l  L */
+    #define SCANCODE_SEMICOLON   0x27  /* ;  : */
+    #define SCANCODE_APOSTROPHE  0x28  /* '  " */
+    #define SCANCODE_GRAVE       0x29  /* `  ~ */
+    #define SCANCODE_LEFT_SHIFT  0x2a
+    #define SCANCODE_BACKSLASH   0x2b  /* \  | */
+    #define SCANCODE_Z           0x2c  /* z  Z */
+    #define SCANCODE_X           0x2d  /* x  X */
+    #define SCANCODE_C           0x2e  /* c  C */
+    #define SCANCODE_V           0x2f  /* v  V */
+    #define SCANCODE_B           0x30  /* b  B */
+    #define SCANCODE_N           0x31  /* n  N */
+    #define SCANCODE_M           0x32  /* m  M */
+    #define SCANCODE_COMMA       0x33  /* ,  < */
+    #define SCANCODE_DOT         0x34  /* .  > */
+    #define SCANCODE_SLASH       0x35  /* /  ? */
+    #define SCANCODE_RIGHT_SHIFT 0x36
+    #define SCANCODE_KP_ASTERISK 0x37  /* *  PrtSc */
+    #define SCANCODE_ALT         0x38
+    #define SCANCODE_SPACE       0x39
+    #define SCANCODE_CAPS_LOCK   0x3a
+    #define SCANCODE_F1          0x3b
+    #define SCANCODE_F2          0x3c
+    #define SCANCODE_F3          0x3d
+    #define SCANCODE_F4          0x3e
+    #define SCANCODE_F5          0x3f
+    #define SCANCODE_F6          0x40
+    #define SCANCODE_F7          0x41
+    #define SCANCODE_F8          0x42
+    #define SCANCODE_F9          0x43
+    #define SCANCODE_F10         0x44
+    #define SCANCODE_NUM_LOCK    0x45
+    #define SCANCODE_SCROLL_LOCK 0x46
+    #define SCANCODE_KP_7        0x47  /* Home         7 */
+    #define SCANCODE_KP_8        0x48  /* Up Arrow     8 */
+    #define SCANCODE_KP_9        0x49  /* Pg Up        9 */
+    #define SCANCODE_KP_MINUS    0x4a  /*              - */
+    #define SCANCODE_KP_4        0x4b  /* Left Arrow   4 */
+    #define SCANCODE_KP_5        0x4c  /*              5 */
+    #define SCANCODE_KP_6        0x4d  /* Right Arrow  6 */
+    #define SCANCODE_KP_PLUS     0x4e  /*              + */
+    #define SCANCODE_KP_1        0x4f  /* End          1 */
+    #define SCANCODE_KP_2        0x50  /* Down Arrow   2 */
+    #define SCANCODE_KP_3        0x51  /* Pg Down      3 */
+    #define SCANCODE_KP_0        0x52  /* Ins          0 */
+    #define SCANCODE_KP_DOT      0x53  /* Del          . */
+    #define SCANCODE_SYS_REQ     0x54
+    #define SCANCODE_F11         0x57
+    #define SCANCODE_F12         0x58
+    #define SCANCODE_EXTENDED    0xe0
+  desc: Provides meaningful names for all of the IBM PC/AT keyboard scancodes. These are all well-defined and well-known.
+  ref: /topics/global-variables-and-constants/#SCANCODE
+SND:
+  text: SND_*
+  def: |-
+    #define SND_BIG_PRIZE           1
+    #define SND_PLAYER_JUMP         2
+    #define SND_PLAYER_LAND         3
+    #define SND_PLAYER_CLING        4
+    #define SND_PLAYER_HIT_HEAD     5
+    #define SND_PLAYER_POUNCE       6
+    #define SND_PLAYER_DEATH        7
+    #define SND_DOOR_UNLOCK         8
+    #define SND_SPIKES_MOVE         9
+    #define SND_EXPLOSION           10
+    #define SND_WIN_LEVEL           11
+    #define SND_BARREL_DESTROY_1    12
+    #define SND_PRIZE               13
+    #define SND_PLAYER_HURT         14
+    #define SND_FOOT_SWITCH_MOVE    15
+    #define SND_FOOT_SWITCH_ON      16
+    #define SND_ROAMER_GIFT         17
+    #define SND_DESTROY_SATELLITE   18
+    #define SND_PLAYER_FOOTSTEP     19
+    #define SND_PUSH_PLAYER         20
+    #define SND_DRIP                21
+    #define SND_PIPE_CORNER_HIT     22
+    #define SND_TRANSPORTER_ON      23
+    #define SND_SCOOTER_PUTT        24
+    #define SND_DESTROY_SOLID       25
+    #define SND_PROJECTILE_LAUNCH   26
+    #define SND_BIG_OBJECT_HIT      27
+    #define SND_NO_BOMBS            28
+    #define SND_PLACE_BOMB          29
+    #define SND_HINT_DIALOG_ALERT   30
+    #define SND_RED_JUMPER_JUMP     31
+    #define SND_RED_JUMPER_LAND     32
+    #define SND_BGHOST_EGG_CRACK    33
+    #define SND_BGHOST_EGG_HATCH    34
+    #define SND_SAW_BLADE_MOVE      35
+    #define SND_FIREBALL_LAUNCH     36
+    #define SND_OBJECT_HIT          37
+    #define SND_EXIT_MONSTER_OPEN   38
+    #define SND_EXIT_MONSTER_INGEST 39
+    #define SND_BEAR_TRAP_CLOSE     40
+    #define SND_PAUSE_GAME          41
+    #define SND_WEEEEEEEE           42
+    #define SND_JUMP_PAD_ROBOT      43
+    #define SND_TEXT_TYPEWRITER     44
+    #define SND_BONUS_STAGE         45
+    #define SND_SHARD_BOUNCE        46
+    #define SND_TULIP_LAUNCH        47
+    #define SND_NEW_GAME            48
+    #define SND_ROCKET_BURN         49
+    #define SND_SMASH               50
+    #define SND_HIGH_SCORE_DISPLAY  51
+    #define SND_HIGH_SCORE_SET      52
+    #define SND_IVY_PLANT_RISE      53
+    #define SND_FLAME_PULSE         54
+    #define SND_BOSS_DAMAGE         55
+    #define SND_BOSS_MOVE           56
+    #define SND_SPEECH_BUBBLE       57
+    #define SND_BABY_GHOST_JUMP     58
+    #define SND_BABY_GHOST_LAND     59
+    #define SND_THUNDER             60
+    #define SND_BARREL_DESTROY_2    61
+    #define SND_TULIP_INGEST        62
+    #define SND_PLANT_MOUTH_OPEN    63
+    #define SND_ENTERING_LEVEL_NUM  64
+    #define SND_BOSS_LAUNCH         65
+  desc: Provides meaningful names for all of the PC speaker sound effects included with the game.
+  ref: /topics/global-variables-and-constants/#SND
 TILE:
   text: TILE_*
   def: |-
@@ -1021,7 +1251,7 @@ TILE:
     #define TILE_TXTFRAME_SOUTH     0x3e60
     #define TILE_TXTFRAME_WEST      0x3e68
     #define TILE_TXTFRAME_EAST      0x3e70
-    #define TILE_GRAY               0x3e78
+    #define TILE_DARK_GRAY          0x3e78
     #define TILE_MASKED_0           0x3e80  /* aka 16,000 */
   desc: Provides meaningful names for certain map tile values.
   ref: /topics/global-variables-and-constants/#TILE
@@ -1145,7 +1375,7 @@ gameTickCount:
 highScoreNames:
   text: highScoreNames[]
   def: |-
-    typedef byte HighScoreName[16];
+    typedef char HighScoreName[16];
     HighScoreName highScoreNames[11];
   desc: Points to the first element of an 11-element fixed-length string array. Each element is 16 bytes long, and holds one of the names on the high score table.
   ref: /topics/global-variables-and-constants/#highScoreNames
@@ -1211,7 +1441,7 @@ isSoundEnabled:
   ref: /topics/global-variables-and-constants/#isSoundEnabled
 joinPathBuffer:
   text: joinPathBuffer[]
-  def: byte joinPathBuffer[80];
+  def: char joinPathBuffer[80];
   desc: Holds an 80-byte scratch area used for joining directory and file names into full path names.
   ref: /topics/global-variables-and-constants/#joinPathBuffer
 joystickBandBottom:
@@ -1239,6 +1469,22 @@ joystickBtn1Bombs:
   def: bool joystickBtn1Bombs;
   desc: Controls which action the primary joystick button performs. When true, this button places a bomb. When false, this button makes the player jump. In either case, the secondary button takes the opposite action.
   ref: /topics/global-variables-and-constants/#joystickBtn1Bombs
+keyNames:
+  text: keyNames
+  def: |-
+    typedef char KeyName[6];
+    KeyName keyNames[] = {
+        "NULL", "ESC", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-",
+        "=", "BKSP", "TAB", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
+        " ", " ", "ENTR", "CTRL", "A", "S", "D", "F", "G", "H", "J", "K", "L",
+        ";", "\"", " ", "LSHFT", " ", "Z", "X", "C", "V", "B", "N", "M", ",",
+        ".", "?", "RSHFT", "PRTSC", "ALT", "SPACE", "CAPLK", "F1", "F2", "F3",
+        "F4", "F5", "F6", "F7", "F8", "F9", "F10", "NUMLK", "SCRLK", "HOME",
+        "\x18", "PGUP", "-", "\x1B", "5", "\x1C", "+", "END", "\x19", "PGDN",
+        "INS", "DEL", "SYSRQ", "", "", "F11", "F12", ""
+    };
+  desc: Defines short (5 character or less) key name strings for the most common scancodes on the 84-key IBM PC/AT keyboard.
+  ref: /topics/global-variables-and-constants/#keyNames
 lastGroupEntryLength:
   text: lastGroupEntryLength
   def: dword lastGroupEntryLength;

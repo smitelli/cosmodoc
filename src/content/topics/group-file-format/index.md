@@ -6,6 +6,8 @@ weight = 100
 
 # Group File Format
 
+{{< table-of-contents >}}
+
 The binary assets of the game are stored in a handful of files that I'll collectively refer to as "group files" in this document. Each episode has one STN file and one VOL file; both are required for the game to function:
 
 File       | Size (Bytes) | Date           | Hashes (MD5, SHA-1)

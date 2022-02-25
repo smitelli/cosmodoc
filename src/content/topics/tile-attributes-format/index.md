@@ -6,6 +6,8 @@ weight = 120
 
 # Tile Attributes Format
 
+{{< table-of-contents >}}
+
 The **tile attributes** file specifies what should happen when the player (or actors) touch a map tile of a given value. This data is stored in a [group file]({{< relref "group-file-format" >}}) entry named TILEATTR.MNI. Each of the 2,000 solid and 1,000 masked tiles has an associated **index** within the tile attributes file. Each index is comprised of a single byte which encodes eight boolean **attributes**.
 
 ## Index Lookup

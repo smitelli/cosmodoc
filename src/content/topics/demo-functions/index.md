@@ -6,6 +6,8 @@ weight = 240
 
 # Demo File Functions
 
+{{< table-of-contents >}}
+
 The **demo data** is a stream of bytes that represent the state of the keyboard during each frame of a gameplay session. This data can then be replayed, simulating keypresses in lieu of actually reading the hardware, to play the game automatically.
 
 [Demo data]({{< relref "demo-format" >}}) is stored in a file named PREVDEMO.MNI. Each episode ships with a factory-default demo inside the VOL [group file]({{< relref "group-file-format" >}}), but user demos can also be recorded and saved to disk. By removing the factory demo, user demos could be played back in their place.

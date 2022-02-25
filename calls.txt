@@ -210,15 +210,6 @@ DrawLights() <void DrawLights () at src/game1.c:1474>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawMapRegion() <void DrawMapRegion () at src/game1.c:644>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawNumberFlushRight() <void DrawNumberFlushRight () at src/game2.c:1129>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    DrawStatusBarScore() <void DrawStatusBarScore () at src/game2.c:1150>:
-    DrawStatusBarStars() <void DrawStatusBarStars () at src/game2.c:1180>:
-    DrawStatusBarBombs() <void DrawStatusBarBombs () at src/game2.c:1208>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    TestSound() <void TestSound () at src/game2.c:2602>:
-    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
-    ShowLevelIntro() <void ShowLevelIntro () at src/game2.c:3457>:
 DrawPlayer() <void DrawPlayer () at src/game1.c:1102>:
     DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
     DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
@@ -228,10 +219,6 @@ DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawSBarHealthHelper() <void DrawSBarHealthHelper () at src/game2.c:1273>:
     UpdateHealth() <void UpdateHealth () at src/game2.c:1281>:
-DrawScancodeCharacter() <void DrawScancodeCharacter () at src/game2.c:1821>:
-    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
-    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
-    ReadAndEchoText() <void ReadAndEchoText () at src/game2.c:992>:
 DrawSprite() <void DrawSprite () at src/game1.c:976>:
     DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
     DrawFountains() <void DrawFountains () at src/game1.c:1433>:
@@ -268,48 +255,6 @@ DrawStatusBarScore() <void DrawStatusBarScore () at src/game2.c:1150>:
     AddScore() <void AddScore () at src/game2.c:1170>:
 DrawStatusBarStars() <void DrawStatusBarStars () at src/game2.c:1180>:
     UpdateStars() <void UpdateStars () at src/game2.c:1198>:
-DrawTextFrame() <word DrawTextFrame () at src/game2.c:906>:
-    UnfoldTextFrame() <word UnfoldTextFrame () at src/game2.c:960>:
-    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
-DrawTextLine() <void DrawTextLine () at src/game1.c:407>:
-    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
-    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
-    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-    DrawTextFrame() <word DrawTextFrame () at src/game2.c:906>:
-    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowStory() <void ShowStory () at src/game2.c:1677>:
-    DrawScancodeCharacter() <void DrawScancodeCharacter () at src/game2.c:1821>:
-    PromptKeyBind() <bbool PromptKeyBind () at src/game2.c:1838>:
-    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
-    ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-    ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
-    UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
-    UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
-    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
-    ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
-    TestSound() <void TestSound () at src/game2.c:2602>:
-    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
-    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-    ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
-    ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
-    ShowMainMenu() <void ShowMainMenu () at src/game2.c:3366>:
-    ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
-    ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
-    ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:
-EraseWaitSpinner() <void EraseWaitSpinner () at src/game2.c:663>:
-    WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
-    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
-    TestSound() <void TestSound () at src/game2.c:2602>:
 GameLoop() <void GameLoop () at src/game1.c:9730>:
     InnerMain() <void InnerMain () at src/game1.c:10217>:
 GameRand() <word GameRand () at src/game1.c:300>:
@@ -564,9 +509,6 @@ PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
     ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
 PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
     ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-ReadAndEchoText() <void ReadAndEchoText () at src/game2.c:992>:
-    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
-    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
 RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
     ClearGameScreen() <void ClearGameScreen () at src/game1.c:7995>:
 SET_PLAYER_DIZZY():
@@ -650,9 +592,6 @@ ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
     ShowEnding() <void ShowEnding () at src/game2.c:2853>:
 ShowStory() <void ShowStory () at src/game2.c:1677>:
     TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-StepWaitSpinner() <byte StepWaitSpinner () at src/game2.c:704>:
-    WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
-    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
 SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
     DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
     PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
@@ -745,46 +684,6 @@ UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
     ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
 UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
     ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
-UnfoldTextFrame() <word UnfoldTextFrame () at src/game2.c:960>:
-    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
-    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
-    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
-    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-    ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowStory() <void ShowStory () at src/game2.c:1677>:
-    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
-    ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-    ShowRestoreGameError() <void ShowRestoreGameError () at src/game2.c:2339>:
-    ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
-    ShowAlteredFileError() <void ShowAlteredFileError () at src/game2.c:2369>:
-    UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
-    UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
-    ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
-    PromptQuitConfirm() <bbool PromptQuitConfirm () at src/game2.c:2534>:
-    ToggleSound() <void ToggleSound () at src/game2.c:2553>:
-    ToggleMusic() <void ToggleMusic () at src/game2.c:2573>:
-    TestSound() <void TestSound () at src/game2.c:2602>:
-    PauseMessage() <void PauseMessage () at src/game2.c:2648>:
-    GodModeToggle() <void GodModeToggle () at src/game2.c:2665>:
-    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
-    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-    ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
-    ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
-    ShowMainMenu() <void ShowMainMenu () at src/game2.c:3366>:
-    ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
-    ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
-    ShowLevelIntro() <void ShowLevelIntro () at src/game2.c:3457>:
-    ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:
 UpdateBombs() <void UpdateBombs () at src/game2.c:1235>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayer() <void MovePlayer () at src/game1.c:8114>:
@@ -801,39 +700,3 @@ UpdateHealth() <void UpdateHealth () at src/game2.c:1281>:
 UpdateStars() <void UpdateStars () at src/game2.c:1198>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
-WaitSpinner() <byte WaitSpinner () at src/game2.c:730>:
-    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
-    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    ReadAndEchoText() <void ReadAndEchoText () at src/game2.c:992>:
-    ShowJoystickConfiguration() <void ShowJoystickConfiguration () at src/game2.c:1030>:
-    ShowHighScoreTable() <void ShowHighScoreTable () at src/game2.c:1297>:
-    ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowStory() <void ShowStory () at src/game2.c:1677>:
-    PromptKeyBind() <bbool PromptKeyBind () at src/game2.c:1838>:
-    ShowKeyboardConfiguration() <void ShowKeyboardConfiguration () at src/game2.c:1865>:
-    ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-    ShowRestoreGameError() <void ShowRestoreGameError () at src/game2.c:2339>:
-    ShowAlteredFileError() <void ShowAlteredFileError () at src/game2.c:2369>:
-    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
-    ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
-    PromptQuitConfirm() <bbool PromptQuitConfirm () at src/game2.c:2534>:
-    ToggleSound() <void ToggleSound () at src/game2.c:2553>:
-    ToggleMusic() <void ToggleMusic () at src/game2.c:2573>:
-    TestSound() <void TestSound () at src/game2.c:2602>:
-    PauseMessage() <void PauseMessage () at src/game2.c:2648>:
-    GodModeToggle() <void GodModeToggle () at src/game2.c:2665>:
-    MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
-    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-    ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
-    ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
-    ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
-    ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
-    ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:

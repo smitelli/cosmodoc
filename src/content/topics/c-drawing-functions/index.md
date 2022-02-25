@@ -8,6 +8,8 @@ weight = 320
 
 Most of the game's individual tile images are drawn with low-level [assembly drawing functions]({{< relref "assembly-drawing-functions" >}}). Higher-level functions that handle drawing groups of tiles, or larger areas of the screen, are implemented in C.
 
+{{< table-of-contents >}}
+
 {{< boilerplate/function-cref CopyTilesToEGA >}}
 
 The {{< lookup/cref CopyTilesToEGA >}} function reads solid tile image data from the memory pointed to by `source`, and installs it into a block of `dest_length` bytes of the EGA's memory starting at `dest_offset`. Because the destination memory is planar, each byte of address space covered by `dest_length` consumes four bytes from `source`.

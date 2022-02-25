@@ -6,6 +6,8 @@ weight = 190
 
 # Demo Format
 
+{{< table-of-contents >}}
+
 If the game receives no input after showing the title sequence for about 25 seconds, or if the user explicitly requests it via the main menu, a demo begins playing. This demo ships with the game in a [group file]({{< relref "group-file-format" >}}) entry named PREVDEMO.MNI. This name is used regardless of the episode being played, and this is the only case across all group files where data from different episodes is stored with conflicting names.
 
 New demos can be recorded by entering debug mode and using the correct key combinations, although the experience is a bit spartan.

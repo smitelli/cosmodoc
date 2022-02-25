@@ -70,7 +70,10 @@ It's never going to be exact with this type of writing -- too many symbols and e
 
 or...
 
-    find public/ -iname '*.html' -exec html2text --ignore-links \
-        --ignore-emphasis --ignore-images {} \; | wc -w
+    cd src
+    hugo -e disable-nav
+    # Using the python "html2text" package...
+    find ../public/ -iname '*.html' -exec html2text --ignore-links \
+        --ignore-tables --ignore-emphasis --ignore-images {} \; | wc -w
 
 Round it down to the nearest 1,000.

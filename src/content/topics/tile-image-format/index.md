@@ -6,6 +6,8 @@ weight = 140
 
 # Tile Image Format
 
+{{< table-of-contents >}}
+
 All of the in-game graphics are stored across about 30 different **tile image** files. Each tile image file contains the graphical data for hundreds or _thousands_ of discrete 8x8 pixel tiles. Some tile image files incorporate a transparency mask, while others are used fully opaque. The large actors and complex map constructions in the game are built from a careful arrangement of these small tiles.
 
 The following is a list of tile-based [group file]({{< relref "group-file-format" >}}) entries:

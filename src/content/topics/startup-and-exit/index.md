@@ -6,6 +6,8 @@ weight = 220
 
 # Startup and Exit
 
+{{< table-of-contents >}}
+
 There are two closely related functions in the game: {{< lookup/cref Startup >}} and {{< lookup/cref ExitClean >}}. The former sets up the hardware and long-lived global variables necessary to run the game, and the latter resets the hardware and cleans up.
 
 {{< lookup/cref Startup >}} runs exactly once, right as the game first loads. {{< lookup/cref ExitClean >}} also runs once, right before control returns back to DOS.

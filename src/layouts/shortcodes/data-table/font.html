@@ -7,6 +7,7 @@
         <th>Index</th>
         <th>Offset (Bytes)</th>
         <th>Character</th>
+        <th>ASCII Code (Decimal)</th>
     </tr>
     {{ range $.Site.Data.font.table }}
         <tr>
@@ -14,11 +15,12 @@
             <td>{{ printf "%04xh" (int .offset_bytes) }}</td>
             <td>
                 {{ if .literal }}
-                    <code>{{ .character }}</code>
+                    <pre style="display:inline">{{ .character }}</pre>
                 {{ else }}
                     {{ .character | markdownify }}
                 {{ end }}
             </td>
+            <td>{{ with .ascii_code }}{{ . }}{{ else }}&mdash;{{ end }}</td>
         </tr>
     {{ end }}
 </table>

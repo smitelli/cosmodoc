@@ -6,6 +6,8 @@ weight = 200
 
 # `main()` and Outer Loop
 
+{{< table-of-contents >}}
+
 The first programmer-defined function that runs in any C program is named {{< lookup/cref main >}}. It is called by the C runtime and takes two parameters: `argc` (the number of command-line arguments the program was run with) and `argv` (the values of each of these arguments).
 
 This is where everything begins.

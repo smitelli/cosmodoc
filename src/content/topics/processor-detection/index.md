@@ -6,6 +6,8 @@ weight = 210
 
 # Processor Detection
 
+{{< table-of-contents >}}
+
 By early 1992, there were a few different PC processors available on the market. The original IBM PC and its successor, the IBM PC/XT, shipped with an Intel 8088 processor. The later IBM PC/AT and compatible clones had an 80286, and newer computers with 386 and 486 processors were also available at substantial cost.
 
 The Intel 286 was a big improvement over the 8088, and not just due to clock speed increases. It had a 24-bit address bus, supporting 16 MiB of memory instead of the previous limit of 1 MiB. Additions to the instruction encodings were particularly important to compilers of the era: `enter`, `leave`, and support for immediate operands on `imul`, `push`, and bit shifts were all put to frequent use. The game was compiled with the expectation that these instruction encodings would be available, making it unable to run on an 8088.

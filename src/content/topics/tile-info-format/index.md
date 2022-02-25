@@ -6,6 +6,8 @@ weight = 150
 
 # Tile Info Format
 
+{{< table-of-contents >}}
+
 Individual tiles have a fixed size of 8x8 pixels, but most of the sprites in the game are larger than that. The player sprites, for instance, are usually 3x5 tiles (or 24x40 pixels) in size. **Tile info** files specify how individual 8x8 tiles should be arranged on the screen to form larger sprites. Some may know this concept by another name -- **metasprites** -- although that's more commonly used when discussing console gaming.
 
 Tile info files are used when drawing sprites for actors/decorations, cartoons, and the player. The tile info file for each game object has its own [group file]({{< relref "group-file-format" >}}) entry:

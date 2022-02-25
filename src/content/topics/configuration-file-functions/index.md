@@ -6,6 +6,8 @@ weight = 250
 
 # Configuration File Functions
 
+{{< table-of-contents >}}
+
 The game stores a few small pieces of configuration in a [configuration file]({{< relref "configuration-file-format" >}}) named COSMOx.CFG. This file holds the keyboard mapping preferences, the state of sound effect/music playback, and the high score table.
 
 The configuration is loaded during the {{< lookup/cref Startup >}} process, and saved during {{< lookup/cref ExitClean >}}. If the configuration file does not exist, default values are loaded instead.
@@ -20,7 +22,7 @@ The top-level structure of the function is:
 void LoadConfigurationData(char *filename)
 {
     FILE *fp;
-    byte space;
+    char space;
 
     fp = fopen(filename, "rb");
 
@@ -41,10 +43,10 @@ This is a straightforward A-or-B choice: {{< lookup/cref fopen >}} the file spec
 Here, `fp` is `NULL` so there is nothing else we can do with it -- the configuration file does not exist and the default settings must be loaded.
 
 ```c
-        scancodeNorth = SCANCODE_NUM_8;
-        scancodeSouth = SCANCODE_NUM_2;
-        scancodeWest = SCANCODE_NUM_4;
-        scancodeEast = SCANCODE_NUM_6;
+        scancodeNorth = SCANCODE_KP_8;
+        scancodeSouth = SCANCODE_KP_2;
+        scancodeWest = SCANCODE_KP_4;
+        scancodeEast = SCANCODE_KP_6;
         scancodeJump = SCANCODE_CTRL;
         scancodeBomb = SCANCODE_ALT;
         isMusicEnabled = true;

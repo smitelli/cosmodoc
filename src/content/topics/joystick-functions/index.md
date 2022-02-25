@@ -10,6 +10,8 @@ Although not especially popular or even all that pleasant to use, the game has r
 
 It would be fair to say that the joystick support is incomplete and a bit buggy. It was possibly a late addition or afterthought, something more intended to be used as a selling point rather than a full-fledged input method. Still, it's in there, and the hardware is interesting enough in its own right to warrant some investigation.
 
+{{< table-of-contents >}}
+
 ## The IBM Game Control Adapter
 
 Joysticks were big in video games of the late 1970s and early 1980s. Atari had a design for a digital joystick port that was relatively popular, and which eventually appeared in Commodore, Amiga, and Amstrad systems. Other manufacturers had their own incompatible designs as well, and IBM was no exception.
@@ -135,7 +137,7 @@ void ShowJoystickConfiguration(word stick)
     word junk;
     word xthird, ythird;
     int lefttime, toptime, righttime, bottomtime;
-    byte scancode = 0;
+    byte scancode = SCANCODE_NULL;
     JoystickState state;
 ```
 
@@ -148,7 +150,7 @@ This function uses a relatively large number of local variables:
 * `toptime`: The length of the timing interval seen on the Y channel when the joystick was at its topmost position.
 * `righttime`:  The length of the timing interval seen on the X channel when the joystick was at its rightmost position.
 * `bottomtime`: The length of the timing interval seen on the Y channel when the joystick was at its bottommost position.
-* `scancode`: Holds a copy of the most recent byte that was sent from the keyboard.
+* `scancode`: Holds a copy of the most recent byte that was sent from the keyboard. This value is explicitly zeroed to start.
 * `state`: A {{< lookup/cref JoystickState >}} structure containing the state of the two joystick buttons.
 
 The `stick` value should be either {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}} or {{< lookup/cref name="JOYSTICK" text="JOYSTICK_B" >}} to select that joystick. The game only implements {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}, and this is the only value that will work correctly.
@@ -268,7 +270,7 @@ These timing boundary values are stored in {{< lookup/cref joystickBandLeft >}},
     DrawTextLine(xframe, 15, " a bomb or (J)ump?");
     scancode = WaitSpinner(xframe + 19, 15);
 
-    if (scancode == SCANCODE_ESCAPE) {
+    if (scancode == SCANCODE_ESC) {
         return;
     } else if (scancode == SCANCODE_J) {
         joystickBtn1Bombs = true;   /* BUG: Bomb/Jump buttons are swapped */

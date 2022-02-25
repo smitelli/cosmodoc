@@ -6,6 +6,8 @@ weight = 110
 
 # Map Format
 
+{{< table-of-contents >}}
+
 The game world is stored across several distinct files called **maps**. These map files define the floors, walls, and ceilings of the world, along with other stationary structures like trees, pipes, and ice formations. Map files also contain a list of all actors that should be inserted into the world, and the starting position for each one. Everything the player encounters while progressing through the levels of each episode is specified in a sequence of map files.
 
 Within the [group files]({{< relref "group-file-format" >}}), individual maps are stored in entries named A1&ndash;11.MNI (for episode one), B1&ndash;10.MNI (for episode two), C1&ndash;10.MNI (for episode three), and BONUS1&ndash;6.MNI (two bonus levels per episode). There are 37 maps across all three episodes, 36 of them unique (A11 and B1 are identical).

@@ -1,30 +1,14 @@
 * Eventually will be more than semi-complete
 * Word count
-* Investigate JS ToC
 * Appendix/glossary
 * Unused tiles and masktile
-* Is CSS (text/css) being gzipped?
-* Add cache policy -- 84 hrs?
 
 =============================================================================
 
-* UI frame
-    * PlaceTextFrame: draw bray box with blue shiny border around it
-    * AnimateTextFrame: wrap PlaceTextFrame() w/ an animation loop
 * text rendering
     * description of the font file and the charset
-    * LoadFonts: given groupent name, load into specified buffer. inverts mask
-    * PlaceTextLine: place a one-line string at XY (left origin). control codes handled here
-    * PlaceRightAlignNumber: draw integer at XY (right origin).
-    * EchoTextChar: draw one-char representation of KB scancode at XY.
-    * MultiCharInput: accept keyboard input, up to max length, echoing at XY (left origin).
 * cartoon rendering
-    * LoadCartoons: given groupent name, load cartoons into fixed location: mapData
     * PlaceCartoon: load cartoons if needed. draw cartoon at XY (bottom left origin) one tile at a time.
-* wait spinner
-    * WaitSpinner: call DrawWaitSpinner() in a busy loop until any key cycles. clear global keypress, erase wait spinner, and return pressed key.
-    * DrawWaitSpinner: sleep, advance, and draw one wai spinner frame at XY. return most recent scancode seen.
-    * EraseWaitSpinner: clear one XY cell where wait spinner (or any character) was.
 * menus
     * MainMenu: the title screen, real main menu, and key input processing.
     * DrawMainMenu: place text lines for main menu, and that's it.
@@ -65,8 +49,6 @@
     * InitializeGameState: reset player-specific game stuff for brand new game.
     * GiveScore: given an actor type, add a certain amount to player's score.
 * map management
-    * LoadTileAttributes: load 7,000 bytes into tileAttributesData.
-    * LoadMaskTile: load 40,000 bytes into maskTileData.
     * SetMapBlockRepeat: SetMapBlock to one value, repeated arbitrarily many times.
     * SetMapBlock4: set 4 consecutive map blocks to 4 different values.
     * GetMapBlock: get one map block.
@@ -161,7 +143,6 @@
     * ProcessAllDecorations: for each decoration -- draw at XY (sparkles are always in-front, rain moves faster and with randomness). move decoration according to given dir. handle cycling animation, and loop limit. once it's looped enough, go inactive.
     * PounceDecoration: insert six decoration spores in all directions.
 * actors
-    * LoadActors: open named groupent file, load actor graphics data into three blocks.
     * CreateActor: set all members of actor slot specified by actorIndexCursor. does not change cursor in any way.
     * CreateActorAtIndex: sets actorIndexCursor, calls CA based on actor type.
     * InsertActor: looks for dead actor slot, then calls CAAI to install new actor there. if no dead actors in used area, call CAAI at the first free slot.

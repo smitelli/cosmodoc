@@ -1,4 +1,42 @@
-window.onload = function() {
+function InitializeTableOfContents() {
+    var tocElement = document.getElementById('toc-container'),
+        tocHTML = '',
+        lastLevel = 1;  //we skip the H1 level
+
+    if (tocElement === null) return;
+
+    document
+            .getElementById('main-page')
+            .querySelectorAll('h2, h3, h4, h5, h6')
+            .forEach(function(el) {
+        var level = el.nodeName.substring(1, 2);
+
+        // TODO This isn't technically right; nested <ul> belongs inside <li>
+        for (; lastLevel < level; lastLevel++) {
+            tocHTML += '<ul>';
+        }
+
+        for (; lastLevel > level; lastLevel--) {
+            tocHTML += '</ul>';
+        }
+
+        tocHTML += '<li><a href="#' + el.id + '">' + el.innerHTML + '</a></li>';
+    });
+
+    for (; lastLevel > 1; lastLevel--) {  //again, we skip the H1 level
+        tocHTML += '</ul>';
+    }
+
+    tocElement.innerHTML = tocHTML;
+}
+
+if (document.readyState !== 'loading') {
+    InitializeTableOfContents();
+} else {
+    document.addEventListener('DOMContentLoaded', InitializeTableOfContents);
+}
+
+window.addEventListener('load', function() {
     // `base64 -w0 /path/to/some.png`
     var eyes = {
             '16x16': {
@@ -27,4 +65,4 @@ window.onload = function() {
 
         shutPrev = shut;
     }, delayMs);
-};
+});

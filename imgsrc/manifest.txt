@@ -41,3 +41,4 @@ startup-and-exit\b800-mishmash.svg 684x 1368x 2052x
 tile-image-format/row-planar-masked.svg 684x 1368x 2052x
 tile-image-format/row-planar-solid.svg 684x 1368x 2052x
 tile-info-format/sprite-layout.svg 684x 1368x 2052x
+user-interface-functions\frame-measurement.svg 684x 1368x 2052x

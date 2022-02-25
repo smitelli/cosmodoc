@@ -6,6 +6,8 @@ weight = 310
 
 # Assembly Drawing Functions
 
+{{< table-of-contents >}}
+
 All of the procedures that draw tile image data to the screen were originally written in assembly language for speed. Assembly programming for DOS is an interesting topic, but in the context of graphics drawing it is mind-numbingly repetitive and the bigger concepts can become muddled. The approach taken here is to translate the assembly into operable C code that performs the same steps in _practically_ the same way. The code presented here works identically to the game's assembly, although it runs noticeably (and at times unplayably) slower. For those interested in the way the original assembly was constructed, the Cosmore project[^cosmoreasm] implements a reconstruction of the assembly code with copious comments.
 
 The system requirements of the game specify that an ["AT class" computer is required]({{< relref "main-and-outer-loop/#main" >}}) to run the game. The original IBM PC/AT uses a 6 MHz CPU clock, which appears not to be powerful enough to play the game without a noticeable reduction in frame rate.[^equivalent6] The later revisions of the AT use an 8 MHz clock, which runs at an acceptable frame rate but with some minor graphical glitches.[^equivalent8] The Intel 80386 processor had been available for six years by the time the game was released, and the 80486 for three years, therefore it was a tad unlikely that players were actually trying to play this game on a stock eight-year-old PC/AT.
@@ -595,6 +597,18 @@ This works correctly due to luck, mostly. This procedure is only called from {{<
 The second difference is in the handling of `mask`. Here it starts at 80h, setting only the most significant bit (leftmost pixel) to start with. During each row, the value in `mask` is shifted one bit position to the _right_, and the _most_ significant bit is forced on. This shifts binary ones in from the left, and zeros out from the right, generating the next step in the triangular pattern that defines this edge of the light cone.
 
 Aside from these details, the implementation is the same as {{< lookup/cref LightenScreenTileWest >}}.
+
+{{< boilerplate/function-cref DRAW_SOLID_TILE_XY >}}
+
+The {{< lookup/cref DRAW_SOLID_TILE_XY >}} macro wraps a call to {{< lookup/cref DrawSolidTile >}}, converting `x` and `y` tile coordinates into the linear offset form expected by that function.
+
+```c
+#define DRAW_SOLID_TILE_XY(src, x, y) { \
+    DrawSolidTile((src), (x) + ((y) * 320)); \
+}
+```
+
+Each pixel row on the screen uses 40 bytes, and each tile row is eight pixels high. Multiplying these two values produces the Y-stride value of 320.
 
 [^cosmoreasm]: https://github.com/smitelli/cosmore/blob/main/src/lowlevel.asm
 

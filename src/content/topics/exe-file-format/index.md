@@ -6,6 +6,8 @@ weight = 60
 
 # EXE File Format
 
+{{< table-of-contents >}}
+
 A reasonable place to start the discussion is with the game's executable files. A user would run  `COSMO1.EXE` if they wanted to play episode one, `COSMO2.EXE` for episode two, and `COSMO3.EXE` for episode three. Each executable contains a different variant of the base game, with enough substantial differences that the [group files]({{< relref "group-file-format" >}}) from different episodes cannot be interchanged and played. The file structure and naming conventions permit all three episodes to coexist in the same directory without conflict, although the installer programs seem to prefer to install each episode in its own directory.
 
 There are a few obvious differences right off the bat. Take the file sizes, for instance:

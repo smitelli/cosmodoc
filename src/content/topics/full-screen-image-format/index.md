@@ -6,6 +6,8 @@ weight = 130
 
 # Full-Screen Image Format
 
+{{< table-of-contents >}}
+
 The IBM Enhanced Graphics Adapter (**EGA**) supported a number of display modes, but all of the graphics in the game were shown in mode `0Dh`. This was a 320x200 mode that permitted up to 16 distinct colors on the screen at any one time. 320 &times; 200 = 64,000 pixels, and log&#x2082; 16 = 4 bits, meaning one complete screenful of graphics required 256,000 bits or **32,000 bytes** to store.
 
 There are several 32,000-byte full-screen images housed in the [group files]({{< relref "group-file-format" >}}). These images are drawn on the screen to present pre-title, title, ending, or other information to the player:
