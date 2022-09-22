@@ -89,9 +89,7 @@ bbool ReadDemoFrame(void)
     winLevel =  (bool)(*(miscData + demoDataPos) & 0x40);
 
     demoDataPos++;
-    if (demoDataPos > demoDataLength) {
-        return true;
-    }
+    if (demoDataPos > demoDataLength) return true;
 
     return false;
 }

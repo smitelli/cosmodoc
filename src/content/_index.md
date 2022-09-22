@@ -10,7 +10,7 @@ priority = 1
 
 _Cosmo's Cosmic Adventure_ is a DOS video game published by Apogee Software Productions in March 1992. It was programmed by Todd J. Replogle with art by Stephen A. Hornback.
 
-My name is Scott, and I wrote roughly 125,000 words (and counting) about how this game worked.
+My name is Scott, and I wrote roughly 141,000 words (and counting) about how this game worked.
 
 The pages of this website cover all aspects of the game, from data files to drawing routines and everything in between, with occasional forays into the computer hardware and software contemporary to the era. The information presented here is the result of months of research and reverse-engineering effort. I hope you find it enlightening, or at the very least somewhat interesting.
 

@@ -1,7 +1,7 @@
 +++
 title = "User Interface Functions"
 description = "Describes the functions that comprise the game's menu drawing and text interface."
-weight = 330
+weight = 340
 +++
 
 # User Interface Functions

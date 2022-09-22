@@ -1,28 +1,19 @@
+* Keep page title at the top of nav scroll
 * Eventually will be more than semi-complete
 * Word count
+* <aside> (plus others?) does not render in reader view
+* Wait spinner held key inconsistency
+* String byte to font char mapping column
+* Finish describing the bugs
 * Appendix/glossary
 * Unused tiles and masktile
 
 =============================================================================
 
-* text rendering
-    * description of the font file and the charset
-* cartoon rendering
-    * PlaceCartoon: load cartoons if needed. draw cartoon at XY (bottom left origin) one tile at a time.
 * menus
-    * MainMenu: the title screen, real main menu, and key input processing.
-    * DrawMainMenu: place text lines for main menu, and that's it.
-    * GameRedefineMenu: inner menu for changing controls/config
-    * ConfirmQuit: Y/N prompt
-    * InGameMenu: ESC menu in the game.
-    * SaveGamePrompt: menu UI for saving a game.
-    * RestoreGamePrompt: menu UI for loading a game.
     * RestoreGameNotFound: restore game error.
     * AlteredFileError: restore game error.
-    * KeyboardConfigPrompt: "enter new key"
-    * KeyboardConfig: keyboard redefine menu.
     * SoundToggle: UI text for sound toggle.
-    * TestSound: UI menu for testing each sound.
     * MusicToggle: UI for music on/off message.
 * story/help
     * Copyright
@@ -34,11 +25,33 @@
     * PublisherBBS
     * EndGameStory
     * EndGameCongrats
+* game dialogs
+    * PlayerDialogFrame
+    * DNDialogFrame
+    * RescuedDNMessage
+    * Episode1EndMessage
+    * PauseMessage
+    * HintGlobeMessage
+    * BombHint
+    * PounceHint
+    * HealthHint
+* debug and cheats
+    * GodModeToggle
+    * CheatMessage
+    * MemoryUsage
 * intermissions
     * NowEnteringLevel: you've seen it a lot.
     * SectionIntermission: variable message, followed by star tally.
     * StarBonusTally: count up the number of stars collected.
-    * HighScoreTable, EnterHighScore: view/modify high scores.
+    * EnterHighScore: modify high scores.
+    
+* status bar
+    * mention format of status.mni
+    * PlayerScore: defines position, UpdateStatusScore: GIVES POINTS. for each display page, place score line at XY.
+    * PlayerStars: defines position, UpdateStatusStars: for each display page, place stars line at XY.
+    * PlayerBombs: defines position, UpdateStatusBombs: for each display page, draw a font char, then place bombs line at XY.
+    * PlayerHealth: calls IPH for each display page, InnerPlayerHealth: defines position, UpdateStatusHealth: draw health bars, two lines high.
+    * InitializeGameWindow: calls DGW for each display page, DrawGameWindow: clear screen, draw status bar BG, call score/stars/bombs/health.
 
 * game setup
     * GameRand: predictable PRNG
@@ -81,40 +94,17 @@
     * ShakePlayerHead: handle landing on the ground and maybe shaking head.
 * player display
     * DrawPlayerSprite: player sprite control, with some checks for the various ways to die.
-    * PlacePlayer: draw one player sprite at XY.
 * player/actor
     * TestPlayerHit: return true if actor type/frame/XY is touching the player
     * PounceHelper: imparts the springiness into actor pounces.
     * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
 
-* status bar
-    * mention format of status.mni
-    * PlayerScore: defines position, UpdateStatusScore: GIVES POINTS. for each display page, place score line at XY.
-    * PlayerStars: defines position, UpdateStatusStars: for each display page, place stars line at XY.
-    * PlayerBombs: defines position, UpdateStatusBombs: for each display page, draw a font char, then place bombs line at XY.
-    * PlayerHealth: calls IPH for each display page, InnerPlayerHealth: defines position, UpdateStatusHealth: draw health bars, two lines high.
-    * InitializeGameWindow: calls DGW for each display page, DrawGameWindow: clear screen, draw status bar BG, call score/stars/bombs/health.
 * backdrop
     * InitializeBackdropTable: i have no earthly idea.
     * LoadBackdrop: open groupent by name, install to video memory via scratch space. calls other functions i don't yet understand.
     * InstallBackdropVert: i have no earthly idea.
     * InstallBackdropHoriz: i have no earthly idea.
     * IsBackdropChanged: did any pertinent info regarding the backdrop change?
-* game dialogs
-    * PlayerDialogFrame
-    * DNDialogFrame
-    * RescuedDNMessage
-    * Episode1EndMessage
-    * PauseMessage
-    * HintGlobeMessage
-    * BombHint
-    * PounceHint
-    * HealthHint
-* debug and cheats
-    * WarpPrompt
-    * GodModeToggle
-    * CheatMessage
-    * MemoryUsage
 
 * platforms/fountains
     * ProcessAllPlatforms: for all platforms -- remove platform from map, conditionally call PPT, move platform, reinsert platform into map
@@ -152,7 +142,6 @@
     * AreActorsTouching: given two actor defs, determine if they are touching.
     * IsActorVisible: given one actor def, determine if it is in the screen area.
     * TestActorMove: can an actor def move in the requested direction?
-    * PlaceActor: draw one actor sprite at XY.
     * thinkers
         * ActFootSwitch: used for 4 real switches. all other references are no-op.
         * ActHorizontalMover: big saw blade, robotic spike

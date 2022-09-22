@@ -126,7 +126,9 @@ The analog inputs of the joystick are infinitely variable, subject to the pollin
 
 {{< boilerplate/function-cref ShowJoystickConfiguration >}}
 
-The {{< lookup/cref ShowJoystickConfiguration >}} function prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`. It can be accessed from the "Game Redefine" menu in either the main menu or the in-game menu. This function must run to completion for {{< lookup/cref isJoystickReady >}} to become true. If a key is pressed at any point, the function is aborted.
+The {{< lookup/cref ShowJoystickConfiguration >}} function prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`. It can be accessed from the "Game Redefine" menu in either the main menu or the in-game help menu. This function must run to completion for {{< lookup/cref isJoystickReady >}} to become true. If a key is pressed at any point, the function is aborted.
+
+{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
 
 This function bears a striking similarity to `CalibrateJoy()`[^CalibrateJoy] from Id Software's C Library as used in _Hovertank 3-D_.
 

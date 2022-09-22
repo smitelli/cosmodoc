@@ -144,7 +144,7 @@ Next comes {{< lookup/cref GameLoop >}}, framed by a toggle of the {{< lookup/cr
         StopMusic();
 
         if (demoState != DEMOSTATE_PLAY && demoState != DEMOSTATE_RECORD) {
-            CheckHighScore();
+            CheckHighScoreAndShow();
         }
 
         if (demoState == DEMOSTATE_RECORD) {
@@ -158,7 +158,7 @@ At this point, gameplay has stopped and we are handling the transition back into
 
 {{< lookup/cref StopMusic >}} ensures that there is no music or "ringing" notes still playing.
 
-If {{< lookup/cref demoState >}} indicates no demo is being played back or recorded, {{< lookup/cref CheckHighScore >}} is called to see if the player's score qualifies for entry into the high score table. This also displays the high score table before returning.
+If {{< lookup/cref demoState >}} indicates no demo is being played back or recorded, {{< lookup/cref CheckHighScoreAndShow >}} is called to see if the player's score qualifies for entry into the high score table. This also displays the high score table before returning.
 
 Finally, if a demo _is_ being recorded, {{< lookup/cref SaveDemoData >}} is called to flush the recorded [demo data]({{< relref "demo-format" >}}) to disk.
 

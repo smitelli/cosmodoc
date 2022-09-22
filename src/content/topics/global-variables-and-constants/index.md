@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 340
+weight = 360
 +++
 
 # Global Variables and Constants
@@ -31,6 +31,16 @@ typedef byte bbool;           /* Boolean stored in a byte */
 
 These are the return values for the {{< lookup/cref GetProcessorType >}} function.
 
+{{< boilerplate/global-cref DEMOSTATE >}}
+
+Symbolic Constant  | Value | Description
+-------------------|-------|------------
+`DEMOSTATE_NONE`   | 0     | The game is played in the usual way, with user keyboard input controlling the player. All in-game hints and intermission screens are displated.
+`DEMOSTATE_RECORD` | 1     | The game is played in demo recording mode. The keyboard controls the player, but the level progression is altered and in-game hints are skipped. All player movement is captured into a demo file on disk.
+`DEMOSTATE_PLAY`   | 2     | The game runs in demo playback mode. Keyboard input is ignored (any keypress ends the game) and player movement commands are read from the demo file. Level progression and hint display are altered in the same way as with `DEMOSTATE_RECORD`.
+
+These are the return values for the {{< lookup/cref TitleLoop >}} function.
+
 {{< boilerplate/global-cref DRAWMODE >}}
 
 Symbolic Constant      | Value | Description
@@ -53,6 +63,16 @@ Symbolic Constant      | Value | Description
 
 The [game font]({{< relref "databases/font" >}}) is built from 100 [masked tiles]({{< relref "tile-image-format#masked-tiles" >}}), each beginning on a 40-byte boundary. Only a handful of these tiles are referenced directly in the game code; all other tile offsets are calculated by adding a multiple of 40 to one of the above base values.
 
+{{< boilerplate/global-cref HELP_MENU >}}
+
+Symbolic Constant    | Value | Description
+---------------------|-------|------------
+`HELP_MENU_CONTINUE` | 0     | The user did not do anything that would affect the current iteration of the game loop or the state of gameplay as a whole.
+`HELP_MENU_RESTART`  | 1     | The user loaded a saved game, and the game loop needs to restart from the beginning with this new state.
+`HELP_MENU_QUIT`     | 2     | The user wants to quit the current game, and the game loop needs to stop running.
+
+These are the return values for the {{< lookup/cref ShowHelpMenu >}} function.
+
 {{< boilerplate/global-cref IMAGE >}}
 
 The names are described in more detail on the [full-screen image database]({{< relref "databases/full-screen-image" >}}) page.
@@ -73,7 +93,37 @@ The colors here are based on the Borland {{< lookup/cref COLORS >}} members, wit
 
 {{< boilerplate/global-cref PALANIM >}}
 
+{{< boilerplate/global-cref PLAYER >}}
+
+Most of these values must be combined with one of the {{< lookup/cref PLAYER_BASE >}} constants to select between the west- and east-facing variants of each frame. The only exceptions are the "dead" and "hidden" values, which are directionless.
+
+{{< boilerplate/global-cref PLAYER_BASE >}}
+
+The values here should be added to one of the {{< lookup/cref PLAYER >}} constants to produce the true frame number for the desired combination.
+
+{{< boilerplate/global-cref POUNCE_HINT >}}
+
+Symbolic Constant    | Value | Description
+---------------------|-------|------------
+`POUNCE_HINT_UNSEEN` | 0     | The hint has never been shown. If the player is hurt, it is appropriate to show the hint.
+`POUNCE_HINT_QUEUED` | 1     | The player has just been hurt, and the hint needs to be shown. The hint message is queued for display when the current frame's drawing is complete.
+`POUNCE_HINT_SEEN`   | 2     | The hint has been shown, or the player has demonstrated that they know how to pounce on enemies. All saved games are written with this pounce hint state, so all loaded games will suppress the hint.
+
+{{< boilerplate/global-cref RESTORE_GAME >}}
+
+Symbolic Constant        | Value | Description
+-------------------------|-------|------------
+`RESTORE_GAME_NOT_FOUND` | 0     | The user chose a valid save slot, but there was no file saved there.
+`RESTORE_GAME_SUCCESS`   | 1     | The restore completed successfully and the new game state is ready to play.
+`RESTORE_GAME_ABORT`     | 2     | The user aborted the restore procedure, either explicitly by pressing <kbd>Esc</kbd> or implicitly by choosing an invalid save slot.
+
+These are the return values for the {{< lookup/cref PromptRestoreGame >}} function.
+
 {{< boilerplate/global-cref SCANCODE >}}
+
+{{< boilerplate/global-cref SCROLLH >}}
+
+{{< boilerplate/global-cref SCROLLW >}}
 
 {{< boilerplate/global-cref SND >}}
 
@@ -102,6 +152,12 @@ This is updated whenever {{< lookup/cref StartGameMusic >}} or {{< lookup/cref S
 
 This is checked and updated during calls to {{< lookup/cref StartSound >}}. If the new sound has a priority value that is less than {{< lookup/cref activeSoundPriority >}}, the new sound will not play and the currently-playing sound will continue.
 
+{{< boilerplate/global-cref activeTransporter >}}
+
+This is the identifier of the transporter the player is moving _to_, but the test for this is rather simplistic. For each transporter in the map, if its "to address" data is different from {{< lookup/cref activeTransporter >}}, that transporter is the destination. This limits each map to having two transporters that ping-pong the player between them.
+
+As a special case, a {{< lookup/cref activeTransporter >}} value of 3 will win the level, allowing for one or more {{< lookup/actor type=203 plural=true >}} to be implemented separately from any other transporters on the map.
+
 {{< boilerplate/global-cref actorTileData >}}
 
 Its allocations are divided into three distinct byte-aligned memory blocks due to the overall size of the data. The first two blocks each hold 65,535 bytes and the final block holds 60,840 bytes.
@@ -109,6 +165,12 @@ Its allocations are divided into three distinct byte-aligned memory blocks due t
 {{< boilerplate/global-cref backdropTable >}}
 
 This is also used as scratch storage during calls to {{< lookup/cref DrawFullscreenText >}}.
+
+{{< boilerplate/global-cref blockActionCmds >}}
+
+This variable takes a true value when the player is "removed" from the map, like when interacting with a {{< lookup/actor 152 >}}, {{< lookup/actor type=149 strip=true >}}, {{< lookup/actor 186 >}}, or the {{< lookup/actor type=247 strip=true >}}.
+
+{{< boilerplate/global-cref cartoonInfoData >}}
 
 {{< boilerplate/global-cref cmdBomb >}}
 
@@ -152,6 +214,24 @@ When set to `DEMOSTATE_RECORD` or `DEMOSTATE_PLAY`, this suppresses the "Now ent
 
 The values for {{< lookup/cref TITLE_SCREEN >}} and {{< lookup/cref END_SCREEN >}} are different depending on the episode; typically these will be `"TITLEx.MNI"` and `"ENDx.MNI"` (respectively) with `x` matching the episode number.
 
+{{< boilerplate/global-cref gameScore >}}
+
+Most events in the game add points to this variable. Its purpose is purely vanity, the only effect is to earn a spot in the high score table at the end of the game. The smallest score value implemented in the game is worth 100 points, and the score should always be a multiple of 50 unless e.g. a save file was manipulated.
+
+The acceptable range of values for this variable is 0&ndash;9,999,999. Numbers with more than seven characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+
+{{< boilerplate/global-cref gameStars >}}
+
+Each star represents a 1,000 point bonus which is added to {{< lookup/cref gameScore >}} during the {{< lookup/cref ShowStarBonus >}} sequence. The star count is reset to zero once the bonus has been added. The star count also influences which bonus levels are entered over the course of the game:
+
+Stars       | Bonus Level
+------------|------------
+0&ndash;24  | Skipped.
+25&ndash;49 | BONUS1 (E1), BONUS3 (E2), or BONUS5 (E3).
+&ge;50      | BONUS2 (E1), BONUS4 (E2), or BONUS6 (E3).
+
+The acceptable range of values for this variable is 0&ndash;99. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+
 {{< boilerplate/global-cref gameTickCount >}}
 
 This value is used by various delay functions to produce pauses of a constant length, regardless of processor speed. It is also used to govern the speed of the {{< lookup/cref GameLoop >}} function.
@@ -177,6 +257,10 @@ This is a duplicate (but separately managed) copy of {{< lookup/cref isAdLibPres
 {{< boilerplate/global-cref isAdLibStarted >}}
 
 This variable is managed by {{< lookup/cref StartAdLib >}} and {{< lookup/cref StopAdLib >}} to ensure no attempts are made to start an already-started AdLib card or stop an already-stopped one.
+
+{{< boilerplate/global-cref isCartoonDataLoaded >}}
+
+This is checked by {{< lookup/cref DrawCartoon >}} to determine if the cartoon data needs to be loaded from disk, avoiding an extra disk access if so. The memory area used for cartoon images (or map data) is {{< lookup/cref mapData >}}.
 
 {{< boilerplate/global-cref isDebugMode >}}
 
@@ -205,6 +289,10 @@ This array is twice as large as it needs to be. Due to the high bit being used a
 {{< boilerplate/global-cref isMusicEnabled >}}
 
 Music may play when this is true, and music is silenced when false. This setting can be toggled by the user, and the value is persisted in the [configuration file]({{< relref "configuration-file-format" >}}).
+
+{{< boilerplate/global-cref isNewGame >}}
+
+This is set in {{< lookup/cref TitleLoop >}} and controls whether {{< lookup/cref SwitchLevel >}} displays a "One Moment" image before loading the first level.
 
 {{< boilerplate/global-cref isNewSound >}}
 
@@ -326,11 +414,39 @@ Once the end of the palette table has been reached (as indicated by encountering
 
 {{< boilerplate/global-cref pit0Value >}}
 
+{{< boilerplate/global-cref playerBombs >}}
+
+The acceptable range of values for this variable is 0&ndash;9. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+
+{{< boilerplate/global-cref playerHealth >}}
+
+When a new game is started, this is initialized to 4, which represents three filled bars of health. It can decrement down to 1, representing all health bars unfilled. Once it decrements to zero, the player immediately dies.
+
+The maximum amount of health obtainable, once all {{< lookup/actor type="82" plural="true" >}} have been picked up, is 6.
+
+{{< boilerplate/global-cref playerHealthCells >}}
+
+When a new game is started, this is initialized to 3, which represents three available bars of health.
+
+The maximum amount of health cells obtainable, once all {{< lookup/actor type="82" plural="true" >}} have been picked up, is 5.
+
+{{< boilerplate/global-cref playerHurtCooldown >}}
+
 This is modified during calls to {{< lookup/cref SetPIT0Value >}}, and takes the `value` that is passed during each call. It is treated as a 16-bit value in all contexts where it appears.
+
+{{< boilerplate/global-cref playerInfoData >}}
+
+{{< boilerplate/global-cref playerPushFrame >}}
+
+When the player is pushed by actors, this will be set to one of the "force-pushed" frames based on the relative position of the actor. In pipe systems, this will be {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}} to temporarily remove the player from the map.
 
 {{< boilerplate/global-cref playerTileData >}}
 
 This block is used to hold the [masked tile image data]({{< relref "tile-image-format#masked-tiles" >}}) that the player's sprites are built from.
+
+{{< boilerplate/global-cref pounceHintState >}}
+
+At any time, the value of this variable should be one of the {{< lookup/cref POUNCE_HINT >}} values. The hint is shown the first time the player is hurt, even if the injury came from an un-pounceable actor.
 
 {{< boilerplate/global-cref profCountCPU >}}
 
@@ -347,6 +463,10 @@ This function was the system timer interrupt handler when the program was starte
 {{< boilerplate/global-cref savedInt9 >}}
 
 This function was the keyboard handler when the program was started.
+
+{{< boilerplate/global-cref scrollX >}}
+
+{{< boilerplate/global-cref scrollY >}}
 
 {{< boilerplate/global-cref scancodeBomb >}}
 
@@ -411,6 +531,10 @@ This value can be seen in the "Memory free" line in the Memory Usage debug menu.
 {{< boilerplate/global-cref totalMemFreeBefore >}}
 
 This value can be seen in the "Take Up" line in the Memory Usage debug menu.
+
+{{< boilerplate/global-cref usedCheatCode >}}
+
+This is usually false until the user enters the <kbd>C</kbd>+<kbd>0</kbd>+<kbd>F10</kbd> cheat. The intention of this variable is to prevent the user from using the cheat code more than once in a single game.
 
 {{< boilerplate/global-cref volGroupFilename >}}
 

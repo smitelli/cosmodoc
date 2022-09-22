@@ -303,7 +303,7 @@ Finally, the values for DI, SI, DS, and BP are restored. This unwinds the local 
 
 ### Return Value
 
-See {{< lookup/cref name="CPUTYPE" text="CPUTYPE_*" >}}.
+See {{< lookup/cref CPUTYPE >}}.
 
 ## Authorship
 

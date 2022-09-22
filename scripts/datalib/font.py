@@ -51,6 +51,17 @@ def generate_font_table():
         else:
             raise RuntimeError('huh?')
 
+        if i == 2:
+            ascii_code = 24  # CP437 up arrow
+        elif i == 3:
+            ascii_code = 25  # CP437 down arrow
+        elif i == 5:
+            ascii_code = 27  # CP437 left arrow
+        elif i == 6:
+            ascii_code = 26  # CP437 right arrow
+        elif i == 25:
+            ascii_code = 156  # CP437 pound sterling
+
         table.append({
             'index': i,
             'offset_bytes': i * 40,

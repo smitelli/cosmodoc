@@ -6,22 +6,22 @@ function InitializeTableOfContents() {
     if (tocElement === null) return;
 
     document
-            .getElementById('main-page')
-            .querySelectorAll('h2, h3, h4, h5, h6')
-            .forEach(function(el) {
-        var level = el.nodeName.substring(1, 2);
+        .getElementById('main-page')
+        .querySelectorAll('h2, h3, h4, h5, h6')
+        .forEach(function(el) {
+            var level = el.nodeName.substring(1, 2);
 
-        // TODO This isn't technically right; nested <ul> belongs inside <li>
-        for (; lastLevel < level; lastLevel++) {
-            tocHTML += '<ul>';
-        }
+            // TODO This isn't technically right; nested <ul> belongs inside <li>
+            for (; lastLevel < level; lastLevel++) {
+                tocHTML += '<ul>';
+            }
 
-        for (; lastLevel > level; lastLevel--) {
-            tocHTML += '</ul>';
-        }
+            for (; lastLevel > level; lastLevel--) {
+                tocHTML += '</ul>';
+            }
 
-        tocHTML += '<li><a href="#' + el.id + '">' + el.innerHTML + '</a></li>';
-    });
+            tocHTML += '<li><a href="#' + el.id + '">' + el.innerHTML + '</a></li>';
+        });
 
     for (; lastLevel > 1; lastLevel--) {  //again, we skip the H1 level
         tocHTML += '</ul>';
@@ -65,4 +65,21 @@ window.addEventListener('load', function() {
 
         shutPrev = shut;
     }, delayMs);
+});
+
+window.addEventListener('load', function() {
+    var docHref = document.location.href;
+
+    document
+        .getElementById('main-menu')
+        .querySelectorAll('li a')
+        .forEach(function(el) {
+            if (docHref.startsWith(el.href)) {
+                try {
+                    el.scrollIntoViewIfNeeded();
+                } catch (e) {
+                    el.scrollIntoView();
+                }
+            }
+        });
 });

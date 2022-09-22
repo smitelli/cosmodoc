@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 350
+weight = 370
 +++
 
 # Bugs and Oversights
@@ -22,11 +22,15 @@ This is the listing of every oversight I discovered during the course of my rese
 
 This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 
+## Cheat code can be reapplied by abusing the save game function.
+
 ## Cheats interfere with demo playback and recording.
 
 ## AdLib hardware is not shut down when EGA card is missing.
 
 ## {{< lookup/actor 189 >}} spawns Floating Score effect, but no points are given.
+
+## Pressing <kbd>F11</kbd> in main menu (without debug mode) clears and redraws the screen.
 
 ## {{< lookup/actor 106 >}} reads west tile attribute instead of north when considering a flip.
 

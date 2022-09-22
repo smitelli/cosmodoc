@@ -350,7 +350,7 @@ AnimatePalette:
   ref: /topics/c-drawing-functions/#AnimatePalette
 #CanBeExploded:
 #CanSuctionWalkerFlip:
-#CheckHighScore:
+#CheckHighScoreAndShow:
 #ClearGameScreen:
 #ClearPlayerDizzy:
 ClearScreen:
@@ -374,7 +374,11 @@ DRAW_SOLID_TILE_XY:
   def: '#define DRAW_SOLID_TILE_XY(src, x, y) { DrawSolidTile((src), (x) + ((y) * 320)); }'
   desc: Wraps a call to `DrawSolidTile()`, converting `x` and `y` tile coordinates into the linear offset form expected by that function.
   ref: /topics/assembly-drawing-functions/#DRAW_SOLID_TILE_XY
-#DrawCartoon:
+DrawCartoon:
+  text: DrawCartoon()
+  def: void DrawCartoon(byte frame, word x_origin, word y_origin);
+  desc: Draws a cartoon having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
+  ref: /topics/composite-drawing-functions/#DrawCartoon
 #DrawExplosions:
 #DrawFountains:
 DrawFullscreenImage:
@@ -386,7 +390,12 @@ DrawFullscreenText:
   text: DrawFullscreenText()
   def: void DrawFullscreenText(char *entry_name);
   desc: Draws a page of B800 text to the screen and clears space for the DOS prompt.
-  ref: /topics/startup-and-exit/#DrawFullscreenText
+  ref: /topics/c-drawing-functions/#DrawFullscreenText
+DrawMainMenu:
+  text: DrawMainMenu()
+  def: void DrawMainMenu(void);
+  desc: A small helper that draws the main menu frame and text, but does not do any input handling. It is only called from `TitleLoop()`.
+  ref: /topics/menu-functions/#DrawMainMenu
 #DrawMapRegion:
 DrawMaskedTile:
   text: DrawMaskedTile()
@@ -398,6 +407,11 @@ DrawNumberFlushRight:
   def: void DrawNumberFlushRight(word x_origin, word y_origin, dword value);
   desc: Draws a numeric `value` with the rightmost (least significant) digit anchored at screen coordinates (`x_origin`, `y_origin`). `value` is interpreted as an unsigned long integer.
   ref: /topics/user-interface-functions/#DrawNumberFlushRight
+DrawPlayer:
+  text: DrawPlayer()
+  def: void DrawPlayer(byte frame, word x_origin, word y_origin, word mode);
+  desc: Draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
+  ref: /topics/composite-drawing-functions/#DrawPlayer
 #DrawRandomEffects:
 #DrawSBarHealthHelper:
 DrawScancodeCharacter:
@@ -410,7 +424,11 @@ DrawSolidTile:
   def: void DrawSolidTile(word src_offset, word dst_offset);
   desc: Copies an 8x8 pixel solid tile from the tile storage area byte offset `src_offset` to the video memory byte offset `dst_offset`. Both offsets refer to locations within the EGA's memory space. The EGA hardware must be in "latched write" mode for this function to work correctly.
   ref: /topics/assembly-drawing-functions/#DrawSolidTile
-#DrawSprite:
+DrawSprite:
+  text: DrawSprite()
+  def: void DrawSprite(word sprite, word frame, word x_origin, word y_origin, word mode);
+  desc: Draws a sprite of the provided `sprite` type and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance.
+  ref: /topics/composite-drawing-functions/#DrawSprite
 DrawSpriteTile:
   text: DrawSpriteTile()
   def: void DrawSpriteTile(byte *src, word x, word y);
@@ -501,7 +519,6 @@ FadeToWhite:
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeToWhite
 #GameRand:
-#GameRedefineMenu:
 GetProcessorType:
   text: GetProcessorType()
   def: word GetProcessorType(void);
@@ -653,9 +670,7 @@ PCSpeakerService:
   def: void PCSpeakerService(void);
   desc: Sends a new fragment of sound effect data to the PC speaker.
   ref: /topics/pc-speaker-and-timing-functions/#PCSpeakerService
-#PauseMessage:
 #PounceHelper:
-#PrepareBackdropVScroll:
 #ProcessActor:
 #ProcessGameInput:
 #ProcessGameInputHelper:
@@ -670,9 +685,31 @@ ProfileCPUService:
   def: void interrupt ProfileCPUService(void);
   desc: Benchmarks the timing characteristics of the CPU relative to the system's Programmable Interval Timer.
   ref: /topics/adlib-functions/#ProfileCPUService
-#PromptKeyBind:
-#PromptLevelWarp:
-#PromptQuitConfirm:
+PromptKeyBind:
+  text: PromptKeyBind()
+  def: bbool PromptKeyBind(byte *target_var, word x, char *message);
+  desc: Displays `message` text at the provided `x` position (and a fixed Y position) on the screen and reads a single scancode into the memory pointed to by `target_var`. Returns true if the user pressed the Esc key and false for all other keys.
+  ref: /topics/menu-functions/#PromptKeyBind
+PromptLevelWarp:
+  text: PromptLevelWarp()
+  def: bbool PromptLevelWarp(void);
+  desc: Prompts the user to select a map number from 1 to 12 (or 13, depending on the episode) and jumps to the start of the chosen map. Returns true if the map changed, or false if the user entered a non-numeric or out-of-range value.
+  ref: /topics/menu-functions/#PromptLevelWarp
+PromptQuitConfirm:
+  text: PromptQuitConfirm()
+  def: bbool PromptQuitConfirm(void);
+  desc: Displays a window prompting the user to confirm their intention to quit, and blocks until a key is pressed. The return value is true if the Y key was pressed, or false in the case of any other key.
+  ref: /topics/menu-functions/#PromptQuitConfirm
+PromptRestoreGame:
+  text: PromptRestoreGame()
+  def: byte PromptRestoreGame(void);
+  desc: Displays a menu that prompts the user to pick a save game slot (1-9) to load from, and gameplay jumps to that state. The user may cancel this prompt without loading by pressing Esc, Space, or Enter. The return value is one of the `RESTORE_GAME_*` constants.
+  ref: /topics/menu-functions/#PromptRestoreGame
+PromptSaveGame:
+  text: PromptSaveGame()
+  def: void PromptSaveGame(void);
+  desc: Displays a menu that prompts the user to pick a save game slot (1-9) to save the state of their game into, then the save is carried out. The user may cancel this prompt without saving by pressing Esc, Space, or Enter.
+  ref: /topics/menu-functions/#PromptSaveGame
 ReadAndEchoText:
   text: ReadAndEchoText()
   def: void ReadAndEchoText(word x_origin, word y_origin, char *dest, word max_length);
@@ -761,9 +798,22 @@ SetVideoMode:
 #ShowE1CliffhangerMessage:
 #ShowEnding:
 #ShowForeignOrders:
-#ShowGameMenu:
+ShowGameRedefineMenu:
+  text: ShowGameRedefineMenu()
+  def: void ShowGameRedefineMenu(void);
+  desc: Shows a menu labeled "Game Redefine" in response to the user selecting the G option in either the main menu or the in-game help menu. This function simply dispatches one of the submenu functions in response to the user's input.
+  ref: /topics/menu-functions/#ShowGameRedefineMenu
 #ShowHealthHint:
-#ShowHighScoreTable:
+ShowHelpMenu:
+  text: ShowHelpMenu()
+  def: byte ShowHelpMenu(void);
+  desc: Shows a menu labeled "Help Menu" in response to the user pressing F1 during the game. It gives access to save/restore functions and a subset of options offered by the main menu. Returns one of the `HELP_MENU_*` variables.
+  ref: /topics/menu-functions/#ShowHelpMenu
+ShowHighScoreTable:
+  text: ShowHighScoreTable()
+  def: void ShowHighScoreTable(void);
+  desc: Shows the top ten scores that have been reached and the name of the player who earned each spot. The table can optionally be erased by pressing the F10 key and confirming with the Y key.
+  ref: /topics/menu-functions/#ShowHighScoreTable
 #ShowHintGlobeMessage:
 #ShowHintsAndKeys:
 ShowJoystickConfiguration:
@@ -771,13 +821,22 @@ ShowJoystickConfiguration:
   def: void ShowJoystickConfiguration(word stick);
   desc: Prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`.
   ref: /topics/joystick-functions/#ShowJoystickConfiguration
-#ShowKeyboardConfiguration:
+ShowKeyboardConfiguration:
+  text: ShowKeyboardConfiguration()
+  def: void ShowKeyboardConfiguration(void);
+  desc: Shows and handles the keyboard configuration (sometimes called keyboard redefine) menu.
+  ref: /topics/menu-functions/#ShowKeyboardConfiguration
 #ShowLevelIntro:
-#ShowMainMenu:
 #ShowOrderingInformation:
+#ShowPauseMessage:
 #ShowPublisherBBS:
 #ShowRescuedDNMessage:
 #ShowRestoreGameError:
+ShowSoundTest:
+  text: ShowSoundTest()
+  def: void ShowSoundTest(void);
+  desc: Presents a menu that allows the user to seek through and preview each sound effect available in the game.
+  ref: /topics/menu-functions/#ShowSoundTest
 #ShowStarBonus:
 StartAdLib:
   text: StartAdLib()
@@ -845,14 +904,17 @@ SwitchMusic:
 #TILE_CAN_CLING:
 #TILE_SLOPED:
 #TestPlayerMove:
-#TestSound:
 #TestSpriteMove:
 TimerInterruptService:
   text: TimerInterruptService()
   def: void interrupt TimerInterruptService(void);
   desc: Handles interrupts that occur on interrupt vector 8 (IRQ 0), which is wired to channel 0 of the system's Programmable Interval Timer. Each time the timer ticks, this function updates the sounds being played by the PC speaker and/or the AdLib.
   ref: /topics/adlib-functions/#TimerInterruptService
-#TitleLoop:
+TitleLoop:
+  text: TitleLoop()
+  def: byte TitleLoop(void);
+  desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the `DEMOSTATE_*` variables.
+  ref: /topics/menu-functions/#TitleLoop
 #ToggleMusic:
 #UnfoldDNFrame:
 #UnfoldPlayerFrame:
@@ -927,6 +989,14 @@ CPUTYPE:
     #define CPUTYPE_80386 7  /* Intel 80386 or above */
   desc: Provides meaningful names for the detected processor type.
   ref: /topics/global-variables-and-constants/#CPUTYPE
+DEMOSTATE:
+  text: DEMOSTATE_*
+  def: |-
+    #define DEMOSTATE_NONE   0
+    #define DEMOSTATE_RECORD 1
+    #define DEMOSTATE_PLAY   2
+  desc: Defines constant values that represent the input processing mode that should be used by the game loop.
+  ref: /topics/global-variables-and-constants/#DEMOSTATE
 DRAWMODE:
   text: DRAWMODE_*
   def: |-
@@ -943,7 +1013,7 @@ END_ANIMATION:
   text: END_ANIMATION
   def: |-
     #define END_ANIMATION BYTE_MAX
-  desc: Define the marker that terminates palette animation tables. In Turbo C, this value is FFh.
+  desc: Defines the marker that terminates palette animation tables. In Turbo C, this value is FFh.
   ref: /topics/global-variables-and-constants/#END_ANIMATION
 END_SCREEN:
   text: END_SCREEN
@@ -974,6 +1044,14 @@ FONT:
     #define FONT_BACKGROUND_GRAY 0x0f28
   desc: Provides meaningful names for some, but not all, of the font tile graphics.
   ref: /topics/global-variables-and-constants/#FONT
+HELP_MENU:
+  text: HELP_MENU_*
+  def: |-
+    #define HELP_MENU_CONTINUE 0
+    #define HELP_MENU_RESTART  1
+    #define HELP_MENU_QUIT     2
+  desc: Defines the possible return values of the in-game help menu.
+  ref: /topics/global-variables-and-constants/#HELP_MENU
 IMAGE:
   text: IMAGE_*
   def: |-
@@ -1061,6 +1139,60 @@ PALANIM:
     #define PALANIM_EXPLOSIONS 6
   desc: Provides meaningful names for all of the palette animation types available in the game.
   ref: /topics/global-variables-and-constants/#PALANIM
+PLAYER:
+  text: PLAYER_*
+  def: |-
+    #define PLAYER_WALK_1         0
+    #define PLAYER_WALK_2         1
+    #define PLAYER_WALK_3         2
+    #define PLAYER_WALK_4         3
+    #define PLAYER_STAND          4
+    #define PLAYER_LOOK_NORTH     5
+    #define PLAYER_LOOK_SOUTH     6
+    #define PLAYER_JUMP           7
+    #define PLAYER_FALL           8
+    #define PLAYER_CLING          9
+    #define PLAYER_CLING_OPPOSITE 10
+    #define PLAYER_CLING_NORTH    11
+    #define PLAYER_CLING_SOUTH    12
+    #define PLAYER_FALL_LONG      13
+    #define PLAYER_CROUCH         14
+    #define PLAYER_PAIN           15
+    #define PLAYER_FALL_SEVERE    16
+    #define PLAYER_PUSHED         17
+    #define PLAYER_STAND_BLINK    18
+    #define PLAYER_SHAKE_1        19
+    #define PLAYER_SHAKE_2        20
+    #define PLAYER_SHAKE_3        21
+    #define PLAYER_JUMP_LONG      22
+    #define PLAYER_DEAD_1         46
+    #define PLAYER_DEAD_2         47
+    #define PLAYER_HIDDEN         BYTE_MAX
+  desc: Provides meaningful names for the player sprite frames available in the game.
+  ref: /topics/global-variables-and-constants/#PLAYER
+PLAYER_BASE:
+  text: PLAYER_BASE_*
+  def: |-
+    #define PLAYER_BASE_WEST 0
+    #define PLAYER_BASE_EAST 23
+  desc: Defines the base frame number for the west- and east-facing sets of player sprites.
+  ref: /topics/global-variables-and-constants/#PLAYER_BASE
+POUNCE_HINT:
+  text: POUNCE_HINT_*
+  def: |-
+    #define POUNCE_HINT_UNSEEN 0
+    #define POUNCE_HINT_QUEUED 1
+    #define POUNCE_HINT_SEEN   2
+  desc: Defines constants that represent the current state of the "jump on top of creatures..." hint message.
+  ref: /topics/global-variables-and-constants/#POUNCE_HINT
+RESTORE_GAME:
+  text: RESTORE_GAME_*
+  def: |-
+    #define RESTORE_GAME_NOT_FOUND 0
+    #define RESTORE_GAME_SUCCESS   1
+    #define RESTORE_GAME_ABORT     2
+  desc: Defines constants that represent the possible outcomes of a user's interaction with the "restore game" menu.
+  ref: /topics/global-variables-and-constants/#RESTORE_GAME
 SCANCODE:
   text: SCANCODE_*
   def: |-
@@ -1154,6 +1286,18 @@ SCANCODE:
     #define SCANCODE_EXTENDED    0xe0
   desc: Provides meaningful names for all of the IBM PC/AT keyboard scancodes. These are all well-defined and well-known.
   ref: /topics/global-variables-and-constants/#SCANCODE
+SCROLLH:
+  text: SCROLLH
+  def: |-
+    #define SCROLLH 18
+  desc: The height of the scrolling view into the game world, in tiles.
+  ref: /topics/global-variables-and-constants/#SCROLLH
+SCROLLW:
+  text: SCROLLW
+  def: |-
+    #define SCROLLW 38
+  desc: The width of the scrolling view into the game world, in tiles.
+  ref: /topics/global-variables-and-constants/#SCROLLW
 SND:
   text: SND_*
   def: |-
@@ -1278,6 +1422,16 @@ activeSoundPriority:
   def: word activeSoundPriority;
   desc: Holds the priority value of the PC speaker sound effect that is currently playing.
   ref: /topics/global-variables-and-constants/#activeSoundPriority
+activeTransporter:
+  text: activeTransporter
+  def: word activeTransporter;
+  desc: Holds the number of the destination transporter when one is in use, or zero during normal gameplay.
+  ref: /topics/global-variables-and-constants/#activeTransporter
+actorInfoData:
+  text: actorInfoData
+  def: word *actorInfoData;
+  desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for actor sprites.
+  ref: /topics/global-variables-and-constants/#actorInfoData
 actorTileData:
   text: actorTileData[]
   def: byte *actorTileData[3];
@@ -1288,6 +1442,16 @@ backdropTable:
   def: word backdropTable[2880];
   desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop.
   ref: /topics/global-variables-and-constants/#backdropTable
+blockActionCmds:
+  text: blockActionCmds
+  def: bool blockActionCmds;
+  desc: When true, prevents the player from moving, being hurt, or being drawn.
+  ref: /topics/global-variables-and-constants/#blockActionCmds
+cartoonInfoData:
+  text: cartoonInfoData
+  def: word *cartoonInfoData;
+  desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for cartoon sprites.
+  ref: /topics/global-variables-and-constants/#cartoonInfoData
 cmdBomb:
   text: cmdBomb
   def: bbool cmdBomb;
@@ -1367,6 +1531,16 @@ fullscreenImageNames:
     };
   desc: Holds a list of all group file entry names that refer to full-screen image data.
   ref: /topics/global-variables-and-constants/#fullscreenImageNames
+gameScore:
+  text: gameScore
+  def: dword gameScore;
+  desc: Holds the number of points that the player has earned over the course of the current game.
+  ref: /topics/global-variables-and-constants/#gameScore
+gameStars:
+  text: gameStars
+  def: dword gameStars;
+  desc: Holds the number of stars that the player has collected.
+  ref: /topics/global-variables-and-constants/#gameStars
 gameTickCount:
   text: gameTickCount
   def: word gameTickCount;
@@ -1404,6 +1578,11 @@ isAdLibStarted:
   def: bool isAdLibStarted;
   desc: Holds a true value if the AdLib startup code has executed, and false if the AdLib has either never been started or was explicitly stopped.
   ref: /topics/global-variables-and-constants/#isAdLibStarted
+isCartoonDataLoaded:
+  text: isCartoonDataLoaded
+  def: bbool isCartoonDataLoaded;
+  desc: Holds a true value if the cartoon tile image data has been loaded into the shared memory. When false, this memory is either uninitialized or contains map data.
+  ref: /topics/global-variables-and-constants/#isCartoonDataLoaded
 isDebugMode:
   text: isDebugMode
   def: bbool isDebugMode;
@@ -1429,6 +1608,11 @@ isMusicEnabled:
   def: bool isMusicEnabled;
   desc: Controls whether or not the AdLib music should be sent to the hardware.
   ref: /topics/global-variables-and-constants/#isMusicEnabled
+isNewGame:
+  text: isNewGame
+  def: bbool isNewGame;
+  desc: Holds a true value if the game loop was started via the "Begin New Game" menu option, and false in all other cases (load game or demo mode).
+  ref: /topics/global-variables-and-constants/#isNewGame
 isNewSound:
   text: isNewSound
   def: bool isNewSound;
@@ -1470,7 +1654,7 @@ joystickBtn1Bombs:
   desc: Controls which action the primary joystick button performs. When true, this button places a bomb. When false, this button makes the player jump. In either case, the secondary button takes the opposite action.
   ref: /topics/global-variables-and-constants/#joystickBtn1Bombs
 keyNames:
-  text: keyNames
+  text: keyNames[]
   def: |-
     typedef char KeyName[6];
     KeyName keyNames[] = {
@@ -1581,11 +1765,46 @@ pit0Value:
   def: dword pit0Value;
   desc: Holds a copy of the most recent value used to reconfigure channel 0 of the system's Programmable Interval Timer.
   ref: /topics/global-variables-and-constants/#pit0Value
+playerBombs:
+  text: playerBombs
+  def: word playerBombs;
+  desc: Holds the number of bombs the player is currently carrying.
+  ref: /topics/global-variables-and-constants/#playerBombs
+playerHealth:
+  text: playerHealth
+  def: word playerHealth;
+  desc: Holds the current amount of health the player has. Zero represents the immediate death of the player.
+  ref: /topics/global-variables-and-constants/#playerHealth
+playerHealthCells:
+  text: playerHealthCells
+  def: word playerHealthCells;
+  desc: Holds the number of health bar cells that are shown on the status bar. The player always has one unit of health more than the number of bar cells (i.e. the player is still alive if all the cells are unfilled).
+  ref: /topics/global-variables-and-constants/#playerHealthCells
+playerHurtCooldown:
+  text: playerHurtCooldown
+  def: word playerHurtCooldown;
+  desc: When greater than zero, makes the player temporarily invincible and flashes the sprite. Decrements toward zero during every frame of gameplay.
+  ref: /topics/global-variables-and-constants/#playerHurtCooldown
+playerInfoData:
+  text: playerInfoData
+  def: word *playerInfoData;
+  desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for player sprites.
+  ref: /topics/global-variables-and-constants/#playerInfoData
+playerPushFrame:
+  text: playerPushFrame
+  def: word playerPushFrame;
+  desc: Specifies the frame of player sprite animation to show during a "push" sequence.
+  ref: /topics/global-variables-and-constants/#playerPushFrame
 playerTileData:
   text: playerTileData
   def: byte *playerTileData;
   desc: Points to a block of memory matching the size and content of the PLAYERS.MNI group file entry, nominally 30,000 bytes.
   ref: /topics/global-variables-and-constants/#playerTileData
+pounceHintState:
+  text: pounceHintState
+  def: word pounceHintState;
+  desc: Holds a flag that tracks whether the user has been shown the "jump on top of creatures..." hint dialog.
+  ref: /topics/global-variables-and-constants/#pounceHintState
 profCountCPU:
   text: profCountCPU
   def: word profCountCPU;
@@ -1640,6 +1859,16 @@ scancodeWest:
   def: byte scancodeWest;
   desc: Holds the keyboard scancode that the user has selected for the player's "walk west" movement command.
   ref: /topics/global-variables-and-constants/#scancodeWest
+scrollX:
+  text: scrollX
+  def: word scrollX;
+  desc: Holds the X coordinate of the map column currently positioned at the leftmost edge of the screen.
+  ref: /topics/global-variables-and-constants/#scrollX
+scrollY:
+  text: scrollY
+  def: word scrollY;
+  desc: Holds the Y coordinate of the map row currently positioned at the topmost edge of the screen.
+  ref: /topics/global-variables-and-constants/#scrollY
 skipDetectAdLib:
   text: skipDetectAdLib
   def: bool skipDetectAdLib;
@@ -1695,6 +1924,11 @@ totalMemFreeBefore:
   def: dword totalMemFreeBefore;
   desc: Captures the amount of free memory, in bytes, immediately after the program started running.
   ref: /topics/global-variables-and-constants/#totalMemFreeBefore
+usedCheatCode:
+  text: usedCheatCode
+  def: bool usedCheatCode;
+  desc: Holds a flag that indicates that the user has used the cheat code.
+  ref: /topics/global-variables-and-constants/#usedCheatCode
 volGroupFilename:
   text: volGroupFilename
   def: char *volGroupFilename = FILENAME_BASE ".VOL";
