@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 370
+weight = 380
 +++
 
 # Bugs and Oversights

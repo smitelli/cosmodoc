@@ -2,7 +2,7 @@
 title = "Sound Database"
 linkTitle = "Sounds"
 description = "A table containing a list of all sound effects and associated metadata."
-weight = 460
+weight = 470
 +++
 
 # Sound Database

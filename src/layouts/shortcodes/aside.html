@@ -1,11 +1,15 @@
 {{/*
-    Wraps the inner markdown content in an <aside> tag with an optional class
+    Wraps the inner markdown content in a <blockquote> tag with an optional class
     name. Returns HTML containing this wrapped content.
 
+    This should really be <aside>, but that causes the Firefox reader mode (at
+    least) to hide the element which skips valuable content. <blockquote> is the
+    next-best thing that visually sets the content off in this view.
+
     Named parameters:
-        class (optional): Class value to add to the <aside> tag.
+        class (optional): Class value to add to the <blockquote> tag.
 */}}
 
-<aside{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+<blockquote{{ with .Get "class" }} class="{{ . }}"{{ end }}>
 {{ .Inner | markdownify }}
-</aside>
+</blockquote>

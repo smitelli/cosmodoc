@@ -17,22 +17,22 @@ def run(args):
 
 def generate_font_table():
     specials = {
-        0: 'Solid Black Tile',
-        1: 'Solid Black Tile',
+        0: 'Solid Black',
+        1: 'Solid Black',
         2: '\u2191',
         3: '\u2193',
-        4: 'Solid Black Tile',
+        4: 'Solid Black',
         5: '\u2190',
         6: '\u2192',
-        7: 'Solid Black Tile',
-        8: 'Empty Health Bar, Bottom',
-        9: 'Empty Health Bar, Top',
+        7: 'Solid Black',
+        8: 'Empty Health Bar, Lower',
+        9: 'Empty Health Bar, Upper',
         25: '\u00a3',
-        95: 'Filled Health Bar, Top',
-        96: 'Filled Health Bar, Bottom',
-        97: 'Solid Gray Tile',
-        98: 'Solid Gray Tile',
-        99: 'Solid Gray Tile'
+        95: 'Filled Health Bar, Upper',
+        96: 'Filled Health Bar, Lower',
+        97: 'Solid Gray',
+        98: 'Solid Gray',
+        99: 'Solid Gray'
     }
 
     table = []
@@ -67,9 +67,29 @@ def generate_font_table():
             'offset_bytes': i * 40,
             'ascii_code': ascii_code,
             'character': char,
+            'c_character': find_char(i),
             'literal': len(char) == 1
         })
 
     return {
         'table': table
     }
+
+
+def char2tile(ch):
+    # Lazily yanked out of Cosmore's DrawTextLine()
+    if ch >= ord('a'):
+        offset = 0x0ac8 + ((ch - ord('a')) * 40)
+    else:
+        offset = 0x0050 + ((ch - 0x18) * 40)
+    return offset / 40
+
+
+def find_char(tile):
+    for c in range(255, -1, -1):
+        if char2tile(c) == tile:
+            res = f"{repr(chr(c))}"
+            if res == '"\'"':
+                res = "'\\''"
+            return res
+    return None

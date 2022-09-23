@@ -565,6 +565,18 @@ This first loop serves to capture that case. As long as the most recent scancode
 ```
 This is identical to the previous loop, except the termination condition is inverted. This is waiting until the next make code arrives. Once the user presses a key, this loop will terminate.
 
+{{< aside class="armchair-engineer" >}}
+**The PS/2 makes it weird, of course.**
+
+The implementation here seems simple enough to be bulletproof: block until a key release message arrives, then block until a subsequent key press message is seen. There's no obvious way to blaze through wait spinner calls by holding down a key; there must be a deliberate release followed by a press.
+
+But where there's a will there's a way. On the original [84-key PC/AT keyboard]({{< relref "keyboard-functions/#the-relatively-simple-world-of-the-ibm-pcat" >}}), pressing and holding a key -- say <kbd>Num 8 / &uarr;</kbd> -- repeatedly sends that key's "make" code byte (48h) as long as the key is held. `0x48 & 0x80 == 0`, so the first loop will block for as long as the key is down.
+
+On the [PS/2 keyboard]({{< relref "keyboard-functions/#youre-gonna-ps2-it" >}}), IBM added a standalone <kbd>&uarr;</kbd> key that uses the same 48h scancode byte, but prefixed with an E0h flag byte to allow the software to differentiate the keys if desired. While _this_ key is held, the keyboard repeatedly sends _two_ bytes (E0h 48h E0h 48h...) and the E0h unintentionally terminates the first loop. Then 48h terminates the second loop, and we've successfully bypassed the release-and-press requirement.
+
+The effects of this can be seen clearly in some menus: [Ordering Information]({{< relref "#TODO" >}}), [Story]({{< relref "#TODO" >}}), and [Test Sound]({{< relref "menu-functions/#test-sound" >}}) are a few clear examples. Holding one of the standalone arrow keys down will rapidly move through the menu, while holding the same arrow key on the numeric keypad will not.
+{{< /aside >}}
+
 ```c
     scancode = lastScancode;
     isKeyDown[scancode] = false;

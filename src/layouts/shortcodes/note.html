@@ -1,8 +1,12 @@
 {{/*
-    Wraps the inner markdown content in an <aside> tag with a "Note:" prefix.
+    Wraps the inner markdown content in a <blockquote> tag with a "Note:" prefix.
     Returns HTML containing this wrapped content.
+
+    This should really be <aside>, but that causes the Firefox reader mode (at
+    least) to hide the element which skips valuable content. <blockquote> is the
+    next-best thing that visually sets the content off in this view.
 */}}
 
-<aside class="note">
+<blockquote class="note">
     <strong>Note:</strong> {{ .Inner | markdownify }}
-</aside>
+</blockquote>

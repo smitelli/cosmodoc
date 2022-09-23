@@ -2,7 +2,7 @@
 title = "Music Database"
 linkTitle = "Music"
 description = "A table containing a list of all pieces of music, their descriptions, and a list of the maps they appear on."
-weight = 470
+weight = 480
 +++
 
 # Music Database

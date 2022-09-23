@@ -1,0 +1,16 @@
+{{/*
+    Provide as much data as possible for the "Function Index" page from the cref
+    data file.
+*/}}
+
+{{- range $name, $_ := $.Site.Data.cref -}}
+    {{- if strings.HasSuffix .text "()" -}}
+    <hr>
+
+    <a href="{{ .ref }}"><h2 id="{{ $name }}"><code>{{ .text }}</code></h2></a>
+
+    {{- highlight .def "c" "" -}}
+
+    <p>{{- .desc | markdownify -}}</p>
+    {{- end -}}
+{{- end -}}

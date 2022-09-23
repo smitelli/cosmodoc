@@ -1,9 +1,6 @@
 * Keep page title at the top of nav scroll
 * Eventually will be more than semi-complete
 * Word count
-* <aside> (plus others?) does not render in reader view
-* Wait spinner held key inconsistency
-* String byte to font char mapping column
 * Finish describing the bugs
 * Appendix/glossary
 * Unused tiles and masktile
