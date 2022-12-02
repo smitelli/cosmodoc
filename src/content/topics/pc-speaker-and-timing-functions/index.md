@@ -1,7 +1,7 @@
 +++
 title = "PC Speaker and Timing Functions"
 description = "Describes the hardware and functions responsible for PC speaker sound effect playback and game timing."
-weight = 260
+weight = 270
 +++
 
 # PC Speaker and Timing Functions

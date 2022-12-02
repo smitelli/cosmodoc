@@ -1,7 +1,7 @@
 +++
 title = "User Interface Functions"
 description = "Describes the functions that comprise the game's menu drawing and text interface."
-weight = 340
+weight = 350
 +++
 
 # User Interface Functions
@@ -19,7 +19,7 @@ The UI drawing functions use [low-level drawing routines]({{< relref "assembly-d
 
 {{< boilerplate/function-cref DrawTextFrame >}}
 
-The {{< lookup/cref DrawTextFrame >}} function draws an empty text frame to the current draw page with the upper-left corner at tile position (`left`, `top`) and a total size of `width` &times; `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively, aligned according to the `centered` flag.
+The {{< lookup/cref DrawTextFrame >}} function draws an empty text frame to the current draw page with the upper-left corner at tile position (`left`, `top`) and a total size of `width` &times; `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively, aligned according to the `centered` flag. The top/bottom texts are rendered with {{< lookup/cref DrawTextLine >}}, and support all animation/image drawing commands supported by that function.
 
 The return value is `left + 1`, which is conceptually the X tile coordinate of the left edge of the inner text area. (The usefulness of this return value is more apparent when paired with {{< lookup/cref UnfoldTextFrame >}}, which does not take a `left` argument.)
 
@@ -130,7 +130,7 @@ With the frame and its top/bottom text fully drawn, the function returns. The re
 
 {{< boilerplate/function-cref UnfoldTextFrame >}}
 
-The {{< lookup/cref UnfoldTextFrame >}} function draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width` &times; `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
+The {{< lookup/cref UnfoldTextFrame >}} function draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width` &times; `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The top/bottom texts are rendered with {{< lookup/cref DrawTextLine >}}, and support all animation/image drawing commands supported by that function. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
 
 The animated "unfolding" effect is achieved with multiple successive calls to {{< lookup/cref DrawTextFrame >}} with a small wait in between each call. A tiny frame starts in the center of the drawing area, which expands horizontally until it reaches the desired width. Once that happens, the frame begins to expand vertically until it reaches the final height, at which point the top and bottom texts are added. This function blocks until the final size has been reached, and larger frames require more iterations (and more time) to do this than smaller frames do.
 
@@ -574,7 +574,7 @@ But where there's a will there's a way. On the original [84-key PC/AT keyboard](
 
 On the [PS/2 keyboard]({{< relref "keyboard-functions/#youre-gonna-ps2-it" >}}), IBM added a standalone <kbd>&uarr;</kbd> key that uses the same 48h scancode byte, but prefixed with an E0h flag byte to allow the software to differentiate the keys if desired. While _this_ key is held, the keyboard repeatedly sends _two_ bytes (E0h 48h E0h 48h...) and the E0h unintentionally terminates the first loop. Then 48h terminates the second loop, and we've successfully bypassed the release-and-press requirement.
 
-The effects of this can be seen clearly in some menus: [Ordering Information]({{< relref "#TODO" >}}), [Story]({{< relref "#TODO" >}}), and [Test Sound]({{< relref "menu-functions/#test-sound" >}}) are a few clear examples. Holding one of the standalone arrow keys down will rapidly move through the menu, while holding the same arrow key on the numeric keypad will not.
+The effects of this can be seen clearly in some menus: [Ordering Information]({{< relref "dialog-functions/#ShowOrderingInformation" >}}), [Story]({{< relref "dialog-functions/#ShowStory" >}}), and [Test Sound]({{< relref "menu-functions/#test-sound" >}}) are a few clear examples. Holding one of the standalone arrow keys down will rapidly move through the menu, while holding the same arrow key on the numeric keypad will not.
 {{< /aside >}}
 
 ```c

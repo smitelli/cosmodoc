@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 380
+weight = 400
 +++
 
 # Bugs and Oversights
@@ -34,9 +34,9 @@ This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 
 ## {{< lookup/actor 106 >}} reads west tile attribute instead of north when considering a flip.
 
-## {{< lookup/actor type="95" strip="1" plural="1" >}} at west edge of map disregard the player.
+## {{< lookup/actor type=95 strip=true plural=true >}} at west edge of map disregard the player.
 
-## Off-screen {{< lookup/actor type="47" plural="1" >}} can make sound.
+## Off-screen {{< lookup/actor type=47 plural=true >}} can make sound.
 
 ## `.SVT` file is not deleted if the write path was overridden.
 

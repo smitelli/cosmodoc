@@ -146,7 +146,7 @@ Total entries: 21
 Entry Name   | Offset (Bytes) | Size (Bytes) | Description
 -------------|----------------|--------------|------------
 TITLE1.MNI   | 4,000          | 32,000       | Full-screen image: "Forbidden Planet - Adventure 1 of 3"
-END1.MNI     | 36,000         | 32,000       | Full-screen image: Cosmo falling toward {{< lookup/actor type="247" strip="1" >}}.
+END1.MNI     | 36,000         | 32,000       | Full-screen image: Cosmo falling toward {{< lookup/actor type=247 strip=true >}}.
 A1.MNI       | 68,000         | 67,154       | Map data: E1L1.
 A2.MNI       | 135,154        | 67,418       | Map data: E1L2.
 A3.MNI       | 202,572        | 67,262       | Map data: E1L3.
@@ -154,7 +154,7 @@ A5.MNI       | 269,834        | 67,904       | Map data: E1L5.
 A6.MNI       | 337,738        | 66,884       | Map data: E1L6.
 A9.MNI       | 404,622        | 66,752       | Map data: E1L9.
 A10.MNI      | 471,374        | 68,156       | Map data: E1L10.
-A11.MNI      | 539,530        | 65,984       | Map data: E1L11 (deep pit with {{< lookup/actor type="247" strip="1" >}} at bottom).
+A11.MNI      | 539,530        | 65,984       | Map data: E1L11 (deep pit with {{< lookup/actor type=247 strip=true >}} at bottom).
 A7.MNI       | 605,514        | 67,700       | Map data: E1L7.
 A8.MNI       | 673,214        | 67,502       | Map data: E1L8.
 BONUS1.MNI   | 740,716        | 66,794       | Map data: Bonus stage (tall).

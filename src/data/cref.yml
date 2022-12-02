@@ -350,7 +350,11 @@ AnimatePalette:
   ref: /topics/c-drawing-functions/#AnimatePalette
 #CanBeExploded:
 #CanSuctionWalkerFlip:
-#CheckHighScoreAndShow:
+CheckHighScoreAndShow:
+  text: CheckHighScoreAndShow()
+  def: void CheckHighScoreAndShow(void);
+  desc: Scans the high score table for a position where the current `gameScore` could be sorted. If a position is located, a prompt is presented asking for a name to be associated with the score at that position, and all inferior scores are shifted one position lower. The tenth score falls off the bottom of the list. Calls `ShowHighScoreTable` unconditionally before returning.
+  ref: /topics/menu-functions/#CheckHighScoreAndShow
 #ClearGameScreen:
 #ClearPlayerDizzy:
 ClearScreen:
@@ -513,11 +517,11 @@ FadeOutCustom:
   def: void FadeOutCustom(word delay);
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to black, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeOutCustom
-FadeToWhite:
-  text: FadeToWhite()
-  def: void FadeToWhite(word delay);
+FadeWhiteCustom:
+  text: FadeWhiteCustom()
+  def: void FadeWhiteCustom(word delay);
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry."
-  ref: /topics/c-drawing-functions/#FadeToWhite
+  ref: /topics/c-drawing-functions/#FadeWhiteCustom
 #GameRand:
 GetProcessorType:
   text: GetProcessorType()
@@ -616,7 +620,11 @@ LoadFontTileData:
   def: void LoadFontTileData(char *entry_name, byte *dest, word length);
   desc: Loads font data into system memory.
   ref: /topics/group-file-functions/#LoadFontTileData
-#LoadGameState:
+LoadGameState:
+  text: LoadGameState()
+  def: bbool LoadGameState(char slot_char);
+  desc: Reads the current state of the most important player variables from a file on disk, whose filename extension is influenced by the character provided in `slot_char`. If the file cannot be loaded, returns false. If the file's internal anti-tampering checksum does not match, an error message is displayed and the program exits. Otherwise, returns true.
+  ref: /topics/save-file-functions/#LoadGameState
 LoadGroupEntryData:
   text: LoadGroupEntryData()
   def: void LoadGroupEntryData(char *entry_name, byte *dest, word length);
@@ -741,7 +749,11 @@ SaveDemoData:
   def: void SaveDemoData(void);
   desc: Flushes all of the in-memory demo data to the PREVDEMO.MNI file on disk -- it does not modify any group file contents.
   ref: /topics/demo-functions/#SaveDemoData
-#SaveGameState:
+SaveGameState:
+  text: SaveGameState()
+  def: void SaveGameState(char slot_char);
+  desc: Writes the current state of the most important player variables to a file on disk, whose filename extension is influenced by the character provided in `slot_char`.
+  ref: /topics/save-file-functions/#SaveGameState
 SelectActivePage:
   text: SelectActivePage()
   def: void SelectActivePage(word page_num);
@@ -790,20 +802,56 @@ SetVideoMode:
   def: void SetVideoMode(word mode_num);
   desc: Changes the system's video mode to the mode number specified by `mode_num`, using a BIOS interrupt call.
   ref: /topics/ega-functions/#SetVideoMode
-#ShowAlteredFileError:
-#ShowBombHint:
-#ShowCheatMessage:
-#ShowCongratulations:
-#ShowCopyright:
-#ShowE1CliffhangerMessage:
-#ShowEnding:
-#ShowForeignOrders:
+ShowAlteredFileError:
+  text: ShowAlteredFileError()
+  def: void ShowAlteredFileError(void);
+  desc: Shows when the user tries to load a manipuleted save file whose checksum does not match the expected value.
+  ref: /topics/dialog-functions/#ShowAlteredFileError
+ShowBombHint:
+  text: ShowBombHint()
+  def: void ShowBombHint(void);
+  desc: Displays a hint dialog that informs the player that they can't use the bomb key until they have picked up a bomb.
+  ref: /topics/dialog-functions/#ShowBombHint
+ShowCheatMessage:
+  text: ShowCheatMessage()
+  def: void ShowCheatMessage(void);
+  desc: Displays a static dialog informing the user that they have entered the cheat code successfully and explaining the effect.
+  ref: /topics/dialog-functions/#ShowCheatMessage
+ShowCongratulations:
+  text: ShowCongratulations()
+  def: void ShowCongratulations(void);
+  desc: Shows a brief page of post-ending story and a pitch for another upcoming game.
+  ref: /topics/dialog-functions/#ShowCongratulations
+ShowCopyright:
+  text: ShowCopyright()
+  def: void ShowCopyright(void);
+  desc: Shows an abbreviated list of credits, the copyright year, and the game version.
+  ref: /topics/dialog-functions/#ShowCopyright
+ShowE1CliffhangerMessage:
+  text: ShowE1CliffhangerMessage()
+  def: void ShowE1CliffhangerMessage(word actor_type);
+  desc: Presents a sequence of two dialogs introducing the "cliffhanger" ending sequence of episode one, followed by ending the game by setting `winGame` to true. During each call, the passed `actor_type` value is used to determine which text to show, or if the game should end.
+  ref: /topics/dialog-functions/#ShowE1CliffhangerMessage
+ShowEnding:
+  text: ShowEnding()
+  def: void ShowEnding(void);
+  desc: Presents a sequence of dialogs when an episode of the game has been played to completion.
+  ref: /topics/dialog-functions/#ShowEnding
+ShowForeignOrders:
+  text: ShowForeignOrders()
+  def: void ShowForeignOrders(void);
+  desc: Displays five consecutive pages of ordering information for international customers.
+  ref: /topics/dialog-functions/#ShowForeignOrders
 ShowGameRedefineMenu:
   text: ShowGameRedefineMenu()
   def: void ShowGameRedefineMenu(void);
   desc: Shows a menu labeled "Game Redefine" in response to the user selecting the G option in either the main menu or the in-game help menu. This function simply dispatches one of the submenu functions in response to the user's input.
   ref: /topics/menu-functions/#ShowGameRedefineMenu
-#ShowHealthHint:
+ShowHealthHint:
+  text: ShowHealthHint()
+  def: void ShowHealthHint(void);
+  desc: Displays a hint dialog that teaches the player what Power Up modules are and how they affect gameplay.
+  ref: /topics/dialog-functions/#ShowHealthHint
 ShowHelpMenu:
   text: ShowHelpMenu()
   def: byte ShowHelpMenu(void);
@@ -814,8 +862,21 @@ ShowHighScoreTable:
   def: void ShowHighScoreTable(void);
   desc: Shows the top ten scores that have been reached and the name of the player who earned each spot. The table can optionally be erased by pressing the F10 key and confirming with the Y key.
   ref: /topics/menu-functions/#ShowHighScoreTable
-#ShowHintGlobeMessage:
-#ShowHintsAndKeys:
+ShowHintGlobeMessage:
+  text: ShowHintGlobeMessage()
+  def: void ShowHintGlobeMessage(word hint_num);
+  desc: Displays a dialog containing an animated context-appropriate hint message. The message is selected via the numeric `hint_num` argument.
+  ref: /topics/dialog-functions/#ShowHintGlobeMessage
+ShowHintsAndKeys:
+  text: ShowHintsAndKeys()
+  def: void ShowHintsAndKeys(word top);
+  desc: Displays a page of helpful hints, followed by two pages of keyboard help. The `top` parameter influences the vertical position of the frames, to allow the dialogs to be placed higher on the screen while the game is being played.
+  ref: /topics/dialog-functions/#ShowHintsAndKeys
+ShowInstructions:
+  text: ShowInstructions()
+  def: void ShowInstructions(void);
+  desc: Shows a progression of five pages of dialog frames that teach the user how to play the game.
+  ref: /topics/dialog-functions/#ShowInstructions
 ShowJoystickConfiguration:
   text: ShowJoystickConfiguration()
   def: void ShowJoystickConfiguration(word stick);
@@ -826,18 +887,66 @@ ShowKeyboardConfiguration:
   def: void ShowKeyboardConfiguration(void);
   desc: Shows and handles the keyboard configuration (sometimes called keyboard redefine) menu.
   ref: /topics/menu-functions/#ShowKeyboardConfiguration
-#ShowLevelIntro:
-#ShowOrderingInformation:
-#ShowPauseMessage:
-#ShowPublisherBBS:
-#ShowRescuedDNMessage:
-#ShowRestoreGameError:
+ShowLevelIntro:
+  text: ShowLevelIntro()
+  def: void ShowLevelIntro(word level_num);
+  desc: Presents the animated message "Now entering level..." followed by the map number of the passed `level_num`.
+  ref: /topics/dialog-functions/#ShowLevelIntro
+ShowMemoryUsage:
+  text: ShowMemoryUsage()
+  def: void ShowMemoryUsage(void);
+  desc: Displays a debug dialog with a few live statistics about available system memory and the current number of actors.
+  ref: /topics/dialog-functions/#ShowMemoryUsage
+ShowOrderingInformation:
+  text: ShowOrderingInformation()
+  def: void ShowOrderingInformation(void);
+  desc: Displays five sequential pages of ordering information in the shareware episode of the game, or a single page thanking the user for purchasing one of the registered episodes in other cases.
+  ref: /topics/dialog-functions/#ShowOrderingInformation
+ShowPauseMessage:
+  text: ShowPauseMessage()
+  def: void ShowPauseMessage(void);
+  desc: Presents a "game paused" dialog, stops music playback, and stops all execution until a key is pressed. Once that happens, the music is restarted and the function returns to its caller.
+  ref: /topics/dialog-functions/#ShowPauseMessage
+ShowPounceHint:
+  text: ShowPounceHint()
+  def: void ShowPounceHint(void);
+  desc: Displays a sequence of two hint dialogs that teach the player how to pounce on enemies for defense.
+  ref: /topics/dialog-functions/#ShowPounceHint
+ShowPublisherBBS:
+  text: ShowPublisherBBS()
+  def: void ShowPublisherBBS(void);
+  desc: Displays two consecutive pages of information on how to access Apogee's official channels on popular bulletin board systems (BBSes) of the day.
+  ref: /topics/dialog-functions/#ShowPublisherBBS
+ShowRescuedDNMessage:
+  text: ShowRescuedDNMessage()
+  def: void ShowRescuedDNMessage(void);
+  desc: Displays a dialog sequence between the player and Duke Nukem (here using the short-lived but canonical spelling "Nukum").
+  ref: /topics/dialog-functions/#ShowRescuedDNMessage
+ShowRestoreGameError:
+  text: ShowRestoreGameError()
+  def: void ShowRestoreGameError(void);
+  desc: Shows when the user tries to restore a saved game whose file does not exist.
+  ref: /topics/dialog-functions/#ShowRestoreGameError
+ShowSectionIntermission:
+  text: ShowSectionIntermission()
+  def: void ShowSectionIntermission(char *top_text, char *bottom_text);
+  desc: Ties different "sections" of the level progression together by showing a completion dialog and presenting the star bonus. Sections are two levels long, followed by a conditional bonus level. Depending on the context (section complete, or bonus level complete) different values may be passed in `top_text` and `bottom_text`.
+  ref: /topics/dialog-functions/#ShowSectionIntermission
 ShowSoundTest:
   text: ShowSoundTest()
   def: void ShowSoundTest(void);
   desc: Presents a menu that allows the user to seek through and preview each sound effect available in the game.
   ref: /topics/menu-functions/#ShowSoundTest
-#ShowStarBonus:
+ShowStarBonus:
+  text: ShowStarBonus()
+  def: void ShowStarBonus(void);
+  desc: Presents a dialog that tallies up the number of stars collected by the player during the previous section. As a side effect, this function zeroes `gameStars` and increases `gameScore` accordingly.
+  ref: /topics/dialog-functions/#ShowStarBonus
+ShowStory:
+  text: ShowStory()
+  def: void ShowStory(void);
+  desc: Shows a progression of six pages of dialog frames that explain the basic premise of the game.
+  ref: /topics/dialog-functions/#ShowStory
 StartAdLib:
   text: StartAdLib()
   def: void StartAdLib(void);
@@ -915,9 +1024,31 @@ TitleLoop:
   def: byte TitleLoop(void);
   desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the `DEMOSTATE_*` variables.
   ref: /topics/menu-functions/#TitleLoop
-#ToggleMusic:
-#UnfoldDNFrame:
-#UnfoldPlayerFrame:
+ToggleGodMode:
+  text: ToggleGodMode()
+  def: void ToggleGodMode(void);
+  desc: Inverts the state of the global "god mode" debug flag and presents a dialog informing the user of the current setting.
+  ref: /topics/dialog-functions/#ToggleGodMode
+ToggleMusic:
+  text: ToggleMusic()
+  def: void ToggleMusic(void);
+  desc: Inverts the setting of the global `isMusicEnabled` variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatable card installed, this function is a no-op.
+  ref: /topics/dialog-functions/#ToggleMusic
+ToggleSound:
+  text: ToggleSound()
+  def: void ToggleSound(void);
+  desc: Inverts the setting of the global `isSoundEnabled` variable then presents a dialog confirming the resulting state.
+  ref: /topics/dialog-functions/#ToggleSound
+UnfoldDNFrame:
+  text: UnfoldDNFrame()
+  def: word UnfoldDNFrame(void);
+  desc: Draws the dialog frame that is used when Duke is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
+  ref: /topics/dialog-functions/#UnfoldDNFrame
+UnfoldPlayerFrame:
+  text: UnfoldPlayerFrame()
+  def: word UnfoldPlayerFrame(void);
+  desc: Draws the dialog frame that is used when the player is speaking with Duke. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
+  ref: /topics/dialog-functions/#UnfoldPlayerFrame
 UnfoldTextFrame:
   text: UnfoldTextFrame()
   def: word UnfoldTextFrame(int top, int height, int width, char *top_text, char *bottom_text);
@@ -976,6 +1107,256 @@ main:
 # GAME GLOBALS                                                                 #
 ################################################################################
 
+ACT:
+  text: ACT_*
+  def: |-
+    #define ACT_BASKET_NULL         0
+    #define ACT_STAR_FLOAT          1
+    #define ACT_JUMP_PAD_FLOOR      2
+    #define ACT_ARROW_PISTON_W      3
+    #define ACT_ARROW_PISTON_E      4
+    #define ACT_FIREBALL_W          5
+    #define ACT_FIREBALL_E          6
+    #define ACT_HEAD_SWITCH_BLUE    7
+    #define ACT_HEAD_SWITCH_RED     8
+    #define ACT_HEAD_SWITCH_GREEN   9
+    #define ACT_HEAD_SWITCH_YELLOW  10
+    #define ACT_DOOR_BLUE           11
+    #define ACT_DOOR_RED            12
+    #define ACT_DOOR_GREEN          13
+    #define ACT_DOOR_YELLOW         14
+    #define ACT_JUMP_PAD_ROBOT      16
+    #define ACT_SPIKES_FLOOR        17
+    #define ACT_SPIKES_FLOOR_RECIP  18
+    #define ACT_SAW_BLADE_VERT      20
+    #define ACT_SAW_BLADE_HORIZ     22
+    #define ACT_BOMB_ARMED          24
+    #define ACT_CABBAGE             25
+    #define ACT_POWER_UP_FLOAT      28
+    #define ACT_BARREL_POWER_UP     29
+    #define ACT_BASKET_GRN_TOMATO   31
+    #define ACT_GRN_TOMATO          32
+    #define ACT_BASKET_RED_TOMATO   33
+    #define ACT_RED_TOMATO          34
+    #define ACT_BARREL_YEL_PEAR     35
+    #define ACT_YEL_PEAR            36
+    #define ACT_BARREL_ONION        37
+    #define ACT_ONION               38
+    #define ACT_EXIT_SIGN           39
+    #define ACT_SPEAR               40
+    #define ACT_SPEAR_RECIP         41
+    #define ACT_GRN_SLIME_THROB     42
+    #define ACT_GRN_SLIME_DRIP      43
+    #define ACT_FLYING_WISP         44
+    #define ACT_TWO_TONS_CRUSHER    45
+    #define ACT_JUMPING_BULLET      46
+    #define ACT_STONE_HEAD_CRUSHER  47
+    #define ACT_PYRAMID_CEIL        48
+    #define ACT_PYRAMID_FALLING     49
+    #define ACT_PYRAMID_FLOOR       50
+    #define ACT_GHOST               51
+    #define ACT_BASKET_GRN_GOURD    52
+    #define ACT_BASKET_BLU_SPHERES  53
+    #define ACT_MOON                54
+    #define ACT_HEART_PLANT         55
+    #define ACT_BARREL_BOMB         56
+    #define ACT_BOMB_IDLE           57
+    #define ACT_BARREL_JUMP_PAD_FL  58
+    #define ACT_SWITCH_PLATFORMS    59
+    #define ACT_SWITCH_MYSTERY_WALL 61
+    #define ACT_MYSTERY_WALL        62
+    #define ACT_SPIKES_FLOOR_BENT   63
+    #define ACT_MONUMENT            64
+    #define ACT_BABY_GHOST          65
+    #define ACT_PROJECTILE_SW       66
+    #define ACT_PROJECTILE_SE       67
+    #define ACT_PROJECTILE_S        68
+    #define ACT_ROAMER_SLUG         69
+    #define ACT_PIPE_CORNER_N       70
+    #define ACT_PIPE_CORNER_S       71
+    #define ACT_PIPE_CORNER_W       72
+    #define ACT_PIPE_CORNER_E       73
+    #define ACT_BABY_GHOST_EGG_PROX 74
+    #define ACT_BABY_GHOST_EGG      75
+    #define ACT_SHARP_ROBOT_FLOOR   78
+    #define ACT_SHARP_ROBOT_CEIL    80
+    #define ACT_BASKET_HAMBURGER    81
+    #define ACT_HAMBURGER           82
+    #define ACT_CLAM_PLANT_FLOOR    83
+    #define ACT_CLAM_PLANT_CEIL     84
+    #define ACT_GRAPES              85
+    #define ACT_PARACHUTE_BALL      86
+    #define ACT_SPIKES_E            87
+    #define ACT_SPIKES_E_RECIP      88
+    #define ACT_SPIKES_W            89
+    #define ACT_BEAM_ROBOT          90
+    #define ACT_SPLITTING_PLATFORM  91
+    #define ACT_SPARK               92
+    #define ACT_BASKET_DANCE_MUSH   93
+    #define ACT_DANCING_MUSHROOM    94
+    #define ACT_EYE_PLANT_FLOOR     95
+    #define ACT_EYE_PLANT_CEIL      96
+    #define ACT_BARREL_CABB_HARDER  100
+    #define ACT_RED_JUMPER          101
+    #define ACT_BOSS                102
+    #define ACT_PIPE_OUTLET         104
+    #define ACT_PIPE_INLET          105
+    #define ACT_SUCTION_WALKER      106
+    #define ACT_TRANSPORTER_1       107
+    #define ACT_TRANSPORTER_2       108
+    #define ACT_PROJECTILE_W        109
+    #define ACT_PROJECTILE_E        110
+    #define ACT_SPIT_WALL_PLANT_E   111
+    #define ACT_SPIT_WALL_PLANT_W   112
+    #define ACT_SPITTING_TURRET     113
+    #define ACT_SCOOTER             114
+    #define ACT_BASKET_PEA_PILE     115
+    #define ACT_BASKET_LUMPY_FRUIT  116
+    #define ACT_BARREL_HORN         117
+    #define ACT_RED_CHOMPER         118
+    #define ACT_BASKET_POD          119
+    #define ACT_SWITCH_LIGHTS       120
+    #define ACT_SWITCH_FORCE_FIELD  121
+    #define ACT_FORCE_FIELD_VERT    122
+    #define ACT_FORCE_FIELD_HORIZ   123
+    #define ACT_PINK_WORM           124
+    #define ACT_HINT_GLOBE_0        125
+    #define ACT_PUSHER_ROBOT        126
+    #define ACT_SENTRY_ROBOT        127
+    #define ACT_PINK_WORM_SLIME     128
+    #define ACT_DRAGONFLY           129
+    #define ACT_WORM_CRATE          130
+    #define ACT_BOTTLE_DRINK        134
+    #define ACT_GRN_GOURD           135
+    #define ACT_BLU_SPHERES         136
+    #define ACT_POD                 137
+    #define ACT_PEA_PILE            138
+    #define ACT_LUMPY_FRUIT         139
+    #define ACT_HORN                140
+    #define ACT_RED_BERRIES         141
+    #define ACT_BARREL_BOTL_DRINK   142
+    #define ACT_SATELLITE           143
+    #define ACT_IVY_PLANT           145
+    #define ACT_YEL_FRUIT_VINE      146
+    #define ACT_HEADDRESS           147
+    #define ACT_BASKET_HEADDRESS    148
+    #define ACT_EXIT_MONSTER_W      149
+    #define ACT_EXIT_LINE_VERT      150
+    #define ACT_SMALL_FLAME         151
+    #define ACT_TULIP_LAUNCHER      152
+    #define ACT_ROTATING_ORNAMENT   153
+    #define ACT_BLU_CRYSTAL         154
+    #define ACT_RED_CRYSTAL_FLOOR   155
+    #define ACT_BARREL_RT_ORNAMENT  156
+    #define ACT_BARREL_BLU_CRYSTAL  157
+    #define ACT_BARREL_RED_CRYSTAL  158
+    #define ACT_GRN_TOMATO_FLOAT    159
+    #define ACT_RED_TOMATO_FLOAT    160
+    #define ACT_YEL_PEAR_FLOAT      161
+    #define ACT_BEAR_TRAP           162
+    #define ACT_FALLING_FLOOR       163
+    #define ACT_EP1_END_1           164
+    #define ACT_EP1_END_2           165
+    #define ACT_EP1_END_3           166
+    #define ACT_BASKET_ROOT         167
+    #define ACT_ROOT                168
+    #define ACT_BASKET_RG_BERRIES   169
+    #define ACT_REDGRN_BERRIES      170
+    #define ACT_BASKET_RED_GOURD    171
+    #define ACT_RED_GOURD           172
+    #define ACT_BARREL_GRN_EMERALD  173
+    #define ACT_GRN_EMERALD         174
+    #define ACT_BARREL_CLR_DIAMOND  175
+    #define ACT_CLR_DIAMOND         176
+    #define ACT_SCORE_EFFECT_100    177
+    #define ACT_SCORE_EFFECT_200    178
+    #define ACT_SCORE_EFFECT_400    179
+    #define ACT_SCORE_EFFECT_800    180
+    #define ACT_SCORE_EFFECT_1600   181
+    #define ACT_SCORE_EFFECT_3200   182
+    #define ACT_SCORE_EFFECT_6400   183
+    #define ACT_SCORE_EFFECT_12800  184
+    #define ACT_EXIT_PLANT          186
+    #define ACT_BIRD                187
+    #define ACT_ROCKET              188
+    #define ACT_INVINCIBILITY_CUBE  189
+    #define ACT_PEDESTAL_SMALL      190
+    #define ACT_PEDESTAL_MEDIUM     191
+    #define ACT_PEDESTAL_LARGE      192
+    #define ACT_BARREL_CYA_DIAMOND  193
+    #define ACT_CYA_DIAMOND         194
+    #define ACT_BARREL_RED_DIAMOND  195
+    #define ACT_RED_DIAMOND         196
+    #define ACT_BARREL_GRY_OCTAHED  197
+    #define ACT_GRY_OCTAHEDRON      198
+    #define ACT_BARREL_BLU_EMERALD  199
+    #define ACT_BLU_EMERALD         200
+    #define ACT_INVINCIBILITY_BUBB  201
+    #define ACT_THRUSTER_JET        202
+    #define ACT_EXIT_TRANSPORTER    203
+    #define ACT_HINT_GLOBE_1        204
+    #define ACT_HINT_GLOBE_2        205
+    #define ACT_HINT_GLOBE_3        206
+    #define ACT_HINT_GLOBE_4        207
+    #define ACT_HINT_GLOBE_5        208
+    #define ACT_HINT_GLOBE_6        209
+    #define ACT_HINT_GLOBE_7        210
+    #define ACT_HINT_GLOBE_8        211
+    #define ACT_HINT_GLOBE_9        212
+    #define ACT_CYA_DIAMOND_FLOAT   213
+    #define ACT_RED_DIAMOND_FLOAT   214
+    #define ACT_GRY_OCTAHED_FLOAT   215
+    #define ACT_BLU_EMERALD_FLOAT   216
+    #define ACT_JUMP_PAD_CEIL       217
+    #define ACT_BARREL_HEADPHONES   218
+    #define ACT_HEADPHONES_FLOAT    219
+    #define ACT_HEADPHONES          220
+    #define ACT_FROZEN_DN           221
+    #define ACT_BANANAS             223
+    #define ACT_BASKET_RED_LEAFY    224
+    #define ACT_RED_LEAFY_FLOAT     225
+    #define ACT_RED_LEAFY           226
+    #define ACT_BASKET_BRN_PEAR     227
+    #define ACT_BRN_PEAR_FLOAT      228
+    #define ACT_BRN_PEAR            229
+    #define ACT_BASKET_CANDY_CORN   230
+    #define ACT_CANDY_CORN_FLOAT    231
+    #define ACT_CANDY_CORN          232
+    #define ACT_FLAME_PULSE_W       233
+    #define ACT_FLAME_PULSE_E       234
+    #define ACT_SPEECH_OUCH         235
+    #define ACT_RED_SLIME_THROB     236
+    #define ACT_RED_SLIME_DRIP      237
+    #define ACT_HINT_GLOBE_10       238
+    #define ACT_HINT_GLOBE_11       239
+    #define ACT_HINT_GLOBE_12       240
+    #define ACT_HINT_GLOBE_13       241
+    #define ACT_HINT_GLOBE_14       242
+    #define ACT_HINT_GLOBE_15       243
+    #define ACT_SPEECH_WHOA         244
+    #define ACT_SPEECH_UMPH         245
+    #define ACT_SPEECH_WOW_50K      246
+    #define ACT_EXIT_MONSTER_N      247
+    #define ACT_SMOKE_EMIT_SMALL    248
+    #define ACT_SMOKE_EMIT_LARGE    249
+    #define ACT_EXIT_LINE_HORIZ     250
+    #define ACT_CABBAGE_HARDER      251
+    #define ACT_RED_CRYSTAL_CEIL    252
+    #define ACT_HINT_GLOBE_16       253
+    #define ACT_HINT_GLOBE_17       254
+    #define ACT_HINT_GLOBE_18       255
+    #define ACT_HINT_GLOBE_19       256
+    #define ACT_HINT_GLOBE_20       257
+    #define ACT_HINT_GLOBE_21       258
+    #define ACT_HINT_GLOBE_22       259
+    #define ACT_HINT_GLOBE_23       260
+    #define ACT_HINT_GLOBE_24       261
+    #define ACT_HINT_GLOBE_25       262
+    #define ACT_POWER_UP            263
+    #define ACT_STAR                264
+    #define ACT_EP2_END_LINE        265
+  desc: Defines meaningful names for each actor type defined in the game.
+  ref: /topics/global-variables-and-constants/#ACT
 CPUTYPE:
   text: CPUTYPE_*
   def: |-
@@ -1044,6 +1425,12 @@ FONT:
     #define FONT_BACKGROUND_GRAY 0x0f28
   desc: Provides meaningful names for some, but not all, of the font tile graphics.
   ref: /topics/global-variables-and-constants/#FONT
+GAME_VERSION:
+  text: GAME_VERSION
+  def: |-
+    #define GAME_VERSION "1.20"
+  desc: Holds a string value which represents the current released version of the game. For centering purposes, this should be four characters long.
+  ref: /topics/global-variables-and-constants/#GAME_VERSION
 HELP_MENU:
   text: HELP_MENU_*
   def: |-
@@ -1193,6 +1580,12 @@ RESTORE_GAME:
     #define RESTORE_GAME_ABORT     2
   desc: Defines constants that represent the possible outcomes of a user's interaction with the "restore game" menu.
   ref: /topics/global-variables-and-constants/#RESTORE_GAME
+SAVE_SLOT_INDEX:
+  text: SAVE_SLOT_INDEX
+  def: |-
+    #define SAVE_SLOT_INDEX 9
+  desc: Holds the (zero-indexed) position in the filename template string where save game slot numbers should be inserted.
+  ref: /topics/global-variables-and-constants/#SAVE_SLOT_INDEX
 SCANCODE:
   text: SCANCODE_*
   def: |-
@@ -1412,6 +1805,11 @@ activeMusic:
   def: Music *activeMusic;
   desc: Holds a pointer to the structure containing the length and data bytes of the most recent piece of music that has been started.
   ref: /topics/global-variables-and-constants/#activeMusic
+activePage:
+  text: activePage
+  def: word activePage;
+  desc: Holds the zero-indexed number (0 or 1) of the graphics page that is currently being shown on the screen.
+  ref: /topics/global-variables-and-constants/#activePage
 activeSoundIndex:
   text: activeSoundIndex
   def: word activeSoundIndex;
@@ -1586,8 +1984,13 @@ isCartoonDataLoaded:
 isDebugMode:
   text: isDebugMode
   def: bbool isDebugMode;
-  desc: Holds a true value if the debug/cheat mode has been activated by the player, and false during normal gameplay.
+  desc: Holds a true value if the debug mode has been activated by the player, and false during normal gameplay.
   ref: /topics/global-variables-and-constants/#isDebugMode
+isGodMode:
+  text: isGodMode
+  def: bool isGodMode;
+  desc: Holds a true value if the god mode has been activated by using the debug keys, and false during normal gameplay.
+  ref: /topics/global-variables-and-constants/#isGodMode
 isInGame:
   text: isInGame
   def: bbool isInGame;
@@ -1829,6 +2232,16 @@ savedInt9:
     InterruptFunction savedInt9;
   desc: Holds a reference to the old interrupt service routine for interrupt vector 9.
   ref: /topics/global-variables-and-constants/#savedInt9
+sawBombHint:
+  text: sawBombHint
+  def: bool sawBombHint;
+  desc: Holds a true value if the user has seen the hint dialog teaching them about finding and using bombs. Defaults to false when a new game is started.
+  ref: /topics/global-variables-and-constants/#sawBombHint
+sawHealthHint:
+  text: sawHealthHint
+  def: bool sawHealthHint;
+  desc: Holds a true value if the user has seen the hint dialog teaching them about Power Up modules and their effect on player health. Defaults to false when a new game is started.
+  ref: /topics/global-variables-and-constants/#sawHealthHint
 scancodeBomb:
   text: scancodeBomb
   def: byte scancodeBomb;
@@ -1899,6 +2312,18 @@ soundPriority:
   def: byte soundPriority[81];
   desc: One-indexed array of 81 elements, although not all are used. Each element holds the priority value of a PC speaker sound effect. Unused elements are zero.
   ref: /topics/global-variables-and-constants/#soundPriority
+starBonusRanks:
+  text: starBonusRanks[]
+  def: |-
+    char *starBonusRanks[] = {
+        "    Not Bad!    ", "    Way Cool    ", "     Groovy     ",
+        "    Radical!    ", "     Insane     ", "     Gnarly     ",
+        "   Outrageous   ", "   Incredible   ", "    Awesome!    ",
+        "   Brilliant!   ", "    Profound    ", "    Towering    ",
+        "Rocket Scientist"
+    };
+  desc: Contains a sequence of thirteen fixed-length ranks which are shown as the player earns more stars.
+  ref: /topics/global-variables-and-constants/#starBonusRanks
 stnGroupFilename:
   text: stnGroupFilename
   def: char *stnGroupFilename = FILENAME_BASE ".STN";
@@ -1949,6 +2374,11 @@ wallclock100us:
   def: word wallclock100us;
   desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 100 microseconds.
   ref: /topics/global-variables-and-constants/#wallclock100us
+winGame:
+  text: winGame
+  def: bool winGame;
+  desc: Indicates if the conditions have been met for the entire game to be "won," terminating the game loop and showing the ending story.
+  ref: /topics/global-variables-and-constants/#winGame
 winLevel:
   text: winLevel
   def: bool winLevel;

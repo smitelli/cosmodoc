@@ -25,7 +25,7 @@ Offset (Bytes) | Size   | Description
 06h            | word   | Number of stars.
 08h            | word   | Level number.
 0Ah            | word   | Number of bombs.
-0Ch            | word   | Maximum health bar capacity. Player starts with `3` initially, {{< lookup/actor type="82" plural="1" >}} can bring this up to `5`.
+0Ch            | word   | Maximum health bar capacity. Player starts with `3` initially, {{< lookup/actor type=82 plural=true >}} can bring this up to `5`.
 0Eh            | word   | Flag that prevents the C+0+F10 cheat from working more than once. `0` = never cheated, `1` = cheat has been used.
 10h            | word   | Flag for bomb help text. `0` = bomb hint should be shown, `1` = player knows how to bomb.
 12h            | word   | Flag for pounce help text. `0` = pounce hint should be shown, `2` = player knows how to pounce. The source of this value is `1` for a brief time between when the player takes damage and when the hint text is actually shown, but it should not be possible to save a game in that state.

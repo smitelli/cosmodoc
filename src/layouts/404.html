@@ -1,5 +1,5 @@
 {{ define "pageTitle" }}
-    Page Not Found | {{ .Site.Title }}
+    Page Not Found | {{ .Site.Title | markdownify }}
 {{ end }}
 
 {{ define "pageContent" }}

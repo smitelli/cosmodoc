@@ -1,5 +1,5 @@
 [highlight]
-style = "monokailight"
+noClasses = false
 
 [goldmark.renderer]
 unsafe = true

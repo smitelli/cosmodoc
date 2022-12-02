@@ -4,11 +4,7 @@
 
         {{ partial "list-pages-recursive" . }}
 
-        <nav id="prev-next">
-            <ul>
-                {{ with .Parent }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
-            </ul>
-        </nav>
+        {{ partial "prev-next" . }}
     </article>
 
     {{ partial "footer" . }}

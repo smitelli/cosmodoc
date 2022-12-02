@@ -75,10 +75,10 @@ Offset (Bytes) | Size | Description
 
 The actor type read from the map file may represent either of the following:
 
-* **Special actor:** Includes {{< lookup/special-actor 0 >}}, {{< lookup/special-actor 1 >}}, {{< lookup/special-actor type="2" strip="1" pluralize="1" >}}, and {{< lookup/special-actor type="6" strip="1" pluralize="1" >}}.
+* **Special actor:** Includes {{< lookup/special-actor 0 >}}, {{< lookup/special-actor type=1 plural=true >}}, {{< lookup/special-actor type=2 strip=true plural=true >}}, and {{< lookup/special-actor type=6 strip=true plural=true >}}.
 * **Normal actor:** All other actor types typically encountered.
 
-If the map actor type is less than 31, it is treated as a [special actor]({{< relref "databases/actor#special-actors" >}}) and the type is used unchanged. If the map actor type is 31 or greater, it is treated as a [normal actor]({{< relref "databases/actor#normal-actors" >}}) and the type is decremented by 31 before insertion into the world.
+If the map actor type is less than 32, it is treated as a [special actor]({{< relref "databases/actor#special-actors" >}}) and the type is used unchanged. If the map actor type is 32 or greater, it is treated as a [normal actor]({{< relref "databases/actor#normal-actors" >}}) and the type is decremented by 31 before insertion into the world.
 
 {{< note >}}
 The X/Y coordinates always refer to the leftmost/bottommost tile of multi-tile actors. Some normal actors have a positive or negative "shift" value imposed on their initial X and/or Y positions. If a shift is defined for a particular actor type, the starting position is adjusted by the predefined number of tiles before insertion. The shift value is typically used to compensate for the width or height of an actor's sprite when aligning it to a specific wall or ceiling coordinate.
@@ -92,10 +92,10 @@ The game has a fixed amount of memory allocated for the different structures tha
 
 Map Actor Type                                  | Limit | What happens if limit is exceeded?
 ------------------------------------------------|-------|-----------------------------------
-{{< lookup/special-actor 0 >}}                  | 1     | Later {{< lookup/special-actor type="0" plural="1" >}} overwrite the earlier ones.
+{{< lookup/special-actor 0 >}}                  | 1     | Later {{< lookup/special-actor type=0 plural=true >}} overwrite the earlier ones.
 {{< lookup/special-actor 1 >}}                  | 10    | Writes outside of array bounds, leading to memory corruption.
-{{< lookup/special-actor type="2" strip="1" >}} | 10    | Writes outside of array bounds, leading to memory corruption.
-{{< lookup/special-actor type="6" strip="1" >}} | 199   | Any additional {{< lookup/special-actor type="6" strip="1" plural="1" >}} are ignored.
+{{< lookup/special-actor type=2 strip=true >}} | 10    | Writes outside of array bounds, leading to memory corruption.
+{{< lookup/special-actor type=6 strip=true >}} | 199   | Any additional {{< lookup/special-actor type=6 strip=true plural=true >}} are ignored.
 Normal Actor                                    | 410   | Completely stops reading the actor list from the map file.
 
 ## Map Tiles
@@ -154,4 +154,4 @@ Tile Index | Description
 6          | Empty space. If a {{< lookup/special-actor 1 >}} is centered on this tile, it will move southwest during its next tick.
 7          | Empty space. If a {{< lookup/special-actor 1 >}} is centered on this tile, it will move west during its next tick.
 8          | Empty space. If a {{< lookup/special-actor 1 >}} is centered on this tile, it will move northwest during its next tick.
-9          | Invisible tile which blocks southern movement. (Player/actors can walk and jump through the tile, but cannot fall through it.) Not directly used in any maps, however tiles of this type are dynamically created at the tops of {{< lookup/actor type="190" strip="1" >}} and {{< lookup/special-actor type="2" strip="1" >}} actors.
+9          | Invisible tile which blocks southern movement. (Player/actors can walk and jump through the tile, but cannot fall through it.) Not directly used in any maps, however tiles of this type are dynamically created at the tops of {{< lookup/actor type=190 strip=true >}} and {{< lookup/special-actor type=2 strip=true >}} actors.

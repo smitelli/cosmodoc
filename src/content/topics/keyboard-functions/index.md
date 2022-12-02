@@ -1,7 +1,7 @@
 +++
 title = "Keyboard Functions"
 description = "Describes the hardware and functions responsible for keyboard input."
-weight = 270
+weight = 280
 +++
 
 # Keyboard Functions

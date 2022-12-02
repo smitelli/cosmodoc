@@ -3,7 +3,7 @@
     <ul>
         {{ range sort $children "Weight" "asc" }}
             <li>
-                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . }}"{{ end }}>{{ .LinkTitle }}</a>
+                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>{{ .LinkTitle | markdownify }}</a>
                 {{ partial "list-pages-recursive" . }}
             </li>
         {{ end }}

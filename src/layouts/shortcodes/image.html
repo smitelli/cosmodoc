@@ -28,5 +28,5 @@
 
 <a href="{{ $src }}"><img
     src="{{ $src }}" srcset="{{ delimit $srcset ", " }}"
-    alt="{{ $alt }}" title="{{ $alt }}"
+    alt="{{ $alt | markdownify }}" title="{{ $alt | markdownify }}"
 ></a>

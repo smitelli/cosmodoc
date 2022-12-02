@@ -1,7 +1,7 @@
 +++
 title = "Unused Actors"
 description = "A list of defined actor types that never appear in the game."
-weight = 400
+weight = 420
 +++
 
 # Unused Actors
@@ -20,7 +20,7 @@ Actor Type | Description              | Usability  | Notes
 22         | {{< lookup/actor 22 >}}  | Functional | Works like {{< lookup/actor 20 >}}.
 40         | {{< lookup/actor 40 >}}  | Functional | Works like {{< lookup/actor 41 >}}, but remains stationary in the _retracted_ position.
 53         | {{< lookup/actor 53 >}}  | Functional | Basket is not used, although its contents -- {{< lookup/actor 136 >}} -- are.
-58         | {{< lookup/actor 58 >}}  | Buggy      | Correctly spawns a {{< lookup/actor 2 >}}. The spawn animation generally always ends with the object off the top edge of the screen, so the resulting actor is created out of view. Because {{< lookup/actor type="2" strip="1" >}} actors do not have the "always active" flag set, gravity does not affect the off-screen actor and it does not fall back to the floor. If it scrolls into view later, it will begin falling to the floor then. After that, the new {{< lookup/actor type="2" strip="1" >}} works as expected.
+58         | {{< lookup/actor 58 >}}  | Buggy      | Correctly spawns a {{< lookup/actor 2 >}}. The spawn animation generally always ends with the object off the top edge of the screen, so the resulting actor is created out of view. Because {{< lookup/actor type=2 strip=true >}} actors do not have the "always active" flag set, gravity does not affect the off-screen actor and it does not fall back to the floor. If it scrolls into view later, it will begin falling to the floor then. After that, the new {{< lookup/actor type=2 strip=true >}} works as expected.
 84         | {{< lookup/actor 84 >}}  | Functional | Works like its floor mounted counterpart.
 93         | {{< lookup/actor 93 >}}  | Functional | Basket is not used, although its contents -- {{< lookup/actor 94 >}} -- are.
 100        | {{< lookup/actor 100 >}} | Functional | Barrel is not used, nor are its contents -- {{< lookup/actor 251 >}}.

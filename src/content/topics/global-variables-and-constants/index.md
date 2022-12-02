@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 360
+weight = 380
 +++
 
 # Global Variables and Constants
@@ -26,6 +26,10 @@ typedef unsigned long dword;  /* 32-bit unsigned integer */
 typedef word bool;            /* Boolean stored in a machine word (16-bit) */
 typedef byte bbool;           /* Boolean stored in a byte */
 ```
+
+{{< boilerplate/global-cref ACT >}}
+
+{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is a special sentinel value for the spawner functions and cannot be expressed in the map format. {{< lookup/cref name="ACT" text="ACT_STAR_FLOAT" >}} has the value 32 in the [map format]({{< relref "map-format" >}}), and all other actor types follow sequentially.
 
 {{< boilerplate/global-cref CPUTYPE >}}
 
@@ -62,6 +66,8 @@ Symbolic Constant      | Value | Description
 {{< boilerplate/global-cref FONT >}}
 
 The [game font]({{< relref "databases/font" >}}) is built from 100 [masked tiles]({{< relref "tile-image-format#masked-tiles" >}}), each beginning on a 40-byte boundary. Only a handful of these tiles are referenced directly in the game code; all other tile offsets are calculated by adding a multiple of 40 to one of the above base values.
+
+{{< boilerplate/global-cref GAME_VERSION >}}
 
 {{< boilerplate/global-cref HELP_MENU >}}
 
@@ -119,6 +125,10 @@ Symbolic Constant        | Value | Description
 
 These are the return values for the {{< lookup/cref PromptRestoreGame >}} function.
 
+{{< boilerplate/global-cref SAVE_SLOT_INDEX >}}
+
+In the official version of the game, the save file template is `"COSMOx.SV "` with `x` having a value between `'1'` and `'3'` depending on the episode. The ninth index of this string is a space character, which is replaced with the save slot character during calls to {{< lookup/cref LoadGameState >}} and {{< lookup/cref SaveGameState >}}.
+
 {{< boilerplate/global-cref SCANCODE >}}
 
 {{< boilerplate/global-cref SCROLLH >}}
@@ -145,6 +155,12 @@ For space reasons, some of the names are a bit obtuse:
 {{< boilerplate/global-cref activeMusic >}}
 
 This is updated whenever {{< lookup/cref StartGameMusic >}} or {{< lookup/cref StartMenuMusic >}} is called, and read whenever the music needs to be restarted -- for instance, after the game is paused and then unpaused.
+
+This is a {{< lookup/cref Music >}} structure.
+
+{{< boilerplate/global-cref activePage >}}
+
+This is only used during gameplay, where it will usually hold the opposite value that {{< lookup/cref drawPageNumber >}} has.
 
 {{< boilerplate/global-cref activeSoundIndex >}}
 
@@ -201,6 +217,8 @@ Symbolic Constant  | Value | Description
 When set to `DEMOSTATE_RECORD` or `DEMOSTATE_PLAY`, this suppresses the "Now entering level" message and all in-game hints, and adds a "DEMO" overlay.
 
 {{< boilerplate/global-cref drawPageNumber >}}
+
+During gameplay (where double-buffering is used) {{< lookup/cref activePage >}} will usually hold the opposite value, preventing changes from becoming visible on the screen until the pages are flipped.
 
 {{< boilerplate/global-cref drawPageSegment >}}
 
@@ -271,6 +289,12 @@ Debug mode has the following effects:
 * In the game, enables the <kbd>F10</kbd>+___ cheat codes.
 * In the main menu, adds the ability to press <kbd>F11</kbd> to begin recording a demo.
 * At all times, adds the ability to press <kbd>Alt</kbd>+<kbd>C</kbd> to call the system's original keyboard interrupt handler.
+
+{{< boilerplate/global-cref isGodMode >}}
+
+If {{< lookup/cref isDebugMode >}} is true, this can be toggled while in a game by pressing <kbd>F10</kbd>+<kbd>G</kbd>.
+
+God mode makes the player invincible to any damage that would deduct health. The player can still die by falling off bottom of the map.
 
 {{< boilerplate/global-cref isInGame >}}
 
@@ -422,13 +446,13 @@ The acceptable range of values for this variable is 0&ndash;9. Numbers with two 
 
 When a new game is started, this is initialized to 4, which represents three filled bars of health. It can decrement down to 1, representing all health bars unfilled. Once it decrements to zero, the player immediately dies.
 
-The maximum amount of health obtainable, once all {{< lookup/actor type="82" plural="true" >}} have been picked up, is 6.
+The maximum amount of health obtainable, once all {{< lookup/actor type=82 plural=true >}} have been picked up, is 6.
 
 {{< boilerplate/global-cref playerHealthCells >}}
 
 When a new game is started, this is initialized to 3, which represents three available bars of health.
 
-The maximum amount of health cells obtainable, once all {{< lookup/actor type="82" plural="true" >}} have been picked up, is 5.
+The maximum amount of health cells obtainable, once all {{< lookup/actor type=82 plural=true >}} have been picked up, is 5.
 
 {{< boilerplate/global-cref playerHurtCooldown >}}
 
@@ -463,6 +487,10 @@ This function was the system timer interrupt handler when the program was starte
 {{< boilerplate/global-cref savedInt9 >}}
 
 This function was the keyboard handler when the program was started.
+
+{{< boilerplate/global-cref sawBombHint >}}
+
+{{< boilerplate/global-cref sawHealthHint >}}
 
 {{< boilerplate/global-cref scrollX >}}
 
@@ -512,6 +540,8 @@ See {{< lookup/cref soundData1 >}}.
 
 {{< boilerplate/global-cref soundPriority >}}
 
+{{< boilerplate/global-cref starBonusRanks >}}
+
 {{< boilerplate/global-cref stnGroupFilename >}}
 
 This value adjusts itself based on the value in {{< lookup/cref FILENAME_BASE >}}.
@@ -551,6 +581,12 @@ This value is calculated in {{< lookup/cref ProfileCPU >}}, and should only be u
 {{< boilerplate/global-cref wallclock100us >}}
 
 This value is calculated in {{< lookup/cref ProfileCPU >}}, and should only be used as an argument to {{< lookup/cref WaitWallclock >}}.
+
+{{< boilerplate/global-cref winGame >}}
+
+At the start of each level, {{< lookup/cref winGame >}} is set to false. At the end of each iteration of the game loop, it is checked for a true value -- if anything between these two points sets the value to true, the game is considered to have been won.
+
+{{< lookup/cref winGame >}} is activated by the {{< lookup/actor 102 >}}, {{< lookup/actor type=166 strip=true >}}, and {{< lookup/actor type=265 strip=true >}} actors.
 
 {{< boilerplate/global-cref winLevel >}}
 

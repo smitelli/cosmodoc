@@ -1,7 +1,7 @@
 +++
 title = "EGA Functions"
 description = "Describes the hardware and functions responsible for EGA display setup and management."
-weight = 300
+weight = 310
 +++
 
 # EGA Functions

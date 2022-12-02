@@ -2,6 +2,7 @@
 @import 'functions';
 @import 'fonts';
 @import 'mixins';
+@import 'syntax';
 
 $menu-width: 12rem;
 $page-min-width: 24rem;
@@ -133,6 +134,11 @@ main {
     line-height: 1.7;
     overflow-wrap: break-word;
 
+    .chroma .line {
+        // Reset undesired flexbox layout from Chroma's stylesheet
+        display: inline;
+    }
+
     aside, blockquote {
         margin: 1rem 2rem;
         padding: 1rem 1rem;
@@ -224,6 +230,10 @@ main {
             font-size: 0.8em;
             line-height: 1.2;
         }
+    }
+
+    .overline {
+        text-decoration-line: overline;
     }
 
     .footnotes {

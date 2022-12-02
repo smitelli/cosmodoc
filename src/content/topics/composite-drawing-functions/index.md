@@ -1,7 +1,7 @@
 +++
 title = "Composite Drawing Functions"
 description = "Describes functions that build large visual constructions out of smaller 8x8 tiles."
-weight = 330
+weight = 340
 +++
 
 # Composite Drawing Functions

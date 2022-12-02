@@ -1,7 +1,7 @@
 +++
 title = "Menu Functions"
 description = "Describes functions that display and handle the overall menu system."
-weight = 350
+weight = 360
 +++
 
 # Menu Functions
@@ -12,7 +12,7 @@ Throughout the game, the **menu system** allows the user to control the overall 
 
 ## Menu Progression
 
-In this document, a distinction is made between a **menu** (which is conceptually a prompt that can receive different responses) and a **dialog** (which is a message that can only be dismissed or advanced through sequentially). The functions described here are menus; the dialogs are on a separate page.
+In this document, a distinction is made between a **menu** (which is conceptually a prompt that can receive different responses) and a **dialog** (which is a message that can only be dismissed or advanced through sequentially). The functions described here are menus; the dialogs are on a [separate page]({{< relref "dialog-functions" >}}).
 
 ### Title Loop
 
@@ -35,13 +35,13 @@ The main menu is typically shown over the title screen graphic, although it is p
 
 * <kbd>B</kbd>, <kbd>Enter</kbd>, or <kbd>Space</kbd>: Begin New Game
 * <kbd>R</kbd>: [Restore A Game]({{< relref "#restore-game" >}})
-* <kbd>S</kbd>: Story
-* <kbd>I</kbd>: Instructions (then Hints)
+* <kbd>S</kbd>: [Story]({{< relref "dialog-functions/#ShowStory" >}})
+* <kbd>I</kbd>: [Instructions]({{< relref "dialog-functions/#ShowInstructions" >}}) (then [Hints]({{< relref "dialog-functions/#ShowHintsAndKeys" >}}))
 * <kbd>H</kbd>: [High Scores]({{< relref "#hall-of-fame" >}})
 * <kbd>G</kbd>: [Game Redefine]({{< relref "#game-redefine-menu" >}})
-* <kbd>O</kbd>: Ordering Information
-* <kbd>F</kbd>: Foreign Orders (if shareware episode)
-* <kbd>A</kbd>: Apogee's BBS
+* <kbd>O</kbd>: [Ordering Information]({{< relref "dialog-functions/#ShowOrderingInformation" >}})
+* <kbd>F</kbd>: [Foreign Orders]({{< relref "dialog-functions/#ShowForeignOrders" >}}) (if shareware episode)
+* <kbd>A</kbd>: [Apogee's BBS]({{< relref "dialog-functions/#ShowPublisherBBS" >}})
 * <kbd>D</kbd>: Demo
 * <kbd>C</kbd>: Credits
 * <kbd>T</kbd>: Title Screen
@@ -60,7 +60,7 @@ The help menu is accessible by pressing <kbd>F1</kbd> while the game is being pl
 
 * <kbd>S</kbd>: [Save your game]({{< relref "#save-game" >}})
 * <kbd>R</kbd>: [Restore a game]({{< relref "#restore-game" >}})
-* <kbd>H</kbd>: Help (actually Hints)
+* <kbd>H</kbd>: Help (actually [Hints]({{< relref "dialog-functions/#ShowHintsAndKeys" >}}))
 * <kbd>G</kbd>: [Game redefine]({{< relref "#game-redefine-menu" >}})
 * <kbd>V</kbd>: [View High Scores]({{< relref "#hall-of-fame" >}})
 * <kbd>Q</kbd>: [Quit Game]({{< relref "#quit-game" >}})
@@ -80,9 +80,9 @@ The game redefine menu is available from both the main menu and the in-game help
 
 * <kbd>K</kbd>: [Keyboard redefine]({{< relref "#keyboard-redefine" >}})
 * <kbd>J</kbd>: [Joystick redefine]({{< relref "#joystick-redefine" >}})
-* <kbd>S</kbd>: Sound toggle
+* <kbd>S</kbd>: [Sound toggle]({{< relref "dialog-functions/#ToggleSound" >}})
 * <kbd>T</kbd>: [Test sound]({{< relref "#test-sound" >}})
-* <kbd>M</kbd>: Music toggle
+* <kbd>M</kbd>: [Music toggle]({{< relref "dialog-functions/#ToggleMusic" >}}))
 * <kbd>Esc</kbd>: Dismiss the menu
 
 It is implemented in {{< lookup/cref ShowGameRedefineMenu >}}.
@@ -100,6 +100,18 @@ The Hall of Fame, sometimes inconsistently called High Scores, shows the top ten
     3x="hall-of-fame-2052x.png" >}}
 
 It is implemented in {{< lookup/cref ShowHighScoreTable >}}.
+
+### Enter Your Name
+
+The "Enter your name" prompt function is also responsible for managing the content of the high score table. Each time the function is called, the high score table is scanned to find the appropriate location for the new entry, moving all inferior scores down in the list. Once this space has been freed, the prompt fills it with the provided name and score.
+
+{{< image src="enter-your-name-2052x.png"
+    alt="Enter Your Name"
+    1x="enter-your-name-684x.png"
+    2x="enter-your-name-1368x.png"
+    3x="enter-your-name-2052x.png" >}}
+
+It is implemented in {{< lookup/cref CheckHighScoreAndShow >}}.
 
 ### Quit Game
 
@@ -189,11 +201,11 @@ It is implemented in {{< lookup/cref PromptLevelWarp >}}.
 
 Although not shown as a traditional menu, the following keys are always available during gameplay and perform similar functions to a menu:
 
-* <kbd>P</kbd>: Pause Game
+* <kbd>P</kbd>: [Pause Game]({{< relref "dialog-functions/#ShowPauseMessage" >}})
 * <kbd>Q</kbd> or <kbd>Esc</kbd>: [Quit Game]({{< relref "#quit-game" >}})
-* <kbd>S</kbd>: Sound Toggle
-* <kbd>M</kbd>: Music Toggle
-* <kbd>F1</kbd>: Help Menu
+* <kbd>S</kbd>: [Sound Toggle]({{< relref "dialog-functions/#ToggleSound" >}})
+* <kbd>M</kbd>: [Music Toggle]({{< relref "dialog-functions/#ToggleMusic" >}})
+* <kbd>F1</kbd>: [Help Menu]({{< relref "#help-menu" >}})
 * <kbd>C</kbd> + <kbd>0</kbd> + <kbd>F10</kbd>: Cheat Code
 * <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del</kbd>: Debug Mode Toggle
 
@@ -203,9 +215,9 @@ This handling occurs in {{< lookup/cref ProcessGameInput >}}.
 
 If debug mode is activated, the following key combinations can be pressed during gameplay to access additional functionality. Like the in-game keys, there is no menu shown to enumerate these options; the user must either know they exist or perform a brute-force search for them:
 
-* <kbd>E</kbd> + <kbd>N</kbd> + <kbd>D</kbd>: End Story
-* <kbd>F10</kbd> + <kbd>G</kbd>: God Mode Toggle
-* <kbd>F10</kbd> + <kbd>M</kbd>: Memory Usage
+* <kbd>E</kbd> + <kbd>N</kbd> + <kbd>D</kbd>: [End Story]({{< relref "dialog-functions/#ShowEnding" >}})
+* <kbd>F10</kbd> + <kbd>G</kbd>: [God Mode Toggle]({{< relref "dialog-functions/#ToggleGodMode" >}})
+* <kbd>F10</kbd> + <kbd>M</kbd>: [Memory Usage]({{< relref "dialog-functions/#ShowMemoryUsage" >}})
 * <kbd>F10</kbd> + <kbd>P</kbd>: Debug Pause
 * <kbd>F10</kbd> + <kbd>W</kbd>: [Level Warp]({{< relref "#level-warp" >}})
 * <kbd>Alt</kbd> + <kbd>C</kbd>: Invoke the [original keyboard interrupt handler]({{< relref "keyboard-functions#KeyboardInterruptService" >}})
@@ -530,7 +542,7 @@ Depending on what the user does in this menu, the caller will take one of three 
 * If the user restores a saved game, the game loop needs to abort what it's doing in preparation to load a different game state into memory. ({{< lookup/cref name="HELP_MENU" text="HELP_MENU_RESTART" >}})
 * If the user quits the game, the game loop needs to stop itself and return control back to its own caller. ({{< lookup/cref name="HELP_MENU" text="HELP_MENU_QUIT" >}})
 
-{{< note >}}Since this menu is designed for display during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay >}}
 
 ```c
 byte ShowHelpMenu(void)
@@ -645,7 +657,7 @@ The last case is the <kbd>Esc</kbd> key, which dismisses the menu. This is accom
 
 The {{< lookup/cref ShowGameRedefineMenu >}} function shows a menu labeled "Game Redefine" in response to the user selecting the <kbd>G</kbd> option in either the [main menu]({{< relref "#title-loop" >}}) or the in-game [help menu]({{< relref "#help-menu" >}}). This function simply dispatches one of the submenu functions in response to the user's input.
 
-{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay may=true >}}
 
 ```c
 void ShowGameRedefineMenu(void)
@@ -710,7 +722,7 @@ The {{< lookup/cref ShowHighScoreTable >}} function shows the top ten scores tha
 
 Depending on the state of the {{< lookup/cref isInGame >}} variable, this function may or may not fade the screen and clear its contents.
 
-{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay may=true >}}
 
 ```c
 void ShowHighScoreTable(void)
@@ -800,11 +812,102 @@ Similarly to the earlier {{< lookup/cref isInGame >}} test, this block different
 
 {{< lookup/cref FadeOut >}} fades the screen to black, allowing subsequent drawing to occur invisibly to the user, then {{< lookup/cref ClearScreen >}} blanks out the screen contents. The outer `for` loop begins a new iteration, redrawing the freshly-cleared high score table and fading back in.
 
+{{< boilerplate/function-cref CheckHighScoreAndShow >}}
+
+The {{< lookup/cref CheckHighScoreAndShow >}} function scans the high score table for a position where the current {{< lookup/cref gameScore >}} could be sorted. If a position is located, a prompt is presented asking for a name to be associated with the score at that position, and all inferior scores are shifted one position lower. The tenth score falls off the bottom of the list. Calls {{< lookup/cref ShowHighScoreTable >}} unconditionally before returning.
+
+If the value in {{< lookup/cref gameScore >}} is lower than all scores currently in the table, no prompt is shown. If the current score exactly equals an existing score in the table, the newer score will be inserted at a lower position than the older one.
+
+```c
+void CheckHighScoreAndShow(void)
+{
+    int i;
+
+    FadeOut();
+    SelectDrawPage(0);
+    SelectActivePage(0);
+    ClearScreen();
+```
+
+The function begins with visual transition code. {{< lookup/cref FadeOut >}} fades the contents of the screen to black by manipulating the palette registers, preventing anything from being shown to the user. {{< lookup/cref SelectDrawPage >}} and {{< lookup/cref SelectActivePage >}} select page zero for both drawing and display, meaning that any changes to video memory will be immediately visible to the user without involving page flipping. {{< lookup/cref ClearScreen >}} replaces the contents of the video memory on this draw page with solid black.
+
+```c
+    for (i = 0; i < 10; i++) {
+        int inferior;
+        word x;
+
+        if (highScoreValues[i] >= gameScore) continue;
+```
+
+The high score table has ten slots, which are iterated in a `for` loop. The current slot number is held in `i`.
+
+If the {{< lookup/cref highScoreValues >}} value at `i` is higher or equal to {{< lookup/cref gameScore >}}, the player's current score is not high enough to occupy this slot; `continue` on to the next one. If `continue` is called on the final slot, the player's score isn't high enough to appear anywhere in the table and the `for` loop terminates here.
+
+When a suitable slot has been found, execution continues.
+
+```c
+        for (inferior = 10; inferior > i; inferior--) {
+            highScoreValues[inferior] = highScoreValues[inferior - 1];
+            strcpy(highScoreNames[inferior], highScoreNames[inferior - 1]);
+        }
+
+        highScoreNames[i][0] = '\0';
+        highScoreValues[i] = gameScore;
+```
+
+We do not want to overwrite the selected slot with this new entry. Rather, we want to shift everything from this point down one position, making room for the new entry to be inserted between existing entries.
+
+A second `for` loop does this, iterating from 10 _down_ to the current slot number in `i`. On each iteration, the values in {{< lookup/cref highScoreValues >}} and {{< lookup/cref highScoreNames >}} at index `inferior` are replaced with the values from index `inferior - 1`. The more slots need to shift down, the more times this loop body executes.
+
+There is an important implementation detail in here to handle the boundary case of the lowest score falling off the end of the list. Both {{< lookup/cref highScoreValues >}} and {{< lookup/cref highScoreNames >}} are declared as fixed-size arrays of _eleven_ slots each, even though only ten of the slots are ever displayed. By allocating this eleventh slot, the loop here does not have to perform any special handling to "drop" the tenth value -- it simply moves it into the purgatorial eleventh position to be forgotten about.
+
+When the inner `for` loop terminates, the slot at position `i` is ready to receive the new entry. {{< lookup/cref name="highScoreNames" text="highScoreNames[i]" >}} is set to a null string (it will be filled in later) and {{< lookup/cref name="highScoreValues" text="highScoreValues[i]" >}} gets the current {{< lookup/cref gameScore >}}. All that's left to do is receive the name for the slot.
+
+```c
+        x = UnfoldTextFrame(5, 7, 36, "You made it into the hall of fame!",
+            "Press ESC to quit.");
+        DrawTextLine(x, 8, "Enter your name:");
+        FadeIn();
+        StartSound(SND_HIGH_SCORE_SET);
+```
+
+{{< lookup/cref UnfoldTextFrame >}} and {{< lookup/cref DrawTextLine >}} construct the static components of the frame, and {{< lookup/cref FadeIn >}} restores the screen palette to fade the new content into view. {{< lookup/cref StartSound >}} queues a quick little melody ({{< lookup/cref name="SND" text="SND_HIGH_SCORE_SET" >}}) to be played through the PC speaker.
+
+```c
+        ReadAndEchoText(x + 16, 8, highScoreNames[i],
+            sizeof(HighScoreName) - 2);
+
+        break;
+    }
+```
+
+The interactive part of the frame is handled separately, in a call to {{< lookup/cref ReadAndEchoText >}}. This presents a wait spinner, processes keyboard input, and returns when the <kbd>Enter</kbd> key is pressed. The {{< lookup/cref name="highScoreNames" text="highScoreNames[i]" >}} pointer is the memory where the input will be stored, and `sizeof(HighScoreName) - 2` sets the maximum length of that value -- 14 characters.
+
+{{< note >}}Subtracting one from the maximum input length is necessary to leave room for the null terminator byte. Subtracting two, however, is likely a stylistic choice to prevent longer names from encroaching on the right-hand border of the high score table.{{< /note >}}
+
+With the inferior scores shifted down and the new score entered in the table, there is no need to continue scanning through the high score table; `break` out of the outermost `for` loop and proceed below.
+
+```c
+    FadeOut();
+    ClearScreen();
+    StartSound(SND_HIGH_SCORE_DISPLAY);
+    ShowHighScoreTable();
+}
+```
+
+We can arrive here in two ways: Either the player qualified for a spot in the high score table and has just entered their name, or they did not earn a high enough score and nothing has been displayed.
+
+The {{< lookup/cref FadeOut >}} and {{< lookup/cref ClearScreen >}} calls assume the former case, and fade the frame contents away before erasing them entirely. In the case where the score was not high enough, the screen is _already_ faded out and had been erased at the top of the function, so these calls are superfluous.
+
+{{< lookup/cref StartSound >}} queues a fanfare ({{< lookup/cref name="SND" text="SND_HIGH_SCORE_SET" >}}) and {{< lookup/cref ShowHighScoreTable >}} shows the table, including any entry that may have just been added.
+
+This function returns as soon as {{< lookup/cref ShowHighScoreTable >}} does.
+
 {{< boilerplate/function-cref PromptQuitConfirm >}}
 
 The {{< lookup/cref PromptQuitConfirm >}} function displays a window prompting the user to confirm their intention to quit, and blocks until a key is pressed. The return value is true if the <kbd>Y</kbd> key was pressed, or false in the case of any other key. The message "Are you sure you want to quit?" is intentionally vague, to allow this single function to handle confirmations for exiting the game (back to the menu) and exiting the program (back to DOS).
 
-{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay may=true >}}
 
 ```c
 bbool PromptQuitConfirm(void)
@@ -827,7 +930,7 @@ bbool PromptQuitConfirm(void)
 
 The {{< lookup/cref ShowKeyboardConfiguration >}} function shows and handles the keyboard configuration (sometimes called keyboard _redefine_) menu. By pressing the <kbd>1</kbd>&ndash;<kbd>6</kbd> keys, the user can change the key binding for the "move north/south/west/east," "jump," or "bomb" commands. Almost any key can be bound to any command, and at any stage of the configuration <kbd>Esc</kbd> will exit the menu.
 
-{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay may=true >}}
 
 The following keys either _cannot_ or _should not_ be bound:
 
@@ -983,7 +1086,7 @@ Otherwise, replace the content of the memory that `target_var` points to with th
 
 The {{< lookup/cref ShowSoundTest >}} function presents a menu that allows the user to seek through and preview each sound effect available in the game. Sounds are selected using the <kbd>&darr;</kbd>/<kbd>&uarr;</kbd> keys and played with the <kbd>Enter</kbd> key. At any time, <kbd>Esc</kbd> exits this menu.
 
-{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay may=true >}}
 
 This menu is less of a "test" and more of a "demonstration" of the sound effects -- if any one of them plays correctly they all should. Sound effect priority is respected, meaning some sounds are capable of interrupting others while some cannot. Sounds play from this menu regardless of the global sound on/off configuration.
 
@@ -1080,7 +1183,7 @@ The `for` loop repeats, redrawing the current value of `soundnum` and waiting fo
 
 The {{< lookup/cref PromptSaveGame >}} function displays a menu that prompts the user to pick a save game slot (1-9) to save the state of their game into, then the save is carried out. The user may cancel this prompt without saving by pressing <kbd>Esc</kbd>, <kbd>Space</kbd>, or <kbd>Enter</kbd>. Due to the limited structure of the [save file format]({{< relref "save-file-format" >}}), the initial state of the map and all its state variables is used -- all progress made since the level was last (re)started is abandoned when a save is loaded.
 
-{{< note >}}Since this menu is designed for display during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay >}}
 
 ```c
 void PromptSaveGame(void)
@@ -1194,7 +1297,7 @@ The {{< lookup/cref PromptRestoreGame >}} function displays a menu that prompts 
 * {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}} if a nonexistent slot was picked, or
 * {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_ABORT" >}} if the request was canceled.
 
-{{< note >}}Since this menu _may_ be displayed during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay may=true >}}
 
 ```c
 byte PromptRestoreGame(void)
@@ -1254,7 +1357,7 @@ As with {{< lookup/cref PromptSaveGame >}}, validation failure is met with an er
 
 The {{< lookup/cref PromptLevelWarp >}} function prompts the user to select a map number from 1 to 12 (or 13, depending on the episode) and jumps to the start of the chosen map. Returns true if the map changed, or false if the user entered a non-numeric or out-of-range value.
 
-{{< note >}}Since this menu is designed for display during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the menu is dismissed.{{< /note >}}
+{{< boilerplate/menu-gameplay >}}
 
 ```c
 bbool PromptLevelWarp(void)

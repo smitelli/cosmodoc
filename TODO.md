@@ -7,41 +7,6 @@
 
 =============================================================================
 
-* menus
-    * RestoreGameNotFound: restore game error.
-    * AlteredFileError: restore game error.
-    * SoundToggle: UI text for sound toggle.
-    * MusicToggle: UI for music on/off message.
-* story/help
-    * Copyright
-    * HelpStory
-    * Instructions
-    * HelpHints
-    * OrderingInfo
-    * ForeignOrders
-    * PublisherBBS
-    * EndGameStory
-    * EndGameCongrats
-* game dialogs
-    * PlayerDialogFrame
-    * DNDialogFrame
-    * RescuedDNMessage
-    * Episode1EndMessage
-    * PauseMessage
-    * HintGlobeMessage
-    * BombHint
-    * PounceHint
-    * HealthHint
-* debug and cheats
-    * GodModeToggle
-    * CheatMessage
-    * MemoryUsage
-* intermissions
-    * NowEnteringLevel: you've seen it a lot.
-    * SectionIntermission: variable message, followed by star tally.
-    * StarBonusTally: count up the number of stars collected.
-    * EnterHighScore: modify high scores.
-    
 * status bar
     * mention format of status.mni
     * PlayerScore: defines position, UpdateStatusScore: GIVES POINTS. for each display page, place score line at XY.

@@ -13,7 +13,7 @@
         {{ $cssOptions := (dict "targetPath" "css/main.css" "outputStyle" "compressed") }}
         {{ $css := resources.Get "scss/main.scss" | toCSS $cssOptions }}
         <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-        <title>{{ block "pageTitle" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+        <title>{{ block "pageTitle" . }}{{ with .Params.Title }}{{ . | markdownify }} | {{ end }}{{ .Site.Title | markdownify }}{{ end }}</title>
     </head>
 
     <body>

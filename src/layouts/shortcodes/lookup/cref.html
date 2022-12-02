@@ -2,6 +2,10 @@
     Takes one string argument, which is interpreted as a C symbol name. Returns
     a formatted link to the documentation page/section that defines the symbol.
 
+    NOTE: The descriptions are run through the markdown renderer, mainly to get
+    smart quotes. If any HTML markup is produced as a result of this
+    transformation, such tags will become backticks (`).
+
     Positional parameters:
         0 (required): Name of a symbol defined in a some C file.
 
@@ -33,5 +37,5 @@
     {{- $ref := (index $.Site.Data.cref $param_name).ref -}}
 
     <a href="{{ $ref }}" title="{{ $def }}
-{{ $desc }}"><code>{{ $text }}</code></a>
+{{ $desc | markdownify | replaceRE "<.+?>" "`" | safeHTML }}"><code>{{ $text }}</code></a>
 {{- end -}}

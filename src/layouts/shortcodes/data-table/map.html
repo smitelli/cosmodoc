@@ -34,7 +34,7 @@
                 {{ end }}
             </td>
             <td>
-                {{ index $.Site.Data.description.palette_animation (int .palette_animation_id) }}&nbsp;({{ .palette_animation_id }})</td>
+                {{ index $.Site.Data.description.palette_animation (int .palette_animation_id) | markdownify }}&nbsp;({{ .palette_animation_id }})</td>
             <td>{{ if .rain_flag }}yes{{ else }}no{{ end }}</td>
             <td>
                 {{ (index $.Site.Data.music.table (int .music_id)).music_name }}&nbsp;({{ .music_id }})

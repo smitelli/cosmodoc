@@ -1,7 +1,7 @@
 +++
 title = "Assembly Drawing Functions"
 description = "Describes the low-level drawing functions that move tile image data to the screen."
-weight = 310
+weight = 320
 +++
 
 # Assembly Drawing Functions

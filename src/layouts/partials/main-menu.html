@@ -10,7 +10,7 @@
 
         <nav>
             <h2>
-                <a href="/" title="{{ .Site.Params.Subtitle }}">{{ .Site.Title }}</a>
+                <a href="/" title="{{ .Site.Params.Subtitle | markdownify }}">{{ .Site.Title | markdownify }}</a>
             </h2>
 
             {{ partial "list-pages-recursive" (.Site.GetPage "/topics") }}

@@ -178,8 +178,6 @@ CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
 CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
     ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
-CheckHighScore() <void CheckHighScore () at src/game2.c:1342>:
-    InnerMain() <void InnerMain () at src/game1.c:10217>:
 ClearGameScreen() <void ClearGameScreen () at src/game1.c:7995>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 ClearPlayerDizzy() <void ClearPlayerDizzy () at src/game1.c:286>:
@@ -249,8 +247,6 @@ GetMapTile() <word GetMapTile () at src/game1.c:1463>:
     DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
     MovePlayer() <void MovePlayer () at src/game1.c:8114>:
     MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
-GodModeToggle() <void GodModeToggle () at src/game2.c:2665>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
 HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
     DrawFountains() <void DrawFountains () at src/game1.c:1433>:
     ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
@@ -327,18 +323,11 @@ IsTouchingPlayer() <bool IsTouchingPlayer () at src/game1.c:908>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
 LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-LoadGameState() <bbool LoadGameState () at src/game1.c:8990>:
-    DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
-    PromptRestoreGame() <byte PromptRestoreGame () at src/game1.c:9060>:
-    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
-    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
 LoadMapData() <void LoadMapData () at src/game1.c:9917>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 MAP_CELL_ADDR():
     TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
     TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
-MemoryUsage() <void MemoryUsage () at src/game2.c:2695>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
 MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
@@ -444,8 +433,6 @@ NewSpawner() <void NewSpawner () at src/game1.c:6433>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
 NextLevel() <void NextLevel () at src/game1.c:9652>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-PauseMessage() <void PauseMessage () at src/game2.c:2648>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
 PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
@@ -466,9 +453,6 @@ RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
 SET_PLAYER_DIZZY():
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayer() <void MovePlayer () at src/game1.c:8114>:
-SaveGameState() <void SaveGameState () at src/game1.c:9031>:
-    PromptSaveGame() <void PromptSaveGame () at src/game1.c:9092>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 SetMapTile() <void SetMapTile () at src/game1.c:2577>:
     MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
     SetMapTileRepeat() <void SetMapTileRepeat () at src/game1.c:1361>:
@@ -488,52 +472,6 @@ SetMapTileRepeat() <void SetMapTileRepeat () at src/game1.c:1361>:
 SetPlayerPush() <void SetPlayerPush () at src/game1.c:8028>:
     ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-ShowAlteredFileError() <void ShowAlteredFileError () at src/game2.c:2369>:
-    LoadGameState() <bbool LoadGameState () at src/game1.c:8990>:
-ShowBombHint() <void ShowBombHint () at src/game2.c:3408>:
-    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
-ShowCheatMessage() <void ShowCheatMessage () at src/game2.c:3240>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
-ShowCongratulations() <void ShowCongratulations () at src/game2.c:1638>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-ShowCopyright() <void ShowCopyright () at src/game2.c:2349>:
-    Startup() <void Startup () at src/game1.c:7893>:
-ShowE1CliffhangerMessage() <void ShowE1CliffhangerMessage () at src/game2.c:2492>:
-    ActEpisode1End() <void ActEpisode1End () at src/game1.c:4773>:
-ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-ShowForeignOrders() <void ShowForeignOrders () at src/game2.c:2235>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-ShowHealthHint() <void ShowHealthHint () at src/game2.c:3478>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-ShowHintGlobeMessage() <void ShowHintGlobeMessage () at src/game2.c:3054>:
-    ActHintGlobe() <void ActHintGlobe () at src/game1.c:4204>:
-ShowHintsAndKeys() <void ShowHintsAndKeys () at src/game2.c:2020>:
-    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-    ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-ShowInstructions() <void ShowInstructions () at src/game2.c:2073>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-ShowLevelIntro() <void ShowLevelIntro () at src/game2.c:3457>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-ShowOrderingInformation() <void ShowOrderingInformation () at src/game2.c:1518>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-ShowPounceHint() <void ShowPounceHint () at src/game2.c:3430>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-ShowPublisherBBS() <void ShowPublisherBBS () at src/game2.c:2183>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
-    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
-ShowRestoreGameError() <void ShowRestoreGameError () at src/game2.c:2339>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    NextLevel() <void NextLevel () at src/game1.c:9652>:
-ShowStarBonus() <void ShowStarBonus () at src/game1.c:9555>:
-    ShowSectionIntermission() <void ShowSectionIntermission () at src/game1.c:9630>:
-    ShowEnding() <void ShowEnding () at src/game2.c:2853>:
-ShowStory() <void ShowStory () at src/game2.c:1677>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
 SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
     DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
     PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
@@ -610,18 +548,8 @@ TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
     MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
     MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
-ToggleMusic() <void ToggleMusic () at src/game2.c:2573>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
-    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
-ToggleSound() <void ToggleSound () at src/game2.c:2553>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
-    GameRedefineMenu() <void GameRedefineMenu () at src/game2.c:2713>:
 TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
-UnfoldDNFrame() <word UnfoldDNFrame () at src/game2.c:2401>:
-    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
-UnfoldPlayerFrame() <word UnfoldPlayerFrame () at src/game2.c:2380>:
-    ShowRescuedDNMessage() <void ShowRescuedDNMessage () at src/game2.c:2423>:
 UpdateBombs() <void UpdateBombs () at src/game2.c:1235>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayer() <void MovePlayer () at src/game1.c:8114>:

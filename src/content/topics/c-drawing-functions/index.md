@@ -1,7 +1,7 @@
 +++
 title = "C Drawing Functions"
 description = "Describes the higher-level drawing functions that perform more complicated graphical operations."
-weight = 320
+weight = 330
 +++
 
 # C Drawing Functions
@@ -152,12 +152,12 @@ void FadeIn(void)
 }
 ```
 
-{{< boilerplate/function-cref FadeToWhite >}}
+{{< boilerplate/function-cref FadeWhiteCustom >}}
 
-The {{< lookup/cref FadeToWhite >}} function "fades" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry. This function blocks until the fade is complete. Once all 16 palette entries are blanked, the function returns.
+The {{< lookup/cref FadeWhiteCustom >}} function "fades" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry. This function blocks until the fade is complete. Once all 16 palette entries are blanked, the function returns.
 
 ```c
-void FadeToWhite(word delay)
+void FadeWhiteCustom(word delay)
 {
     word reg;
 

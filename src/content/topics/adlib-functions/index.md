@@ -1,7 +1,7 @@
 +++
 title = "AdLib Functions"
 description = "Describes the hardware and functions responsible for music playback via the AdLib card."
-weight = 290
+weight = 300
 +++
 
 # AdLib Functions

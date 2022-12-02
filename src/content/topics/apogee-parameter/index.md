@@ -1,7 +1,7 @@
 +++
 title = "The apogee Parameter"
 description = "What happens when you run the game with the `apogee` parameter, as so many cheat sites suggest."
-weight = 390
+weight = 410
 +++
 
 # The `apogee` Parameter
@@ -22,7 +22,7 @@ For [saved games]({{< relref "save-file-format" >}}), the behavior is also predi
 
 When a new level is entered, a temporary save file named `COSMOx.SVT` is written which contains the game state at that point. When the player dies and the level needs to be restarted, this save file is reloaded to return the player's score, stars, health, and so on back to the state they were in when the level was originally entered. If the save directory is not writable, this file is not written.
 
-While the game is running, the player's health is tracked in an integer variable that decrements when damage is taken and increments when {{< lookup/actor type="28" strip="1" plural="1" >}} are collected. When health drops to `0` the player dies, but this check only happens at the instant the player is taking damage.
+While the game is running, the player's health is tracked in an integer variable that decrements when damage is taken and increments when {{< lookup/actor type=28 strip=true plural=true >}} are collected. When health drops to `0` the player dies, but this check only happens at the instant the player is taking damage.
 
 Once the player takes enough damage to drop their health to `0` (falling off the bottom of the map does not count) the level restarts. A load operation is attempted on the `COSMOx.SVT` save file to reset the game state, but the {{< lookup/cref fopen >}} call returns a null pointer due to the file having never been written in the first place. The "load game" function does detect this condition, but simply returns early without resetting any of the save game variables.
 
