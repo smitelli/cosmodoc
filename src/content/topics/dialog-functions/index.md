@@ -32,7 +32,13 @@ The new text frame overwrites anything that may have been on the screen previous
 
 Each call to {{< lookup/cref DrawTextLine >}} produces one line of output -- newline characters are not handled. If an image that is more than one tile high is drawn, its bottom row is aligned with the text line. Any text that should be drawn to the right of an inline image needs to be prefixed with some number of space characters to prevent the characters from being drawn on top of the image's tiles.
 
-Finally, {{< lookup/cref WaitSpinner >}} presents an animated green spinning icon at the requested X,Y position and execution blocks until a key is pressed. Once that happens, the scancode of that key is returned to the dialog function in case it wants to take different actions depending on the key that was pressed.
+Finally, {{< lookup/cref WaitSpinner >}} presents an animated green spinning icon at the requested X,Y position and execution blocks until a key is pressed. Once that happens, the scancode of that key is returned to the dialog function in case it wants to take different actions depending on the chosen key.
+
+{{< aside class="fun-fact" >}}
+**You impetuous young boy.**
+
+Due to a quirk in {{< lookup/cref WaitSpinner >}}'s handling of extended PS/2 scancodes, it's possible to speed through most dialogs (including those that occur during gameplay) by holding one of the extended keys -- a good example is the standalone arrow keys.
+{{< /aside >}}
 
 {{< image src="demo-2052x.png"
     alt="Dialog demo."

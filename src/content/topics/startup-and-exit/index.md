@@ -140,10 +140,10 @@ When accessing actor sprite data, this arrangement recreates a form of segment:o
 
 ```c
     LoadGroupEntryData("STATUS.MNI", actorTileData[0], 7296);
-    CopyTilesToEGA(actorTileData[0], 7296 / 4, 0x8000);
+    CopyTilesToEGA(actorTileData[0], 7296 / 4, EGA_OFFSET_STATUS_TILES);
 
     LoadGroupEntryData("TILES.MNI", actorTileData[0], 64000U);
-    CopyTilesToEGA(actorTileData[0], 64000U / 4, 0x4000);
+    CopyTilesToEGA(actorTileData[0], 64000U / 4, EGA_OFFSET_SOLID_TILES);
 ```
 
 The brand-new allocation for {{< lookup/cref actorTileData >}} is immediately sullied by using it as a temporary storage area for the [solid tile image data]({{< relref "tile-image-format#solid-tiles" >}}) that makes up the status bar and some portions of the maps.
@@ -152,9 +152,9 @@ Instead of using {{< lookup/cref GroupEntryLength >}}, the file sizes are hard-c
 
 The EGA adapter contains onboard memory that is separate from the system's RAM. EGA memory offsets 0h and 2000h are used for the game's two display pages, but offsets starting at 4000h are unused. They could have been used to hold additional display pages, but the game instead uses this memory to hold graphics data.
 
-{{< lookup/cref CopyTilesToEGA >}} copies data from system memory into EGA memory. It takes three arguments: the source pointer, a length, and a destination offset. The division by 4 in the length argument is a consequence of the EGA's hardware design: Each memory offset actually references one location multiplied across four distinct planes of memory. This is also why there is only 16 KiB of address space between offsets 4000h and 8000h, yet we are able to load almost 64 KiB of tile data there.
+{{< lookup/cref CopyTilesToEGA >}} copies data from system memory into EGA memory. It takes three arguments: the source pointer, a length, and a destination offset. The division by 4 in the length argument is a consequence of the EGA's hardware design: Each memory offset actually references one location multiplied across four distinct planes of memory. This is also why there is only 16 KiB of address space between the offsets for {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_SOLID_TILES" >}} (4000h) and {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_STATUS_TILES" >}} (8000h), yet we are able to load almost 64 KiB of tile data there.
 
-The end result of this operation is that 64,000 bytes of map tiles are loaded at EGA memory offset 4000h, and 7,296 bytes of status bar graphics are loaded at offset 8000h. The data in {{< lookup/cref name="actorTileData" text="actorTileData[0]" >}} is no longer needed and can be overwritten.
+The end result of this operation is that 64,000 bytes of map tiles are loaded at EGA memory offset {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_SOLID_TILES" >}}, and 7,296 bytes of status bar graphics are loaded at offset {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_STATUS_TILES" >}}. The data in {{< lookup/cref name="actorTileData" text="actorTileData[0]" >}} is no longer needed and can be overwritten.
 
 ```c
     LoadActorTileData("ACTORS.MNI");

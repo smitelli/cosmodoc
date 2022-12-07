@@ -7,14 +7,6 @@
 
 =============================================================================
 
-* status bar
-    * mention format of status.mni
-    * PlayerScore: defines position, UpdateStatusScore: GIVES POINTS. for each display page, place score line at XY.
-    * PlayerStars: defines position, UpdateStatusStars: for each display page, place stars line at XY.
-    * PlayerBombs: defines position, UpdateStatusBombs: for each display page, draw a font char, then place bombs line at XY.
-    * PlayerHealth: calls IPH for each display page, InnerPlayerHealth: defines position, UpdateStatusHealth: draw health bars, two lines high.
-    * InitializeGameWindow: calls DGW for each display page, DrawGameWindow: clear screen, draw status bar BG, call score/stars/bombs/health.
-
 * game setup
     * GameRand: predictable PRNG
     * GameKeysAndMenu: does something goofy with the pages and calls ReadGameKeys

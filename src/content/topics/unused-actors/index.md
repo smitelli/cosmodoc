@@ -1,7 +1,7 @@
 +++
 title = "Unused Actors"
 description = "A list of defined actor types that never appear in the game."
-weight = 420
+weight = 430
 +++
 
 # Unused Actors

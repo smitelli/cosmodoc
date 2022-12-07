@@ -151,16 +151,6 @@ ActVerticalMover() <void ActVerticalMover () at src/game1.c:2012>:
     NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
 ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
     NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
-AddScore() <void AddScore () at src/game2.c:1170>:
-    ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
-    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
-    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
-    ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
-    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
-    ActSpeechBubble() <void ActSpeechBubble () at src/game1.c:5324>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    AddScoreForSprite() <void AddScoreForSprite () at src/game2.c:3253>:
-    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
 AddScoreForSprite() <void AddScoreForSprite () at src/game2.c:3253>:
     CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
@@ -178,8 +168,6 @@ CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
 CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
     ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
-ClearGameScreen() <void ClearGameScreen () at src/game1.c:7995>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 ClearPlayerDizzy() <void ClearPlayerDizzy () at src/game1.c:286>:
     ActSplittingPlatform() <void ActSplittingPlatform () at src/game1.c:3108>:
     ActRocket() <void ActRocket () at src/game1.c:4933> (R):
@@ -210,16 +198,6 @@ DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawSBarHealthHelper() <void DrawSBarHealthHelper () at src/game2.c:1273>:
-    UpdateHealth() <void UpdateHealth () at src/game2.c:1281>:
-DrawStatusBarBombs() <void DrawStatusBarBombs () at src/game2.c:1208>:
-    UpdateBombs() <void UpdateBombs () at src/game2.c:1235>:
-DrawStatusBarHealth() <void DrawStatusBarHealth () at src/game2.c:1246>:
-    DrawSBarHealthHelper() <void DrawSBarHealthHelper () at src/game2.c:1273>:
-DrawStatusBarScore() <void DrawStatusBarScore () at src/game2.c:1150>:
-    AddScore() <void AddScore () at src/game2.c:1170>:
-DrawStatusBarStars() <void DrawStatusBarStars () at src/game2.c:1180>:
-    UpdateStars() <void UpdateStars () at src/game2.c:1198>:
 GameLoop() <void GameLoop () at src/game1.c:9730>:
     InnerMain() <void InnerMain () at src/game1.c:10217>:
 GameRand() <word GameRand () at src/game1.c:300>:
@@ -448,8 +426,6 @@ ProcessGameInputHelper() <byte ProcessGameInputHelper () at src/game1.c:7664>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 ProcessPlayerDizzy() <void ProcessPlayerDizzy () at src/game1.c:8797>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
-    ClearGameScreen() <void ClearGameScreen () at src/game1.c:7995>:
 SET_PLAYER_DIZZY():
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayer() <void MovePlayer () at src/game1.c:8114>:
@@ -550,19 +526,5 @@ TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
 TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
-UpdateBombs() <void UpdateBombs () at src/game2.c:1235>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
-    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
-    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
 UpdateDoors() <void UpdateDoors () at src/game1.c:1890>:
     ActHeadSwitch() <void ActHeadSwitch () at src/game1.c:1915>:
-UpdateHealth() <void UpdateHealth () at src/game2.c:1281>:
-    HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
-    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:
-UpdateStars() <void UpdateStars () at src/game2.c:1198>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    RedrawStaticGameScreen() <void RedrawStaticGameScreen () at src/game2.c:3343>:

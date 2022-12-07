@@ -82,6 +82,8 @@ menu-functions/save-game.svg 684x 1368x 2052x
 menu-functions/test-sound.svg 684x 1368x 2052x
 menu-functions/warp-mode.svg 684x 1368x 2052x
 pc-speaker-and-timing-functions/timer-block-diagram.svg 684x 1368x 2052x
+status-bar-functions/duke1-screenshot.svg 684x 1368x 2052x
+status-bar-functions/static-game-screen.svg 684x 1368x 2052x
 tile-image-format/row-planar-masked.svg 684x 1368x 2052x
 tile-image-format/row-planar-solid.svg 684x 1368x 2052x
 tile-info-format/sprite-layout.svg 684x 1368x 2052x

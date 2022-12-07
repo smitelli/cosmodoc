@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 380
+weight = 390
 +++
 
 # Global Variables and Constants
@@ -56,6 +56,8 @@ Symbolic Constant      | Value | Description
 `DRAWMODE_FLIPPED`     | 4     | Same as `DRAWMODE_NORMAL`, but the sprite is drawn flipped vertically.
 `DRAWMODE_IN_FRONT`    | 5     | Same as `DRAWMODE_NORMAL`, but the sprite will cover _all_ map tiles, regardless of their "draw in front" attribute.
 `DRAWMODE_ABSOLUTE`    | 6     | Draw the sprite unmodified, with X/Y positions measured relative to the screen. Since there is no relationship to the game world in this mode, "draw in front" attributes from the map (if present) have no effect.
+
+{{< boilerplate/global-cref EGA_OFFSET >}}
 
 {{< boilerplate/global-cref END_ANIMATION >}}
 

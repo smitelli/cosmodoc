@@ -1,7 +1,7 @@
 +++
 title = "Hint Sheet"
 description = "A transcription of the hint sheet provided with registered copies of the game."
-weight = 430
+weight = 440
 +++
 
 # Hint Sheet

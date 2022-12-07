@@ -341,7 +341,11 @@ AdLibService:
   def: void AdLibService(void);
   desc: Streams chunks of music data to the AdLib hardware at the appropriate time.
   ref: /topics/adlib-functions/#AdLibService
-#AddScore:
+AddScore:
+  text: AddScore()
+  def: void AddScore(dword points);
+  desc: Wraps `DrawStatusBarScore()` with the correct X,Y position for display on the screen. It adds `points` to the player's score and updates the status bar with the new value.
+  ref: /topics/status-bar-functions/#AddScore
 #AddScoreForSprite:
 AnimatePalette:
   text: AnimatePalette()
@@ -355,7 +359,11 @@ CheckHighScoreAndShow:
   def: void CheckHighScoreAndShow(void);
   desc: Scans the high score table for a position where the current `gameScore` could be sorted. If a position is located, a prompt is presented asking for a name to be associated with the score at that position, and all inferior scores are shifted one position lower. The tenth score falls off the bottom of the list. Calls `ShowHighScoreTable` unconditionally before returning.
   ref: /topics/menu-functions/#CheckHighScoreAndShow
-#ClearGameScreen:
+ClearGameScreen:
+  text: ClearGameScreen()
+  def: void ClearGameScreen(void);
+  desc: Clears all content from both draw pages of the EGA's memory and redraws a fresh status bar.
+  ref: /topics/status-bar-functions/#ClearGameScreen
 #ClearPlayerDizzy:
 ClearScreen:
   text: ClearScreen()
@@ -417,7 +425,11 @@ DrawPlayer:
   desc: Draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
   ref: /topics/composite-drawing-functions/#DrawPlayer
 #DrawRandomEffects:
-#DrawSBarHealthHelper:
+DrawSBarHealthHelper:
+  text: DrawSBarHealthHelper()
+  def: void DrawSBarHealthHelper(void);
+  desc: Wraps `DrawStatusBarHealth()` with the correct X,Y position for display on the screen.
+  ref: /topics/status-bar-functions/#DrawSBarHealthHelper
 DrawScancodeCharacter:
   text: DrawScancodeCharacter()
   def: void DrawScancodeCharacter(word x, word y, byte scancode);
@@ -453,10 +465,31 @@ DrawSpriteTileWhite:
   def: void DrawSpriteTileWhite(byte *src, word x, word y);
   desc: Copies a solid white outline of an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileWhite
-#DrawStatusBarBombs:
-#DrawStatusBarHealth:
-#DrawStatusBarScore:
-#DrawStatusBarStars:
+DrawStaticGameScreen:
+  text: DrawStaticGameScreen()
+  def: void DrawStaticGameScreen(void);
+  desc: Initializes the static components of the game screen by clearing everything from the current draw page and redrawing the status bar on the freshly-cleared screen. The current score, health, bombs, and stars values are drawn onto the status bar in the process.
+  ref: /topics/status-bar-functions/#DrawStaticGameScreen
+DrawStatusBarBombs:
+  text: DrawStatusBarBombs()
+  def: void DrawStatusBarBombs(word x, word y);
+  desc: Updates the "bombs" counter in the status bar. Requires `x` and `y` for positioning, which anchors the single digit at an absolute tile position on the screen.
+  ref: /topics/status-bar-functions/#DrawStatusBarBombs
+DrawStatusBarHealth:
+  text: DrawStatusBarHealth()
+  def: void DrawStatusBarHealth(word x, word y);
+  desc: Updates the health bars in the status bar. Requires `x` and `y` for positioning, which anchors the top of the rightmost bar at an absolute tile position on the screen.
+  ref: /topics/status-bar-functions/#DrawStatusBarHealth
+DrawStatusBarScore:
+  text: DrawStatusBarScore()
+  def: void DrawStatusBarScore(dword add_points, word x, word y);
+  desc: Increments the player's score by `add_points` then updates the score counter in the status bar. Requires `x` and `y` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
+  ref: /topics/status-bar-functions/#DrawStatusBarScore
+DrawStatusBarStars:
+  text: DrawStatusBarStars()
+  def: void DrawStatusBarStars(word x, word y);
+  desc: Updates the "stars" counter in the status bar. Requires `x` and `y` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
+  ref: /topics/status-bar-functions/#DrawStatusBarStars
 DrawTextFrame:
   text: DrawTextFrame()
   def: word DrawTextFrame(word left, word top, int height, int width, char *top_text, char *bottom_text, bbool centered);
@@ -1054,14 +1087,26 @@ UnfoldTextFrame:
   def: word UnfoldTextFrame(int top, int height, int width, char *top_text, char *bottom_text);
   desc: Draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width` x `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
   ref: /topics/user-interface-functions/#UnfoldTextFrame
-#UpdateBombs:
+UpdateBombs:
+  text: UpdateBombs()
+  def: void UpdateBombs(void);
+  desc: Wraps `DrawStatusBarBombs()` with the correct X,Y position for display on the screen. It refreshes the bomb count on the status bar with the current global value.
+  ref: /topics/status-bar-functions/#UpdateBombs
 UpdateDrawPageSegment:
   text: UpdateDrawPageSegment()
   def: void UpdateDrawPageSegment(void);
   desc: Recalculates the segment address of the video memory where drawing should occur.
   ref: /topics/ega-functions/#UpdateDrawPageSegment
-#UpdateHealth:
-#UpdateStars:
+UpdateHealth:
+  text: UpdateHealth()
+  def: void UpdateHealth(void);
+  desc: Wraps `DrawSBarHealthHelper()` and handles draw page selection. It redraws all of the health cells with either filled or empty bars to represent the player's current health.
+  ref: /topics/status-bar-functions/#UpdateHealth
+UpdateStars:
+  text: UpdateStars()
+  def: void UpdateStars(void);
+  desc: Wraps `DrawStatusBarStars()` with the correct X,Y position for display on the screen. It refreshes the star count on the status bar with the current global value.
+  ref: /topics/status-bar-functions/#UpdateStars
 ValidateSystem:
   text: ValidateSystem()
   def: void ValidateSystem(void);
@@ -1390,6 +1435,17 @@ DRAWMODE:
     #define DRAWMODE_ABSOLUTE    6
   desc: Defines the drawing modes available for the sprite drawing functions.
   ref: /topics/global-variables-and-constants/#DRAWMODE
+EGA_OFFSET:
+  text: EGA_OFFSET_*
+  def: |-
+    #define EGA_OFFSET_SOLID_TILES  0x4000
+    #define EGA_OFFSET_STATUS_TILES 0x8000
+    #define EGA_OFFSET_BACKDROP_0_0 0xa300
+    #define EGA_OFFSET_BACKDROP_4_0 0xb980
+    #define EGA_OFFSET_BACKDROP_0_4 0xd000
+    #define EGA_OFFSET_BACKDROP_4_4 0xe680
+  desc: Defines a number of useful EGA memory offsets relative to the adapter's segment address (A000h). Every byte of address space here represents four actual bytes in the EGA's memory, due to the separation of color planes.
+  ref: /topics/global-variables-and-constants/#EGA_OFFSET
 END_ANIMATION:
   text: END_ANIMATION
   def: |-
