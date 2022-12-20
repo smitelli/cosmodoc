@@ -1,51 +1,61 @@
-function InitializeTableOfContents() {
+/* jshint esversion: 6 */
+
+function BuildToc() {
     var tocElement = document.getElementById('toc-container'),
-        tocHTML = '',
-        lastLevel = 1;  //we skip the H1 level
+        headings = document.getElementById('main-page').querySelectorAll('h2, h3, h4, h5, h6'),
+        i = 0;
 
     if (tocElement === null) return;
 
-    document
-        .getElementById('main-page')
-        .querySelectorAll('h2, h3, h4, h5, h6')
-        .forEach(function(el) {
-            var level = el.nodeName.substring(1, 2);
+    if (headings.length === 0) {
+        tocElement.style.display = 'none';
 
-            // HACK: This isn't technically right; nested <ul> belongs inside <li>
-            for (; lastLevel < level; lastLevel++) {
-                tocHTML += '<ul>';
-            }
-
-            for (; lastLevel > level; lastLevel--) {
-                tocHTML += '</ul>';
-            }
-
-            tocHTML += '<li><a href="#' + el.id + '">' + el.innerHTML + '</a></li>';
-        });
-
-    for (; lastLevel > 1; lastLevel--) {  //again, we skip the H1 level
-        tocHTML += '</ul>';
+        return;
     }
 
-    tocElement.innerHTML = tocHTML;
+    function hLevel(hElement) {
+        if (!hElement || !/^h[\d]$/i.test(hElement.nodeName)) return 0;
+
+        return parseInt(hElement.nodeName.substring(1, 2), 10);
+    }
+
+    tocElement.innerHTML = (function buildTocLevel() {
+        var level = hLevel(headings[i]),
+            out = '<ul>';
+
+        while (hLevel(headings[i]) === level) {
+            out += `<li><a href="#${headings[i].id}">${headings[i].innerHTML}</a>`;
+
+            i++;
+
+            // Recursive nonsense because nested <ul> belongs inside <li>.
+            if (hLevel(headings[i]) > level) out += buildTocLevel();
+
+            out += '</li>';
+        }
+
+        out += '</ul>';
+
+        return out;
+    })();
 }
 
 if (document.readyState !== 'loading') {
-    InitializeTableOfContents();
+    BuildToc();
 } else {
-    document.addEventListener('DOMContentLoaded', InitializeTableOfContents);
+    document.addEventListener('DOMContentLoaded', BuildToc);
 }
 
 window.addEventListener('load', function() {
     // `base64 -w0 /path/to/some.png`
     var eyes = {
             '16x16': {
-                open: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwElEQVQ4y52T0Y3EMAhEH1EKmaZIkaYpdzL3k3id6HbPe0hIwc5gHtghiRXrvXuOJQXAvipuQDrHWkRZUuzfiiMKADuJKG8r4k+2hDCbJwyAbVVYZ+nP+KsK5iTHOYl9lf947F9jXELI9E3k9LgX21+nZ5qoQFL8NpXt3U27df48sT0SjgS9d89lSYqLuSo+851vwQ3stIHhbVq/9ub/JL3GeACtAueLpCpGAwHa1NAbYnu402/j63tUeyH8xyXxA4AspdtjLcmZAAAAAElFTkSuQmCC',
-                shut: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAArklEQVQ4y6VTQQ7DIAxzEA/xp+gj4VP8xLs0NNuKlG6WIpFC4oBdI4kM5pyKOUkDgJIt7gA81LQa1mxxxBgGNcGGqWaLW9PtmYokxrC33BsW/In6tMCZbRhIWs0+3rHuYs9ldFYvijKWzOv7uHeSlp3TIpyxfzRcDeacimORtGMj3xfOf0EdkJoEYEUP330vniN5yXgA6KdFo3miA/vGkYspMu5yX69p/Qq/BEm8APHmqWnfboHWAAAAAElFTkSuQmCC'
+                open: 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwElEQVQ4y52T0Y3EMAhEH1EKmaZIkaYpdzL3k3id6HbPe0hIwc5gHtghiRXrvXuOJQXAvipuQDrHWkRZUuzfiiMKADuJKG8r4k+2hDCbJwyAbVVYZ+nP+KsK5iTHOYl9lf947F9jXELI9E3k9LgX21+nZ5qoQFL8NpXt3U27df48sT0SjgS9d89lSYqLuSo+851vwQ3stIHhbVq/9ub/JL3GeACtAueLpCpGAwHa1NAbYnu402/j63tUeyH8xyXxA4AspdtjLcmZAAAAAElFTkSuQmCC',
+                shut: 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAArklEQVQ4y6VTQQ7DIAxzEA/xp+gj4VP8xLs0NNuKlG6WIpFC4oBdI4kM5pyKOUkDgJIt7gA81LQa1mxxxBgGNcGGqWaLW9PtmYokxrC33BsW/In6tMCZbRhIWs0+3rHuYs9ldFYvijKWzOv7uHeSlp3TIpyxfzRcDeacimORtGMj3xfOf0EdkJoEYEUP330vniN5yXgA6KdFo3miA/vGkYspMu5yX69p/Qq/BEm8APHmqWnfboHWAAAAAElFTkSuQmCC'
             },
             '32x32': {
-                open: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA9hAAAPYQGoP6dpAAAA5ElEQVRYw91XQQ6EIAxsN/sQPoWPpJ/iJ90L3dWJ3RpDItCLwaphpp2pcEqJekatVf/lU0q8X7/o4Xj3Rl7aOms+fY5ZdM/E/AxEyJnlsNaWNybmZQCR3411VOCFOmpYlwFpXe/5gIAq1u0BRGqxwUyYj4FI/1vw/rrTMGe14h+QGmPa8iw86TT0ap9/yE6RR7NiPAZs59itoedDjUvA0HgMRN1q1w1qKw3ZVwXT/w8YImTiRi8QEVFxvjeuD5iX4849przaowqG7QEmokuOZUgM+dU83kdfeJ4BOx1Hp9reMYwKPqH0gpA8/2htAAAAAElFTkSuQmCC',
-                shut: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA9hAAAPYQGoP6dpAAAA2klEQVRYw+1XwQ3DMAg8qgzCUsmQ9lLexH2kVBEVxYlcGbflE8VICdzBgYmZ0dNKKfWdn5np+H7DYFt6Z54M/7ruwFCmekRifgS8zMVy3qmvCol5EbAyF65b7Xu6QHMNpxvCIPAPYPn0DzTn9KiReZXQU77tpS3oR6bhk2vFsSBWp5+GnvaTkXmaTgckcl2tnmmOk4NQPAS8apXnpriV6Xd2D4hbA9budqEWAADJ+F5cHRAt15FbSFncp8YdcTgCBKBJsSQTa+ez/Ppc68J4BOR27N1qe1uYLrgDZpiA49gEBboAAAAASUVORK5CYII='
+                open: 'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA9hAAAPYQGoP6dpAAAA5ElEQVRYw91XQQ6EIAxsN/sQPoWPpJ/iJ90L3dWJ3RpDItCLwaphpp2pcEqJekatVf/lU0q8X7/o4Xj3Rl7aOms+fY5ZdM/E/AxEyJnlsNaWNybmZQCR3411VOCFOmpYlwFpXe/5gIAq1u0BRGqxwUyYj4FI/1vw/rrTMGe14h+QGmPa8iw86TT0ap9/yE6RR7NiPAZs59itoedDjUvA0HgMRN1q1w1qKw3ZVwXT/w8YImTiRi8QEVFxvjeuD5iX4849przaowqG7QEmokuOZUgM+dU83kdfeJ4BOx1Hp9reMYwKPqH0gpA8/2htAAAAAElFTkSuQmCC',
+                shut: 'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA9hAAAPYQGoP6dpAAAA2klEQVRYw+1XwQ3DMAg8qgzCUsmQ9lLexH2kVBEVxYlcGbflE8VICdzBgYmZ0dNKKfWdn5np+H7DYFt6Z54M/7ruwFCmekRifgS8zMVy3qmvCol5EbAyF65b7Xu6QHMNpxvCIPAPYPn0DzTn9KiReZXQU77tpS3oR6bhk2vFsSBWp5+GnvaTkXmaTgckcl2tnmmOk4NQPAS8apXnpriV6Xd2D4hbA9budqEWAADJ+F5cHRAt15FbSFncp8YdcTgCBKBJsSQTa+ez/Ppc68J4BOR27N1qe1uYLrgDZpiA49gEBboAAAAASUVORK5CYII='
             }
         },
         delayMs = 200,  //game timer is roughly 93ms; way too short for Chrome
@@ -60,7 +70,7 @@ window.addEventListener('load', function() {
         document.querySelectorAll('link[rel="icon"]').forEach(function(el) {
             var eye = eyes[el.sizes.value];
 
-            el.href = shut ? eye.shut : eye.open;
+            el.href = `data:image/png;base64,${shut ? eye.shut : eye.open}`;
         });
 
         shutPrev = shut;

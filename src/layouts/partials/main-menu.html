@@ -1,13 +1,5 @@
 {{ if $.Site.Params.enableNav }}
     <aside id="main-menu">
-        {{ if ne .RelPermalink "/" }}
-        <style>
-            #main-menu a[href$="{{ .RelPermalink }}"] {
-                color: #b40;
-            }
-        </style>
-        {{ end }}
-
         <nav>
             <h2>
                 <a href="/" title="{{ .Site.Params.Subtitle | markdownify }}">{{ .Site.Title | markdownify }}</a>
