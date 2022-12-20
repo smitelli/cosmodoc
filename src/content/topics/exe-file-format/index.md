@@ -38,7 +38,7 @@ The executable file for episode three is almost twice as large as the executable
 
 ```hexdump
 00000000: 4d5a 2601 e900 1005 6001 6b06 ffff 0e22  MZ&.....`.k...."
-00000010: e600 0000 0000 0000 2200 0000 0100 fb20  ........"...... 
+00000010: e600 0000 0000 0000 2200 0000 0100 fb20  ........"......
 ```
 
 COSMO1 and COSMO2 contain the signature `LZ91` in the EXE header, while COSMO3 does not. This is a pretty reliable indication that the executable files for the first two episodes were compressed using a utility called [LZEXE]({{< relref "lzexe" >}}), and the third episode was not.

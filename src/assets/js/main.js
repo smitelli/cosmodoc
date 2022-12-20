@@ -11,7 +11,7 @@ function InitializeTableOfContents() {
         .forEach(function(el) {
             var level = el.nodeName.substring(1, 2);
 
-            // TODO This isn't technically right; nested <ul> belongs inside <li>
+            // HACK: This isn't technically right; nested <ul> belongs inside <li>
             for (; lastLevel < level; lastLevel++) {
                 tocHTML += '<ul>';
             }

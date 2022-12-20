@@ -182,7 +182,7 @@ Some of the oscillators in the OPL2 are capable of **feedback**, where some frac
 
 {{< audio "feedback" "Feedback Depth Examples" >}}
 
-This example steps through the feedback levels from zero to 4&pi;, playing a note that decays in amplitude once per second. At moderate levels of feedback, the sine wave becomes lopsided like a sawtooth wave -- rising fast and falling slowly -- which adds both sharpness and brightness due to the many harmonics created. As the feedback level is set higher, louder outputs produce more random results, and at extreme levels the sound becomes distinctly percussive. 
+This example steps through the feedback levels from zero to 4&pi;, playing a note that decays in amplitude once per second. At moderate levels of feedback, the sine wave becomes lopsided like a sawtooth wave -- rising fast and falling slowly -- which adds both sharpness and brightness due to the many harmonics created. As the feedback level is set higher, louder outputs produce more random results, and at extreme levels the sound becomes distinctly percussive.
 
 {{< note >}}
 The noise produced through this technique is almost perfect **white noise**, which is random sound output with equal _power_ across the entire frequency spectrum. The OPL2's output has slightly higher frequency response at the low and high edges of the spectrum, making the result something between white noise and **gray noise**, which is equal _loudness_ across the spectrum.

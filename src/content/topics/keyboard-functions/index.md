@@ -167,7 +167,7 @@ Otherwise the key has been pressed and the scancode can be used as-is. Update th
 
 This is an interesting find, and something I'm not sure anyone else has discovered: If the game's debug mode is on ({{< lookup/cref isDebugMode >}} is true) and the keys <kbd>Alt</kbd>+<kbd>C</kbd> are pressed, the original keyboard interrupt handler function ({{< lookup/cref savedInt9 >}}) is called. This is not something that typically ever happens, and must have been something that was useful during development. Perhaps this key combination, possibly augmented by holding additional keys, invoked a debugger or other terminate-and-stay-resident program. We can only guess at this point.
 
-Otherwise, the byte 20h is written to I/O port 20h. This I/O port addresses the command register on the system's programmable interrupt controller (PIC), and the value 20h encodes a "nonspecific end-of-interrupt" (EOI) message that is sent to the PIC. 
+Otherwise, the byte 20h is written to I/O port 20h. This I/O port addresses the command register on the system's programmable interrupt controller (PIC), and the value 20h encodes a "nonspecific end-of-interrupt" (EOI) message that is sent to the PIC.
 
 {{< aside class="note" >}}
 **Note:** There are two PICs in the IBM AT: The master PIC is at I/O port 20h, and the (unfortunately named) slave PIC is at port A0h. Since the keyboard is wired directly to one of the interrupt request lines on the master PIC, we can pretend the slave does not exist.

@@ -807,7 +807,7 @@ The {{< lookup/cref ShowPublisherBBS >}} function displays two consecutive pages
     2x="publisher-bbs-1368x.png"
     3x="publisher-bbs-2052x.png" >}}
 
-A BBS was a predecessor to the World Wide Web as we know it today. It consisted of a centralized server connected to the telephone network via a bank of modems. Individuals could instruct their modem-equipped PCs to dial the BBS phone number, giving them access to a shared area to send, receive, and store messages and files. This, along with regular postal mail, was the main distribution channel for shareware in the early 1990s. 
+A BBS was a predecessor to the World Wide Web as we know it today. It consisted of a centralized server connected to the telephone network via a bank of modems. Individuals could instruct their modem-equipped PCs to dial the BBS phone number, giving them access to a shared area to send, receive, and store messages and files. This, along with regular postal mail, was the main distribution channel for shareware in the early 1990s.
 
 2400 and 9600 baud modems could transfer data at speeds of 240 and 960 bytes(!) per second, respectively. A 14.4 kbps modem could do 1,800 bytes per second. This game, appropriately compressed, would be on the order of 400-500,000 bytes. This means that a user retrieving this game through one of the modems described here could spend anywhere from a few minutes to _half an hour_ downloading the shareware episode.
 

@@ -22,7 +22,7 @@ When the program starts, the **title loop** is entered. From here, several scree
 * Credits
 * Demo
 * Main Menu
-    
+
 If the user does not press any keys, the title loop will show the title screen, credits, and demo in a loop. Once the demo completes, the title screen will be shown again and the loop continues indefinitely. If the loop is interrupted with a key press, the main menu is shown.
 
 The main menu is typically shown over the title screen graphic, although it is possible to make it appear over the credits screen by pressing a key while the title loop is showing the credits. It is implemented in {{< lookup/cref TitleLoop >}} and {{< lookup/cref DrawMainMenu >}}. The following options are available:
@@ -1389,7 +1389,7 @@ More local variables are defined. `buffer[]` is a three-byte buffer used to stor
 
 ```c
     ReadAndEchoText(x + 21, 4, buffer, 2);
-   
+
     x = atoi(buffer) - 1;
 ```
 

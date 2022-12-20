@@ -51,7 +51,7 @@ In a hypothetical example where `slot_char` was `'7'`, {{< lookup/cref FILENAME_
 
 {{< lookup/cref JoinPath >}} combines the relative `filename` with the {{< lookup/cref writePath >}} from when the program started. In common use, {{< lookup/cref writePath >}} is an empty string and the resulting filename remains relative. This filename is passed to {{< lookup/cref fopen >}} which tries to open the file for reading in binary mode (`"rb"`). The file pointer is returned in `fp`.
 
-If the file could not be opened (most likely because a save file with the specified `slot_char` does not exist), `fp` will hold a `NULL` value and loading cannot proceed. The `if` body responds to this by {{< lookup/cref fclose >}}ing the known-`NULL` pointer (which is an entirely meaningless and unsafe operation) and returning `false` to the caller. 
+If the file could not be opened (most likely because a save file with the specified `slot_char` does not exist), `fp` will hold a `NULL` value and loading cannot proceed. The `if` body responds to this by {{< lookup/cref fclose >}}ing the known-`NULL` pointer (which is an entirely meaningless and unsafe operation) and returning `false` to the caller.
 
 ```c
     playerHealth = getw(fp);

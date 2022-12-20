@@ -37,7 +37,7 @@ Every number drawn to the status bar comes by way of {{< lookup/cref DrawNumberF
 
 The numbers in the [game font]({{< relref "databases/font" >}}) are all drawn opaque on a gray background -- the same color gray that the status bar image uses in its placeholders -- so it is not necessary to erase any of the screen contents before drawing an updated number. As long as the character being drawn is a digit between zero and nine, it is guaranteed to fully erase anything behind it.
 
-The health bar images are slightly different because they are drawn one tile at a time using {{< lookup/cref DrawSpriteTile >}} calls, but they too are built from game font glyphs with fully opaque backgrounds. 
+The health bar images are slightly different because they are drawn one tile at a time using {{< lookup/cref DrawSpriteTile >}} calls, but they too are built from game font glyphs with fully opaque backgrounds.
 
 {{< boilerplate/function-cref ClearGameScreen >}}
 
@@ -54,7 +54,7 @@ void ClearGameScreen(void)
 }
 ```
 
-The call to {{< lookup/cref DrawStaticGameScreen >}} is responsible for clearing and redrawing the screen, but it only operates on the current draw page. In order to ensure that both pages display identically when activated, this drawing is performed twice with different arguments provided to {{< lookup/cref SelectDrawPage >}} each time. 
+The call to {{< lookup/cref DrawStaticGameScreen >}} is responsible for clearing and redrawing the screen, but it only operates on the current draw page. In order to ensure that both pages display identically when activated, this drawing is performed twice with different arguments provided to {{< lookup/cref SelectDrawPage >}} each time.
 
 {{< boilerplate/function-cref DrawStaticGameScreen >}}
 

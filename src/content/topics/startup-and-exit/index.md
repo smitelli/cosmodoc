@@ -164,25 +164,25 @@ The end result of this operation is that 64,000 bytes of map tiles are loaded at
 
 ```c
     LoadGroupEntryData(
-        "PLAYERS.MNI", playerTileData, 
+        "PLAYERS.MNI", playerTileData,
         (word)GroupEntryLength("PLAYERS.MNI")
     );
 
     actorInfoData = malloc((word)GroupEntryLength("ACTRINFO.MNI"));
     LoadInfoData(
-        "ACTRINFO.MNI", actorInfoData, 
+        "ACTRINFO.MNI", actorInfoData,
         (word)GroupEntryLength("ACTRINFO.MNI")
     );
 
     playerInfoData = malloc((word)GroupEntryLength("PLYRINFO.MNI"));
     LoadInfoData(
-        "PLYRINFO.MNI", playerInfoData, 
+        "PLYRINFO.MNI", playerInfoData,
         (word)GroupEntryLength("PLYRINFO.MNI")
     );
 
     cartoonInfoData = malloc((word)GroupEntryLength("CARTINFO.MNI"));
     LoadInfoData(
-        "CARTINFO.MNI", cartoonInfoData, 
+        "CARTINFO.MNI", cartoonInfoData,
         (word)GroupEntryLength("CARTINFO.MNI")
     );
 ```

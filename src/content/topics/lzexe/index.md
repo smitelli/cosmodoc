@@ -812,7 +812,7 @@ read_next_entry:
     ; fall through to the next instruction.
     or    al,al
     jz    need_next_word
-   
+
     ; ***********************************************************************
     ; * Handler for single-byte fixup codeword.                             *
     ; ***********************************************************************

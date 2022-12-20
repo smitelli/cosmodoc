@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 390
+weight = 400
 +++
 
 # Global Variables and Constants
@@ -91,6 +91,10 @@ The values for `IMAGE_TILEATTR`, `IMAGE_DEMO`, and `IMAGE_NONE` do not refer to 
 
 {{< boilerplate/global-cref JoystickState >}}
 
+{{< boilerplate/global-cref MAX_ACTORS >}}
+
+{{< boilerplate/global-cref MAX_LIGHTS >}}
+
 {{< boilerplate/global-cref MODE1_COLORS >}}
 
 The colors here are based on the Borland {{< lookup/cref COLORS >}} members, with the "light" variants shifted by 8 to compensate for the EGA's color requirements. See {{< lookup/cref SetPaletteRegister >}} for more information about this difference.
@@ -108,6 +112,10 @@ Most of these values must be combined with one of the {{< lookup/cref PLAYER_BAS
 {{< boilerplate/global-cref PLAYER_BASE >}}
 
 The values here should be added to one of the {{< lookup/cref PLAYER >}} constants to produce the true frame number for the desired combination.
+
+{{< boilerplate/global-cref Platform >}}
+
+Due to hard-coded offsets in {{< lookup/cref LoadMapData >}} and {{< lookup/cref MovePlatforms >}}, the `mapstash[]` array **must** begin at word offset 2 in this structure.
 
 {{< boilerplate/global-cref POUNCE_HINT >}}
 
@@ -154,6 +162,8 @@ For space reasons, some of the names are a bit obtuse:
 
 {{< boilerplate/global-cref TITLE_SCREEN >}}
 
+{{< boilerplate/global-cref WORD_MAX >}}
+
 {{< boilerplate/global-cref activeMusic >}}
 
 This is updated whenever {{< lookup/cref StartGameMusic >}} or {{< lookup/cref StartMenuMusic >}} is called, and read whenever the music needs to be restarted -- for instance, after the game is paused and then unpaused.
@@ -179,6 +189,12 @@ As a special case, a {{< lookup/cref activeTransporter >}} value of 3 will win t
 {{< boilerplate/global-cref actorTileData >}}
 
 Its allocations are divided into three distinct byte-aligned memory blocks due to the overall size of the data. The first two blocks each hold 65,535 bytes and the final block holds 60,840 bytes.
+
+{{< boilerplate/global-cref areLightsActive >}}
+
+On most maps, this variable is set to true by default. It only becomes false if a {{< lookup/actor 120 >}} is loaded into the map, and activation of that switch can set it true again. This variable also influences the behavior of {{< lookup/actor type=127 plural=true >}}: when false, the do not shoot at the player.
+
+Related to {{< lookup/cref hasLightSwitch >}}.
 
 {{< boilerplate/global-cref backdropTable >}}
 
@@ -242,10 +258,10 @@ The acceptable range of values for this variable is 0&ndash;9,999,999. Numbers w
 
 {{< boilerplate/global-cref gameStars >}}
 
-Each star represents a 1,000 point bonus which is added to {{< lookup/cref gameScore >}} during the {{< lookup/cref ShowStarBonus >}} sequence. The star count is reset to zero once the bonus has been added. The star count also influences which bonus levels are entered over the course of the game:
+Each star represents a 1,000 point bonus which is added to {{< lookup/cref gameScore >}} during the {{< lookup/cref ShowStarBonus >}} sequence. The star count is reset to zero once the bonus has been added. The star count also influences which bonus maps are entered over the course of the game:
 
-Stars       | Bonus Level
-------------|------------
+Stars       | Bonus Map
+------------|----------
 0&ndash;24  | Skipped.
 25&ndash;49 | BONUS1 (E1), BONUS3 (E2), or BONUS5 (E3).
 &ge;50      | BONUS2 (E1), BONUS4 (E2), or BONUS6 (E3).
@@ -255,6 +271,10 @@ The acceptable range of values for this variable is 0&ndash;99. Numbers with two
 {{< boilerplate/global-cref gameTickCount >}}
 
 This value is used by various delay functions to produce pauses of a constant length, regardless of processor speed. It is also used to govern the speed of the {{< lookup/cref GameLoop >}} function.
+
+{{< boilerplate/global-cref hasLightSwitch >}}
+
+This variable influences the behavior of {{< lookup/actor type=127 plural=true >}} to help them differentiate if {{< lookup/cref areLightsActive >}} is true because there is no {{< lookup/actor 120 >}} on the map, or because the switch is present and has been activated by the player.
 
 {{< boilerplate/global-cref highScoreNames >}}
 
@@ -402,15 +422,29 @@ Level Number | Map Number | Notes
 
 Maps are interpreted as word-aligned data, and temporary data is byte-aligned. This temporary data consists of [masked tile image data]({{< relref "tile-image-format#masked-tiles" >}}) for cartoons and scratch storage needed during the loading of backdrop images.
 
+{{< boilerplate/global-cref mapNames >}}
+
+{{< boilerplate/global-cref mapWidth >}}
+
+This is also the number of tiles that must be added or subtracted to reach a given horizontal position in the next or previous row of the map data. This is usually _not_ used to stride over a fixed number of rows; see {{< lookup/cref mapYPower >}} for that.
+
+{{< boilerplate/global-cref mapYPower >}}
+
+By expressing map width as **2<sup>n</sup>**, it becomes possible to convert X,Y positions to linear tile offsets by calculating **X + (Y \<\< mapYPower)**. This is considerably faster than multiplying Y by {{< lookup/cref mapWidth >}}.
+
 {{< boilerplate/global-cref maskedTileData >}}
+
+{{< boilerplate/global-cref maxScrollY >}}
+
+This is _not_ the same thing as map height; this is instead the height of the map minus the height of the game window. This is the largest possible value for {{< lookup/cref scrollY >}} before garbage begins to display at the bottom of the game window.
 
 {{< boilerplate/global-cref miscData >}}
 
 Outside of gameplay, this is used as a temporary buffer while copying [full-screen image data]({{< relref "full-screen-image-format" >}}) into EGA memory.
 
-When switching levels, this is used as scratch storage during the loading of backdrop images.
+When switching maps, this is used as scratch storage during the loading of backdrop images.
 
-During gameplay, the first 5,000 bytes of this block are used to hold any [demo data]({{< relref "demo-format" >}}) that is being played or recorded. The remainder of the block is used to hold [music data]({{< relref "adlib-music-format" >}}) for the level if there is an AdLib card installed, **or** [tile attributes data]({{< relref "tile-attributes-format" >}}) if there is not an AdLib card installed. (See {{< lookup/cref tileAttributeData >}}.)
+During gameplay, the first 5,000 bytes of this block are used to hold any [demo data]({{< relref "demo-format" >}}) that is being played or recorded. The remainder of the block is used to hold [music data]({{< relref "adlib-music-format" >}}) for the maps if there is an AdLib card installed, **or** [tile attributes data]({{< relref "tile-attributes-format" >}}) if there is not an AdLib card installed. (See {{< lookup/cref tileAttributeData >}}.)
 
 {{< boilerplate/global-cref miscDataContents >}}
 
@@ -431,6 +465,22 @@ Each array index matches with a {{< lookup/cref MUSIC >}} constant.
 {{< boilerplate/global-cref musicNextDue >}}
 
 {{< boilerplate/global-cref musicTickCount >}}
+
+{{< boilerplate/global-cref numActors >}}
+
+This is used as an insertion cursor as actors are being created, pointing to the next available element where one could be inserted. It also is checked against {{< lookup/cref MAX_ACTORS >}} to prevent overflowing the array.
+
+{{< boilerplate/global-cref numFountains >}}
+
+This is used as an insertion cursor as fountains are being created, pointing to the next available element where one could be inserted. This variable is _not_ used for bounds checking, and overflow is possible with a malicious map file.
+
+{{< boilerplate/global-cref numLights >}}
+
+This is used as an insertion cursor as lights are being created, pointing to the next available element where one could be inserted. It also is checked against {{< lookup/cref MAX_LIGHTS >}} to prevent overflowing the array.
+
+{{< boilerplate/global-cref numPlatforms >}}
+
+This is used as an insertion cursor as platforms are being created, pointing to the next available element where one could be inserted. This variable is _not_ used for bounds checking, and overflow is possible with a malicious map file.
 
 {{< boilerplate/global-cref paletteAnimationNum >}}
 

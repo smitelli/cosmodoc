@@ -556,6 +556,11 @@ FadeWhiteCustom:
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeWhiteCustom
 #GameRand:
+GetMapTile:
+  text: GetMapTile()
+  def: word GetMapTile(word x, word y);
+  desc: Returns the data for a single map tile positioned at horizontal position `x` and vertical position `y`.
+  ref: /topics/level-and-map-functions/#GetMapTile
 GetProcessorType:
   text: GetProcessorType()
   def: word GetProcessorType(void);
@@ -668,7 +673,11 @@ LoadInfoData:
   def: void LoadInfoData(char *entry_name, word *dest, word length);
   desc: Reads a group file `entry_name` containing "info" data into the memory block pointed to by `dest`.
   ref: /topics/group-file-functions/#LoadInfoData
-#LoadMapData:
+LoadMapData:
+  text: LoadMapData()
+  def: void LoadMapData(word level_num);
+  desc: Reads the map file associated with the passed `level_num` and initializes the global variables that are most affected by a map file's contents.
+  ref: /topics/level-and-map-functions/#LoadMapData
 LoadMaskedTileData:
   text: LoadMaskedTileData()
   def: void LoadMaskedTileData(char *entry_name);
@@ -689,7 +698,23 @@ LoadTileAttributeData:
   def: void LoadTileAttributeData(char *entry_name);
   desc: Loads data from the group file entry named `entry_name` and stores it in the tile attribute data block.
   ref: /topics/group-file-functions/#LoadTileAttributeData
-#MAP_CELL_ADDR:
+MAP_CELL_ADDR:
+  text: MAP_CELL_ADDR()
+  def: '#define MAP_CELL_ADDR(x, y) (mapData.w + ((y) << mapYPower) + x)'
+  desc: Converts an `x` and `y` position, measured in zero-based tiles, into a pointer to the map data in memory.
+  ref: /topics/level-and-map-functions/#MAP_CELL_ADDR
+MAP_CELL_DATA:
+  text: MAP_CELL_DATA()
+  def: '#define MAP_CELL_DATA(x, y) (*(mapData.w + (x) + ((y) << mapYPower)))'
+  desc: Looks up the value of a tile at an `x` and `y` position, measured in zero-based tiles, from the map data in memory.
+  ref: /topics/level-and-map-functions/#MAP_CELL_DATA
+MAP_CELL_DATA_SHIFTED:
+  text: MAP_CELL_DATA_SHIFTED()
+  def: |-
+    #define MAP_CELL_DATA_SHIFTED(x, y, shift_expr) \
+        (*(mapData.w + (x) + ((y) << mapYPower) + shift_expr))
+  desc: Looks up the value of a tile at an `x` and `y` position plus an arbitrary shift expression `shift_expr`, all measured in zero-based tiles, from the map data in memory.
+  ref: /topics/level-and-map-functions/#MAP_CELL_DATA_SHIFTED
 #MoveAndDrawActors:
 #MoveAndDrawDecorations:
 #MoveAndDrawShards:
@@ -705,7 +730,11 @@ LoadTileAttributeData:
 #NewPounceDecoration:
 #NewShard:
 #NewSpawner:
-#NextLevel:
+NextLevel:
+  text: NextLevel()
+  def: void NextLevel(void);
+  desc: Selects the next level to be played in the progression. Depending on the number of stars collected, it conditionally takes the player to or from one of the bonus levels at regular intervals. If a demo is being recorded or played back, a fixed (and discontinuous) progression of levels is selected instead.
+  ref: /topics/level-and-map-functions/#NextLevel
 PCSpeakerService:
   text: PCSpeakerService()
   def: void PCSpeakerService(void);
@@ -817,8 +846,21 @@ SetInterruptRate:
   def: void SetInterruptRate(word ints_second);
   desc: Configures channel 0 of the system's Programmable Interval Timer with an interrupts-per-second value specified by `ints_second`.
   ref: /topics/adlib-functions/#SetInterruptRate
-#SetMapTile4:
-#SetMapTileRepeat:
+SetMapTile:
+  text: SetMapTile()
+  def: void SetMapTile(word value, word x, word y);
+  desc: Sets one map tile at horizontal position `x` and vertical position `y` to the value passed in `value`.
+  ref: /topics/level-and-map-functions/#SetMapTile
+SetMapTile4:
+  text: SetMapTile4()
+  def: void SetMapTile4(word val1, word val2, word val3, word val4, word x_origin, word y_origin);
+  desc: Sets a horizontal span of four map tiles, starting at horizontal position `x_origin` and vertical position `y_origin`, to the values passed in `val1` through `val4`.
+  ref: /topics/level-and-map-functions/#SetMapTile4
+SetMapTileRepeat:
+  text: SetMapTileRepeat()
+  def: void SetMapTileRepeat(word value, word count, word x_origin, word y_origin);
+  desc: Sets a horizontal span of `count` map tiles, starting at horizontal position `x_origin` and vertical position `y_origin`, to the value passed in `value`.
+  ref: /topics/level-and-map-functions/#SetMapTileRepeat
 SetMusic:
   text: SetMusic()
   def: bool SetMusic(bool state);
@@ -1040,11 +1082,46 @@ SwitchMusic:
   def: void SwitchMusic(Music *music);
   desc: Stops any currently playing music and starts playing the music specified by `music`.
   ref: /topics/adlib-functions/#SwitchMusic
-#TILE_BLOCK_EAST:
-#TILE_BLOCK_SOUTH:
-#TILE_BLOCK_WEST:
-#TILE_CAN_CLING:
-#TILE_SLOPED:
+TILE_BLOCK_EAST:
+  text: TILE_BLOCK_EAST()
+  def: '#define TILE_BLOCK_EAST(val) (*(tileAttributeData + ((val) / 8)) & 0x08)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "block east movement" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_BLOCK_EAST
+TILE_BLOCK_NORTH:
+  text: TILE_BLOCK_NORTH()
+  def: '#define TILE_BLOCK_NORTH(val) (*(tileAttributeData + ((val) / 8)) & 0x02)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "block north movement" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_BLOCK_NORTH
+TILE_BLOCK_SOUTH:
+  text: TILE_BLOCK_SOUTH()
+  def: '#define TILE_BLOCK_SOUTH(val) (*(tileAttributeData + ((val) / 8)) & 0x01)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "block south movement" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_BLOCK_SOUTH
+TILE_BLOCK_WEST:
+  text: TILE_BLOCK_WEST()
+  def: '#define TILE_BLOCK_WEST(val) (*(tileAttributeData + ((val) / 8)) & 0x04)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "block west movement" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_BLOCK_WEST
+TILE_CAN_CLING:
+  text: TILE_CAN_CLING()
+  def: '#define TILE_CAN_CLING(val) (*(tileAttributeData + ((val) / 8)) & 0x80)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "player can cling" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_CAN_CLING
+TILE_IN_FRONT:
+  text: TILE_IN_FRONT()
+  def: '#define TILE_IN_FRONT(val) (*(tileAttributeData + ((val) / 8)) & 0x20)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "draw in front" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_IN_FRONT
+TILE_SLIPPERY:
+  text: TILE_SLIPPERY()
+  def: '#define TILE_SLIPPERY(val) (*(tileAttributeData + ((val) / 8)) & 0x10)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "is slippery" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_SLIPPERY
+TILE_SLOPED:
+  text: TILE_SLOPED()
+  def: '#define TILE_SLOPED(val) (*(tileAttributeData + ((val) / 8)) & 0x40)'
+  desc: Evaluates to a nonzero value if the tile value passed in `val` has its "is sloped" attribute flag set.
+  ref: /topics/level-and-map-functions/#TILE_SLOPED
 #TestPlayerMove:
 #TestSpriteMove:
 TimerInterruptService:
@@ -1525,6 +1602,16 @@ JoystickState:
     } JoystickState;
   desc: Holds the state of two buttons (`button1` and `button2`) on a single joystick. The values are true if the corresponding button is currently pressed, or false if it is unpressed.
   ref: /topics/global-variables-and-constants/#JoystickState
+MAX_ACTORS:
+  text: MAX_ACTORS
+  def: '#define MAX_ACTORS 410'
+  desc: Controls the size of the global actor state array, and governs the maximum number of actors that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_ACTORS
+MAX_LIGHTS:
+  text: MAX_LIGHTS
+  def: '#define MAX_LIGHTS 200'
+  desc: Controls the size of the global lights array, and governs the maximum number of lights that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_LIGHTS
 MODE1_COLORS:
   text: enum MODE1_COLORS
   def: |-
@@ -1620,6 +1707,16 @@ PLAYER_BASE:
     #define PLAYER_BASE_EAST 23
   desc: Defines the base frame number for the west- and east-facing sets of player sprites.
   ref: /topics/global-variables-and-constants/#PLAYER_BASE
+Platform:
+  text: Platform
+  def: |-
+    typedef struct {
+        word x;
+        word y;
+        word mapstash[5];
+    } Platform;
+  desc: Holds the `x` and `y` position for a single platform. The `mapstash[]` array provides temporary storage space for the five map tiles that are swapped out as the platform's tiles cover them.
+  ref: /topics/global-variables-and-constants/#Platform
 POUNCE_HINT:
   text: POUNCE_HINT_*
   def: |-
@@ -1856,6 +1953,11 @@ TITLE_SCREEN:
     #define TITLE_SCREEN "TITLE3.MNI"  /* episode 3 */
   desc: Defines the group file entry name of the full-screen image to show during the main title sequence.
   ref: /topics/global-variables-and-constants/#TITLE_SCREEN
+WORD_MAX:
+  text: WORD_MAX
+  def: '#define WORD_MAX 0xffffU'
+  desc: Constant holding the largest expressible 16-bit unsigned integer value, also known as a machine word.
+  ref: /topics/global-variables-and-constants/#WORD_MAX
 activeMusic:
   text: activeMusic
   def: Music *activeMusic;
@@ -1891,6 +1993,11 @@ actorTileData:
   def: byte *actorTileData[3];
   desc: Points to masked tile image data used to draw actors, decorations, spawners, explosions, shards, and miscellaneous UI sprites.
   ref: /topics/global-variables-and-constants/#actorTileData
+areLightsActive:
+  text: areLightsActive
+  def: bool areLightsActive;
+  desc: When true, any lights present on the map are enabled.
+  ref: /topics/global-variables-and-constants/#areLightsActive
 backdropTable:
   text: backdropTable[]
   def: word backdropTable[2880];
@@ -2000,6 +2107,11 @@ gameTickCount:
   def: word gameTickCount;
   desc: Holds a running counter that increments precisely 140 times per second, regardless of the state of program execution.
   ref: /topics/global-variables-and-constants/#gameTickCount
+hasLightSwitch:
+  text: hasLightSwitch
+  def: bool hasLightSwitch;
+  desc: When true, indicates that the current map has a switch that can control the lights.
+  ref: /topics/global-variables-and-constants/#hasLightSwitch
 highScoreNames:
   text: highScoreNames[]
   def: |-
@@ -2152,11 +2264,62 @@ mapData:
     } mapData;
   desc: Points to a 65,535 byte block of memory used to hold map data during the game OR temporary data in the main menu.
   ref: /topics/global-variables-and-constants/#mapData
+mapNames:
+  text: mapNames[]
+  def: |-
+    #define MAP_NAMES { \
+        "A1.MNI",  "A2.MNI",  "bonus1.mni", "bonus2.mni", \
+        "A3.mni",  "A4.mni",  "bonus1.mni", "bonus2.mni", \
+        "A5.mni",  "A6.mni",  "bonus1.mni", "bonus2.mni", \
+        "A7.mni",  "A8.mni",  "bonus1.mni", "bonus2.mni", \
+        "A9.mni",  "A10.mni", "bonus1.mni", "bonus2.mni", \
+        "A11.mni", "A12.mni", "bonus1.mni", "bonus2.mni", \
+        "A13.mni", "A14.mni", "bonus1.mni", "bonus2.mni", \
+        "A15.mni", "A16.mni" \
+    }  /* episode 1, or */
+    #define MAP_NAMES { \
+        "B1.MNI",  "B2.MNI",  "bonus3.mni", "bonus4.mni", \
+        "B3.mni",  "B4.mni",  "bonus3.mni", "bonus4.mni", \
+        "B5.mni",  "B6.mni",  "bonus3.mni", "bonus4.mni", \
+        "B7.mni",  "B8.mni",  "bonus3.mni", "bonus4.mni", \
+        "B9.mni",  "B10.mni", "bonus3.mni", "bonus4.mni", \
+        "B11.mni", "B12.mni", "bonus3.mni", "bonus4.mni", \
+        "B13.mni", "B14.mni", "bonus3.mni", "bonus4.mni", \
+        "B15.mni", "B16.mni" \
+    }  /* episode 2, or */
+    #define MAP_NAMES { \
+        "C1.MNI",  "C2.MNI",  "bonus5.mni", "bonus6.mni", \
+        "C3.mni",  "C4.mni",  "bonus5.mni", "bonus6.mni", \
+        "C5.mni",  "C6.mni",  "bonus5.mni", "bonus6.mni", \
+        "C7.mni",  "C8.mni",  "bonus5.mni", "bonus6.mni", \
+        "C9.mni",  "C10.mni", "bonus5.mni", "bonus6.mni", \
+        "C11.mni", "C12.mni", "bonus5.mni", "bonus6.mni", \
+        "C13.mni", "C14.mni", "bonus5.mni", "bonus6.mni", \
+        "C15.mni", "C16.mni" \
+    }  /* episode 3 */
+    char *mapNames[] = MAP_NAMES;
+  desc: Defines a list of the map file names corresponding to each level number in the game. Each episode includes higher-numbered maps that do not exist and cannot be reached.
+  ref: /topics/global-variables-and-constants/#mapNames
+mapWidth:
+  text: mapWidth
+  def: word mapWidth;
+  desc: Holds the width of the currently-loaded map, in tiles.
+  ref: /topics/global-variables-and-constants/#mapWidth
+mapYPower:
+  text: mapYPower
+  def: word mapYPower;
+  desc: Holds the width of the currently-loaded map, in tiles, expressed as 2 to the Nth power.
+  ref: /topics/global-variables-and-constants/#mapYPower
 maskedTileData:
   text: maskedTileData
   def: byte *maskedTileData;
   desc: Points to a 40,000 byte block of memory used to hold masked tile image data during the game OR music data in the main menu.
   ref: /topics/global-variables-and-constants/#maskedTileData
+maxScrollY:
+  text: maxScrollY
+  def: word maxScrollY;
+  desc: Holds the largest allowable Y scroll position value for the current map.
+  ref: /topics/global-variables-and-constants/#maxScrollY
 miscData:
   text: miscData
   def: byte *miscData;
@@ -2209,6 +2372,26 @@ musicTickCount:
   def: dword musicTickCount;
   desc: Tracks the current timestamp, in music ticks. Increments each time the AdLib service runs.
   ref: /topics/global-variables-and-constants/#musicTickCount
+numActors:
+  text: numActors
+  def: word numActors;
+  desc: Holds the current number of utilized elements in the actors array.
+  ref: /topics/global-variables-and-constants/#numActors
+numFountains:
+  text: numFountains
+  def: word numFountains;
+  desc: Holds the current number of utilized elements in the fountains array.
+  ref: /topics/global-variables-and-constants/#numFountains
+numLights:
+  text: numLights
+  def: word numLights;
+  desc: Holds the current number of utilized elements in the lights array.
+  ref: /topics/global-variables-and-constants/#numLights
+numPlatforms:
+  text: numPlatforms
+  def: word numPlatforms;
+  desc: Holds the current number of utilized elements in the platforms array.
+  ref: /topics/global-variables-and-constants/#numPlatforms
 paletteAnimationNum:
   text: paletteAnimationNum
   def: byte paletteAnimationNum;

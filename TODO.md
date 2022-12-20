@@ -10,27 +10,11 @@
 * game setup
     * GameRand: predictable PRNG
     * GameKeysAndMenu: does something goofy with the pages and calls ReadGameKeys
-    * NextLevel: determine next level to play, optionally with star bonus tally.
     * GameLoop: runs once per frame.
-    * LoadLevel: given level number, open groupent file. read flags. init player. load BD, map data. "now entering level." init game. so on and so forth.
     * InitializeGameState: reset player-specific game stuff for brand new game.
-    * GiveScore: given an actor type, add a certain amount to player's score.
 * map management
-    * SetMapBlockRepeat: SetMapBlock to one value, repeated arbitrarily many times.
-    * SetMapBlock4: set 4 consecutive map blocks to 4 different values.
-    * GetMapBlock: get one map block.
-    * SetMapBlock: set one map block.
+    * LoadLevel: given level number, open groupent file. read flags. init player. load BD, map data. "now entering level." init game. so on and so forth.
     * AddMapActor: handle player start, platforms, fountains, lights. if none of those, dispatch to CreateActorAtIndex.
-    * LoadMapData: given a level number, open the groupent file containing the map, set the width, add actors, and fill the map data block. initialize the platform saved blocks, and finally set current level and height.
-    * MAP_BLOCK_ADDR: XY to linear address.
-    * TILEATTR_BlockSouth
-    * TILEATTR_BlockNorth
-    * TILEATTR_BlockWest
-    * TILEATTR_BlockEast
-    * TILEATTR_Slippery
-    * TILEATTR_InFront
-    * TILEATTR_Sloped
-    * TILEATTR_CanCling
 * level display
     * DrawBackdropLayer: does more than you think!
     * DrawRandomEffects: make slippery tiles sparkle sometimes. spawn raindrops if warranted.
@@ -52,6 +36,7 @@
     * TestPlayerHit: return true if actor type/frame/XY is touching the player
     * PounceHelper: imparts the springiness into actor pounces.
     * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
+    * GiveScore: given an actor type, add a certain amount to player's score.
 
 * backdrop
     * InitializeBackdropTable: i have no earthly idea.
