@@ -60,6 +60,8 @@ full-screen-image-format/palette-16.svg 684x 1368x 2052x
 full-screen-image-format/palette-64.svg 684x 1368x 2052x
 full-screen-image-format/palette-bits.svg 684x 1368x 2052x
 full-screen-image-format/screen-planar.svg 684x 1368x 2052x
+hint-sheet/on-disk-sheet.svg 684x 1368x 2052x
+hint-sheet/printed-sheet.svg 684x 1368x
 joystick-functions/558-timer-internals.svg 684x 1368x 2052x
 joystick-functions/calibration-grid.svg 684x 1368x 2052x
 joystick-functions/game-control-adapter.svg 684x 1368x 2052x

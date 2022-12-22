@@ -20,6 +20,11 @@ code, pre, samp {
     font-family: Cousine, monospace;
     font-size: 0.9em;
     letter-spacing: normal;
+
+    // HACK: So I don't have to re-wrap the "on-disk hint sheet" document
+    &.language-plaintext {
+        font-size: 0.85em;
+    }
 }
 
 kbd {

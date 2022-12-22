@@ -423,7 +423,7 @@ If debug mode is _not_ enabled, the `break` here returns to the main menu simila
 
 The <kbd>D</kbd> is the "Demo" playback feature, which works identically to the "record demo" case. The only difference is the {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_PLAY" >}} return value, which instructs the game loop to load the stored demo data and use it instead of the keyboard (or joystick) when processing input.
 
-```
+```c
         case SCANCODE_T:
             goto title;
 ```
@@ -1114,7 +1114,7 @@ In order to produce sound regardless of the user's current sound effect preferen
 
 An empty frame is drawn with a call to {{< lookup/cref UnfoldTextFrame >}} and instructions are added with {{< lookup/cref DrawTextLine >}}. The escaped bytes `\x18` and `\x19` display as "&uarr;" and "&darr;" respectively.
 
-```
+```c
     for (;;) {
         byte scancode;
         int i;

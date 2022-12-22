@@ -175,7 +175,7 @@ main()
 
 Program output:
 
-```
+```plaintext
 359616 bytes free
 65000 bytes allocated, 294608 bytes free
 Block now reallocated to 32500 bytes, 262100 bytes free
