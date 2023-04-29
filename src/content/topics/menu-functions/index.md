@@ -245,7 +245,7 @@ byte TitleLoop(void)
 
 Even though this function is responsible for a rather significant part of the menu experience, it does not define all that many local variables. `idlecount` tracks the number of busy loop iterations that have passed with no keyboard input, and `scancode` holds the scancode of the key that was most recently pressed. The `YSHIFT` macro is defined based on the presence or absence of the `FOREIGN_ORDERS` flag. When this is set, the main menu has a "Foreign Orders" option and needs to be taller to make room for it.
 
-{{< lookup/cref isNewGame >}} is a flag, used later (in {{< lookup/cref SwitchLevel >}}) to slightly change the menu transition to the "Begin New Game" mode by conditionally showing a "One Moment" image. This is initially cleared under the assumption that a demo or restored game is going to start -- those modes do not show the "One Moment" screen.
+{{< lookup/cref isNewGame >}} is a flag, used later (in {{< lookup/cref InitializeLevel >}}) to slightly change the menu transition to the "Begin New Game" mode by conditionally showing a "One Moment" image. This is initially cleared under the assumption that a demo or restored game is going to start -- those modes do not show the "One Moment" screen.
 
 ```c
 title:
@@ -263,7 +263,7 @@ title:
         }
 
         if (idlecount == 1200) {
-            InitializeGame();
+            InitializeEpisode();
             return DEMOSTATE_PLAY;
         }
     }
@@ -275,7 +275,7 @@ The `while` loop performs the actual repetitive work here. As long as {{< lookup
 
 When `idlecount` reaches 600 (30 musical beats, or 7.5 bars) {{< lookup/cref DrawFullscreenImage >}} is called again to replace the screen content with the credits image {{< lookup/cref name="IMAGE" text="IMAGE_CREDITS" >}}. Interestingly, if a key is pressed when the credits are being shown, the main menu will appear drawn over them.
 
-Once `idlecount` reaches 1,200 (60 beats, 15 bars) the demo starts. This is accomplished by calling {{< lookup/cref InitializeGame >}} to set up the game globals, and returning {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_PLAY" >}} to the caller. When the demo ends, {{< lookup/cref TitleLoop >}} will be called again.
+Once `idlecount` reaches 1,200 (60 beats, 15 bars) the demo starts. This is accomplished by calling {{< lookup/cref InitializeEpisode >}} to set up the game globals, and returning {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_PLAY" >}} to the caller. When the demo ends, {{< lookup/cref TitleLoop >}} will be called again.
 
 If the user presses a key before the demo begins, this loop terminates and execution continues.
 
@@ -332,7 +332,7 @@ The input handler within the title loop is a simple `switch` overall, but it has
         case SCANCODE_B:
         case SCANCODE_ENTER:
         case SCANCODE_SPACE:
-            InitializeGame();
+            InitializeEpisode();
             isNewGame = true;
             pounceHintState = POUNCE_HINT_UNSEEN;
             StartSound(SND_NEW_GAME);
@@ -341,9 +341,9 @@ The input handler within the title loop is a simple `switch` overall, but it has
 
 In response to <kbd>B</kbd>, <kbd>Enter</kbd>, or <kbd>Space</kbd>, the "Begin New Game" action is taken.
 
-{{< lookup/cref InitializeGame >}} sets the initial state for the game's global variables. It selects the first level, sets the player score to zero, gives the player at three full bars of health, and so on. Setting {{< lookup/cref isNewGame >}} enables the future display of the "One Moment" screen.
+{{< lookup/cref InitializeEpisode >}} sets the initial state for the game's global variables. It selects the first level, sets the player score to zero, gives the player at three full bars of health, and so on. Setting {{< lookup/cref isNewGame >}} enables the future display of the "One Moment" screen.
 
-{{< lookup/cref pounceHintState >}} is set to {{< lookup/cref name="POUNCE_HINT" text="POUNCE_HINT_UNSEEN" >}}, which enables the "jump on creatures" hint the first time the player is hurt. (Why this wasn't done in {{< lookup/cref InitializeGame >}} with the rest of the hint variable initializations, who can say.)
+{{< lookup/cref pounceHintState >}} is set to {{< lookup/cref name="POUNCE_HINT" text="POUNCE_HINT_UNSEEN" >}}, which enables the "jump on creatures" hint the first time the player is hurt. (Why this wasn't done in {{< lookup/cref InitializeEpisode >}} with the rest of the hint variable initializations, who can say.)
 
 {{< lookup/cref StartSound >}} is called to play {{< lookup/cref name="SND" text="SND_NEW_GAME" >}}, and this function returns with a value of {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}} to indicate that a demo is not being played, nor is one being recorded -- the game must be under user control. Control passes back to the caller ({{< lookup/cref InnerMain >}}), which uses the returned demo state value to decide how to run the game loop.
 
@@ -403,7 +403,7 @@ The <kbd>S</kbd> key shows the "Story" pages via a call to {{< lookup/cref ShowS
 ```c
         case SCANCODE_F11:
             if (isDebugMode) {
-                InitializeGame();
+                InitializeEpisode();
                 return DEMOSTATE_RECORD;
             }
             break;
@@ -411,13 +411,13 @@ The <kbd>S</kbd> key shows the "Story" pages via a call to {{< lookup/cref ShowS
 
 <kbd>F11</kbd> is an undocumented debug key that starts recording a demo if the right preconditions are met. To do this, {{< lookup/cref isDebugMode >}} must be true, which means the user must've started a game at least once and enabled debug mode using <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del</kbd>, then returned to the main menu to invoke this command.
 
-When activated, it works essentially the same as the "Begin New Game" case: {{< lookup/cref InitializeGame >}} sets up all the appropriate variables, and `return` passes control back to the caller. The difference here, however, is that the return value is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_RECORD" >}} -- this is what configures the game loop to record the demo data (and some other differences) as the game is played.
+When activated, it works essentially the same as the "Begin New Game" case: {{< lookup/cref InitializeEpisode >}} sets up all the appropriate variables, and `return` passes control back to the caller. The difference here, however, is that the return value is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_RECORD" >}} -- this is what configures the game loop to record the demo data (and some other differences) as the game is played.
 
 If debug mode is _not_ enabled, the `break` here returns to the main menu similarly to how other simple menus like "Instructions" do. This has the side effect of fading the screen out and back in for seemingly no reason.
 
 ```c
         case SCANCODE_D:
-            InitializeGame();
+            InitializeEpisode();
             return DEMOSTATE_PLAY;
 ```
 
@@ -591,7 +591,7 @@ The <kbd>S</kbd> key presents the "Save your game" prompt via a call to {{< look
             {  /* for scope */
                 byte result = PromptRestoreGame();
                 if (result == RESTORE_GAME_SUCCESS) {
-                    SwitchLevel(levelNum);
+                    InitializeLevel(levelNum);
                     return HELP_MENU_RESTART;
                 } else if (result == RESTORE_GAME_NOT_FOUND) {
                     ShowRestoreGameError();
@@ -606,7 +606,7 @@ The <kbd>R</kbd> key invokes the "Restore a game" option, which prompts the user
 * If the user entered a number but the save file for that slot did not exist, the return value indicates this condition. ({{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}})
 * Otherwise the game state has been restored successfully and all relevant global variables have been set. ({{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_SUCCESS" >}})
 
-{{< lookup/cref PromptRestoreGame >}} is responsible for the aforementioned behavior, and returns the restore status into `result`. In the success case, {{< lookup/cref PromptRestoreGame >}} will have set all the necessary global variables that were read from the file, including {{< lookup/cref levelNum >}}. {{< lookup/cref SwitchLevel >}} handles further game state initialization and loads the map data. Finally, {{< lookup/cref name="HELP_MENU" text="HELP_MENU_RESTART" >}} is returned, informing the caller that the game loop needs to start from the beginning with the new game state.
+{{< lookup/cref PromptRestoreGame >}} is responsible for the aforementioned behavior, and returns the restore status into `result`. In the success case, {{< lookup/cref PromptRestoreGame >}} will have set all the necessary global variables that were read from the file, including {{< lookup/cref levelNum >}}. {{< lookup/cref InitializeLevel >}} handles further game state initialization and loads the map data. Finally, {{< lookup/cref name="HELP_MENU" text="HELP_MENU_RESTART" >}} is returned, informing the caller that the game loop needs to start from the beginning with the new game state.
 
 If the saved game was not found, the {{< lookup/cref ShowRestoreGameError >}} dialog is drawn on top of the screen contents. Once the message is dismissed, the `return` path is taken.
 
@@ -1243,7 +1243,7 @@ Before moving on, {{< lookup/cref DrawScancodeCharacter >}} draws the `scancode`
 
 To explain the use of all the `tmp...` variables, we need to first jump to the center of the save: the {{< lookup/cref LoadGameState >}}/{{< lookup/cref SaveGameState >}} pair. In a hypothetical world where the [save file]({{< relref "save-file-format" >}}) could represent a level midway through, the file would need to contain data for every player variable, actor structure, and global map variable in the game. The act of saving and reloading would be quite complicated, with any bit of mishandled state creating an opportunity for a potentially game-ruining bug. Instead of doing all this, the game simply saves and loads game state at the beginning of each level, relying on the regular game initialization code to ensure all the variables and structures for map objects are set in a predictable way. By handling saved games in this way, the game can leverage the existing systems that handle the case where the player dies and the current level restarts: the level returns to its initial state, and the player's score/health/etc. variables return to the values they had when the level was first entered.
 
-This "restart at the beginning" bookkeeping is performed during every call to {{< lookup/cref SwitchLevel >}}. As part of its level-changing duties, it calls {{< lookup/cref name="SaveGameState" text="SaveGameState('T')" >}} to fill the temporary (`T`) save slot with the level state. Later, any call to {{< lookup/cref name="LoadGameState" text="LoadGameState('T')" >}} restores that state, thus returning the player variables to the way they were when the level started.
+This "restart at the beginning" bookkeeping is performed during every call to {{< lookup/cref InitializeLevel >}}. As part of its level-changing duties, it calls {{< lookup/cref name="SaveGameState" text="SaveGameState('T')" >}} to fill the temporary (`T`) save slot with the level state. Later, any call to {{< lookup/cref name="LoadGameState" text="LoadGameState('T')" >}} restores that state, thus returning the player variables to the way they were when the level started.
 
 In this function, we aren't interested in restoring the state to restart the level, but rather to produce a save file that has the _effect_ of restarting the level. To accomplish that, {{< lookup/cref LoadGameState >}} restores the temporary save state, which is immediately rewritten via {{< lookup/cref SaveGameState >}} to the specified save slot. The save slot identifier is a character between `1` and `9`, generated by computing the difference between the entered `scancode` and {{< lookup/cref name="SCANCODE" text="SCANCODE_1" >}} and adding that to the numeric value of the `1` byte (31h). This becomes the final character of the save file's extension on disk.
 
@@ -1403,7 +1403,7 @@ The subtraction also has the secondary benefit of discerning invalid input: For 
     if (x >= 0 && x <= (sizeof levels / sizeof levels[0]) - 1) {
         levelNum = x;
         LoadGameState('T');
-        SwitchLevel(levels[x]);
+        InitializeLevel(levels[x]);
 
         return true;
     }
@@ -1418,6 +1418,6 @@ Here `x` is bounds-checked: It should be at least 0, and less than the number of
 
 {{< lookup/cref name="LoadGameState" text="LoadGameState('T')" >}} reloads the player's state from the most recently written temporary save file. This has the effect of resetting the player's health/score/etc. to the values they had when the current level started -- similar to what would happen if the player died and the level restarted.
 
-The actual work occurs in {{< lookup/cref SwitchLevel >}}, which actually loads the specified map and resets all of the actors and dynamic variables needed to play it. The `levels[x]` lookup translates the user-provided map number into a usable level number.
+The actual work occurs in {{< lookup/cref InitializeLevel >}}, which actually loads the specified map and resets all of the actors and dynamic variables needed to play it. The `levels[x]` lookup translates the user-provided map number into a usable level number.
 
 The function returns true in this path, to indicate to the caller that the game loop must restart from the beginning on this new level. Otherwise false is returned, indicating that the user entered junk (or nothing) at the prompt. The caller takes this to mean that no changes occurred and the game loop should continue as before.

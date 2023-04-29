@@ -207,7 +207,7 @@ Font [masked tile image data]({{< relref "tile-image-format#masked-tiles" >}}) i
     }
 ```
 
-A 7,000 byte block is allocated for {{< lookup/cref tileAttributeData >}} and the allocation is filled by {{< lookup/cref LoadTileAttributeData >}}, but _only if the system contains an AdLib card_ ({{< lookup/cref isAdLibPresent >}}). If the system does not have an AdLib card, this load instead happens during the {{< lookup/cref SwitchLevel >}} function each time a level is entered, where the [tile attributes data]({{< relref "tile-attributes-format" >}}) piggybacks on the {{< lookup/cref miscData >}} block alongside any demo data that might be in use.
+A 7,000 byte block is allocated for {{< lookup/cref tileAttributeData >}} and the allocation is filled by {{< lookup/cref LoadTileAttributeData >}}, but _only if the system contains an AdLib card_ ({{< lookup/cref isAdLibPresent >}}). If the system does not have an AdLib card, this load instead happens during the {{< lookup/cref InitializeLevel >}} function each time a level is entered, where the [tile attributes data]({{< relref "tile-attributes-format" >}}) piggybacks on the {{< lookup/cref miscData >}} block alongside any demo data that might be in use.
 
 Because of this conditional, the memory needs of the game change by 7,000 bytes depending on whether or not an AdLib card is installed. This logic is mirrored in the tests within {{< lookup/cref ValidateSystem >}}.
 

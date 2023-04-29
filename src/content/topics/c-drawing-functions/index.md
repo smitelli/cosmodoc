@@ -227,7 +227,7 @@ With the image data loaded into a staging area in main memory, the EGA hardware 
 The call to {{< lookup/cref SelectDrawPage >}} is not important. Normally this is used to influence the behavior of the [assembly drawing functions]({{< relref "assembly-drawing-functions" >}}), but none of them are used here. In this specific case, initializing `destbase` to point directly at segment A000h is what selects page 0 for drawing.
 
 ```c
-    {
+    {  /* for scope */
         register word srcbase;
         register int i;
         word mask = 0x0100;

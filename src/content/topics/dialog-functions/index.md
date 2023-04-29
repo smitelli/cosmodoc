@@ -971,7 +971,7 @@ The `mapnums[]` array links the level numbers to the maps. Levels 0&ndash;1 are 
     if (demoState != DEMOSTATE_NONE) return;
 ```
 
-If the global {{< lookup/cref demoState >}} is anything other than {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}, a demo is being recorded or played back and this function should return without doing anything. This doesn't occur in practice, as the caller ({{< lookup/cref SwitchLevel >}}) only calls this function when the demo state is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}.
+If the global {{< lookup/cref demoState >}} is anything other than {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}, a demo is being recorded or played back and this function should return without doing anything. This doesn't occur in practice, as the caller ({{< lookup/cref InitializeLevel >}}) only calls this function when the demo state is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}.
 
 ```c
     x = UnfoldTextFrame(7, 3, 24, "\xFC""003  Now entering level", "");
@@ -998,7 +998,7 @@ The `if` covers up a bit of a hack: If the value read from `mapnums[]` is equal 
 Shush, you.
 {{< /aside >}}
 
-While the first episode of the game has map 11, the caller ({{< lookup/cref SwitchLevel >}}) does not call this function when that map is entered. No other two-digit maps numbers are implemented in the retail game.
+While the first episode of the game has map 11, the caller ({{< lookup/cref InitializeLevel >}}) does not call this function when that map is entered. No other two-digit maps numbers are implemented in the retail game.
 
 {{< boilerplate/function-cref ShowSectionIntermission >}}
 

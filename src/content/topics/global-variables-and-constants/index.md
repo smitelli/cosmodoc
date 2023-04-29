@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 400
+weight = 410
 +++
 
 # Global Variables and Constants
@@ -45,6 +45,18 @@ Symbolic Constant  | Value | Description
 
 These are the return values for the {{< lookup/cref TitleLoop >}} function.
 
+{{< boilerplate/global-cref DIR4 >}}
+
+Symbolic Constant | Value | Description
+------------------|-------|------------
+`DIR4_NONE`       | 0     | Refers to a "directionless" state. Numerically identical to `DIR4_NORTH`, but used in code to clarify that there is no direction instead of it being interpreted as a literal "north."
+`DIR4_NORTH`      | 0     | Points toward the top edge of the screen.
+`DIR4_SOUTH`      | 1     | Points toward the bottom edge of the screen.
+`DIR4_WEST`       | 2     | Points toward the left edge of the screen.
+`DIR4_EAST`       | 3     | Points toward the right edge of the screen.
+
+The arrangement of these cardinal directions follows the conventional layout of a compass rose.
+
 {{< boilerplate/global-cref DRAWMODE >}}
 
 Symbolic Constant      | Value | Description
@@ -69,9 +81,23 @@ Symbolic Constant      | Value | Description
 
 The [game font]({{< relref "databases/font" >}}) is built from 100 [masked tiles]({{< relref "tile-image-format#masked-tiles" >}}), each beginning on a 40-byte boundary. Only a handful of these tiles are referenced directly in the game code; all other tile offsets are calculated by adding a multiple of 40 to one of the above base values.
 
+{{< boilerplate/global-cref GAME_INPUT >}}
+
+These are the return values for the {{< lookup/cref ProcessGameInput >}} function, used to differentiate how the game loop should respond.
+
+Symbolic Constant     | Value | Description
+----------------------|-------|------------
+`GAME_INPUT_CONTINUE` | 0     | The user did not do anything that would affect the current iteration of the game loop or the state of gameplay as a whole.
+`GAME_INPUT_QUIT`     | 1     | The user wants to quit the current game, and the game loop needs to stop running.
+`GAME_INPUT_RESTART`  | 2     | The user loaded a saved game, and the game loop needs to restart from the beginning with this new state.
+
+Contrast with the values defined in {{< lookup/cref HELP_MENU >}}.
+
 {{< boilerplate/global-cref GAME_VERSION >}}
 
 {{< boilerplate/global-cref HELP_MENU >}}
+
+These are the return values for the {{< lookup/cref ShowHelpMenu >}} function.
 
 Symbolic Constant    | Value | Description
 ---------------------|-------|------------
@@ -79,7 +105,7 @@ Symbolic Constant    | Value | Description
 `HELP_MENU_RESTART`  | 1     | The user loaded a saved game, and the game loop needs to restart from the beginning with this new state.
 `HELP_MENU_QUIT`     | 2     | The user wants to quit the current game, and the game loop needs to stop running.
 
-These are the return values for the {{< lookup/cref ShowHelpMenu >}} function.
+Contrast with the values defined in {{< lookup/cref GAME_INPUT >}}.
 
 {{< boilerplate/global-cref IMAGE >}}
 
@@ -104,6 +130,8 @@ The colors here are based on the Borland {{< lookup/cref COLORS >}} members, wit
 {{< boilerplate/global-cref Music >}}
 
 {{< boilerplate/global-cref PALANIM >}}
+
+{{< boilerplate/global-cref PALETTE_KEY_INDEX >}}
 
 {{< boilerplate/global-cref PLAYER >}}
 
@@ -149,6 +177,27 @@ In the official version of the game, the save file template is `"COSMOx.SV "` wi
 
 These constants should be passed to {{< lookup/cref StartSound >}} to start playing a [PC speaker sound effect]({{< relref "pc-speaker-sound-format" >}}). Each sound number is described in more detail on the [sound database]({{< relref "databases/sound" >}}) page.
 
+{{< boilerplate/global-cref SPR >}}
+
+Sprite type numbers map directly to graphics in the ACTORS.MNI [masked tile image data]({{< relref "tile-image-format#masked-tiles" >}}). These sprites are not just used by actors -- decorations, shards, explosions, and other arbitrary elements draw from this set of objects.
+
+Some of the constants use a number instead of a description of the sprite. These are "non-canonical" names that either serve as an additional handle to the same data (i.e. there are two different constants that point to the same image data after being looked up through the [tile info]({{< relref "tile-info-format" >}}) table) or they hold a nonsensical value that doesn't matter because the sprite never actually displays on the screen. The following table explains these cases:
+
+Symbolic Constant | Duplicate Version Of | Description
+------------------|----------------------|------------
+`SPR_6`           | `SPR_FIREBALL`       | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 6 >}} which now cannot occur anymore.
+`SPR_48`          | `SPR_PYRAMID`        | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 48 >}} which now cannot occur anymore.
+`SPR_50`          | `SPR_GHOST`          | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 50 >}} which now cannot occur anymore.
+`SPR_74`          | `SPR_BABY_GHOST_EGG` | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanBeExploded >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 74 >}} which now cannot occur anymore.
+`SPR_84`          | `SPR_GRAPES`         | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanBeExploded >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 84 >}} which now cannot occur anymore.
+`SPR_96`          | `SPR_SMOKE`          | Referenced in {{< lookup/cref CanBeExploded >}} and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 96 >}} which now cannot occur anymore.
+`SPR_150`         | `SPR_SMALL_FLAME`    | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 150 >}}.
+`SPR_164`         | `SPR_ROOT`           | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actors {{< lookup/actor 164 >}}, {{< lookup/actor 165 >}}, and {{< lookup/actor 166 >}}.
+`SPR_248`         | `SPR_CABBAGE`        | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 248 >}}. The graphics referenced here only contain one frame of the `SPR_CABBAGE` sprite.
+`SPR_249`         | `SPR_CABBAGE`        | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 249 >}}. The graphics referenced here only contain one frame of the `SPR_CABBAGE` sprite.
+`SPR_250`         | `SPR_CABBAGE`        | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 250 >}}. The graphics referenced here only contain one frame of the `SPR_CABBAGE` sprite.
+`SPR_265`         | `SPR_DEMO_OVERLAY`   | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 265 >}}.
+
 {{< boilerplate/global-cref TILE >}}
 
 For space reasons, some of the names are a bit obtuse:
@@ -190,11 +239,23 @@ As a special case, a {{< lookup/cref activeTransporter >}} value of 3 will win t
 
 Its allocations are divided into three distinct byte-aligned memory blocks due to the overall size of the data. The first two blocks each hold 65,535 bytes and the final block holds 60,840 bytes.
 
+{{< boilerplate/global-cref areForceFieldsActive >}}
+
+This is _always_ true by default, and can only be set false by using a {{< lookup/actor 121 >}}.
+
 {{< boilerplate/global-cref areLightsActive >}}
 
 On most maps, this variable is set to true by default. It only becomes false if a {{< lookup/actor 120 >}} is loaded into the map, and activation of that switch can set it true again. This variable also influences the behavior of {{< lookup/actor type=127 plural=true >}}: when false, the do not shoot at the player.
 
 Related to {{< lookup/cref hasLightSwitch >}}.
+
+{{< boilerplate/global-cref arePlatformsActive >}}
+
+This is usually true, except on maps that have a {{< lookup/actor 59 >}}. On these maps, this variable is set to false when the actor is constructed and remains in that state until the player activates that switch.
+
+{{< boilerplate/global-cref backdropNames >}}
+
+{{< note >}}Not all of the names defined here exist in all of the group files. Some of these names do not exist in _any_ group file.{{< /note >}}
 
 {{< boilerplate/global-cref backdropTable >}}
 
@@ -203,6 +264,12 @@ This is also used as scratch storage during calls to {{< lookup/cref DrawFullscr
 {{< boilerplate/global-cref blockActionCmds >}}
 
 This variable takes a true value when the player is "removed" from the map, like when interacting with a {{< lookup/actor 152 >}}, {{< lookup/actor type=149 strip=true >}}, {{< lookup/actor 186 >}}, or the {{< lookup/actor type=247 strip=true >}}.
+
+{{< boilerplate/global-cref  blockMovementCmds >}}
+
+Unlike {{< lookup/cref blockActionCmds >}}, this variable does not hide the player or make them invincible; this is purely an immobilization flag. The only place this is used without an accompanying {{< lookup/cref blockActionCmds >}} is with the {{< lookup/actor 162 >}} actor.
+
+Due to an oversight, this only immobilizes the player when keyboard input is being used. This variable is ignored when a joystick is employed.
 
 {{< boilerplate/global-cref cartoonInfoData >}}
 
@@ -272,9 +339,15 @@ The acceptable range of values for this variable is 0&ndash;99. Numbers with two
 
 This value is used by various delay functions to produce pauses of a constant length, regardless of processor speed. It is also used to govern the speed of the {{< lookup/cref GameLoop >}} function.
 
+{{< boilerplate/global-cref hasHScrollBackdrop >}}
+
 {{< boilerplate/global-cref hasLightSwitch >}}
 
 This variable influences the behavior of {{< lookup/actor type=127 plural=true >}} to help them differentiate if {{< lookup/cref areLightsActive >}} is true because there is no {{< lookup/actor 120 >}} on the map, or because the switch is present and has been activated by the player.
+
+{{< boilerplate/global-cref hasRain >}}
+
+{{< boilerplate/global-cref hasVScrollBackdrop >}}
 
 {{< boilerplate/global-cref highScoreNames >}}
 
@@ -338,11 +411,27 @@ Music may play when this is true, and music is silenced when false. This setting
 
 {{< boilerplate/global-cref isNewGame >}}
 
-This is set in {{< lookup/cref TitleLoop >}} and controls whether {{< lookup/cref SwitchLevel >}} displays a "One Moment" image before loading the first level.
+This is set in {{< lookup/cref TitleLoop >}} and controls whether {{< lookup/cref InitializeLevel >}} displays a "One Moment" image before loading the first level.
 
 {{< boilerplate/global-cref isNewSound >}}
 
 This serves as a communication flag between {{< lookup/cref StartSound >}} and {{< lookup/cref PCSpeakerService >}}.
+
+{{< boilerplate/global-cref isPlayerInPipe >}}
+
+While this variable is true, the player cannot take damage by touching enemies, and will be pushed around the map any time a pipe corner actor is touched.
+
+{{< boilerplate/global-cref isPlayerInvincible >}}
+
+This variable is only true while an {{< lookup/actor 201 >}} is present on the map. It gives the same level of protection as the {{< lookup/cref isGodMode >}} cheat flag.
+
+{{< boilerplate/global-cref isPlayerNearHintGlobe >}}
+
+This is used to override the "look up" input command, instead using it to activate a hint globe.
+
+{{< boilerplate/global-cref isPlayerNearTransporter >}}
+
+This is used to override the "look up" input command, instead using it to activate a transporter. In order for this to be true, the player must specifically be standing "inside" the transporter sprite. Merely touching its edge is not sufficient.
 
 {{< boilerplate/global-cref isSoundEnabled >}}
 
@@ -424,6 +513,10 @@ Maps are interpreted as word-aligned data, and temporary data is byte-aligned. T
 
 {{< boilerplate/global-cref mapNames >}}
 
+{{< boilerplate/global-cref mapVariables >}}
+
+See {{< lookup/cref hasHScrollBackdrop >}}, {{< lookup/cref hasRain >}}, {{< lookup/cref hasVScrollBackdrop >}}, {{< lookup/cref musicNum >}}, {{< lookup/cref paletteAnimationNum >}}, and the [backdrop numbers]({{< relref "databases/backdrop" >}}).
+
 {{< boilerplate/global-cref mapWidth >}}
 
 This is also the number of tiles that must be added or subtracted to reach a given horizontal position in the next or previous row of the map data. This is usually _not_ used to stride over a fixed number of rows; see {{< lookup/cref mapYPower >}} for that.
@@ -464,11 +557,25 @@ Each array index matches with a {{< lookup/cref MUSIC >}} constant.
 
 {{< boilerplate/global-cref musicNextDue >}}
 
+{{< boilerplate/global-cref musicNum >}}
+
+This is an index to one of the {{< lookup/cref musicNames >}} elements, and matches the numbering of the {{< lookup/cref MUSIC >}} constants.
+
 {{< boilerplate/global-cref musicTickCount >}}
 
 {{< boilerplate/global-cref numActors >}}
 
 This is used as an insertion cursor as actors are being created, pointing to the next available element where one could be inserted. It also is checked against {{< lookup/cref MAX_ACTORS >}} to prevent overflowing the array.
+
+{{< boilerplate/global-cref numBarrels >}}
+
+This value in incremented when {{< lookup/cref ConstructActor >}} adds barrel/basket actors to the map, and it is decremented in {{< lookup/cref DestroyBarrel >}}. When the last remaining barrel is destroyed, the player is given a 50,000 point bonus.
+
+{{< boilerplate/global-cref numEyePlants >}}
+
+This value in incremented when {{< lookup/cref NewActorAtIndex >}} adds {{< lookup/actor type=95 strip=1 >}} actors to the map, and it is decremented in {{< lookup/cref CanBeExploded >}}. When the last remaining {{< lookup/actor type=95 strip=1 >}} is destroyed, the player is given a 50,000 point bonus.
+
+This value is artificially constrained to 15. If a map has more than this many {{< lookup/actor type=95 strip=1 plural=1 >}}, only the first 15 are counted.
 
 {{< boilerplate/global-cref numFountains >}}
 
@@ -490,9 +597,70 @@ Once the end of the palette table has been reached (as indicated by encountering
 
 {{< boilerplate/global-cref pit0Value >}}
 
+{{< boilerplate/global-cref playerBaseFrame >}}
+
+This should always contain one of the {{< lookup/cref PLAYER_BASE >}} values, and represents the number of player sprite frames that must be skipped over to index the appropriately-oriented version of a player sprite. (Left-facing frames require an offset of zero, while an equivalent right-facing frame requires an offset of 23.) When combined with the value in {{< lookup/cref playerFrame >}}, the correct sprite frame is identified.
+
+Several functions in the game use this to determine the direction the player is facing, making this the canonical direction variable (as opposed to {{< lookup/cref playerFaceDir >}}).
+
 {{< boilerplate/global-cref playerBombs >}}
 
 The acceptable range of values for this variable is 0&ndash;9. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+
+{{< boilerplate/global-cref playerClingDir >}}
+
+This should always contain one of the {{< lookup/cref DIR4 >}} values. When this equals {{< lookup/cref name="DIR4" text="DIR4_WEST" >}}, the player is clinging to a wall that is to their west (i.e. towards the left edge of the screen). Likewise with {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} and an east/right wall. In the case of {{< lookup/cref name="DIR4" text="DIR4_NONE" >}}, the player is not clinging to any walls.
+
+The remaining {{< lookup/cref DIR4 >}} values do not make sense as cling directions and should not be used.
+
+{{< boilerplate/global-cref playerDeadTime >}}
+
+During normal gameplay, this holds a zero value. It is set to one the moment the player dies, either by depleting all the health bars or falling off the bottom of the map.
+
+Once the player is dead _from health depletion_, the counter increments by one during each frame and performs the following actions:
+
+`playerDeadTime` Value(s) | Death Animation Sequence
+--------------------------|-------------------------
+1                         | {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}} sound effect is started.
+1&ndash;9                 | Player sprite is shown as a stationary angel, with a two-frame "wing flap" animation based on the value `playerDeadTime % 2`.
+10                        | {{< lookup/cref name="SND" text="SND_PLAYER_DEATH" >}} sound effect is started.
+10&ndash;11               | The game window scrolls up by one tile on each frame.
+10&ndash;37               | Player sprite moves up by one tile on each frame. Regardless of the player's starting position, this moves them far above the top edge of the screen.
+37                        | With the player fully off the screen, the level restarts.
+
+Death by falling off the map is handled separately based on {{< lookup/cref playerFallDeadTime >}}.
+
+{{< boilerplate/global-cref playerDizzyLeft >}}
+
+The lifecycle of this variable is controlled by {{< lookup/cref ProcessPlayerDizzy >}}, and it can immediately be canceled by calling {{< lookup/cref ClearPlayerDizzy >}}.
+
+{{< boilerplate/global-cref playerFaceDir >}}
+
+This should always be one of the east/west {{< lookup/cref DIR4 >}} values.
+
+This is **not** the primary means of determining the player's direction; see {{< lookup/cref playerBaseFrame >}} for that. This variable is principally responsible for adding a one-frame "turn around" when a player switches direction. As an example: With the player facing right, quickly tap the "walk left" key. The player will switch directions, but will _not_ move in the horizontal direction. It is only on subsequent "walk left" inputs that the horizontal position will change. This variable is involved in producing that delay.
+
+{{< boilerplate/global-cref playerFallDeadTime >}}
+
+During normal gameplay, this holds a zero value. It is set to one the moment the player falls off the bottom of the map.
+
+Once the player is off the map, the counter increments by one during each frame and performs the following actions:
+
+`playerFallDeadTime` Value(s) | Death Animation Sequence
+------------------------------|-------------------------
+1                             | Skipped; `playerFallDeadTime` is incremented before any comparisons occur.
+2                             | {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}} sound effect is started.
+2&ndash;11                    | Occurs during a single game frame, incrementing `playerFallDeadTime` from 2 to 11 with a hard wait of two ticks between each iteration. This freezes all gameplay for about 1 &#x2215; 7 of a second.
+13                            | {{< lookup/cref name="SND" text="SND_PLAYER_DEATH" >}} sound effect is started.
+13&ndash;18                   | One of the speech bubbles appears above the player, rising by one tile each frame.
+19&ndash;31                   | The speech bubble remains fixed in its final position.
+31                            | The level restarts.
+
+{{< boilerplate/global-cref playerFrame >}}
+
+The value here should always be one of the {{< lookup/cref PLAYER >}} values, which represent the sprite frames described in the lower half of the [player sprite database]({{< relref "databases/player-sprite" >}}).
+
+This variable is changed by {{< lookup/cref MovePlayer >}}, {{< lookup/cref MovePlayerScooter >}}, and {{< lookup/cref ProcessPlayerDizzy >}}. It is read by {{< lookup/cref DrawPlayerHelper >}}, where it is combined with {{< lookup/cref playerBaseFrame >}} to control the player sprite frame displayed on the screen.
 
 {{< boilerplate/global-cref playerHealth >}}
 
@@ -524,6 +692,10 @@ This block is used to hold the [masked tile image data]({{< relref "tile-image-f
 
 At any time, the value of this variable should be one of the {{< lookup/cref POUNCE_HINT >}} values. The hint is shown the first time the player is hurt, even if the injury came from an un-pounceable actor.
 
+{{< boilerplate/global-cref pounceStreak >}}
+
+This value is incremented and tested in {{< lookup/cref PounceHelper >}}, which also gives a 50,000 bonus point on the tenth consecutive pounce. This counter is reset to zero when the player touches the ground, or when they pounce on an actor who is designed to be used as a platform. Notably, the pounce streak is _not_ reset when the player clings to a wall.
+
 {{< boilerplate/global-cref profCountCPU >}}
 
 This is updated when the {{< lookup/cref ProfileCPUService >}} function runs, and interpreted during calculations in {{< lookup/cref ProfileCPU >}}.
@@ -531,6 +703,14 @@ This is updated when the {{< lookup/cref ProfileCPUService >}} function runs, an
 {{< boilerplate/global-cref profCountPIT >}}
 
 This is updated when the {{< lookup/cref ProfileCPUService >}} function runs, and interpreted during calculations in {{< lookup/cref ProfileCPU >}}. It is read during {{< lookup/cref WaitWallclock >}}, but the actual value is irrelevant in that particular function.
+
+{{< boilerplate/global-cref queuePlayerDizzy >}}
+
+This variable is usually set while the player is off the ground (either free-falling or moving through pipes). Once the player lands on the ground, the presence of this flag initiates the dizzy countdown tracked in {{< lookup/cref playerDizzyLeft >}}.
+
+{{< boilerplate/global-cref randStepCount >}}
+
+Used exclusively by {{< lookup/cref GameRand >}}; only exposed globally so that it can be reset by {{< lookup/cref InitializeMapGlobals >}}.
 
 {{< boilerplate/global-cref savedInt8 >}}
 
@@ -540,9 +720,43 @@ This function was the system timer interrupt handler when the program was starte
 
 This function was the keyboard handler when the program was started.
 
+{{< boilerplate/global-cref sawAutoHintGlobe >}}
+
+Once a hint globe has auto-activated once, no other hint globe will do that on the current level -- the player must explicitly press the "look up" key to see subsequent messages.
+
+This variable is forced true during demo recording and playback to prevent hint display from interfering with gameplay in those contexts.
+
+{{< boilerplate/global-cref sawBearTrapBubble >}}
+
 {{< boilerplate/global-cref sawBombHint >}}
 
+{{< boilerplate/global-cref sawBossBubble >}}
+
+{{< boilerplate/global-cref sawHamburgerBubble >}}
+
 {{< boilerplate/global-cref sawHealthHint >}}
+
+{{< boilerplate/global-cref sawHurtBubble >}}
+
+{{< boilerplate/global-cref sawJumpPadBubble >}}
+
+{{< boilerplate/global-cref sawMonumentBubble >}}
+
+{{< boilerplate/global-cref sawMysteryWallBubble >}}
+
+{{< boilerplate/global-cref sawPipeBubble >}}
+
+{{< boilerplate/global-cref sawPusherRobotBubble >}}
+
+{{< boilerplate/global-cref sawScooterBubble >}}
+
+{{< boilerplate/global-cref sawTransporterBubble >}}
+
+{{< boilerplate/global-cref sawTulipLauncherBubble >}}
+
+{{< boilerplate/global-cref scooterMounted >}}
+
+This variable will hold zero when the player is not riding a scooter, and nonzero when the player is doing so. At the moment a scooter is initially mounted, this variable is set to 4 and decrements on each successive frame until reaching 1, where it remains until the scooter is unmounted. This decrementing counter governs the initial upward "takeoff" at mount time.
 
 {{< boilerplate/global-cref scrollX >}}
 
@@ -613,6 +827,10 @@ This value can be seen in the "Memory free" line in the Memory Usage debug menu.
 {{< boilerplate/global-cref totalMemFreeBefore >}}
 
 This value can be seen in the "Take Up" line in the Memory Usage debug menu.
+
+{{< boilerplate/global-cref transporterTimeLeft >}}
+
+When any transporter is used, this vaue is set to 15. At that moment, _all_ the transporters on the map emit several sparkle decorations and the {{< lookup/cref name="SND" text="SND_TRANSPORTER_ON" >}} sound effect is started. While this value decrements toward zero, _all_ transporter sprites randomly flash white. Once zero is reached, the requisite transporter action occurs -- either relocating the player or winning the level.
 
 {{< boilerplate/global-cref usedCheatCode >}}
 

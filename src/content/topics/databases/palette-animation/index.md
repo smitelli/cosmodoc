@@ -2,7 +2,7 @@
 title = "Palette Animation Database"
 linkTitle = "Palette Animations"
 description = "A table containing a list of all palette animations supported by the game."
-weight = 500
+weight = 510
 +++
 
 # Palette Animation Database

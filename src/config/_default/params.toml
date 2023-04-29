@@ -4,4 +4,5 @@ dataTableHeaderFreq = 15
 enableNav = true
 gitCloneUrl = "https://github.com/smitelli/cosmodoc.git"
 gitContentUrl = "https://github.com/smitelli/cosmodoc/tree/main/src/content"
+gitIssuesUrl = "https://github.com/smitelli/cosmodoc/issues"
 subtitle = "The semi-complete teardown of Cosmo's Cosmic Adventure"

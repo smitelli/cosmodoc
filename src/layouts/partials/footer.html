@@ -14,12 +14,15 @@
 {{ if $.Site.Params.enableNav }}
     <footer>
         <address>
-            <p><strong>{{ $.Site.Title | markdownify }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>.</p>
-
-            <p><a href="{{ $cosmoreZip }}">Download <strong>Cosmore</strong></a>, my reconstruction of the game&rsquo;s source code.</p>
+            <p>
+                <strong>{{ $.Site.Title | markdownify }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>.
+                Found an <a href="{{ $.Site.Params.gitIssuesUrl }}" title="...or a bug, or an inaccuracy!">issue</a>?
+            </p>
         </address>
 
         <p>This page was last modified on {{ $lastMod }}. <a href="{{ $gitUrl }}">See it on GitHub.</a></p>
+
+        <p><a href="{{ $cosmoreZip }}">Download <strong>Cosmore</strong></a>, my reconstruction of the game&rsquo;s source code.</p>
 
         <p><code>git clone {{ $.Site.Params.gitCloneUrl }}</code></p>
 

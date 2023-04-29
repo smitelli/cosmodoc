@@ -38,7 +38,7 @@ void LoadDemoData(void)
 
 The function begins with a call to {{< lookup/cref GroupEntryFp >}} to create a file stream pointer to PREVDEMO.MNI. {{< lookup/cref miscDataContents >}} is then set to {{< lookup/cref name="IMAGE" text="IMAGE_DEMO" >}} as a status flag -- this serves as an indicator that {{< lookup/cref miscData >}} is being rewritten with demo data.
 
-Next is a null pointer check. If `fp` is null, the demo file did not exist. Set both {{< lookup/cref demoDataLength >}} and {{< lookup/cref demoDataPos >}} to zero in response. These would actually already be zero from an earlier call to {{< lookup/cref InitializeGame >}}, but it's explicitly restated here.
+Next is a null pointer check. If `fp` is null, the demo file did not exist. Set both {{< lookup/cref demoDataLength >}} and {{< lookup/cref demoDataPos >}} to zero in response. These would actually already be zero from an earlier call to {{< lookup/cref InitializeEpisode >}}, but it's explicitly restated here.
 
 Otherwise, `fp` was opened successfully and the data can be read. The first 16-bit word in the [demo data contents]({{< relref "demo-format#file-contents" >}}) is the length of the data, in bytes. Read that into {{< lookup/cref demoDataLength >}}. Next an {{< lookup/cref fread >}} is issued to read that much data into the {{< lookup/cref miscData >}} memory block.
 

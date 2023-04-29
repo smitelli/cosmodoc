@@ -198,8 +198,6 @@ DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-GameLoop() <void GameLoop () at src/game1.c:9730>:
-    InnerMain() <void InnerMain () at src/game1.c:10217>:
 GameRand() <word GameRand () at src/game1.c:300>:
     ActRoamerSlug() <void ActRoamerSlug () at src/game1.c:2720>:
     ActBabyGhostEgg() <void ActBabyGhostEgg () at src/game1.c:2816> (R):
@@ -226,10 +224,6 @@ InitializeBackdropTable() <void InitializeBackdropTable () at src/game1.c:7683>:
 InitializeDecorations() <void InitializeDecorations () at src/game1.c:6495>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 InitializeExplosions() <void InitializeExplosions () at src/game1.c:6323>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-InitializeGame() <void InitializeGame () at src/game1.c:10197>:
-    TitleLoop() <byte TitleLoop () at src/game1.c:9188>:
-InitializePlayer() <void InitializePlayer () at src/game1.c:10047>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 InitializeShards() <void InitializeShards () at src/game1.c:6187>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
@@ -413,12 +407,6 @@ SET_PLAYER_DIZZY():
 SetPlayerPush() <void SetPlayerPush () at src/game1.c:8028>:
     ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-    DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
-    PromptLevelWarp() <bbool PromptLevelWarp () at src/game1.c:9141>:
-    ShowGameMenu() <byte ShowGameMenu () at src/game1.c:9310>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-    InnerMain() <void InnerMain () at src/game1.c:10217>:
 TestPlayerMove() <word TestPlayerMove () at src/game1.c:814>:
     MovePlayerPlatform() <void MovePlayerPlatform () at src/game1.c:1262>:
     MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:

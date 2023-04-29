@@ -7,20 +7,17 @@
 
 =============================================================================
 
-* game setup
-    * GameRand: predictable PRNG
-    * GameKeysAndMenu: does something goofy with the pages and calls ReadGameKeys
-    * GameLoop: runs once per frame.
-    * InitializeGameState: reset player-specific game stuff for brand new game.
-* map management
-    * LoadLevel: given level number, open groupent file. read flags. init player. load BD, map data. "now entering level." init game. so on and so forth.
-    * AddMapActor: handle player start, platforms, fountains, lights. if none of those, dispatch to CreateActorAtIndex.
+* backdrop
+    * InitializeBackdropTable: i have no earthly idea.
+    * LoadBackdrop: open groupent by name, install to video memory via scratch space. calls other functions i don't yet understand.
+    * InstallBackdropVert: i have no earthly idea.
+    * InstallBackdropHoriz: i have no earthly idea.
+    * IsBackdropChanged: did any pertinent info regarding the backdrop change?
 * level display
     * DrawBackdropLayer: does more than you think!
     * DrawRandomEffects: make slippery tiles sparkle sometimes. spawn raindrops if warranted.
 * player move
     * ReadGameKeys: handle the large majority of the game's input/cheats.
-    * InitializePlayerState: reset more esoteric player vars, mostly to zero.
     * ResetPlayerHeadShake: stop player's head from shaking.
     * TestPlayerMove: determine if the player can move in a given direction, and set a bunch of global vars in the process.
     * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
@@ -37,13 +34,6 @@
     * PounceHelper: imparts the springiness into actor pounces.
     * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
     * GiveScore: given an actor type, add a certain amount to player's score.
-
-* backdrop
-    * InitializeBackdropTable: i have no earthly idea.
-    * LoadBackdrop: open groupent by name, install to video memory via scratch space. calls other functions i don't yet understand.
-    * InstallBackdropVert: i have no earthly idea.
-    * InstallBackdropHoriz: i have no earthly idea.
-    * IsBackdropChanged: did any pertinent info regarding the backdrop change?
 
 * platforms/fountains
     * ProcessAllPlatforms: for all platforms -- remove platform from map, conditionally call PPT, move platform, reinsert platform into map
@@ -72,6 +62,8 @@
     * ProcessAllDecorations: for each decoration -- draw at XY (sparkles are always in-front, rain moves faster and with randomness). move decoration according to given dir. handle cycling animation, and loop limit. once it's looped enough, go inactive.
     * PounceDecoration: insert six decoration spores in all directions.
 * actors
+    * GameRand: predictable PRNG
+    * AddMapActor: handle player start, platforms, fountains, lights. if none of those, dispatch to CreateActorAtIndex.
     * CreateActor: set all members of actor slot specified by actorIndexCursor. does not change cursor in any way.
     * CreateActorAtIndex: sets actorIndexCursor, calls CA based on actor type.
     * InsertActor: looks for dead actor slot, then calls CAAI to install new actor there. if no dead actors in used area, call CAAI at the first free slot.

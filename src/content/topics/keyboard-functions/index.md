@@ -48,7 +48,7 @@ Pressing <kbd>Ctrl</kbd> along with the keys for <kbd>@</kbd>, <kbd>A</kbd>&ndas
 
 Pressing the <kbd>Alt</kbd> key while entering a three-digit decimal number on the numeric keypad allows for arbitrary bytes to be entered by value. And finally, the famous three-finger salute to forcibly reboot the system was actually <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Num .</kbd>, since the only <kbd>Del</kbd> key on these keyboard shared a key with that character. Aside from these uses, <kbd>Alt</kbd> is not a commonly seen key for system software on these machines.
 
-All of this functionality s implemented in software, and handled at the BIOS level. From the keyboard's perspective, all it needs to do is send messages as keys are pressed and released ("<kbd>Left Shift</kbd> down, <kbd>S</kbd> down, <kbd>S</kbd> up, <kbd>Left Shift</kbd> up...") and the software just sees a stream of finalized characters ("`S`, `c`, `o`, `t`, `t`...") and control bytes without much understanding of precisely how the user typed them.
+All of this functionality is implemented in software, and handled at the BIOS level. From the keyboard's perspective, all it needs to do is send messages as keys are pressed and released ("<kbd>Left Shift</kbd> down, <kbd>S</kbd> down, <kbd>S</kbd> up, <kbd>Left Shift</kbd> up...") and the software just sees a stream of finalized characters ("`S`, `c`, `o`, `t`, `t`...") and control bytes without much understanding of precisely how the user typed them.
 
 If you thought this was complicated, wait until you see what they did next.
 

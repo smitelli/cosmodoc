@@ -235,6 +235,14 @@ main {
             border: 1px solid gray-from-lightness(70%);
             font-size: 0.8em;
             line-height: 1.2;
+
+            p:first-child {
+                margin-top: 0;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 

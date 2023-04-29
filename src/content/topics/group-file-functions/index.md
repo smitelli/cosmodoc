@@ -10,7 +10,7 @@ weight = 230
 
 All of the data assets for the game are stored in two **[group files]({{< relref "group-file-format" >}})** named COSMOx.STN and COSMOx.VOL. The STN file holds all of the data that is common to all three episodes of the game while the VOL holds the elements that are specific to an episode. Both of the files use the same internal data format.
 
-Each group file contains multiple **entries**, which are named blocks of data with varying lengths. The game loads each entry as a unit directly into memory, either when the game first starts ({{< lookup/cref Startup >}}) or when the level changes ({{< lookup/cref SwitchLevel >}}).
+Each group file contains multiple **entries**, which are named blocks of data with varying lengths. The game loads each entry as a unit directly into memory, either when the game first starts ({{< lookup/cref Startup >}}) or when the level changes ({{< lookup/cref InitializeLevel >}}).
 
 The functions described here handle the loading of generic data from the group files. A few entry-specific functions are also documented here; these functions typically follow the generic loading patterns but contain one-off behaviors that are specific to the entry they operate on.
 

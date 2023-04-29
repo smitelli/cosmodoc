@@ -90,7 +90,7 @@ printf:
 rand:
   text: rand()
   def: int rand(void);
-  desc: Returns a pseudo-random integer value between 0 and `RAND_MAX` (0 and `RAND_MAX` included).
+  desc: Returns a pseudorandom integer value between 0 and `RAND_MAX` (0 and `RAND_MAX` included).
   ref: https://en.cppreference.com/w/c/numeric/random/rand
 remove:
   text: remove()
@@ -555,6 +555,11 @@ FadeWhiteCustom:
   def: void FadeWhiteCustom(word delay);
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeWhiteCustom
+GameLoop:
+  text: GameLoop()
+  def: void GameLoop(byte demostate);
+  desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demostate` argument which should be one of the DEMOSTATE_* constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
+  ref: /topics/game-loop-functions/#GameLoop
 #GameRand:
 GetMapTile:
   text: GetMapTile()
@@ -579,14 +584,27 @@ GroupEntryLength:
 #HurtPlayer:
 #InitializeBackdropTable:
 #InitializeDecorations:
+InitializeEpisode:
+  text: InitializeEpisode()
+  def: void InitializeEpisode(void);
+  desc: Sets up the initial values for a few of the episode-related global variables tracked by the game. This sets up the initial score, health, level number, etc. when a new game is started.
+  ref: /topics/game-loop-functions/#InitializeEpisode
 #InitializeExplosions:
-#InitializeGame:
 InitializeInterruptRate:
   text: InitializeInterruptRate()
   def: void InitializeInterruptRate(void);
   desc: Sets up the system timer interrupt rate depending on whether or not the AdLib hardware is enabled.
   ref: /topics/adlib-functions/#InitializeInterruptRate
-#InitializePlayer:
+InitializeLevel:
+  text: InitializeLevel()
+  def: void InitializeLevel(word level_num);
+  desc: Initialzes all of the global variables and related subsystems for the start (or restart) of the level identified by `level_num`.
+  ref: /topics/game-loop-functions/#InitializeLevel
+InitializeMapGlobals:
+  text: InitializeMapGlobals()
+  def: void InitializeMapGlobals();
+  desc: Resets many of the global variables pertaining to player movement and map/actor interactivity.
+  ref: /topics/game-loop-functions/#InitializeMapGlobals
 #InitializeShards:
 #InitializeSpawners:
 InnerMain:
@@ -743,7 +761,11 @@ PCSpeakerService:
 #PounceHelper:
 #ProcessActor:
 #ProcessGameInput:
-#ProcessGameInputHelper:
+ProcessGameInputHelper:
+  text: ProcessGameInputHelper()
+  def: byte ProcessGameInputHelper(word page, byte demo);
+  desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `page` should contain the "active" (i.e. currently displayed) video page number, and `demo` should hold one of the `DEMOSTATE_*` values.
+  ref: /topics/game-loop-functions/#ProcessGameInputHelper
 #ProcessPlayerDizzy:
 ProfileCPU:
   text: ProfileCPU()
@@ -1500,6 +1522,16 @@ DEMOSTATE:
     #define DEMOSTATE_PLAY   2
   desc: Defines constant values that represent the input processing mode that should be used by the game loop.
   ref: /topics/global-variables-and-constants/#DEMOSTATE
+DIR4:
+  text: DIR4_*
+  def: |-
+    #define DIR4_NONE  0  /* Used by player bomb/cling */
+    #define DIR4_NORTH 0
+    #define DIR4_SOUTH 1
+    #define DIR4_WEST  2
+    #define DIR4_EAST  3
+  desc: Defines a set of values for a four-way direction system. "North" and "None" map to the same value, but are named differently to clarify the intent where they appear.
+  ref: /topics/global-variables-and-constants/#DIR4
 DRAWMODE:
   text: DRAWMODE_*
   def: |-
@@ -1558,6 +1590,14 @@ FONT:
     #define FONT_BACKGROUND_GRAY 0x0f28
   desc: Provides meaningful names for some, but not all, of the font tile graphics.
   ref: /topics/global-variables-and-constants/#FONT
+GAME_INPUT:
+  text: GAME_INPUT_*
+  def: |-
+    #define GAME_INPUT_CONTINUE 0
+    #define GAME_INPUT_QUIT     1
+    #define GAME_INPUT_RESTART  2
+  desc: Defines a set of symbolic return values for the game input handling functions.
+  ref: /topics/global-variables-and-constants/#GAME_INPUT
 GAME_VERSION:
   text: GAME_VERSION
   def: |-
@@ -1646,7 +1686,7 @@ MUSIC:
     #define MUSIC_TECK3   16
     #define MUSIC_TECK4   17
     #define MUSIC_ZZTOP   18
-  desc: Provides meaningful names for all of the music available in the game.
+  desc: Provides meaningful names for all of the music numbers available in the game.
   ref: /topics/global-variables-and-constants/#MUSIC
 Music:
   text: Music
@@ -1669,6 +1709,11 @@ PALANIM:
     #define PALANIM_EXPLOSIONS 6
   desc: Provides meaningful names for all of the palette animation types available in the game.
   ref: /topics/global-variables-and-constants/#PALANIM
+PALETTE_KEY_INDEX:
+  text: PALETTE_KEY_INDEX
+  def: '#define PALETTE_KEY_INDEX MAGENTA'
+  desc: Defines which EGA palette register will be affected by the various palette animation functions in the game.
+  ref: /topics/global-variables-and-constants/#PALETTE_KEY_INDEX
 PLAYER:
   text: PLAYER_*
   def: |-
@@ -1914,6 +1959,185 @@ SND:
     #define SND_BOSS_LAUNCH         65
   desc: Provides meaningful names for all of the PC speaker sound effects included with the game.
   ref: /topics/global-variables-and-constants/#SND
+SPR:
+  text: SPR_*
+  def: |-
+    #define SPR_BASKET             0
+    #define SPR_STAR               1
+    #define SPR_JUMP_PAD           2
+    #define SPR_ARROW_PISTON_W     3
+    #define SPR_ARROW_PISTON_E     4
+    #define SPR_FIREBALL           5
+    #define SPR_6                  6
+    #define SPR_HEAD_SWITCH_BLUE   7
+    #define SPR_HEAD_SWITCH_RED    8
+    #define SPR_HEAD_SWITCH_GREEN  9
+    #define SPR_HEAD_SWITCH_YELLOW 10
+    #define SPR_DOOR_BLUE          11
+    #define SPR_DOOR_RED           12
+    #define SPR_DOOR_GREEN         13
+    #define SPR_DOOR_YELLOW        14
+    #define SPR_SPARKLE_SHORT      15
+    #define SPR_JUMP_PAD_ROBOT     16
+    #define SPR_SPIKES_FLOOR       17
+    #define SPR_SPIKES_FLOOR_RECIP 18
+    #define SPR_SCOOTER_EXHAUST    19
+    #define SPR_SAW_BLADE          20
+    #define SPR_POUNCE_DEBRIS      21
+    #define SPR_SPARKLE_LONG       23
+    #define SPR_BOMB_ARMED         24
+    #define SPR_CABBAGE            25
+    #define SPR_EXPLOSION          26
+    #define SPR_RAINDROP           27
+    #define SPR_POWER_UP           28
+    #define SPR_BARREL             29
+    #define SPR_BARREL_SHARDS      30
+    #define SPR_GRN_TOMATO         32
+    #define SPR_RED_TOMATO         34
+    #define SPR_YEL_PEAR           36
+    #define SPR_ONION              38
+    #define SPR_EXIT_SIGN          39
+    #define SPR_SPEAR              41
+    #define SPR_GREEN_SLIME        43
+    #define SPR_FLYING_WISP        44
+    #define SPR_TWO_TONS_CRUSHER   45
+    #define SPR_JUMPING_BULLET     46
+    #define SPR_STONE_HEAD_CRUSHER 47
+    #define SPR_48                 48
+    #define SPR_PYRAMID            49
+    #define SPR_50                 50
+    #define SPR_GHOST              51
+    #define SPR_MOON               54
+    #define SPR_HEART_PLANT        55
+    #define SPR_BOMB_IDLE          57
+    #define SPR_FOOT_SWITCH        60
+    #define SPR_MYSTERY_WALL       62
+    #define SPR_SPIKES_FLOOR_BENT  63
+    #define SPR_MONUMENT           64
+    #define SPR_BABY_GHOST         65
+    #define SPR_PROJECTILE         68
+    #define SPR_ROAMER_SLUG        69
+    #define SPR_PIPE_CORNER_N      70
+    #define SPR_PIPE_CORNER_S      71
+    #define SPR_PIPE_CORNER_W      72
+    #define SPR_PIPE_CORNER_E      73
+    #define SPR_74                 74
+    #define SPR_BABY_GHOST_EGG     75
+    #define SPR_BGHOST_EGG_SHARD_1 76
+    #define SPR_BGHOST_EGG_SHARD_2 77
+    #define SPR_SHARP_ROBOT_FLOOR  78
+    #define SPR_FOUNTAIN           79
+    #define SPR_SHARP_ROBOT_CEIL   80
+    #define SPR_HAMBURGER          82
+    #define SPR_CLAM_PLANT         83
+    #define SPR_84                 84
+    #define SPR_GRAPES             85
+    #define SPR_PARACHUTE_BALL     86
+    #define SPR_SPIKES_E           87
+    #define SPR_SPIKES_E_RECIP     88
+    #define SPR_SPIKES_W           89
+    #define SPR_BEAM_ROBOT         90
+    #define SPR_SPLITTING_PLATFORM 91
+    #define SPR_SPARK              92
+    #define SPR_DANCING_MUSHROOM   94
+    #define SPR_EYE_PLANT          95
+    #define SPR_96                 96
+    #define SPR_SMOKE              97
+    #define SPR_SMOKE_LARGE        98
+    #define SPR_SPARKLE_SLIPPERY   99
+    #define SPR_RED_JUMPER         101
+    #define SPR_BOSS               102
+    #define SPR_PIPE_END           105
+    #define SPR_SUCTION_WALKER     106
+    #define SPR_TRANSPORTER_107    107
+    #define SPR_TRANSPORTER_108    108
+    #define SPR_SPIT_WALL_PLANT_E  111
+    #define SPR_SPIT_WALL_PLANT_W  112
+    #define SPR_SPITTING_TURRET    113
+    #define SPR_SCOOTER            114
+    #define SPR_RED_CHOMPER        118
+    #define SPR_FORCE_FIELD_VERT   122
+    #define SPR_FORCE_FIELD_HORIZ  123
+    #define SPR_PINK_WORM          124
+    #define SPR_HINT_GLOBE         125
+    #define SPR_PUSHER_ROBOT       126
+    #define SPR_SENTRY_ROBOT       127
+    #define SPR_PINK_WORM_SLIME    128
+    #define SPR_DRAGONFLY          129
+    #define SPR_WORM_CRATE         130
+    #define SPR_WORM_CRATE_SHARDS  131
+    #define SPR_BGHOST_EGG_SHARD_3 132
+    #define SPR_BGHOST_EGG_SHARD_4 133
+    #define SPR_BOTTLE_DRINK       134
+    #define SPR_GRN_GOURD          135
+    #define SPR_BLU_SPHERES        136
+    #define SPR_POD                137
+    #define SPR_PEA_PILE           138
+    #define SPR_LUMPY_FRUIT        139
+    #define SPR_HORN               140
+    #define SPR_RED_BERRIES        141
+    #define SPR_SATELLITE          143
+    #define SPR_SATELLITE_SHARDS   144
+    #define SPR_IVY_PLANT          145
+    #define SPR_YEL_FRUIT_VINE     146
+    #define SPR_HEADDRESS          147
+    #define SPR_EXIT_MONSTER_W     149
+    #define SPR_150                150
+    #define SPR_SMALL_FLAME        151
+    #define SPR_TULIP_LAUNCHER     152
+    #define SPR_ROTATING_ORNAMENT  153
+    #define SPR_BLU_CRYSTAL        154
+    #define SPR_RED_CRYSTAL        155
+    #define SPR_BEAR_TRAP          162
+    #define SPR_FALLING_FLOOR      163
+    #define SPR_164                164
+    #define SPR_ROOT               168
+    #define SPR_REDGRN_BERRIES     170
+    #define SPR_RED_GOURD          172
+    #define SPR_GRN_EMERALD        174
+    #define SPR_CLR_DIAMOND        176
+    #define SPR_SCORE_EFFECT_100   177
+    #define SPR_SCORE_EFFECT_200   178
+    #define SPR_SCORE_EFFECT_400   179
+    #define SPR_SCORE_EFFECT_800   180
+    #define SPR_SCORE_EFFECT_1600  181
+    #define SPR_SCORE_EFFECT_3200  182
+    #define SPR_SCORE_EFFECT_6400  183
+    #define SPR_SCORE_EFFECT_12800 184
+    #define SPR_BASKET_SHARDS      185
+    #define SPR_EXIT_PLANT         186
+    #define SPR_BIRD               187
+    #define SPR_ROCKET             188
+    #define SPR_INVINCIBILITY_CUBE 189
+    #define SPR_PEDESTAL           192
+    #define SPR_CYA_DIAMOND        194
+    #define SPR_RED_DIAMOND        196
+    #define SPR_GRY_OCTAHEDRON     198
+    #define SPR_BLU_EMERALD        200
+    #define SPR_INVINCIBILITY_BUBB 201
+    #define SPR_THRUSTER_JET       202
+    #define SPR_HEADPHONES         220
+    #define SPR_FROZEN_DN          221
+    #define SPR_SPEECH_MULTI       222
+    #define SPR_BANANAS            223
+    #define SPR_RED_LEAFY          226
+    #define SPR_BRN_PEAR           229
+    #define SPR_CANDY_CORN         232
+    #define SPR_FLAME_PULSE_W      233
+    #define SPR_FLAME_PULSE_E      234
+    #define SPR_SPEECH_OUCH        235
+    #define SPR_RED_SLIME          237
+    #define SPR_SPEECH_WHOA        244
+    #define SPR_SPEECH_UMPH        245
+    #define SPR_SPEECH_WOW_50K     246
+    #define SPR_EXIT_MONSTER_N     247
+    #define SPR_248                248
+    #define SPR_249                249
+    #define SPR_250                250
+    #define SPR_265                265
+    #define SPR_DEMO_OVERLAY       266
+  desc: Defines meaningful names for each sprite type defined in the game.
+  ref: /topics/global-variables-and-constants/#SPR
 TILE:
   text: TILE_*
   def: |-
@@ -1993,11 +2217,35 @@ actorTileData:
   def: byte *actorTileData[3];
   desc: Points to masked tile image data used to draw actors, decorations, spawners, explosions, shards, and miscellaneous UI sprites.
   ref: /topics/global-variables-and-constants/#actorTileData
+areForceFieldsActive:
+  text: areForceFieldsActive
+  def: bool areForceFieldsActive;
+  desc: When true, any force fields present on the map are enabled.
+  ref: /topics/global-variables-and-constants/#areForceFieldsActive
 areLightsActive:
   text: areLightsActive
   def: bool areLightsActive;
   desc: When true, any lights present on the map are enabled.
   ref: /topics/global-variables-and-constants/#areLightsActive
+arePlatformsActive:
+  text: arePlatformsActive
+  def: bool arePlatformsActive;
+  desc: When true, any platforms present on the map are enabled.
+  ref: /topics/global-variables-and-constants/#arePlatformsActive
+backdropNames:
+  text: backdropNames[]
+  def: |-
+    char *backdropNames[] = {
+        "bdblank.mni", "bdpipe.MNI", "bdredsky.MNI", "bdrocktk.MNI",
+        "bdjungle.MNI", "bdstar.MNI", "bdwierd.mni", "bdcave.mni", "bdice.mni",
+        "bdshrum.mni", "bdtechms.mni", "bdnewsky.mni", "bdstar2.mni",
+        "bdstar3.mni", "bdforest.mni", "bdmountn.mni", "bdguts.mni",
+        "bdbrktec.mni", "bdclouds.mni", "bdfutcty.mni", "bdice2.mni",
+        "bdcliff.mni", "bdspooky.mni", "bdcrystl.mni", "bdcircut.mni",
+        "bdcircpc.mni"
+    };
+  desc: Holds a list of all group file entry names that refer to backdrop image data.
+  ref: /topics/global-variables-and-constants/#backdropNames
 backdropTable:
   text: backdropTable[]
   def: word backdropTable[2880];
@@ -2008,6 +2256,11 @@ blockActionCmds:
   def: bool blockActionCmds;
   desc: When true, prevents the player from moving, being hurt, or being drawn.
   ref: /topics/global-variables-and-constants/#blockActionCmds
+blockMovementCmds:
+  text: blockMovementCmds
+  def: bbool blockMovementCmds;
+  desc: When true, prevents the player from walking or jumping.
+  ref: /topics/global-variables-and-constants/#blockMovementCmds
 cartoonInfoData:
   text: cartoonInfoData
   def: word *cartoonInfoData;
@@ -2107,11 +2360,26 @@ gameTickCount:
   def: word gameTickCount;
   desc: Holds a running counter that increments precisely 140 times per second, regardless of the state of program execution.
   ref: /topics/global-variables-and-constants/#gameTickCount
+hasHScrollBackdrop:
+  text: hasHScrollBackdrop
+  def: bool hasHScrollBackdrop;
+  desc: When true, indicates that the current map has a backdrop that should scroll horizontally as the player moves through the game world.
+  ref: /topics/global-variables-and-constants/#hasHScrollBackdrop
 hasLightSwitch:
   text: hasLightSwitch
   def: bool hasLightSwitch;
   desc: When true, indicates that the current map has a switch that can control the lights.
   ref: /topics/global-variables-and-constants/#hasLightSwitch
+hasRain:
+  text: hasRain
+  def: bool hasRain;
+  desc: When true, indicates that the current map should spawn random raindrops in uncovered areas.
+  ref: /topics/global-variables-and-constants/#hasRain
+hasVScrollBackdrop:
+  text: hasVScrollBackdrop
+  def: bool hasVScrollBackdrop;
+  desc: When true, indicates that the current map has a backdrop that should scroll vertically as the player moves through the game world.
+  ref: /topics/global-variables-and-constants/#hasVScrollBackdrop
 highScoreNames:
   text: highScoreNames[]
   def: |-
@@ -2189,6 +2457,26 @@ isNewSound:
   def: bool isNewSound;
   desc: Indicates that the currently-playing PC speaker sound effect has been changed.
   ref: /topics/global-variables-and-constants/#isNewSound
+isPlayerInPipe:
+  text: isPlayerInPipe
+  def: bbool isPlayerInPipe;
+  desc: Holds a true value if the player is currently inside the pipe system and false during normal gameplay.
+  ref: /topics/global-variables-and-constants/#isPlayerInPipe
+isPlayerInvincible:
+  text: isPlayerInvincible
+  def: bbool isPlayerInvincible;
+  desc: When true, makes the player immune to all actors that would normally cause damage. Does not protect from falling off the bottom of the map.
+  ref: /topics/global-variables-and-constants/#isPlayerInvincible
+isPlayerNearHintGlobe:
+  text: isPlayerNearHintGlobe
+  def: bool isPlayerNearHintGlobe;
+  desc: Holds a true value if the player is currently near any hint globe actor, and false otherwise.
+  ref: /topics/global-variables-and-constants/#isPlayerNearHintGlobe
+isPlayerNearTransporter:
+  text: isPlayerNearTransporter
+  def: bool isPlayerNearTransporter;
+  desc: Holds a true value if the player is currently near any transporter actor, and false otherwise.
+  ref: /topics/global-variables-and-constants/#isPlayerNearTransporter
 isSoundEnabled:
   text: isSoundEnabled
   def: bool isSoundEnabled;
@@ -2300,6 +2588,11 @@ mapNames:
     char *mapNames[] = MAP_NAMES;
   desc: Defines a list of the map file names corresponding to each level number in the game. Each episode includes higher-numbered maps that do not exist and cannot be reached.
   ref: /topics/global-variables-and-constants/#mapNames
+mapVariables:
+  text: mapVariables
+  def: word mapVariables;
+  desc: Holds the raw, packed set of map variables and flags as they were read from the map data. The game does not use this value directly; it is unpacked into several other variables for use.
+  ref: /topics/global-variables-and-constants/#mapVariables
 mapWidth:
   text: mapWidth
   def: word mapWidth;
@@ -2367,6 +2660,11 @@ musicNextDue:
   def: dword musicNextDue;
   desc: Tracks the timestamp, in music ticks, when the next chunk of music is scheduled to be sent to the AdLib hardware.
   ref: /topics/global-variables-and-constants/#musicNextDue
+musicNum:
+  text: musicNum
+  def: word musicNum;
+  desc: Holds the music number that should be played for the current map.
+  ref: /topics/global-variables-and-constants/#musicNum
 musicTickCount:
   text: musicTickCount
   def: dword musicTickCount;
@@ -2377,6 +2675,16 @@ numActors:
   def: word numActors;
   desc: Holds the current number of utilized elements in the actors array.
   ref: /topics/global-variables-and-constants/#numActors
+numBarrels:
+  text: numBarrels
+  def: word numBarrels;
+  desc: Holds the current number of barrel and basket actors (combined) that are alive on the map.
+  ref: /topics/global-variables-and-constants/#numBarrels
+numEyePlants:
+  text: numEyePlants
+  def: word numEyePlants;
+  desc: Holds the current number of eye plant actors that are alive on the map.
+  ref: /topics/global-variables-and-constants/#numEyePlants
 numFountains:
   text: numFountains
   def: word numFountains;
@@ -2407,11 +2715,46 @@ pit0Value:
   def: dword pit0Value;
   desc: Holds a copy of the most recent value used to reconfigure channel 0 of the system's Programmable Interval Timer.
   ref: /topics/global-variables-and-constants/#pit0Value
+playerBaseFrame:
+  text: playerBaseFrame
+  def: word playerBaseFrame;
+  desc: Tracks the direction the player is currently facing, either east or west, as a base frame offset in the player sprite data.
+  ref: /topics/global-variables-and-constants/#playerBaseFrame
 playerBombs:
   text: playerBombs
   def: word playerBombs;
   desc: Holds the number of bombs the player is currently carrying.
   ref: /topics/global-variables-and-constants/#playerBombs
+playerClingDir:
+  text: playerClingDir
+  def: byte playerClingDir;
+  desc: Holds a direction value that tracks if the player is clinging to a wall, and which side that wall is on.
+  ref: /topics/global-variables-and-constants/#playerClingDir
+playerDeadTime:
+  text: playerDeadTime
+  def: word playerDeadTime;
+  desc: Holds a zero while the player is alive, and an incrementing value greater than zero while the player is dead and progressing through the death animation.
+  ref: /topics/global-variables-and-constants/#playerDeadTime
+playerDizzyLeft:
+  text: playerDizzyLeft
+  def: word playerDizzyLeft;
+  desc: When nonzero, indicates that the player is immobilized due to being dizzy from an extreme movement. This counter will decrement to zero, at which point the dizzy condition wears off and the player can move again.
+  ref: /topics/global-variables-and-constants/#playerDizzyLeft
+playerFaceDir:
+  text: playerFaceDir
+  def: word playerFaceDir;
+  desc: Tracks the direction the player is currently facing, either east or west, as a direction value.
+  ref: /topics/global-variables-and-constants/#playerFaceDir
+playerFallDeadTime:
+  text: playerFallDeadTime
+  def: byte playerFallDeadTime;
+  desc: Holds a zero while the player is alive, and an incrementing value greater than zero while the player has fallen off the bottom of the map and is progressing through the death animation.
+  ref: /topics/global-variables-and-constants/#playerFallDeadTime
+playerFrame:
+  text: playerFrame
+  def: word playerFrame;
+  desc: Holds the current sprite frame that should be used to represent the player, disregarding east/west-facing variations.
+  ref: /topics/global-variables-and-constants/#playerFrame
 playerHealth:
   text: playerHealth
   def: word playerHealth;
@@ -2447,6 +2790,11 @@ pounceHintState:
   def: word pounceHintState;
   desc: Holds a flag that tracks whether the user has been shown the "jump on top of creatures..." hint dialog.
   ref: /topics/global-variables-and-constants/#pounceHintState
+pounceStreak:
+  text: pounceStreak
+  def: word pounceStreak;
+  desc: Holds a counter that tracks the number of times the player has pounced on any enemy actor without touching the ground.
+  ref: /topics/global-variables-and-constants/#pounceStreak
 profCountCPU:
   text: profCountCPU
   def: word profCountCPU;
@@ -2457,6 +2805,16 @@ profCountPIT:
   def: word profCountPIT;
   desc: Used temporarily during CPU profiling to track the number of timer interrupts that have been raised by the Programmable Interval Timer so far.
   ref: /topics/global-variables-and-constants/#profCountPIT
+queuePlayerDizzy:
+  text: queuePlayerDizzy
+  def: bool queuePlayerDizzy;
+  desc: When true, indicates that a condition has been reached that will cause the player to become "dizzy" upon touching the ground -- that is, temporarily immobilized due to an extreme amount of movement.
+  ref: /topics/global-variables-and-constants/#queuePlayerDizzy
+randStepCount:
+  text: randStepCount
+  def: word randStepCount;
+  desc: Holds an index value between 0 and 35 that is used by the game's pseudorandom number generator to produce deterministic random numbers for the game's actors.
+  ref: /topics/global-variables-and-constants/#randStepCount
 savedInt8:
   text: savedInt8
   def: |-
@@ -2471,16 +2829,81 @@ savedInt9:
     InterruptFunction savedInt9;
   desc: Holds a reference to the old interrupt service routine for interrupt vector 9.
   ref: /topics/global-variables-and-constants/#savedInt9
+sawAutoHintGlobe:
+  text: sawAutoHintGlobe
+  def: bbool sawAutoHintGlobe;
+  desc: Holds a true value once the user has touched a hint globe, resulting in auto-activation without needing to press the "look up" key. Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawAutoHintGlobe
+sawBearTrapBubble:
+  text: sawBearTrapBubble
+  def: bool sawBearTrapBubble;
+  desc: Holds a true value once the user has encountered a bear trap actor for the first time, resulting in an "UMPH!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawBearTrapBubble
 sawBombHint:
   text: sawBombHint
   def: bool sawBombHint;
-  desc: Holds a true value if the user has seen the hint dialog teaching them about finding and using bombs. Defaults to false when a new game is started.
+  desc: Holds a true value once the user has seen the hint dialog teaching them about finding and using bombs. Defaults to false when a new game is started.
   ref: /topics/global-variables-and-constants/#sawBombHint
+sawBossBubble:
+  text: sawBossBubble
+  def: bool sawBossBubble;
+  desc: Holds a true value once the user has encountered a boss actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawBossBubble
+sawHamburgerBubble:
+  text: sawHamburgerBubble
+  def: bool sawHamburgerBubble;
+  desc: Holds a true value once the user has picked up a hamburger for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawHamburgerBubble
 sawHealthHint:
   text: sawHealthHint
   def: bool sawHealthHint;
-  desc: Holds a true value if the user has seen the hint dialog teaching them about Power Up modules and their effect on player health. Defaults to false when a new game is started.
+  desc: Holds a true value once the user has seen the hint dialog teaching them about Power Up modules and their effect on player health. Defaults to false when a new game is started.
   ref: /topics/global-variables-and-constants/#sawHealthHint
+sawHurtBubble:
+  text: sawHurtBubble
+  def: bool sawHurtBubble;
+  desc: Holds a true value once the user has seen the "OUCH!" bubble that appears when they get hurt for the first time. Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawHurtBubble
+sawJumpPadBubble:
+  text: sawJumpPadBubble
+  def: bool sawJumpPadBubble;
+  desc: Holds a true value once the user has encountered a jump pad actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawJumpPadBubble
+sawMonumentBubble:
+  text: sawMonumentBubble
+  def: bool sawMonumentBubble;
+  desc: Holds a true value once the user has encountered a monument actor for the first time, resulting in an "UMPH!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawMonumentBubble
+sawMysteryWallBubble:
+  text: sawMysteryWallBubble
+  def: bool sawMysteryWallBubble;
+  desc: Holds a true value once the user has encountered the switch that activates the mystery wall for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawMysteryWallBubble
+sawPipeBubble:
+  text: sawPipeBubble
+  def: bool sawPipeBubble;
+  desc: Holds a true value once the user has exited the pipe system for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawPipeBubble
+sawPusherRobotBubble:
+  text: sawPusherRobotBubble
+  def: bool sawPusherRobotBubble;
+  desc: Holds a true value once the user has encountered a pusher robot actor for the first time, resulting in an "UMPH!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawPusherRobotBubble
+sawScooterBubble:
+  text: sawScooterBubble
+  def: bool sawScooterBubble;
+  desc: Holds a true value once the user has encountered a scooter actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawScooterBubble
+sawTransporterBubble:
+  text: sawTransporterBubble
+  def: bool sawTransporterBubble;
+  desc: Holds a true value once the user has exited a transporter for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawTransporterBubble
+sawTulipLauncherBubble:
+  text: sawTulipLauncherBubble
+  def: bool sawTulipLauncherBubble;
+  desc: Holds a true value once the user has been ejected by a tulip launcher actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
+  ref: /topics/global-variables-and-constants/#sawTulipLauncherBubble
 scancodeBomb:
   text: scancodeBomb
   def: byte scancodeBomb;
@@ -2511,6 +2934,11 @@ scancodeWest:
   def: byte scancodeWest;
   desc: Holds the keyboard scancode that the user has selected for the player's "walk west" movement command.
   ref: /topics/global-variables-and-constants/#scancodeWest
+scooterMounted:
+  text: scooterMounted
+  def: word scooterMounted;
+  desc: Holds a combination state flag/counter that tracks if the player is currently riding a scooter and for how long that has been the case.
+  ref: /topics/global-variables-and-constants/#scooterMounted
 scrollX:
   text: scrollX
   def: word scrollX;
@@ -2588,6 +3016,11 @@ totalMemFreeBefore:
   def: dword totalMemFreeBefore;
   desc: Captures the amount of free memory, in bytes, immediately after the program started running.
   ref: /topics/global-variables-and-constants/#totalMemFreeBefore
+transporterTimeLeft:
+  text: transporterTimeLeft
+  def: word transporterTimeLeft;
+  desc: Holds a zero value while the player is not using any transporter, and a nonzero decrementing counter while a transporter is in use.
+  ref: /topics/global-variables-and-constants/#transporterTimeLeft
 usedCheatCode:
   text: usedCheatCode
   def: bool usedCheatCode;

@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 420
+weight = 430
 +++
 
 # Bugs and Oversights
@@ -17,6 +17,8 @@ This is the listing of every oversight I discovered during the course of my rese
 ## E2L10 can be won by dying near the top of the map.
 
 ## Joystick buttons are reversed.
+
+## Player can walk out of a closed {{< lookup/actor 162 >}} if using the joystick.
 
 ## The `apogee` Parameter
 

@@ -118,7 +118,7 @@ For this to work as intended, the specified directory must exist and be writable
 {{< lookup/cref TitleLoop >}} handles showing the title screen graphics, main menu, and most of the sub-menus contained within. {{< lookup/cref TitleLoop >}} doesn't return until the point where gameplay needs to start -- either under direct player control or by playing back a previously recorded demo. {{< lookup/cref demoState >}} is a global variable to track this state. {{< lookup/cref TitleLoop >}} also performs _some_ initialization of game state -- the most relevant effect is initializing {{< lookup/cref levelNum >}} to 0.
 
 ```c
-        SwitchLevel(levelNum);
+        InitializeLevel(levelNum);
         LoadMaskedTileData("MASKTILE.MNI");
 
         if (demoState == DEMOSTATE_PLAY) {
@@ -126,7 +126,7 @@ For this to work as intended, the specified directory must exist and be writable
         }
 ```
 
-{{< lookup/cref SwitchLevel >}} handles loading and setup of the global variables needed to play the level specified by {{< lookup/cref levelNum >}}.
+{{< lookup/cref InitializeLevel >}} handles loading and setup of the global variables needed to play the level specified by {{< lookup/cref levelNum >}}.
 
 The call to {{< lookup/cref LoadMaskedTileData >}} is interesting. All it does is load the contents of the map's [masked tile image data]({{< relref "tile-image-format#masked-tiles" >}}) into memory. The reason why this needs to happen here is because its memory block (pointed to by {{< lookup/cref maskedTileData >}}) is _also_ used to hold the AdLib music that plays during the title loop and main menu. When the program switches between the main menu and gameplay mode, this memory must be rewritten with the data required for that context.
 
