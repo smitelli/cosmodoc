@@ -126,14 +126,14 @@ The analog inputs of the joystick are infinitely variable, subject to the pollin
 
 {{< boilerplate/function-cref ShowJoystickConfiguration >}}
 
-The {{< lookup/cref ShowJoystickConfiguration >}} function prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`. It can be accessed from the "Game Redefine" menu in either the main menu or the in-game help menu. This function must run to completion for {{< lookup/cref isJoystickReady >}} to become true. If a key is pressed at any point, the function is aborted.
+The {{< lookup/cref ShowJoystickConfiguration >}} function prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick_num`. It can be accessed from the "Game Redefine" menu in either the main menu or the in-game help menu. This function must run to completion for {{< lookup/cref isJoystickReady >}} to become true. If a key is pressed at any point, the function is aborted.
 
 {{< boilerplate/menu-gameplay may=true >}}
 
 This function bears a striking similarity to `CalibrateJoy()`[^CalibrateJoy] from Id Software's C Library as used in _Hovertank 3-D_.
 
 ```c
-void ShowJoystickConfiguration(word stick)
+void ShowJoystickConfiguration(word stick_num)
 {
     word xframe;
     word junk;
@@ -155,7 +155,7 @@ This function uses a relatively large number of local variables:
 * `scancode`: Holds a copy of the most recent byte that was sent from the keyboard. This value is explicitly zeroed to start.
 * `state`: A {{< lookup/cref JoystickState >}} structure containing the state of the two joystick buttons.
 
-The `stick` value should be either {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}} or {{< lookup/cref name="JOYSTICK" text="JOYSTICK_B" >}} to select that joystick. The game only implements {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}, and this is the only value that will work correctly.
+The `stick_num` value should be either {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}} or {{< lookup/cref name="JOYSTICK" text="JOYSTICK_B" >}} to select that joystick. The game only implements {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}, and this is the only value that will work correctly.
 
 ```c
     xframe = UnfoldTextFrame(3, 16, 30, "Joystick Config.",
@@ -168,7 +168,7 @@ The `stick` value should be either {{< lookup/cref name="JOYSTICK" text="JOYSTIC
     while ((lastScancode & 0x80) == 0) ;
 
     do {
-        state = ReadJoystickState(stick);
+        state = ReadJoystickState(stick_num);
     } while (state.button1 == true || state.button2 == true);
 ```
 
@@ -185,8 +185,8 @@ The `do`...`while` loop continually polls the joystick hardware via {{< lookup/c
     do {
         if (++junk == 23) junk = 15;
 
-        ReadJoystickTimes(stick, &lefttime, &toptime);
-        state = ReadJoystickState(stick);
+        ReadJoystickTimes(stick_num, &lefttime, &toptime);
+        state = ReadJoystickState(stick_num);
         scancode = StepWaitSpinner(xframe + 8, 8);
 
         if ((scancode & 0x80) == 0) return;
@@ -210,7 +210,7 @@ The loop has two termination conditions. If the most recent `scancode` returned 
     WaitHard(160);
 
     do {
-        state = ReadJoystickState(stick);
+        state = ReadJoystickState(stick_num);
     } while (state.button1 == true || state.button2 == true);
 ```
 
@@ -226,8 +226,8 @@ The loop waits until both joystick buttons are released again, the same way as w
     do {
         if (++junk == 23) junk = 15;
 
-        ReadJoystickTimes(stick, &righttime, &bottomtime);
-        state = ReadJoystickState(stick);
+        ReadJoystickTimes(stick_num, &righttime, &bottomtime);
+        state = ReadJoystickState(stick_num);
         scancode = StepWaitSpinner(xframe + 8, 12);
 
         if ((scancode & 0x80) == 0) return;
@@ -240,7 +240,7 @@ This is pretty much an exact duplicate of the code from earlier, only now the us
     EraseWaitSpinner(xframe + 8, 12);
 
     do {
-        state = ReadJoystickState(stick);
+        state = ReadJoystickState(stick_num);
     } while (state.button1 == true || state.button2 == true);
 ```
 
@@ -249,10 +249,10 @@ As before, the wait spinner is erased and execution is paused until both joystic
 ```c
     xthird = (righttime - lefttime) / 6;
     ythird = (bottomtime - toptime) / 6;
-    joystickBandLeft[stick] = lefttime + xthird;
-    joystickBandRight[stick] = righttime - xthird;
-    joystickBandTop[stick] = toptime + ythird;
-    joystickBandBottom[stick] = bottomtime - ythird;
+    joystickBandLeft[stick_num] = lefttime + xthird;
+    joystickBandRight[stick_num] = righttime - xthird;
+    joystickBandTop[stick_num] = toptime + ythird;
+    joystickBandBottom[stick_num] = bottomtime - ythird;
 ```
 
 Here, the calibration values are actually processed into something the game can use. In a properly designed joystick, the left/top positions should have the lowest resistance and thus the shortest timing intervals. The right/bottom positions would then be the longest. The length of the timing interval changes linearly with the position of the joystick handle, so it is possible to divide the joystick's travel range into roughly equal sections:
@@ -310,16 +310,16 @@ With this done, the function returns quietly.
 
 {{< boilerplate/function-cref ReadJoystickTimes >}}
 
-The {{< lookup/cref ReadJoystickTimes >}} function triggers a timing interval on the joystick hardware, and returns the raw interval lengths for the one joystick, identified by `stick`, in `x_time` and `y_time`.
+The {{< lookup/cref ReadJoystickTimes >}} function triggers a timing interval on the joystick hardware, and returns the raw interval lengths for the one joystick, identified by `stick_num`, in `x_time` and `y_time`.
 
 This function is basically identical to `ReadJoystick()`[^ReadJoystick] from Id Software's C Library as used in _Hovertank 3-D_.
 
 ```c
-void ReadJoystickTimes(word stick, int *x_time, int *y_time)
+void ReadJoystickTimes(word stick_num, int *x_time, int *y_time)
 {
     word xmask, ymask;
 
-    if (stick == JOYSTICK_A) {
+    if (stick_num == JOYSTICK_A) {
         xmask = 0x0001;
         ymask = 0x0002;
     } else {  /* JOYSTICK_B */
@@ -328,7 +328,7 @@ void ReadJoystickTimes(word stick, int *x_time, int *y_time)
     }
 ```
 
-The provided `stick` value is decoded into mask bits. The first joystick stores its X and Y timer status in bits 0 and 1, respectively. The second joystick (which is fully implemented within this function) uses bits 2 and 3 for the timer status. The mask values are stored in `xmask` and `ymask`.
+The provided `stick_num` value is decoded into mask bits. The first joystick stores its X and Y timer status in bits 0 and 1, respectively. The second joystick (which is fully implemented within this function) uses bits 2 and 3 for the timer status. The mask values are stored in `xmask` and `ymask`.
 
 ```c
     *x_time = 0;
@@ -377,19 +377,19 @@ The `do`...`while` loop continues until either termination condition is reached,
 
 {{< boilerplate/function-cref ReadJoystickState >}}
 
-The {{< lookup/cref ReadJoystickState >}} function polls the joystick identified by `stick` for its current position and button state, and updates the player control variables accordingly. It returns a {{< lookup/cref JoystickState >}} structure holding the current state of the buttons (but not the X/Y position).
+The {{< lookup/cref ReadJoystickState >}} function polls the joystick identified by `stick_num` for its current position and button state, and updates the player control variables accordingly. It returns a {{< lookup/cref JoystickState >}} structure holding the current state of the buttons (but not the X/Y position).
 
 This function is a modified version of `ControlJoystick()`[^ControlJoystick] from Id Software's C Library as used in _Hovertank 3-D_. Their function returns the movement direction as a member of the returned {{< lookup/cref JoystickState >}} structure, but this game's implementation modifies the player variables directly and leaves the direction member in the return value uninitialized.
 
 ```c
-JoystickState ReadJoystickState(word stick)
+JoystickState ReadJoystickState(word stick_num)
 {
     int xtime = 0, ytime = 0;
     int xmove = 0, ymove = 0;
     word buttons;
     JoystickState state;
 
-    ReadJoystickTimes(stick, &xtime, &ytime);
+    ReadJoystickTimes(stick_num, &xtime, &ytime);
 ```
 
 This function defines a few local variables:
@@ -401,14 +401,14 @@ This function defines a few local variables:
 * `buttons`: Holds the status bits that reflect the pressed/unpressed condition of each joystick button.
 * `state`: A {{< lookup/cref JoystickState >}} structure holding the button states in a more well-defined format; returned to the caller when this function returns.
 
-The `stick` value should be either {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}} or {{< lookup/cref name="JOYSTICK" text="JOYSTICK_B" >}} to select that joystick. The game only implements {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}, and this is the only value that will work correctly.
+The `stick_num` value should be either {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}} or {{< lookup/cref name="JOYSTICK" text="JOYSTICK_B" >}} to select that joystick. The game only implements {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}, and this is the only value that will work correctly.
 
-The call to {{< lookup/cref ReadJoystickTimes >}} polls the joystick hardware for the current X- and Y-axis interval timings for joystick `stick`. The timing values are returned in `xtime` and `ytime`.
+The call to {{< lookup/cref ReadJoystickTimes >}} polls the joystick hardware for the current X- and Y-axis interval timings for joystick `stick_num`. The timing values are returned in `xtime` and `ytime`.
 
 ```c
     if ((xtime > 500) | (ytime > 500)) {
-        xtime = joystickBandLeft[stick] + 1;
-        ytime = joystickBandTop[stick] + 1;
+        xtime = joystickBandLeft[stick_num] + 1;
+        ytime = joystickBandTop[stick_num] + 1;
     }
 ```
 
@@ -419,15 +419,15 @@ Secondly, neither `xtime` nor `ytime` can ever be greater than 500. These variab
 If we assume that this condition _could_ happen, the effect would be to fudge both timings to just inside the upper-left corner of the joystick's dead zone. The end result would be "no movement" -- same as if the joystick were naturally centered.
 
 ```c
-    if (xtime > joystickBandRight[stick]) {
+    if (xtime > joystickBandRight[stick_num]) {
         xmove = 1;
-    } else if (xtime < joystickBandLeft[stick]) {
+    } else if (xtime < joystickBandLeft[stick_num]) {
         xmove = -1;
     }
 
-    if (ytime > joystickBandBottom[stick]) {
+    if (ytime > joystickBandBottom[stick_num]) {
         ymove = 1;
-    } else if (ytime < joystickBandTop[stick]) {
+    } else if (ytime < joystickBandTop[stick_num]) {
         ymove = -1;
     }
 ```
@@ -480,7 +480,7 @@ The control value of the `switch` statement is an ad hoc 3&times;3 grid in Y-maj
 ```c
     buttons = inportb(0x0201);
 
-    if (stick == JOYSTICK_A) {
+    if (stick_num == JOYSTICK_A) {
         cmdJump = state.button1 = ((buttons & 0x0010) == 0);
         cmdBomb = state.button2 = ((buttons & 0x0020) == 0);
     }

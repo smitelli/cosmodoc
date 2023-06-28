@@ -7,7 +7,7 @@
         {{ if modBool $index $.Site.Params.dataTableHeaderFreq }}
             <tr>
                 <th>Map</th>
-                <th>Width x Height</th>
+                <th>Width&times;Height</th>
                 <th>Backdrop /<br>Scrolling</th>
                 <th>Palette Animation</th>
                 <th>Rain</th>
@@ -20,7 +20,7 @@
         {{ end }}
         <tr>
             <th>{{ .map_name }}</th>
-            <td>{{ .width_tiles }}x{{ .height_tiles }}</td>
+            <td>{{ .width_tiles }}&times;{{ .height_tiles }}</td>
             <td>
                 {{ index $.Site.Data.description.backdrop_name (int .backdrop_id) }}&nbsp;({{ .backdrop_id }})<br>
                 {{ if and .backdrop_hscroll_flag .backdrop_vscroll_flag}}

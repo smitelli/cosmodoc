@@ -17,11 +17,11 @@ This is where everything begins.
 Cosmo's Cosmic Adventure requires an 80286 processor due to the way it was compiled (and because it moves an objectively large amount of graphics data with every frame it draws). First and foremost, the CPU needs to be tested to ensure it meets this requirement, with a graceful fallback message if the system is not powerful enough. The {{< lookup/cref main >}} function is responsible for this check, and it is small enough to speak for itself:
 
 ```c
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int cputype = GetProcessorType();
 
-    if (cputype < CPUTYPE_80188) {
+    if (cputype < CPU_TYPE_80188) {
         byte response;
 
         /* Grammatical errors preserved faithfully */
@@ -49,7 +49,7 @@ void main(int argc, char *argv[])
 
 The actual CPU detection routine in {{< lookup/cref GetProcessorType >}} and its return values are covered in detail [elsewhere]({{< relref "processor-detection" >}}).
 
-The happy path through this function is that the user has a 286 (technically, anything equal to or better than a {{< lookup/cref name="CPUTYPE" text="CPUTYPE_80188" >}}). In this case, execution is passed to {{< lookup/cref InnerMain >}} along with the values for `argc` and `argv`.
+The happy path through this function is that the user has a 286 (technically, anything equal to or better than a {{< lookup/cref name="CPU_TYPE" text="CPU_TYPE_80188" >}}). In this case, execution is passed to {{< lookup/cref InnerMain >}} along with the values for `argc` and `argv`.
 
 If the user appears to have a processor that is incapable of running the game (an 8086/88 or an NEC V20/30), a text warning and prompt are displayed via {{< lookup/cref printf >}}. {{< lookup/cref getch >}} reads the user's response to the prompt without echoing it to the screen. If the user enters <kbd>Y</kbd> or <kbd>y</kbd>, it attempts to call {{< lookup/cref InnerMain >}} as above. Otherwise {{< lookup/cref exit >}} is called to return to DOS with an {{< lookup/cref EXIT_SUCCESS >}} status code.
 
@@ -121,7 +121,7 @@ For this to work as intended, the specified directory must exist and be writable
         InitializeLevel(levelNum);
         LoadMaskedTileData("MASKTILE.MNI");
 
-        if (demoState == DEMOSTATE_PLAY) {
+        if (demoState == DEMO_STATE_PLAY) {
             LoadDemoData();
         }
 ```
@@ -143,11 +143,11 @@ Next comes {{< lookup/cref GameLoop >}}, framed by a toggle of the {{< lookup/cr
 ```c
         StopMusic();
 
-        if (demoState != DEMOSTATE_PLAY && demoState != DEMOSTATE_RECORD) {
+        if (demoState != DEMO_STATE_PLAY && demoState != DEMO_STATE_RECORD) {
             CheckHighScoreAndShow();
         }
 
-        if (demoState == DEMOSTATE_RECORD) {
+        if (demoState == DEMO_STATE_RECORD) {
             SaveDemoData();
         }
     }

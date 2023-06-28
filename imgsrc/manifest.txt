@@ -18,6 +18,9 @@ adlib-functions/waveforms.svg 684x 1368x 2052x
 assembly-drawing-functions/romero-tweet.svg 684x 1368x 2052x
 b800-text-format/b800-example.svg 684x 1368x 2052x
 b800-text-format/b800-low-memory.svg 684x 1368x 2052x
+backdrop-initialization-functions/backdrop-access.svg 684x 1368x 2052x
+backdrop-initialization-functions/backdrop-table.svg 684x 1368x 2052x
+backdrop-initialization-functions/backdrop-units.svg 684x 1368x 2052x
 c-drawing-functions/b800-mishmash.svg 684x 1368x 2052x
 dialog-functions/altered-file-error.svg 684x 1368x 2052x
 dialog-functions/bomb-hint.svg 684x 1368x 2052x

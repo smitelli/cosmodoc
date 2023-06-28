@@ -80,7 +80,7 @@ As soon as the zero is written to FLAGS, the flag state is pushed onto the stack
         je    @@less_than_286  ; Jump if all of these bits are on.
 
         ; DL stores the work-in-progress return value.
-        mov   dl,CPUTYPE_80286
+        mov   dl,CPU_TYPE_80286
 ```
 
 Prior to the 286, bits 12&ndash;15 of the FLAGS register were undefined and conventionally always held a 1 value. Even after explicitly popping a zero value into the flags, these bits will still hold 1.
@@ -111,13 +111,13 @@ The mechanics of this test are the same as the 286 test, but the value and its i
 
         ; Here, at least one of the relevant flag bits turned on, so the CPU
         ; must be a 386.
-        inc   dl        ; Return value becomes CPUTYPE_80386.
+        inc   dl        ; Return value becomes CPU_TYPE_80386.
         jmp   @@done
 ```
 
 The 286 CPU, running in real mode, keeps both NT and IOPL at zero values and will not accept changes from normal code. If all three of the bits we tried to turn on stayed off, the CPU is a 286. The verdict written to DL in the previous test becomes final, and control jumps to the [procedure return code at `@@done`]({{< relref "#cleanup" >}}).
 
-If, on the other hand, any of the three bits took a 1 value, the CPU must be a 386 which permits such changes. Increment DL, which has the effect of taking the next value in the enumeration-like {{< lookup/cref CPUTYPE >}} group: `CPUTYPE_80386`. This test ends with an unconditional jump to the [procedure return code]({{< relref "#cleanup" >}}).
+If, on the other hand, any of the three bits took a 1 value, the CPU must be a 386 which permits such changes. Increment DL, which has the effect of taking the next value in the enumeration-like {{< lookup/cref CPU_TYPE >}} group: `CPU_TYPE_80386`. This test ends with an unconditional jump to the [procedure return code]({{< relref "#cleanup" >}}).
 
 ### 186/88 Test
 
@@ -126,7 +126,7 @@ Once execution reaches this point, the CPU cannot be a 286 or a 386. The next lo
 ```tasm
 @@less_than_286:
         ; Now we know that the CPU is less than a 286.
-        mov   dl,CPUTYPE_80188
+        mov   dl,CPU_TYPE_80188
 
         ; Perform "FFh >> 33" then check for a zero or nonzero result.
         mov   al,0ffh
@@ -151,7 +151,7 @@ The NEC V20 was a drop-in replacement for the Intel 8088 released in the mid 198
 
 ```tasm
         ; Now we know that the CPU is less than an 186/188.
-        mov   dl,CPUTYPE_V20
+        mov   dl,CPU_TYPE_V20
 
         ; Ensure interrupts are enabled, then save SI's value on the stack.
         ; The `push` (and the `pop` below) aren't strictly required since the
@@ -194,7 +194,7 @@ With the setup out of the way, the actual interpretation of the test result is t
         jz    @@cpu_class_known  ; Jump if CX is zero.
 
         ; Now we know that the CPU is a bottom-rung 8086 or 8088.
-        mov   dl,CPUTYPE_8088
+        mov   dl,CPU_TYPE_8088
 ```
 
 DL contains the return value for a V20 here. If the entire memory block was read successfully, CX will be zero and that determination will be correct; jump to the [`@@cpu_class_known` label]({{< relref "#data-bus-width-detection" >}}).
@@ -268,7 +268,7 @@ This is what things look like _in memory._ Remember that the CPU has already sto
 
 At the point of the `rep stosb`, 16-bit bus processors have read the next six bytes and 8-bit bus processors have read four. The 16-bits have queued the `inc dx`, and the 8-bits have not. By the time the 8-bit bus processors are able to prefetch the rest of the sequence, `inc dx` has been replaced with `sti` and no increment occurs. 16-bit bus processors run the queued code that contains `inc dx`, unaware that the instructions had changed in memory.
 
-The increment instruction, if it runs, changes the {{< lookup/cref CPUTYPE >}} value in DX (which also affects DL in the same way) from `CPUTYPE_8088` to `CPUTYPE_8086`, from `CPUTYPE_V20` to `CPUTYPE_V30`, or from `CPUTYPE_80188` to `CPUTYPE_80186` depending on what the value already was. The `nop` instructions are no-ops used for padding, `cld` restores the direction flag setting, and any number of `sti` instructions turn interrupts back on.
+The increment instruction, if it runs, changes the {{< lookup/cref CPU_TYPE >}} value in DX (which also affects DL in the same way) from `CPU_TYPE_8088` to `CPU_TYPE_8086`, from `CPU_TYPE_V20` to `CPU_TYPE_V30`, or from `CPU_TYPE_80188` to `CPU_TYPE_80186` depending on what the value already was. The `nop` instructions are no-ops used for padding, `cld` restores the direction flag setting, and any number of `sti` instructions turn interrupts back on.
 
 The CPU type has been uniquely determined. From here, execution falls through to the cleanup and return code.
 
@@ -303,7 +303,7 @@ Finally, the values for DI, SI, DS, and BP are restored. This unwinds the local 
 
 ### Return Value
 
-See {{< lookup/cref CPUTYPE >}}.
+See {{< lookup/cref CPU_TYPE >}}.
 
 ## Authorship
 

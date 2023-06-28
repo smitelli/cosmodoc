@@ -226,7 +226,7 @@ This handling also occurs in {{< lookup/cref ProcessGameInput >}}.
 
 {{< boilerplate/function-cref TitleLoop >}}
 
-The {{< lookup/cref TitleLoop >}} function runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the {{< lookup/cref DEMOSTATE >}} variables, to instruct the caller to run the game loop with the appropriate demo playback/record state.
+The {{< lookup/cref TitleLoop >}} function runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the {{< lookup/cref DEMO_STATE >}} variables, to instruct the caller to run the game loop with the appropriate demo playback/record state.
 
 ```c
 byte TitleLoop(void)
@@ -264,7 +264,7 @@ title:
 
         if (idlecount == 1200) {
             InitializeEpisode();
-            return DEMOSTATE_PLAY;
+            return DEMO_STATE_PLAY;
         }
     }
 ```
@@ -275,7 +275,7 @@ The `while` loop performs the actual repetitive work here. As long as {{< lookup
 
 When `idlecount` reaches 600 (30 musical beats, or 7.5 bars) {{< lookup/cref DrawFullscreenImage >}} is called again to replace the screen content with the credits image {{< lookup/cref name="IMAGE" text="IMAGE_CREDITS" >}}. Interestingly, if a key is pressed when the credits are being shown, the main menu will appear drawn over them.
 
-Once `idlecount` reaches 1,200 (60 beats, 15 bars) the demo starts. This is accomplished by calling {{< lookup/cref InitializeEpisode >}} to set up the game globals, and returning {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_PLAY" >}} to the caller. When the demo ends, {{< lookup/cref TitleLoop >}} will be called again.
+Once `idlecount` reaches 1,200 (60 beats, 15 bars) the demo starts. This is accomplished by calling {{< lookup/cref InitializeEpisode >}} to set up the game globals, and returning {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_PLAY" >}} to the caller. When the demo ends, {{< lookup/cref TitleLoop >}} will be called again.
 
 If the user presses a key before the demo begins, this loop terminates and execution continues.
 
@@ -336,7 +336,7 @@ The input handler within the title loop is a simple `switch` overall, but it has
             isNewGame = true;
             pounceHintState = POUNCE_HINT_UNSEEN;
             StartSound(SND_NEW_GAME);
-            return DEMOSTATE_NONE;
+            return DEMO_STATE_NONE;
 ```
 
 In response to <kbd>B</kbd>, <kbd>Enter</kbd>, or <kbd>Space</kbd>, the "Begin New Game" action is taken.
@@ -345,7 +345,7 @@ In response to <kbd>B</kbd>, <kbd>Enter</kbd>, or <kbd>Space</kbd>, the "Begin N
 
 {{< lookup/cref pounceHintState >}} is set to {{< lookup/cref name="POUNCE_HINT" text="POUNCE_HINT_UNSEEN" >}}, which enables the "jump on creatures" hint the first time the player is hurt. (Why this wasn't done in {{< lookup/cref InitializeEpisode >}} with the rest of the hint variable initializations, who can say.)
 
-{{< lookup/cref StartSound >}} is called to play {{< lookup/cref name="SND" text="SND_NEW_GAME" >}}, and this function returns with a value of {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}} to indicate that a demo is not being played, nor is one being recorded -- the game must be under user control. Control passes back to the caller ({{< lookup/cref InnerMain >}}), which uses the returned demo state value to decide how to run the game loop.
+{{< lookup/cref StartSound >}} is called to play {{< lookup/cref name="SND" text="SND_NEW_GAME" >}}, and this function returns with a value of {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}} to indicate that a demo is not being played, nor is one being recorded -- the game must be under user control. Control passes back to the caller ({{< lookup/cref InnerMain >}}), which uses the returned demo state value to decide how to run the game loop.
 
 To return to the main menu, {{< lookup/cref InnerMain >}} must call {{< lookup/cref TitleLoop >}} again.
 
@@ -370,7 +370,7 @@ Once {{< lookup/cref ShowOrderingInformation >}}, {{< lookup/cref ShowInstructio
             {  /* for scope */
                 byte result = PromptRestoreGame();
                 if (result == RESTORE_GAME_SUCCESS) {
-                    return DEMOSTATE_NONE;
+                    return DEMO_STATE_NONE;
                 } else if (result == RESTORE_GAME_NOT_FOUND) {
                     ShowRestoreGameError();
                 }
@@ -384,7 +384,7 @@ The <kbd>R</kbd> key selects "Restore A Game," which contains a small submenu. T
 * If the user entered a number but the save file for that slot did not exist, the return value indicates this condition. ({{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}})
 * Otherwise the game state has been restored successfully and all relevant global variables have been set. ({{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_SUCCESS" >}})
 
-{{< lookup/cref PromptRestoreGame >}} is responsible for the aforementioned behavior, and returns the restore status into `result`. In the success case, this function returns {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}} and behaves similarly to the "Begin New Game" case.
+{{< lookup/cref PromptRestoreGame >}} is responsible for the aforementioned behavior, and returns the restore status into `result`. In the success case, this function returns {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}} and behaves similarly to the "Begin New Game" case.
 
 If the saved game was not found, the {{< lookup/cref ShowRestoreGameError >}} dialog is drawn on top of the screen contents. When the message is dismissed, `break` returns to the enclosing loop.
 
@@ -404,24 +404,24 @@ The <kbd>S</kbd> key shows the "Story" pages via a call to {{< lookup/cref ShowS
         case SCANCODE_F11:
             if (isDebugMode) {
                 InitializeEpisode();
-                return DEMOSTATE_RECORD;
+                return DEMO_STATE_RECORD;
             }
             break;
 ```
 
 <kbd>F11</kbd> is an undocumented debug key that starts recording a demo if the right preconditions are met. To do this, {{< lookup/cref isDebugMode >}} must be true, which means the user must've started a game at least once and enabled debug mode using <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del</kbd>, then returned to the main menu to invoke this command.
 
-When activated, it works essentially the same as the "Begin New Game" case: {{< lookup/cref InitializeEpisode >}} sets up all the appropriate variables, and `return` passes control back to the caller. The difference here, however, is that the return value is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_RECORD" >}} -- this is what configures the game loop to record the demo data (and some other differences) as the game is played.
+When activated, it works essentially the same as the "Begin New Game" case: {{< lookup/cref InitializeEpisode >}} sets up all the appropriate variables, and `return` passes control back to the caller. The difference here, however, is that the return value is {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_RECORD" >}} -- this is what configures the game loop to record the demo data (and some other differences) as the game is played.
 
 If debug mode is _not_ enabled, the `break` here returns to the main menu similarly to how other simple menus like "Instructions" do. This has the side effect of fading the screen out and back in for seemingly no reason.
 
 ```c
         case SCANCODE_D:
             InitializeEpisode();
-            return DEMOSTATE_PLAY;
+            return DEMO_STATE_PLAY;
 ```
 
-The <kbd>D</kbd> is the "Demo" playback feature, which works identically to the "record demo" case. The only difference is the {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_PLAY" >}} return value, which instructs the game loop to load the stored demo data and use it instead of the keyboard (or joystick) when processing input.
+The <kbd>D</kbd> is the "Demo" playback feature, which works identically to the "record demo" case. The only difference is the {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_PLAY" >}} return value, which instructs the game loop to load the stored demo data and use it instead of the keyboard (or joystick) when processing input.
 
 ```c
         case SCANCODE_T:
@@ -1363,15 +1363,15 @@ The {{< lookup/cref PromptLevelWarp >}} function prompts the user to select a ma
 bbool PromptLevelWarp(void)
 {
 #ifdef HAS_MAP_11
-#   define MAXMAP "13"
+#   define MAX_MAP "13"
     word levels[] = {0, 1, 4, 5, 8, 9, 12, 13, 16, 17, 20, 2, 3};
 #else
-#   define MAXMAP "12"
+#   define MAX_MAP "12"
     word levels[] = {0, 1, 4, 5, 8, 9, 12, 13, 16, 17, 2, 3};
 #endif
 ```
 
-This menu has a slightly different range based on the episode being played. In Episode 1 `HAS_MAP_11` is defined, indicating eleven regular maps, while episodes 2 and 3 only have ten. All episodes have two bonus maps in addition to the regular ones. Here a `MAXMAP` macro is defined to adjust the prompt text to the actual number of maps available, and the `levels[]` array is initialized with the internal level numbers of the map progression.
+This menu has a slightly different range based on the episode being played. In Episode 1 `HAS_MAP_11` is defined, indicating eleven regular maps, while episodes 2 and 3 only have ten. All episodes have two bonus maps in addition to the regular ones. Here a `MAX_MAP` macro is defined to adjust the prompt text to the actual number of maps available, and the `levels[]` array is initialized with the internal level numbers of the map progression.
 
 The distinction between maps and levels, while usually inconsequential, matters here. The **maps** are the concrete data grids that the players and actors can move around, and the **levels** track the sequential order in which the maps are played. Levels 0 and 1 correspond to maps 1 and 2, which is logical and simple enough to follow. In the gameplay progression, however, the next level in sequence is one of the "bonus" levels, selected based on how many stars the player collected. These bonus levels occupy level slots 2 and 3, and switching logic selects one (or none) of them dynamically. By the time level slot 4/5 are reached, maps 3/4 are loaded. Then level slots 6/7 _replay_ the same bonus map(s), and level slot 8 begins map 5. This pattern continues until the game ends. (See {{< lookup/cref NextLevel >}} for the implementation of this progression.)
 
@@ -1380,12 +1380,12 @@ With that in mind, the (zero-indexed) map progression and its relationship to th
 ```c
     char buffer[3];
     int x = UnfoldTextFrame(2, 4, 28, "Warp Mode!",
-        "Enter level (1-" MAXMAP "):");
+        "Enter level (1-" MAX_MAP "):");
 ```
 
 More local variables are defined. `buffer[]` is a three-byte buffer used to store the string entered by the user, which is a maximum two-digit string with an additional null terminator byte. `x` is the X coordinate of the inside of the message frame drawn by {{< lookup/cref UnfoldTextFrame >}}.
 
-`MAXMAP` is used here to dynamically change the maximum map number displayed.
+`MAX_MAP` is used here to dynamically change the maximum map number displayed.
 
 ```c
     ReadAndEchoText(x + 21, 4, buffer, 2);

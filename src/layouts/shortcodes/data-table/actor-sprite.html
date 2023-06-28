@@ -11,7 +11,7 @@
             <tr>
                 <th>Sprite Type</th>
                 <th>Frames</th>
-                <th colspan="{{ $maxFrames }}">Width x Height of Each Frame (0-{{ sub $maxFrames 1 }})</th>
+                <th colspan="{{ $maxFrames }}">Width&times;Height of Each Frame (0-{{ sub $maxFrames 1 }})</th>
                 <th>Description</th>
             </tr>
         {{ end }}
@@ -21,7 +21,7 @@
             <th>{{ (index . 0).sprite_type }}</th>
             <td>{{ $numUsed }}</td>
             {{ range . }}
-                <td>{{ .width_tiles }}x{{ .height_tiles }}</td>
+                <td>{{ .width_tiles }}&times;{{ .height_tiles }}</td>
             {{ end }}
             {{ with $numFree }}
                 <td colspan="{{ . }}"></td>

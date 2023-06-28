@@ -93,7 +93,7 @@ or...
 
 ```bash
 cd src
-hugo -e disable-nav
+HUGO_PARAMS_ENABLENAV=false hugo
 # Using the python "html2text" package...
 find ../public/ -iname '*.html' -exec html2text --ignore-links \
     --ignore-tables --ignore-emphasis --ignore-images {} \; | wc -w

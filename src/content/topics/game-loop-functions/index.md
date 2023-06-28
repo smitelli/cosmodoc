@@ -136,7 +136,7 @@ The actual loading of the map data and the construction of the actors it contain
 Similar to the beginning of the function, a special condition checks for the case where a new game has been started. In this case, the "One Moment" image is still visible on the screen, so {{< lookup/cref FadeOut >}} takes it down. To prevent it from showing again if this level restarts, the {{< lookup/cref isNewGame >}} flag is unset here.
 
 ```c
-    if (demoState == DEMOSTATE_NONE) {
+    if (demoState == DEMO_STATE_NONE) {
         switch (level_num) {
         case 0:
         case 1:
@@ -160,7 +160,7 @@ Similar to the beginning of the function, a special condition checks for the cas
     }
 ```
 
-This block of code handles UI feedback in the form of the "Now entering level..." text before each level begins. If {{< lookup/cref demoState >}} is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}, a demo is neither being recorded nor played back and such feedback is appropriate. The `switch` cases mirror the [level progression]({{< relref "level-and-map-functions#maps-vs-levels" >}}) of the game. This ensures that this dialog only appears before maps 1&ndash;10, without appearing before bonus levels or the eleventh level of the first episode.
+This block of code handles UI feedback in the form of the "Now entering level..." text before each level begins. If {{< lookup/cref demoState >}} is {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}, a demo is neither being recorded nor played back and such feedback is appropriate. The `switch` cases mirror the [level progression]({{< relref "level-and-map-functions#maps-vs-levels" >}}) of the game. This ensures that this dialog only appears before maps 1&ndash;10, without appearing before bonus levels or the eleventh level of the first episode.
 
 For these regular levels, the dialog is shown by calling both {{< lookup/cref SelectDrawPage >}} and {{< lookup/cref SelectActivePage >}} with the zeroth video page as the argument. This makes it so that the effect of all draw functions becomes immediately visible without the page-flipping machinery getting in the way. {{< lookup/cref ClearScreen >}} erases this draw page by replacing it with solid black tiles, and {{< lookup/cref FadeIn >}} restores the palette to its normal state, making this solid black screen visible.
 
@@ -222,14 +222,14 @@ At this point in the execution, the screen is faded to black via palette manipul
 
 ```c
 #ifdef EXPLOSION_PALETTE
-    if (paletteAnimationNum == PALANIM_EXPLOSIONS) {
+    if (paletteAnimationNum == PAL_ANIM_EXPLOSIONS) {
         SetPaletteRegister(PALETTE_KEY_INDEX, MODE1_BLACK);
     }
 #endif
 }
 ```
 
-There is one last bit of palette manipulation that occurs in episode three, which is the only episode with the `EXPLOSION_PALETTE` macro defined. In this episode, the level's {{< lookup/cref paletteAnimationNum >}} is checked to see if it matches {{< lookup/cref name="PALANIM" text="PALANIM_EXPLOSIONS" >}}, in which case the special "flash during explosions" palette animation mode is activated. In this mode, all magenta areas of the screen show as black by default, but flash bright white and yellow while explosions occur. To facilitate the initial state for this mode, {{< lookup/cref SetPaletteRegister >}} is called to set the palette register named by {{< lookup/cref PALETTE_KEY_INDEX >}} (which represents magenta areas in the game's graphics) to the EGA's {{< lookup/cref name="MODE1_COLORS" text="MODE1_BLACK" >}} color.
+There is one last bit of palette manipulation that occurs in episode three, which is the only episode with the `EXPLOSION_PALETTE` macro defined. In this episode, the level's {{< lookup/cref paletteAnimationNum >}} is checked to see if it matches {{< lookup/cref name="PAL_ANIM" text="PAL_ANIM_EXPLOSIONS" >}}, in which case the special "flash during explosions" palette animation mode is activated. In this mode, all magenta areas of the screen show as black by default, but flash bright white and yellow while explosions occur. To facilitate the initial state for this mode, {{< lookup/cref SetPaletteRegister >}} is called to set the palette register named by {{< lookup/cref PALETTE_KEY_INDEX >}} (which represents magenta areas in the game's graphics) to the EGA's {{< lookup/cref name="MODE1_COLORS" text="MODE1_BLACK" >}} color.
 
 {{< boilerplate/function-cref InitializeMapGlobals >}}
 
@@ -298,7 +298,7 @@ This function contains no logic and behaves identically in every context where i
 * {{< lookup/cref playerJumpTime >}} = 0
 * {{< lookup/cref playerFallTime >}} = 1
 * {{< lookup/cref isPlayerRecoiling >}} = false
-* {{< lookup/cref playerMomentumNorth >}} = 0
+* {{< lookup/cref playerMomentumNorth >}} = 0 <!-- END -->
 * {{< lookup/cref playerFaceDir >}} is set to {{< lookup/cref name="DIR4" text="DIR4_EAST" >}}, which makes the player start each level facing east. By convention, the player usually starts toward the left side of the map, looking in the direction they need to travel to progress.
 * {{< lookup/cref playerFrame >}} is set to {{< lookup/cref name="PLAYER" text="PLAYER_WALK_1" >}}, but this assignment is not that important since this value will be immediately overwritten with the correct standing/falling frame during the next call to {{< lookup/cref MovePlayer >}}.
 * {{< lookup/cref playerBaseFrame >}} is set to {{< lookup/cref name="PLAYER_BASE" text="PLAYER_BASE_EAST" >}}, following the same motivations as {{< lookup/cref playerFaceDir >}} above.
@@ -327,7 +327,7 @@ This function contains no logic and behaves identically in every context where i
 
 {{< boilerplate/function-cref GameLoop >}}
 
-The {{< lookup/cref GameLoop >}} function runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demostate` argument which should be one of the {{< lookup/cref DEMOSTATE >}} constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
+The {{< lookup/cref GameLoop >}} function runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demo_state` argument which should be one of the {{< lookup/cref DEMO_STATE >}} constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
 
 The game loop is structured as a true infinite loop that can only terminate under the following conditions:
 
@@ -339,7 +339,7 @@ In either case, this function returns back to the title loop in the {{< lookup/c
 ### Overall Structure
 
 ```c
-void GameLoop(byte demostate)
+void GameLoop(byte demo_state)
 {
     for (;;) {
         while (gameTickCount < 13)
@@ -385,7 +385,7 @@ If the current map has enabled one of the [palette animation modes]({{< relref "
 
 ```c
         {  /* for scope */
-            word result = ProcessGameInputHelper(activePage, demostate);
+            word result = ProcessGameInputHelper(activePage, demo_state);
             if (result == GAME_INPUT_QUIT) return;
             if (result == GAME_INPUT_RESTART) continue;
         }
@@ -403,7 +403,7 @@ If the current map has enabled one of the [palette animation modes]({{< relref "
 
 This section handles the input devices (keyboard, joystick, or the demo system) and moves the player through the map in response.
 
-{{< lookup/cref ProcessGameInputHelper >}} performs input handling based on the value passed in `demostate`. In the case where a demo is being played back, input is ignored except as a signal to quit. Otherwise input is accepted and used for player movement. {{< lookup/cref ProcessGameInputHelper >}} can also display [menus]({{< relref "menu-functions" >}}) and [dialogs]({{< relref "dialog-functions" >}}). To do this it must bypass the usual page-flipping mechanism and draw directly to the video page in {{< lookup/cref activePage >}} -- that is why it is passed here.
+{{< lookup/cref ProcessGameInputHelper >}} performs input handling based on the value passed in `demo_state`. In the case where a demo is being played back, input is ignored except as a signal to quit. Otherwise input is accepted and used for player movement. {{< lookup/cref ProcessGameInputHelper >}} can also display [menus]({{< relref "menu-functions" >}}) and [dialogs]({{< relref "dialog-functions" >}}). To do this it must bypass the usual page-flipping mechanism and draw directly to the video page in {{< lookup/cref activePage >}} -- that is why it is passed here.
 
 {{< lookup/cref ProcessGameInputHelper >}} returns a `result` code that can exit or restart the game loop. In the case of {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_QUIT" >}}, the user has requested to quit the game with <kbd>Esc</kbd> or <kbd>Q</kbd>, finished/dismissed the playback of a demo, or ran out of space while recording a demo. For these cases, `return` from the game loop immediately. For {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_RESTART" >}}, either a saved game was restored or the level warp cheat was used. In either case, the global state of the game world has changed and the game loop must be restarted from the top; `continue` accomplishes this.
 
@@ -453,12 +453,12 @@ This is the "everything else" section of object movement and drawing. Some objec
 * {{< lookup/cref DrawLights >}} handles the special map actors that represent lighted areas of the map. Such lights shine "down" the screen and continue until they hit a solid map tile (or they reach a hard-coded maximum distance). Anything currently drawn on the screen at this point can be "lightened" if one of these light beams touches it.
 
 ```c
-        if (demoState != DEMOSTATE_NONE) {
-            DrawSprite(SPR_DEMO_OVERLAY, 0, 18, 4, DRAWMODE_ABSOLUTE);
+        if (demoState != DEMO_STATE_NONE) {
+            DrawSprite(SPR_DEMO_OVERLAY, 0, 18, 4, DRAW_MODE_ABSOLUTE);
         }
 ```
 
-If a demo is being recorded _or_ played back, {{< lookup/cref demoState >}} will have a value other than {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}. In this case, {{< lookup/cref DrawSprite >}} draws frame zero of the {{< lookup/cref name="SPR" text="SPR_DEMO_OVERLAY" >}} "DEMO" sprite on the screen. This call uses the screen-relative {{< lookup/cref name="DRAWMODE" text="DRAWMODE_ABSOLUTE" >}}, so the coordinates (18, 4) represent a fixed position near the center-top of the game window. This is the last thing drawn during a typical iteration of the game loop, and nothing should subsequently cover it.
+If a demo is being recorded _or_ played back, {{< lookup/cref demoState >}} will have a value other than {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}. In this case, {{< lookup/cref DrawSprite >}} draws frame zero of the {{< lookup/cref name="SPR" text="SPR_DEMO_OVERLAY" >}} "DEMO" sprite on the screen. This call uses the screen-relative {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}}, so the coordinates (18, 4) represent a fixed position near the center-top of the game window. This is the last thing drawn during a typical iteration of the game loop, and nothing should subsequently cover it.
 
 ```c
         SelectDrawPage(activePage);
@@ -487,26 +487,26 @@ The queuing implementation used here is probably not necessary; the behavior of 
 
 {{< boilerplate/function-cref ProcessGameInputHelper >}}
 
-The {{< lookup/cref ProcessGameInputHelper >}} function is a small wrapper around the {{< lookup/cref ProcessGameInput >}} function that prepares the video hardware for the possibility of showing a menu or dialog during the [game loop](#GameLoop). `page` should contain the "active" (i.e. currently displayed) video page number, and `demo` should hold one of the {{< lookup/cref DEMOSTATE >}} values.
+The {{< lookup/cref ProcessGameInputHelper >}} function is a small wrapper around the {{< lookup/cref ProcessGameInput >}} function that prepares the video hardware for the possibility of showing a menu or dialog during the [game loop](#GameLoop). `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the {{< lookup/cref DEMO_STATE >}} values.
 
 ```c
-byte ProcessGameInputHelper(word page, byte demo)
+byte ProcessGameInputHelper(word active_page, byte demo_state)
 {
     byte result;
 
     EGA_MODE_LATCHED_WRITE();
 
-    SelectDrawPage(page);
+    SelectDrawPage(active_page);
 
-    result = ProcessGameInput(demo);
+    result = ProcessGameInput(demo_state);
 
-    SelectDrawPage(!page);
+    SelectDrawPage(!active_page);
 
     return result;
 }
 ```
 
-This function is effectively a wrapper around {{< lookup/cref ProcessGameInput >}}, passing the `demo` value directly through and returning its `result` without modification. This function exists to prepare the video hardware for certain drawing operations that {{< lookup/cref ProcessGameInput >}} may need to do.
+This function is effectively a wrapper around {{< lookup/cref ProcessGameInput >}}, passing the `demo_state` value directly through and returning its `result` without modification. This function exists to prepare the video hardware for certain drawing operations that {{< lookup/cref ProcessGameInput >}} may need to do.
 
 {{< lookup/cref EGA_MODE_LATCHED_WRITE >}} puts the EGA hardware into "latched" write mode. This is the mode used when drawing solid tile images, since these are stored in the EGA's onboard memory and need to use the latches to copy data onto a video page.
 
@@ -516,10 +516,249 @@ This function is effectively a wrapper around {{< lookup/cref ProcessGameInput >
 The call to {{< lookup/cref EGA_MODE_LATCHED_WRITE >}} is _arguably_ not needed, since all of the dialog/menu functions that can be invoked during the game ultimately call {{< lookup/cref DrawTextFrame >}} which sets the EGA mode anyway. It could also be argued that, since most of the frames drawn by the game loop never show a menu or dialog in the first place, performing this call on every loop iteration is simply a waste of clock cycles.
 {{< /aside >}}
 
-The call to {{< lookup/cref SelectDrawPage >}} sets the draw page -- that is, the area of video memory that is visible on the screen _right now_ -- to `page`. This sets it up so that any subsequent drawing operation goes directly and immediately to the screen, visible to the user without page flipping coming into play.
+The call to {{< lookup/cref SelectDrawPage >}} sets the draw page -- that is, the area of video memory that is visible on the screen _right now_ -- to `active_page`. This sets it up so that any subsequent drawing operation goes directly and immediately to the screen, visible to the user without page flipping coming into play.
 
 In this state, anything drawn inside {{< lookup/cref ProcessGameInput >}} and the functions it calls are immediately visible.
 
 Once the input handling is done, {{< lookup/cref SelectDrawPage >}} is called again with the inverse of `page` as the argument. This resets the draw page back to the way it was when the function was first entered, and leaves the hardware in the "draw everything in a hidden buffer" mode it expects.
 
 Finally, the original return value of {{< lookup/cref ProcessGameInput >}}, stashed in `result`, is returned to the caller.
+
+{{< boilerplate/function-cref ProcessGameInput >}}
+
+The {{< lookup/cref ProcessGameInput >}} function handles all keyboard and joystick input while the game is being played. Depending on the value passed in `demo_state` (which should be one of the {{< lookup/cref DEMO_STATE >}} values), this behavior is modified to record or play back demo data. Returns one of the {{< lookup/cref GAME_INPUT >}} values to control the game loop's flow.
+
+In addition to setting up player movment, this function also calls the in-game menus and dialogs for game options and cheat keys.
+
+```c
+byte ProcessGameInput(byte demo_state)
+{
+    if (demo_state != DEMO_STATE_PLAY) {
+```
+
+This function does the most work when the passed `demo_state` is not {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_PLAY" >}}. This state is encountered when the player is playing the game normally or recording a demo. Later the `else` block will handle the demo playback case.
+
+```c
+        if (
+            isKeyDown[SCANCODE_TAB] && isKeyDown[SCANCODE_F12] &&
+            isKeyDown[SCANCODE_KP_DOT]  /* Del */
+        ) {
+            isDebugMode = !isDebugMode;
+            StartSound(SND_PAUSE_GAME);
+            WaitHard(90);
+        }
+```
+
+If the user is pressing the <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del / Num .</kbd> debug key combination during the current frame, they want to toggle the state of the debug mode. The key state is read from the {{< lookup/cref isKeyDown >}} array indexed by the appropriate {{< lookup/cref SCANCODE >}} values, with the "delete" key sharing a scancode with the "dot" on the numeric keybad. When this key combination is down, {{< lookup/cref isDebugMode >}} is toggled and {{< lookup/cref StartSound >}} plays the {{< lookup/cref name="SND" text="SND_PAUSE_GAME" >}} effect to give feedback that the input was accepted.
+
+To give the user a chance to release the keys without unintentionally toggling the debug mode further, {{< lookup/cref WaitHard >}} pauses the entire game for a bit over half a second.
+
+```c
+        if (isKeyDown[SCANCODE_F10] && isDebugMode) {
+```
+
+This `if` block handles the <kbd>F10</kbd> + ... debug keys. {{< lookup/cref isDebugMode >}} must be true for <kbd>F10</kbd> to have significance to the game.
+
+```c
+            if (isKeyDown[SCANCODE_G]) {
+                ToggleGodMode();
+            }
+```
+
+In the case of <kbd>F10</kbd> + <kbd>G</kbd>, the user wants to toggle the state of the god mode cheat. {{< lookup/cref ToggleGodMode >}} does that and displays the dialog showing the result of the change.
+
+```c
+            if (isKeyDown[SCANCODE_W]) {
+                if (PromptLevelWarp()) return GAME_INPUT_RESTART;
+            }
+```
+
+For In the case of <kbd>F10</kbd> + <kbd>W</kbd>, the user wants to warp to a different level. {{< lookup/cref PromptLevelWarp >}} collects that input. If the user cancels or enters a nonsense value, {{< lookup/cref PromptLevelWarp >}} will return false and execution here will continue uninterrupted.
+
+In the case where the user selected a valid level number, that level will be loaded and initialized then {{< lookup/cref PromptLevelWarp >}} returns true. In that case, {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_RESTART" >}} is returned here to indicate that the game loop must restart on this new level.
+
+```c
+            if (isKeyDown[SCANCODE_P]) {
+                StartSound(SND_PAUSE_GAME);
+                while (isKeyDown[SCANCODE_P])
+                    ;  /* VOID */
+                while (!isKeyDown[SCANCODE_P])
+                    ;  /* VOID */
+                while (isKeyDown[SCANCODE_P])
+                    ;  /* VOID */
+            }
+```
+
+When the user presses <kbd>F10</kbd> + <kbd>P</kbd>, the game pauses _without_ any UI elements covering up any part of the screen. {{< lookup/cref StartSound >}} plays the {{< lookup/cref name="SND" text="SND_PAUSE_GAME" >}} effect as an indication that this is a pause and not some kind of program crash, then a series of `while` loops is entered.
+
+The first `while` loop spins, performing no work for as long as the <kbd>P</kbd> key is pressed. This absorbs the initial keypress that brought the program into the pause mode. The keyboard interrupt handler is called as keys are pressed and released, which updates the values in the {{< lookup/cref isKeyDown >}} array while this loop runs.
+
+The second `while` loop comprises the bulk of the pause. The program waits here for as long as the user wants to stay.
+
+The third `while` loop is entered when the <kbd>P</kbd> key is pressed again (it does not need to be accompanied with <kbd>F10</kbd> here). This keeps the game paused while <kbd>P</kbd> is pressed this second time, unpausing and resuming execution as soon as the key is released.
+
+The combined effect of these three loops is a **latch**. The game pauses on the first _press_ of the <kbd>F10</kbd> + <kbd>P</kbd> combination, and does not unpause until the <kbd>P</kbd> key is pressed _and released_ a subsequent time.
+
+```c
+            if (isKeyDown[SCANCODE_M]) {
+                ShowMemoryUsage();
+            }
+```
+
+In the case of <kbd>F10</kbd> + <kbd>M</kbd>, the user wants to see the memory usage statistics. {{< lookup/cref ShowMemoryUsage >}} handles that display.
+
+```c
+            if (
+                isKeyDown[SCANCODE_E] &&
+                isKeyDown[SCANCODE_N] &&
+                isKeyDown[SCANCODE_D]
+            ) {
+                winGame = true;
+            }
+        }
+```
+
+If the user presses the (convoluted) <kbd>F10</kbd> + <kbd>E</kbd> + <kbd>N</kbd> + <kbd>D</kbd> combination, the episode is immediately "won" by setting {{< lookup/cref winGame >}} to true, informing the game loop that it should stop running and instead display the ending story.
+
+This is the final check for <kbd>F10</kbd> debug keys, and the `if` block from above ends.
+
+```c
+        if (
+            isKeyDown[SCANCODE_C] &&
+            isKeyDown[SCANCODE_0] &&
+            isKeyDown[SCANCODE_F10] &&
+            !usedCheatCode
+        ) {
+            StartSound(SND_PAUSE_GAME);
+            usedCheatCode = true;
+            ShowCheatMessage();
+            playerHealthCells = 5;
+            playerBombs = 9;
+            sawBombHint = true;
+            playerHealth = 6;
+            UpdateBombs();
+            UpdateHealth();
+        }
+```
+
+This is the <kbd>C</kbd> + <kbd>0</kbd> + <kbd>F10</kbd> customer cheat, invoked by seeing the correct combination of keys in the {{< lookup/cref isKeyDown >}} array. {{< lookup/cref usedCheatCode >}} must be false here, which prevents the user from requesting this cheat more than once during the course of an episode.
+
+{{< lookup/cref StartSound >}} queues the {{< lookup/cref name="SND" text="SND_PAUSE_GAME" >}} effect, which continues playing on top of the subsequent cheat message. {{< lookup/cref usedCheatCode >}} is set to true, making this a one-shot operation unless the episode is restarted. The call to {{< lookup/cref ShowCheatMessage >}} explains what is happening before further changes occur.
+
+Once the message is dismissed, the player is given five bars of available health when {{< lookup/cref playerHealthCells >}} is set to 5. These bars become filled when {{< lookup/cref playerHealth >}} is set to _6_. The player is also given nine bombs (the maximum permitted) with {{< lookup/cref playerBombs >}}`= 9`. This also sets the {{< lookup/cref sawBombHint >}} flag, which prevents the bomb hint from showing again during the episode. (Usually, this hint is disabled when the player picks up their first bomb -- the assignment here covers the case where the player cheated before picking any up.)
+
+After the changes are made, a pair of calls to {{< lookup/cref UpdateBombs >}} and {{< lookup/cref UpdateHealth >}} makes the changes visible in the status bar.
+
+```c
+        if (isKeyDown[SCANCODE_S]) {
+            ToggleSound();
+        } else if (isKeyDown[SCANCODE_M]) {
+            ToggleMusic();
+        } else if (isKeyDown[SCANCODE_ESC] || isKeyDown[SCANCODE_Q]) {
+            if (PromptQuitConfirm()) return GAME_INPUT_QUIT;
+```
+
+These are the in-game keys. At any point during gameplay, the <kbd>S</kbd> key toggles sound, <kbd>M</kbd> toggles music, and <kbd>Esc</kbd>/<kbd>Q</kbd> brings up a "quit game" confirmation.
+
+Each of these keys is checked via the {{< lookup/cref isKeyDown >}} array, indexed by the selected {{< lookup/cref SCANCODE >}} value. Sound and music is toggled (and the resulting state shown) by the {{< lookup/cref ToggleSound >}} and {{< lookup/cref ToggleMusic >}} functions, respectively.
+
+The quit confirmation is shown in {{< lookup/cref PromptQuitConfirm >}}, and returns true if the user said yes. This returns {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_QUIT" >}} to the game loop, terminating it. If the user cancels, nothing is returned here and execution continues.
+
+```c
+        } else if (isKeyDown[SCANCODE_F1]) {
+            byte result = ShowHelpMenu();
+            if (result == HELP_MENU_RESTART) {
+                return GAME_INPUT_RESTART;
+            } else if (result == HELP_MENU_QUIT) {
+                if (PromptQuitConfirm()) return GAME_INPUT_QUIT;
+            }
+```
+
+This block handles the case where the <kbd>F1</kbd> key is pressed. This is advertised in the status bar as the "help" key, which presents a menu with a few configuration options and help screens. {{< lookup/cref ShowHelpMenu >}} is responsible for showing this menu and dispatching to all of the available sub-options. When the menu is dismissed, a `result` byte is returned.
+
+The game menu is capable of changing the level being played (by restoring a saved game) or quitting the game. These states need to be passed up to the game loop, which could restart or terminate based on this information.
+
+Internally, there is a mismatch in the numbering scheme used by {{< lookup/cref HELP_MENU >}} and {{< lookup/cref GAME_INPUT >}}, which is why the result value needs to be translated. {{< lookup/cref name="HELP_MENU" text="HELP_MENU_RESTART" >}} becomes {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_RESTART" >}} while {{< lookup/cref name="HELP_MENU" text="HELP_MENU_QUIT" >}} -- if confirmed by {{< lookup/cref PromptQuitConfirm >}} -- becomes {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_QUIT" >}}.
+
+In other cases, `result` contains a value that needs no special handling, and execution continues with no further modification of the game loop's execution flow.
+
+```c
+        } else if (isKeyDown[SCANCODE_P]) {
+            StartSound(SND_PAUSE_GAME);
+            ShowPauseMessage();
+        }
+```
+
+The final game key is <kbd>P</kbd>, which pauses the game with a sound effect and a visible message. This is produced by a combination of {{< lookup/cref StartSound >}} ({{< lookup/cref name="SND" text="SND_PAUSE_GAME" >}}) and the accompanying {{< lookup/cref ShowPauseMessage >}}.
+
+```c
+    } else if ((inportb(0x0060) & 0x80) == 0) {
+        return GAME_INPUT_QUIT;
+    }
+```
+
+This is the `else` branch of the `demo_state` check near the start of the function. This path is taken when a demo is being played back. The condition is a copy of the {{< lookup/cref IsAnyKeyDown >}} implementation, with the technical details discussed in the documentation for that function.
+
+This causes {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_QUIT" >}} to be returned to the game loop when any key is pressed, providing a way for the user to quit demo playback at any point by pressing a key.
+
+```c
+    if (demo_state != DEMO_STATE_PLAY) {
+```
+
+This is a duplicate of the larger `if` in the first half of the function -- running the first body if the game is being played normally (or a demo is being recorded), and the second body while playing a demo back.
+
+```c
+        if (!isJoystickReady) {
+            cmdWest  = isKeyDown[scancodeWest] >> blockMovementCmds;
+            cmdEast  = isKeyDown[scancodeEast] >> blockMovementCmds;
+            cmdJump  = isKeyDown[scancodeJump] >> blockMovementCmds;
+            cmdNorth = isKeyDown[scancodeNorth];
+            cmdSouth = isKeyDown[scancodeSouth];
+            cmdBomb  = isKeyDown[scancodeBomb];
+        } else {
+            ReadJoystickState(JOYSTICK_A);
+        }
+```
+
+If {{< lookup/cref isJoystickReady >}} is false, the user is not using joystick input for player movement and the keyboard should be used instead. For each movement command, the configured scancode index ({{< lookup/cref scancodeWest >}}, {{< lookup/cref scancodeEast >}}, {{< lookup/cref scancodeJump >}}, {{< lookup/cref scancodeNorth >}}, {{< lookup/cref scancodeSouth >}}, and {{< lookup/cref scancodeBomb >}}) is read from the {{< lookup/cref isKeyDown >}} array and the key up/down state becomes the inactive/active state of that movement command.
+
+{{< lookup/cref cmdWest >}}, {{< lookup/cref cmdEast >}}, and {{< lookup/cref cmdJump >}} have an additional processing step: If {{< lookup/cref blockMovementCmds >}} holds a nonzero (i.e. not-false) value, the boolean {{< lookup/cref isKeyDown >}} value is bitwist-shifted to the right. Since boolean false/true is equivalent to integer zero/nonzero, this functions as a boolean AND NOT expression -- the command variable is set if the key is down and commands are not blocked. {{< lookup/cref cmdNorth >}}, {{< lookup/cref cmdSouth >}}, and {{< lookup/cref cmdBomb >}} are not affected in this way because the player doesn't conceptually "move" for those inputs.
+
+In the opposite case, {{< lookup/cref isJoystickReady >}} is true and joystick input _is_ being used. Don't process keyboard input at all, and instead call {{< lookup/cref ReadJoystickState >}} to read the movement commands from {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}. Although {{< lookup/cref ReadJoystickState >}} returns a {{< lookup/cref JoystickState >}} structure with button press info, that return value is not used here -- all global variables are set without considering the return value.
+
+{{< note >}}There is a bug here due to {{< lookup/cref blockMovementCmds >}} never being checked. It is possible for the player to walk or jump out of situations when using the joystick that they would not be able to while using the keyboard.{{< /note >}}
+
+```c
+        if (blockActionCmds) {
+            cmdNorth = cmdSouth = cmdBomb = false;
+        }
+```
+
+Regardless of the input device, if {{< lookup/cref blockActionCmds >}} is true, the {{< lookup/cref cmdNorth >}}, {{< lookup/cref cmdSouth >}}, and {{< lookup/cref cmdBomb >}} variables are all forced off, preventing the user from doing these actions.
+
+```c
+        if (demo_state == DEMO_STATE_RECORD) {
+            if (WriteDemoFrame()) return GAME_INPUT_QUIT;
+        }
+```
+
+If the user is recording a demo, `demo_state` will have the value {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_RECORD" >}}. This doesn't significantly change input handling; most inputs are processed identically. The difference here is that {{< lookup/cref WriteDemoFrame >}} is called during each frame to capture the state of the input commands.
+
+{{< lookup/cref WriteDemoFrame >}} usually returns false, but can return true if the demo has been running for so long that the entire buffer has been filled (this takes seven to eight minutes to accomplish). When this happens, {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_QUIT" >}} tells the game loop to immediately quit -- nothing more can be stored.
+
+```c
+    } else if (ReadDemoFrame()) {
+        return GAME_INPUT_QUIT;
+    }
+```
+
+This is the opposite branch of the `demo_state` check, and is reached when a demo is being played back. In this case, {{< lookup/cref ReadDemoFrame >}} is called on every frame to fill the movement command variables from the stream of demo data.
+
+{{< lookup/cref ReadDemoFrame >}} usually returns false, but will return true once the last frame of demo data has been read -- this is the end of the recording. When that happens, {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_QUIT" >}} tells the game loop to immediately quit -- the demo is over.
+
+```c
+    return GAME_INPUT_CONTINUE;
+}
+```
+
+If execution ended up here, nothing special occurred during this frame: the user did not quit, the level was not changed, and a demo did not end. {{< lookup/cref name="GAME_INPUT" text="GAME_INPUT_CONTINUE" >}} tells the game loop that it should proceed with drawing the frame as usual.

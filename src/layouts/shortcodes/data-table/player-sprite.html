@@ -6,7 +6,7 @@
     <tr>
         <th>Sprite Type</th>
         <th>Frame Number</th>
-        <th>Width x Height</th>
+        <th>Width&times;Height</th>
         <th>Description</th>
     </tr>
     {{ range $.Site.Data.player_sprite.table }}
@@ -14,7 +14,7 @@
             <tr>
                 <th>{{ .sprite_type }}</th>
                 <td>{{ .sprite_frame }}</td>
-                <td>{{ .width_tiles }}x{{ .height_tiles }}</td>
+                <td>{{ .width_tiles }}&times;{{ .height_tiles }}</td>
                 <td>{{ index $.Site.Data.description.player_sprite (int .sprite_frame) | markdownify }}</td>
             </tr>
         {{ end }}

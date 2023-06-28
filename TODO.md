@@ -7,29 +7,22 @@
 
 =============================================================================
 
-* backdrop
-    * InitializeBackdropTable: i have no earthly idea.
-    * LoadBackdrop: open groupent by name, install to video memory via scratch space. calls other functions i don't yet understand.
-    * InstallBackdropVert: i have no earthly idea.
-    * InstallBackdropHoriz: i have no earthly idea.
-    * IsBackdropChanged: did any pertinent info regarding the backdrop change?
 * level display
     * DrawBackdropLayer: does more than you think!
+    * DrawLights: for each light: draw correct shape for topmost tile. cast down from there, drawing solid light. stop after hitting a solid block, or max distance reached. do not draw off screen.
     * DrawRandomEffects: make slippery tiles sparkle sometimes. spawn raindrops if warranted.
 * player move
-    * ReadGameKeys: handle the large majority of the game's input/cheats.
-    * ResetPlayerHeadShake: stop player's head from shaking.
     * TestPlayerMove: determine if the player can move in a given direction, and set a bunch of global vars in the process.
-    * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
-    * ResetPush: reset push-related vars.
-    * SetPush: set up a push.
-    * PushPlayer: handle one tick of player push movement.
     * MovePlayer: handle one tick of basically all player input.
     * MovePlayerScooter: handle one tick of player movement on the scooter.
     * ShakePlayerHead: handle landing on the ground and maybe shaking head.
-* player display
+    * ResetPlayerHeadShake: stop player's head from shaking.
+    * SetPush: set up a push.
+    * ResetPush: reset push-related vars.
+    * PushPlayer: handle one tick of player push movement.
     * DrawPlayerSprite: player sprite control, with some checks for the various ways to die.
 * player/actor
+    * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
     * TestPlayerHit: return true if actor type/frame/XY is touching the player
     * PounceHelper: imparts the springiness into actor pounces.
     * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
@@ -40,8 +33,6 @@
     * PlayerPlatformTouch: handle player riding platform, including scrolling the screen.
     * ProcessAllFountains: for all fountains -- sleep, change direction if needed. remove fountain head from map. conditionally call PPT. change height. reinsert fountain head into map.
     * DrawFountains: for all fountains -- draw fountain head. for each unit of height, draw fountain stream. if player is touching any part of the stream, hurt them.
-* lights
-    * DrawLights: for each light: draw correct shape for topmost tile. cast down from there, drawing solid light. stop after hitting a solid block, or max distance reached. do not draw off screen.
 * shards
     * ResetShards: deactivate every shard in the array.
     * InsertShard: assign shard number 0-4, then insert into next free spot in array.

@@ -317,17 +317,17 @@ void AnimatePalette(void)
     static byte lightningState = 0;
 
 #ifdef EXPLOSION_PALETTE
-    if (paletteAnimationNum == PALANIM_EXPLOSIONS) return;
+    if (paletteAnimationNum == PAL_ANIM_EXPLOSIONS) return;
 #endif
 ```
 
 `lightningState` is a private variable that holds the state of the lightning effect, if the map uses it. Since it is declared static, it retains its value between calls.
 
-Episode three of the game has an `EXPLOSION_PALETTE` feature. If requested by the map, the palette is changed in response to explosions that occur during gameplay. If the map's {{< lookup/cref paletteAnimationNum >}} matches {{< lookup/cref name="PALANIM" text="PALANIM_EXPLOSIONS" >}}, this feature is active for the current map. That is handled elsewhere ({{< lookup/cref DrawExplosions >}}), so return early in this case.
+Episode three of the game has an `EXPLOSION_PALETTE` feature. If requested by the map, the palette is changed in response to explosions that occur during gameplay. If the map's {{< lookup/cref paletteAnimationNum >}} matches {{< lookup/cref name="PAL_ANIM" text="PAL_ANIM_EXPLOSIONS" >}}, this feature is active for the current map. That is handled elsewhere ({{< lookup/cref DrawExplosions >}}), so return early in this case.
 
 ```c
     switch (paletteAnimationNum) {
-    case PALANIM_LIGHTNING:
+    case PAL_ANIM_LIGHTNING:
         if (lightningState == 2) {
             lightningState = 0;
             SetPaletteRegister(PALETTE_KEY_INDEX, MODE1_DARKGRAY);
@@ -345,7 +345,7 @@ Episode three of the game has an `EXPLOSION_PALETTE` feature. If requested by th
         break;
 ```
 
-The remainder of the function is a large `switch` statement that handles each defined {{< lookup/cref paletteAnimationNum >}} value. If the map uses {{< lookup/cref name="PALANIM" text="PALANIM_LIGHTNING" >}}, a random lightning effect is drawn via calls to {{< lookup/cref SetPaletteRegister >}} with accompanying thunder sound effects from {{< lookup/cref StartSound >}}.
+The remainder of the function is a large `switch` statement that handles each defined {{< lookup/cref paletteAnimationNum >}} value. If the map uses {{< lookup/cref name="PAL_ANIM" text="PAL_ANIM_LIGHTNING" >}}, a random lightning effect is drawn via calls to {{< lookup/cref SetPaletteRegister >}} with accompanying thunder sound effects from {{< lookup/cref StartSound >}}.
 
 The lifecycle of lightning is as follows: Most of the time, `lightningState` is 0 and there is no active lightning occurring. Whenever the system's random number generator satisfies the precondition, the palette key color is set to white and a thunder sound effect is started -- this is `lightningState` 1. On the subsequent frame, the palette key color changes to light gray and `lightningState` becomes 2. During the next frame, the color changes to dark gray and `lightningState` returns to 0. On the next frame, the palette color is cleaned up and the black color is restored.
 
@@ -354,7 +354,7 @@ In terms of implementation, there isn't much to comment on. In Turbo C, {{< look
 When this path is taken, the function returns when `break` is reached.
 
 ```c
-    case PALANIM_R_Y_W:
+    case PAL_ANIM_R_Y_W:
         {
             static byte rywTable[] = {
                 RED, RED, LIGHTRED, LIGHTRED, YELLOW, YELLOW, WHITE, WHITE,
@@ -366,14 +366,14 @@ When this path is taken, the function returns when `break` is reached.
         break;
 ```
 
-If the map instead uses {{< lookup/cref name="PALANIM" text="PALANIM_R_Y_W" >}}, a much simpler "red-yellow-white" repeating palette animation is needed. The `rywTable[]` array contains a sequence of {{< lookup/cref COLORS >}} values that define the pattern to use. This pattern is terminated with an {{< lookup/cref END_ANIMATION >}} marker to indicate the loop point.
+If the map instead uses {{< lookup/cref name="PAL_ANIM" text="PAL_ANIM_R_Y_W" >}}, a much simpler "red-yellow-white" repeating palette animation is needed. The `rywTable[]` array contains a sequence of {{< lookup/cref COLORS >}} values that define the pattern to use. This pattern is terminated with an {{< lookup/cref END_ANIMATION >}} marker to indicate the loop point.
 
 The color pattern is passed to {{< lookup/cref StepPalette >}}, which handles the actual cycling behavior and palette configuration.
 
 As with the lightning animation, the function returns when `break` is reached.
 
 ```c
-    case PALANIM_R_G_B:
+    case PAL_ANIM_R_G_B:
         {
             static byte rgbTable[] = {
                 BLACK, BLACK, RED, RED, LIGHTRED, RED, RED,
@@ -386,7 +386,7 @@ As with the lightning animation, the function returns when `break` is reached.
         }
         break;
 
-    case PALANIM_MONO:
+    case PAL_ANIM_MONO:
         {
             static byte monoTable[] = {
                 BLACK, BLACK, DARKGRAY, LIGHTGRAY, WHITE, LIGHTGRAY,
@@ -397,7 +397,7 @@ As with the lightning animation, the function returns when `break` is reached.
         }
         break;
 
-    case PALANIM_W_R_M:
+    case PAL_ANIM_W_R_M:
         {
             static byte wrmTable[] = {
                 WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, RED, LIGHTMAGENTA,

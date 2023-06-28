@@ -557,8 +557,8 @@ FadeWhiteCustom:
   ref: /topics/c-drawing-functions/#FadeWhiteCustom
 GameLoop:
   text: GameLoop()
-  def: void GameLoop(byte demostate);
-  desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demostate` argument which should be one of the DEMOSTATE_* constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
+  def: void GameLoop(byte demo_state);
+  desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demo_state` argument which should be one of the DEMO_STATE_* constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
   ref: /topics/game-loop-functions/#GameLoop
 #GameRand:
 GetMapTile:
@@ -569,7 +569,7 @@ GetMapTile:
 GetProcessorType:
   text: GetProcessorType()
   def: word GetProcessorType(void);
-  desc: Tests the system processor and returns a value indicating its model. Returns `CPUTYPE_*`.
+  desc: Tests the system processor and returns a value indicating its model. Returns `CPU_TYPE_*`.
   ref: /topics/processor-detection/#GetProcessorType
 GroupEntryFp:
   text: GroupEntryFp()
@@ -582,7 +582,11 @@ GroupEntryLength:
   desc: Locates a group file `entry_name` and returns the size of its data in bytes.
   ref: /topics/group-file-functions/#GroupEntryLength
 #HurtPlayer:
-#InitializeBackdropTable:
+InitializeBackdropTable:
+  text: InitializeBackdropTable()
+  def: void InitializeBackdropTable(void);
+  desc: Fills the `backdropTable[]` array with four identical copies of backdrop tile offset data.
+  ref: /topics/backdrop-initialization-functions/#InitializeBackdropTable
 #InitializeDecorations:
 InitializeEpisode:
   text: InitializeEpisode()
@@ -624,6 +628,11 @@ IsAnyKeyDown:
   ref: /topics/keyboard-functions/#IsAnyKeyDown
 #IsIntersecting:
 #IsNearExplosion:
+IsNewBackdrop:
+  text: IsNewBackdrop()
+  def: bbool IsNewBackdrop(word backdrop_num);
+  desc: Tracks the most recently used backdrop number and horizontal/vertical scroll flags. The scroll flags are read from global variables, but the backdrop number being tested must be passed in `backdrop_num`. Returns true if these have changed since the previous call, or false if none of the tracked variables have changed.
+  ref: /topics/backdrop-initialization-functions/#IsNewBackdrop
 #IsSpriteVisible:
 JoinPath:
   text: JoinPath()
@@ -655,7 +664,11 @@ LoadActorTileData:
   def: void LoadActorTileData(char *entry_name);
   desc: Loads actor tile data into system memory.
   ref: /topics/group-file-functions/#LoadActorTileData
-#LoadBackdropData:
+LoadBackdropData:
+  text: LoadBackdropData()
+  def: void LoadBackdropData(char *entry_name, byte *scratch);
+  desc: Reads backdrop data from the passed group file `entry_name` and installs it into the appropriate location in the EGA memory. If horizontal and/or vertical scrolling is enabled in the map variables, additional copies are loaded into the EGA memory to facilitate sub-tile parallax scrolling. A `scratch` buffer is required, which must be large enough to hold two complete copies of backdrop data plus an additional 640 bytes.
+  ref: /topics/backdrop-initialization-functions/#LoadBackdropData
 LoadCartoonData:
   text: LoadCartoonData()
   def: void LoadCartoonData(char *entry_name);
@@ -760,11 +773,15 @@ PCSpeakerService:
   ref: /topics/pc-speaker-and-timing-functions/#PCSpeakerService
 #PounceHelper:
 #ProcessActor:
-#ProcessGameInput:
+ProcessGameInput:
+  text: ProcessGameInput()
+  def: byte ProcessGameInput(byte demo_state);
+  desc: Handles all keyboard and joystick input while the game is being played. Depending on the value passed in `demo_state` (which should be one of the `DEMO_STATE_*` values), this behavior is modified to record or play back demo data. Returns one of the `GAME_INPUT_*` values to control the game loop's flow.
+  ref: /topics/game-loop-functions/#ProcessGameInput
 ProcessGameInputHelper:
   text: ProcessGameInputHelper()
-  def: byte ProcessGameInputHelper(word page, byte demo);
-  desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `page` should contain the "active" (i.e. currently displayed) video page number, and `demo` should hold one of the `DEMOSTATE_*` values.
+  def: byte ProcessGameInputHelper(word active_page, byte demo_state);
+  desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the `DEMO_STATE_*` values.
   ref: /topics/game-loop-functions/#ProcessGameInputHelper
 #ProcessPlayerDizzy:
 ProfileCPU:
@@ -809,8 +826,8 @@ ReadAndEchoText:
   ref: /topics/user-interface-functions/#ReadAndEchoText
 ReadJoystickTimes:
   text: ReadJoystickTimes()
-  def: void ReadJoystickTimes(word stick, int *x_time, int *y_time);
-  desc: Triggers a timing interval on the joystick hardware and returns the raw interval lengths for the one joystick, identified by `stick`, in `x_time` and `y_time`.
+  def: void ReadJoystickTimes(word stick_num, int *x_time, int *y_time);
+  desc: Triggers a timing interval on the joystick hardware and returns the raw interval lengths for the one joystick, identified by `stick_num`, in `x_time` and `y_time`.
   ref: /topics/joystick-functions/#ReadJoystickTimes
 ReadDemoFrame:
   text: ReadDemoFrame()
@@ -819,8 +836,8 @@ ReadDemoFrame:
   ref: /topics/demo-functions/#ReadDemoFrame
 ReadJoystickState:
   text: ReadJoystickState()
-  def: JoystickState ReadJoystickState(word stick);
-  desc: Polls the joystick identified by `stick` for its current position and button state, and updates the player control variables accordingly.
+  def: JoystickState ReadJoystickState(word stick_num);
+  desc: Polls the joystick identified by `stick_num` for its current position and button state, and updates the player control variables accordingly.
   ref: /topics/demo-functions/#ReadJoystickState
 #SET_PLAYER_DIZZY:
 SaveConfigurationData:
@@ -883,11 +900,11 @@ SetMapTileRepeat:
   def: void SetMapTileRepeat(word value, word count, word x_origin, word y_origin);
   desc: Sets a horizontal span of `count` map tiles, starting at horizontal position `x_origin` and vertical position `y_origin`, to the value passed in `value`.
   ref: /topics/level-and-map-functions/#SetMapTileRepeat
-SetMusic:
-  text: SetMusic()
-  def: bool SetMusic(bool state);
+SetMusicState:
+  text: SetMusicState()
+  def: bool SetMusicState(bool state);
   desc: Enables or disables AdLib output based on the value of `state`.
-  ref: /topics/adlib-functions/#SetMusic
+  ref: /topics/adlib-functions/#SetMusicState
 SetPaletteRegister:
   text: SetPaletteRegister()
   def: void SetPaletteRegister(word palette_index, word color_value);
@@ -976,8 +993,8 @@ ShowInstructions:
   ref: /topics/dialog-functions/#ShowInstructions
 ShowJoystickConfiguration:
   text: ShowJoystickConfiguration()
-  def: void ShowJoystickConfiguration(word stick);
-  desc: Prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick`.
+  def: void ShowJoystickConfiguration(word stick_num);
+  desc: Prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick_num`.
   ref: /topics/joystick-functions/#ShowJoystickConfiguration
 ShowKeyboardConfiguration:
   text: ShowKeyboardConfiguration()
@@ -1154,7 +1171,7 @@ TimerInterruptService:
 TitleLoop:
   text: TitleLoop()
   def: byte TitleLoop(void);
-  desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the `DEMOSTATE_*` variables.
+  desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the `DEMO_STATE_*` variables.
   ref: /topics/menu-functions/#TitleLoop
 ToggleGodMode:
   text: ToggleGodMode()
@@ -1236,6 +1253,16 @@ WaitWallclock:
   def: void WaitWallclock(word loops);
   desc: Creates an artificial delay using a CPU busy loop, controlled by the iteration count specified in `loops`.
   ref: /topics/adlib-functions/#WaitWallclock
+WrapBackdropHorizontal:
+  text: WrapBackdropHorizontal()
+  def: void WrapBackdropHorizontal(byte *src, byte *dest);
+  desc: Creates a modified copy of the backdrop image pointed to by `src` and stores it in the location pointed to by `dest`. The new copy of the image is shifted horizontally toward the left by four pixels, and the four columns of pixels that shift off the left edge are wrapped into the empty space created at the right edge.
+  ref: /topics/backdrop-initialization-functions/#WrapBackdropHorizontal
+WrapBackdropVertical:
+  text: WrapBackdropVertical()
+  def: void WrapBackdropVertical(byte *src, byte *dest, byte *scratch);
+  desc: Creates a modified copy of the backdrop image pointed to by `src` and stores it in the location pointed to by `dest` using a `scratch` buffer of at least 640 bytes. The new copy of the image is shifted vertically toward the top by four pixels, and the four rows of pixels that shift off the top edge are wrapped into the empty space created at the bottom edge.
+  ref: /topics/backdrop-initialization-functions/#WrapBackdropVertical
 WriteDemoFrame:
   text: WriteDemoFrame()
   def: bbool WriteDemoFrame(void);
@@ -1501,27 +1528,51 @@ ACT:
     #define ACT_EP2_END_LINE        265
   desc: Defines meaningful names for each actor type defined in the game.
   ref: /topics/global-variables-and-constants/#ACT
-CPUTYPE:
-  text: CPUTYPE_*
+BACKDROP_HEIGHT:
+  text: BACKDROP_HEIGHT
   def: |-
-    #define CPUTYPE_8088  0  /* Intel 8088 */
-    #define CPUTYPE_8086  1  /* Intel 8086 */
-    #define CPUTYPE_V20   2  /* NEC V20 */
-    #define CPUTYPE_V30   3  /* NEC V30 */
-    #define CPUTYPE_80188 4  /* Intel 80188 */
-    #define CPUTYPE_80186 5  /* Intel 80186 */
-    #define CPUTYPE_80286 6  /* Intel 80286 */
-    #define CPUTYPE_80386 7  /* Intel 80386 or above */
+    #define BACKDROP_HEIGHT 18
+  desc: Defines the height (in tiles) of backdrop images.
+  ref: /topics/global-variables-and-constants/#BACKDROP_HEIGHT
+BACKDROP_SIZE:
+  text: BACKDROP_SIZE
+  def: |-
+    #define BACKDROP_SIZE 23040
+  desc: Defines the size (in bytes) of a backdrop image.
+  ref: /topics/global-variables-and-constants/#BACKDROP_SIZE
+BACKDROP_SIZE_EGA_MEM:
+  text: BACKDROP_SIZE_EGA_MEM
+  def: |-
+    #define BACKDROP_SIZE_EGA_MEM (BACKDROP_SIZE / 4)
+  desc: Defines the size (in bytes) of EGA memory address space used by a backdrop image.
+  ref: /topics/global-variables-and-constants/#BACKDROP_SIZE_EGA_MEM
+BACKDROP_WIDTH:
+  text: BACKDROP_WIDTH
+  def: |-
+    #define BACKDROP_WIDTH 40
+  desc: Defines the width (in tiles) of backdrop images.
+  ref: /topics/global-variables-and-constants/#BACKDROP_WIDTH
+CPU_TYPE:
+  text: CPU_TYPE_*
+  def: |-
+    #define CPU_TYPE_8088  0  /* Intel 8088 */
+    #define CPU_TYPE_8086  1  /* Intel 8086 */
+    #define CPU_TYPE_V20   2  /* NEC V20 */
+    #define CPU_TYPE_V30   3  /* NEC V30 */
+    #define CPU_TYPE_80188 4  /* Intel 80188 */
+    #define CPU_TYPE_80186 5  /* Intel 80186 */
+    #define CPU_TYPE_80286 6  /* Intel 80286 */
+    #define CPU_TYPE_80386 7  /* Intel 80386 or above */
   desc: Provides meaningful names for the detected processor type.
-  ref: /topics/global-variables-and-constants/#CPUTYPE
-DEMOSTATE:
-  text: DEMOSTATE_*
+  ref: /topics/global-variables-and-constants/#CPU_TYPE
+DEMO_STATE:
+  text: DEMO_STATE_*
   def: |-
-    #define DEMOSTATE_NONE   0
-    #define DEMOSTATE_RECORD 1
-    #define DEMOSTATE_PLAY   2
+    #define DEMO_STATE_NONE   0
+    #define DEMO_STATE_RECORD 1
+    #define DEMO_STATE_PLAY   2
   desc: Defines constant values that represent the input processing mode that should be used by the game loop.
-  ref: /topics/global-variables-and-constants/#DEMOSTATE
+  ref: /topics/global-variables-and-constants/#DEMO_STATE
 DIR4:
   text: DIR4_*
   def: |-
@@ -1532,27 +1583,27 @@ DIR4:
     #define DIR4_EAST  3
   desc: Defines a set of values for a four-way direction system. "North" and "None" map to the same value, but are named differently to clarify the intent where they appear.
   ref: /topics/global-variables-and-constants/#DIR4
-DRAWMODE:
-  text: DRAWMODE_*
+DRAW_MODE:
+  text: DRAW_MODE_*
   def: |-
-    #define DRAWMODE_NORMAL      0
-    #define DRAWMODE_HIDDEN      1
-    #define DRAWMODE_WHITE       2
-    #define DRAWMODE_TRANSLUCENT 3
-    #define DRAWMODE_FLIPPED     4
-    #define DRAWMODE_IN_FRONT    5
-    #define DRAWMODE_ABSOLUTE    6
+    #define DRAW_MODE_NORMAL      0
+    #define DRAW_MODE_HIDDEN      1
+    #define DRAW_MODE_WHITE       2
+    #define DRAW_MODE_TRANSLUCENT 3
+    #define DRAW_MODE_FLIPPED     4
+    #define DRAW_MODE_IN_FRONT    5
+    #define DRAW_MODE_ABSOLUTE    6
   desc: Defines the drawing modes available for the sprite drawing functions.
-  ref: /topics/global-variables-and-constants/#DRAWMODE
+  ref: /topics/global-variables-and-constants/#DRAW_MODE
 EGA_OFFSET:
   text: EGA_OFFSET_*
   def: |-
     #define EGA_OFFSET_SOLID_TILES  0x4000
     #define EGA_OFFSET_STATUS_TILES 0x8000
-    #define EGA_OFFSET_BACKDROP_0_0 0xa300
-    #define EGA_OFFSET_BACKDROP_4_0 0xb980
-    #define EGA_OFFSET_BACKDROP_0_4 0xd000
-    #define EGA_OFFSET_BACKDROP_4_4 0xe680
+    #define EGA_OFFSET_BDROP_EVEN   0xa300
+    #define EGA_OFFSET_BDROP_ODD_X  0xb980
+    #define EGA_OFFSET_BDROP_ODD_Y  0xd000
+    #define EGA_OFFSET_BDROP_ODD_XY 0xe680
   desc: Defines a number of useful EGA memory offsets relative to the adapter's segment address (A000h). Every byte of address space here represents four actual bytes in the EGA's memory, due to the separation of color planes.
   ref: /topics/global-variables-and-constants/#EGA_OFFSET
 END_ANIMATION:
@@ -1697,18 +1748,18 @@ Music:
     } Music;
   desc: Holds the `length` in bytes and first word of music data (`datahead`). Memory blocks that are cast to this structure type are generally much larger than the struct, and reading beyond `datahead` is typical and expected.
   ref: /topics/global-variables-and-constants/#Music
-PALANIM:
-  text: PALANIM_*
+PAL_ANIM:
+  text: PAL_ANIM_*
   def: |-
-    #define PALANIM_NONE       0
-    #define PALANIM_LIGHTNING  1
-    #define PALANIM_R_Y_W      2
-    #define PALANIM_R_G_B      3
-    #define PALANIM_MONO       4
-    #define PALANIM_W_R_M      5
-    #define PALANIM_EXPLOSIONS 6
+    #define PAL_ANIM_NONE       0
+    #define PAL_ANIM_LIGHTNING  1
+    #define PAL_ANIM_R_Y_W      2
+    #define PAL_ANIM_R_G_B      3
+    #define PAL_ANIM_MONO       4
+    #define PAL_ANIM_W_R_M      5
+    #define PAL_ANIM_EXPLOSIONS 6
   desc: Provides meaningful names for all of the palette animation types available in the game.
-  ref: /topics/global-variables-and-constants/#PALANIM
+  ref: /topics/global-variables-and-constants/#PAL_ANIM
 PALETTE_KEY_INDEX:
   text: PALETTE_KEY_INDEX
   def: '#define PALETTE_KEY_INDEX MAGENTA'
@@ -2248,8 +2299,8 @@ backdropNames:
   ref: /topics/global-variables-and-constants/#backdropNames
 backdropTable:
   text: backdropTable[]
-  def: word backdropTable[2880];
-  desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop.
+  def: word backdropTable[BACKDROP_WIDTH * BACKDROP_HEIGHT * 4];
+  desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop. It contains four identical copies of the backdrop's tile offsets, which allows for efficient wrapping withoug using modulo division.
   ref: /topics/global-variables-and-constants/#backdropTable
 blockActionCmds:
   text: blockActionCmds

@@ -31,7 +31,7 @@ bbool LoadGameState(char slot_char)
 {
     static char *filename = FILENAME_BASE ".SV ";
     FILE *fp;
-    word checksum;
+    int checksum;
 
     *(filename + SAVE_SLOT_INDEX) = slot_char;
 ```

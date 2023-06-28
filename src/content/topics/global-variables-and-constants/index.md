@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 410
+weight = 420
 +++
 
 # Global Variables and Constants
@@ -31,17 +31,27 @@ typedef byte bbool;           /* Boolean stored in a byte */
 
 {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is a special sentinel value for the spawner functions and cannot be expressed in the map format. {{< lookup/cref name="ACT" text="ACT_STAR_FLOAT" >}} has the value 32 in the [map format]({{< relref "map-format" >}}), and all other actor types follow sequentially.
 
-{{< boilerplate/global-cref CPUTYPE >}}
+{{< boilerplate/global-cref BACKDROP_HEIGHT >}}
+
+{{< boilerplate/global-cref BACKDROP_SIZE >}}
+
+{{< boilerplate/global-cref BACKDROP_SIZE_EGA_MEM >}}
+
+Derived from one fourth of {{< lookup/cref BACKDROP_SIZE >}}, or 5,760 bytes.
+
+{{< boilerplate/global-cref BACKDROP_WIDTH >}}
+
+{{< boilerplate/global-cref CPU_TYPE >}}
 
 These are the return values for the {{< lookup/cref GetProcessorType >}} function.
 
-{{< boilerplate/global-cref DEMOSTATE >}}
+{{< boilerplate/global-cref DEMO_STATE >}}
 
-Symbolic Constant  | Value | Description
--------------------|-------|------------
-`DEMOSTATE_NONE`   | 0     | The game is played in the usual way, with user keyboard input controlling the player. All in-game hints and intermission screens are displated.
-`DEMOSTATE_RECORD` | 1     | The game is played in demo recording mode. The keyboard controls the player, but the level progression is altered and in-game hints are skipped. All player movement is captured into a demo file on disk.
-`DEMOSTATE_PLAY`   | 2     | The game runs in demo playback mode. Keyboard input is ignored (any keypress ends the game) and player movement commands are read from the demo file. Level progression and hint display are altered in the same way as with `DEMOSTATE_RECORD`.
+Symbolic Constant   | Value | Description
+--------------------|-------|------------
+`DEMO_STATE_NONE`   | 0     | The game is played in the usual way, with user keyboard input controlling the player. All in-game hints and intermission screens are displated.
+`DEMO_STATE_RECORD` | 1     | The game is played in demo recording mode. The keyboard controls the player, but the level progression is altered and in-game hints are skipped. All player movement is captured into a demo file on disk.
+`DEMO_STATE_PLAY`   | 2     | The game runs in demo playback mode. Keyboard input is ignored (any keypress ends the game) and player movement commands are read from the demo file. Level progression and hint display are altered in the same way as with `DEMO_STATE_RECORD`.
 
 These are the return values for the {{< lookup/cref TitleLoop >}} function.
 
@@ -57,17 +67,17 @@ Symbolic Constant | Value | Description
 
 The arrangement of these cardinal directions follows the conventional layout of a compass rose.
 
-{{< boilerplate/global-cref DRAWMODE >}}
+{{< boilerplate/global-cref DRAW_MODE >}}
 
-Symbolic Constant      | Value | Description
------------------------|-------|------------
-`DRAWMODE_NORMAL`      | 0     | Draw the sprite unmodified, with X/Y positions measured relative to the game world. If the map data contains a "draw in front" tiles that intersect the sprite, the map tiles will prevail.
-`DRAWMODE_HIDDEN`      | 1     | Do not draw any part of the sprite.
-`DRAWMODE_WHITE`       | 2     | Same as `DRAWMODE_NORMAL`, but all opaque pixel positions in the sprite are drawn in bright white.
-`DRAWMODE_TRANSLUCENT` | 3     | Same as `DRAWMODE_WHITE`, but the sprite color is translucent.
-`DRAWMODE_FLIPPED`     | 4     | Same as `DRAWMODE_NORMAL`, but the sprite is drawn flipped vertically.
-`DRAWMODE_IN_FRONT`    | 5     | Same as `DRAWMODE_NORMAL`, but the sprite will cover _all_ map tiles, regardless of their "draw in front" attribute.
-`DRAWMODE_ABSOLUTE`    | 6     | Draw the sprite unmodified, with X/Y positions measured relative to the screen. Since there is no relationship to the game world in this mode, "draw in front" attributes from the map (if present) have no effect.
+Symbolic Constant       | Value | Description
+------------------------|-------|------------
+`DRAW_MODE_NORMAL`      | 0     | Draw the sprite unmodified, with X/Y positions measured relative to the game world. If the map data contains a "draw in front" tiles that intersect the sprite, the map tiles will prevail.
+`DRAW_MODE_HIDDEN`      | 1     | Do not draw any part of the sprite.
+`DRAW_MODE_WHITE`       | 2     | Same as `DRAW_MODE_NORMAL`, but all opaque pixel positions in the sprite are drawn in bright white.
+`DRAW_MODE_TRANSLUCENT` | 3     | Same as `DRAW_MODE_WHITE`, but the sprite color is translucent.
+`DRAW_MODE_FLIPPED`     | 4     | Same as `DRAW_MODE_NORMAL`, but the sprite is drawn flipped vertically.
+`DRAW_MODE_IN_FRONT`    | 5     | Same as `DRAW_MODE_NORMAL`, but the sprite will cover _all_ map tiles, regardless of their "draw in front" attribute.
+`DRAW_MODE_ABSOLUTE`    | 6     | Draw the sprite unmodified, with X/Y positions measured relative to the screen. Since there is no relationship to the game world in this mode, "draw in front" attributes from the map (if present) have no effect.
 
 {{< boilerplate/global-cref EGA_OFFSET >}}
 
@@ -129,7 +139,7 @@ The colors here are based on the Borland {{< lookup/cref COLORS >}} members, wit
 
 {{< boilerplate/global-cref Music >}}
 
-{{< boilerplate/global-cref PALANIM >}}
+{{< boilerplate/global-cref PAL_ANIM >}}
 
 {{< boilerplate/global-cref PALETTE_KEY_INDEX >}}
 
@@ -261,6 +271,8 @@ This is usually true, except on maps that have a {{< lookup/actor 59 >}}. On the
 
 This is also used as scratch storage during calls to {{< lookup/cref DrawFullscreenText >}}.
 
+See also {{< lookup/cref BACKDROP_WIDTH >}} and {{< lookup/cref BACKDROP_HEIGHT >}}.
+
 {{< boilerplate/global-cref blockActionCmds >}}
 
 This variable takes a true value when the player is "removed" from the map, like when interacting with a {{< lookup/actor 152 >}}, {{< lookup/actor type=149 strip=true >}}, {{< lookup/actor 186 >}}, or the {{< lookup/actor type=247 strip=true >}}.
@@ -293,13 +305,13 @@ Due to an oversight, this only immobilizes the player when keyboard input is bei
 
 This variable can hold one of the following values while the game is running:
 
-Symbolic Constant  | Value | Description
--------------------|-------|------------
-`DEMOSTATE_NONE`   | 0     | Game is being played interactively, no demo is being recorded or played.
-`DEMOSTATE_RECORD` | 1     | Game is being played interactively, and demo data is being recorded from the input.
-`DEMOSTATE_PLAY`   | 2     | Game is being controlled by demo data.
+Symbolic Constant   | Value | Description
+--------------------|-------|------------
+`DEMO_STATE_NONE`   | 0     | Game is being played interactively, no demo is being recorded or played.
+`DEMO_STATE_RECORD` | 1     | Game is being played interactively, and demo data is being recorded from the input.
+`DEMO_STATE_PLAY`   | 2     | Game is being controlled by demo data.
 
-When set to `DEMOSTATE_RECORD` or `DEMOSTATE_PLAY`, this suppresses the "Now entering level" message and all in-game hints, and adds a "DEMO" overlay.
+When set to `DEMO_STATE_RECORD` or `DEMO_STATE_PLAY`, this suppresses the "Now entering level" message and all in-game hints, and adds a "DEMO" overlay.
 
 {{< boilerplate/global-cref drawPageNumber >}}
 

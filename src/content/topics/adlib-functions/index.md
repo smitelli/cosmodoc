@@ -1178,14 +1178,14 @@ void InitializeInterruptRate(void)
 
 Compared to most of the AdLib functions, this one is short and sweet. If {{< lookup/cref isAdLibServiceRunning >}} is true, the timer interrupt `rate` should be set to 560 Hz. Otherwise, the `rate` should be one-quarter that amount: 140 Hz. Once the appropriate value has been determined, it is passed to {{< lookup/cref SetInterruptRate >}} to become the active timer rate.
 
-{{< boilerplate/function-cref SetMusic >}}
+{{< boilerplate/function-cref SetMusicState >}}
 
-The {{< lookup/cref SetMusic >}} function enables or disables AdLib output based on the value of `state`. Calling this function with a true value will enable the AdLib if it is present, and calling it with a false value will disable it. In either case, any currently-playing music is stopped and the system timer interrupt rate is set appropriately.
+The {{< lookup/cref SetMusicState >}} function enables or disables AdLib output based on the value of `state`. Calling this function with a true value will enable the AdLib if it is present, and calling it with a false value will disable it. In either case, any currently-playing music is stopped and the system timer interrupt rate is set appropriately.
 
 This function is a stripped-down and reworked (to the point of almost nonsensical indirection) variant of `SD_SetMusicMode()`[^SD_SetMusicMode] from Id Software's Sound Manager as used in _Catacomb 3-D_. Several operations on junk variables have been removed since they don't appear to pertain to any interesting unused functionality.
 
 ```c
-bool SetMusic(bool state)
+bool SetMusicState(bool state)
 {
     bool found;
 
@@ -1264,10 +1264,10 @@ No matter if an AdLib card is present or not, the system timer interrupt is repl
 ```c
     musicTickCount = 0;
 
-    SetMusic(false);
+    SetMusicState(false);
 ```
 
-{{< lookup/cref musicTickCount >}} is zeroed, as it is in many other places. {{< lookup/cref name="SetMusic" text="SetMusic(false)" >}} disables the AdLib output -- at least temporarily -- thus causing the system timer to run at the slower "PC speaker only" speed without attempting to play any music.
+{{< lookup/cref musicTickCount >}} is zeroed, as it is in many other places. {{< lookup/cref name="SetMusicState" text="SetMusicState(false)" >}} disables the AdLib output -- at least temporarily -- thus causing the system timer to run at the slower "PC speaker only" speed without attempting to play any music.
 
 ```c
     if (!skipDetectAdLib) {

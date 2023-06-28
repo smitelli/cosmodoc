@@ -259,14 +259,14 @@ If the character read from `text[x]` is any of FEh, FBh, FDh, or FCh, we are loo
 ```c
             if (text[x] == '\xFD') {
                 DrawPlayer(
-                    sequence1, x_origin + x, y_origin, DRAWMODE_ABSOLUTE
+                    sequence1, x_origin + x, y_origin, DRAW_MODE_ABSOLUTE
                 );
                 text += 4;
 ```
 
 The original flag byte in `text[x]` is considered again. If it matches FDh, a player sprite should be drawn at this position in the text stream. In this case, `sequence1` represents the frame number of the player sprite that should be drawn.
 
-The `x` variable holds the current horizontal drawing offset, and combining that with `x_origin` produces the screen tile position where this sprite should appear. Since text drawing only occurs on a single line at a time, `y_origin` is used unmodified. These parameters are passed to {{< lookup/cref DrawPlayer >}} to perform the drawing. The {{< lookup/cref name="DRAWMODE" text="DRAWMODE_ABSOLUTE" >}} option is required to indicate that the passed X/Y coordinates are in screen space instead of game world space. If a sprite is comprised of multiple tiles, the passed X/Y coordinates represent the _bottom left_ tile (the [**origin** tile]({{< relref "tile-info-format/#building-sprites-from-tile-info-data" >}})) of the sprite.
+The `x` variable holds the current horizontal drawing offset, and combining that with `x_origin` produces the screen tile position where this sprite should appear. Since text drawing only occurs on a single line at a time, `y_origin` is used unmodified. These parameters are passed to {{< lookup/cref DrawPlayer >}} to perform the drawing. The {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}} option is required to indicate that the passed X/Y coordinates are in screen space instead of game world space. If a sprite is comprised of multiple tiles, the passed X/Y coordinates represent the _bottom left_ tile (the [**origin** tile]({{< relref "tile-info-format/#building-sprites-from-tile-info-data" >}})) of the sprite.
 
 Once the player sprite is drawn, the `text` pointer is advanced by four bytes. This skips the flag byte and the three data bytes that followed it, and sets the read position to the next character following this markup construction.
 
@@ -304,14 +304,14 @@ This block handles the FCh code, resulting in a configuration of the typewriter 
 
                 DrawSprite(
                     sequence1, sequence2, x_origin + x, y_origin,
-                    DRAWMODE_ABSOLUTE
+                    DRAW_MODE_ABSOLUTE
                 );
                 text += 7;
             }
 ```
 The final block at this level is a catch-all, which (through process of elimination) can only handle code FEh: drawing an actor sprite. This is the only markup code that uses six digits (encoding two separate three-digit numbers). The first number is the sprite type, which is already stored in `sequence1`. The sprite frame is stored in the second number, which must be read using another look-ahead into `sequence2`.
 
-With both the sprite type and frame in hand, {{< lookup/cref DrawSprite >}} performs the drawing. The calculation for X/Y and the inclusion of {{< lookup/cref name="DRAWMODE" text="DRAWMODE_ABSOLUTE" >}} works the same as in code FDh and friends above.
+With both the sprite type and frame in hand, {{< lookup/cref DrawSprite >}} performs the drawing. The calculation for X/Y and the inclusion of {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}} works the same as in code FDh and friends above.
 
 The `text` pointer address is advanced by _seven_ here. This skips the flag byte, the three digit sprite type, and the three digit sprite frame.
 

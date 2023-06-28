@@ -65,7 +65,7 @@ void NextLevel(void)
 This function maintains a local copy of the `stars` count from {{< lookup/cref gameStars >}}. This is necessary because the global star count will be zeroed during calls to {{< lookup/cref ShowSectionIntermission >}}, but subsequent logic needs to know the value that was held previously.
 
 ```c
-    if (demoState != DEMOSTATE_NONE) {
+    if (demoState != DEMO_STATE_NONE) {
         switch (levelNum) {
         case 0:
             levelNum = 13;
@@ -85,7 +85,7 @@ This function maintains a local copy of the `stars` count from {{< lookup/cref g
     }
 ```
 
-If a demo is being recorded or played back ({{< lookup/cref demoState >}} is anything other than {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}), the level progression is much more constrained. There are only four expected values for {{< lookup/cref levelNum >}} to be in, and the `switch` statement leaves the level number in the next expected state. The final progression is level numbers 0, 13, 5, 9, and 16. Once the last level in the sequence has been reached, progression stops and the game is essentially "stuck" on that level until the demo ends.
+If a demo is being recorded or played back ({{< lookup/cref demoState >}} is anything other than {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}), the level progression is much more constrained. There are only four expected values for {{< lookup/cref levelNum >}} to be in, and the `switch` statement leaves the level number in the next expected state. The final progression is level numbers 0, 13, 5, 9, and 16. Once the last level in the sequence has been reached, progression stops and the game is essentially "stuck" on that level until the demo ends.
 
 The designer of each episode, and the person recording the demo, must be mindful of this hard-coded progression of levels and end the demo before the progression would require an additional level.
 
@@ -511,7 +511,7 @@ The {{< lookup/cref TILE_IN_FRONT >}} macro evaluates to a nonzero value if the 
 
 This works similarly to {{< lookup/cref TILE_BLOCK_SOUTH >}}, but with the AND using 20h as a mask.
 
-The {{< lookup/cref DrawSprite >}} and {{< lookup/cref DrawPlayer >}} functions will avoid drawing on top of tiles that have their "draw in front" attribute flag set, which has the effect of the tile blocking the sprite from view or the tile being located _in front_ of the sprite. This flag may be disregarded if a sprite drawing function is called using the {{< lookup/cref name=DRAWMODE text=DRAWMODE_IN_FRONT >}} mode. (This is relatively uncommon.)
+The {{< lookup/cref DrawSprite >}} and {{< lookup/cref DrawPlayer >}} functions will avoid drawing on top of tiles that have their "draw in front" attribute flag set, which has the effect of the tile blocking the sprite from view or the tile being located _in front_ of the sprite. This flag may be disregarded if a sprite drawing function is called using the {{< lookup/cref name=DRAW_MODE text=DRAW_MODE_IN_FRONT >}} mode. (This is relatively uncommon.)
 
 {{< boilerplate/function-cref TILE_SLOPED >}}
 

@@ -30,9 +30,9 @@ Drawing order, however, proceeds in the usual left-to-right, top-to-bottom row-m
 
 {{< boilerplate/function-cref DrawSprite >}}
 
-The {{< lookup/cref DrawSprite >}} function draws a sprite of the provided `sprite` type and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance, and should be one of the {{< lookup/cref DRAWMODE >}} constants.
+The {{< lookup/cref DrawSprite >}} function draws a sprite of the provided `sprite` type and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance, and should be one of the {{< lookup/cref DRAW_MODE >}} constants.
 
-In most calls, `x_origin` and `y_origin` are measured relative to the game world, which is several hundred tiles in both dimensions. The screen's current scroll position is subtracted from each value to convert these positions into screen space. When `mode` is set to {{< lookup/cref name="DRAWMODE" text="DRAWMODE_ABSOLUTE" >}}, the origin values are used directly as screen coordinates.
+In most calls, `x_origin` and `y_origin` are measured relative to the game world, which is several hundred tiles in both dimensions. The screen's current scroll position is subtracted from each value to convert these positions into screen space. When `mode` is set to {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}}, the origin values are used directly as screen coordinates.
 
 ```c
 void DrawSprite(
@@ -83,25 +83,25 @@ The word at `offset + 2` contains the offset portion of the address in the tile 
 
 ```c
     switch (mode) {
-    case DRAWMODE_NORMAL:
-    case DRAWMODE_IN_FRONT:
-    case DRAWMODE_ABSOLUTE:
+    case DRAW_MODE_NORMAL:
+    case DRAW_MODE_IN_FRONT:
+    case DRAW_MODE_ABSOLUTE:
         drawfn = DrawSpriteTile;
         break;
-    case DRAWMODE_WHITE:
+    case DRAW_MODE_WHITE:
         drawfn = DrawSpriteTileWhite;
         break;
-    case DRAWMODE_TRANSLUCENT:
+    case DRAW_MODE_TRANSLUCENT:
         drawfn = DrawSpriteTileTranslucent;
         break;
     }
 
-    if (mode == DRAWMODE_FLIPPED)  goto flipped;
-    if (mode == DRAWMODE_IN_FRONT) goto infront;
-    if (mode == DRAWMODE_ABSOLUTE) goto absolute;
+    if (mode == DRAW_MODE_FLIPPED)  goto flipped;
+    if (mode == DRAW_MODE_IN_FRONT) goto infront;
+    if (mode == DRAW_MODE_ABSOLUTE) goto absolute;
 ```
 
-The value for `mode` is considered next, and `drawfn` is set to either {{< lookup/cref DrawSpriteTile >}}, {{< lookup/cref DrawSpriteTileWhite >}}, or {{< lookup/cref DrawSpriteTileTranslucent >}} accordingly. {{< lookup/cref name="DRAWMODE" text="DRAWMODE_FLIPPED" >}} is handled elsewhere, and {{< lookup/cref name="DRAWMODE" text="DRAWMODE_HIDDEN" >}} is not handled at all -- leading to a likely crash if used!
+The value for `mode` is considered next, and `drawfn` is set to either {{< lookup/cref DrawSpriteTile >}}, {{< lookup/cref DrawSpriteTileWhite >}}, or {{< lookup/cref DrawSpriteTileTranslucent >}} accordingly. {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_FLIPPED" >}} is handled elsewhere, and {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_HIDDEN" >}} is not handled at all -- leading to a likely crash if used!
 
 A bit of an abuse of `goto` is used to simulate something like a `switch` statement, with all other cases falling through. The labeled code appears later.
 
@@ -245,7 +245,7 @@ Since this is the final case in the function, it does not need a `return`; execu
 
 The {{< lookup/cref DrawCartoon >}} function draws a cartoon having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`). This is meant to be called in the menu system only, so coordinates are all measured relative to the screen.
 
-This function works substantially like {{< lookup/cref DrawSprite >}} with `mode` set to {{< lookup/cref name="DRAWMODE" text="DRAWMODE_ABSOLUTE" >}}.
+This function works substantially like {{< lookup/cref DrawSprite >}} with `mode` set to {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}}.
 
 ```c
 void DrawCartoon(byte frame, word x_origin, word y_origin)
@@ -313,7 +313,7 @@ The remainder of the function performs the drawing, one 8&times;8 tile at a time
 
 {{< boilerplate/function-cref DrawPlayer >}}
 
-The {{< lookup/cref DrawPlayer >}} function draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance, and should be one of the {{< lookup/cref DRAWMODE >}} constants.
+The {{< lookup/cref DrawPlayer >}} function draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance, and should be one of the {{< lookup/cref DRAW_MODE >}} constants.
 
 This function has many similarities to {{< lookup/cref DrawSprite >}}, with a few player-specific modifications.
 
@@ -336,26 +336,26 @@ Each of the local variables here have the same purpose as those in {{< lookup/cr
 
 ```c
     switch (mode) {
-    case DRAWMODE_NORMAL:
-    case DRAWMODE_IN_FRONT:
-    case DRAWMODE_ABSOLUTE:
+    case DRAW_MODE_NORMAL:
+    case DRAW_MODE_IN_FRONT:
+    case DRAW_MODE_ABSOLUTE:
         drawfn = DrawSpriteTile;
         break;
-    case DRAWMODE_WHITE:
+    case DRAW_MODE_WHITE:
         drawfn = DrawSpriteTileWhite;
         break;
-    case DRAWMODE_TRANSLUCENT:
+    case DRAW_MODE_TRANSLUCENT:
         drawfn = DrawSpriteTileTranslucent;
         break;
     }
 ```
 
-Here the `mode` variable is translated into one of the tile-drawing functions. The selection is stored in `drawfn`. Although {{< lookup/cref name="DRAWMODE" text="DRAWMODE_TRANSLUCENT" >}} is implemented, it is never used in the game and might cause visual glitches (see below).
+Here the `mode` variable is translated into one of the tile-drawing functions. The selection is stored in `drawfn`. Although {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_TRANSLUCENT" >}} is implemented, it is never used in the game and might cause visual glitches (see below).
 
-There is no `drawfn` defined for either {{< lookup/cref name="DRAWMODE" text="DRAWMODE_HIDDEN" >}} _or_ {{< lookup/cref name="DRAWMODE" text="DRAWMODE_FLIPPED" >}} -- these modes will try to call a function address based on stack garbage, leading to a likely crash.
+There is no `drawfn` defined for either {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_HIDDEN" >}} _or_ {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_FLIPPED" >}} -- these modes will try to call a function address based on stack garbage, leading to a likely crash.
 
 ```c
-    if (mode != DRAWMODE_ABSOLUTE && (
+    if (mode != DRAW_MODE_ABSOLUTE && (
         playerPushFrame == PLAYER_HIDDEN ||
         activeTransporter != 0 ||
         playerHurtCooldown % 2 != 0 ||
@@ -363,7 +363,7 @@ There is no `drawfn` defined for either {{< lookup/cref name="DRAWMODE" text="DR
     )) return;
 ```
 
-Some special handling is necessary for the player that is not present for any other sprite type. If the draw mode is {{< lookup/cref name="DRAWMODE" text="DRAWMODE_ABSOLUTE" >}}, always proceed with drawing. This is generally used in menus, and it would be undesirable for menu decoration to sometimes not appear because of game state. Otherwise, a few conditions could cause an early return, leading to no player being drawn:
+Some special handling is necessary for the player that is not present for any other sprite type. If the draw mode is {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}}, always proceed with drawing. This is generally used in menus, and it would be undesirable for menu decoration to sometimes not appear because of game state. Otherwise, a few conditions could cause an early return, leading to no player being drawn:
 
 * {{< lookup/cref playerPushFrame >}} is set to {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}}. This happens when the player is interacting with pipe systems.
 * {{< lookup/cref activeTransporter >}} is nonzero. This happens when the player is in the process of disappearing in one transporter and reappearing in another.
@@ -382,8 +382,8 @@ Some special handling is necessary for the player that is not present for any ot
 As in {{< lookup/cref DrawSprite >}}, the [tile info]({{< relref "tile-info-format" >}}) data stored in {{< lookup/cref playerInfoData >}} is interpreted to find the `offset`, `height`, and `width` of the player sprite image. The initial `y` position is calculated, and `src` is constructed to point to the first byte of the tile's image data in {{< lookup/cref playerTileData >}}.
 
 ```c
-    if (mode == DRAWMODE_IN_FRONT) goto infront;
-    if (mode == DRAWMODE_ABSOLUTE) goto absolute;
+    if (mode == DRAW_MODE_IN_FRONT) goto infront;
+    if (mode == DRAW_MODE_ABSOLUTE) goto absolute;
 ```
 
 The "in-front" and absolute draw modes are handled elsewhere (below). For all other values of `mode`, execution falls to the following loop.
@@ -414,7 +414,7 @@ The "in-front" and absolute draw modes are handled elsewhere (below). For all ot
 
 This (and the subsequent implementations) are the same as {{< lookup/cref DrawSprite >}}.
 
-One interesting detail is the hypothetical situation where `mode` is set to {{< lookup/cref name="DRAWMODE" text="DRAWMODE_TRANSLUCENT" >}}: Since translucent drawing involves manipulating the EGA bit mask register, a call to {{< lookup/cref EGA_BIT_MASK_DEFAULT >}} would be necessary to restore the bit mask after player drawing is complete, which is not done here. When a subsequent sprite tile is drawn, it will (unintentionally) inherit the bit mask of the last player tile drawn, causing unwanted vertical strips of transparency in the sprite. Eventually something else will reset the bit mask register, correcting subsequent writes and somewhat limiting the impact of this glitch.
+One interesting detail is the hypothetical situation where `mode` is set to {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_TRANSLUCENT" >}}: Since translucent drawing involves manipulating the EGA bit mask register, a call to {{< lookup/cref EGA_BIT_MASK_DEFAULT >}} would be necessary to restore the bit mask after player drawing is complete, which is not done here. When a subsequent sprite tile is drawn, it will (unintentionally) inherit the bit mask of the last player tile drawn, causing unwanted vertical strips of transparency in the sprite. Eventually something else will reset the bit mask register, correcting subsequent writes and somewhat limiting the impact of this glitch.
 
 ```c
 absolute:

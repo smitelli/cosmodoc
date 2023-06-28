@@ -219,8 +219,6 @@ HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
     ActRocket() <void ActRocket () at src/game1.c:4933> (R):
     DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-InitializeBackdropTable() <void InitializeBackdropTable () at src/game1.c:7683>:
-    Startup() <void Startup () at src/game1.c:7893>:
 InitializeDecorations() <void InitializeDecorations () at src/game1.c:6495>:
     SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 InitializeExplosions() <void InitializeExplosions () at src/game1.c:6323>:
@@ -246,8 +244,6 @@ IsNearExplosion() <bool IsNearExplosion () at src/game1.c:6397>:
     ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
     ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
     ProcessActor() <void ProcessActor () at src/game1.c:7573>:
-IsNewBackdrop() <bbool IsNewBackdrop () at src/game1.c:9994>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 IsSpriteVisible() <bool IsSpriteVisible () at src/game1.c:708>:
     ActHorizontalMover() <void ActHorizontalMover () at src/game1.c:1738>:
     ActArrowPiston() <void ActArrowPiston () at src/game1.c:1806>:
@@ -281,8 +277,6 @@ IsTouchingPlayer() <bool IsTouchingPlayer () at src/game1.c:908>:
     ActRocket() <void ActRocket () at src/game1.c:4933> (R):
     DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
@@ -389,16 +383,8 @@ NewSpawner() <void NewSpawner () at src/game1.c:6433>:
 PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
-PrepareBackdropHScroll() <void PrepareBackdropHScroll () at src/game2.c:1980>:
-    LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
-PrepareBackdropVScroll() <void PrepareBackdropVScroll () at src/game2.c:1928>:
-    LoadBackdropData() <void LoadBackdropData () at src/game1.c:10015>:
 ProcessActor() <void ProcessActor () at src/game1.c:7573>:
     MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
-ProcessGameInput() <byte ProcessGameInput () at src/game1.c:9439>:
-    ProcessGameInputHelper() <byte ProcessGameInputHelper () at src/game1.c:7664>:
-ProcessGameInputHelper() <byte ProcessGameInputHelper () at src/game1.c:7664>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
 ProcessPlayerDizzy() <void ProcessPlayerDizzy () at src/game1.c:8797>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 SET_PLAYER_DIZZY():

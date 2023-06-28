@@ -23,7 +23,7 @@ The entries in the group file are indexed by all-uppercase names, so an uppercas
 ```c
 FILE *GroupEntryFp(char *entry_name)
 {
-    byte header[1000];
+    char header[1000];
     char name[20];
     FILE *fp;
     dword offset;
@@ -374,7 +374,7 @@ This function begins by making a local copy of the _pointer_ to `dest`, which re
 {{< lookup/cref fread >}} loads the music data from `fp` into memory, with the write position starting at the address of `dest->datahead`. The memory block that `dest` maps to is much larger than the {{< lookup/cref Music >}} structure, so this read simply overruns the end of the defined structure members and fills up as much memory as {{< lookup/cref name="lastGroupEntryLength" text="lastGroupEntryLength + 2" >}} says it should. The addition of two, by the way, is _absolutely baffling_ and I can't fathom why it is needed or if it is even correct to do.
 
 ```c
-    SetMusic(true);
+    SetMusicState(true);
 
     fclose(fp);
 
@@ -382,6 +382,6 @@ This function begins by making a local copy of the _pointer_ to `dest`, which re
 }
 ```
 
-{{< lookup/cref name="SetMusic" text="SetMusic(true)" >}} ensures the AdLib service is enabled and the system timer is running at the correct rate to support it. It also temporarily pauses the actual output functions of the AdLib service, since the music is currently in a not-fully-configured state. (New music has been loaded into memory, but the pointers and statuses used by the AdLib service are not yet set up to point to the beginning of it, among other things.)
+{{< lookup/cref name="SetMusicState" text="SetMusicState(true)" >}} ensures the AdLib service is enabled and the system timer is running at the correct rate to support it. It also temporarily pauses the actual output functions of the AdLib service, since the music is currently in a not-fully-configured state. (New music has been loaded into memory, but the pointers and statuses used by the AdLib service are not yet set up to point to the beginning of it, among other things.)
 
 `fp` is closed with {{< lookup/cref fclose >}}, freeing its resources. Finally, the `localdest` is returned to the caller. This is identical to `dest`, which the caller provided and presumably still has, but that's how this was written.

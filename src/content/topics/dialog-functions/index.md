@@ -968,10 +968,10 @@ void ShowLevelIntro(word level_num)
 The `mapnums[]` array links the level numbers to the maps. Levels 0&ndash;1 are maps 1&ndash;2, levels 2&ndash;3 are the _first_ occurrences of the two bonus maps, and levels 4&ndash;5 are maps 3&ndash;4. This pattern repeats, with the two bonus maps repeated between every two regular maps, until map 10. Since the bonus maps are not introduced by this dialog function, their positions hold a space-filler zero value.
 
 ```c
-    if (demoState != DEMOSTATE_NONE) return;
+    if (demoState != DEMO_STATE_NONE) return;
 ```
 
-If the global {{< lookup/cref demoState >}} is anything other than {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}, a demo is being recorded or played back and this function should return without doing anything. This doesn't occur in practice, as the caller ({{< lookup/cref InitializeLevel >}}) only calls this function when the demo state is {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}.
+If the global {{< lookup/cref demoState >}} is anything other than {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}, a demo is being recorded or played back and this function should return without doing anything. This doesn't occur in practice, as the caller ({{< lookup/cref InitializeLevel >}}) only calls this function when the demo state is {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}.
 
 ```c
     x = UnfoldTextFrame(7, 3, 24, "\xFC""003  Now entering level", "");
@@ -1098,7 +1098,7 @@ If the player has collected at least one star, this dialog qualifies for display
 
 ```c
     UnfoldTextFrame(2, 14, 30, "Super Star Bonus!!!!", "");
-    DrawSprite(SPR_STAR, 2, 8, 8, DRAWMODE_ABSOLUTE);
+    DrawSprite(SPR_STAR, 2, 8, 8, DRAW_MODE_ABSOLUTE);
     DrawTextLine(14, 7, "X 1000 =");
     DrawNumberFlushRight(27, 7, gameStars * 1000);
     WaitHard(50);
@@ -1358,10 +1358,10 @@ void ShowBombHint(void)
 {
     word x;
 
-    if (demoState != DEMOSTATE_NONE) return;
+    if (demoState != DEMO_STATE_NONE) return;
 ```
 
-If the {{< lookup/cref demoState >}} value is anything other than {{< lookup/cref name="DEMOSTATE" text="DEMOSTATE_NONE" >}}, a demo is either being played back or recorded. Both of these scenarios would conflict with dialog display, so this function returns early in such cases.
+If the {{< lookup/cref demoState >}} value is anything other than {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}, a demo is either being played back or recorded. Both of these scenarios would conflict with dialog display, so this function returns early in such cases.
 
 ```c
     EGA_MODE_LATCHED_WRITE();
@@ -1415,7 +1415,7 @@ void ShowPounceHint(void)
 {
     word x;
 
-    if (demoState != DEMOSTATE_NONE) return;
+    if (demoState != DEMO_STATE_NONE) return;
 
     EGA_MODE_LATCHED_WRITE();
     SelectDrawPage(activePage);
@@ -1456,7 +1456,7 @@ void ShowHealthHint(void)
 {
     word x;
 
-    if (demoState != DEMOSTATE_NONE) return;
+    if (demoState != DEMO_STATE_NONE) return;
 
     EGA_MODE_LATCHED_WRITE();
     SelectDrawPage(activePage);
