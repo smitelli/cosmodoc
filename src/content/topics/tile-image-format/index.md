@@ -27,7 +27,7 @@ Tile image files utilize the same color, palette, and plane concepts as the [ful
 
 ## Solid Tiles
 
-A solid tile consists of 64 pixels in an 8x8 grid with 16 available colors. Each tile of this type uses **32 bytes** (8 &times; 8 &times; log&#x2082; 16 = 256 bits) of storage space in its image file. These tiles are stored contiguously, one every 32 bytes, with no header information or padding. Depending on the way a particular file is used, an individual tile may be located either by using its zero-based index (multiplied by 32 to get a byte offset) or by using a direct byte or word offset into the file.
+A solid tile consists of 64 pixels in an 8x8 grid with 16 available colors. Each tile of this type uses **32 bytes** (8 &times; 8 &times; log<sub>2</sub> 16 = 256 bits) of storage space in its image file. These tiles are stored contiguously, one every 32 bytes, with no header information or padding. Depending on the way a particular file is used, an individual tile may be located either by using its zero-based index (multiplied by 32 to get a byte offset) or by using a direct byte or word offset into the file.
 
 As with all the game graphics, individual tile images are stored in a planar format with blue, green, red, and intensity bits separated from one another. Unlike their full-screen counterparts, however, tiles are stored in a **row-planar** form where the planes are interleaved much more tightly. The four planes that comprise a single pixel row are stored in four consecutive bytes before the next row's data begins.
 

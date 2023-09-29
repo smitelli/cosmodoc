@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 420
+weight = 430
 +++
 
 # Global Variables and Constants
@@ -67,6 +67,22 @@ Symbolic Constant | Value | Description
 
 The arrangement of these cardinal directions follows the conventional layout of a compass rose.
 
+{{< boilerplate/global-cref DIR8 >}}
+
+Symbolic Constant | Value | Description
+------------------|-------|------------
+`DIR8_STATIONARY` | 0     | Represents the absense of direction and/or a state of no movement.
+`DIR8_NORTH`      | 1     | Points toward the top edge of the screen.
+`DIR8_NORTHEAST`  | 2     | Points up and to the right.
+`DIR8_EAST`       | 3     | Points toward the right edge of the screen.
+`DIR8_SOUTHEAST`  | 4     | Points down and toward the right.
+`DIR8_SOUTH`      | 5     | Points toward the bottom edge of the screen.
+`DIR8_SOUTHWEST`  | 6     | Points down and toward the left.
+`DIR8_WEST`       | 7     | Points toward the left edge of the screen.
+`DIR8_NORTHWEST`  | 8     | Points up and toward the left.
+
+The arrangement of these cardinal directions follows the conventional layout of a compass rose.
+
 {{< boilerplate/global-cref DRAW_MODE >}}
 
 Symbolic Constant       | Value | Description
@@ -126,6 +142,20 @@ The values for `IMAGE_TILEATTR`, `IMAGE_DEMO`, and `IMAGE_NONE` do not refer to 
 {{< boilerplate/global-cref JOYSTICK >}}
 
 {{< boilerplate/global-cref JoystickState >}}
+
+{{< boilerplate/global-cref LIGHT_SIDE >}}
+
+Symbolic Constant   | Value | Shape               | Description
+--------------------|-------|---------------------|------------
+`LIGHT_SIDE_WEST`   | 0     | &#9698;             | Represents the left side of a light cone. This lightens the lower-right area of a tile.
+`LIGHT_SIDE_MIDDLE` | 1     | &FilledSmallSquare; | Represents the middle of a lighted area. The entire tile is lightened.
+`LIGHT_SIDE_EAST`   | 2     | &#9699;             | Represents the right side of a light cone. This lightens the lower-left area of a tile.
+
+See the {{< lookup/cref Light >}} structure.
+
+{{< boilerplate/global-cref LIGHT_CAST_DISTANCE >}}
+
+{{< boilerplate/global-cref Light >}}
 
 {{< boilerplate/global-cref MAX_ACTORS >}}
 
@@ -470,7 +500,7 @@ Generally keys are named using their base (unshifted) case, but all letters are 
 * The <kbd>'</kbd> key renders as `"`, despite both characters being available in the game font.
 * The <kbd>/</kbd> key renders as `?`.
 * The numeric keypad keys render as their non-numeric functions, if available.
-* The character codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&#8593;</code>, <code>&#8595;</code>, <code>&#8592;</code>, and <code>&#8594;</code> respectively.
+* The character codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&uarr;</code>, <code>&darr;</code>, <code>&larr;</code>, and <code>&rarr;</code> respectively.
 
 {{< boilerplate/global-cref lastGroupEntryLength >}}
 
@@ -518,6 +548,10 @@ Level Number | Map Number | Notes
 27           | Bonus B    |
 28           | 15         | Supported; never used.
 29           | 16         | Not supported; implementation incomplete.
+
+{{< boilerplate/global-cref lights >}}
+
+Each element of this array is a {{< lookup/cref Light >}} structure. The array size is bounded by the {{< lookup/cref MAX_LIGHTS >}} constant.
 
 {{< boilerplate/global-cref mapData >}}
 
@@ -662,7 +696,7 @@ Once the player is off the map, the counter increments by one during each frame 
 ------------------------------|-------------------------
 1                             | Skipped; `playerFallDeadTime` is incremented before any comparisons occur.
 2                             | {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}} sound effect is started.
-2&ndash;11                    | Occurs during a single game frame, incrementing `playerFallDeadTime` from 2 to 11 with a hard wait of two ticks between each iteration. This freezes all gameplay for about 1 &#x2215; 7 of a second.
+2&ndash;11                    | Occurs during a single game frame, incrementing `playerFallDeadTime` from 2 to 11 with a hard wait of two ticks between each iteration. This freezes all gameplay for about 1 &#8725; 7 of a second.
 13                            | {{< lookup/cref name="SND" text="SND_PLAYER_DEATH" >}} sound effect is started.
 13&ndash;18                   | One of the speech bubbles appears above the player, rising by one tile each frame.
 19&ndash;31                   | The speech bubble remains fixed in its final position.

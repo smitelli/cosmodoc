@@ -190,13 +190,7 @@ DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawFountains() <void DrawFountains () at src/game1.c:1433>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawLights() <void DrawLights () at src/game1.c:1474>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawMapRegion() <void DrawMapRegion () at src/game1.c:644>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 GameRand() <word GameRand () at src/game1.c:300>:
     ActRoamerSlug() <void ActRoamerSlug () at src/game1.c:2720>:

@@ -94,7 +94,7 @@ With a pure sine function, phase adjustments can vary from -360 degrees (-2&pi; 
     2x="sine-phase-1368x.png"
     3x="sine-phase-2052x.png" >}}
 
-A few interesting properties exist: Adding or subtracting 180 degrees (or &pi; radians) perfectly negates the output of the function, flipping the wave upside-down compared to its unmodified version. Adding 90 degrees (&pi; radians) or subtracting 270 degrees (3&pi; &#x2215; 2 radians) turns the sine function into a cosine function.
+A few interesting properties exist: Adding or subtracting 180 degrees (or &pi; radians) perfectly negates the output of the function, flipping the wave upside-down compared to its unmodified version. Adding 90 degrees (&pi; radians) or subtracting 270 degrees (3&pi; &#8725; 2 radians) turns the sine function into a cosine function.
 
 For a single waveform, phase is entirely inaudible -- it is impossible for the human ear to detect the absolute position of an oscillating signal in time. When multiple signals are combined together, however, phase plays a significant role in determining how the individual waves interact to produce a cumulative output.
 
@@ -276,7 +276,7 @@ The 12th root is because our octave is divided into 12 notes, and 440 Hz is the 
 
 If we wanted to find the frequency of the note that was five steps below A4, we would calculate (<sup>12</sup>&radic;2)<sup>-5</sup> &times; 440 Hz &approx; 330 Hz. By the same rules, the frequency of the note seven steps above A4 is (<sup>12</sup>&radic;2)<sup>7</sup> &times; 440 Hz &approx; 660 Hz. It just so happens that "five steps below" plus "seven steps above" equals 12 steps, and the two calculated frequencies are one octave apart, give or take some rounding error.
 
-The formula can be inverted: **Steps to note _n_ = 12 &times; log<sub>2</sub>(_f_ &divide; 440 Hz).** Here _f_ is some frequency in hertz, and _n_ is the note-step distance (again positive or negative) away from the A4 reference note.
+The formula can be inverted: **Steps to note _n_ = 12 &times; log<sub>2</sub>(_f_ &#8725; 440 Hz).** Here _f_ is some frequency in hertz, and _n_ is the note-step distance (again positive or negative) away from the A4 reference note.
 
 #### Amplitude
 
@@ -384,9 +384,9 @@ The OPL2 chip requires an external high-frequency oscillator to govern its opera
 {{< aside class="fun-fact" >}}
 **The PC's clock strikes again.**
 
-At first glance, 49,716 Hz seems like a pointlessly arbitrary number. But it's actually derived in a surprisingly straightforward way. As detailed on the [Programmable Interval Timer/PC speaker]({{< relref "pc-speaker-and-timing-functions" >}}) page, the PC's clock generator circuitry is based around a 315 &#x2215; 22 MHz (14.3 MHz) crystal, which was widely available and cheap due to its use in NTSC color television equipment. The AT bus uses this frequency, unmodified, as the "OSC" signal. The AdLib, lacking any timing circuitry of its own, cleverly passes this signal through a 74LS109 dual flip-flop that divides the frequency by four, yielding 315 &#x2215; 88 MHz (3.58 MHz).
+At first glance, 49,716 Hz seems like a pointlessly arbitrary number. But it's actually derived in a surprisingly straightforward way. As detailed on the [Programmable Interval Timer/PC speaker]({{< relref "pc-speaker-and-timing-functions" >}}) page, the PC's clock generator circuitry is based around a 315 &#8725; 22 MHz (14.3 MHz) crystal, which was widely available and cheap due to its use in NTSC color television equipment. The AT bus uses this frequency, unmodified, as the "OSC" signal. The AdLib, lacking any timing circuitry of its own, cleverly passes this signal through a 74LS109 dual flip-flop that divides the frequency by four, yielding 315 &#8725; 88 MHz (3.58 MHz).
 
-The OPL2 chip requires 72 clock cycles to generate one sample of output data. This works out to ([315 &#x2215; 88 MHz] &div; 72) 49,715.{{< overline >}}90{{</ overline >}} Hz, which is rounded to 49,716 Hz in typical calculations.
+The OPL2 chip requires 72 clock cycles to generate one sample of output data. This works out to ([315 &#8725; 88 MHz] &div; 72) 49,715.{{< overline >}}90{{</ overline >}} Hz, which is rounded to 49,716 Hz in typical calculations.
 {{< /aside >}}
 
 The OPL2 chip requires a fixed amount of "recovery" time after a write operation. The host must wait for 12 master clock cycles after writing a register address before it can write data, and it must wait 84 cycles after writing a data byte before it can write anything else. At AdLib clock rates, these wait times are about 3.4 &micro;s and 23.5 &micro;s, respectively. If these delays are ignored, there's no guarantee that a write operation will have the intended effect.
@@ -598,7 +598,7 @@ Whatever the reason, the relatively limited number of channels and the structura
 There are no apparent rules that dictate how channels and their instruments are ordered, other than that the assignments generally don't change mid-song.
 
 {{< aside class="fun-fact" >}}
-**&#8544;&#8544;&#8544;&#8544;, &#8547;&#8547;&#8544;&#8544;, &#8548;&#8547;&#8544;&#8544;.**
+**&#8544;-&#8544;-&#8544;-&#8544;, &#8547;-&#8547;-&#8544;-&#8544;, &#8548;-&#8547;-&#8544;-&#8544;.**
 
 A great many Bobby Prince compositions follow a **twelve-bar blues** progression, built on three chords that change in a repeating pattern every twelve measures of the song. The textbook example of this is the title screen music, a rendition of "Tush" by ZZ Top. Once you train yourself to hear it, you'll find it all over his work from _Commander Keen_ to _Duke Nukem 3D_.
 {{< /aside >}}
@@ -615,7 +615,7 @@ In this document, I will try to straddle the line between how the Sound Manager 
 
 {{< boilerplate/function-cref SetPIT0Value >}}
 
-The {{< lookup/cref SetPIT0Value >}} function configures channel 0 of the system's Programmable Interval Timer (PIT) with the provided counter `value`. This counter value can be thought of as a divisor -- the larger the value, the longer the counter must run during each timing period, and the slower the resulting timer frequency. [The PIT channels count in descending order at a constant rate of 105 &#x2215; 88 MHz]({{< relref "pc-speaker-and-timing-functions#a-taste-of-the-programmable-interval-timer" >}}) or 1,193,181.{{< overline >}}81{{< /overline >}} Hz, firing one period of output each time the counter reaches zero, thus the resulting timer frequency for an arbitrary `value` can be determined by **f = 1,193,181.{{< overline >}}81{{< /overline >}} &divide; `value`**. Each time this timer fires, interrupt vector 8 (also known as IRQ 0) is raised to the processor.
+The {{< lookup/cref SetPIT0Value >}} function configures channel 0 of the system's Programmable Interval Timer (PIT) with the provided counter `value`. This counter value can be thought of as a divisor -- the larger the value, the longer the counter must run during each timing period, and the slower the resulting timer frequency. [The PIT channels count in descending order at a constant rate of 105 &#8725; 88 MHz]({{< relref "pc-speaker-and-timing-functions#a-taste-of-the-programmable-interval-timer" >}}) or 1,193,181.{{< overline >}}81{{< /overline >}} Hz, firing one period of output each time the counter reaches zero, thus the resulting timer frequency for an arbitrary `value` can be determined by **f = 1,193,181.{{< overline >}}81{{< /overline >}} &#8725; `value`**. Each time this timer fires, interrupt vector 8 (also known as IRQ 0) is raised to the processor.
 
 This function is basically identical to `SDL_SetTimer0()`[^SDL_SetTimer0] from Id Software's Sound Manager as used in _Catacomb 3-D_.
 
@@ -663,7 +663,7 @@ void SetInterruptRate(word ints_second)
 }
 ```
 
-There's not much to explain here that wasn't already explained in {{< lookup/cref SetPIT0Value >}}. The only curiosity is the use of the long value 1,192,030 Hz as the dividend in the calculation. As long established, all of the PIT channels run at one-twelfth of the NTSC 315 &#x2215; 22 MHz rate, so the expected value here should be rounded to 1,193,182 Hz instead. The difference in rates is 966 parts per million (PPM), which is roughly the equivalent of drifting one second every 15 minutes. Compared to even the cheapest wall clocks available, this accuracy is dismal.
+There's not much to explain here that wasn't already explained in {{< lookup/cref SetPIT0Value >}}. The only curiosity is the use of the long value 1,192,030 Hz as the dividend in the calculation. As long established, all of the PIT channels run at one-twelfth of the NTSC 315 &#8725; 22 MHz rate, so the expected value here should be rounded to 1,193,182 Hz instead. The difference in rates is 966 parts per million (PPM), which is roughly the equivalent of drifting one second every 15 minutes. Compared to even the cheapest wall clocks available, this accuracy is dismal.
 
 I don't know and can't explain why this value was used. Assuming the 14.3 MHz crystals are true to their markings, this value is simply wrong. Regardless, the value survived into _Wolfenstein 3-D_ and later games by Apogee Software and 3D Realms -- Jim Dos&eacute;'s `TS_SetTimer()` function in both _Rise of the Triad_[^rottclock] and _Duke Nukem 3D_[^dukeclock] have identical values in their equivalent functions. I'm thinking perhaps the value was published inaccurately in some seminal text on PC systems programming that these developers consulted -- if you have any insights on this, [please let me know!](mailto:scott@smitelli.com)
 

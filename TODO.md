@@ -4,13 +4,10 @@
 * Finish describing the bugs
 * Appendix/glossary
 * Unused tiles and masktile
+* Why isn't NewDecoration() static?
 
 =============================================================================
 
-* level display
-    * DrawBackdropLayer: does more than you think!
-    * DrawLights: for each light: draw correct shape for topmost tile. cast down from there, drawing solid light. stop after hitting a solid block, or max distance reached. do not draw off screen.
-    * DrawRandomEffects: make slippery tiles sparkle sometimes. spawn raindrops if warranted.
 * player move
     * TestPlayerMove: determine if the player can move in a given direction, and set a bunch of global vars in the process.
     * MovePlayer: handle one tick of basically all player input.

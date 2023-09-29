@@ -153,7 +153,7 @@ REGS:
 coreleft:
   text: coreleft()
   def: unsigned long coreleft(void);
-  desc: Returns a measure of RAM memory not in use.
+  desc: Returns a measure of RAM not in use.
   ref: /topics/borland-c-nonstandard-library/#coreleft
 disable:
   text: disable()
@@ -177,7 +177,7 @@ filelength:
   ref: /topics/borland-c-nonstandard-library/#filelength
 fileno:
   text: fileno()
-  def: '#define fileno(f) ((f)->fd)'
+  def: '#define fileno(stream) ((stream)->fd)'
   desc: Returns the file handle for the given stream.
   ref: /topics/borland-c-nonstandard-library/#fileno
 getch:
@@ -403,12 +403,21 @@ DrawFullscreenText:
   def: void DrawFullscreenText(char *entry_name);
   desc: Draws a page of B800 text to the screen and clears space for the DOS prompt.
   ref: /topics/c-drawing-functions/#DrawFullscreenText
+DrawLights:
+  text: DrawLights()
+  def: void DrawLights(void);
+  desc: Iterates through all the lights present on the current map and draws any that are currently scrolled into view. If `areLightsActive` is false, this function does nothing.
+  ref: /topics/map-drawing-functions/#DrawLights
 DrawMainMenu:
   text: DrawMainMenu()
   def: void DrawMainMenu(void);
   desc: A small helper that draws the main menu frame and text, but does not do any input handling. It is only called from `TitleLoop()`.
   ref: /topics/menu-functions/#DrawMainMenu
-#DrawMapRegion:
+DrawMapRegion:
+  text: DrawMapRegion()
+  def: void DrawMapRegion(void);
+  desc: Draws one complete frame of the static game world to the current draw page. This includes the solid and masked tiles read from the map data and the scrolling backdrop.
+  ref: /topics/map-drawing-functions/#DrawMapRegion
 DrawMaskedTile:
   text: DrawMaskedTile()
   def: void DrawMaskedTile(byte *src, word x, word y);
@@ -424,7 +433,11 @@ DrawPlayer:
   def: void DrawPlayer(byte frame, word x_origin, word y_origin, word mode);
   desc: Draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
   ref: /topics/composite-drawing-functions/#DrawPlayer
-#DrawRandomEffects:
+DrawRandomEffects:
+  text: DrawRandomEffects()
+  def: void DrawRandomEffects(void);
+  desc: Adds random decorative effects to the game world based on what is currently visible on the screen. It randomly applies a sparkling effect to map tiles that have the "slippery" attribute, and adds raindrops (if rain is enabled on the map) in any unoccupied areas at the top edge of the screen.
+  ref: /topics/map-drawing-functions/#DrawRandomEffects
 DrawSBarHealthHelper:
   text: DrawSBarHealthHelper()
   def: void DrawSBarHealthHelper(void);
@@ -1583,6 +1596,20 @@ DIR4:
     #define DIR4_EAST  3
   desc: Defines a set of values for a four-way direction system. "North" and "None" map to the same value, but are named differently to clarify the intent where they appear.
   ref: /topics/global-variables-and-constants/#DIR4
+DIR8:
+  text: DIR8_*
+  def: |-
+    #define DIR8_STATIONARY 0
+    #define DIR8_NORTH      1
+    #define DIR8_NORTHEAST  2
+    #define DIR8_EAST       3
+    #define DIR8_SOUTHEAST  4
+    #define DIR8_SOUTH      5
+    #define DIR8_SOUTHWEST  6
+    #define DIR8_WEST       7
+    #define DIR8_NORTHWEST  8
+  desc: Defines a set of values for an eight-way direction system. "Stationary," while not technically a direction, is used in places where an object that could move chooses not to.
+  ref: /topics/global-variables-and-constants/#DIR8
 DRAW_MODE:
   text: DRAW_MODE_*
   def: |-
@@ -1693,6 +1720,32 @@ JoystickState:
     } JoystickState;
   desc: Holds the state of two buttons (`button1` and `button2`) on a single joystick. The values are true if the corresponding button is currently pressed, or false if it is unpressed.
   ref: /topics/global-variables-and-constants/#JoystickState
+LIGHT_SIDE:
+  text: LIGHT_SIDE_*
+  def: |-
+    #define LIGHT_SIDE_WEST   0
+    #define LIGHT_SIDE_MIDDLE 1
+    #define LIGHT_SIDE_EAST   2
+  desc: Defines a set of constants used to identify which "side" (or type) of light is represented.
+  ref: /topics/global-variables-and-constants/#LIGHT_SIDE
+LIGHT_CAST_DISTANCE:
+  text: LIGHT_CAST_DISTANCE
+  def: |-
+    #define LIGHT_CAST_DISTANCE 11  /* episode 1, or */
+    #define LIGHT_CAST_DISTANCE 13  /* episodes 2 and 3 */
+  desc: Defines the maximum number of tiles that can be flooded by each light. This limit is lower in the shareware episode.
+  ref: /topics/global-variables-and-constants/#LIGHT_CAST_DISTANCE
+Light:
+  text: Light
+  def: |-
+    typedef struct {
+        word side;
+        word x;
+        word y;
+        word junk;  /* unused; required to keep struct padding correct */
+    } Light;
+  desc: Holds the `x` position, `y` position, and type (expressed as a `side`) of a light actor. The `junk` member is unused and only serves to pad the structure in memory.
+  ref: /topics/global-variables-and-constants/#Light
 MAX_ACTORS:
   text: MAX_ACTORS
   def: '#define MAX_ACTORS 410'
@@ -2594,6 +2647,11 @@ levelNum:
   def: word levelNum;
   desc: Holds the current level number being played.
   ref: /topics/global-variables-and-constants/#levelNum
+lights:
+  text: lights[]
+  def: Light lights[MAX_LIGHTS];
+  desc: Contains a fixed amount of space for all of the light actors defined on the current map.
+  ref: /topics/global-variables-and-constants/#lights
 mapData:
   text: mapData
   def: |-

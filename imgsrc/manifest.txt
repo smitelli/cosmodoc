@@ -74,6 +74,9 @@ keyboard-functions/ps2-keyboard-layout.svg 684x 1368x 2052x
 lzexe/memory-map-1.svg 684x 1368x 2052x
 lzexe/memory-map-2.svg 684x 1368x 2052x
 lzexe/memory-map-3.svg 684x 1368x 2052x
+map-drawing-functions/game-window.svg 684x 1368x 2052x
+map-drawing-functions/light-components.svg 684x 1368x 2052x
+map-drawing-functions/light-platform-interaction.svg 684x 1368x 2052x
 menu-functions/enter-your-name.svg 684x 1368x 2052x
 menu-functions/game-redefine.svg 684x 1368x 2052x
 menu-functions/hall-of-fame.svg 684x 1368x 2052x

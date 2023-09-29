@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 440
+weight = 450
 +++
 
 # Bugs and Oversights
@@ -37,6 +37,8 @@ This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 ## {{< lookup/actor 106 >}} reads west tile attribute instead of north when considering a flip.
 
 ## {{< lookup/actor type=95 strip=true plural=true >}} at west edge of map disregard the player.
+
+## Rain spawns one tile lower in the game window than it should.
 
 ## Off-screen {{< lookup/actor type=47 plural=true >}} can make sound.
 

@@ -8,7 +8,7 @@ weight = 130
 
 {{< table-of-contents >}}
 
-The IBM Enhanced Graphics Adapter (**EGA**) supported a number of display modes, but all of the graphics in the game were shown in mode `0Dh`. This was a 320x200 mode that permitted up to 16 distinct colors on the screen at any one time. 320 &times; 200 = 64,000 pixels, and log&#x2082; 16 = 4 bits, meaning one complete screenful of graphics required 256,000 bits or **32,000 bytes** to store.
+The IBM Enhanced Graphics Adapter (**EGA**) supported a number of display modes, but all of the graphics in the game were shown in mode `0Dh`. This was a 320x200 mode that permitted up to 16 distinct colors on the screen at any one time. 320 &times; 200 = 64,000 pixels, and log<sub>2</sub> 16 = 4 bits, meaning one complete screenful of graphics required 256,000 bits or **32,000 bytes** to store.
 
 There are several 32,000-byte full-screen images housed in the [group files]({{< relref "group-file-format" >}}). These images are drawn on the screen to present pre-title, title, ending, or other information to the player:
 
@@ -35,7 +35,7 @@ EGA displays, on the other hand, supported just four levels per RGB channel. Thi
     2x="palette-64-1368x.png"
     3x="palette-64-2052x.png" >}}
 
-Natively exposing 64 colors to the software would have required six bits (log&#x2082; 64) per pixel, and six is an unusual number, so IBM adopted a **color palette** to reduce the number of necessary bits to four. This reduction in bit count meant that software would be restricted to just 16 colors at any one time, but it was free to choose which of the 64 colors were included in its palette.
+Natively exposing 64 colors to the software would have required six bits (log<sub>2</sub> 64) per pixel, and six is an unusual number, so IBM adopted a **color palette** to reduce the number of necessary bits to four. This reduction in bit count meant that software would be restricted to just 16 colors at any one time, but it was free to choose which of the 64 colors were included in its palette.
 
 The four bits that comprise each pixel of the image data, both on disk and in video memory, are just a palette index number -- the value by itself doesn't convey any color information until it has been looked up through the palette. A palette could be created with 16 shades of blue-green, or only bright pastel colors, or whatever the programmer wanted. There was not even a requirement that the palette colors be unique -- a palette containing 16 values that all resolve to black is perfectly valid, and would happily display as such.
 

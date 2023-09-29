@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    version="1.1"
-   viewBox="0 0 732.16858 347.03028"
+   viewBox="0 0 729.54486 347.03028"
    fill="none"
    stroke="none"
    stroke-linecap="square"
    stroke-miterlimit="10"
-   width="732.16858"
+   width="729.54486"
    height="347.03027"
    id="svg1885"
    sodipodi:docname="sine-amplitude.svg"
@@ -56,7 +56,7 @@
      inkscape:pagecheckerboard="true"
      showgrid="false"
      inkscape:zoom="1.272666"
-     inkscape:cx="368.12486"
+     inkscape:cx="368.12487"
      inkscape:cy="181.50874"
      inkscape:window-width="1280"
      inkscape:window-height="962"
@@ -72,7 +72,7 @@
      stroke="#000000"
      stroke-width="1"
      stroke-linecap="butt"
-     d="M 66.230318,306.80543 V 5.8054384"
+     d="M 66.230318,306.80543 V 5.8054386"
      fill-rule="nonzero"
      id="path32"
      style="display:inline;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:none"
@@ -427,7 +427,7 @@
          id="tspan129301"
          x="627.21588"
          y="94.590698"
-         style="font-size:13.3333px;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1">sin(x) ÷ 2</tspan></text>
+         style="font-size:13.3333px;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1">sin(x) / 2</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';letter-spacing:0px;word-spacing:0px"
@@ -438,7 +438,7 @@
          id="tspan131913"
          x="653.21588"
          y="132.2157"
-         style="font-size:13.3333px;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1">sin(x) ÷ 4</tspan></text>
+         style="font-size:13.3333px;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1">sin(x) / 4</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';letter-spacing:0px;word-spacing:0px"
@@ -449,18 +449,18 @@
          id="tspan133261"
          x="676.87573"
          y="151.0282"
-         style="font-size:13.3333px;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1">sin(x) ÷ 8</tspan></text>
+         style="font-size:13.3333px;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1">sin(x) / 8</tspan></text>
   </g>
   <text
      xml:space="preserve"
      style="font-weight:bold;font-size:18.6667px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke-width:1"
-     x="199.42383"
+     x="198.11197"
      y="343.23859"
      id="text51926"
      inkscape:label="Caption"><tspan
        sodipodi:role="line"
        id="tspan51924"
-       x="199.42383"
+       x="198.11197"
        y="343.23859"
        style="font-size:18.6667px;stroke-width:1">Sine Function with Different Amplitudes</tspan></text>
 </svg>

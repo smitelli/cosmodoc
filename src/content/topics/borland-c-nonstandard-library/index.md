@@ -1,7 +1,7 @@
 +++
 title = "The Borland C Nonstandard Library"
 description = "Documentation for every nonstandard Borland Turbo C library function used in the game."
-weight = 480
+weight = 490
 +++
 
 # The Borland C Nonstandard Library
@@ -201,15 +201,15 @@ If `stream` has more than one handle, `fileno()` returns the handle assigned to 
 
 `stdio.h`
 
-{{< aside class="note" >}}
-**Note from the 21st century:**
-
-The `fileno()` macro is essentially defined as `((stream)->fd)`. In the definition of the `FILE` struct, `fd` is a char. If we're being pedantic, the return type of `fileno` is actually char instead of int.
-{{< /aside >}}
-
 ### Return Value
 
 `fileno()` returns the integer file handle associated with `stream`.
+
+{{< aside class="note" >}}
+**Note from the 21st century:**
+
+The `stream` argument to this function should be a pointer to a `FILE` stream. In the definition of the `FILE` struct, `fd` is a char. If we're being pedantic, the return type of `fileno()` is actually char.
+{{< /aside >}}
 
 {{< boilerplate/global-cref getch >}}
 
@@ -380,7 +380,7 @@ None.
 
 ### Notes
 
-This function operates in essentially the same was as {{< lookup/cref memmove >}} from `string.h`, except `src` and `dest` are swapped.
+This function operates in essentially the same way as {{< lookup/cref memmove >}} from `string.h`, except `src` and `dest` are swapped.
 
 {{< boilerplate/global-cref outport >}}
 
@@ -462,7 +462,7 @@ main()
 
 {{< boilerplate/global-cref REGS >}}
 
-All registers are available in `x`. The half-word views into AX, BX, CX, and DX are available in `h`. The definitions of these structs are as follows:
+All 16-bit word registers are available in `x`. The half-word views into AX, BX, CX, and DX are available in `h`. The definitions of these structs are as follows:
 
 ```c
 struct WORDREGS {

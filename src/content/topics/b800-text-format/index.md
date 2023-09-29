@@ -47,7 +47,7 @@ PC-compatible graphics adapters that supported color usually booted into mode nu
 
 `B800` files are named after the segment address where the mode 03h screen buffer is located: `B800:0000`. The 4,000 bytes at this memory-mapped address contain the full screen buffer, and writing data within this address range  immediately changes the text/colors displayed on the screen. That's all the file format is -- 4,000 bytes that are loaded directly into the video memory in order to put characters on the screen.
 
-The printable text content uses 2,000 bytes (80 &times; 25) of memory, the foreground colors use 1,000 bytes (80 &times; 25 &times; log&#x2082; 16 = 8,000 bits), and the background colors use another 1,000 bytes. The colors are encoded using the standard [RGBI palette]({{< relref "full-screen-image-format#colors-and-palettes" >}}) with one key difference: on the background _only_, the intensity bit flashes the foreground text instead of brightening the background color. `B800` text files utilized this liberally.
+The printable text content uses 2,000 bytes (80 &times; 25) of memory, the foreground colors use 1,000 bytes (80 &times; 25 &times; log<sub>2</sub> 16 = 8,000 bits), and the background colors use another 1,000 bytes. The colors are encoded using the standard [RGBI palette]({{< relref "full-screen-image-format#colors-and-palettes" >}}) with one key difference: on the background _only_, the intensity bit flashes the foreground text instead of brightening the background color. `B800` text files utilized this liberally.
 
 ## Encoding and Decoding
 
