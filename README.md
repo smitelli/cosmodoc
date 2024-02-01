@@ -4,7 +4,7 @@ The Doc for Cosmo.
 
 ## Requirements
 
-This project requires the Hugo Extended build, and was most recently verified against Hugo v0.107.0.
+This project requires the Hugo Extended build, and was most recently verified against Hugo v0.121.0.
 
 ## Build the site
 

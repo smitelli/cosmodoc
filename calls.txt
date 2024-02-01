@@ -188,8 +188,6 @@ DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
 DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-DrawFountains() <void DrawFountains () at src/game1.c:1433>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 GameRand() <word GameRand () at src/game1.c:300>:
@@ -279,15 +277,8 @@ MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-MoveFountains() <void MoveFountains () at src/game1.c:1385>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
 MovePlayer() <void MovePlayer () at src/game1.c:8114>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-MovePlayerPlatform() <void MovePlayerPlatform () at src/game1.c:1262>:
-    MovePlatforms() <void MovePlatforms () at src/game1.c:1325>:
-    MoveFountains() <void MoveFountains () at src/game1.c:1385>:
 MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
     MovePlayer() <void MovePlayer () at src/game1.c:8114>:
 MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:

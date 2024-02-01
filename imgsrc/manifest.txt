@@ -59,6 +59,8 @@ ega-functions/crt-dot-deflected.svg 684x 1368x 2052x
 ega-functions/crt-dot.svg 684x 1368x 2052x
 ega-functions/primary-colors.svg 684x 1368x 2052x
 ega-functions/raster-scanning.svg 684x 1368x 2052x
+entities/platform-functions/fountain-spray-overlap.svg 684x 1368x 2052x
+entities/platform-functions/platform-paths.svg 684x 1368x 2052x
 full-screen-image-format/palette-16.svg 684x 1368x 2052x
 full-screen-image-format/palette-64.svg 684x 1368x 2052x
 full-screen-image-format/palette-bits.svg 684x 1368x 2052x

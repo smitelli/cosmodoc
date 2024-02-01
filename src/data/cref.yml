@@ -392,7 +392,11 @@ DrawCartoon:
   desc: Draws a cartoon having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
   ref: /topics/composite-drawing-functions/#DrawCartoon
 #DrawExplosions:
-#DrawFountains:
+DrawFountains:
+  text: DrawFountains()
+  def: void DrawFountains(void);
+  desc: Iterates through every fountain active on the map and draws the sprites that they are built from. If the player is touching any part of the stream beneath the spray at the top of the fountain, damage is inflicted on the player.
+  ref: /topics/entities/platform-functions/#DrawFountains
 DrawFullscreenImage:
   text: DrawFullscreenImage()
   def: void DrawFullscreenImage(word image_num);
@@ -763,10 +767,22 @@ MAP_CELL_DATA_SHIFTED:
 #MoveAndDrawDecorations:
 #MoveAndDrawShards:
 #MoveAndDrawSpawners:
-#MoveFountains:
-#MovePlatforms:
+MoveFountains:
+  text: MoveFountains()
+  def: void MoveFountains(void);
+  desc: Iterates through each fountain defined on the current map and adjusts their position by one tile.
+  ref: /topics/entities/platform-functions/#MoveFountains
+MovePlatforms:
+  text: MovePlatforms()
+  def: void MovePlatforms(void);
+  desc: Iterates through each platform defined on the current map and adjusts their position by one tile.
+  ref: /topics/entities/platform-functions/#MovePlatforms
 #MovePlayer:
-#MovePlayerPlatform:
+MovePlayerPlatform:
+  text: MovePlayerPlatform()
+  def: void MovePlayerPlatform(word x_west, word x_east, word x_dir, word y_dir);
+  desc: Determines if a platform covering X positions `x_west` to `x_east` is interacting with the player, and if so, modifies the player's position to keep them attached to the platform as it moves. The current movement direction of the platform is passed in horizontal/vertical arguments `x_dir` and `y_dir`.
+  ref: /topics/entities/platform-functions/#MovePlayerPlatform
 #MovePlayerScooter:
 #NewActor:
 #NewExplosion:
@@ -1586,6 +1602,15 @@ DEMO_STATE:
     #define DEMO_STATE_PLAY   2
   desc: Defines constant values that represent the input processing mode that should be used by the game loop.
   ref: /topics/global-variables-and-constants/#DEMO_STATE
+DIR2:
+  text: DIR2_*
+  def: |-
+    #define DIR2_SOUTH 0
+    #define DIR2_NORTH 1
+    #define DIR2_WEST  0
+    #define DIR2_EAST  1
+  desc: Defines pairs of values for two-way direction systems. "South" and "North" can be negated for a ping-pong movement effect; "east" and "west" can be changed similarly.
+  ref: /topics/global-variables-and-constants/#DIR2
 DIR4:
   text: DIR4_*
   def: |-
@@ -1668,6 +1693,20 @@ FONT:
     #define FONT_BACKGROUND_GRAY 0x0f28
   desc: Provides meaningful names for some, but not all, of the font tile graphics.
   ref: /topics/global-variables-and-constants/#FONT
+Fountain:
+  text: Fountain
+  def: |-
+    typedef struct {
+        word x;
+        word y;
+        word dir;
+        word stepcount;
+        word height;
+        word stepmax;
+        word delayleft;
+    } Fountain;
+  desc: Holds the `x` and `y` position for a single fountain. The remaining structure values track the movement direction and height.
+  ref: /topics/global-variables-and-constants/#Fountain
 GAME_INPUT:
   text: GAME_INPUT_*
   def: |-
@@ -1751,11 +1790,21 @@ MAX_ACTORS:
   def: '#define MAX_ACTORS 410'
   desc: Controls the size of the global actor state array, and governs the maximum number of actors that can be present on a map at any given time.
   ref: /topics/global-variables-and-constants/#MAX_ACTORS
+MAX_FOUNTAINS:
+  text: MAX_FOUNTAINS
+  def: '#define MAX_FOUNTAINS 10'
+  desc: Controls the size of the global fountain state array, and governs the maximum number of fountains that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_FOUNTAINS
 MAX_LIGHTS:
   text: MAX_LIGHTS
   def: '#define MAX_LIGHTS 200'
   desc: Controls the size of the global lights array, and governs the maximum number of lights that can be present on a map at any given time.
   ref: /topics/global-variables-and-constants/#MAX_LIGHTS
+MAX_PLATFORMS:
+  text: MAX_PLATFORMS
+  def: '#define MAX_PLATFORMS 10'
+  desc: Controls the size of the global platform state array, and governs the maximum number of platforms that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_PLATFORMS
 MODE1_COLORS:
   text: enum MODE1_COLORS
   def: |-
@@ -1768,6 +1817,14 @@ MODE1_COLORS:
     };
   desc: Defines the colors available for the EGA "display mode 1" palette. Display mode 1 is used in all 200-line modes (like the mode used by this game) and only supports the 16 RGBI output combinations.
   ref: /topics/global-variables-and-constants/#MODE1_COLORS
+MOVE:
+  text: MOVE_*
+  def: |-
+    define MOVE_FREE    0
+    define MOVE_BLOCKED 1
+    define MOVE_SLOPED  2
+  desc: Provides meaningful names for the results returned by player/sprite movement test functions.
+  ref: /topics/global-variables-and-constants/#MOVE
 MUSIC:
   text: MUSIC_*
   def: |-
@@ -2063,6 +2120,20 @@ SND:
     #define SND_BOSS_LAUNCH         65
   desc: Provides meaningful names for all of the PC speaker sound effects included with the game.
   ref: /topics/global-variables-and-constants/#SND
+SPA:
+  text: SPA_*
+  def: |-
+    #define SPA_PLAYER_START    0
+    #define SPA_PLATFORM        1
+    #define SPA_FOUNTAIN_SMALL  2
+    #define SPA_FOUNTAIN_MEDIUM 3
+    #define SPA_FOUNTAIN_LARGE  4
+    #define SPA_FOUNTAIN_HUGE   5
+    #define SPA_LIGHT_WEST      6
+    #define SPA_LIGHT_MIDDLE    7
+    #define SPA_LIGHT_EAST      8
+  desc: Defines meaningful names for each special actor type defined in the game.
+  ref: /topics/global-variables-and-constants/#SPA
 SPR:
   text: SPR_*
   def: |-
@@ -2415,6 +2486,16 @@ demoState:
   def: byte demoState;
   desc: Indicates the current state of input handling for gameplay.
   ref: /topics/global-variables-and-constants/#demoState
+dir8X:
+  text: dir8X[]
+  def: int dir8X[] = {0,  0,  1,  1,  1,  0, -1, -1, -1};
+  desc: Defines the horizontal movement components for the game's eight-way direction system.
+  ref: /topics/global-variables-and-constants/#dir8X
+dir8Y:
+  text: dir8Y[]
+  def: int dir8Y[] = {0, -1, -1,  0,  1,  1,  1,  0, -1};
+  desc: Defines the vertical movement components for the game's eight-way direction system.
+  ref: /topics/global-variables-and-constants/#dir8Y
 drawPageNumber:
   text: drawPageNumber
   def: word drawPageNumber;
@@ -2440,6 +2521,11 @@ fontTileData:
   def: byte *fontTileData;
   desc: Points to a 4,000 byte block of memory used to hold masked tile image data for the UI font.
   ref: /topics/global-variables-and-constants/#fontTileData
+fountains:
+  text: fountains[]
+  def: Fountain fountains[MAX_FOUNTAINS];
+  desc: Contains a fixed amount of space for all of the fountain actors defined on the current map.
+  ref: /topics/global-variables-and-constants/#fountains
 fullscreenImageNames:
   text: fullscreenImageNames[]
   def: |-
@@ -2824,6 +2910,11 @@ pit0Value:
   def: dword pit0Value;
   desc: Holds a copy of the most recent value used to reconfigure channel 0 of the system's Programmable Interval Timer.
   ref: /topics/global-variables-and-constants/#pit0Value
+platforms:
+  text: platforms[]
+  def: Platform platforms[MAX_PLATFORMS];
+  desc: Contains a fixed amount of space for all of the platform actors defined on the current map.
+  ref: /topics/global-variables-and-constants/#platforms
 playerBaseFrame:
   text: playerBaseFrame
   def: word playerBaseFrame;
@@ -2884,6 +2975,11 @@ playerInfoData:
   def: word *playerInfoData;
   desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for player sprites.
   ref: /topics/global-variables-and-constants/#playerInfoData
+playerPushDir:
+  text: playerPushDir
+  def: word playerPushDir;
+  desc: Specifies the direction in which the player should move during a "push" sequence.
+  ref: /topics/global-variables-and-constants/#playerPushDir
 playerPushFrame:
   text: playerPushFrame
   def: word playerPushFrame;
@@ -2894,6 +2990,16 @@ playerTileData:
   def: byte *playerTileData;
   desc: Points to a block of memory matching the size and content of the PLAYERS.MNI group file entry, nominally 30,000 bytes.
   ref: /topics/global-variables-and-constants/#playerTileData
+playerX:
+  text: playerX
+  def: word playerX;
+  desc: Represents the current horizontal position of the player within the map. The origin tile is on the left edge of the player's sprite.
+  ref: /topics/global-variables-and-constants/#playerX
+playerY:
+  text: playerY
+  def: word playerY;
+  desc: Represents the current vertical position of the player within the map. The origin tile is on the bottom edge of the player's sprite.
+  ref: /topics/global-variables-and-constants/#playerY
 pounceHintState:
   text: pounceHintState
   def: word pounceHintState;

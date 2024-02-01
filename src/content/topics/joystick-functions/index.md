@@ -78,15 +78,15 @@ Once the signal enters the Game Control Adapter, it runs through a 2.2 k&ohm; re
 
 When resistor(s) and a capacitor are combined in series like this, it is called an **RC circuit**. These circuits have the useful property that the charge rate of a capacitor (in seconds) can be predicted by multiplying the total resistance in ohms by the capacitance in farads:
 
-_VR1_                     | _R1_       | _C1_  | Charge Time (_VR1_ + _R1_) &times; _C1_
---------------------------|------------|-------|----------------------------------------
+_VR1_                     | _R1_       | _C1_  | Time Constant (_VR1_ + _R1_) &times; _C1_
+--------------------------|------------|-------|------------------------------------------
 0 &ohm; (top/left)        | 2.2 k&ohm; | 10 nF | 22 &micro;s
 25 k&ohm;                 | 2.2 k&ohm; | 10 nF | 272 &micro;s
 50 k&ohm; (centered)      | 2.2 k&ohm; | 10 nF | 522 &micro;s
 75 k&ohm;                 | 2.2 k&ohm; | 10 nF | 772 &micro;s
 100 k&ohm; (bottom/right) | 2.2 k&ohm; | 10 nF | 1.022 ms
 
-Assuming ideal and precise components, this is the amount of time it takes the circuit to charge the capacitor to **63.2%** of the supply voltage. This rather arbitrary-seeming value is due to the logarithmic behavior of a charging capacitor: Voltage climbs rapidly at the start of the charge, but the rate tapers off substantially after the capacitor is charged about 2/3 of the way. (The formal derivation for this constant is 1 - _e_<sup>-1</sup>.) Not every implementation uses these component values -- some sources have reported _C1_ sizes as low as 5.6 nF or as high as 22 nF, which can nearly halve or double the charge times as calculated here.  Fortunately the change in timing always corresponds linearly to the change in joystick position, so the calculations do not require any complicated transformations once the ratio has been determined.
+Assuming ideal and precise components, each **time constant** describes the amount of time it takes the circuit to charge the capacitor to **63.2%** of the supply voltage. This rather arbitrary-seeming value is due to the logarithmic behavior of a charging capacitor: Voltage climbs rapidly at the start of the charge, but the rate tapers off substantially after the capacitor is charged about 2/3 of the way. (The formal derivation for this constant is 1 - _e_<sup>-1</sup>.) Not every implementation uses these component values -- some sources have reported _C1_ sizes as low as 5.6 nF or as high as 22 nF, which can nearly halve or double the charge times as calculated here.  Fortunately the change in timing always corresponds linearly to the change in joystick position, so the calculations do not require any complicated transformations once the ratio has been determined.
 
 {{< aside class="note" >}}
 **Note:** The IBM publication specifies 24.2 + 0.011(r) as the function to convert ohms into microseconds, while our computed ratio is 22 + 0.01(r). IBM's values are _probably_ more correct as they undoubtedly tested them on real hardware instead of a phone calculator.

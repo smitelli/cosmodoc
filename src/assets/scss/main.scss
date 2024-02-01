@@ -8,6 +8,7 @@ $menu-width: 12rem;
 $page-min-width: 24rem;
 $page-max-width: $menu-width + 40rem;
 $sm-breakpoint: $menu-width + 39rem;
+$page-color: #fff;
 $text-color: #1a1a1a;
 
 html {
@@ -38,7 +39,7 @@ kbd {
 body {
     overflow-x: hidden;
     color: $text-color;
-    background: #fff;
+    background: $page-color;
 
     box-sizing: border-box;
     * {
@@ -78,7 +79,10 @@ main {
         }
 
         h2 {
-            margin-top: 0;
+            position: sticky;
+            top: -1rem;
+            margin: 0 0 1.25rem;
+            background: $page-color;
         }
 
         ul {

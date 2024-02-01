@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 450
+weight = 480
 +++
 
 # Bugs and Oversights
@@ -46,9 +46,11 @@ This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 
 ## {{< lookup/actor 102 >}} floor/wall impact sounds are preempted.
 
-## Sparkly prizes are drawn flipped
+## Fountain stream overlaps bottom of spray sprite.
 
-## Two unused actors in E1L8
+## Sparkly prizes are drawn flipped.
+
+## Two unused actors in E1L8.
 
 Both are map actor type 22. First is at position 62, 63 and the second is at position 61, 64. They are ignored when loading the map.
 
@@ -68,4 +70,4 @@ The full details are on [a separate page]({{< relref "unused-actors" >}}).
 
 ## Wait spinner placement is inconsistent in Cosmo/Duke conversation.
 
-## Hitch block in E1L5 at 19, 101
+## Hitch block in E1L5 at 19, 101.

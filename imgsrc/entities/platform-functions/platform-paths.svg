@@ -1,0 +1,2137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="9604"
+   height="6401.6226"
+   viewBox="0 0 2541.0583 1693.7627"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="platform-paths.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="px"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px"
+     inkscape:zoom="0.080762494"
+     inkscape:cx="4637.0535"
+     inkscape:cy="2959.2945"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="1180.9019"
+       y="6473.6187"
+       width="4367.9141"
+       height="313.01016"
+       id="rect44668" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect42847"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00474444"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect42255"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00474444"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path39761" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path39743" />
+    </marker>
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect39738"
+       is_visible="true"
+       lpeversion="1"
+       steps="1"
+       threshold="0.00474444"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <rect
+       x="948.88776"
+       y="1751.0051"
+       width="2085.5051"
+       height="529.05609"
+       id="rect8143" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Invert"
+       id="filter2704"
+       x="0"
+       y="0"
+       width="1"
+       height="1">
+      <feColorMatrix
+         type="hueRotate"
+         values="180"
+         result="color1"
+         id="feColorMatrix2700" />
+      <feColorMatrix
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 -0.21 -0.72 -0.07 2 0 "
+         result="color2"
+         id="feColorMatrix2702" />
+    </filter>
+    <rect
+       x="948.88776"
+       y="1751.0051"
+       width="2085.5051"
+       height="529.05609"
+       id="rect23395" />
+    <rect
+       x="948.88776"
+       y="1751.0051"
+       width="2085.5051"
+       height="529.05609"
+       id="rect30553" />
+    <rect
+       x="948.88776"
+       y="1751.0051"
+       width="2245.9824"
+       height="478.05783"
+       id="rect35311" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-43.963055,-81.270935)"
+     sodipodi:insensitive="true">
+    <g
+       id="g2454"
+       inkscape:label="Fig8 Arrows"
+       transform="translate(472.21619,-251.34087)">
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3778"
+         x="1921.7761"
+         y="1539.641"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2438"
+         x="969.27606"
+         y="523.64099"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2442"
+         x="1032.776"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2446"
+         x="1921.7761"
+         y="460.14096"
+         inkscape:label="S" />
+      <image
+         width="62.441669"
+         height="62.503922"
+         preserveAspectRatio="none"
+         style="stroke-width:1.01644;image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image2448"
+         x="1478.3344"
+         y="1031.641"
+         inkscape:label="SW" />
+      <image
+         width="62.441669"
+         height="70.31691"
+         preserveAspectRatio="none"
+         style="stroke-width:1.01644;image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image2452"
+         x="1413.7761"
+         y="1031.641"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3118"
+         x="1096.276"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3120"
+         x="1159.776"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3122"
+         x="1223.276"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3124"
+         x="1286.776"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3126"
+         x="1350.276"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3128"
+         x="1413.776"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3130"
+         x="1477.276"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3132"
+         x="1540.776"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3134"
+         x="1604.276"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3136"
+         x="1667.776"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3138"
+         x="1731.276"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3140"
+         x="1794.7761"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3142"
+         x="1858.2761"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3144"
+         x="969.27606"
+         y="460.14096"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3148"
+         x="1032.776"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3152"
+         x="1096.276"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3154"
+         x="1159.776"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3156"
+         x="1223.276"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3158"
+         x="1286.776"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3160"
+         x="1350.276"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3162"
+         x="1413.776"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3164"
+         x="1477.276"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3166"
+         x="1540.776"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3168"
+         x="1604.276"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3170"
+         x="1667.776"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3172"
+         x="1731.276"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3174"
+         x="1794.7761"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3176"
+         x="1858.2761"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image3178"
+         x="969.27606"
+         y="1666.641"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image3340"
+         x="1921.7761"
+         y="1666.641"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image3342"
+         x="1921.7761"
+         y="523.64099"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image3344"
+         x="1921.7761"
+         y="1603.141"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3346"
+         x="1540.776"
+         y="968.14099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3348"
+         x="1604.276"
+         y="904.64099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3350"
+         x="1667.776"
+         y="841.14099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3354"
+         x="1731.2761"
+         y="777.64099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3356"
+         x="1794.7761"
+         y="714.14099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3358"
+         x="1858.2761"
+         y="650.64099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3360"
+         x="1921.7761"
+         y="587.14099"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3442"
+         x="1350.276"
+         y="968.14099"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3444"
+         x="1286.776"
+         y="904.64099"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3446"
+         x="1223.276"
+         y="841.14099"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3448"
+         x="1159.776"
+         y="777.64099"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3450"
+         x="1096.276"
+         y="714.14099"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3452"
+         x="1032.776"
+         y="650.64099"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image3536"
+         x="969.27606"
+         y="587.14099"
+         inkscape:label="N" />
+      <image
+         width="62.441669"
+         height="62.503922"
+         preserveAspectRatio="none"
+         style="stroke-width:1.01644;image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3746"
+         x="1413.7761"
+         y="1096.2615"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3748"
+         x="1350.276"
+         y="1158.641"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3750"
+         x="1286.776"
+         y="1222.141"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3752"
+         x="1159.776"
+         y="1349.141"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3754"
+         x="1223.276"
+         y="1285.641"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3756"
+         x="1096.276"
+         y="1412.641"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image3758"
+         x="1032.776"
+         y="1476.141"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image3760"
+         x="969.276"
+         y="1539.641"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image3762"
+         x="969.276"
+         y="1603.141"
+         inkscape:label="S" />
+      <image
+         width="62.441669"
+         height="70.31691"
+         preserveAspectRatio="none"
+         style="stroke-width:1.01644;image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3764"
+         x="1478.3344"
+         y="1096.2615"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3766"
+         x="1540.776"
+         y="1158.641"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3768"
+         x="1604.276"
+         y="1222.141"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3770"
+         x="1667.776"
+         y="1285.641"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3772"
+         x="1731.2761"
+         y="1349.141"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3774"
+         x="1794.7761"
+         y="1412.641"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image3776"
+         x="1858.2761"
+         y="1476.141"
+         inkscape:label="NW" />
+    </g>
+    <image
+       width="317.5"
+       height="63.5"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAADwBAMAAADiGICDAAAAD1BMVEUAAAAAqqpV//+qqqr////O Zr16AAABzUlEQVR42u3csQ2DQAxAUYhuAa+QFbJ+VsgKrMAKqe0CkYRIGL3XWTIU6OuuY5oAAAAA AAAAAAAAAAAAAAAAALi+ucwPn4R9Io/PPN58IP5BWAgLYSEsEBbCQlggLISFsEBYCAthgbAQFsIC YSEshAXCQlgIC4SFsBAWCAthISz43ijz+snDSx5jc7TcfdmJhasQYYGwEBbCAmEhLIQFwkJYCAuE hbAQFggLYSEsEBbCQlggLISFsEBYCAthgbAQFp2NA99V/lQTli+97MTCVYiwQFgIC2GBsBAWwgJh ISyEBcJCWAgLhIWwEBYIC2EhLBAWwkJYICyEhbBAWAiLVuYy330S9in/onk5sXAVIiwQFsJCWCAs hIWwQFgIC2GBsBAWwkJYPgHCQlgIC4SFsBAWCAthISwQFsJCWCAsTm388vCSx9gcLXdfdmLhKkRY ICyEhbBAWAgLYYGwEBbCAmEhLIQFwkJYCAuEhbAQFggLYSEsEBbCQlggLIRFZ+PAd615DMuXXnZi 4SpEWCAshIWwQFgIC2GBsBAWwgJhISyEBcJCWAgLhIWwEBYIC2EhLBAWwkJYICyEBQAAAAAAAAAA AAAAAAAAAAAAnMwbLC8wXko5U30AAAAASUVORK5CYII= "
+       id="image4082"
+       x="1504.9922"
+       y="526.30011"
+       inkscape:label="Fig8 Platform 5x1" />
+    <g
+       id="g2820"
+       inkscape:label="Intersect Arrows"
+       transform="translate(1061.8275,-142.57763)">
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2804"
+         x="-255.33527"
+         y="1684.8778"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2808"
+         x="-890.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2812"
+         x="62.164738"
+         y="1494.3778"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2816"
+         x="62.164738"
+         y="1684.8778"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2822"
+         x="-826.83527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2824"
+         x="-763.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2826"
+         x="-699.83527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2828"
+         x="-636.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2830"
+         x="-572.83527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2832"
+         x="-509.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2834"
+         x="-445.83527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2836"
+         x="-382.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2838"
+         x="-318.83527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2840"
+         x="-255.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2842"
+         x="-191.83527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2844"
+         x="-128.33527"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2846"
+         x="-64.835266"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2848"
+         x="-1.3352636"
+         y="1494.3778"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2850"
+         x="62.164738"
+         y="1557.8778"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2852"
+         x="62.164738"
+         y="1621.3778"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2854"
+         x="-1.3352636"
+         y="1684.8778"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2856"
+         x="-64.835266"
+         y="1684.8778"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2858"
+         x="-128.33527"
+         y="1684.8778"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2860"
+         x="-191.83527"
+         y="1684.8778"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2862"
+         x="-255.33527"
+         y="1621.3778"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2864"
+         x="-255.33527"
+         y="1557.8778"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2866"
+         x="-255.33527"
+         y="1430.8778"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2868"
+         x="-255.33527"
+         y="1367.3778"
+         inkscape:label="N" />
+    </g>
+    <image
+       width="317.5"
+       height="63.5"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAADwBAMAAADiGICDAAAAD1BMVEUAAAAAqqpV//+qqqr////O Zr16AAABzUlEQVR42u3csQ2DQAxAUYhuAa+QFbJ+VsgKrMAKqe0CkYRIGL3XWTIU6OuuY5oAAAAA AAAAAAAAAAAAAAAAALi+ucwPn4R9Io/PPN58IP5BWAgLYSEsEBbCQlggLISFsEBYCAthgbAQFsIC YSEshAXCQlgIC4SFsBAWCAthISz43ijz+snDSx5jc7TcfdmJhasQYYGwEBbCAmEhLIQFwkJYCAuE hbAQFggLYSEsEBbCQlggLISFsEBYCAthgbAQFp2NA99V/lQTli+97MTCVYiwQFgIC2GBsBAWwgJh ISyEBcJCWAgLhIWwEBYIC2EhLBAWwkJYICyEhbBAWAiLVuYy330S9in/onk5sXAVIiwQFsJCWCAs hIWwQFgIC2GBsBAWwkJYPgHCQlgIC4SFsBAWCAthISwQFsJCWCAsTm388vCSx9gcLXdfdmLhKkRY ICyEhbBAWAgLYYGwEBbCAmEhLIQFwkJYCAuEhbAQFggLYSEsEBbCQlggLIRFZ+PAd615DMuXXnZi 4SpEWCAshIWwQFgIC2GBsBAWwgJhISyEBcJCWAgLhIWwEBYIC2EhLBAWwkJYICyEBQAAAAAAAAAA AAAAAAAAAAAAnMwbLC8wXko5U30AAAAASUVORK5CYII= "
+       id="image2870"
+       x="44.492233"
+       y="1351.8002"
+       inkscape:label="Intersect Platform 5x1" />
+    <g
+       id="g2436"
+       inkscape:label="Loop Arrows"
+       transform="translate(458.3259,-385.61364)">
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image832"
+         x="-286.83368"
+         y="784.91376"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAVklE QVR4Xu3VsQmAQBREwQMLsCRbv5Is4ED50RfE2A3mZcsUsOPq5niVwRjjbqUyxrggkTHGs2GvmcIY 47Npq53CGOP1/bj/Msb40VEQyBjjvSCMMcY36NLqFvUbIxIAAAAASUVORK5CYII= "
+         id="image844"
+         x="-286.83368"
+         y="721.41376"
+         inkscape:label="NE" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image856"
+         x="-96.333679"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3WwQmAMBBFwYAFWJKtW5IFBDRgcA969x/mQWDDFLDbZuv52c+MMa62NMYYj9dblcUY47uj PS2T9jEHMMa4/rM1izHG76M4hjHGVc9jjHGt2BTGGF9aYOoWQrajOAAAAABJRU5ErkJggg== "
+         id="image868"
+         x="475.16632"
+         y="530.91376"
+         inkscape:label="SE" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image880"
+         x="665.66632"
+         y="721.41376"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image892"
+         x="665.66632"
+         y="1292.9137"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image904"
+         x="475.16632"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image916"
+         x="-223.33368"
+         y="1356.4137"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAVklE QVR4Xu3VsQmAQBREwQMLsCRbv5Is4ED50RfE2A3mZcsUsOPq5niVwRjjbqUyxrggkTHGs2GvmcIY 47Npq53CGOP1/bj/Msb40VEQyBjjvSCMMcY36NLqFvUbIxIAAAAASUVORK5CYII= "
+         id="image2456"
+         x="-223.33368"
+         y="657.91376"
+         inkscape:label="NE" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAVklE QVR4Xu3VsQmAQBREwQMLsCRbv5Is4ED50RfE2A3mZcsUsOPq5niVwRjjbqUyxrggkTHGs2GvmcIY 47Npq53CGOP1/bj/Msb40VEQyBjjvSCMMcY36NLqFvUbIxIAAAAASUVORK5CYII= "
+         id="image2458"
+         x="-159.83368"
+         y="594.41376"
+         inkscape:label="NE" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2460"
+         x="-32.833672"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2462"
+         x="30.666328"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2464"
+         x="94.166328"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2466"
+         x="157.66634"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2468"
+         x="221.16634"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2470"
+         x="284.66632"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2472"
+         x="348.16632"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAQ0lE QVR4Xu3XoQ0AIBAEwe+Akui/JxIQeATmT8zaKeBytZ+lMcZ4VdWIZYzxbbYzxvgrSZIUO+8Y4/iL jDF+1MwY4wNLi0enTwyiwQAAAABJRU5ErkJggg== "
+         id="image2474"
+         x="411.66632"
+         y="530.91376"
+         inkscape:label="E" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3WwQmAMBBFwYAFWJKtW5IFBDRgcA969x/mQWDDFLDbZuv52c+MMa62NMYYj9dblcUY47uj PS2T9jEHMMa4/rM1izHG76M4hjHGVc9jjHGt2BTGGF9aYOoWQrajOAAAAABJRU5ErkJggg== "
+         id="image2476"
+         x="538.66632"
+         y="594.41376"
+         inkscape:label="SE" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3WwQmAMBBFwYAFWJKtW5IFBDRgcA969x/mQWDDFLDbZuv52c+MMa62NMYYj9dblcUY47uj PS2T9jEHMMa4/rM1izHG76M4hjHGVc9jjHGt2BTGGF9aYOoWQrajOAAAAABJRU5ErkJggg== "
+         id="image2478"
+         x="602.16632"
+         y="657.91376"
+         inkscape:label="SE" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2562"
+         x="665.66632"
+         y="784.91376"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2564"
+         x="-286.83368"
+         y="848.41376"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2566"
+         x="665.66632"
+         y="848.41376"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2568"
+         x="-286.83368"
+         y="911.91376"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2570"
+         x="665.66632"
+         y="911.91376"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2572"
+         x="-286.83368"
+         y="975.41376"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2574"
+         x="665.66632"
+         y="975.41376"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2576"
+         x="-286.83368"
+         y="1038.9137"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2578"
+         x="665.66632"
+         y="1038.9137"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2582"
+         x="665.66632"
+         y="1102.4137"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2584"
+         x="-286.83368"
+         y="1165.9137"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2586"
+         x="665.66632"
+         y="1165.9137"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2588"
+         x="-286.83368"
+         y="1229.4137"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAATElE QVR4Xu3VwQmAMBREwQ8pICXZekpKAQFFPUQh9y8477hTwMY+a3FVHtOvGGOMMcYYY4wxxhiPWLbl M8b4rr+pnlseY4y/f+8Y4wNRFYsneWU4hAAAAABJRU5ErkJggg== "
+         id="image2590"
+         x="665.66632"
+         y="1229.4137"
+         inkscape:label="S" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAASUlE QVR4Xu3WwQnAIBREwQ8WYEm2bkkWIBiSiwa862HecaeBjTGr8ZWW6QrGGLf4lW9hjHGPbeU8Y4zf XAuMMcYYY4wxxhhj/AAB/4snJ3KomAAAAABJRU5ErkJggg== "
+         id="image2592"
+         x="-286.83368"
+         y="1292.9137"
+         inkscape:label="N" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image2676"
+         x="-159.83368"
+         y="1419.9137"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAAW0lE QVR4Xu3VsQmAUBBEQcECLOm3bkm/AEEDkQ0EUzeYF95cvsu79Uw1jDEeORcxxjg1Mcb42dSZj7WL McZ3e162BsYYf0zuqGGMcTqW1MMY4zRrGWOcfmWM8QX0GiyUxBpRSQAAAABJRU5ErkJggg== "
+         id="image2678"
+         x="-96.333672"
+         y="1483.4137"
+         inkscape:label="NW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image2680"
+         x="602.16632"
+         y="1356.4137"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="63.5"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwAQMAAAAEm3vRAAAABlBMVEUAAAD///+l2Z/dAAAAWElE QVR4Xu3JwQmAMAAEQSEFWFJat6QUIGiCQkT8e4/Z3zLL8VlbrtIYY7wPSGSM8UNq338ZY9wrN22T 1vEpjDFuk8qACMYYvxqQyBjj2j+SMcazksIY4xPi16vc4oLBXQAAAABJRU5ErkJggg== "
+         id="image2682"
+         x="538.66632"
+         y="1419.9137"
+         inkscape:label="SW" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2684"
+         x="411.66632"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2686"
+         x="348.16632"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2688"
+         x="284.66632"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2690"
+         x="221.16634"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2692"
+         x="157.66634"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2694"
+         x="94.166328"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2696"
+         x="30.666328"
+         y="1483.4137"
+         inkscape:label="W" />
+      <image
+         width="63.5"
+         height="71.4375"
+         preserveAspectRatio="none"
+         style="image-rendering:optimizeQuality"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEOAQMAAACNdAgMAAAABlBMVEUAAAD///+l2Z/dAAAARUlE QVR4Xu3XoQ0AIQBD0W52+2/DACRwngSBqnjfvgGaZl2rYIzxSPIVMsZ45q+RMcZPSZKk6vXHGPc/ aIzxGcYYY4yvbWvo0MBKIik7AAAAAElFTkSuQmCC "
+         id="image2698"
+         x="-32.833672"
+         y="1483.4137"
+         inkscape:label="W" />
+    </g>
+    <image
+       width="317.5"
+       height="63.5"
+       preserveAspectRatio="none"
+       style="image-rendering:optimizeQuality"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAADwBAMAAADiGICDAAAAD1BMVEUAAAAAqqpV//+qqqr////O Zr16AAABzUlEQVR42u3csQ2DQAxAUYhuAa+QFbJ+VsgKrMAKqe0CkYRIGL3XWTIU6OuuY5oAAAAA AAAAAAAAAAAAAAAAALi+ucwPn4R9Io/PPN58IP5BWAgLYSEsEBbCQlggLISFsEBYCAthgbAQFsIC YSEshAXCQlgIC4SFsBAWCAthISz43ijz+snDSx5jc7TcfdmJhasQYYGwEBbCAmEhLIQFwkJYCAuE hbAQFggLYSEsEBbCQlggLISFsEBYCAthgbAQFp2NA99V/lQTli+97MTCVYiwQFgIC2GBsBAWwgJh ISyEBcJCWAgLhIWwEBYIC2EhLBAWwkJYICyEhbBAWAiLVuYy330S9in/onk5sXAVIiwQFsJCWCAs hIWwQFgIC2GBsBAWwkJYPgHCQlgIC4SFsBAWCAthISwQFsJCWCAsTm388vCSx9gcLXdfdmLhKkRY ICyEhbBAWAgLYYGwEBbCAmEhLIQFwkJYCAuEhbAQFggLYSEsEBbCQlggLIRFZ+PAd615DMuXXnZi 4SpEWCAshIWwQFgIC2GBsBAWwgJhISyEBcJCWAgLhIWwEBYIC2EhLBAWwkJYICyEBQAAAAAAAAAA AAAAAAAAAAAAnMwbLC8wXko5U30AAAAASUVORK5CYII= "
+       id="image928"
+       x="44.492222"
+       y="716.80011"
+       inkscape:label="Loop Platform 5x1" />
+    <g
+       inkscape:label="GridCartesian:X40:Y25"
+       transform="translate(44.49222,81.8001)"
+       id="g2258"
+       style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:insensitive="true">
+      <g
+         inkscape:label="MajorXGridlines"
+         id="g2204"
+         style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 63.5,0 V 1587.5"
+           inkscape:label="MajorXDiv1"
+           id="path2126" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 127,0 V 1587.5"
+           inkscape:label="MajorXDiv2"
+           id="path2128" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 190.5,0 V 1587.5"
+           inkscape:label="MajorXDiv3"
+           id="path2130" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 254,0 V 1587.5"
+           inkscape:label="MajorXDiv4"
+           id="path2132" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 317.5,0 V 1587.5"
+           inkscape:label="MajorXDiv5"
+           id="path2134" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 381,0 V 1587.5"
+           inkscape:label="MajorXDiv6"
+           id="path2136" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 444.5,0 V 1587.5"
+           inkscape:label="MajorXDiv7"
+           id="path2138" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 508,0 V 1587.5"
+           inkscape:label="MajorXDiv8"
+           id="path2140" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 571.5,0 V 1587.5"
+           inkscape:label="MajorXDiv9"
+           id="path2142" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 635,0 V 1587.5"
+           inkscape:label="MajorXDiv10"
+           id="path2144" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 698.5,0 V 1587.5"
+           inkscape:label="MajorXDiv11"
+           id="path2146" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 762,0 V 1587.5"
+           inkscape:label="MajorXDiv12"
+           id="path2148" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 825.5,0 V 1587.5"
+           inkscape:label="MajorXDiv13"
+           id="path2150" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 889,0 V 1587.5"
+           inkscape:label="MajorXDiv14"
+           id="path2152" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 952.5,0 V 1587.5"
+           inkscape:label="MajorXDiv15"
+           id="path2154" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1016,0 V 1587.5"
+           inkscape:label="MajorXDiv16"
+           id="path2156" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1079.5,0 V 1587.5"
+           inkscape:label="MajorXDiv17"
+           id="path2158" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1143,0 V 1587.5"
+           inkscape:label="MajorXDiv18"
+           id="path2160" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1206.5,0 V 1587.5"
+           inkscape:label="MajorXDiv19"
+           id="path2162" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1270,0 V 1587.5"
+           inkscape:label="MajorXDiv20"
+           id="path2164" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1333.5,0 V 1587.5"
+           inkscape:label="MajorXDiv21"
+           id="path2166" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1397,0 V 1587.5"
+           inkscape:label="MajorXDiv22"
+           id="path2168" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1460.5,0 V 1587.5"
+           inkscape:label="MajorXDiv23"
+           id="path2170" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1524,0 V 1587.5"
+           inkscape:label="MajorXDiv24"
+           id="path2172" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1587.5,0 V 1587.5"
+           inkscape:label="MajorXDiv25"
+           id="path2174" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1651,0 V 1587.5"
+           inkscape:label="MajorXDiv26"
+           id="path2176" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1714.5,0 V 1587.5"
+           inkscape:label="MajorXDiv27"
+           id="path2178" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1778,0 V 1587.5"
+           inkscape:label="MajorXDiv28"
+           id="path2180" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1841.5,0 V 1587.5"
+           inkscape:label="MajorXDiv29"
+           id="path2182" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1905,0 V 1587.5"
+           inkscape:label="MajorXDiv30"
+           id="path2184" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 1968.5,0 V 1587.5"
+           inkscape:label="MajorXDiv31"
+           id="path2186" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2032,0 V 1587.5"
+           inkscape:label="MajorXDiv32"
+           id="path2188" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2095.5,0 V 1587.5"
+           inkscape:label="MajorXDiv33"
+           id="path2190" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2159,0 V 1587.5"
+           inkscape:label="MajorXDiv34"
+           id="path2192" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2222.5,0 V 1587.5"
+           inkscape:label="MajorXDiv35"
+           id="path2194" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2286,0 V 1587.5"
+           inkscape:label="MajorXDiv36"
+           id="path2196" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2349.5,0 V 1587.5"
+           inkscape:label="MajorXDiv37"
+           id="path2198" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2413,0 V 1587.5"
+           inkscape:label="MajorXDiv38"
+           id="path2200" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 2476.5,0 V 1587.5"
+           inkscape:label="MajorXDiv39"
+           id="path2202" />
+      </g>
+      <g
+         inkscape:label="MajorYGridlines"
+         id="g2254"
+         style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,63.5 H 2540"
+           inkscape:label="MajorYDiv1"
+           id="path2206" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,127 H 2540"
+           inkscape:label="MajorYDiv2"
+           id="path2208" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,190.5 H 2540"
+           inkscape:label="MajorYDiv3"
+           id="path2210" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,254 H 2540"
+           inkscape:label="MajorYDiv4"
+           id="path2212" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,317.5 H 2540"
+           inkscape:label="MajorYDiv5"
+           id="path2214" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,381 H 2540"
+           inkscape:label="MajorYDiv6"
+           id="path2216" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,444.5 H 2540"
+           inkscape:label="MajorYDiv7"
+           id="path2218" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,508 H 2540"
+           inkscape:label="MajorYDiv8"
+           id="path2220" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,571.5 H 2540"
+           inkscape:label="MajorYDiv9"
+           id="path2222" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,635 H 2540"
+           inkscape:label="MajorYDiv10"
+           id="path2224" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,698.5 H 2540"
+           inkscape:label="MajorYDiv11"
+           id="path2226" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,762 H 2540"
+           inkscape:label="MajorYDiv12"
+           id="path2228" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,825.5 H 2540"
+           inkscape:label="MajorYDiv13"
+           id="path2230" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,889 H 2540"
+           inkscape:label="MajorYDiv14"
+           id="path2232" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,952.5 H 2540"
+           inkscape:label="MajorYDiv15"
+           id="path2234" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1016 H 2540"
+           inkscape:label="MajorYDiv16"
+           id="path2236" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1079.5 H 2540"
+           inkscape:label="MajorYDiv17"
+           id="path2238" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1143 H 2540"
+           inkscape:label="MajorYDiv18"
+           id="path2240" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1206.5 H 2540"
+           inkscape:label="MajorYDiv19"
+           id="path2242" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1270 H 2540"
+           inkscape:label="MajorYDiv20"
+           id="path2244" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1333.5 H 2540"
+           inkscape:label="MajorYDiv21"
+           id="path2246" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1397 H 2540"
+           inkscape:label="MajorYDiv22"
+           id="path2248" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1460.5 H 2540"
+           inkscape:label="MajorYDiv23"
+           id="path2250" />
+        <path
+           style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 0,1524 H 2540"
+           inkscape:label="MajorYDiv24"
+           id="path2252" />
+      </g>
+      <rect
+         x="0"
+         y="0"
+         width="2540"
+         height="1587.5"
+         style="fill:none;stroke:#666666;stroke-width:1.05833;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:label="Border"
+         id="rect2256" />
+    </g>
+    <rect
+       style="fill:none;stroke:#ff3333;stroke-width:5.29167;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect4106"
+       width="63.5"
+       height="63.5"
+       x="171.49222"
+       y="716.80005"
+       inkscape:label="Platform Origin Tile" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458334,0,0,0.26458334,181.89306,-215.95978)"
+       id="text23393"
+       style="font-weight:bold;font-size:85.3333px;line-height:1.2;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect23395)"
+       x="-906.47876"
+       y="0"><tspan
+         x="948.88867"
+         y="1823.5392"
+         id="tspan52256"><tspan
+           style="text-align:start;text-anchor:start"
+           id="tspan52254">Movement Tiles
+</tspan></tspan><tspan
+         x="948.88867"
+         y="1925.9391"
+         id="tspan52260"><tspan
+           dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.00010299683"
+           style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+           id="tspan52258">There are eight possible directions, allowing each </tspan></tspan><tspan
+         x="948.88867"
+         y="2028.339"
+         id="tspan52264"><tspan
+           dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.00010299683 0 0 0 0 0 0.00010299683"
+           style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+           id="tspan52262">platform to turn 45°, 90°, or 135° along a path.</tspan></tspan></text>
+    <g
+       id="g51680">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,-39.997527,1053.8823)"
+         id="text35309"
+         style="font-weight:bold;font-size:85.3333px;line-height:1.2;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect35311)"
+         x="-906.47876"
+         y="0"><tspan
+           x="948.88867"
+           y="1823.5392"
+           id="tspan52268"><tspan
+             style="text-align:start;text-anchor:start"
+             id="tspan52266">Unacceptable Self-Intersection
+</tspan></tspan><tspan
+           x="948.88867"
+           y="1925.9391"
+           id="tspan52272"><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00011062622 0 0 0 -0.00010299683 0.00018310547 -0.0001449585 0 0.00017166138"
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52270">This platform path does not function as one might expect. </tspan></tspan><tspan
+           x="948.88867"
+           y="2028.339"
+           id="tspan52276"><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00010299683 0 0 0 0 0 -0.00010299683"
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52274">Once the platform enters the loop, there is no means of </tspan></tspan><tspan
+           x="948.88867"
+           y="2130.7389"
+           id="tspan52280"><tspan
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52278">escape; the segment at the top can never be taken.</tspan></tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2.64583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+         d="m 534.07643,1529.7967 c 55.40134,-2.684 108.79406,-21.2292 158.26628,-45.3459 40.0392,-19.5183 78.18838,-42.8868 114.14952,-69.1506"
+         id="path39736"
+         inkscape:path-effect="#path-effect39738"
+         inkscape:original-d="m 534.07643,1529.7967 c 104.17086,-4.5387 215.13313,-72.4812 272.4158,-114.4965"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g51674">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,184.35572,101.53692)"
+         id="text8141"
+         style="font-weight:bold;font-size:85.3333px;line-height:1.2;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect8143)"
+         x="-906.47876"
+         y="0"><tspan
+           x="948.88867"
+           y="1823.5392"
+           id="tspan52284"><tspan
+             style="text-align:start;text-anchor:start"
+             id="tspan52282">Platform Origin Tile
+</tspan></tspan><tspan
+           x="948.88867"
+           y="1925.9391"
+           id="tspan52292"><tspan
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52286">The center tile of the 5</tspan><tspan
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52288">×</tspan><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00010299683"
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52290">1 platform follows the direction </tspan></tspan><tspan
+           x="948.88867"
+           y="2028.339"
+           id="tspan52296"><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00011062622"
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52294">specified by any movement tiles it encounters.
+</tspan></tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2.64583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+         d="m 428.02553,577.47453 c -43.52621,12.97739 -85.30792,33.12915 -120.42368,62.27751 -24.83965,20.61852 -45.85363,45.28965 -66.25962,70.16883"
+         id="path42251"
+         inkscape:path-effect="#path-effect42255"
+         inkscape:original-d="m 428.02553,577.47453 c -99.81651,30.14684 -141.56349,77.57565 -186.6833,132.44634"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="g51668">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458334,0,0,0.26458334,1824.287,354.35252)"
+         id="text30551"
+         style="font-weight:bold;font-size:85.3333px;line-height:1.2;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect30553)"
+         x="-906.47876"
+         y="0"><tspan
+           x="948.88867"
+           y="1823.5392"
+           id="tspan52300"><tspan
+             style="text-align:start;text-anchor:start"
+             id="tspan52298">Acceptable Self-Intersection
+</tspan></tspan><tspan
+           x="948.88867"
+           y="1925.9391"
+           id="tspan52304"><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00010299683 0.00010299683 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.00010299683 -0.00011253357"
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52302">Platform paths may cross diagonally relative to the </tspan></tspan><tspan
+           x="948.88867"
+           y="2028.339"
+           id="tspan52308"><tspan
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.00010299683 -0.00011253357 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.00010299683"
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52306">map grid because there is no ambiguity about the </tspan></tspan><tspan
+           x="948.88867"
+           y="2130.7389"
+           id="tspan52312"><tspan
+             style="font-weight:normal;-inkscape-font-specification:roboto;text-align:start;text-anchor:start"
+             id="tspan52310">direction specified in each tile.</tspan></tspan></text>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2.64583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+         d="m 2069.424,828.45164 c -12.458,-1.33731 -25.0496,-1.03619 -37.4831,0.44983 -11.5622,1.38189 -23.0152,3.54743 -34.4124,5.90828"
+         id="path42843"
+         inkscape:path-effect="#path-effect42847"
+         inkscape:original-d="m 2069.424,828.45164 c -19.5245,-1.96997 -36.8865,-0.93212 -71.8955,6.35811"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31646958,0,0,0.31646958,248.04415,-327.43012)"
+       id="text44666"
+       style="font-weight:bold;font-size:192px;line-height:1.25;font-family:roboto;-inkscape-font-specification:'roboto Bold';text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect44668);stroke-width:0.836047"
+       inkscape:label="Caption"><tspan
+         x="2126.4219"
+         y="6641.6191"
+         id="tspan52314">Platform Paths and Behavior</tspan></text>
+  </g>
+</svg>

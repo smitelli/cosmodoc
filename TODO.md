@@ -1,10 +1,11 @@
-* Keep page title at the top of nav scroll
 * Eventually will be more than semi-complete
 * Word count
 * Finish describing the bugs
+* Important overall concepts
 * Appendix/glossary
 * Unused tiles and masktile
-* Why isn't NewDecoration() static?
+* Why is DIR4 "none" but DIR8 is "stationary"?
+* Can attribution links inside shortcodes be footnotes now with {{% ... %}}?
 
 =============================================================================
 
@@ -25,26 +26,21 @@
     * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
     * GiveScore: given an actor type, add a certain amount to player's score.
 
-* platforms/fountains
-    * ProcessAllPlatforms: for all platforms -- remove platform from map, conditionally call PPT, move platform, reinsert platform into map
-    * PlayerPlatformTouch: handle player riding platform, including scrolling the screen.
-    * ProcessAllFountains: for all fountains -- sleep, change direction if needed. remove fountain head from map. conditionally call PPT. change height. reinsert fountain head into map.
-    * DrawFountains: for all fountains -- draw fountain head. for each unit of height, draw fountain stream. if player is touching any part of the stream, hurt them.
-* shards
+* shards (3)
     * ResetShards: deactivate every shard in the array.
     * InsertShard: assign shard number 0-4, then insert into next free spot in array.
     * ProcessAllShards: move/bounce each shard, playing sounds, and drawing them.
-* explosions
+* explosions (5)
     * ResetExplosions: deactivate every explosion in the array.
     * InsertExplosion: insert explosion into next free spot in array. play sound.
     * ProcessAllExplosions: for each explosion -- if ep3, conditionally animate the palette. draw sparkle on first frame. place the explosion frame, hurt the player if too close. once animation has run, emit smoke and make that slot go idle.
     * IsExplosionTouchingActor: returns true if any explosion is close to the specified actor type/frame/XY.
     * ActorExplosionTouch: given actor type/frame/XY, handles explosion damage. Usually gives points/shards, or is a no-op. hint globes and eye plants have special code here. returns true if the explosion had an effect.
-* spawners
+* spawners (3)
     * ResetSpawners: deactivate every spawner in the array.
     * InsertSpawner: insert spawner into next free spot in array.
     * ProcessAllSpawners: for all spawners -- move up. if recently spawned, move up faster. if something is hit, or spawner ages out, go inactive and spawn a real actor at that position. otherwise draw spawning sprite.
-* decorations
+* decorations (4)
     * ResetDecorations: deactivate every decoration in the array.
     * InsertDecoration: insert decoration into next free spot in array.
     * ProcessAllDecorations: for each decoration -- draw at XY (sparkles are always in-front, rain moves faster and with randomness). move decoration according to given dir. handle cycling animation, and loop limit. once it's looped enough, go inactive.

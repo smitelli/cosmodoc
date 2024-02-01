@@ -85,11 +85,7 @@ window.addEventListener('load', function() {
         .querySelectorAll('li a')
         .forEach(function(el) {
             if (docHref.startsWith(el.href)) {
-                try {
-                    el.scrollIntoViewIfNeeded();
-                } catch (e) {
-                    el.scrollIntoView();
-                }
+                el.scrollIntoView({block: 'center'});
             }
         });
 });

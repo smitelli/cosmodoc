@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 430
+weight = 460
 +++
 
 # Global Variables and Constants
@@ -29,7 +29,7 @@ typedef byte bbool;           /* Boolean stored in a byte */
 
 {{< boilerplate/global-cref ACT >}}
 
-{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is a special sentinel value for the spawner functions and cannot be expressed in the map format. {{< lookup/cref name="ACT" text="ACT_STAR_FLOAT" >}} has the value 32 in the [map format]({{< relref "map-format" >}}), and all other actor types follow sequentially.
+{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is a special sentinel value for the spawner functions and cannot be expressed in the map format. {{< lookup/cref name="ACT" text="ACT_STAR_FLOAT" >}} has the value 32 in the [map format]({{< relref "map-format" >}}), and all other actor types follow sequentially. Map actor types below 32 are special actors, see {{< lookup/cref SPA >}}.
 
 {{< boilerplate/global-cref BACKDROP_HEIGHT >}}
 
@@ -54,6 +54,19 @@ Symbolic Constant   | Value | Description
 `DEMO_STATE_PLAY`   | 2     | The game runs in demo playback mode. Keyboard input is ignored (any keypress ends the game) and player movement commands are read from the demo file. Level progression and hint display are altered in the same way as with `DEMO_STATE_RECORD`.
 
 These are the return values for the {{< lookup/cref TitleLoop >}} function.
+
+{{< boilerplate/global-cref DIR2 >}}
+
+Symbolic Constant | Value | Description
+------------------|-------|------------
+`DIR2_SOUTH`      | 0     | Points toward the bottom edge of the screen.
+`DIR2_NORTH`      | 1     | Points toward the top edge of the screen.
+`DIR2_WEST`       | 0     | Points toward the left edge of the screen.
+`DIR2_EAST`       | 1     | Points toward the right edge of the screen.
+
+This is conceptually similar to {{< lookup/cref DIR4 >}}, but the values here should only be used in cases where objects move in one dimension.
+
+{{< note >}}{{< lookup/cref name="DIR2" text="DIR2_SOUTH" >}} equals _{{< lookup/cref name="DIR4" text="DIR4_NORTH" >}}_, while {{< lookup/cref name="DIR2" text="DIR2_NORTH" >}} equals _{{< lookup/cref name="DIR4" text="DIR4_SOUTH" >}}_. They are **not** interchangeable.{{< /note >}}
 
 {{< boilerplate/global-cref DIR4 >}}
 
@@ -81,7 +94,7 @@ Symbolic Constant | Value | Description
 `DIR8_WEST`       | 7     | Points toward the left edge of the screen.
 `DIR8_NORTHWEST`  | 8     | Points up and toward the left.
 
-The arrangement of these cardinal directions follows the conventional layout of a compass rose.
+The arrangement of these cardinal directions follows the conventional layout of a compass rose. The values defined here can be converted into X/Y deltas by using the {{< lookup/cref dir8X >}} and {{< lookup/cref dir8Y >}} arrays.
 
 {{< boilerplate/global-cref DRAW_MODE >}}
 
@@ -106,6 +119,14 @@ Symbolic Constant       | Value | Description
 {{< boilerplate/global-cref FONT >}}
 
 The [game font]({{< relref "databases/font" >}}) is built from 100 [masked tiles]({{< relref "tile-image-format#masked-tiles" >}}), each beginning on a 40-byte boundary. Only a handful of these tiles are referenced directly in the game code; all other tile offsets are calculated by adding a multiple of 40 to one of the above base values.
+
+{{< boilerplate/global-cref Fountain >}}
+
+* `dir` is a {{< lookup/cref DIR4 >}} value representing the current movement direction. Each fountain starts in {{< lookup/cref name="DIR8" text="DIR4_NORTH" >}}.
+* `stepcount` is an incrementing counter that tracks the number of frames the fountain has moved since it last changed direction. Once the direction change occurs, this value is zeroed again.
+* `height` is the height of the stream beneath the portion of the fountain that can be stood on.
+* `stepmax` is the maximum value for `stepcount` that can be reached before the fountain switches directions. This is derived from the actor's type in the map data.
+* `delayleft` is a decrementing counter that, if nonzero, means that the fountain is pausing to change directions.
 
 {{< boilerplate/global-cref GAME_INPUT >}}
 
@@ -159,11 +180,25 @@ See the {{< lookup/cref Light >}} structure.
 
 {{< boilerplate/global-cref MAX_ACTORS >}}
 
+{{< boilerplate/global-cref MAX_FOUNTAINS >}}
+
 {{< boilerplate/global-cref MAX_LIGHTS >}}
+
+{{< boilerplate/global-cref MAX_PLATFORMS >}}
 
 {{< boilerplate/global-cref MODE1_COLORS >}}
 
 The colors here are based on the Borland {{< lookup/cref COLORS >}} members, with the "light" variants shifted by 8 to compensate for the EGA's color requirements. See {{< lookup/cref SetPaletteRegister >}} for more information about this difference.
+
+{{< boilerplate/global-cref MOVE >}}
+
+These are the return values for the {{< lookup/cref TestPlayerMove >}} and {{< lookup/cref TestSpriteMove >}} functions.
+
+Symbolic Constant | Value | Description
+------------------|-------|------------
+`MOVE_FREE`       | 0     | The attempted move places the sprite into an area of free space on the map; hence the move is permissible.
+`MOVE_BLOCKED`    | 1     | The attempted move places the sprite either partially or completely inside an impassible area of the map; the move attempt should be blocked.
+`MOVE_SLOPED`     | 2     | The attempted move is legal (similar to `MOVE_FREE`) but it involves a sloped surface that requires further adjustment in the vertical direction.
 
 {{< boilerplate/global-cref MUSIC >}}
 
@@ -216,6 +251,10 @@ In the official version of the game, the save file template is `"COSMOx.SV "` wi
 {{< boilerplate/global-cref SND >}}
 
 These constants should be passed to {{< lookup/cref StartSound >}} to start playing a [PC speaker sound effect]({{< relref "pc-speaker-sound-format" >}}). Each sound number is described in more detail on the [sound database]({{< relref "databases/sound" >}}) page.
+
+{{< boilerplate/global-cref SPA >}}
+
+These **sp**ecial **a**ctor types map directly to the values found in the [map files]({{< relref "map-format" >}}).
 
 {{< boilerplate/global-cref SPR >}}
 
@@ -315,6 +354,8 @@ Due to an oversight, this only immobilizes the player when keyboard input is bei
 
 {{< boilerplate/global-cref cartoonInfoData >}}
 
+This points to [tile info data]({{< relref "tile-info-format" >}}) which has been read directly from disk. No processing is done to pre-parse this data.
+
 {{< boilerplate/global-cref cmdBomb >}}
 
 {{< boilerplate/global-cref cmdEast >}}
@@ -343,6 +384,26 @@ Symbolic Constant   | Value | Description
 
 When set to `DEMO_STATE_RECORD` or `DEMO_STATE_PLAY`, this suppresses the "Now entering level" message and all in-game hints, and adds a "DEMO" overlay.
 
+{{< boilerplate/global-cref dir8X >}}
+
+Related to the {{< lookup/cref DIR8 >}} constants, this array and its counterpart {{< lookup/cref dir8Y >}} specify how to change an object's X and Y coordinates to affect a move in the necessary direction. The {{< lookup/cref dir8X >}} and {{< lookup/cref dir8Y >}} elements should be added to an object's X and Y coordinates (respectively).
+
+Symbolic Constant | Value | `dir8X[Value]` | `dir8Y[Value]`
+------------------|-------|----------------|---------------
+`DIR8_STATIONARY` | 0     | 0              | 0
+`DIR8_NORTH`      | 1     | 0              | -1
+`DIR8_NORTHEAST`  | 2     | 1              | -1
+`DIR8_EAST`       | 3     | 1              | 0
+`DIR8_SOUTHEAST`  | 4     | 1              | 1
+`DIR8_SOUTH`      | 5     | 0              | 1
+`DIR8_SOUTHWEST`  | 6     | -1             | 1
+`DIR8_WEST`       | 7     | -1             | 0
+`DIR8_NORTHWEST`  | 8     | -1             | -1
+
+{{< boilerplate/global-cref dir8Y >}}
+
+See {{< lookup/cref dir8X >}} for details.
+
 {{< boilerplate/global-cref drawPageNumber >}}
 
 During gameplay (where double-buffering is used) {{< lookup/cref activePage >}} will usually hold the opposite value, preventing changes from becoming visible on the screen until the pages are flipped.
@@ -354,6 +415,10 @@ During gameplay (where double-buffering is used) {{< lookup/cref activePage >}} 
 {{< boilerplate/global-cref enableSpeaker >}}
 
 {{< boilerplate/global-cref fontTileData >}}
+
+{{< boilerplate/global-cref fountains >}}
+
+Each element of this array is a {{< lookup/cref Fountain >}} structure. The array size is bounded by the {{< lookup/cref MAX_FOUNTAINS >}} constant.
 
 {{< boilerplate/global-cref fullscreenImageNames >}}
 
@@ -643,6 +708,10 @@ Once the end of the palette table has been reached (as indicated by encountering
 
 {{< boilerplate/global-cref pit0Value >}}
 
+{{< boilerplate/global-cref platforms >}}
+
+Each element of this array is a {{< lookup/cref Platform >}} structure. The array size is bounded by the {{< lookup/cref MAX_PLATFORMS >}} constant.
+
 {{< boilerplate/global-cref playerBaseFrame >}}
 
 This should always contain one of the {{< lookup/cref PLAYER_BASE >}} values, and represents the number of player sprite frames that must be skipped over to index the appropriately-oriented version of a player sprite. (Left-facing frames require an offset of zero, while an equivalent right-facing frame requires an offset of 23.) When combined with the value in {{< lookup/cref playerFrame >}}, the correct sprite frame is identified.
@@ -726,6 +795,12 @@ This is modified during calls to {{< lookup/cref SetPIT0Value >}}, and takes the
 
 {{< boilerplate/global-cref playerInfoData >}}
 
+This points to [tile info data]({{< relref "tile-info-format" >}}) which has been read directly from disk. No processing is done to pre-parse this data.
+
+{{< boilerplate/global-cref playerPushDir >}}
+
+This should be set to one of the {{< lookup/cref DIR8 >}} constants.
+
 {{< boilerplate/global-cref playerPushFrame >}}
 
 When the player is pushed by actors, this will be set to one of the "force-pushed" frames based on the relative position of the actor. In pipe systems, this will be {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}} to temporarily remove the player from the map.
@@ -733,6 +808,10 @@ When the player is pushed by actors, this will be set to one of the "force-pushe
 {{< boilerplate/global-cref playerTileData >}}
 
 This block is used to hold the [masked tile image data]({{< relref "tile-image-format#masked-tiles" >}}) that the player's sprites are built from.
+
+{{< boilerplate/global-cref playerX >}}
+
+{{< boilerplate/global-cref playerY >}}
 
 {{< boilerplate/global-cref pounceHintState >}}
 

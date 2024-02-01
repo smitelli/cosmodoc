@@ -104,7 +104,7 @@ The first two bytes in the [map file format]({{< relref "map-format" >}}) are [m
 
 {{< lookup/cref StopMusic >}} stops any menu or in-game music that might be playing. It has to happen somewhere, may as well be here.
 
-Next, the {{< lookup/cref mapVariables >}} are decoded. The 16-bit value is packed according to the [map variables]({{< relref "map-format#map-variables-word" >}}) table, and its bit fields are extracted into the boolean {{< lookup/cref hasRain >}}, {{< lookup/cref hasHScrollBackdrop >}}, and {{< lookup/cref hasVScrollBackdrop >}} variables, while the numeric fields are stored in `bdnum`, {{< lookup/cref paletteAnimationNum >}}, and {{< lookup/cref musicNum >}}. The `bdnum ` variable contains the map's backdrop number, which is handled locally and does not get stored in any global variables here.
+Next, the {{< lookup/cref mapVariables >}} are decoded. The 16-bit value is packed according to the [map variables]({{< relref "map-format#map-variables-word" >}}) table, and its bit fields are extracted into the boolean {{< lookup/cref hasRain >}}, {{< lookup/cref hasHScrollBackdrop >}}, and {{< lookup/cref hasVScrollBackdrop >}} variables, while the numeric fields are stored in `bdnum`, {{< lookup/cref paletteAnimationNum >}}, and {{< lookup/cref musicNum >}}. The `bdnum` variable contains the map's backdrop number, which is handled locally and does not get stored in any global variables here.
 
 ```c
     InitializeMapGlobals();

@@ -2,7 +2,7 @@
 title = "Map Database"
 linkTitle = "Maps"
 description = "A table containing the parsed header data from each map file of the game."
-weight = 510
+weight = 540
 +++
 
 # Map Database

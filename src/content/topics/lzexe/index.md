@@ -368,9 +368,9 @@ Fortunately, computers are full of true/false flags, and they're called bits. Us
 
 This part gets a little abstruse.
 
-The decompressor maintains a flag buffer containing one 16-bit word. Initially this buffer is empty. Whenever the buffer is empty and a new bit is requested, it _immediately_ reads two bytes from the compressed data (as a little-endian word) and replenishes the buffer before returning a value. This means that the read position in the compressed data can be advanced by two bytes _at any time_ and _without any predictable pattern_ based on the needs of the flag buffer. This also means that the compressor needs to keep track of what will be stored in a decompressor's flag buffer at every step of the decompression stage, and insert two flag bytes in the compressed data stream _precisely_ when and where the decompressor will need them.
+The decompressor maintains a flag buffer containing one 16-bit word. Initially this buffer is empty. Whenever the buffer is empty and a new bit is requested, the decompressor _immediately_ reads two bytes from the compressed data (as a little-endian word) and replenishes the buffer before returning a value. This means that the read position in the compressed data can be advanced by two bytes _at any time_ and _without any predictable pattern_ based on the needs of the flag buffer. This also means that the compressor needs to keep track of what will be stored in a decompressor's flag buffer at every step of the decompression stage, and insert two flag bytes in the compressed data stream _precisely_ when and where the decompressor will need them.
 
-Individual flag **codewords** can occupy 1, 2, or 4 bits and have no intrinsic alignment. They are simply stuffed into the first place where they will fit, and could even be split across a byte boundary. The prefix bytes of each codeword form a trivial Huffman coding scheme, where no codeword appears as the prefix of any other codeword.
+Individual flag **codewords** can occupy 1, 2, or 4 bits and have no intrinsic alignment. They are simply stuffed into the first place where they will fit, and could even be split across a byte boundary. The prefix bits of each codeword form a trivial Huffman coding scheme, where no codeword appears as the prefix of any other codeword.
 
 The bit encodings are as follows:
 

@@ -1,7 +1,7 @@
 +++
 title = "Acknowledgments"
 description = "A listing of all resources consulted while researching and writing this site."
-weight = 630
+weight = 660
 +++
 
 # Acknowledgments
