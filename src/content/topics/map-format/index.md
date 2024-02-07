@@ -49,15 +49,15 @@ The parenthetical number ranges indicate the smallest and largest values that ca
 
 The game world size is conceptually fixed at 32,768 tiles&sup2; regardless of the actual dimensions, so the height of the map is constrained by the width. There are a limited number of width values that the game implements:
 
-Width (Tiles) | Height (Tiles) | Notes
---------------|----------------|------
-32            | 1,024          | Not used; width is too small to fill the screen entirely.
-64            | 512            |
-128           | 256            |
-256           | 128            |
-512           | 64             |
-1,024         | 32             | Not used.
-2,048         | 16             | Not used; height is too small to fill the screen entirely.
+Width (Tiles) | Height (Tiles) | {{< lookup/cref mapYPower >}} | Notes
+--------------|----------------|-------------------------------|------
+32            | 1,024          | 5                             | Not used; width is too small to fill the screen entirely.
+64            | 512            | 6                             |
+128           | 256            | 7                             |
+256           | 128            | 8                             |
+512           | 64             | 9                             |
+1,024         | 32             | 10                            | Not used.
+2,048         | 16             | 11                            | Not used; height is too small to fill the screen entirely.
 
 Smaller factors of 32,768, while expressible in the map file format, are not implemented by the game and will not work correctly. Non-factors of 32,768 could also be expressed, and will _certainly_ break things.
 

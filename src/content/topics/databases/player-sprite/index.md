@@ -2,7 +2,7 @@
 title = "Player Sprite Database"
 linkTitle = "Player Sprites"
 description = "A table containing information about each player sprite set in the game."
-weight = 620
+weight = 660
 +++
 
 # Player Sprite Database

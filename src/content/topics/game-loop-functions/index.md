@@ -294,7 +294,7 @@ This function contains no logic and behaves identically in every context where i
 * {{< lookup/cref winGame >}} is set to false, ensuring that the player must reach an episode-specific goal to complete the game and see the end story.
 * {{< lookup/cref playerClingDir >}} is set to {{< lookup/cref name="DIR4" text="DIR4_NONE" >}}, indicating that the player is not currently clinging to any walls. In this state, the player is standing on solid ground (or possibly free-falling toward it).
 * {{< lookup/cref isPlayerFalling >}} is set to true, which simplifies the interaction between the player's starting position and the various movement variables that control the player. The game assumes that the player starts every map in empty space, ready to free-fall. Whenever the player is free-falling, the {{< lookup/cref MovePlayer >}} function continually tries to pull the player down until they land on a solid map tile. If the player's start position should happen to be on such a map tile already, the free-fall will be canceled and the player will be switched to a standing state immediately.
-* {{< lookup/cref cmdJumpLatch >}} = true <!-- TODO continue these -->
+* {{< lookup/cref cmdJumpLatch >}} = true <!-- TODO Continue describing map global initialization -->
 * {{< lookup/cref playerJumpTime >}} = 0
 * {{< lookup/cref playerFallTime >}} = 1
 * {{< lookup/cref isPlayerRecoiling >}} = false

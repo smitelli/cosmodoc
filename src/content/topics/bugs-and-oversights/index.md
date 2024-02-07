@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 480
+weight = 520
 +++
 
 # Bugs and Oversights
@@ -10,11 +10,11 @@ For all the time and attention paid to the game by its developers and testers, t
 
 This is the listing of every oversight I discovered during the course of my research.
 
-{{< table-of-contents >}}
+## Player cannot fall off the map in E2M6.
 
-## Player cannot fall off the map in E2L6.
+<!-- TODO Continue describing bugs -->
 
-## E2L10 can be won by dying near the top of the map.
+## E2M10 can be won by dying near the top of the map.
 
 ## Joystick buttons are reversed.
 
@@ -40,7 +40,13 @@ This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 
 ## Rain spawns one tile lower in the game window than it should.
 
+## Certain shards have a tendency to enter and then hop up walls.
+
 ## Off-screen {{< lookup/actor type=47 plural=true >}} can make sound.
+
+## Certain decorations can disappear prematurely near the left or bottom screen edges.
+
+The sprite visibility check in {{< lookup/cref MoveAndDrawDecorations >}} calculates sprite dimensions incorrectly, [causing certain decorations to expire while still partially on the screen.]({{< relref "decoration-functions#sprite-visibility-bug" >}})
 
 ## `.SVT` file is not deleted if the write path was overridden.
 
@@ -50,7 +56,7 @@ This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 
 ## Sparkly prizes are drawn flipped.
 
-## Two unused actors in E1L8.
+## Two unused actors in E1M8.
 
 Both are map actor type 22. First is at position 62, 63 and the second is at position 61, 64. They are ignored when loading the map.
 
@@ -70,4 +76,4 @@ The full details are on [a separate page]({{< relref "unused-actors" >}}).
 
 ## Wait spinner placement is inconsistent in Cosmo/Duke conversation.
 
-## Hitch block in E1L5 at 19, 101.
+## Hitch block in E1M5 at 19, 101.

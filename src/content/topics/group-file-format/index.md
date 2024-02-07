@@ -147,19 +147,19 @@ Entry Name   | Offset (Bytes) | Size (Bytes) | Description
 -------------|----------------|--------------|------------
 TITLE1.MNI   | 4,000          | 32,000       | Full-screen image: "Forbidden Planet - Adventure 1 of 3"
 END1.MNI     | 36,000         | 32,000       | Full-screen image: Cosmo falling toward {{< lookup/actor type=247 strip=true >}}.
-A1.MNI       | 68,000         | 67,154       | Map data: E1L1.
-A2.MNI       | 135,154        | 67,418       | Map data: E1L2.
-A3.MNI       | 202,572        | 67,262       | Map data: E1L3.
-A5.MNI       | 269,834        | 67,904       | Map data: E1L5.
-A6.MNI       | 337,738        | 66,884       | Map data: E1L6.
-A9.MNI       | 404,622        | 66,752       | Map data: E1L9.
-A10.MNI      | 471,374        | 68,156       | Map data: E1L10.
-A11.MNI      | 539,530        | 65,984       | Map data: E1L11 (deep pit with {{< lookup/actor type=247 strip=true >}} at bottom).
-A7.MNI       | 605,514        | 67,700       | Map data: E1L7.
-A8.MNI       | 673,214        | 67,502       | Map data: E1L8.
+A1.MNI       | 68,000         | 67,154       | Map data: E1M1.
+A2.MNI       | 135,154        | 67,418       | Map data: E1M2.
+A3.MNI       | 202,572        | 67,262       | Map data: E1M3.
+A5.MNI       | 269,834        | 67,904       | Map data: E1M5.
+A6.MNI       | 337,738        | 66,884       | Map data: E1M6.
+A9.MNI       | 404,622        | 66,752       | Map data: E1M9.
+A10.MNI      | 471,374        | 68,156       | Map data: E1M10.
+A11.MNI      | 539,530        | 65,984       | Map data: E1M11 (deep pit with {{< lookup/actor type=247 strip=true >}} at bottom).
+A7.MNI       | 605,514        | 67,700       | Map data: E1M7.
+A8.MNI       | 673,214        | 67,502       | Map data: E1M8.
 BONUS1.MNI   | 740,716        | 66,794       | Map data: Bonus stage (tall).
 BONUS2.MNI   | 807,510        | 67,580       | Map data: Bonus stage (wide).
-A4.MNI       | 875,090        | 67,004       | Map data: E1L4.
+A4.MNI       | 875,090        | 67,004       | Map data: E1M4.
 BDWIERD.MNI  | 942,094        | 23,040       | Backdrop image: {{< lookup/backdrop 6 >}}
 BDNEWSKY.MNI | 965,134        | 23,040       | Backdrop image: {{< lookup/backdrop 11 >}}
 BDFOREST.MNI | 988,174        | 23,040       | Backdrop image: {{< lookup/backdrop 14 >}}
@@ -191,18 +191,18 @@ Entry Name   | Offset (Bytes) | Size (Bytes) | Description
 TITLE2.MNI   | 4,000          | 32,000       | Full-screen image: "Forbidden Planet - Adventure 2 of 3"
 END2.MNI     | 36,000         | 32,000       | Full-screen image: Cosmo overlooking a city at night.
 BONUS3.MNI   | 68,000         | 66,134       | Map data: Bonus stage (wide).
-B1.MNI       | 134,134        | 65,984       | Map data: E2L1. Identical copy of A11.MNI from COSMO1.VOL.
-B2.MNI       | 200,118        | 67,256       | Map data: E2L2.
-B3.MNI       | 267,374        | 67,520       | Map data: E2L3.
-B4.MNI       | 334,894        | 67,004       | Map data: E2L4.
-B5.MNI       | 401,898        | 67,370       | Map data: E2L5.
-B6.MNI       | 469,268        | 67,514       | Map data: E2L6.
-B7.MNI       | 536,782        | 66,896       | Map data: E2L7.
-B8.MNI       | 603,678        | 67,154       | Map data: E2L8.
+B1.MNI       | 134,134        | 65,984       | Map data: E2M1. Identical copy of A11.MNI from COSMO1.VOL.
+B2.MNI       | 200,118        | 67,256       | Map data: E2M2.
+B3.MNI       | 267,374        | 67,520       | Map data: E2M3.
+B4.MNI       | 334,894        | 67,004       | Map data: E2M4.
+B5.MNI       | 401,898        | 67,370       | Map data: E2M5.
+B6.MNI       | 469,268        | 67,514       | Map data: E2M6.
+B7.MNI       | 536,782        | 66,896       | Map data: E2M7.
+B8.MNI       | 603,678        | 67,154       | Map data: E2M8.
 BONUS4.MNI   | 670,832        | 67,160       | Map data: Bonus stage (tall).
 MCAVES.MNI   | 737,992        | 17,080       | AdLib music: {{< lookup/music 0 >}}
-B9.MNI       | 755,072        | 66,842       | Map data: E2L9.
-B10.MNI      | 821,914        | 67,616       | Map data: E2L10.
+B9.MNI       | 755,072        | 66,842       | Map data: E2M9.
+B10.MNI      | 821,914        | 67,616       | Map data: E2M10.
 MSCARRY.MNI  | 889,530        | 17,012       | AdLib music: {{< lookup/music 1 >}}
 MTEKWRD.MNI  | 906,542        | 25,924       | AdLib music: {{< lookup/music 5 >}}
 MBELLS.MNI   | 932,466        | 14,284       | AdLib music: {{< lookup/music 11 >}}
@@ -240,16 +240,16 @@ Entry Name   | Offset (Bytes) | Size (Bytes) | Description
 -------------|----------------|--------------|------------
 TITLE3.MNI   | 4,000          | 32,000       | Full-screen image: "Forbidden Planet - Adventure 3 of 3"
 END3.MNI     | 36,000         | 32,000       | Full-screen image: Cosmo on a roller coaster with other children.
-C4.MNI       | 68,000         | 68,318       | Map data: E3L4.
-C1.MNI       | 136,318        | 66,932       | Map data: E3L1.
-C2.MNI       | 203,250        | 67,202       | Map data: E3L2.
-C3.MNI       | 270,452        | 67,874       | Map data: E3L3.
-C5.MNI       | 338,326        | 67,448       | Map data: E3L5.
-C6.MNI       | 405,774        | 67,478       | Map data: E3L6.
-C7.MNI       | 473,252        | 67,388       | Map data: E3L7.
-C8.MNI       | 540,640        | 67,952       | Map data: E3L8.
+C4.MNI       | 68,000         | 68,318       | Map data: E3M4.
+C1.MNI       | 136,318        | 66,932       | Map data: E3M1.
+C2.MNI       | 203,250        | 67,202       | Map data: E3M2.
+C3.MNI       | 270,452        | 67,874       | Map data: E3M3.
+C5.MNI       | 338,326        | 67,448       | Map data: E3M5.
+C6.MNI       | 405,774        | 67,478       | Map data: E3M6.
+C7.MNI       | 473,252        | 67,388       | Map data: E3M7.
+C8.MNI       | 540,640        | 67,952       | Map data: E3M8.
 BONUS5.MNI   | 608,592        | 66,248       | Map data: Bonus stage (contains "HI!" message).
-C9.MNI       | 674,840        | 66,812       | Map data: E3L9.
+C9.MNI       | 674,840        | 66,812       | Map data: E3M9.
 BONUS6.MNI   | 741,652        | 67,220       | Map data: Bonus stage (looks like Dig Dug).
 BDPIPE.MNI   | 808,872        | 23,040       | Backdrop image: {{< lookup/backdrop 1 >}}
 BDTECHMS.MNI | 831,912        | 23,040       | Backdrop image: {{< lookup/backdrop 10 >}}
@@ -257,7 +257,7 @@ BDBRKTEC.MNI | 854,952        | 23,040       | Backdrop image: {{< lookup/backdr
 BDFUTCTY.MNI | 877,992        | 23,040       | Backdrop image: {{< lookup/backdrop 19 >}}
 BDCRYSTL.MNI | 901,032        | 23,040       | Backdrop image: {{< lookup/backdrop 23 >}}
 BDCIRCPC.MNI | 924,072        | 23,040       | Backdrop image: {{< lookup/backdrop 25 >}}
-C10.MNI      | 947,112        | 65,918       | Map data: E3L10.
+C10.MNI      | 947,112        | 65,918       | Map data: E3M10.
 MEASYLEV.MNI | 1,013,030      | 14,168       | AdLib music: {{< lookup/music 6 >}}
 MZZTOP.MNI   | 1,027,198      | 25,152       | AdLib music: {{< lookup/music 18 >}}
 MSCARRY.MNI  | 1,052,350      | 17,012       | AdLib music: {{< lookup/music 1 >}}
@@ -300,4 +300,4 @@ If you look at what's actually in the VOL files, you'll notice there aren't any 
 
 Episode one didn't have the {{< lookup/actor 101 >}}, for instance. Or the {{< lookup/actor 221 >}}. It also did not have any story screens that showed cartoons of Cosmo jumping through a cave ceiling or speaking to Zonk. Nobody playing episode one should have encountered any of these, and yet all the graphical data that supported these elements was on the shareware disk.
 
-Similarly, episodes two and three didn't have the Cosmo family's ship from the beginning of E1L1. Episode two didn't have the {{< lookup/actor 102 >}}. The nontrivial amount of tiles needed to build these are nestled snugly in the STN file regardless, seemingly unaware that nobody ever intended to use them in these episodes.
+Similarly, episodes two and three didn't have the Cosmo family's ship from the beginning of E1M1. Episode two didn't have the {{< lookup/actor 102 >}}. The nontrivial amount of tiles needed to build these are nestled snugly in the STN file regardless, seemingly unaware that nobody ever intended to use them in these episodes.

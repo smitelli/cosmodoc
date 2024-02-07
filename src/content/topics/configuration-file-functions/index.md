@@ -182,7 +182,7 @@ Once the high score table has been fully written, {{< lookup/cref fclose >}} cle
 
 {{< boilerplate/function-cref JoinPath >}}
 
-The {{< lookup/cref JoinPath >}} function combines a string `dir` with a string `file`, creating and returning  an absolute pathname. Typically `dir` will be a directory on disk like "C:\MYDIR" while `file` will have the form "MYFILE.EXT." The final joined path would be "C:\MYDIR\MYFILE.EXT."
+The {{< lookup/cref JoinPath >}} function combines a string `dir` with a string `file`, creating and returning an absolute pathname. Typically `dir` will be a directory on disk like "C:\MYDIR" while `file` will have the form "MYFILE.EXT." The final joined path would be "C:\MYDIR\MYFILE.EXT."
 
 This function is used when loading and saving both [configuration files]({{< relref "configuration-file-format" >}}) and [save files]({{< relref "save-file-format" >}}), to combine the filename with the [write path]({{< relref "main-and-outer-loop#write-path" >}}).
 

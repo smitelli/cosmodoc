@@ -63,7 +63,7 @@ If the player is standing on a tile with its "slippery" attribute set to `1`, an
 
 ### In-Front
 
-If a tile has its "in-front" attribute set to `1`, _most_ sprites will not draw over it. The exceptions tend to be things like decorative effects and the player's death animation.
+If a tile has its "in-front" attribute set to `1`, _most_ sprites will not draw over it. The exceptions tend to be things like score effects and the player's death animation.
 
 ### Auto-Ascend
 

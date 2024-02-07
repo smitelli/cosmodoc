@@ -1,7 +1,7 @@
 +++
 title = "Unused Actors"
 description = "A list of defined actor types that never appear in the game."
-weight = 500
+weight = 540
 +++
 
 # Unused Actors
@@ -16,7 +16,7 @@ There does not appear to be a way to get any of these actor types to occur natur
 
 Actor Type | Description              | Usability  | Notes
 -----------|--------------------------|------------|------
-0          | {{< lookup/actor 0 >}}   | Weird      | The implementation suggests that this should spawn another actor of type 0, in essence yielding a fresh copy of itself. Instead it does nothing because spawner type 0 is used to mark a spawner slot as being "dead," therefore it never runs to the point where a new actor is created.
+0          | {{< lookup/actor 0 >}}   | Buggy      | The implementation suggests that this should spawn another actor of type 0, in essence yielding a fresh copy of itself. Instead it does nothing because spawner type 0 is used to mark a spawner slot as being inactive, therefore it never runs to the point where a new actor is created.
 22         | {{< lookup/actor 22 >}}  | Functional | Works like {{< lookup/actor 20 >}}.
 40         | {{< lookup/actor 40 >}}  | Functional | Works like {{< lookup/actor 41 >}}, but remains stationary in the _retracted_ position.
 53         | {{< lookup/actor 53 >}}  | Functional | Basket is not used, although its contents -- {{< lookup/actor 136 >}} -- are.
@@ -30,12 +30,12 @@ Actor Type | Description              | Usability  | Notes
 183        | {{< lookup/actor 183 >}} | Functional | Works like all other Floating Scores. Although there are a handful of actor types that award 6,400 points when bombed, none of them create a Floating Score.
 251        | {{< lookup/actor 251 >}} | Buggy      | Works like {{< lookup/actor 25 >}}, however the "always active" flag is set. This is appropriate when hidden inside a Barrel, but probably not for direct inclusion in a map -- the actor will continually hop towards the player's location until it either gets stuck in a corner or falls off the map long before the player encounters the location where it was originally placed.
 256        | {{< lookup/actor 256 >}} | Buggy      | None of the episodes implement {{< lookup/actor 256 >}}. When the player touches any unimplemented Hint Globe, the notification sound plays, gameplay pauses for a short time, no text window is displayed and then gameplay resumes.
-257        | {{< lookup/actor 257 >}} | Buggy      | None of the episodes implement {{< lookup/actor 257 >}}.
-258        | {{< lookup/actor 258 >}} | Buggy      | None of the episodes implement {{< lookup/actor 258 >}}.
-259        | {{< lookup/actor 259 >}} | Buggy      | None of the episodes implement {{< lookup/actor 259 >}}.
-260        | {{< lookup/actor 260 >}} | Buggy      | None of the episodes implement {{< lookup/actor 260 >}}.
-261        | {{< lookup/actor 261 >}} | Buggy      | None of the episodes implement {{< lookup/actor 261 >}}.
-262        | {{< lookup/actor 262 >}} | Buggy      | None of the episodes implement {{< lookup/actor 262 >}}.
+257        | {{< lookup/actor 257 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
+258        | {{< lookup/actor 258 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
+259        | {{< lookup/actor 259 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
+260        | {{< lookup/actor 260 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
+261        | {{< lookup/actor 261 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
+262        | {{< lookup/actor 262 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
 
 ## Only Appear in Barrels/Baskets
 

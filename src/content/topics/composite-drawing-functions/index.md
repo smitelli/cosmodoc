@@ -30,13 +30,13 @@ Drawing order, however, proceeds in the usual left-to-right, top-to-bottom row-m
 
 {{< boilerplate/function-cref DrawSprite >}}
 
-The {{< lookup/cref DrawSprite >}} function draws a sprite of the provided `sprite` type and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance, and should be one of the {{< lookup/cref DRAW_MODE >}} constants.
+The {{< lookup/cref DrawSprite >}} function draws a sprite of the provided `sprite_type` and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance, and should be one of the {{< lookup/cref DRAW_MODE >}} constants.
 
 In most calls, `x_origin` and `y_origin` are measured relative to the game world, which is several hundred tiles in both dimensions. The screen's current scroll position is subtracted from each value to convert these positions into screen space. When `mode` is set to {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}}, the origin values are used directly as screen coordinates.
 
 ```c
 void DrawSprite(
-    word sprite, word frame, word x_origin, word y_origin, word mode
+    word sprite_type, word frame, word x_origin, word y_origin, word mode
 ) {
     word x = x_origin;
     word y;
@@ -67,7 +67,7 @@ The call to {{< lookup/cref "EGA_MODE_DEFAULT" >}} puts the EGA hardware into it
 This call is necessary because the solid tiles are drawn in a different write mode, but there is no real "ownership" of this setting in the game's code. Sometimes this function is entered with the appropriate EGA write mode, and sometimes not. It all depends on when this function is being called relative to all the other areas of the code that could draw a tile. A sometimes-redundant call is safer than potentially drawing corrupted sprite data.
 
 ```c
-    offset = *(actorInfoData + sprite) + (frame * 4);
+    offset = *(actorInfoData + sprite_type) + (frame * 4);
     height = *(actorInfoData + offset);
     width = *(actorInfoData + offset + 1);
 
@@ -75,7 +75,7 @@ This call is necessary because the solid tiles are drawn in a different write mo
         *(actorInfoData + offset + 2);
 ```
 
-Here the [tile info file]({{< relref "tile-info-format" >}}) is parsed, translating the passed `sprite` and `frame` values into a pointer to the actual image data. {{< lookup/cref actorInfoData >}} is a `word` pointer that begins with a list of offsets to frame zero of each sprite type, followed by the four-word frame structures that comprise the sprite. `*(actorInfoData + sprite)` is the word offset to the structure for zeroth frame of `sprite`. Each frame structure is packed contiguously, so adding `(frame * 4)` skips to the offset of the structure for `frame`. The final offset to the frame structure is stored in `offset`.
+Here the [tile info file]({{< relref "tile-info-format" >}}) is parsed, translating the passed `sprite_type` and `frame` values into a pointer to the actual image data. {{< lookup/cref actorInfoData >}} is a `word` pointer that begins with a list of offsets to frame zero of each sprite type, followed by the four-word frame structures that comprise the sprite. `*(actorInfoData + sprite_type)` is the word offset to the structure for zeroth frame of `sprite_type`. Each frame structure is packed contiguously, so adding `(frame * 4)` skips to the offset of the structure for `frame`. The final offset to the frame structure is stored in `offset`.
 
 The first word referenced by `offset` contains the `height` of the sprite, and the next word at `offset + 1` contains the `width`.
 
@@ -461,3 +461,43 @@ infront:
 ```
 
 This loop is identical to the "default" case, but without the {{< lookup/cref TILE_IN_FRONT >}} test. This causes the player to be drawn in front of all map tiles, such as when the player becomes dead and floats off the top of the screen.
+
+{{< boilerplate/function-cref IsSpriteVisible >}}
+
+The {{< lookup/cref IsSpriteVisible >}} function returns true if the provided `sprite_type` and `frame` located at `x_origin` and `y_origin` is at least partially visible within the scrolling game window. The return value is true if at least one tile belonging to the sprite is located within the screen boundary (even if that tile does not contain any visible pixels).
+
+```c
+bool IsSpriteVisible(
+    word sprite_type, word frame, word x_origin, word y_origin
+) {
+    register word width, height;
+    word offset = *(actorInfoData + sprite_type) + (frame * 4);
+
+    height = *(actorInfoData + offset);
+    width = *(actorInfoData + offset + 1);
+
+    return (
+        (scrollX <= x_origin && scrollX + SCROLLW > x_origin) ||
+        (scrollX >= x_origin && x_origin + width > scrollX)
+    ) && (
+        (
+            scrollY + SCROLLH > (y_origin - height) + 1 &&
+            scrollY + SCROLLH <= y_origin
+        ) || (y_origin >= scrollY && scrollY + SCROLLH > y_origin)
+    );
+}
+```
+
+`sprite_type` and `frame` are interpreted in the same manner as {{< lookup/cref DrawSprite >}} with the ultimate goal of discovering the `height` and `width` of the passed sprite, in tiles.
+
+The actual comparison happens in a big blob of a `return` expression, with the horizontal tests in the first half and the vertical tests following.
+
+Horizontally, when the sprite's `x_origin` is to the right of the screen's left edge ({{< lookup/cref scrollX >}}), that `x_origin` must also be to the left of the screen's right edge ({{< lookup/cref scrollX >}} + {{< lookup/cref SCROLLW >}}) to have any possibility of being on the screen.
+
+When the sprite's `x_origin` is to the left of the screen's left edge ({{< lookup/cref scrollX >}}), the sprite's origin is off the screen but portions of the sprite might still be in view. The sprite's right edge (`x_origin` + `width`) will end up to the right of the screen's left edge if so.
+
+The vertical tests are similar although the order of operations is a bit different. In cases where the sprite's `y_origin` is below the bottom edge of the screen ({{< lookup/cref scrollY >}} + {{< lookup/cref SCROLLH >}}), the sprite may still be partially visible whenever its top row of tiles ([`y_origin` - `height`] + 1) is above the bottom edge of the screen.
+
+When the sprite's `y_origin` is above the bottom edge of the screen ({{< lookup/cref scrollY >}} + {{< lookup/cref SCROLLH >}}), it must also be below or equal to the top row of tiles on the screen ({{< lookup/cref scrollY >}}) to be visible.
+
+If at least one horizontal and one vertical test passes, the sprite is located in a position where it can be seen on the screen and a true value is returned by the function. Otherwise the sprite is too far outside the bounds of the screen to be visible, producing a false return.

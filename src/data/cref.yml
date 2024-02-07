@@ -352,7 +352,11 @@ AnimatePalette:
   def: void AnimatePalette(void);
   desc: Cycles through any palette animations that have been requested by the map.
   ref: /topics/c-drawing-functions/#AnimatePalette
-#CanBeExploded:
+CanExplode:
+  text: CanExplode()
+  def: bool CanExplode(word sprite_type, word frame, word x_origin, word y_origin);
+  desc: Returns true if a sprite (consisting of a `sprite_type` and a `frame`) is able to be destroyed by any explosion. If so, destruction shards and effects are inserted at (`x_origin`, `y_origin`) and points are awarded to the score, but the target actor is not destroyed.
+  ref: /topics/entities/explosion-functions/#CanExplode
 #CanSuctionWalkerFlip:
 CheckHighScoreAndShow:
   text: CheckHighScoreAndShow()
@@ -391,7 +395,11 @@ DrawCartoon:
   def: void DrawCartoon(byte frame, word x_origin, word y_origin);
   desc: Draws a cartoon having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
   ref: /topics/composite-drawing-functions/#DrawCartoon
-#DrawExplosions:
+DrawExplosions:
+  text: DrawExplosions()
+  def: void DrawExplosions(void);
+  desc: Draws the animation sequence for each active explosion, along with the starting/ending decorations and the flashing palette effect if enabled. This function will cause the player to become hurt if they are in close proximity to any active explosions.
+  ref: /topics/entities/explosion-functions/#DrawExplosions
 DrawFountains:
   text: DrawFountains()
   def: void DrawFountains(void);
@@ -459,8 +467,8 @@ DrawSolidTile:
   ref: /topics/assembly-drawing-functions/#DrawSolidTile
 DrawSprite:
   text: DrawSprite()
-  def: void DrawSprite(word sprite, word frame, word x_origin, word y_origin, word mode);
-  desc: Draws a sprite of the provided `sprite` type and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance.
+  def: void DrawSprite(word sprite_type, word frame, word x_origin, word y_origin, word mode);
+  desc: Draws a sprite of the provided `sprite_type` and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance.
   ref: /topics/composite-drawing-functions/#DrawSprite
 DrawSpriteTile:
   text: DrawSpriteTile()
@@ -489,23 +497,23 @@ DrawStaticGameScreen:
   ref: /topics/status-bar-functions/#DrawStaticGameScreen
 DrawStatusBarBombs:
   text: DrawStatusBarBombs()
-  def: void DrawStatusBarBombs(word x, word y);
-  desc: Updates the "bombs" counter in the status bar. Requires `x` and `y` for positioning, which anchors the single digit at an absolute tile position on the screen.
+  def: void DrawStatusBarBombs(word x_origin, word y_origin);
+  desc: Updates the "bombs" counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the single digit at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarBombs
 DrawStatusBarHealth:
   text: DrawStatusBarHealth()
-  def: void DrawStatusBarHealth(word x, word y);
-  desc: Updates the health bars in the status bar. Requires `x` and `y` for positioning, which anchors the top of the rightmost bar at an absolute tile position on the screen.
+  def: void DrawStatusBarHealth(word x_origin, word y_origin);
+  desc: Updates the health bars in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the top of the rightmost bar at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarHealth
 DrawStatusBarScore:
   text: DrawStatusBarScore()
-  def: void DrawStatusBarScore(dword add_points, word x, word y);
-  desc: Increments the player's score by `add_points` then updates the score counter in the status bar. Requires `x` and `y` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
+  def: void DrawStatusBarScore(dword add_points, word x_origin, word y_origin);
+  desc: Increments the player's score by `add_points` then updates the score counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarScore
 DrawStatusBarStars:
   text: DrawStatusBarStars()
-  def: void DrawStatusBarStars(word x, word y);
-  desc: Updates the "stars" counter in the status bar. Requires `x` and `y` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
+  def: void DrawStatusBarStars(word x_origin, word y_origin);
+  desc: Updates the "stars" counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarStars
 DrawTextFrame:
   text: DrawTextFrame()
@@ -604,13 +612,21 @@ InitializeBackdropTable:
   def: void InitializeBackdropTable(void);
   desc: Fills the `backdropTable[]` array with four identical copies of backdrop tile offset data.
   ref: /topics/backdrop-initialization-functions/#InitializeBackdropTable
-#InitializeDecorations:
+InitializeDecorations:
+  text: InitializeDecorations()
+  def: void InitializeDecorations(void);
+  desc: Clears all of the memory slots used to store decoration state, immediately terminating all incomplete decoration animations and making each slot available for use.
+  ref: /topics/entities/decoration-functions/#InitializeDecorations
 InitializeEpisode:
   text: InitializeEpisode()
   def: void InitializeEpisode(void);
   desc: Sets up the initial values for a few of the episode-related global variables tracked by the game. This sets up the initial score, health, level number, etc. when a new game is started.
   ref: /topics/game-loop-functions/#InitializeEpisode
-#InitializeExplosions:
+InitializeExplosions:
+  text: InitializeExplosions()
+  def: void InitializeExplosions(void);
+  desc: Clears all of the memory slots used to store explosion state, immediately terminating all incomplete explosion animations and making each slot available for use.
+  ref: /topics/entities/explosion-functions/#InitializeExplosions
 InitializeInterruptRate:
   text: InitializeInterruptRate()
   def: void InitializeInterruptRate(void);
@@ -619,15 +635,23 @@ InitializeInterruptRate:
 InitializeLevel:
   text: InitializeLevel()
   def: void InitializeLevel(word level_num);
-  desc: Initialzes all of the global variables and related subsystems for the start (or restart) of the level identified by `level_num`.
+  desc: Initializes all of the global variables and related subsystems for the start (or restart) of the level identified by `level_num`.
   ref: /topics/game-loop-functions/#InitializeLevel
 InitializeMapGlobals:
   text: InitializeMapGlobals()
   def: void InitializeMapGlobals();
   desc: Resets many of the global variables pertaining to player movement and map/actor interactivity.
   ref: /topics/game-loop-functions/#InitializeMapGlobals
-#InitializeShards:
-#InitializeSpawners:
+InitializeShards:
+  text: InitializeShards()
+  def: void InitializeShards(void);
+  desc: Clears all of the memory slots used to store shard state, immediately terminating all incomplete shard animations and making each slot available for use.
+  ref: /topics/shard-functions/#InitializeShards
+InitializeSpawners:
+  text: InitializeSpawners()
+  def: void InitializeSpawners(void);
+  desc: Clears all of the memory slots used to store spawner state, immediately terminating all incomplete spawner animations and making each slot available for use.
+  ref: /topics/spawner-functions/#InitializeSpawners
 InnerMain:
   text: InnerMain()
   def: void InnerMain(int argc, char *argv[]);
@@ -643,14 +667,26 @@ IsAnyKeyDown:
   def: bbool IsAnyKeyDown(void);
   desc: Returns true if any key is currently pressed, without regard to which key it is.
   ref: /topics/keyboard-functions/#IsAnyKeyDown
-#IsIntersecting:
-#IsNearExplosion:
+IsIntersecting:
+  text: IsIntersecting()
+  def: bool IsIntersecting(word sprite1, word frame1, word x1, word y1, word sprite2, word frame2, word x2, word y2);
+  desc: Returns true if one sprite (consisting of a `sprite` type and a `frame`) located at an `x`/`y` position on the map is intersecting any part of a second sprite passed in the same form.
+  ref: /topics/entities/explosion-functions/#IsIntersecting
+IsNearExplosion:
+  text: IsNearExplosion()
+  def: bool IsNearExplosion(word sprite_type, word frame, word x_origin, word y_origin);
+  desc: Returns true if a sprite (consisting of a `sprite_type` and a `frame`) located at (`x_origin`, `y_origin`) is intersecting any active explosion.
+  ref: /topics/entities/explosion-functions/#IsNearExplosion
 IsNewBackdrop:
   text: IsNewBackdrop()
   def: bbool IsNewBackdrop(word backdrop_num);
   desc: Tracks the most recently used backdrop number and horizontal/vertical scroll flags. The scroll flags are read from global variables, but the backdrop number being tested must be passed in `backdrop_num`. Returns true if these have changed since the previous call, or false if none of the tracked variables have changed.
   ref: /topics/backdrop-initialization-functions/#IsNewBackdrop
-#IsSpriteVisible:
+IsSpriteVisible:
+  text: IsSpriteVisible()
+  def: bool IsSpriteVisible(word sprite_type, word frame, word x_origin, word y_origin);
+  desc: Returns true if the provided `sprite_type` and `frame` located at `x_origin` and `y_origin` is at least partially visible within the scrolling game window.
+  ref: /topics/composite-drawing-functions/#IsSpriteVisible
 JoinPath:
   text: JoinPath()
   def: char *JoinPath(char *dir, char *file);
@@ -764,9 +800,21 @@ MAP_CELL_DATA_SHIFTED:
   desc: Looks up the value of a tile at an `x` and `y` position plus an arbitrary shift expression `shift_expr`, all measured in zero-based tiles, from the map data in memory.
   ref: /topics/level-and-map-functions/#MAP_CELL_DATA_SHIFTED
 #MoveAndDrawActors:
-#MoveAndDrawDecorations:
-#MoveAndDrawShards:
-#MoveAndDrawSpawners:
+MoveAndDrawDecorations:
+  text: MoveAndDrawDecorations()
+  def: void MoveAndDrawDecorations(void);
+  desc: Draws, advances the animation step, and moves each decoration currently running, and handles looping and ending conditions.
+  ref: /topics/entities/decoration-functions/#MoveAndDrawDecorations
+MoveAndDrawShards:
+  text: MoveAndDrawShards()
+  def: void MoveAndDrawShards(void);
+  desc: Moves and draws the sprites for all shards that are currently active. When a shard animation ends its slot is marked inactive.
+  ref: /topics/shard-functions/#MoveAndDrawShards
+MoveAndDrawSpawners:
+  text: MoveAndDrawSpawners()
+  def: void MoveAndDrawSpawners(void);
+  desc: Moves and draws the sprites for all spawners that are currently active. When a spawner animation ends (either due to finishing the animation or hitting a solid map tile) its slot is marked inactive and a new actor is created in the spawner's final position.
+  ref: /topics/spawner-functions/#MoveAndDrawSpawners
 MoveFountains:
   text: MoveFountains()
   def: void MoveFountains(void);
@@ -785,11 +833,32 @@ MovePlayerPlatform:
   ref: /topics/entities/platform-functions/#MovePlayerPlatform
 #MovePlayerScooter:
 #NewActor:
-#NewExplosion:
+NewDecoration:
+  text: NewDecoration()
+  def: void NewDecoration(word sprite_type, word num_frames, word x_origin, word y_origin, word dir, word num_times);
+  desc: Creates a new decoration at `x_origin` and `y_origin` consisting of the passed `sprite_type` with an animation duration of `num_frames`. `dir` controls the straight-line direction the decoration will move in, and `num_times` controls how many times the animation sequence will play before ending.
+  ref: /topics/entities/decoration-functions/#NewDecoration
+NewExplosion:
+  text: NewExplosion()
+  def: void NewExplosion(word x_origin, word y_origin);
+  desc: Creates a new instance of an explosion at the passed `x_origin` and `y_origin` map tile coordinates, sets the animation up to run, and plays the explosion sound. The actual location of the explosion sprite will be two tiles lower on the screen than `y_origin` requests.
+  ref: /topics/entities/explosion-functions/#NewExplosion
 #NewMapActor:
-#NewPounceDecoration:
-#NewShard:
-#NewSpawner:
+NewPounceDecoration:
+  text: NewPounceDecoration()
+  def: void NewPounceDecoration(word x, word y);
+  desc: Inserts six decorations representing pieces of pounce debris into the game world, radiating away from the origin point specified in `x` and `y`.
+  ref: /topics/entities/decoration-functions/#NewPounceDecoration
+NewShard:
+  text: NewShard()
+  def: void NewShard(word sprite_type, word frame, word x_origin, word y_origin);
+  desc: Creates a new shard at `x_origin` and `y_origin` consisting of the passed `sprite_type` and `frame`.
+  ref: /topics/shard-functions/#NewShard
+NewSpawner:
+  text: NewSpawner()
+  def: void NewSpawner(word actor_type, word x_origin, word y_origin);
+  desc: Creates a new instance of a spawner at the passed `x_origin` and `y_origin` map tile coordinates and sets the animation up to run. `actor_type` controls both the type of actor that will be created when the spawner completes, and the sprite type that will be drawn while the spawner is running.
+  ref: /topics/spawner-functions/#NewSpawner
 NextLevel:
   text: NextLevel()
   def: void NextLevel(void);
@@ -948,7 +1017,7 @@ SetVideoMode:
 ShowAlteredFileError:
   text: ShowAlteredFileError()
   def: void ShowAlteredFileError(void);
-  desc: Shows when the user tries to load a manipuleted save file whose checksum does not match the expected value.
+  desc: Shows when the user tries to load a manipulated save file whose checksum does not match the expected value.
   ref: /topics/dialog-functions/#ShowAlteredFileError
 ShowBombHint:
   text: ShowBombHint()
@@ -1210,7 +1279,7 @@ ToggleGodMode:
 ToggleMusic:
   text: ToggleMusic()
   def: void ToggleMusic(void);
-  desc: Inverts the setting of the global `isMusicEnabled` variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatable card installed, this function is a no-op.
+  desc: Inverts the setting of the global `isMusicEnabled` variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatible card installed, this function is a no-op.
   ref: /topics/dialog-functions/#ToggleMusic
 ToggleSound:
   text: ToggleSound()
@@ -1609,7 +1678,7 @@ DIR2:
     #define DIR2_NORTH 1
     #define DIR2_WEST  0
     #define DIR2_EAST  1
-  desc: Defines pairs of values for two-way direction systems. "South" and "North" can be negated for a ping-pong movement effect; "east" and "west" can be changed similarly.
+  desc: Defines pairs of values for two-way direction systems. "South" and "north" can be negated for a ping-pong movement effect; "east" and "west" can be changed similarly.
   ref: /topics/global-variables-and-constants/#DIR2
 DIR4:
   text: DIR4_*
@@ -1619,21 +1688,21 @@ DIR4:
     #define DIR4_SOUTH 1
     #define DIR4_WEST  2
     #define DIR4_EAST  3
-  desc: Defines a set of values for a four-way direction system. "North" and "None" map to the same value, but are named differently to clarify the intent where they appear.
+  desc: Defines a set of values for a four-way direction system. "North" and "none" map to the same value, but are named differently to clarify the intent where they appear.
   ref: /topics/global-variables-and-constants/#DIR4
 DIR8:
   text: DIR8_*
   def: |-
-    #define DIR8_STATIONARY 0
-    #define DIR8_NORTH      1
-    #define DIR8_NORTHEAST  2
-    #define DIR8_EAST       3
-    #define DIR8_SOUTHEAST  4
-    #define DIR8_SOUTH      5
-    #define DIR8_SOUTHWEST  6
-    #define DIR8_WEST       7
-    #define DIR8_NORTHWEST  8
-  desc: Defines a set of values for an eight-way direction system. "Stationary," while not technically a direction, is used in places where an object that could move chooses not to.
+    #define DIR8_NONE      0  /* Stationary and/or directionless */
+    #define DIR8_NORTH     1
+    #define DIR8_NORTHEAST 2
+    #define DIR8_EAST      3
+    #define DIR8_SOUTHEAST 4
+    #define DIR8_SOUTH     5
+    #define DIR8_SOUTHWEST 6
+    #define DIR8_WEST      7
+    #define DIR8_NORTHWEST 8
+  desc: Defines a set of values for an eight-way direction system. "None," while not technically a direction, is used in places where an object that could move chooses not to.
   ref: /topics/global-variables-and-constants/#DIR8
 DRAW_MODE:
   text: DRAW_MODE_*
@@ -1647,6 +1716,15 @@ DRAW_MODE:
     #define DRAW_MODE_ABSOLUTE    6
   desc: Defines the drawing modes available for the sprite drawing functions.
   ref: /topics/global-variables-and-constants/#DRAW_MODE
+Decoration:
+  text: Decoration
+  def: |-
+    typedef struct {
+        bool alive;
+        word sprite, numframes, x, y, dir, numtimes;
+    } Decoration;
+  desc: Holds the `x` and `y` position for a single decoration, displayed as a `sprite` type with an associated `numframes` count. The decoration moves in the direction specified by `dir` and loops for `numtimes`. `alive` is true when the the decoration slot is in use.
+  ref: /topics/global-variables-and-constants/#Decoration
 EGA_OFFSET:
   text: EGA_OFFSET_*
   def: |-
@@ -1672,6 +1750,14 @@ END_SCREEN:
     #define END_SCREEN "END3.MNI"  /* episode 3 */
   desc: Defines the group file entry name of the full-screen image to show when the game has been won.
   ref: /topics/global-variables-and-constants/#END_SCREEN
+Explosion:
+  text: Explosion
+  def: |-
+    typedef struct {
+        word age, x, y;
+    } Explosion;
+  desc: Holds the `x` and `y` position for a single explosion. `age` is zero if this explosion slot is inactive, or an incrementing value while the explosion progresses.
+  ref: /topics/global-variables-and-constants/#Explosion
 FILENAME_BASE:
   text: FILENAME_BASE
   def: |-
@@ -1697,13 +1783,7 @@ Fountain:
   text: Fountain
   def: |-
     typedef struct {
-        word x;
-        word y;
-        word dir;
-        word stepcount;
-        word height;
-        word stepmax;
-        word delayleft;
+        word x, y, dir, stepcount, height, stepmax, delayleft;
     } Fountain;
   desc: Holds the `x` and `y` position for a single fountain. The remaining structure values track the movement direction and height.
   ref: /topics/global-variables-and-constants/#Fountain
@@ -1754,8 +1834,7 @@ JoystickState:
   text: JoystickState
   def: |-
     typedef struct {
-        bool button1;
-        bool button2;
+        bool button1, button2;
     } JoystickState;
   desc: Holds the state of two buttons (`button1` and `button2`) on a single joystick. The values are true if the corresponding button is currently pressed, or false if it is unpressed.
   ref: /topics/global-variables-and-constants/#JoystickState
@@ -1778,18 +1857,25 @@ Light:
   text: Light
   def: |-
     typedef struct {
-        word side;
-        word x;
-        word y;
-        word junk;  /* unused; required to keep struct padding correct */
+        word side, x, y;
     } Light;
-  desc: Holds the `x` position, `y` position, and type (expressed as a `side`) of a light actor. The `junk` member is unused and only serves to pad the structure in memory.
+  desc: Holds the `x` position, `y` position, and type (expressed as a `side`) of a light actor.
   ref: /topics/global-variables-and-constants/#Light
 MAX_ACTORS:
   text: MAX_ACTORS
   def: '#define MAX_ACTORS 410'
   desc: Controls the size of the global actor state array, and governs the maximum number of actors that can be present on a map at any given time.
   ref: /topics/global-variables-and-constants/#MAX_ACTORS
+MAX_DECORATIONS:
+  text: MAX_DECORATIONS
+  def: '#define MAX_DECORATIONS 10'
+  desc: Controls the size of the global decoration state array, and governs the maximum number of decorations that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_DECORATIONS
+MAX_EXPLOSIONS:
+  text: MAX_EXPLOSIONS
+  def: '#define MAX_EXPLOSIONS 7'
+  desc: Controls the size of the global explosion state array, and governs the maximum number of explosions that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_EXPLOSIONS
 MAX_FOUNTAINS:
   text: MAX_FOUNTAINS
   def: '#define MAX_FOUNTAINS 10'
@@ -1805,6 +1891,16 @@ MAX_PLATFORMS:
   def: '#define MAX_PLATFORMS 10'
   desc: Controls the size of the global platform state array, and governs the maximum number of platforms that can be present on a map at any given time.
   ref: /topics/global-variables-and-constants/#MAX_PLATFORMS
+MAX_SHARDS:
+  text: MAX_SHARDS
+  def: '#define MAX_SHARDS 16'
+  desc: Controls the size of the global shards state array, and governs the maximum number of shards that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_SHARDS
+MAX_SPAWNERS:
+  text: MAX_SPAWNERS
+  def: '#define MAX_SPAWNERS 6'
+  desc: Controls the size of the global spawner state array, and governs the maximum number of spawners that can be present on a map at any given time.
+  ref: /topics/global-variables-and-constants/#MAX_SPAWNERS
 MODE1_COLORS:
   text: enum MODE1_COLORS
   def: |-
@@ -1853,8 +1949,7 @@ Music:
   text: Music
   def: |-
     typedef struct {
-        word length;
-        word datahead;
+        word length, datahead;
     } Music;
   desc: Holds the `length` in bytes and first word of music data (`datahead`). Memory blocks that are cast to this structure type are generally much larger than the struct, and reading beyond `datahead` is typical and expected.
   ref: /topics/global-variables-and-constants/#Music
@@ -1917,8 +2012,7 @@ Platform:
   text: Platform
   def: |-
     typedef struct {
-        word x;
-        word y;
+        word x, y;
         word mapstash[5];
     } Platform;
   desc: Holds the `x` and `y` position for a single platform. The `mapstash[]` array provides temporary storage space for the five map tiles that are swapped out as the platform's tiles cover them.
@@ -2313,6 +2407,23 @@ SPR:
     #define SPR_DEMO_OVERLAY       266
   desc: Defines meaningful names for each sprite type defined in the game.
   ref: /topics/global-variables-and-constants/#SPR
+Shard:
+  text: Shard
+  def: |-
+    typedef struct {
+        word sprite, x, y, frame, age, xmode;
+        bool bounced;
+    } Shard;
+  desc: Holds the `x` and `y` position for a single shard, comprised of a `sprite` type and a `frame`. `age` is zero if this shard slot is inactive, or an incrementing value while the spawner progresses. `xmode` controls the horizontal movement behavior, `bounced` is a flag that becomes true once the shard has hit the ground.
+  ref: /topics/global-variables-and-constants/#Shard
+Spawner:
+  text: Spawner
+  def: |-
+    typedef struct {
+        word actor, x, y, age;
+    } Spawner;
+  desc: Holds the `x` and `y` position for a single spawner. `age` is zero if this spawner slot is inactive, or an incrementing value while the spawner progresses. `actor` is the actor type that will be created once the spawner completes.
+  ref: /topics/global-variables-and-constants/#Spawner
 TILE:
   text: TILE_*
   def: |-
@@ -2424,7 +2535,7 @@ backdropNames:
 backdropTable:
   text: backdropTable[]
   def: word backdropTable[BACKDROP_WIDTH * BACKDROP_HEIGHT * 4];
-  desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop. It contains four identical copies of the backdrop's tile offsets, which allows for efficient wrapping withoug using modulo division.
+  desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop. It contains four identical copies of the backdrop's tile offsets, which allows for efficient wrapping without using modulo division.
   ref: /topics/global-variables-and-constants/#backdropTable
 blockActionCmds:
   text: blockActionCmds
@@ -2471,6 +2582,16 @@ cmdWest:
   def: bbool cmdWest;
   desc: Controls the state of the player's "walk west" movement command.
   ref: /topics/global-variables-and-constants/#cmdWest
+decorationFrame:
+  text: decorationFrame[]
+  def: word decorationFrame[MAX_DECORATIONS];
+  desc: Contains the current frame number being displayed by each decoration slot.
+  ref: /topics/global-variables-and-constants/#decorationFrame
+decorations:
+  text: decorations[]
+  def: Decoration decorations[MAX_DECORATIONS];
+  desc: Contains a fixed amount of space for all of the decoration entities defined on the current map.
+  ref: /topics/global-variables-and-constants/#decorations
 demoDataLength:
   text: demoDataLength
   def: word demoDataLength;
@@ -2516,6 +2637,11 @@ enableSpeaker:
   def: bool enableSpeaker;
   desc: When true, this permits the PC speaker hardware to actually emit sounds. When false, this unconditionally silences the speaker output.
   ref: /topics/global-variables-and-constants/#enableSpeaker
+explosions:
+  text: explosions[]
+  def: Explosion explosions[MAX_EXPLOSIONS];
+  desc: Contains a fixed amount of space for all of the explosion entities defined on the current map.
+  ref: /topics/global-variables-and-constants/#explosions
 fontTileData:
   text: fontTileData
   def: byte *fontTileData;
@@ -2524,7 +2650,7 @@ fontTileData:
 fountains:
   text: fountains[]
   def: Fountain fountains[MAX_FOUNTAINS];
-  desc: Contains a fixed amount of space for all of the fountain actors defined on the current map.
+  desc: Contains a fixed amount of space for all of the fountain entities defined on the current map.
   ref: /topics/global-variables-and-constants/#fountains
 fullscreenImageNames:
   text: fullscreenImageNames[]
@@ -2875,6 +3001,16 @@ numBarrels:
   def: word numBarrels;
   desc: Holds the current number of barrel and basket actors (combined) that are alive on the map.
   ref: /topics/global-variables-and-constants/#numBarrels
+numDecorations:
+  text: numDecorations
+  def: word numDecorations;
+  desc: Holds the current number of elements in the decorations array, regardless of the number of elements in actual use.
+  ref: /topics/global-variables-and-constants/#numDecorations
+numExplosions:
+  text: numExplosions
+  def: word numExplosions;
+  desc: Holds the current number of elements in the explosions array, regardless of the number of elements in actual use.
+  ref: /topics/global-variables-and-constants/#numExplosions
 numEyePlants:
   text: numEyePlants
   def: word numEyePlants;
@@ -2895,6 +3031,16 @@ numPlatforms:
   def: word numPlatforms;
   desc: Holds the current number of utilized elements in the platforms array.
   ref: /topics/global-variables-and-constants/#numPlatforms
+numShards:
+  text: numShards
+  def: word numShards;
+  desc: Holds the current number of elements in the shards array, regardless of the number of elements in actual use.
+  ref: /topics/global-variables-and-constants/#numShards
+numSpawners:
+  text: numSpawners
+  def: word numSpawners;
+  desc: Holds the current number of elements in the spawners array, regardless of the number of elements in actual use.
+  ref: /topics/global-variables-and-constants/#numSpawners
 paletteAnimationNum:
   text: paletteAnimationNum
   def: byte paletteAnimationNum;
@@ -2913,7 +3059,7 @@ pit0Value:
 platforms:
   text: platforms[]
   def: Platform platforms[MAX_PLATFORMS];
-  desc: Contains a fixed amount of space for all of the platform actors defined on the current map.
+  desc: Contains a fixed amount of space for all of the platform entities defined on the current map.
   ref: /topics/global-variables-and-constants/#platforms
 playerBaseFrame:
   text: playerBaseFrame
@@ -3164,6 +3310,11 @@ scrollY:
   def: word scrollY;
   desc: Holds the Y coordinate of the map row currently positioned at the topmost edge of the screen.
   ref: /topics/global-variables-and-constants/#scrollY
+shards:
+  text: shards[]
+  def: Shard shards[MAX_SHARDS];
+  desc: Contains a fixed amount of space for all of the shard entities defined on the current map.
+  ref: /topics/global-variables-and-constants/#shards
 skipDetectAdLib:
   text: skipDetectAdLib
   def: bool skipDetectAdLib;
@@ -3194,6 +3345,11 @@ soundPriority:
   def: byte soundPriority[81];
   desc: One-indexed array of 81 elements, although not all are used. Each element holds the priority value of a PC speaker sound effect. Unused elements are zero.
   ref: /topics/global-variables-and-constants/#soundPriority
+spawners:
+  text: spawners[]
+  def: Spawner spawners[MAX_SPAWNERS];
+  desc: Contains a fixed amount of space for all of the spawner entities defined on the current map.
+  ref: /topics/global-variables-and-constants/#spawners
 starBonusRanks:
   text: starBonusRanks[]
   def: |-

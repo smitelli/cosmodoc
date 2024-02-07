@@ -176,11 +176,11 @@ These coordinates are passed to {{< lookup/cref GetMapTile >}} to read the tile 
 
 ```c
     if (random(2U) != 0 && TILE_SLIPPERY(maptile)) {
-        NewDecoration(SPR_SPARKLE_SLIPPERY, 5, x, y, DIR8_STATIONARY, 1);
+        NewDecoration(SPR_SPARKLE_SLIPPERY, 5, x, y, DIR8_NONE, 1);
     }
 ```
 
-{{< lookup/cref random >}} sets up a 50/50 chance that this block will execute, along with a test for {{< lookup/cref TILE_SLIPPERY >}} on the `maptile` that was chosen earlier. If both conditions are true, {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_SPARKLE_SLIPPERY" >}} to the map at this (`x`, `y`) position. The sparkle animation consists of five frames, does not move ({{< lookup/cref name="DIR8" text="DIR8_STATIONARY" >}}), and the effect plays only once per call.
+{{< lookup/cref random >}} sets up a 50/50 chance that this block will execute, along with a test for {{< lookup/cref TILE_SLIPPERY >}} on the `maptile` that was chosen earlier. If both conditions are true, {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_SPARKLE_SLIPPERY" >}} to the map at this (`x`, `y`) position. The sparkle animation consists of five frames, does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}), and the effect plays only once per call.
 
 Only one position on the map is considered per frame. If the chosen tile is not slippery, no decoration is added during that frame.
 

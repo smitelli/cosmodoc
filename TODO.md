@@ -1,62 +1,39 @@
 * Eventually will be more than semi-complete
 * Word count
-* Finish describing the bugs
-* Important overall concepts
-* Appendix/glossary
+* Important overall concepts/glossary/appendix
 * Unused tiles and masktile
-* Why is DIR4 "none" but DIR8 is "stationary"?
 * Can attribution links inside shortcodes be footnotes now with {{% ... %}}?
 
 =============================================================================
 
+* game logic
+    * GameRand: predictable PRNG
+    * IsTouchingPlayer: return true if actor type/frame/XY is touching the player
+    * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
+    * DrawPlayerHelper: player sprite control, with some checks for the various ways to die.
+    * SET_PLAYER_DIZZY
+    * ProcessPlayerDizzy: handle landing on the ground and maybe shaking head.
+    * ClearPlayerDizzy: stop player's head from shaking.
+    * AddScoreForSprite: given an actor type, add a certain amount to player's score.
 * player move
     * TestPlayerMove: determine if the player can move in a given direction, and set a bunch of global vars in the process.
     * MovePlayer: handle one tick of basically all player input.
-    * MovePlayerScooter: handle one tick of player movement on the scooter.
-    * ShakePlayerHead: handle landing on the ground and maybe shaking head.
-    * ResetPlayerHeadShake: stop player's head from shaking.
-    * SetPush: set up a push.
-    * ResetPush: reset push-related vars.
-    * PushPlayer: handle one tick of player push movement.
-    * DrawPlayerSprite: player sprite control, with some checks for the various ways to die.
-* player/actor
-    * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
-    * TestPlayerHit: return true if actor type/frame/XY is touching the player
     * PounceHelper: imparts the springiness into actor pounces.
-    * PlayerActorTouch: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
-    * GiveScore: given an actor type, add a certain amount to player's score.
-
-* shards (3)
-    * ResetShards: deactivate every shard in the array.
-    * InsertShard: assign shard number 0-4, then insert into next free spot in array.
-    * ProcessAllShards: move/bounce each shard, playing sounds, and drawing them.
-* explosions (5)
-    * ResetExplosions: deactivate every explosion in the array.
-    * InsertExplosion: insert explosion into next free spot in array. play sound.
-    * ProcessAllExplosions: for each explosion -- if ep3, conditionally animate the palette. draw sparkle on first frame. place the explosion frame, hurt the player if too close. once animation has run, emit smoke and make that slot go idle.
-    * IsExplosionTouchingActor: returns true if any explosion is close to the specified actor type/frame/XY.
-    * ActorExplosionTouch: given actor type/frame/XY, handles explosion damage. Usually gives points/shards, or is a no-op. hint globes and eye plants have special code here. returns true if the explosion had an effect.
-* spawners (3)
-    * ResetSpawners: deactivate every spawner in the array.
-    * InsertSpawner: insert spawner into next free spot in array.
-    * ProcessAllSpawners: for all spawners -- move up. if recently spawned, move up faster. if something is hit, or spawner ages out, go inactive and spawn a real actor at that position. otherwise draw spawning sprite.
-* decorations (4)
-    * ResetDecorations: deactivate every decoration in the array.
-    * InsertDecoration: insert decoration into next free spot in array.
-    * ProcessAllDecorations: for each decoration -- draw at XY (sparkles are always in-front, rain moves faster and with randomness). move decoration according to given dir. handle cycling animation, and loop limit. once it's looped enough, go inactive.
-    * PounceDecoration: insert six decoration spores in all directions.
+    * SetPlayerPush: set up a push.
+    * ClearPlayerPush: reset push-related vars.
+    * MovePlayerPush: handle one tick of player push movement.
+    * MovePlayerScooter: handle one tick of player movement on the scooter.
+* player/actor
+    * TouchPlayer: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
 * actors
-    * GameRand: predictable PRNG
-    * AddMapActor: handle player start, platforms, fountains, lights. if none of those, dispatch to CreateActorAtIndex.
-    * CreateActor: set all members of actor slot specified by actorIndexCursor. does not change cursor in any way.
-    * CreateActorAtIndex: sets actorIndexCursor, calls CA based on actor type.
-    * InsertActor: looks for dead actor slot, then calls CAAI to install new actor there. if no dead actors in used area, call CAAI at the first free slot.
-    * SetMovementState: fudge actor XY based on planned move direction. set word10/12 to indicate available space to move to.
-    * ProcessAllActors: for each actor -- call PA. also clears global hint globe/question mark state.
+    * NewActor: looks for dead actor slot, then calls NewActorAtIndex to install new actor there. if no dead actors in used area, call CAAI at the first free slot.
+    * NewMapActorAtIndex: handle player start, platforms, fountains, lights. if none of those, dispatch to NewActorAtIndex.
+    * NewActorAtIndex: sets actorIndexCursor, calls ConstructActor based on actor type.
+    * ConstructActor: set all members of actor slot specified by actorIndexCursor. does not change cursor in any way.
+    * TestSpriteMove: can an actor def move in the requested direction?
+    * AdjustActorMove: fudge actor XY based on planned move direction. set word10/12 to indicate available space to move to.
+    * MoveAndDrawActors: for each actor -- call PA. also clears global hint globe/question mark state.
     * ProcessActor: one actor -- handle falling off the map. decrement pounce cooldown. determine if actor is onscreen/should activate. if affected by gravity, apply it. think. if hit by explosion, die. unless something special occurred, call draw fn.
-    * AreActorsTouching: given two actor defs, determine if they are touching.
-    * IsActorVisible: given one actor def, determine if it is in the screen area.
-    * TestActorMove: can an actor def move in the requested direction?
     * thinkers
         * ActFootSwitch: used for 4 real switches. all other references are no-op.
         * ActHorizontalMover: big saw blade, robotic spike

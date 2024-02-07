@@ -119,10 +119,10 @@ void AddScore(dword points)
 
 {{< boilerplate/function-cref DrawStatusBarScore >}}
 
-The {{< lookup/cref DrawStatusBarScore >}} function increments the player's score by `add_points` then updates the score counter in the status bar. Requires `x` and `y` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
+The {{< lookup/cref DrawStatusBarScore >}} function increments the player's score by `add_points` then updates the score counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
 
 ```c
-void DrawStatusBarScore(dword add_points, word x, word y)
+void DrawStatusBarScore(dword add_points, word x_origin, word y_origin)
 {
     gameScore += add_points;
 ```
@@ -131,15 +131,15 @@ This is admittedly an odd place to modify the global {{< lookup/cref gameScore >
 
 ```c
     SelectDrawPage(activePage);
-    DrawNumberFlushRight(x, y, gameScore);
+    DrawNumberFlushRight(x_origin, y_origin, gameScore);
 
     SelectDrawPage(!activePage);
-    DrawNumberFlushRight(x, y, gameScore);
+    DrawNumberFlushRight(x_origin, y_origin, gameScore);
 ```
 
 Since the game uses page flipping, there are always two copies of the screen in memory at any given time and they are constantly flip-flopping into view. In order to prevent things from flashing or moving around, both pages must have identical copies of the screen data for anything that is not actively moving. To do this, everything is drawn twice: once on the {{< lookup/cref activePage >}}, and again on the non-active page. (Since the pages are numbered 0 and 1, the `!` operator switches them correctly.)
 
-{{< lookup/cref SelectDrawPage >}} selects the page that should be drawn to -- first the page that is currently being displayed, and second the hidden page that is being redrawn for the next frame of gameplay. On each page, an identical {{< lookup/cref DrawNumberFlushRight >}} call draws the value held in {{< lookup/cref gameScore >}} to the screen location `x`,`y`.
+{{< lookup/cref SelectDrawPage >}} selects the page that should be drawn to -- first the page that is currently being displayed, and second the hidden page that is being redrawn for the next frame of gameplay. On each page, an identical {{< lookup/cref DrawNumberFlushRight >}} call draws the value held in {{< lookup/cref gameScore >}} to the screen location `x_origin`,`y_origin`.
 
 ```c
     EGA_MODE_LATCHED_WRITE();
@@ -167,16 +167,16 @@ void UpdateStars(void)
 
 {{< boilerplate/function-cref DrawStatusBarStars >}}
 
-The {{< lookup/cref DrawStatusBarStars >}} function updates the "stars" counter in the status bar. Requires `x` and `y` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
+The {{< lookup/cref DrawStatusBarStars >}} function updates the "stars" counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
 
 ```c
-void DrawStatusBarStars(word x, word y)
+void DrawStatusBarStars(word x_origin, word y_origin)
 {
     SelectDrawPage(activePage);
-    DrawNumberFlushRight(x, y, (word)gameStars);
+    DrawNumberFlushRight(x_origin, y_origin, (word)gameStars);
 
     SelectDrawPage(!activePage);
-    DrawNumberFlushRight(x, y, (word)gameStars);
+    DrawNumberFlushRight(x_origin, y_origin, (word)gameStars);
 
     EGA_MODE_LATCHED_WRITE();
 }
@@ -197,20 +197,20 @@ void UpdateBombs(void)
 
 {{< boilerplate/function-cref DrawStatusBarBombs >}}
 
-The {{< lookup/cref DrawStatusBarBombs >}} function updates the "bombs" counter in the status bar. Requires `x` and `y` for positioning, which anchors the single digit at an absolute tile position on the screen.
+The {{< lookup/cref DrawStatusBarBombs >}} function updates the "bombs" counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the single digit at an absolute tile position on the screen.
 
 ```c
-void DrawStatusBarBombs(word x, word y)
+void DrawStatusBarBombs(word x_origin, word y_origin)
 {
     EGA_MODE_DEFAULT();
 
     SelectDrawPage(activePage);
-    DrawSpriteTile(fontTileData + FONT_BACKGROUND_GRAY, x, y);
-    DrawNumberFlushRight(x, y, playerBombs);
+    DrawSpriteTile(fontTileData + FONT_BACKGROUND_GRAY, x_origin, y_origin);
+    DrawNumberFlushRight(x_origin, y_origin, playerBombs);
 
     SelectDrawPage(!activePage);
-    DrawSpriteTile(fontTileData + FONT_BACKGROUND_GRAY, x, y);
-    DrawNumberFlushRight(x, y, playerBombs);
+    DrawSpriteTile(fontTileData + FONT_BACKGROUND_GRAY, x_origin, y_origin);
+    DrawNumberFlushRight(x_origin, y_origin, playerBombs);
 
     EGA_MODE_LATCHED_WRITE();
 }
@@ -256,10 +256,10 @@ void DrawSBarHealthHelper(void)
 
 {{< boilerplate/function-cref DrawStatusBarHealth >}}
 
-The {{< lookup/cref DrawStatusBarHealth >}} function updates the health indicator in the status bar. Requires `x` and `y` for positioning, which anchors the top of the rightmost cell at an absolute tile position on the screen. Each bar image is made out of two distinct font character tiles, stacked vertically. All images are drawn opaque, and the number of cells drawn never decreases during the course of a game, so there are no special tile-erasing considerations needed.
+The {{< lookup/cref DrawStatusBarHealth >}} function updates the health indicator in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the top of the rightmost cell at an absolute tile position on the screen. Each bar image is made out of two distinct font character tiles, stacked vertically. All images are drawn opaque, and the number of cells drawn never decreases during the course of a game, so there are no special tile-erasing considerations needed.
 
 ```c
-void DrawStatusBarHealth(word x, word y)
+void DrawStatusBarHealth(word x_origin, word y_origin)
 {
     word cell;
 
@@ -281,20 +281,32 @@ There are some differences in design here: in _Duke_, the health bars disappear 
 
 ```c
         if (playerHealth - 1 > cell) {
-            DrawSpriteTile(fontTileData + FONT_UPPER_BAR_1, x - cell, y);
-            DrawSpriteTile(fontTileData + FONT_LOWER_BAR_1, x - cell, y + 1);
+            DrawSpriteTile(
+                fontTileData + FONT_UPPER_BAR_1,
+                x_origin - cell, y_origin
+            );
+            DrawSpriteTile(
+                fontTileData + FONT_LOWER_BAR_1,
+                x_origin - cell, y_origin + 1
+            );
 ```
 
 The health of the player, which increases and decrease as damage is taken and recovered from, is tracked in {{< lookup/cref playerHealth >}}. If this value is greater than zero, the player is still considered to be alive. An off-by-one error is introduced by this facet of the game's design: with all of the health bars unfilled, the player is at their lowest possible health count _but they're still alive_. Put another way, the game starts with {{< lookup/cref playerHealthCells >}} set to 3, but with {{< lookup/cref playerHealth >}} set to 4.
 
 Because the player always has one more unit of health than the number of filled bars, {{< lookup/cref playerHealth >}} must be decremented by one to make the comparison with `cell` meaningful. If, after this adjustment, the player has more health available then the cell that is currently being drawn, the cell should be drawn as a full health bar.
 
-{{< lookup/cref DrawSpriteTile >}} does this drawing. Each bar is built from two separate [game font]({{< relref "databases/font" >}}) characters: {{< lookup/cref name="FONT" text="FONT_UPPER_BAR_1" >}} drawn at the passed `y` position and {{< lookup/cref name="FONT" text="FONT_LOWER_BAR_1" >}} one tile lower at `y + 1`. The horizontal position is based on the passed `x` position, moving farther to the left as the loop increments `cell`.
+{{< lookup/cref DrawSpriteTile >}} does this drawing. Each bar is built from two separate [game font]({{< relref "databases/font" >}}) characters: {{< lookup/cref name="FONT" text="FONT_UPPER_BAR_1" >}} drawn at the passed `y_origin` position and {{< lookup/cref name="FONT" text="FONT_LOWER_BAR_1" >}} one tile lower at `y_origin + 1`. The horizontal position is based on the passed `x_origin` position, moving farther to the left as the loop increments `cell`.
 
 ```c
         } else {
-            DrawSpriteTile(fontTileData + FONT_UPPER_BAR_0, x - cell, y);
-            DrawSpriteTile(fontTileData + FONT_LOWER_BAR_0, x - cell, y + 1);
+            DrawSpriteTile(
+                fontTileData + FONT_UPPER_BAR_0,
+                x_origin - cell, y_origin
+            );
+            DrawSpriteTile(
+                fontTileData + FONT_LOWER_BAR_0,
+                x_origin - cell, y_origin + 1
+            );
         }
     }
 }

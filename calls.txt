@@ -164,8 +164,6 @@ AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
     ActPinkWorm() <void ActPinkWorm () at src/game1.c:4145>:
     ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
     ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
-CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
-    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
 CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
     ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
 ClearPlayerDizzy() <void ClearPlayerDizzy () at src/game1.c:286>:
@@ -186,8 +184,6 @@ ConstructActor() <void ConstructActor () at src/game1.c:1519>:
 DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
     ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
 DrawPlayerHelper() <bbool DrawPlayerHelper () at src/game1.c:8836>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 GameRand() <word GameRand () at src/game1.c:300>:
@@ -211,55 +207,6 @@ HurtPlayer() <void HurtPlayer () at src/game1.c:6632> (R):
     ActRocket() <void ActRocket () at src/game1.c:4933> (R):
     DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-InitializeDecorations() <void InitializeDecorations () at src/game1.c:6495>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-InitializeExplosions() <void InitializeExplosions () at src/game1.c:6323>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-InitializeShards() <void InitializeShards () at src/game1.c:6187>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-InitializeSpawners() <void InitializeSpawners () at src/game1.c:6421>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
-IsIntersecting() <bool IsIntersecting () at src/game1.c:938>:
-    IsNearExplosion() <bool IsNearExplosion () at src/game1.c:6397>:
-IsNearExplosion() <bool IsNearExplosion () at src/game1.c:6397>:
-    ActFootSwitch() <void ActFootSwitch () at src/game1.c:1652> (R):
-    ActBarrel() <void ActBarrel () at src/game1.c:2076> (R):
-    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
-    ActBombIdle() <void ActBombIdle () at src/game1.c:2557>:
-    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
-    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
-    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
-    ActIvyPlant() <void ActIvyPlant () at src/game1.c:4529>:
-    ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
-    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
-    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
-    ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
-    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
-    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
-IsSpriteVisible() <bool IsSpriteVisible () at src/game1.c:708>:
-    ActHorizontalMover() <void ActHorizontalMover () at src/game1.c:1738>:
-    ActArrowPiston() <void ActArrowPiston () at src/game1.c:1806>:
-    ActFireball() <void ActFireball () at src/game1.c:1844>:
-    ActJumpPadRobot() <void ActJumpPadRobot () at src/game1.c:1948>:
-    ActVerticalMover() <void ActVerticalMover () at src/game1.c:2012>:
-    ActRedGreenSlime() <void ActRedGreenSlime () at src/game1.c:2171>:
-    ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
-    ActJumpingBullet() <void ActJumpingBullet () at src/game1.c:2324>:
-    ActStoneHeadCrusher() <void ActStoneHeadCrusher () at src/game1.c:2352>:
-    ActBabyGhost() <void ActBabyGhost () at src/game1.c:2624>:
-    ActProjectile() <void ActProjectile () at src/game1.c:2676>:
-    ActRedJumper() <void ActRedJumper () at src/game1.c:3246>:
-    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
-    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
-    ActExitMonsterWest() <void ActExitMonsterWest () at src/game1.c:4570>:
-    ActScoreEffect() <void ActScoreEffect () at src/game1.c:4788>:
-    ActExitPlant() <void ActExitPlant () at src/game1.c:4821>:
-    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
-    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
-    MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
-    MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    ProcessActor() <void ProcessActor () at src/game1.c:7573>:
 IsTouchingPlayer() <bool IsTouchingPlayer () at src/game1.c:908>:
     DrawFountains() <void DrawFountains () at src/game1.c:1433>:
     ActTwoTonsCrusher() <void ActTwoTonsCrusher () at src/game1.c:2250> (R):
@@ -270,12 +217,6 @@ IsTouchingPlayer() <bool IsTouchingPlayer () at src/game1.c:908>:
     DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
 MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-MoveAndDrawDecorations() <void MoveAndDrawDecorations () at src/game1.c:6534>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-MoveAndDrawShards() <void MoveAndDrawShards () at src/game1.c:6231>:
-    GameLoop() <void GameLoop () at src/game1.c:9730>:
-MoveAndDrawSpawners() <void MoveAndDrawSpawners () at src/game1.c:6457>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 MovePlayer() <void MovePlayer () at src/game1.c:8114>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
@@ -307,64 +248,8 @@ NewActor() <void NewActor () at src/game1.c:6128> (R):
 NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
     NewActor() <void NewActor () at src/game1.c:6128> (R):
     NewMapActor() <void NewMapActor () at src/game1.c:9849>:
-NewDecoration() <void NewDecoration () at src/game1.c:6507>:
-    ActFireball() <void ActFireball () at src/game1.c:1844>:
-    UpdateDoors() <void UpdateDoors () at src/game1.c:1890>:
-    ActStoneHeadCrusher() <void ActStoneHeadCrusher () at src/game1.c:2352>:
-    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
-    ActMysteryWall() <void ActMysteryWall () at src/game1.c:2585>:
-    ActBabyGhostEgg() <void ActBabyGhostEgg () at src/game1.c:2816> (R):
-    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
-    ActTransporter() <void ActTransporter () at src/game1.c:3823> (R):
-    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
-    ActPrize() <void ActPrize () at src/game1.c:4657>:
-    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
-    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
-    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
-    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
-    ActFlamePulse() <void ActFlamePulse () at src/game1.c:5297>:
-    ActSmokeEmitter() <void ActSmokeEmitter () at src/game1.c:5350>:
-    DrawRandomEffects() <void DrawRandomEffects () at src/game1.c:6163>:
-    DrawExplosions() <void DrawExplosions () at src/game1.c:6357>:
-    NewPounceDecoration() <void NewPounceDecoration () at src/game1.c:6666>:
-    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
-NewExplosion() <void NewExplosion () at src/game1.c:6335>:
-    ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
-    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
-    ActBombIdle() <void ActBombIdle () at src/game1.c:2557>:
-    ActBeamRobot() <void ActBeamRobot () at src/game1.c:3034> (R):
-    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
-    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
 NewMapActor() <void NewMapActor () at src/game1.c:9849>:
     LoadMapData() <void LoadMapData () at src/game1.c:9917>:
-NewPounceDecoration() <void NewPounceDecoration () at src/game1.c:6666>:
-    ActBombArmed() <void ActBombArmed () at src/game1.c:2040>:
-    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-NewShard() <void NewShard () at src/game1.c:6199>:
-    ActPyramid() <void ActPyramid () at src/game1.c:2411>:
-    ActWormCrate() <void ActWormCrate () at src/game1.c:4436> (R):
-    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
-    ActBearTrap() <void ActBearTrap () at src/game1.c:4688>:
-    ActFallingFloor() <void ActFallingFloor () at src/game1.c:4732>:
-    ActRocket() <void ActRocket () at src/game1.c:4933> (R):
-    ActPedestal() <void ActPedestal () at src/game1.c:5021>:
-    ActMonument() <void ActMonument () at src/game1.c:5092> (R):
-    ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
-    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
-    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
-    DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-NewSpawner() <void NewSpawner () at src/game1.c:6433>:
-    ActBoss() <void ActBoss () at src/game1.c:3360> (R):
-    ActSatellite() <void ActSatellite () at src/game1.c:4483>:
-    ActTulipLauncher() <void ActTulipLauncher () at src/game1.c:5148>:
-    ActFrozenDN() <void ActFrozenDN () at src/game1.c:5205>:
-    CanBeExploded() <bool CanBeExploded () at src/game1.c:6683>:
-    DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
 PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
     TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
     MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:

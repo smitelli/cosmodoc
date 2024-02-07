@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 460
+weight = 500
 +++
 
 # Global Variables and Constants
@@ -49,7 +49,7 @@ These are the return values for the {{< lookup/cref GetProcessorType >}} functio
 
 Symbolic Constant   | Value | Description
 --------------------|-------|------------
-`DEMO_STATE_NONE`   | 0     | The game is played in the usual way, with user keyboard input controlling the player. All in-game hints and intermission screens are displated.
+`DEMO_STATE_NONE`   | 0     | The game is played in the usual way, with user keyboard input controlling the player. All in-game hints and intermission screens are displayed.
 `DEMO_STATE_RECORD` | 1     | The game is played in demo recording mode. The keyboard controls the player, but the level progression is altered and in-game hints are skipped. All player movement is captured into a demo file on disk.
 `DEMO_STATE_PLAY`   | 2     | The game runs in demo playback mode. Keyboard input is ignored (any keypress ends the game) and player movement commands are read from the demo file. Level progression and hint display are altered in the same way as with `DEMO_STATE_RECORD`.
 
@@ -84,7 +84,7 @@ The arrangement of these cardinal directions follows the conventional layout of 
 
 Symbolic Constant | Value | Description
 ------------------|-------|------------
-`DIR8_STATIONARY` | 0     | Represents the absense of direction and/or a state of no movement.
+`DIR8_NONE`       | 0     | Represents the absence of direction and/or a state of no movement.
 `DIR8_NORTH`      | 1     | Points toward the top edge of the screen.
 `DIR8_NORTHEAST`  | 2     | Points up and to the right.
 `DIR8_EAST`       | 3     | Points toward the right edge of the screen.
@@ -108,11 +108,19 @@ Symbolic Constant       | Value | Description
 `DRAW_MODE_IN_FRONT`    | 5     | Same as `DRAW_MODE_NORMAL`, but the sprite will cover _all_ map tiles, regardless of their "draw in front" attribute.
 `DRAW_MODE_ABSOLUTE`    | 6     | Draw the sprite unmodified, with X/Y positions measured relative to the screen. Since there is no relationship to the game world in this mode, "draw in front" attributes from the map (if present) have no effect.
 
+{{< boilerplate/global-cref Decoration >}}
+
+The `dir` member should contain one of the {{< lookup/cref DIR8 >}} values.
+
+The {{< lookup/cref Decoration >}} structure has associated data stored separately in the {{< lookup/cref decorationFrame >}} array.
+
 {{< boilerplate/global-cref EGA_OFFSET >}}
 
 {{< boilerplate/global-cref END_ANIMATION >}}
 
 {{< boilerplate/global-cref END_SCREEN >}}
+
+{{< boilerplate/global-cref Explosion >}}
 
 {{< boilerplate/global-cref FILENAME_BASE >}}
 
@@ -180,11 +188,19 @@ See the {{< lookup/cref Light >}} structure.
 
 {{< boilerplate/global-cref MAX_ACTORS >}}
 
+{{< boilerplate/global-cref MAX_DECORATIONS >}}
+
+{{< boilerplate/global-cref MAX_EXPLOSIONS >}}
+
 {{< boilerplate/global-cref MAX_FOUNTAINS >}}
 
 {{< boilerplate/global-cref MAX_LIGHTS >}}
 
 {{< boilerplate/global-cref MAX_PLATFORMS >}}
+
+{{< boilerplate/global-cref MAX_SHARDS >}}
+
+{{< boilerplate/global-cref MAX_SPAWNERS >}}
 
 {{< boilerplate/global-cref MODE1_COLORS >}}
 
@@ -267,15 +283,19 @@ Symbolic Constant | Duplicate Version Of | Description
 `SPR_6`           | `SPR_FIREBALL`       | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 6 >}} which now cannot occur anymore.
 `SPR_48`          | `SPR_PYRAMID`        | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 48 >}} which now cannot occur anymore.
 `SPR_50`          | `SPR_GHOST`          | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 50 >}} which now cannot occur anymore.
-`SPR_74`          | `SPR_BABY_GHOST_EGG` | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanBeExploded >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 74 >}} which now cannot occur anymore.
-`SPR_84`          | `SPR_GRAPES`         | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanBeExploded >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 84 >}} which now cannot occur anymore.
-`SPR_96`          | `SPR_SMOKE`          | Referenced in {{< lookup/cref CanBeExploded >}} and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 96 >}} which now cannot occur anymore.
+`SPR_74`          | `SPR_BABY_GHOST_EGG` | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanExplode >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 74 >}} which now cannot occur anymore.
+`SPR_84`          | `SPR_GRAPES`         | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanExplode >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 84 >}} which now cannot occur anymore.
+`SPR_96`          | `SPR_SMOKE`          | Referenced in {{< lookup/cref CanExplode >}} and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 96 >}} which now cannot occur anymore.
 `SPR_150`         | `SPR_SMALL_FLAME`    | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 150 >}}.
 `SPR_164`         | `SPR_ROOT`           | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actors {{< lookup/actor 164 >}}, {{< lookup/actor 165 >}}, and {{< lookup/actor 166 >}}.
 `SPR_248`         | `SPR_CABBAGE`        | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 248 >}}. The graphics referenced here only contain one frame of the `SPR_CABBAGE` sprite.
 `SPR_249`         | `SPR_CABBAGE`        | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 249 >}}. The graphics referenced here only contain one frame of the `SPR_CABBAGE` sprite.
 `SPR_250`         | `SPR_CABBAGE`        | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 250 >}}. The graphics referenced here only contain one frame of the `SPR_CABBAGE` sprite.
 `SPR_265`         | `SPR_DEMO_OVERLAY`   | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 265 >}}.
+
+{{< boilerplate/global-cref Shard >}}
+
+{{< boilerplate/global-cref Spawner >}}
 
 {{< boilerplate/global-cref TILE >}}
 
@@ -368,6 +388,14 @@ This points to [tile info data]({{< relref "tile-info-format" >}}) which has bee
 
 {{< boilerplate/global-cref cmdWest >}}
 
+{{< boilerplate/global-cref decorationFrame >}}
+
+This is conceptually a missing member of the {{< lookup/cref Decoration >}} structure, indexed identically to {{< lookup/cref decorations >}}.
+
+{{< boilerplate/global-cref decorations >}}
+
+Each element of this array is a {{< lookup/cref Decoration >}} structure. The array size is bounded by the {{< lookup/cref MAX_DECORATIONS >}} constant.
+
 {{< boilerplate/global-cref demoDataLength >}}
 
 {{< boilerplate/global-cref demoDataPos >}}
@@ -390,7 +418,7 @@ Related to the {{< lookup/cref DIR8 >}} constants, this array and its counterpar
 
 Symbolic Constant | Value | `dir8X[Value]` | `dir8Y[Value]`
 ------------------|-------|----------------|---------------
-`DIR8_STATIONARY` | 0     | 0              | 0
+`DIR8_NONE`       | 0     | 0              | 0
 `DIR8_NORTH`      | 1     | 0              | -1
 `DIR8_NORTHEAST`  | 2     | 1              | -1
 `DIR8_EAST`       | 3     | 1              | 0
@@ -413,6 +441,10 @@ During gameplay (where double-buffering is used) {{< lookup/cref activePage >}} 
 {{< boilerplate/global-cref enableAdLib >}}
 
 {{< boilerplate/global-cref enableSpeaker >}}
+
+{{< boilerplate/global-cref explosions >}}
+
+Each element of this array is an {{< lookup/cref Explosion >}} structure. The array size is bounded by the {{< lookup/cref MAX_EXPLOSIONS >}} constant.
 
 {{< boilerplate/global-cref fontTileData >}}
 
@@ -682,9 +714,17 @@ This is used as an insertion cursor as actors are being created, pointing to the
 
 This value in incremented when {{< lookup/cref ConstructActor >}} adds barrel/basket actors to the map, and it is decremented in {{< lookup/cref DestroyBarrel >}}. When the last remaining barrel is destroyed, the player is given a 50,000 point bonus.
 
+{{< boilerplate/global-cref numDecorations >}}
+
+This _always_ has the value of {{< lookup/cref MAX_DECORATIONS >}}.
+
+{{< boilerplate/global-cref numExplosions >}}
+
+This _always_ has the value of {{< lookup/cref MAX_EXPLOSIONS >}}.
+
 {{< boilerplate/global-cref numEyePlants >}}
 
-This value in incremented when {{< lookup/cref NewActorAtIndex >}} adds {{< lookup/actor type=95 strip=1 >}} actors to the map, and it is decremented in {{< lookup/cref CanBeExploded >}}. When the last remaining {{< lookup/actor type=95 strip=1 >}} is destroyed, the player is given a 50,000 point bonus.
+This value in incremented when {{< lookup/cref NewActorAtIndex >}} adds {{< lookup/actor type=95 strip=1 >}} actors to the map, and it is decremented in {{< lookup/cref CanExplode >}}. When the last remaining {{< lookup/actor type=95 strip=1 >}} is destroyed, the player is given a 50,000 point bonus.
 
 This value is artificially constrained to 15. If a map has more than this many {{< lookup/actor type=95 strip=1 plural=1 >}}, only the first 15 are counted.
 
@@ -699,6 +739,14 @@ This is used as an insertion cursor as lights are being created, pointing to the
 {{< boilerplate/global-cref numPlatforms >}}
 
 This is used as an insertion cursor as platforms are being created, pointing to the next available element where one could be inserted. This variable is _not_ used for bounds checking, and overflow is possible with a malicious map file.
+
+{{< boilerplate/global-cref numShards >}}
+
+This _always_ has the value of {{< lookup/cref MAX_SHARDS >}}.
+
+{{< boilerplate/global-cref numSpawners >}}
+
+This _always_ has the value of {{< lookup/cref MAX_SPAWNERS >}}.
 
 {{< boilerplate/global-cref paletteAnimationNum >}}
 
@@ -879,14 +927,6 @@ This variable is forced true during demo recording and playback to prevent hint 
 
 {{< boilerplate/global-cref sawTulipLauncherBubble >}}
 
-{{< boilerplate/global-cref scooterMounted >}}
-
-This variable will hold zero when the player is not riding a scooter, and nonzero when the player is doing so. At the moment a scooter is initially mounted, this variable is set to 4 and decrements on each successive frame until reaching 1, where it remains until the scooter is unmounted. This decrementing counter governs the initial upward "takeoff" at mount time.
-
-{{< boilerplate/global-cref scrollX >}}
-
-{{< boilerplate/global-cref scrollY >}}
-
 {{< boilerplate/global-cref scancodeBomb >}}
 
 This setting can be configured by the user in the "keyboard redefine" menu, and the value is persisted in the [configuration file]({{< relref "configuration-file-format" >}}).
@@ -911,6 +951,18 @@ This setting can be configured by the user in the "keyboard redefine" menu, and 
 
 This setting can be configured by the user in the "keyboard redefine" menu, and the value is persisted in the [configuration file]({{< relref "configuration-file-format" >}}).
 
+{{< boilerplate/global-cref scooterMounted >}}
+
+This variable will hold zero when the player is not riding a scooter, and nonzero when the player is doing so. At the moment a scooter is initially mounted, this variable is set to 4 and decrements on each successive frame until reaching 1, where it remains until the scooter is unmounted. This decrementing counter governs the initial upward "takeoff" at mount time.
+
+{{< boilerplate/global-cref scrollX >}}
+
+{{< boilerplate/global-cref scrollY >}}
+
+{{< boilerplate/global-cref shards >}}
+
+Each element of this array is a {{< lookup/cref Shard >}} structure. The array size is bounded by the {{< lookup/cref MAX_SHARDS >}} constant.
+
 {{< boilerplate/global-cref skipDetectAdLib >}}
 
 If the feature were implemented, it would suppress only the first (of two) AdLib detection attempts and the assignment of its return value to {{< lookup/cref isAdLibPresentPrivate >}}.
@@ -930,6 +982,10 @@ See {{< lookup/cref soundData1 >}}.
 {{< boilerplate/global-cref soundDataPtr >}}
 
 {{< boilerplate/global-cref soundPriority >}}
+
+{{< boilerplate/global-cref spawners >}}
+
+Each element of this array is a {{< lookup/cref Spawner >}} structure. The array size is bounded by the {{< lookup/cref MAX_SPAWNERS >}} constant.
 
 {{< boilerplate/global-cref starBonusRanks >}}
 
@@ -955,7 +1011,7 @@ This value can be seen in the "Take Up" line in the Memory Usage debug menu.
 
 {{< boilerplate/global-cref transporterTimeLeft >}}
 
-When any transporter is used, this vaue is set to 15. At that moment, _all_ the transporters on the map emit several sparkle decorations and the {{< lookup/cref name="SND" text="SND_TRANSPORTER_ON" >}} sound effect is started. While this value decrements toward zero, _all_ transporter sprites randomly flash white. Once zero is reached, the requisite transporter action occurs -- either relocating the player or winning the level.
+When any transporter is used, this value is set to 15. At that moment, _all_ the transporters on the map emit several sparkle decorations and the {{< lookup/cref name="SND" text="SND_TRANSPORTER_ON" >}} sound effect is started. While this value decrements toward zero, _all_ transporter sprites randomly flash white. Once zero is reached, the requisite transporter action occurs -- either relocating the player or winning the level.
 
 {{< boilerplate/global-cref usedCheatCode >}}
 

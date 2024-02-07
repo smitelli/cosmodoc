@@ -212,11 +212,11 @@ These two tile positions are the left and right edges of the top of the fountain
         if (playerDeadTime == 0 && fnt->y - 1 == playerY) {
             if (fnt->dir != DIR4_NORTH) {
                 MovePlayerPlatform(
-                    fnt->x, fnt->x + 2, DIR8_STATIONARY, DIR8_SOUTH
+                    fnt->x, fnt->x + 2, DIR8_NONE, DIR8_SOUTH
                 );
             } else {
                 MovePlayerPlatform(
-                    fnt->x, fnt->x + 2, DIR8_STATIONARY, DIR8_NORTH
+                    fnt->x, fnt->x + 2, DIR8_NONE, DIR8_NORTH
                 );
             }
         }
@@ -226,7 +226,7 @@ If the player is alive ({{< lookup/cref playerDeadTime >}} is zero), and they ar
 
 The position check here is extremely rudimentary: It passes when {{< lookup/cref playerY >}} (the tile row containing the player's feet) equals the fountain's Y position minus one (the tile row containing the empty space directly above the fountain's spray). The player and the fountain could be separated by a huge distance horizontally -- that gets tested later.
 
-If the player is in the correct position and the fountain's movement direction (`fnt->dir`) is not {{< lookup/cref name="DIR4" text="DIR4_NORTH" >}} (so, south) then {{< lookup/cref MovePlayerPlatform >}} is called with the fountain's X extents in the first two arguments. This provides the leftmost and rightmost tile positions that this fountain affects. The remaining arguments are the direction components: {{< lookup/cref name="DIR8" text="DIR8_STATIONARY" >}} in the horizontal direction and {{< lookup/cref name="DIR8" text="DIR8_SOUTH" >}} in the vertical.
+If the player is in the correct position and the fountain's movement direction (`fnt->dir`) is not {{< lookup/cref name="DIR4" text="DIR4_NORTH" >}} (so, south) then {{< lookup/cref MovePlayerPlatform >}} is called with the fountain's X extents in the first two arguments. This provides the leftmost and rightmost tile positions that this fountain affects. The remaining arguments are the direction components: {{< lookup/cref name="DIR8" text="DIR8_NONE" >}} in the horizontal direction and {{< lookup/cref name="DIR8" text="DIR8_SOUTH" >}} in the vertical.
 
 In the `else` case, the fountain is moving north and the call to {{< lookup/cref MovePlayerPlatform >}} is the same except for {{< lookup/cref name="DIR8" text="DIR8_NORTH" >}} as the vertical direction argument.
 

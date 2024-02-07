@@ -106,8 +106,8 @@ actor:
     - Pipe System Outlet
     - Pipe System Inlet
     - Suction Feet Creature
-    - 'Transporter #1'
-    - 'Transporter #2'
+    - 'Transporter (#1)'
+    - 'Transporter (#2)'
     - Flashing Ball Projectile (moving west)
     - Flashing Ball Projectile (moving east)
     - Spitting Wall Plant (facing east)
@@ -124,7 +124,7 @@ actor:
     - Force Field Beam (vertical)
     - Force Field Beam (horizontal)
     - Pink Worm
-    - 'Hint Globe #0'
+    - 'Hint Globe (#0)'
     - Translucent Pusher Robot
     - Sentry Robot
     - Pink Worm Goo
@@ -203,15 +203,15 @@ actor:
     - Invincibility Sphere
     - Rocket Thruster
     - Transporter Exit
-    - 'Hint Globe #1'
-    - 'Hint Globe #2'
-    - 'Hint Globe #3'
-    - 'Hint Globe #4'
-    - 'Hint Globe #5'
-    - 'Hint Globe #6'
-    - 'Hint Globe #7'
-    - 'Hint Globe #8'
-    - 'Hint Globe #9'
+    - 'Hint Globe (#1)'
+    - 'Hint Globe (#2)'
+    - 'Hint Globe (#3)'
+    - 'Hint Globe (#4)'
+    - 'Hint Globe (#5)'
+    - 'Hint Globe (#6)'
+    - 'Hint Globe (#7)'
+    - 'Hint Globe (#8)'
+    - 'Hint Globe (#9)'
     - Cyan/White Diamond (floating)
     - Red Berry Diamond (floating)
     - Gray Octahedron (floating)
@@ -237,31 +237,31 @@ actor:
     - 'Speech Bubble: Ouch!'
     - Red Liquid Leak (throbbing)
     - Red Liquid Leak (dripping)
-    - 'Hint Globe #10'
-    - 'Hint Globe #11'
-    - 'Hint Globe #12'
-    - 'Hint Globe #13'
-    - 'Hint Globe #14'
-    - 'Hint Globe #15'
+    - 'Hint Globe (#10)'
+    - 'Hint Globe (#11)'
+    - 'Hint Globe (#12)'
+    - 'Hint Globe (#13)'
+    - 'Hint Globe (#14)'
+    - 'Hint Globe (#15)'
     - 'Speech Bubble: Whoa!'
     - 'Speech Bubble: Umph!'
     - 'Speech Bubble: Wow! 50,000 points!'
-    - E1L11 Exit Monster (facing north)
+    - E1M11 Exit Monster (facing north)
     - Smoke Emitter
     - Large Smoke Emitter
     - Exit Line (horizontal, exit when south of the line)
     - Hopping Cabbage Creature (takes two pounces)
     - Red Crystal (on ceiling)
-    - 'Hint Globe #16'
-    - 'Hint Globe #17'
-    - 'Hint Globe #18'
-    - 'Hint Globe #19'
-    - 'Hint Globe #20'
-    - 'Hint Globe #21'
-    - 'Hint Globe #22'
-    - 'Hint Globe #23'
-    - 'Hint Globe #24'
-    - 'Hint Globe #25'
+    - 'Hint Globe (#16)'
+    - 'Hint Globe (#17)'
+    - 'Hint Globe (#18)'
+    - 'Hint Globe (#19)'
+    - 'Hint Globe (#20)'
+    - 'Hint Globe (#21)'
+    - 'Hint Globe (#22)'
+    - 'Hint Globe (#23)'
+    - 'Hint Globe (#24)'
+    - 'Hint Globe (#25)'
     - Power-Up Module (falling)
     - Star (falling)
     - 'Episode 2 End Trigger Line (horizontal)'
@@ -342,8 +342,8 @@ actor_sprite:
     - Right Arrow (pipe system)
     - Unused (references baby ghost egg)
     - Baby Ghost Egg
-    - 'Shard: Baby ghost egg #1'
-    - 'Shard: Baby ghost egg #2'
+    - 'Shard: Baby ghost egg (#1)'
+    - 'Shard: Baby ghost egg (#2)'
     - Sharp Spike Robot (floor type)
     - Fountain (head in frames 0-1, column in frames 2-3)
     - Sharp Spike Robot (ceiling type)
@@ -398,8 +398,8 @@ actor_sprite:
     - Dragonfly
     - Worm Crate
     - 'Shards: Worm Crate'
-    - 'Shard: Baby ghost egg #3'
-    - 'Shard: Baby ghost egg #4'
+    - 'Shard: Baby ghost egg (#3)'
+    - 'Shard: Baby ghost egg (#4)'
     - Orange Bottled Drink
     - Gourd (green with red spots)
     - Blue Stacked Spheres
@@ -513,7 +513,7 @@ actor_sprite:
     - 'Speech Bubble: Whoa!'
     - 'Speech Bubble: Umph!'
     - 'Speech Bubble: Wow! 50,000 points!'
-    - E1L11 Exit Monster (facing north)
+    - E1M11 Exit Monster (facing north)
     - Unused (identical data from hopping cabbage creature's zeroth frame)
     - Unused (references sprite 248)
     - Unused (references sprite 248)

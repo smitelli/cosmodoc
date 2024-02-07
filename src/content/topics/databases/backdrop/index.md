@@ -2,7 +2,7 @@
 title = "Backdrop Database"
 linkTitle = "Backdrops"
 description = "A table containing a list of all backdrops, their descriptions, and a list of the maps they appear on."
-weight = 550
+weight = 590
 +++
 
 # Backdrop Database
