@@ -1,7 +1,7 @@
 +++
 title = "Spawner Functions"
 description = "Describes the functions that create and process spawners that the player encounters throughout the maps."
-weight = 470
+weight = 490
 +++
 
 # Spawner Functions

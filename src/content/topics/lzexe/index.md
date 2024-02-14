@@ -18,7 +18,7 @@ In his own words:
 >
 > Although I wrote LZEXE for my own use, I gave it to some friends, and it was then put on some BBS's. LZEXE became then very famous, although I did not do anything to promote it. This success was quite unexpected for me.
 >
-> -- https://bellard.org/lzexe.html
+> &mdash;Fabrice Bellard, _LZEXE Home Page_ [^bellard]
 
 LZEXE was unique because it immediately launched the program once it had been decompressed. Most other compression/packing utilities required an additional step (and often additional space) to do this. Performance was very good, roughly halving the sizes of common EXE files with an almost imperceptible load delay on even the most modest computers of the day.
 
@@ -283,7 +283,7 @@ The third map shows the memory after all move operations have been completed. In
 
 ### A Crash-Course in LZSS
 
-The heart of the decompressor is the LZSS algorithm, which operates by replacing repeated occurrences of data with references to earlier instances of that same data in the decompressed output. The operation can best be described with an example from Dr. Seuss's _Green Eggs and Ham_ that I brazenly lifted from [Wikipedia](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski):
+The heart of the decompressor is the LZSS algorithm, which operates by replacing repeated occurrences of data with references to earlier instances of that same data in the decompressed output. The operation can best be described with an example from Dr. Seuss's _Green Eggs and Ham_ that I brazenly lifted from Wikipedia:[^lzss-example]
 
 **Original Text:**
 
@@ -965,5 +965,10 @@ Some languages, notably C, guarantee that uninitialized data is actually set to 
 
 And that's how it all worked. All of this -- everything in this section -- happened in that split-second between when a user pressed the Enter key at the DOS prompt and when the screen cleared. It was quick, transparent, and it all just worked. LZEXE was a stalwart tool of DOS game publishers, and this decompression scheme is forever enshrined in dozens if not hundreds of games that people are still playing today.
 
+[^bellard]: https://bellard.org/lzexe.html
+
+[^lzss-example]: [https://en.wikipedia.org/wiki/Lempel&ndash;Ziv&ndash;Storer&ndash;Szymanski](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski)
+
 [^okumura]: https://oku.edu.mie-u.ac.jp/~okumura/compression/history.html
+
 [^nozero]: https://retrocomputing.stackexchange.com/q/12027/12139

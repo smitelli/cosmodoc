@@ -1,7 +1,7 @@
 +++
 title = "Hint Sheet"
 description = "A transcription of the hint sheet provided with registered copies of the game."
-weight = 550
+weight = 570
 +++
 
 # Hint Sheet
@@ -92,7 +92,7 @@ The on-disk hint sheet is contained in an executable file dated April 15, 1992 a
     2x="on-disk-sheet-1368x.png"
     3x="on-disk-sheet-2052x.png" >}}
 
-The executable was created by a program called "TXT2COM Conversion utility" version 2.06 by Keith P. Graham. He shared an interesting anecdote about this particular utility on a [Hacker News thread](https://news.ycombinator.com/item?id=12949114) in 2016.
+The executable was created by a program called "TXT2COM Conversion utility" version 2.06 by Keith P. Graham. He shared an interesting anecdote about this particular utility on a Hacker News thread[^hackernews]  in 2016.
 
 The Apogee copyright message embedded with the document reads:
 
@@ -255,3 +255,5 @@ software.   Enjoy the game!
 
 [ END OF FILE ]
 ```
+
+[^hackernews]: https://news.ycombinator.com/item?id=12949114

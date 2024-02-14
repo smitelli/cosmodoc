@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 520
+weight = 540
 +++
 
 # Bugs and Oversights
@@ -12,9 +12,11 @@ This is the listing of every oversight I discovered during the course of my rese
 
 ## Player cannot fall off the map in E2M6.
 
-<!-- TODO Continue describing bugs -->
+When the player falls into a bottomless pit, their position overflows the map data buffer and wraps back to zero due to the large size of the maps. Due to the unusual construction of this map in particular, [the player can stand on solid tiles near the top of the map while simultaneously falling out the bottom of it.]({{< relref "player-movement-functions#dancing-on-the-ceiling" >}})
 
 ## E2M10 can be won by dying near the top of the map.
+
+<!-- TODO Continue describing bugs -->
 
 ## Joystick buttons are reversed.
 
@@ -54,7 +56,11 @@ The sprite visibility check in {{< lookup/cref MoveAndDrawDecorations >}} calcul
 
 ## Fountain stream overlaps bottom of spray sprite.
 
+## Scooter is invisible for one frame after touching bottom edge of the screen.
+
 ## Sparkly prizes are drawn flipped.
+
+## {{< lookup/actor 62 >}} on E2M5 doesn't sparkle.
 
 ## Two unused actors in E1M8.
 

@@ -2,7 +2,7 @@
 title = "Cartoon Sprite Database"
 linkTitle = "Cartoon Sprites"
 description = "A table containing information about each cartoon sprite set in the game."
-weight = 670
+weight = 690
 +++
 
 # Cartoon Sprite Database

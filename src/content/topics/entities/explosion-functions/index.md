@@ -1,7 +1,7 @@
 +++
 title = "Explosion Functions"
 description = "Describes the functions that create and process explosions that occur during gameplay."
-weight = 460
+weight = 480
 +++
 
 # Explosion Functions
@@ -374,11 +374,23 @@ The height and width process is repeated for the second sprite.
     }
 ```
 
-I honestly have no idea what this is about. The test for `x1` (which belongs to some explosion) being greater than {{< lookup/cref mapWidth >}} suggests that it's trying to catch a case where the horizontal position of the sprite is off the right edge of the map. `x1` is always less than or equal to {{< lookup/cref WORD_MAX >}}, because `x1` is a word and there's no way for it not to be.
+This is tricky, and I was ready to dismiss it as an impossible case that had been left in as old cruft. But it turns out this actually does something, and it does it correctly (although hackily).
 
-Adding `x1` to `width1`, considering that `x1` must've been off the edge of the map for the `if` body to execute in the first place, produces a width that's wider than the entire map. Zeroing `x1` is yet another piece of the mystery.
+Explosions are wider than many actors. When an actor wishes to center an explosion relative to itself, it will subtract some fixed distance from its own X position to determine where the explosion's X position should fall. This becomes an issue when the actor is at or near the left edge of the screen -- the explosion's X coordinate might become negative.
 
-I can't even begin to conjure a plausible explanation for what purpose this may have served or how it was supposed to work. Given that `x1` should never be bigger than {{< lookup/cref mapWidth >}} in any reasonable game state, we can likely get away with just pretending that this isn't here at all.
+{{< aside class="fun-fact" >}}
+**Adversarial Case**
+
+This offscreen condition occurs reliably in the unmodified game. In E2M10, there is a {{< lookup/actor 188 >}} at the left edge of the map. When it travels the fixed path it was placed on and crashes into the barrier above, the left-hand explosion is inserted _four_ tiles to the left of the rocket, outside of the screen bounds.
+{{< /aside >}}
+
+In this game, all the relevant variables for these types of calculations tend to be machine `word`s, which are unsigned. That means the expression `0 - 1` **underflows** and produces 65,535 (or FFFF in hexadecimal). This is not a small negative number, it is a large positive one.
+
+The `if` here is testing for cases where `x1` is larger than {{< lookup/cref mapWidth >}}, which is how a negative number in unsigned form would behave. (The test for `x1` being less or equal than {{< lookup/cref WORD_MAX >}} is pointless, though. It probably was `x1 <= -1` in the original source, but that would annoy the compiler as well as anyone trying to make sense of the code.)
+
+By adding `width1` to a slightly underflowed `x1`, `x1` **overflows** back across zero to a small positive number equaling `width1` minus the absolute value of `x1`. This is effectively the width of the part of the sprite that is not in negative coordinate space.
+
+Since the width of the sprite has been shrunk to fit in the unsigned universe, `x1` can be fudged to zero to make the usual intersection math work.
 
 ```c
     return (

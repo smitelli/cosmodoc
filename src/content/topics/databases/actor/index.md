@@ -2,7 +2,7 @@
 title = "Actor Database"
 linkTitle = "Actors"
 description = "A table containing information about every defined actor type in the game."
-weight = 630
+weight = 650
 +++
 
 # Actor Database

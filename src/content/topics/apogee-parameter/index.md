@@ -1,7 +1,7 @@
 +++
 title = "The apogee Parameter"
 description = "What happens when you run the game with the `apogee` parameter, as so many cheat sites suggest."
-weight = 530
+weight = 550
 +++
 
 # The `apogee` Parameter
@@ -12,7 +12,7 @@ Many online cheat guides (a notable example being 3D Realms[^3drealms] themselve
 
 > The effects of this are many. One, the game will not recognize your old high scores or saved games. (The high scores will be reset to those of Simpsons' characters until you exit and re-enter the program normally.) In this mode, if you die quickly enough after entering a level, you'll be invincible from then on, to everything but pits on the bottom of each level.
 >
-> -- http://legacy.3drealms.com/cheat/cosmo.html
+> &mdash;_3D Realms Site_, "Cosmo's Cosmic Adventure Cheat Codes" [^3drealms]
 
 For [configuration files]({{< relref "configuration-file-format" >}}), it doesn't matter so much -- the game is designed to handle the case where the file is missing. This is where the default values in the high score table come from.
 
@@ -20,7 +20,7 @@ For [saved games]({{< relref "save-file-format" >}}), the behavior is also predi
 
 ## Unintended Invincibility
 
-When a new level is entered ({{< lookup/cref InitializeLevel >}}), a temporary save file named `COSMOx.SVT` is written which contains the game state at that point. When the player dies and the level needs to be restarted ({{< lookup/cref DrawPlayerHelper >}}), this save file is reloaded to return the player's score, stars, health, and so on back to the state they were in when the level was originally entered. If the save directory is not writable, this file is never written.
+When a new level is entered ({{< lookup/cref InitializeLevel >}}), a temporary save file named `COSMOx.SVT` is written which contains the game state at that point. When the player dies and the level needs to be restarted ({{< lookup/cref ProcessPlayer >}}), this save file is reloaded to return the player's score, stars, health, and so on back to the state they were in when the level was originally entered. If the save directory is not writable, this file is never written.
 
 While the game is running, the player's health is tracked in the {{< lookup/cref playerHealth >}} variable that decrements when damage is taken and increments when {{< lookup/actor type=28 strip=true plural=true >}} are collected. When health drops to zero the player dies, but this check only happens at the instant the player is taking damage ({{< lookup/cref HurtPlayer >}}).
 

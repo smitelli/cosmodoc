@@ -422,13 +422,13 @@ The combination of {{< lookup/cref MovePlatforms >}} and {{< lookup/cref MoveFou
 
 ```c
         DrawMapRegion();
-        if (DrawPlayerHelper()) continue;
+        if (ProcessPlayer()) continue;
         DrawFountains();
 ```
 
 This is the first point during a regular iteration of the game loop where something is drawn to the screen. {{< lookup/cref DrawMapRegion >}} draws the _entire_ map visible map area -- solid tiles, masked tiles, and the backdrop behind empty areas -- over the game window based on the current X and Y scroll position. This fully erases everything that was left over in the video memory on the draw page. Platforms are regular solid tiles in the map memory that move around, so they are drawn as part of this function. Fountains contain no visible map tiles, so they are hidden at this point. (The player can still stand on these invisible tiles, however.)
 
-The {{< lookup/cref DrawPlayerHelper >}} ultimately draws the player sprite onto the screen, but also does some per-frame checks to handle the player's response to being hurt. Most notably, if the player dies or falls off the map, {{< lookup/cref DrawPlayerHelper >}} reloads the current level and returns true to request a game loop restart (`continue`). Anything drawn after this point can cover the player sprite, including all actors and visual effects.
+The {{< lookup/cref ProcessPlayer >}} ultimately draws the player sprite onto the screen, but also does some per-frame checks to handle the player's response to being hurt. Most notably, if the player dies or falls off the map, {{< lookup/cref ProcessPlayer >}} reloads the current level and returns true to request a game loop restart (`continue`). Anything drawn after this point can cover the player sprite, including all actors and visual effects.
 
 {{< lookup/cref DrawFountains >}} draws the necessary sprite tiles onto the screen to show any fountains within the scrolling game window, even if the player is not currently interacting with any.
 
@@ -528,7 +528,7 @@ Finally, the original return value of {{< lookup/cref ProcessGameInput >}}, stas
 
 The {{< lookup/cref ProcessGameInput >}} function handles all keyboard and joystick input while the game is being played. Depending on the value passed in `demo_state` (which should be one of the {{< lookup/cref DEMO_STATE >}} values), this behavior is modified to record or play back demo data. Returns one of the {{< lookup/cref GAME_INPUT >}} values to control the game loop's flow.
 
-In addition to setting up player movment, this function also calls the in-game menus and dialogs for game options and cheat keys.
+In addition to setting up player movement, this function also calls the in-game menus and dialogs for game options and cheat keys.
 
 ```c
 byte ProcessGameInput(byte demo_state)
@@ -549,7 +549,7 @@ This function does the most work when the passed `demo_state` is not {{< lookup/
         }
 ```
 
-If the user is pressing the <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del / Num .</kbd> debug key combination during the current frame, they want to toggle the state of the debug mode. The key state is read from the {{< lookup/cref isKeyDown >}} array indexed by the appropriate {{< lookup/cref SCANCODE >}} values, with the "delete" key sharing a scancode with the "dot" on the numeric keybad. When this key combination is down, {{< lookup/cref isDebugMode >}} is toggled and {{< lookup/cref StartSound >}} plays the {{< lookup/cref name="SND" text="SND_PAUSE_GAME" >}} effect to give feedback that the input was accepted.
+If the user is pressing the <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del / Num .</kbd> debug key combination during the current frame, they want to toggle the state of the debug mode. The key state is read from the {{< lookup/cref isKeyDown >}} array indexed by the appropriate {{< lookup/cref SCANCODE >}} values, with the "delete" key sharing a scancode with the "dot" on the numeric keypad. When this key combination is down, {{< lookup/cref isDebugMode >}} is toggled and {{< lookup/cref StartSound >}} plays the {{< lookup/cref name="SND" text="SND_PAUSE_GAME" >}} effect to give feedback that the input was accepted.
 
 To give the user a chance to release the keys without unintentionally toggling the debug mode further, {{< lookup/cref WaitHard >}} pauses the entire game for a bit over half a second.
 
@@ -722,7 +722,7 @@ This is a duplicate of the larger `if` in the first half of the function -- runn
 
 If {{< lookup/cref isJoystickReady >}} is false, the user is not using joystick input for player movement and the keyboard should be used instead. For each movement command, the configured scancode index ({{< lookup/cref scancodeWest >}}, {{< lookup/cref scancodeEast >}}, {{< lookup/cref scancodeJump >}}, {{< lookup/cref scancodeNorth >}}, {{< lookup/cref scancodeSouth >}}, and {{< lookup/cref scancodeBomb >}}) is read from the {{< lookup/cref isKeyDown >}} array and the key up/down state becomes the inactive/active state of that movement command.
 
-{{< lookup/cref cmdWest >}}, {{< lookup/cref cmdEast >}}, and {{< lookup/cref cmdJump >}} have an additional processing step: If {{< lookup/cref blockMovementCmds >}} holds a nonzero (i.e. not-false) value, the boolean {{< lookup/cref isKeyDown >}} value is bitwist-shifted to the right. Since boolean false/true is equivalent to integer zero/nonzero, this functions as a boolean AND NOT expression -- the command variable is set if the key is down and commands are not blocked. {{< lookup/cref cmdNorth >}}, {{< lookup/cref cmdSouth >}}, and {{< lookup/cref cmdBomb >}} are not affected in this way because the player doesn't conceptually "move" for those inputs.
+{{< lookup/cref cmdWest >}}, {{< lookup/cref cmdEast >}}, and {{< lookup/cref cmdJump >}} have an additional processing step: If {{< lookup/cref blockMovementCmds >}} holds a nonzero (i.e. not-false) value, the boolean {{< lookup/cref isKeyDown >}} value is bitwise-shifted to the right. Since boolean false/true is equivalent to integer zero/nonzero, this functions as a boolean AND NOT expression -- the command variable is set if the key is down and commands are not blocked. {{< lookup/cref cmdNorth >}}, {{< lookup/cref cmdSouth >}}, and {{< lookup/cref cmdBomb >}} are not affected in this way because the player doesn't conceptually "move" for those inputs.
 
 In the opposite case, {{< lookup/cref isJoystickReady >}} is true and joystick input _is_ being used. Don't process keyboard input at all, and instead call {{< lookup/cref ReadJoystickState >}} to read the movement commands from {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}. Although {{< lookup/cref ReadJoystickState >}} returns a {{< lookup/cref JoystickState >}} structure with button press info, that return value is not used here -- all global variables are set without considering the return value.
 

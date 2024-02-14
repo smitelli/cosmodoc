@@ -1,6 +1,9 @@
 {{ $authorUrl := $.Site.Params.authorUrl }}
+{{ $gitContentUrl := print $.Site.Params.gitContentUrl "/" (replace $.File.Path "\\" "/") }}
+{{ $gitCloneUrl := $.Site.Params.gitCloneUrl }}
+{{ $gitIssuesUrl := $.Site.Params.gitIssuesUrl }}
+{{ $gitHash := $.Page.GitInfo.Hash }}
 {{ $lastMod := $.Page.Lastmod.Format "January 2, 2006" }}
-{{ $gitUrl := print $.Site.Params.gitContentUrl "/" (replace $.File.Path "\\" "/") }}
 
 {{ $cosmoreZip := "" }}
 {{ with resources.GetRemote $.Site.Params.cosmoreDownloadUrl }}
@@ -15,15 +18,15 @@
     <footer>
         <address>
             <p>
-                <strong>{{ $.Site.Title | markdownify }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>. Found an <a href="{{ $.Site.Params.gitIssuesUrl }}" title="...or a bug, or an inaccuracy!">issue</a>?
+                <strong>{{ $.Site.Title | markdownify }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>. Found an <a href="{{ $gitIssuesUrl }}" title="...or a bug, or an inaccuracy!">issue</a>?
             </p>
         </address>
 
-        <p>This page was last modified on {{ $lastMod }}. <a href="{{ $gitUrl }}">See it on GitHub.</a></p>
+        <p>This page was <span class="definition" title="Git commit {{ $gitHash }}">last modified on {{ $lastMod }}</span>. <a href="{{ $gitContentUrl }}">See it on GitHub</a>.</p>
 
         <p><a href="{{ $cosmoreZip }}">Download <strong>Cosmore</strong></a>, my reconstruction of the game&rsquo;s source code.</p>
 
-        <p><code>git clone {{ $.Site.Params.gitCloneUrl }}</code></p>
+        <p><code>git clone {{ $gitCloneUrl }}</code></p>
 
         <p><code>wget -mkp {{ absURL "/" }}</code></p>
     </footer>

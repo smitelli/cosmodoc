@@ -22,7 +22,7 @@ During my research into the game, other games of the era, and published code exa
 >
 > **Replogle:** No. I'd [sic] be a tempting offer. Again, what is the future of video games? Oh BTW, John deserves credit for helping me code some low level code in Duke Nukem One. I'm not a very good assembly language programmer, and John was kind enough to help make Duke successful with well-written optimal assembly.
 >
-> -- https://www.strifestreams.com/ToddReplogleInterview2001
+> &mdash;_Strife Streams_, "Todd Replogle Interview (from 2001)" [^toddreplogleinterview]
 
 _Cosmo_ and the original _Duke Nukem_ are extremely similar games from a technical standpoint, to the point that it would not be unreasonable to think that some of John Carmack's work is present in both games. Carmack was the undisputed king of squeezing performance out of the EGA hardware, and Replogle certainly had access to Id through their shared relationship with Apogee Software.
 
@@ -34,11 +34,9 @@ The purported connections to Id Software continue in a brief Twitter exchange be
     2x="romero-tweet-1368x.png"
     3x="romero-tweet-2052x.png" >}}
 
-> **Alex (@SpookyDoom):** @romero Many young folks today may not even know how important it was that the screen scrolled so smoothly. Just compare it to Duke Nukum [sic].
+> **Alex (@SpookyDoom):** @romero Many young folks today may not even know how important it was that the screen scrolled so smoothly. Just compare it to Duke Nukum [sic].[^spookydoom]
 >
-> **John Romero (@romero):** .@SpookyDoom: Little known fact: Duke Nukem scrolled smoothly because I told Todd Replogle over the phone how to quickly scroll EGA
->
-> -- https://twitter.com/romero/status/679769135681826817
+> **John Romero (@romero):** .@SpookyDoom : Little known fact: Duke Nukem scrolled smoothly because I told Todd Replogle over the phone how to quickly scroll EGA[^romero]
 
 Dumproff is comparing the smooth scrolling techniques of Id's _Commander Keen in Invasion of the Vorticons_ (1990) to the comparatively chunky movement in _Duke Nukem_ (1991). Romero's claim is... suspicious. _Duke_ doesn't really have any hardware scrolling to speak of -- the screen moves in eight-pixel increments and is redrawn from scratch every frame. _Cosmo_ works the same way, with the addition of a parallax scrolling backdrop layer that moves in four-pixel increments. Neither game uses the sub-tile screen panning techniques from the _Keen_ series, so it's unclear exactly what Romero is recalling here.
 
@@ -609,6 +607,12 @@ The {{< lookup/cref DRAW_SOLID_TILE_XY >}} macro wraps a call to {{< lookup/cref
 ```
 
 Each pixel row on the screen uses 40 bytes, and each tile row is eight pixels high. Multiplying these two values produces the Y-stride value of 320.
+
+[^toddreplogleinterview]: https://web.archive.org/web/20220518080826/https://www.strifestreams.com/ToddReplogleInterview2001
+
+[^spookydoom]: https://twitter.com/SpookyDoom/status/679631226886569984
+
+[^romero]: https://twitter.com/romero/status/679769135681826817
 
 [^cosmoreasm]: https://github.com/smitelli/cosmore/blob/main/src/lowlevel.asm
 

@@ -25,7 +25,7 @@ This parallax scrolling effect was uncommon in PC games at the time, and the fac
 
 Even _Commander Keen_, which was praised for its smooth sub-tile scrolling, still used an eight-pixel grid internally and invoked some EGA trickery to move the starting position of the entire screen buffer to produce its scrolling effect. That technology only worked if the screen scrolled as one monolithic unit, which is something you'll notice in _Keen's_ level designs and gameplay. _Cosmo_-style parallax would not have been possible in _Keen's_ game engine.
 
-Incidentally, the desire to understand these parallax scrolling backdrops was what originally inspired me to start disassembling the game, which ultimately led to the creation of [Cosmore](https://github.com/smitelli/cosmore) and then this website.
+Incidentally, the desire to understand these parallax scrolling backdrops was what originally inspired me to start disassembling the game, which ultimately led to the creation of [**Cosmore**](https://github.com/smitelli/cosmore) and then this website.
 {{< /aside >}}
 
 Many game consoles of the era had dedicated hardware to do layered parallax effects, but the PC offered nothing to help with this endeavor. The programmer had to figure out how to draw everything, then jam it down a one-byte wide memory window to the video hardware.

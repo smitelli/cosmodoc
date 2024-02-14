@@ -1,22 +1,14 @@
 * Eventually will be more than semi-complete
 * Word count
-* Important overall concepts/glossary/appendix
+* Important overall concepts/appendix
 * Unused tiles and masktile
-* Can attribution links inside shortcodes be footnotes now with {{% ... %}}?
+* Design and add a proper definition system
+* Game ticks and timer ticks are two different things
+* canPlayerCling in the debug bar probably only works for east
 
 =============================================================================
 
-* game logic
-    * GameRand: predictable PRNG
-    * IsTouchingPlayer: return true if actor type/frame/XY is touching the player
-    * HurtPlayer: ouch bubble, decrement health, maybe kill the player.
-    * DrawPlayerHelper: player sprite control, with some checks for the various ways to die.
-    * SET_PLAYER_DIZZY
-    * ProcessPlayerDizzy: handle landing on the ground and maybe shaking head.
-    * ClearPlayerDizzy: stop player's head from shaking.
-    * AddScoreForSprite: given an actor type, add a certain amount to player's score.
 * player move
-    * TestPlayerMove: determine if the player can move in a given direction, and set a bunch of global vars in the process.
     * MovePlayer: handle one tick of basically all player input.
     * PounceHelper: imparts the springiness into actor pounces.
     * SetPlayerPush: set up a push.
@@ -40,12 +32,12 @@
         * ActFloorSpring: floor/ceiling spring
         * ActArrowPiston: E/W variants
         * ActFireBallLauncher: E/W variants
-        * ActHeadSwitch, ActHeadSwitchInner, ActDoor: 4 colors
+        * ! ActHeadSwitch, ActDoor, UpdateDoors: 4 colors
         * ActCartSpring
         * ActRetractingSpikes: in ground or W wall
         * ActVerticalMover: big saw blade
         * ActArmedBomb
-        * ActBarrel, DestroyBarrel: barrels and baskets, different type depending on contents
+        * ! ActBarrel, DestroyBarrel: barrels and baskets, different type depending on contents
         * ActCabbageBall: 2 types, be careful!
         * ActCeilingSpear
         * ActDrips: leaking/dripping red/green acid
@@ -73,7 +65,7 @@
         * ActEyePlant: floor/ceiling variants
         * ActRedJumper
         * ActBoss
-        * ActSuctionCupWalker, SuctionCupWalkerCanFlip
+        * ! ActSuctionCupWalker, SuctionCupWalkerCanFlip
         * ActTransporter: three types
         * ActSpittingWallPlant: E/W variants
         * ActSpittingTurret

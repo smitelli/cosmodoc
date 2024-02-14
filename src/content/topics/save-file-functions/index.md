@@ -22,7 +22,7 @@ Each save game slot is identified by a single-character `slot_char` byte, which 
 > * Cannot contain spaces, commas, backslashes, or periods (except the period that separates the name from the extension).
 > * Cannot be identical to the name of another file or subdirectory in the same directory.
 >
-> -- https://archive.org/details/microsoft-ms-dos-6/page/n25/mode/2up
+> &mdash;_Microsoft MS-DOS 6 Concise User's Guide_ [^dos6manual]
 
 In practice, the game uses digit characters `1` through `9` and the letter `T` as `slot_char` values.
 
@@ -146,3 +146,5 @@ Perhaps the thinking was, if the user knows enough to be saving/loading the game
 The last field written into the file is the `checksum`. This is the 16-bit sum of the player's health, available health cells, bombs, stars, and the current level number. This is written to `fp` with {{< lookup/cref putw >}}, then the file pointer is closed with {{< lookup/cref fclose >}}.
 
 The checksum is used by {{< lookup/cref LoadGameState >}} as a simple check to verify that the content of the save file has not been manipulated by the user in an attempt to cheat.
+
+[^dos6manual]: https://archive.org/details/microsoft-ms-dos-6/page/n25/mode/2up

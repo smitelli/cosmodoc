@@ -102,6 +102,8 @@ Normal Actor                                    | 410   | Completely stops readi
 
 Immediately following the end of the actor list, there are _exactly_ 65,528 bytes of map tile data. This is interpreted as a two-dimensional array of 32,764 unsigned little-endian words in row-major order. Each of these words represents a single graphical tile of the game world, with the four tiles at the southeast corner of the map undefined. (The first tile in the array is at the northwest corner of the world, and the last tile is at the southeast corner.)
 
+The bottom row of tiles is never shown on the screen and the player movement functions disregard anything present there. It is essentially a discarded row of garbage data which protects the undefined tiles from causing visual issues or odd movement behavior. Any "air" or passable tiles immediately above the garbage row may be fallen through to implement bottomless pits.
+
 {{< aside class="armchair-engineer" >}}
 **Weird Numbers**
 
@@ -114,7 +116,7 @@ The other three missing tiles, I have no idea about.
 
 The map data is largely static; once a map tile has been read into memory it does not generally change. (There are a few specific actor types -- mostly those that restrict movement or allow the player/actors to stand on top of them -- that manipulate map tile values during gameplay, but these are relatively rare.) The **attributes** for each map tile value are defined in a [separate file]({{< relref "tile-attributes-format" >}}) and specify how the player/actors interact with each tile during gameplay.
 
-Depending on the numeric value of each map tile, it is drawn as either a **solid** tile (with no transparency) or a **masked** tile (with transparent areas where the backdrop shows through). Map tile values below 16,000 are treated as solid tiles, and values 16,000 or above are treated as masked tiles.
+Depending on the numeric value of each map tile, it is drawn as either a **solid** tile (with no transparency) or a **masked** tile (with transparent areas where the backdrop shows through). Map tile values below 16,000 are treated as solid tiles, and values 16,000 or above are treated as masked tiles. Tiles with the same value will look the same, have the same tile attributes index, and behave the same way.
 
 ### Masked Tiles
 

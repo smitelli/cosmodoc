@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 500
+weight = 520
 +++
 
 # Global Variables and Constants
@@ -372,6 +372,10 @@ Unlike {{< lookup/cref blockActionCmds >}}, this variable does not hide the play
 
 Due to an oversight, this only immobilizes the player when keyboard input is being used. This variable is ignored when a joystick is employed.
 
+{{< boilerplate/global-cref canPlayerCling >}}
+
+This is set by {{< lookup/cref TestPlayerMove >}} and will receive a different result depending on whether {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} or {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} was most recently tested.
+
 {{< boilerplate/global-cref cartoonInfoData >}}
 
 This points to [tile info data]({{< relref "tile-info-format" >}}) which has been read directly from disk. No processing is done to pre-parse this data.
@@ -571,6 +575,18 @@ This is used to override the "look up" input command, instead using it to activa
 {{< boilerplate/global-cref isPlayerNearTransporter >}}
 
 This is used to override the "look up" input command, instead using it to activate a transporter. In order for this to be true, the player must specifically be standing "inside" the transporter sprite. Merely touching its edge is not sufficient.
+
+{{< boilerplate/global-cref isPlayerPushed >}}
+
+When true, any player cling is immediately released, the scooter is force-unmounted, and regular player input and movement processing is suspended. After the push has run its course (or the player smacks into something) this becomes false again.
+
+{{< boilerplate/global-cref isPlayerSlidingEast >}}
+
+This value is unconditionally cleared during every call to {{< lookup/cref TestPlayerMove >}}. It is only possible for it to be reset during cases where {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} was the direction tested.
+
+{{< boilerplate/global-cref isPlayerSlidingWest >}}
+
+This value is unconditionally cleared during every call to {{< lookup/cref TestPlayerMove >}}. It is only possible for it to be reset during cases where {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} was the direction tested.
 
 {{< boilerplate/global-cref isSoundEnabled >}}
 
@@ -823,7 +839,7 @@ Once the player is off the map, the counter increments by one during each frame 
 
 The value here should always be one of the {{< lookup/cref PLAYER >}} values, which represent the sprite frames described in the lower half of the [player sprite database]({{< relref "databases/player-sprite" >}}).
 
-This variable is changed by {{< lookup/cref MovePlayer >}}, {{< lookup/cref MovePlayerScooter >}}, and {{< lookup/cref ProcessPlayerDizzy >}}. It is read by {{< lookup/cref DrawPlayerHelper >}}, where it is combined with {{< lookup/cref playerBaseFrame >}} to control the player sprite frame displayed on the screen.
+This variable is changed by {{< lookup/cref MovePlayer >}}, {{< lookup/cref MovePlayerScooter >}}, and {{< lookup/cref ProcessPlayerDizzy >}}. It is read by {{< lookup/cref ProcessPlayer >}}, where it is combined with {{< lookup/cref playerBaseFrame >}} to control the player sprite frame displayed on the screen.
 
 {{< boilerplate/global-cref playerHealth >}}
 

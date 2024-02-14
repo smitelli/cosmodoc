@@ -38,7 +38,7 @@ This will renumber _all_ of the pages in even increments of 10.
 
 ## Build the images
 
-The final images are already committed to the repo to ease deployment. It should not be necessary to do this procedure under normal circumstances unless an image has been changed or added. This requires working `inkscape`, `pngquant`, and `optipng` binaries.
+The final images are already committed to the repository to ease deployment. It should not be necessary to do this procedure under normal circumstances unless an image has been changed or added. This requires working `inkscape`, `pngquant`, and `optipng` binaries.
 
 Image source material is in the `imgsrc/` directory, which mirrors the naming convention and structure of `src/content/topics/`. The master list of all source files and the list of resized versions to build are in `imgsrc/manifest.txt`.
 
@@ -48,7 +48,7 @@ scripts/imgmake.py
 
 The script tries not to rebuild existing files unless the source was modified more recently then the existing destination. This relies on the filesystem having sane mtimes on all the files.
 
-To forcefully delete all builable image versions, run:
+To forcefully delete all buildable image versions, run:
 
 ```bash
 scripts/imgmake.py clean
@@ -128,3 +128,7 @@ Find specific differences in one HTML-ish file:
 ```bash
 diff <(tr -s '>' '\n' < ../public-orig/topics/FOO/index.html) <(tr -s '>' '\n' < ../public/topics/FOO/index.html)
 ```
+
+## Deployment
+
+If you're interested in how this gets deployed (and _dear god why are you_) then consider sniffing around [the Salt states.](https://github.com/smitelli/salt/blob/master/states/website/cosmodoc-org.sls)

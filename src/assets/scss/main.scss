@@ -327,6 +327,11 @@ main {
     }
 }
 
+.definition {
+    cursor: help;
+    text-decoration: underline dotted gray-from-lightness(35%);
+}
+
 .full-width {
     width: 100%;
 }

@@ -63,7 +63,7 @@ With a usable entry name in hand, the first place to search for the data is with
 
 Take note of this code; you'll see it again. The file named by {{< lookup/cref stnGroupFilename >}}, which takes the form COSMOx.STN, is {{< lookup/cref fopen >}}'d and the first 960 bytes of the file are copied via {{< lookup/cref fread >}} into the `header` buffer. `found` is a boolean flag that starts false, but flips to true if the desired entry is found.
 
-All searching is done via the `header` buffer, which now contains a repeating sequence of 20-byte entries. Due to the fact that _960_ bytes of header data has been read, only the first (960 &div; 20) 48 entries can be searched from this file. The `for` loop iterates over over _49_ header entries, meaning that the last iteration, should it ever get that far, would operate on garbage data from the stack.
+All searching is done via the `header` buffer, which now contains a repeating sequence of 20-byte entries. Due to the fact that _960_ bytes of header data has been read, only the first (960 &#8725; 20) 48 entries can be searched from this file. The `for` loop iterates over over _49_ header entries, meaning that the last iteration, should it ever get that far, would operate on garbage data from the stack.
 
 The entry name is at offset 0 in each header entry. If the first byte of a header entry name is null, the end of the header has been reached and the loop needs to stop. Otherwise {{< lookup/cref strncmp >}} is employed to compare the first _11_ bytes of the header entry name with the value being searched for. Since the comparison is only checking 11 bytes on a 12-byte field, the last character on a name like "LONGNAME.MNI" will not be considered.
 

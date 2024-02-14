@@ -346,7 +346,11 @@ AddScore:
   def: void AddScore(dword points);
   desc: Wraps `DrawStatusBarScore()` with the correct X,Y position for display on the screen. It adds `points` to the player's score and updates the status bar with the new value.
   ref: /topics/status-bar-functions/#AddScore
-#AddScoreForSprite:
+AddScoreForSprite:
+  text: AddScoreForSprite()
+  def: void AddScoreForSprite(word sprite_type);
+  desc: Determines how many points should be added to the player's score for defeating an actor of a given `sprite_type`, and adds that amount.
+  ref: /topics/game-logic-functions/#AddScoreForSprite
 AnimatePalette:
   text: AnimatePalette()
   def: void AnimatePalette(void);
@@ -368,7 +372,11 @@ ClearGameScreen:
   def: void ClearGameScreen(void);
   desc: Clears all content from both draw pages of the EGA's memory and redraws a fresh status bar.
   ref: /topics/status-bar-functions/#ClearGameScreen
-#ClearPlayerDizzy:
+ClearPlayerDizzy:
+  text: ClearPlayerDizzy()
+  def: void ClearPlayerDizzy(void);
+  desc: Resets all the global variables related to the player's "dizziness" immobilization, immediately returning the player to normal state.
+  ref: /topics/game-logic-functions/#ClearPlayerDizzy
 ClearScreen:
   text: ClearScreen()
   def: void ClearScreen(void);
@@ -585,7 +593,11 @@ GameLoop:
   def: void GameLoop(byte demo_state);
   desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demo_state` argument which should be one of the DEMO_STATE_* constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
   ref: /topics/game-loop-functions/#GameLoop
-#GameRand:
+GameRand:
+  text: GameRand()
+  def: word GameRand(void);
+  desc: Returns a pseudorandom number based on a fixed table of randomness combined with influence from the player and scrolling game window positions. The output sequence from this function is deterministic for a given sequence of player and scroll positions.
+  ref: /topics/game-logic-functions/#GameRand
 GetMapTile:
   text: GetMapTile()
   def: word GetMapTile(word x, word y);
@@ -606,7 +618,11 @@ GroupEntryLength:
   def: dword GroupEntryLength(char *entry_name);
   desc: Locates a group file `entry_name` and returns the size of its data in bytes.
   ref: /topics/group-file-functions/#GroupEntryLength
-#HurtPlayer:
+HurtPlayer:
+  text: HurtPlayer()
+  def: void HurtPlayer(void);
+  desc: Deducts a bar of health from the player, and kills them if they have lost enough health.
+  ref: /topics/game-logic-functions/#HurtPlayer
 InitializeBackdropTable:
   text: InitializeBackdropTable()
   def: void InitializeBackdropTable(void);
@@ -687,6 +703,11 @@ IsSpriteVisible:
   def: bool IsSpriteVisible(word sprite_type, word frame, word x_origin, word y_origin);
   desc: Returns true if the provided `sprite_type` and `frame` located at `x_origin` and `y_origin` is at least partially visible within the scrolling game window.
   ref: /topics/composite-drawing-functions/#IsSpriteVisible
+IsTouchingPlayer:
+  text: IsTouchingPlayer()
+  def: IsTouchingPlayer(word sprite_type, word frame, word x_origin, word y_origin);
+  desc: Returns true if the passed `sprite_type` and `frame` located at `x_origin` and `y_origin` is touching any part of the player sprite at its current position.
+  ref: /topics/game-logic-functions/#IsTouchingPlayer
 JoinPath:
   text: JoinPath()
   def: char *JoinPath(char *dir, char *file);
@@ -881,7 +902,16 @@ ProcessGameInputHelper:
   def: byte ProcessGameInputHelper(word active_page, byte demo_state);
   desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the `DEMO_STATE_*` values.
   ref: /topics/game-loop-functions/#ProcessGameInputHelper
-#ProcessPlayerDizzy:
+ProcessPlayer:
+  text: ProcessPlayer()
+  def: bbool ProcessPlayer(void);
+  desc: Determines the player's reaction to pain or death and draws the player sprite accordingly. If the player has died and completed the relevant death animation sequence, this function reloads the game state to the way it was when the level was last started and returns true. If the level has not been restarted, this function returns false.
+  ref: /topics/game-logic-functions/#ProcessPlayer
+ProcessPlayerDizzy:
+  text: ProcessPlayerDizzy()
+  def: void ProcessPlayerDizzy(void);
+  desc: Determines when a queued bout of dizziness should become effective, and handles the cases where dizziness wears off naturally or is abruptly canceled.
+  ref: /topics/game-logic-functions/#ProcessPlayerDizzy
 ProfileCPU:
   text: ProfileCPU()
   def: void ProfileCPU(void);
@@ -937,7 +967,11 @@ ReadJoystickState:
   def: JoystickState ReadJoystickState(word stick_num);
   desc: Polls the joystick identified by `stick_num` for its current position and button state, and updates the player control variables accordingly.
   ref: /topics/demo-functions/#ReadJoystickState
-#SET_PLAYER_DIZZY:
+SET_PLAYER_DIZZY:
+  text: SET_PLAYER_DIZZY()
+  def: '#define SET_PLAYER_DIZZY() { queuePlayerDizzy = true; }'
+  desc: Puts the player into a "dizzy" state, which will begin to take effect the next time they are standing on solid ground.
+  ref: /topics/game-logic-functions/#SET_PLAYER_DIZZY
 SaveConfigurationData:
   text: SaveConfigurationData()
   def: void SaveConfigurationData(char *filename);
@@ -1259,7 +1293,11 @@ TILE_SLOPED:
   def: '#define TILE_SLOPED(val) (*(tileAttributeData + ((val) / 8)) & 0x40)'
   desc: Evaluates to a nonzero value if the tile value passed in `val` has its "is sloped" attribute flag set.
   ref: /topics/level-and-map-functions/#TILE_SLOPED
-#TestPlayerMove:
+TestPlayerMove:
+  text: TestPlayerMove()
+  def: word TestPlayerMove(word dir, word x_origin, word y_origin);
+  desc: Tests if the player sprite is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the `MOVE_*` constants is returned.
+  ref: /topics/player-movement-functions/#TestPlayerMove
 #TestSpriteMove:
 TimerInterruptService:
   text: TimerInterruptService()
@@ -2547,6 +2585,11 @@ blockMovementCmds:
   def: bbool blockMovementCmds;
   desc: When true, prevents the player from walking or jumping.
   ref: /topics/global-variables-and-constants/#blockMovementCmds
+canPlayerCling:
+  text: canPlayerCling
+  def: bool canPlayerCling;
+  desc: Holds a true value if the player is able to cling to the most recently tested east/west surface.
+  ref: /topics/global-variables-and-constants/#canPlayerCling
 cartoonInfoData:
   text: cartoonInfoData
   def: word *cartoonInfoData;
@@ -2793,6 +2836,21 @@ isPlayerNearTransporter:
   def: bool isPlayerNearTransporter;
   desc: Holds a true value if the player is currently near any transporter actor, and false otherwise.
   ref: /topics/global-variables-and-constants/#isPlayerNearTransporter
+isPlayerPushed:
+  text: isPlayerPushed
+  def: bool isPlayerPushed;
+  desc: Holds a true value if the player is currently immobilized in a "pushed" state, moving in a fixed direction without considering user input.
+  ref: /topics/global-variables-and-constants/#isPlayerPushed
+isPlayerSlidingEast:
+  text: isPlayerSlidingEast
+  def: bool isPlayerSlidingEast;
+  desc: Holds a true value if the player is standing on a surface that is both slippery and sloped down toward the eastern direction.
+  ref: /topics/global-variables-and-constants/#isPlayerSlidingEast
+isPlayerSlidingWest:
+  text: isPlayerSlidingWest
+  def: bool isPlayerSlidingWest;
+  desc: Holds a true value if the player is standing on a surface that is both slippery and sloped down toward the western direction.
+  ref: /topics/global-variables-and-constants/#isPlayerSlidingWest
 isSoundEnabled:
   text: isSoundEnabled
   def: bool isSoundEnabled;
