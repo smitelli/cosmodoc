@@ -41,7 +41,7 @@ if (TestPlayerMove(DIR4_EAST, playerX, playerY) != MOVE_FREE) {
 }
 ```
 
-Both are acceptable forms that produce the correct answer. One's a little less dense, one's a little more mild-mannered in terms of keeping the global state undisturbed. This game uses both behaviors interchangeably, and it's important to recognize both patterns and understand what the code is trying to do: The player is at some X position, they want to move one tile toward {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} to X + 1, and the legality of this move must be decided before the move is realized.
+Both are acceptable forms that produce the correct answer. One's a little less dense, one's a little more mild-mannered in terms of keeping the global state undisturbed. This game uses both approaches interchangeably, and it's important to recognize both patterns and understand what the code is trying to do: The player is at some X position, they want to move one tile toward {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} to X + 1, and the legality of this move must be decided before the move is realized.
 
 {{< boilerplate/function-cref TestPlayerMove >}}
 
@@ -51,11 +51,11 @@ Return Value                                        | Description
 ----------------------------------------------------|------------
 {{< lookup/cref name="MOVE" text="MOVE_FREE" >}}    | The move is permitted; none of the map tiles the player touches in the new location interfere with movement in the specified direction.
 {{< lookup/cref name="MOVE" text="MOVE_BLOCKED" >}} | The move is forbidden; at least one of the map tiles the player touches in the new location forbids movement in the specified direction.
-{{< lookup/cref name="MOVE" text="MOVE_SLOPED" >}}  | The move is permitted as with {{< lookup/cref name="MOVE" text="MOVE_FREE" >}}, however at least one tile at the player's feet is sloped and a vertical adjustment will be required to keep the player at the correct height.
+{{< lookup/cref name="MOVE" text="MOVE_SLOPED" >}}  | The move is permitted as with {{< lookup/cref name="MOVE" text="MOVE_FREE" >}}, however at least one tile at the player's feet is sloped and a subsequent vertical adjustment will be required to keep the player at the correct height.
 
 This function always clears the global {{< lookup/cref isPlayerSlidingEast >}} and {{< lookup/cref isPlayerSlidingWest >}} flags, and the only time they _could_ be re-enabled is when a `dir` of {{< lookup/cref name="DIR4" text="DIR4_SOUTH" >}} is passed. {{< lookup/cref pounceStreak >}} may also be zeroed in this direction.
 
-{{< lookup/cref canPlayerCling >}} is always updated whenever `dir` is {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} or {{< lookup/cref name="DIR4" text="DIR4_EAST" >}}.
+{{< lookup/cref canPlayerCling >}} is always recalculated whenever `dir` is {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} or {{< lookup/cref name="DIR4" text="DIR4_EAST" >}}.
 
 ```c
 word TestPlayerMove(word dir, word x_origin, word y_origin)
@@ -73,7 +73,7 @@ Every call to this function clears both the {{< lookup/cref isPlayerSlidingEast 
     switch (dir) {
 ```
 
-The entirety of this function is arranged as a `switch` statement, with each `case` label handling one of the possible four {{< lookup/cref DIR4 >}} values.
+The entirety of this function is arranged as a `switch` statement, with each `case` label handling one of the four possible {{< lookup/cref DIR4 >}} values.
 
 ```c
     case DIR4_NORTH:
@@ -82,13 +82,13 @@ The entirety of this function is arranged as a `switch` statement, with each `ca
 
 This `case` handles moves in the {{< lookup/cref name="DIR4" text="DIR4_NORTH" >}} direction, for situations where the player sprite is rising vertically on the screen.
 
-{{< lookup/cref playerY >}} represents the vertical position of the bottom row of player sprite tiles, or colloquially, the player's feet. The player sprite is always five tiles tall no matter which sprite frame is being shown. {{< lookup/cref playerY >}}` - 3` is the second row of tiles from the top, while {{< lookup/cref playerY >}}` - 3` is the row of tiles at the center of the sprite. If either of these expressions evaluates to zero, the player is partially off the top edge of the map already and there is absolutely no reason while they should be permitted to move any higher. {{< lookup/cref name="MOVE" text="MOVE_BLOCKED" >}} is returned in this case.
+{{< lookup/cref playerY >}} represents the vertical position of the bottom row of player sprite tiles, or colloquially, the player's feet. The player sprite is always five tiles tall no matter which sprite frame is being shown. {{< lookup/cref playerY >}}` - 3` is the second row of tiles from the top, while {{< lookup/cref playerY >}}` - 3` is the row of tiles at the center of the sprite. If either of these expressions evaluates to zero, the player is partially off the top edge of the map already and there is absolutely no reason that they should be permitted to move any higher. {{< lookup/cref name="MOVE" text="MOVE_BLOCKED" >}} is returned in this case.
 
-{{< note >}}
+{{% note %}}
 The offsets chosen here will allow the topmost row of player sprite tiles to leave the map. This allows their hair (but not the face) to leave view.
 
 The bottom two rows are not tested here, due to the assumption that the player never moves vertically more than two tiles per game tick. Assuming everything is working properly, the upper half of the sprite will get caught before the bottom rows ever need to be considered.
-{{< /note >}}
+{{% /note %}}
 
 ```c
         mapcell = MAP_CELL_ADDR(x_origin, y_origin - 4);
@@ -115,7 +115,7 @@ If all three tiles at the top of the player's sprite permitted the move, `break`
 
 This is the `case` for the {{< lookup/cref name="DIR4" text="DIR4_SOUTH" >}} direction.
 
-The sum of {{< lookup/cref maxScrollY >}} plus {{< lookup/cref SCROLLH >}} represents the first tile past the bottom of the visible map. There is actually a hidden row of map tiles, but it is garbage and shouldn't be considered as something that could interact with the player. (See the [map format]({{< relref "map-format" >}}) page for details.) In the case where the {{< lookup/cref playerY >}} is passing through this garbage row, {{< lookup/cref name="MOVE" text="MOVE_FREE" >}} is unconditionally returned to prevent anything from interfering randomly.
+The sum of {{< lookup/cref maxScrollY >}} plus {{< lookup/cref SCROLLH >}} represents the first tile past the bottom of the visible map. There is actually a hidden row of map tiles at this elevation, but it is garbage and shouldn't be considered as something that could interact with the player. (See the [map format]({{< relref "map-format" >}}) page for details.) In the case where the {{< lookup/cref playerY >}} is passing through this garbage row, {{< lookup/cref name="MOVE" text="MOVE_FREE" >}} is unconditionally returned to prevent anything from interfering randomly.
 
 The `mapcell` pointer is set up as in the {{< lookup/cref name="DIR4" text="DIR4_NORTH" >}} case, except here there are no corrections done to `y_origin` since we actually want to look at the tiles by the player's feet here.
 
@@ -135,9 +135,9 @@ The `mapcell` pointer is set up as in the {{< lookup/cref name="DIR4" text="DIR4
 
 Here we are testing for tiles that are both sloped and slippery. The game needs to know about this condition to force-slide the player down the icy hills.
 
-In order for the player to slide east, the tile value at the player sprite's bottom left corner (`*mapcell`) needs to _not_ block southward movement (`!`{{< lookup/cref TILE_BLOCK_SOUTH >}}), it must be sloped ({{< lookup/cref TILE_SLOPED >}}) and it must be slippery (({{< lookup/cref TILE_SLIPPERY >}})). If all three of these conditions match, {{< lookup/cref isPlayerSlidingEast >}} is set to true.
+In order for the player to slide east, the tile value at the player sprite's bottom left corner (`*mapcell`) needs to _not_ block southward movement (`!`{{< lookup/cref TILE_BLOCK_SOUTH >}}), it must be sloped ({{< lookup/cref TILE_SLOPED >}}) and it must be slippery ({{< lookup/cref TILE_SLIPPERY >}}). If all three of these conditions match, {{< lookup/cref isPlayerSlidingEast >}} is set to true.
 
-{{< lookup/cref isPlayerSlidingWest >}} is set exactly the same way, except the tile being tested is at the player sprite's bottom _right_ corner (`*(mapcell + 2)`).
+{{< lookup/cref isPlayerSlidingWest >}} is set exactly the same way, except the tile being tested is at the player sprite's bottom _right_ corner, `*(mapcell + 2)`.
 
 ```c
         for (i = 0; i < 3; i++) {
@@ -173,7 +173,7 @@ This is the `case` for the {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} dire
 
 The `mapcell` pointer is set up just like it was in the {{< lookup/cref name="DIR4" text="DIR4_SOUTH" >}} case, referring to the tile at the bottom left of the player's sprite position.
 
-`mapcell - (mapWidth * 2)` is a bit of linear addressing. The map is conceptually a two-dimensional array with a horizontal size of {{< lookup/cref mapWidth >}} and a not-relevant-right-now height. In actuality it's a one-dimensional array of tile elements in row-major order. Each single-element step represents a move in the horizontal direction, while a step of {{< lookup/cref mapWidth >}} represents a vertical move to the same column in an adjacent row. Subtracting `mapWidth * 2` from any tile position selects the location two tiles above. The value being dereferenced here is the map tile that is two rows above `mapcell`, which is the left tile in the middle row of the player's sprite, approximately where the suction cup hands are depicted.
+`mapcell - (mapWidth * 2)` is a bit of linear addressing. The map is conceptually a two-dimensional array with a horizontal size of {{< lookup/cref mapWidth >}} and a not-relevant-right-now height. In actuality it's a one-dimensional array of tile elements in row-major order. Each single-element step represents a move in the horizontal direction, while a step of {{< lookup/cref mapWidth >}} represents a vertical move to the same column in an adjacent row. Subtracting `mapWidth * 2` from any tile position selects the location two tiles above. The value being dereferenced here is the map tile that is two rows above `mapcell`, which is the left tile in the middle row of the player's sprite, approximately where the suction cup hands are depicted on a west-facing player sprite.
 
 {{< lookup/cref TILE_CAN_CLING >}} determines if the tile at the player sprite's hand is clingable, and the result is stored in {{< lookup/cref canPlayerCling >}}.
 
@@ -193,7 +193,7 @@ The `mapcell` pointer is set up just like it was in the {{< lookup/cref name="DI
         break;
 ```
 
-The main test is structured as a five-iteration `for` loop, each iteration testing the next higher tile at the left edge of the player's sprite. If any tile blocks the move ({{< lookup/cref TILE_BLOCK_WEST >}}) {{< lookup/cref name="MOVE" text="MOVE_BLOCKED" >}} is returned.
+The main test is structured as a five-iteration `for` loop, each iteration testing the next higher tile at the left edge of the player's sprite. If any tile blocks the move ({{< lookup/cref TILE_BLOCK_WEST >}}), {{< lookup/cref name="MOVE" text="MOVE_BLOCKED" >}} is returned.
 
 On the first iteration (only), if the examined tile is sloped ({{< lookup/cref TILE_SLOPED >}}) and the tile directly above it permits movement in our current direction (`!`{{< lookup/cref TILE_BLOCK_WEST >}}) the {{< lookup/cref name="MOVE" text="MOVE_SLOPED" >}} value is returned and testing stops. This condition means that the player is walking up a hill and the eventual increase in elevation will not cause them to enter a tile that would refuse the move.
 
@@ -219,7 +219,7 @@ Otherwise `mapcell` is reduced by {{< lookup/cref mapWidth >}}, selecting the ne
         break;
 ```
 
-This is the `case` for the {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} direction. It's identical to the {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} case, except the initial `mapcell` position is targeting the bottom _right_ tile of the player's sprite. (The inner tests use {{< lookup/cref TILE_BLOCK_EAST >}} as well.)
+This is the `case` for the {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} direction. It's identical to the {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} case, except the initial `mapcell` position is targeting the bottom _right_ tile of the player's sprite at `x_origin + 2`. (The inner tests use {{< lookup/cref TILE_BLOCK_EAST >}} as well.)
 
 ```c
     }
@@ -281,7 +281,7 @@ So that explains what happens when the player touches the edge of the map, and h
 
 When the player falls an additional tile, things get interesting fast. The player's Y position is now no longer in the final row of garbage tiles, it's past it. On a map that is (e.g.) 64 tiles high, we're now in the 65th tile row. The game doesn't really test for this condition in the general sense, it just steamrolls ahead with the Y value, assuming it must point to some valid map data. This ultimately reads past the end of a buffer, which is **undefined behavior** in C, therefore the compiler (and the program) can do any damned thing it desires.
 
-We also need to remember the [memory model of the IBM PC]({{< relref "ibm-pc#the-16-bit-memory-model" >}}), and specifically the way the Intel x86 processors address memory in real mode. Being 16-bit processors, the largest value that can be handled in a register or memory operand is 16 bits wide, in the range 0&ndash;65,535. In order to unambiguously refer to more than 64 KiB of memory, addresses are split into paragraph-sized **segments** and single-byte **offsets**. The segment values cover 1,024 KiB of memory with 16-byte granularity (that's the size of one paragraph), and individual bytes can be accessed by adding an offset to that.
+We also need to remember the [memory model of the IBM PC]({{< relref "ibm-pc#the-16-bit-memory-model" >}}), and specifically the way the Intel x86 processors address memory in real mode. Being 16-bit processors, the largest value that can be handled in a register or memory operand is 16 bits wide, in the range 0--65,535. In order to unambiguously refer to more than 64 KiB of memory, addresses are split into paragraph-sized **segments** and single-byte **offsets**. The segment values cover 1,024 KiB of memory with 16-byte granularity (that's the size of one paragraph), and individual bytes can be accessed by adding an offset to that.
 
 Generally C pointers acquired by Borland's {{< lookup/cref malloc >}} will set the segment address to the first paragraph containing the data and the offset gets a value between zero and 15 to point to the first byte exactly. Any pointer math is implemented by moving the offset address away from the fixed segment address. Remember though that the offset is still an unsigned 16-bit value under the hood, and if it should overflow it goes right back to the beginning of the _same_ segment.
 
@@ -307,14 +307,14 @@ After a quick trip through the compiler and then a disassembler:
         mov   [bp-4],bx          ; [mapcell] = ES:BX
 ```
 
-In our example's 64 tile-high map, the width is 512 tiles by definition (the product must always equal 32,768). {{< lookup/cref mapYPower >}} is therefore 9. Lets say the player has continued to fall and is now interacting with tiles on (zero-indexed) row 65, way outside the legal Y range of 0&ndash;63. AX takes 65, CL is 9, and the first `shl` produces 33,280 in AX. What this is saying is that, to access tiles on row 65 of a map with these dimensions, we need to skip over 33,280 linear tiles of data to select that row.
+In our example's 64 tile-high map, the width is 512 tiles by definition (the product must always equal 32,768). {{< lookup/cref mapYPower >}} is therefore 9. Lets say the player has continued to fall and is now interacting with tiles on (zero-indexed) row 65, way outside the legal Y range of 0--63. AX takes 65, CL is 9, and the first `shl` produces 33,280 in AX. What this is saying is that, to access tiles on row 65 of a map with these dimensions, we need to skip over 33,280 linear tiles of data to select that row.
 
 Each tile is two bytes (owing to the pointer referring to a `word` type in the way it is used here) so we need to double 33,280 to get something we can use as a memory offset. The compiler implements that as a `shl` by one, which is a handy speed optimization.
 
 That `shl` is where the cold realities of the processor whack us. We overflow the 16-bit register, wrap past zero, and AX becomes 1,024. We end up with the same result that we would've had if we had entered the function with `y_origin` set to 1. 
 `les bx,...` sets ES to the segment address of {{< lookup/cref mapData >}} and BX to the offset to its first byte. The result in AX, right or wrong, increases the offset in BX and then `x_origin` increases it further, and nothing remembers whether or not anything overflowed.
 
-In terms of map space, it's a reasonable behavior. If you read a piece of paper from left to right, then top to bottom, eventually you're going to find yourself at the bottom-right corner with nowhere else to go. The only logical place to jump is back to the top-right of something. It also makes perfect sense from the standpoint of the processor, because that conceptual piece of paper is mapped onto a 64 KiB range of offset values that wraps the exact same way.
+In terms of map space, it's a reasonable behavior. If you read a piece of paper from left to right, then top to bottom, eventually you're going to find yourself at the bottom-right corner with nowhere else to go. The only logical place to jump is back to the top-left of something. It also makes perfect sense from the standpoint of the processor, because that conceptual piece of paper is mapped onto a 64 KiB range of offset values that wraps the exact same way.
 
 When the player falls into a bottomless pit, most of the game's logic has no trouble with the excessive Y position, but the map intersection calculations behave as if the player wrapped around and started falling into the top of the sky in row zero. And actually, most of the time this isn't a problem -- maps with bottomless pits tend to also have vast unbounded open sky in the top few map rows. But E2M6 is different: It evokes a sort of cave vibe, complete with a line of solid ground at the top of the visible scroll area to suggest that you're in a system of worm tunnels underground.
 
@@ -327,3 +327,189 @@ Pictures say more than words:
     3x="map-wrapping-behavior-2052x.png" >}}
 
 And that's the cause: A buffer over-read wraps around harmlessly on the specific hardware the game was written for, allowing the design of an unrelated area of the map to influence whether or not the bottomless pits function as intended.
+
+{{< boilerplate/function-cref SetPlayerPush >}}
+
+The {{< lookup/cref SetPlayerPush >}} function configures the global game state to cause the player to be pushed in a direction `dir` at `speed` tiles per game tick for a total duration of `max_time` game ticks. During this time, the player sprite will be drawn using `force_frame` as the frame number. If the `abortable` flag is set, the player can cancel the effect of the push by jumping. If the `blockable` flag is set, the push will consider and stop at any solid map tiles encountered along the way. Conventional actor pushes use the `blockable` flag. The pipe system uses a non-`blockable` push to move the player around.
+
+Nothing in the unmodified game sets the `abortable` flag, and all pushes use the constant `speed` of 2.
+
+```c
+void SetPlayerPush(
+    word dir, word max_time, word speed, word force_frame, bool abortable,
+    bool blockable
+) {
+    playerPushDir = dir;
+    playerPushMaxTime = max_time;
+    playerPushTime = 0;
+    playerPushSpeed = speed;
+    playerPushForceFrame = force_frame;
+    isPlayerPushAbortable = abortable;
+    isPlayerPushed = true;
+
+    scooterMounted = 0;
+
+    isPlayerPushBlockable = blockable;
+
+    isPlayerRecoiling = false;
+    playerMomentumNorth = 0;
+
+    ClearPlayerDizzy();
+}
+```
+
+The push state is represented by eight global variables:
+
+* {{< lookup/cref playerPushDir >}} (set to `dir`) records the {{< lookup/cref DIR8 >}} direction the push moves the player in.
+* {{< lookup/cref playerPushMaxTime >}} (set to `max_time`) represents the maximum number of game ticks the push should be allowed to run before it auto-cancels.
+* {{< lookup/cref playerPushTime >}} (initialized to zero) tracks the number of game ticks that the player has been pushed for. This value will increment from zero up to the maximum in {{< lookup/cref playerPushMaxTime >}}.
+* {{< lookup/cref playerPushSpeed >}} (set to `speed`) records the number of tiles the player should move during each game tick.
+* {{< lookup/cref playerPushForceFrame >}} (set to `force_frame`) controls which player sprite frame is drawn during the course of the push. This is usually one of two available {{< lookup/cref name="PLAYER" text="PLAYER_PUSHED" >}} frames for regular actor-involved pushes and {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}} when inside pipes.
+* {{< lookup/cref isPlayerPushAbortable >}} (set to `abortable`) tracks whether this push should be able to be canceled early by using the "jump" command.
+* {{< lookup/cref isPlayerPushed >}} (set to true) is the main flag that enables the per-tick pushing logic.
+* {{< lookup/cref isPlayerPushBlockable >}} (set to `blockable`) tracks whether this push should consider any movement-blocking walls it encounters.
+
+Separately from the push-specific variables, this function zeroes the {{< lookup/cref scooterMounted >}} variable to knock the player off any scooter they may be riding on. {{< lookup/cref isPlayerRecoiling >}} and {{< lookup/cref playerMomentumNorth >}} are both cleared to cancel any upward jump/recoil energy the player has amassed, and {{< lookup/cref ClearPlayerDizzy >}} removes any dizzy effects the player is dealing with.
+
+{{< boilerplate/function-cref ClearPlayerPush >}}
+
+The {{< lookup/cref ClearPlayerPush >}} function immediately cancels any push the player may be experiencing, and returns the game state back to regular player control.
+
+```c
+void ClearPlayerPush(void)
+{
+    isPlayerPushed = false;
+    playerPushDir = DIR8_NONE;
+    playerPushMaxTime = 0;
+    playerPushTime = 0;
+    playerPushSpeed = 0;
+    playerPushForceFrame = 0;
+
+    isPlayerRecoiling = false;
+    playerMomentumNorth = 0;
+
+    isPlayerPushAbortable = false;
+
+    isPlayerFalling = true;
+    playerFallTime = 0;
+}
+```
+
+The push-specific variables {{< lookup/cref isPlayerPushed >}}, {{< lookup/cref playerPushDir >}}, {{< lookup/cref playerPushMaxTime >}}, {{< lookup/cref playerPushTime >}}, {{< lookup/cref playerPushSpeed >}}, {{< lookup/cref playerPushForceFrame >}}, and {{< lookup/cref isPlayerPushAbortable >}} are all set to zero here, erasing any evidence that a previous push may have left behind. (The {{< lookup/cref isPlayerPushBlockable >}} is left alone, which may be a small but inconsequential oversight.)
+
+In order to return the player back to regular control, this function sets {{< lookup/cref isPlayerFalling >}} to true, which causes later movement code in {{< lookup/cref MovePlayer >}} to check if the player needs to fall any distance to contact the ground. In a typical horizontal-only push, it will be apparent that the player is already on the ground and no further adjustment will be required. Otherwise gravity will pull them down as expected.
+
+To ensure sanity of the global state, {{< lookup/cref isPlayerRecoiling >}}, {{< lookup/cref playerMomentumNorth >}}, and {{< lookup/cref playerFallTime >}} are all cleared before returning control to the regular movement code. This is cheap insurance to make sure there are no abrupt movements due to the variables holding stale values.
+
+{{< boilerplate/function-cref MovePlayerPush >}}
+
+The {{< lookup/cref MovePlayerPush >}} function handles one game tick of player push movement. {{< lookup/cref isPlayerPushed >}} must be true for this to do anything, otherwise it behaves as a no-op.
+
+Push configuration and the associated global state is described in {{< lookup/cref SetPlayerPush >}}. If the configured "speed" value is greater than one, this function will move the player multiple tiles in the configured direction before returning.
+
+```c
+void MovePlayerPush(void)
+{
+    word i;
+    bool blocked = false;
+
+    if (!isPlayerPushed) return;
+
+    if (cmdJump && isPlayerPushAbortable) {
+        isPlayerPushed = false;
+        return;
+    }
+```
+
+If {{< lookup/cref isPlayerPushed >}} is false, there is not currently an active push and this function should do nothing. `return` early in this case.
+
+Otherwise if {{< lookup/cref cmdJump >}} is true, the user is currently holding the jump key/button down. If {{< lookup/cref isPlayerPushAbortable >}} is also true, the active push was configured such that the player is permitted to "jump out" of an active push. In this case, {{< lookup/cref isPlayerPushed >}} is cleared to immediately cancel the push, and an early `return` is taken. The player regains control at this point.
+
+{{% note %}}None of the pushes in the retail game are set up with an abortable push, so this branch is never taken. The fact that {{< lookup/cref ClearPlayerPush >}} is not called here suggests that maybe this was an early idea whose implementation didn't mature with the rest of the feature.{{% /note %}}
+
+```c
+    for (i = 0; i < playerPushSpeed; i++) {
+```
+
+The "speed" of a push is implemented by repeating the actual movement code multiple times, one iteration per tile moved. All pushes in the retail game produce a {{< lookup/cref playerPushSpeed >}} of 2, so this `for` loop body always runs twice per call. (The `i` variable is not used for anything beyond maintaining loop state.)
+
+```c
+        if (
+            playerX + dir8X[playerPushDir] > 0 &&
+            playerX + dir8X[playerPushDir] + 2 < mapWidth
+        ) {
+            playerX += dir8X[playerPushDir];
+        }
+```
+
+The {{< lookup/cref playerPushDir >}} value is one of the {{< lookup/cref DIR8 >}} constants, which can be decomposed using the {{< lookup/cref dir8X >}} array into a X change in the range -1 -- 1. This value is added to {{< lookup/cref playerX >}} to move the player. This is done conditionally, requiring the result to be larger than zero (so, not off the left map edge). The right edge of the player's sprite (which is the point two tiles right of {{< lookup/cref playerX >}}) must also be smaller than {{< lookup/cref mapWidth >}} to keep the player inside the right map edge.
+
+```c
+        playerY += dir8Y[playerPushDir];
+```
+
+{{< lookup/cref playerY >}} is modified the same way (using {{< lookup/cref dir8Y >}} this time) but without the bounds-checking. _Broadly,_ the game gets away with this because vertical pushes only occur when interacting with pipe actors that are in fixed locations placed by the map author. It's essentially impossible for a pipe actor to knock the player off the top/bottom of the map, while it's quite plausible that a wandering actor can follow the player to a location where a horizontal push would reach a map edge.
+
+```c
+        if (
+            scrollX + dir8X[playerPushDir] > 0 &&
+            scrollX + dir8X[playerPushDir] < mapWidth - (SCROLLW - 1)
+        ) {
+            scrollX += dir8X[playerPushDir];
+        }
+
+        if (scrollY + dir8Y[playerPushDir] > 2) {
+            scrollY += dir8Y[playerPushDir];
+        }
+```
+
+Similar test-then-modify behavior is repeated for {{< lookup/cref scrollX >}} and {{< lookup/cref scrollY >}} for [view centering]({{< relref "view-centering" >}}) purposes.
+
+Vertical movement _is_ limited here, but only at the top of the map. I suspect these conditions were added as problems were encountered, and none of the maps had any vertical-pushing actors near the bottom of the map to warrant adding a test for it.
+
+```c
+        if (isPlayerPushBlockable && (
+            TestPlayerMove(DIR4_WEST,  playerX, playerY) != MOVE_FREE ||
+            TestPlayerMove(DIR4_EAST,  playerX, playerY) != MOVE_FREE ||
+            TestPlayerMove(DIR4_NORTH, playerX, playerY) != MOVE_FREE ||
+            TestPlayerMove(DIR4_SOUTH, playerX, playerY) != MOVE_FREE
+        )) {
+            blocked = true;
+            break;
+        }
+    }
+```
+
+If {{< lookup/cref isPlayerPushBlockable >}} is true, the current push needs to be aware of movement-blocking tiles that the player might hit. The player has already moved for this iteration, so it's entirely possible that they're already inside a location where they should not be. The current {{< lookup/cref playerX >}} and {{< lookup/cref playerY >}} values are passed to four {{< lookup/cref TestPlayerMove >}} calls, each testing for a blocking [tile attribute]({{< relref "tile-attributes-format" >}}) in the player's current spot. If _any_ of the four calls returns something other than {{< lookup/cref name="MOVE" text="MOVE_FREE" >}} -- disregarding whether or not the player was moving in a prohibited direction at all -- the player is now inside the wall. The `blocked` flag is set, and the outer `for` loop is terminated with `break`. In the case where the push moves the player multiple tiles per call, this will stop the loop at the first tile encountered even if there would otherwise have been more iterations to follow. This ensures that the ejection code below never needs to undo more than one tile of movement in total.
+
+Otherwise, the `for` loop keeps moving the player until the {{< lookup/cref playerPushSpeed >}} limit is reached.
+
+```c
+    if (blocked) {
+        playerX -= dir8X[playerPushDir];
+        playerY -= dir8Y[playerPushDir];
+        scrollX -= dir8X[playerPushDir];
+        scrollY -= dir8Y[playerPushDir];
+
+        ClearPlayerPush();
+```
+
+If the previous loop ended because a wall was hit, `blocked` will be true and this code executes. This simply reverses the most recent addition performed on {{< lookup/cref playerX >}}, {{< lookup/cref playerY >}}, {{< lookup/cref scrollX >}}, and {{< lookup/cref scrollY >}}. This should eject the player to their last-known good location before {{< lookup/cref TestPlayerMove >}} found a blocking tile.
+
+Technically there are multiple edge-case bugs in here because we're not exactly replicating the conditions that wrapped each of the original additions. In practice this would really only be noticeable during a diagonal move where the player hit a screen edge along one axis before hitting a solid tile perpendicular to that.
+
+After unwinding the move, there is no reason to continue trying to move in the original direction, so the push ends with a call to {{< lookup/cref ClearPlayerPush >}}.
+
+```c
+    } else {
+        playerPushTime++;
+        if (playerPushTime >= playerPushMaxTime) {
+            ClearPlayerPush();
+        }
+    }
+}
+```
+
+In the more common case, the `for` loop ended naturally without `blocked` getting set. The player is moving freely and they haven't touched anything that should affect the push.
+
+{{< lookup/cref playerPushTime >}} increments once for this game tick (regardless of how many tiles the player actually moved). Once the {{< lookup/cref playerPushMaxTime >}} is reached, the push ends naturally with {{< lookup/cref ClearPlayerPush >}}.
