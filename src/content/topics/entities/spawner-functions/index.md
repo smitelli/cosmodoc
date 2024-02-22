@@ -51,7 +51,7 @@ The {{< lookup/cref numSpawners >}} variable always holds the value from the con
 
 The {{< lookup/cref spawners >}} array maintains a list of {{< lookup/cref Spawner >}} structures, each one having an `actor` member variable. Spawners use the `actor` variable to select which sprite to draw and to know which actor to ultimately create at the end. Idle spawners are expressed by having an `actor` of {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} -- essentially zero, which is assigned to the spawner slot on each iteration.
 
-{{< note >}}{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is not an actor that should ever be present in a map or created dynamically during the game. It is a sentinel value that acts weird if actually created. See the [unused actors page]({{< relref "unused-actors" >}}).{{< /note >}}
+{{% note %}}{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is not an actor that should ever be present in a map or created dynamically during the game. It is a sentinel value that acts weird if actually created. See the [unused actors page]({{< relref "unused-actors" >}}).{{% /note %}}
 
 At completion, all spawners will be reset to their idle state, ready to be activated at some future time.
 
@@ -59,7 +59,7 @@ At completion, all spawners will be reset to their idle state, ready to be activ
 
 The {{< lookup/cref NewSpawner >}} function creates a new instance of a spawner at the passed `x_origin` and `y_origin` map tile coordinates and sets the animation up to run. `actor_type` controls _both_ the type of actor that will be created when the spawner completes, and the sprite type that will be drawn while the spawner is running.
 
-{{< note >}}If there is no room in the {{< lookup/cref spawners >}} array (due to too many spawners already running) this function does nothing.{{< /note >}}
+{{% note %}}If there is no room in the {{< lookup/cref spawners >}} array (due to too many spawners already running) this function does nothing.{{% /note %}}
 
 As with all sprite-related functions, the X/Y origin tile is the bottom-left tile of the sprite image.
 

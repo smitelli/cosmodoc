@@ -49,7 +49,7 @@ if (y - 10 >= 0) {
 
 In the horizontal position, the intention is to set {{< lookup/cref scrollX >}} to the position 15 tiles left of the player start position in `x`. If the player is too close to the right edge of the map, {{< lookup/cref scrollX >}} is clamped to {{< lookup/cref mapWidth >}} minus {{< lookup/cref SCROLLW >}} to prevent panning off the right edge of the map. Similarly, negative values for {{< lookup/cref scrollX >}} are clamped to zero, preserving the left limit of the map.
 
-{{< note >}}The test for {{< lookup/cref mapYPower >}} greater than five is always true. For the map to have a {{< lookup/cref mapYPower >}} of five or less, the map would need to be 32 or fewer tiles wide. This would not be wide enough to fill the width of the screen of this game, and none of the stock maps do this.{{< /note >}}
+{{% note %}}The test for {{< lookup/cref mapYPower >}} greater than five is always true. For the map to have a {{< lookup/cref mapYPower >}} of five or less, the map would need to be 32 or fewer tiles wide. This would not be wide enough to fill the width of the screen of this game, and none of the stock maps do this.{{% /note %}}
 
 Vertical positioning is similar, setting {{< lookup/cref scrollY >}} to the position ten tiles above the player's feet. Clamping occurs at the top of the map, but _not_ at the bottom. A player start position in the bottom eight tiles of the map would initialize {{< lookup/cref scrollY >}} to a value that draws outside of map bounds, but this condition is corrected externally in {{< lookup/cref DrawMapRegion >}} before it can cause problems:
 
@@ -148,7 +148,7 @@ The vertical band is between 7 and 14 (a.k.a. {{< lookup/cref SCROLLH >}}` - 4`)
 
 The `clingslip` variable holds a true value when the player is clinging to a slippery tile and sliding down. In this case {{< lookup/cref scrollY >}} is incremented an additional tile down to allow the player to better see what they are falling towards. In the opposite direction, {{< lookup/cref playerMomentumNorth >}} stores a magnitude that relates to how fast the player is rising vertically -- when this value is greater than ten it indicates a very fast ascent and {{< lookup/cref scrollY >}} is decremented an additional tile to allow the player to better see where they are headed.
 
-The horizontal centering occurs next, and follows substantially the same patterns as the earlier code for slippery slopes. The only difference here is a check that {{< lookup/cref mapYPower >}} is larger than five, which is always true for every map included with the game. (See the [Level Start](#level-start) section of this page for an explanation of why this assertion is true.) Taken together, this works to keep the player inside a 12&ndash;23 (a.k.a. {{< lookup/cref SCROLLW >}}` - 15`) tile band measured from the left edge of the screen.
+The horizontal centering occurs next, and follows substantially the same patterns as the earlier code for slippery slopes. The only difference here is a check that {{< lookup/cref mapYPower >}} is larger than five, which is always true for every map included with the game. (See the [Level Start](#level-start) section of this page for an explanation of why this assertion is true.) Taken together, this works to keep the player inside a 12--23 (a.k.a. {{< lookup/cref SCROLLW >}}` - 15`) tile band measured from the left edge of the screen.
 
 There is one other scrolling adjustment in {{< lookup/cref MovePlayer >}}. This occurs when the player is falling, and looks like the following (heavily simplified) snippet:
 
@@ -172,7 +172,7 @@ if (isPlayerFalling && ...) {
 
 When the player is falling, {{< lookup/cref isPlayerFalling >}} sensibly holds a true value and the outermost block executes. During each frame, {{< lookup/cref playerY >}} is incremented without an associated change in scroll position. This allows the player to fall short distances without necessarily re-centering the screen. The view may still be adjusted elsewhere if the player falls too close to a screen edge.
 
-During each frame of falling, {{< lookup/cref playerFallTime >}} is incremented up to a maximum of 25. Any time {{< lookup/cref playerFallTime >}} is over three, the player falls an additional tile during every frame -- doubling the fall speed. Since the regular view centering can only move the screen one tile per frame, {{ lookup/cref scrollY >}} is incremented here to help the view keep up with the player's fall speed.
+During each frame of falling, {{< lookup/cref playerFallTime >}} is incremented up to a maximum of 25. Any time {{< lookup/cref playerFallTime >}} is over three, the player falls an additional tile during every frame -- doubling the fall speed. Since the regular view centering can only move the screen one tile per frame, {{< lookup/cref scrollY >}} is incremented here to help the view keep up with the player's fall speed.
 
 If the player falls inside the floor during this double-speed movement, they will need to be "ejected" one tile higher, canceling the second tile of movement in both {{< lookup/cref playerY >}} and {{< lookup/cref scrollY >}}. This allows the player to fall an even number of tiles while landing successfully on a surface an odd distance away.
 

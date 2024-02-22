@@ -1,6 +1,6 @@
 {{/*
-    Renders out a boilerplate message about menu content overdrawing the in-game
-    status bar.
+    Renders out a boilerplate message about dialog content overdrawing the in-
+    game status bar.
 
     This should really be <aside>, but that causes the Firefox reader mode (at
     least) to hide the element which skips valuable content. <blockquote> is the
@@ -8,15 +8,12 @@
 
     Named parameters:
         object (optional): If set, use `object` instead of the default word
-            "menu."
+            "dialog."
         may (optional): If `true`, the verbiage is "may be" instead of "is."
 */}}
 
-{{ $object := .Get "object" | default "menu" }}
-{{ $verb := "is designed for display" }}
-{{ if eq (.Get "may") true }}
-    {{ $verb = "<em>may</em> be displayed" }}
-{{ end }}
+{{ $object := .Get "object" | default "dialog" }}
+{{ $verb := cond (eq (.Get "may") true) "<em>may</em> be displayed" "is designed for display" }}
 
 <blockquote class="note">
     <strong>Note:</strong> Since this {{ $object }} {{ $verb | safeHTML }} during the game, it is important that it only draws in front of the scrolling gameplay area. Any tiles drawn over the status bar or black border will persist after the {{ $object }} is dismissed.

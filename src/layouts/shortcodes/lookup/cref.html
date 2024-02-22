@@ -6,6 +6,8 @@
     smart quotes. If any HTML markup is produced as a result of this
     transformation, such tags will become backticks (`).
 
+    Inline function; whitespace is critically sensitive here!
+
     Positional parameters:
         0 (required): Name of a symbol defined in a some C file.
 
@@ -15,27 +17,25 @@
             returned within the link.
 */}}
 
-{{- $param_name := "" -}}
-{{- $param_text := "" -}}
+{{- $symbol := "" }}
+{{- $custom_text := "" }}
 
-{{- if $.IsNamedParams -}}
-    {{- $param_name = $.Get "name" -}}
-    {{- $param_text = $.Get "text" -}}
-{{- else -}}
-    {{- $param_name = $.Get 0 -}}
-{{- end -}}
+{{- if .IsNamedParams }}
+    {{- $symbol = .Get "name" }}
+    {{- $custom_text = .Get "text" }}
+{{- else }}
+    {{- $symbol = .Get 0 }}
+{{- end }}
 
-{{- if not (isset $.Site.Data.cref $param_name) -}}
-    {{- warnf "No definition for lookup/cref \"%s\"" $param_name -}}
-    {{- $text := default $param_name $param_text -}}
+{{- with index site.Data.cref $symbol }}
+    {{- $desc := .desc | markdownify | replaceRE `<.+?>` "`" | replaceRE "`{2,}" "`" }}
 
-    <code>{{ $text }}</code>
-{{- else -}}
-    {{- $text := default (index $.Site.Data.cref $param_name).text $param_text -}}
-    {{- $desc := (index $.Site.Data.cref $param_name).desc -}}
-    {{- $def := (index $.Site.Data.cref $param_name).def | truncate 500 -}}
-    {{- $ref := (index $.Site.Data.cref $param_name).ref -}}
+    {{- "" -}}
+    <a href="{{ .ref }}" title="{{ .def | truncate 500 }}&#10;{{ $desc | safeHTML }}"><code>{{ $custom_text | default .text }}</code></a>
+{{- else }}
+    {{- warnf "No definition for %s %v" .Name .Params }}
 
-    <a href="{{ $ref }}" title="{{ $def }}
-{{ $desc | markdownify | replaceRE "<.+?>" "`" | safeHTML }}"><code>{{ $text }}</code></a>
-{{- end -}}
+    {{- "" -}}
+    <code>{{ $custom_text | default $symbol }}</code>
+{{- end }}
+{{- "" -}}

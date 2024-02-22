@@ -1,9 +1,17 @@
 {{/*
     Count up and return the number of functions defined in the cref data file.
+    Only used in the intro text on the "Function Index" page.
+
+    Inline function; whitespace is critically sensitive here!
 */}}
 
-{{- $i := 0 -}}
-{{- range $name, $_ := $.Site.Data.cref -}}
-    {{- if strings.HasSuffix .text "()" -}}{{- $i = add $i 1 -}}{{- end -}}
-{{- end -}}
-{{- $i -}}
+{{- $i := 0 }}
+{{- range site.Data.cref }}
+    {{- if hasSuffix .text "()" }}
+        {{- $i = add $i 1 }}
+    {{- end }}
+{{- end }}
+
+{{- "" -}}
+{{ $i }}
+{{- "" -}}

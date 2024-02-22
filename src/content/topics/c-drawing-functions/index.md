@@ -29,7 +29,7 @@ void CopyTilesToEGA(byte *source, word dest_length, word dest_offset)
 
 The pointer provided in `source` is copied to `src` for future use, and a call to {{< lookup/cref MK_FP >}} constructs a pointer from the EGA's base segment address (A000h) and the provided `dest_offset` value.
 
-{{< note >}}EGA memory offsets 0h and 2000h are used for screen pages 0 and 1, respectively. Any data written to these blocks may be overwritten by drawing functions. If the intention is to provide long-term tile storage, `dest_offset` should be at least 4000h.{{< /note >}}
+{{% note %}}EGA memory offsets 0h and 2000h are used for screen pages 0 and 1, respectively. Any data written to these blocks may be overwritten by drawing functions. If the intention is to provide long-term tile storage, `dest_offset` should be at least 4000h.{{% /note %}}
 
 ```c
     for (i = 0; i < dest_length; i++) {
@@ -124,7 +124,7 @@ void FadeInCustom(word delay)
 }
 ```
 
-The essence of this function is a `for` loop that iterates over the 16 EGA palette register entries, with the current register index in `reg`. For each index, the color value is reset to the EGA's [default palette]({{< relref "ega-functions#palettes" >}}) for video mode Dh. In this default palette, indexes 0&ndash;7 should have color values 0&ndash;7, and indexes 8&ndash;15 should have color values _16&ndash;23_. (The linked page explains more about why the palette is constructed this way.) The inclusion of the `skip` value creates the necessary discontinuity.
+The essence of this function is a `for` loop that iterates over the 16 EGA palette register entries, with the current register index in `reg`. For each index, the color value is reset to the EGA's [default palette]({{< relref "ega-functions#palettes" >}}) for video mode Dh. In this default palette, indexes 0--7 should have color values 0--7, and indexes 8--15 should have color values _16--23_. (The linked page explains more about why the palette is constructed this way.) The inclusion of the `skip` value creates the necessary discontinuity.
 
 With a palette index and color value pair in hand, the call to {{< lookup/cref SetPaletteRegister >}} writes the change to the video hardware and the new color becomes visible immediately. {{< lookup/cref WaitHard >}} is then called, pausing execution for `delay` game ticks and allowing time for the effect to be perceived by the user.
 
@@ -441,4 +441,4 @@ This function uses the global {{< lookup/cref paletteStepCount >}} variable to k
 }
 ```
 
-The remainder of the function is a simple {{< lookup/cref SetPaletteRegister >}} call to reprogram the key color with the current color from `pal_table`. The ternary operator converts the {{< lookup/cref COLORS >}}-type numbering scheme (0&ndash;15) into the {{< lookup/cref MODE1_COLORS >}} scheme (0&ndash;7; 16&ndash;23) the palette requires.
+The remainder of the function is a simple {{< lookup/cref SetPaletteRegister >}} call to reprogram the key color with the current color from `pal_table`. The ternary operator converts the {{< lookup/cref COLORS >}}-type numbering scheme (0--15) into the {{< lookup/cref MODE1_COLORS >}} scheme (0--7; 16--23) the palette requires.

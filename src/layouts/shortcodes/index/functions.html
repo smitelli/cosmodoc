@@ -1,16 +1,22 @@
 {{/*
     Provide as much data as possible for the "Function Index" page from the cref
-    data file.
+    data file. The result is seires of consistent H2 elements with syntax-
+    highlighted C declarations and description paragraphs. Each entry is
+    preceded by a horizontal rule to keep things from getting unruly.
+
+    This operates differently from the shortcodes under `boilerplate/` -- those
+    are invoked once per symbol (the idea being that the author will want to
+    interleave markdown into each symbol's section). This, on the other hand,
+    dumps out the whole damn page in a single invocation with no provision to
+    add markdown commentary between symbols.
 */}}
 
-{{- range $name, $_ := $.Site.Data.cref -}}
-    {{- if strings.HasSuffix .text "()" -}}
+{{ range $k, $_ := site.Data.cref }}
+    {{ if not (hasSuffix .text "()") }}{{ continue }}{{ end }}
+
     <hr>
 
-    <a href="{{ .ref }}"><h2 id="{{ $name }}"><code>{{ .text }}</code></h2></a>
-
-    {{- highlight .def "c" "" -}}
-
-    <p>{{- .desc | markdownify -}}</p>
-    {{- end -}}
-{{- end -}}
+    <h2 id="{{ $k }}"><code>{{ .text }}</code> <a href="{{ .ref }}">&raquo;</a></h2>
+    {{ highlight .def "c" }}
+    <p>{{ .desc | markdownify }}</p>
+{{ end }}

@@ -22,7 +22,7 @@ Each save game slot is identified by a single-character `slot_char` byte, which 
 > * Cannot contain spaces, commas, backslashes, or periods (except the period that separates the name from the extension).
 > * Cannot be identical to the name of another file or subdirectory in the same directory.
 >
-> &mdash;_Microsoft MS-DOS 6 Concise User's Guide_ [^dos6manual]
+> ---_Microsoft MS-DOS 6 Concise User's Guide_ [^dos6manual]
 
 In practice, the game uses digit characters `1` through `9` and the letter `T` as `slot_char` values.
 
@@ -128,11 +128,11 @@ This sequence of calls serializes the current game state into the [save file for
 
 Values are stored from {{< lookup/cref playerHealth >}}, {{< lookup/cref gameScore >}}, {{< lookup/cref gameStars >}}, {{< lookup/cref levelNum >}}, {{< lookup/cref playerBombs >}}, {{< lookup/cref playerHealthCells >}}, and {{< lookup/cref usedCheatCode >}}. Following these, the three hint variables (bomb, pounce, and power-up) are unconditionally written as their "seen" state -- _not_ the values currently held in memory. As a result of this decision, any subsequent {{< lookup/cref LoadGameState >}} call will load a state where these hints will not show, even if the player has not actually seen them yet.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **Get a load of Mr. Know It All here...**
 
 Perhaps the thinking was, if the user knows enough to be saving/loading the game before seeing these hints, they probably have played the game before and have seen how the essential mechanics work already.
-{{< /aside >}}
+{{% /aside %}}
 
 ```c
     checksum = playerHealth + (word)gameStars + levelNum + playerBombs +

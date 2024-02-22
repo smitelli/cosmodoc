@@ -45,7 +45,7 @@ At completion, all explosions will be reset to their idle state, ready to be act
 
 The {{< lookup/cref NewExplosion >}} function creates a new instance of an explosion at the passed `x_origin` and `y_origin` map tile coordinates and sets the animation up to run. The actual location of the explosion sprite will be two tiles lower on the screen than `y_origin` requests; this helps (somewhat) to vertically align the explosion relative to common actor sprites that create explosions.
 
-{{< note >}}If there is no room in the {{< lookup/cref explosions >}} array (due to too many explosions already running) this function does nothing.{{< /note >}}
+{{% note %}}If there is no room in the {{< lookup/cref explosions >}} array (due to too many explosions already running) this function does nothing.{{% /note %}}
 
 Upon successful creation of a new explosion, the {{< lookup/cref name="SND" text="SND_EXPLOSION" >}} sound effect is queued to play.
 
@@ -378,11 +378,11 @@ This is tricky, and I was ready to dismiss it as an impossible case that had bee
 
 Explosions are wider than many actors. When an actor wishes to center an explosion relative to itself, it will subtract some fixed distance from its own X position to determine where the explosion's X position should fall. This becomes an issue when the actor is at or near the left edge of the screen -- the explosion's X coordinate might become negative.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Adversarial Case**
 
 This offscreen condition occurs reliably in the unmodified game. In E2M10, there is a {{< lookup/actor 188 >}} at the left edge of the map. When it travels the fixed path it was placed on and crashes into the barrier above, the left-hand explosion is inserted _four_ tiles to the left of the rocket, outside of the screen bounds.
-{{< /aside >}}
+{{% /aside %}}
 
 In this game, all the relevant variables for these types of calculations tend to be machine `word`s, which are unsigned. That means the expression `0 - 1` **underflows** and produces 65,535 (or FFFF in hexadecimal). This is not a small negative number, it is a large positive one.
 

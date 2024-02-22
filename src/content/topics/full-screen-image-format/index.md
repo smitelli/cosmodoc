@@ -49,13 +49,13 @@ Most software never bothered to actually change anything within the palette, whi
 
 RGBI bits are not always stored in R-G-B-I order. Sometimes it's I-R-G-B, B-G-R-I, or really any other permutation that struck the programmer's fancy.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Exceptions to the Rule**
 
 There was a special case embedded in the EGA's default palette. The color that some may refer to as "dark yellow" (RGBI 1, 1, 0, 0) had its green channel artificially reduced to create more of a pleasing brown shade. This results in brown's palette entry sort of "breaking" the patterns that the rest of the colors follow.
 
 The CGA used to handle this special case directly in the _hardware of the monitor!_
-{{< /aside >}}
+{{% /aside %}}
 
 Again, it's important to remember that RGBI is not some absolute truth that's ingrained in the EGA hardware. It's simply a palette arrangement that tries to assign intuitive meanings to each individual bit in the palette number. Never assume that just because a file uses 4-bit color, its palette must be RGBI.
 
@@ -89,7 +89,7 @@ if (rbit, gbit, bbit, ibit) == (1, 1, 0, 0):
 
 Modern computers and image formats store the RGB elements of a single pixel in close proximity so they can be read, processed, and drawn as a unit. The EGA was rather unusual by comparison, splitting up the image data into four **planes** with each plane containing one bit position of the palette number.
 
-In full-screen planar image files, each plane occupies 8,000 bytes. Each _bit_ within a plane maps to a unique pixel on the screen, and each _byte_ within a plane controls a span of eight contiguous pixels. So, the first byte of a plane represents screen coordinates `(0, 0)`&ndash;`(7, 0)`, the second byte represents `(8, 0)`&ndash;`(15, 0)`... Eventually the 8,000th byte of a plane represents `(312, 199)`&ndash;`(319, 199)`. After working through an entire plane, only one bit position at each pixel has been set. The other three planes must then be processed to set the remaining bit positions at each pixel.
+In full-screen planar image files, each plane occupies 8,000 bytes. Each _bit_ within a plane maps to a unique pixel on the screen, and each _byte_ within a plane controls a span of eight contiguous pixels. So, the first byte of a plane represents screen coordinates `(0, 0)`--`(7, 0)`, the second byte represents `(8, 0)`--`(15, 0)`... Eventually the 8,000th byte of a plane represents `(312, 199)`--`(319, 199)`. After working through an entire plane, only one bit position at each pixel has been set. The other three planes must then be processed to set the remaining bit positions at each pixel.
 
 To display arbitrary pixels starting at (e.g.) `(0, 127)`, we seek to offset 13D8h (0 + (127 &times; 320) = 40,640 bits or 5,080 bytes) for the first plane, then repeatedly add 1F40h (8,000 bytes) to that offset in order to access the bits for the remaining planes:
 

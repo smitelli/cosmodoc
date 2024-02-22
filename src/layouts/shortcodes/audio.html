@@ -3,23 +3,27 @@
     This shortcode assumes that x.mp3, x.m4a, and x.wav (where x is the base
     name) all exist as valid and playable audio files. Returns HTML content.
 
+    Inline function; whitespace is critically sensitive here!
+
     Positional parameters:
         0 (required): Base name of an audio file *without* the file extension.
-        1: Caption to display directly below the audio control.
+        1 (optional): Caption to display directly below the audio control.
 */}}
 
-{{- "" -}}
-
-<audio controls>
-    {{- "" -}}
-    <source src="{{ .Get 0 }}.mp3" type="audio/mpeg">
-    {{- "" -}}
-    <source src="{{ .Get 0 }}.m4a" type="audio/mp4">
-    {{- "" -}}
-    <source src="{{ .Get 0 }}.wav" type="audio/wav">
-    {{- "" -}}
-</audio>
+{{- $stem := .Get 0 }}
+{{- $mp3 := $stem | printf "%s.mp3" | .Page.Resources.Get }}
+{{- $m4a := $stem | printf "%s.m4a" | .Page.Resources.Get }}
+{{- $wav := $stem | printf "%s.wav" | .Page.Resources.Get }}
 
 {{- "" -}}
+<p>
+    <audio controls>
+        {{ with $mp3 }}<source src="{{ .RelPermalink }}" type="{{ .MediaType }}">{{ end }}
+        {{ with $m4a }}<source src="{{ .RelPermalink }}" type="{{ .MediaType }}">{{ end }}
+        {{ with $wav }}<source src="{{ .RelPermalink }}" type="{{ .MediaType }}">{{ end }}
+    </audio>
 
-{{ with .Get 1 }}<strong>{{ . }}</strong> {{ end }}(Download <a href="{{ .Get 0 }}.mp3">MP3</a>, <a href="{{ .Get 0 }}.m4a">AAC</a>, or <a href="{{ .Get 0 }}.wav">WAV</a>.)
+    {{- with .Get 1 }}<strong>{{ . }}</strong> {{ end -}}
+    (Download <a href="{{ $mp3.RelPermalink }}">MP3</a>, <a href="{{ $m4a.RelPermalink }}">AAC</a>, or <a href="{{ $wav.RelPermalink }}">WAV</a>.)
+</p>
+{{- "" -}}

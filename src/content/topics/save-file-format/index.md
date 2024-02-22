@@ -32,9 +32,7 @@ Offset (Bytes) | Size   | Description
 14h            | word   | Flag for power-up help text. `0` = power-up hint should be shown, `1` = player knows about power-ups.
 16h            | word   | Must match [current health] + [stars] + [level number] + [bombs] + [maximum health] \(offsets 00h + 06h + 08h + 0Ah + 0Ch) or attempts to load the game will encounter an "altered file error."
 
-{{< note >}}
-The level number follows the level progression in the game, which includes multiple instances of bonus levels that are conditionally played through or skipped. As a result, the level number will usually be higher than the map number.
-{{< /note >}}
+{{% note %}}The level number follows the level progression in the game, which includes multiple instances of bonus levels that are conditionally played through or skipped. As a result, the level number will usually be higher than the map number.{{% /note %}}
 
 ## Location
 

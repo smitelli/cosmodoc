@@ -1,9 +1,11 @@
-{{ $children := .Pages }}
-{{ if $children }}
+{{ with .Pages.ByWeight }}
     <ul>
-        {{ range sort $children "Weight" "asc" }}
-            <li>
-                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>{{ .LinkTitle | markdownify }}</a>
+        {{ range . }}
+            <li{{ if page.Eq . }} class="active"{{ end }}>
+                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+                    {{ .LinkTitle | markdownify }}
+                </a>
+
                 {{ partial "list-pages-recursive" . }}
             </li>
         {{ end }}

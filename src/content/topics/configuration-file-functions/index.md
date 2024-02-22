@@ -59,13 +59,13 @@ The scancode table is a bit limited in the fact that it doesn't actually have de
 
 Instead, these functions were available through alternate functions on the numeric keypad. If the keyboard's Num Lock mode was _disabled_, the numeric keypad would perform these cursor control functions instead of typing numbers.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Hey, look down!**
 
 Are you currently sitting in front of a full-size PC keyboard? Take a look at the numeric keypad. Does it have arrows and cursor movement keys? Turn Num Lock off and give 'em a whirl.
 
 If your computer uses an OS that responds to <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>, it should also respond the same way to <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>NumPadPeriod</kbd> for similar reasons.
-{{< /aside >}}
+{{% /aside %}}
 
 This is all a roundabout way of saying, if you want to read the arrow keys using the IBM scancode scheme, you have to read keys <kbd>8</kbd>/<kbd>2</kbd>/<kbd>4</kbd>/<kbd>6</kbd> on the numeric keypad to do it. That's what's being configured here.
 
@@ -96,11 +96,11 @@ This is all a roundabout way of saying, if you want to read the arrow keys using
 
 The remainder of this branch of the function constructs the default high score table out of character names from _The Simpsons_. {{< lookup/cref highScoreValues >}} and {{< lookup/cref highScoreNames >}} are two parallel arrays that, taken together, represent the contents of this table. The scores can be initialized literally, but the names need to use {{< lookup/cref strcpy >}} for initialization.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **"Marge, it takes two to lie... one to lie and one to listen."**
 
 The March 1992 release date of the game coincides with the tail end of the third season of _The Simpsons_, right around the premiere of episode 20, "Colonel Homer."
-{{< /aside >}}
+{{% /aside %}}
 
 With this branch of the code complete, the function returns.
 

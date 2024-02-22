@@ -18,7 +18,7 @@ In his own words:
 >
 > Although I wrote LZEXE for my own use, I gave it to some friends, and it was then put on some BBS's. LZEXE became then very famous, although I did not do anything to promote it. This success was quite unexpected for me.
 >
-> &mdash;Fabrice Bellard, _LZEXE Home Page_ [^bellard]
+> ---Fabrice Bellard, _LZEXE Home Page_ [^bellard]
 
 LZEXE was unique because it immediately launched the program once it had been decompressed. Most other compression/packing utilities required an additional step (and often additional space) to do this. Performance was very good, roughly halving the sizes of common EXE files with an almost imperceptible load delay on even the most modest computers of the day.
 
@@ -36,9 +36,7 @@ An LZEXE-compressed program is a standard DOS executable, loaded in the standard
     2x="memory-map-1-1368x.png"
     3x="memory-map-1-2052x.png" >}}
 
-{{< note >}}
-The sizes and offsets in these diagrams and discussion are accurate for the first episode's EXE file, but will be different for virtually every other program in the wild. For simplicity's sake, I made the choice to construct the memory map as if the EXE file were loaded at address 0h with the PSP at imaginary address -100h. In reality the EXE file could be loaded anywhere in memory, and the addresses would all be adjusted relative to that.
-{{< /note >}}
+{{% note %}}The sizes and offsets in these diagrams and discussion are accurate for the first episode's EXE file, but will be different for virtually every other program in the wild. For simplicity's sake, I made the choice to construct the memory map as if the EXE file were loaded at address 0h with the PSP at imaginary address -100h. In reality the EXE file could be loaded anywhere in memory, and the addresses would all be adjusted relative to that.{{% /note %}}
 
 When DOS executes the EXE file, the entire contents (minus the EXE header) are copied from the disk file directly into a free spot in memory without any modification. In our example, this occupies 62,049 bytes of memory. The EXE header specifies that an additional 85,888 bytes of memory must be allocated on top of that, which brings the total in-memory size of the load image to 147,937 bytes.
 
@@ -143,7 +141,7 @@ Once the copy is complete, the code performs a strange jump via abuse of `push` 
     retf  ; Inter-segment `ret` having segment in addition to offset
 ```
 
-In all LZEXE-compressed files I have access to, the new copy of the decompression code ends immediately before the start of the stack segment. Because the compressed relocation table may have an odd size that does not fill an entire paragraph of memory, it's possible for there to be 0&ndash;15 bytes of slack space between the end of the copied code and the start of the stack segment.
+In all LZEXE-compressed files I have access to, the new copy of the decompression code ends immediately before the start of the stack segment. Because the compressed relocation table may have an odd size that does not fill an entire paragraph of memory, it's possible for there to be 0--15 bytes of slack space between the end of the copied code and the start of the stack segment.
 
 The job's not quite done yet. Although the decompressor has moved, and execution has jumped into the new copy, the compressed program data has to move too.
 
@@ -257,13 +255,13 @@ not_big:
 
 Interestingly, the payload of each episode is small enough that the entire compressed program can be moved in a single chunk.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Flip it and reverse it.**
 
 This is a harebrained idea that I have not really tested in any way, but indulge me for a moment: If the entire payload were compressed _in reverse_, it should theoretically be possible to start decompressing at the high end of the compressed program data, writing to the high end of the allocated memory in descending order, without overwriting the source material or requiring a copy of the payload in the first place.
 
 I have to think this is something that Bellard considered, and decided against for some legitimate reason. I don't think the decompression code would have any trouble working this way, but maybe it makes the compressor too complicated or it harms the compression efficiency.
-{{< /aside >}}
+{{% /aside %}}
 
 Here is a visual aid that shows the state of the memory and segment registers after each move operation:
 
@@ -327,13 +325,13 @@ In real-world applications, it is often impractical to store the _entire_ decomp
 
 LZEXE used the relative model, with a sliding window 8 KiB in size. Its core LZSS implementation was influenced by code published by Haruhiko Okumura[^okumura] in May 1988.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Run, Length, Run!**
 
 It is perfectly valid to construct a pointer that says "go to distance `-1` and copy `100` characters from that location." That may seem like an impossible task -- how can we copy 100 characters from the position we just wrote when 99 of those characters haven't been decompressed yet? But work through it step by step, character by character. You'll find that it does indeed work, and the end result is 100 copies of the most recently written character.
 
 This is a form of run-length encoding, which allows for compact representation of repeated bytes or short byte patterns. The LZEXE compressor was capable of exploiting this property; roughly 0.8% of real-world LZEXE pointers have a length longer than the distance back.
-{{< /aside >}}
+{{% /aside %}}
 
 ### A Few Pointers
 
@@ -345,16 +343,14 @@ Both of these situations are detrimental when talking about compression. Over-al
 
 No one size fits all use cases best, which is why LZEXE has three different pointer types in addition to the literal type:
 
-Data/Pointer Type         | Bytes Used | Distance Bits | Distance Range     | Length Bits | Length Range
---------------------------|------------|---------------|--------------------|-------------|-------------
-Literal uncompressed byte | 1.125      | &mdash;       | &mdash;            | &mdash;     | &mdash;
-Short distance            | 1.5        | 8             | -1 &ndash; -256    | 2           | 2 &ndash; 5
-Long distance             | 2.25       | 13            | -1 &ndash; -8,192  | 3           | 3 &ndash; 9
-Long distance/long length | 3.25       | 13            | -1 &ndash; -8,192  | 8           | 3 &ndash; 256
+Data/Pointer Type         | Bytes Used | Distance Bits | Distance Range | Length Bits | Length Range
+--------------------------|------------|---------------|----------------|-------------|-------------
+Literal uncompressed byte | 1.125      | ---           | ---            | ---         | ---
+Short distance            | 1.5        | 8             | -1 -- -256     | 2           | 2--5
+Long distance             | 2.25       | 13            | -1 -- -8,192   | 3           | 3--9
+Long distance/long length | 3.25       | 13            | -1 -- -8,192   | 8           | 3--256
 
-{{< note >}}
-The "Bytes Used" column contains the total amount of space required in the compressed data stream to encode a pointer of the given type. The fractional component is accounting for the space occupied by the coding scheme that differentiates these pointer types from each other, which will be discussed next.
-{{< /note >}}
+{{% note %}}The "Bytes Used" column contains the total amount of space required in the compressed data stream to encode a pointer of the given type. The fractional component is accounting for the space occupied by the coding scheme that differentiates these pointer types from each other, which will be discussed next.{{% /note %}}
 
 It certainly complicates things to have three different ways to construct a pointer, but the differences in storage requirements vs. distance/length range limits are useful. The shortest encodings have the smallest usable range, but may occur more frequently in some areas. Conversely, the longest pointer can copy a significant chunk of data but only occur seldomly. These options give the compressor a varied palette to select coding schemes that perform best on each part of the data.
 
@@ -967,7 +963,7 @@ And that's how it all worked. All of this -- everything in this section -- happe
 
 [^bellard]: https://bellard.org/lzexe.html
 
-[^lzss-example]: [https://en.wikipedia.org/wiki/Lempel&ndash;Ziv&ndash;Storer&ndash;Szymanski](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski)
+[^lzss-example]: [https://en.wikipedia.org/wiki/Lempel--Ziv--Storer--Szymanski](https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Storer%E2%80%93Szymanski)
 
 [^okumura]: https://oku.edu.mie-u.ac.jp/~okumura/compression/history.html
 

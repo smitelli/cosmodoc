@@ -130,11 +130,11 @@ Due to the segmented nature of memory on the IBM PC, {{< lookup/cref malloc >}} 
 
 16-bit truncation is essentially `value % 65536`, but each of the full blocks contains 65,535 bytes -- not 65,536. This is an off-by-one error that compounds for each block that precedes the final one. The addition of 2 corrects for this by including the missing byte from each of the previous allocations.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Good luck with that.**
 
 Have fun making a total conversion that significantly changes the size or arrangement of the graphics data.
-{{< /aside >}}
+{{% /aside %}}
 
 When accessing actor sprite data, this arrangement recreates a form of segment:offset addressing. `actorTileData[seg] + off` will point to the data for `seg:off`, which is how actor sprite offsets are stored in the [tile info]({{< relref "tile-info-format" >}}) files.
 

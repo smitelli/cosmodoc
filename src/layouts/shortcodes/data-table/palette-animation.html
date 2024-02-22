@@ -7,10 +7,10 @@
         <th>ID</th>
         <th>Description</th>
     </tr>
-    {{ range $index, $_ := $.Site.Data.description.palette_animation }}
+    {{ range $pal_num, $_ := site.Data.description.palette_animation }}
         <tr>
-            <th>{{ $index }}</th>
-            <td>{{ . | markdownify }}</td>
+            <th>{{ $pal_num }}</th>
+            <td>{{ . }}</td>
         </tr>
     {{ end }}
 </table>

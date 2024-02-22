@@ -1,0 +1,31 @@
+{{/*
+    Count up and return the number of words in all of the content files.
+
+    The word count produced by this function yields about 101.7% of:
+
+    find content \( -iname '*.md' -o -iname '*.yml' \) -exec cat {} + | \
+        sed "s/[^0-9A-Za-z',]/ /g" | wc -w
+
+    and 101.4% of:
+
+    # Layouts once had `enableNav` to control menu/prev-next/footer boilerplate
+    HUGO_PARAMS_ENABLENAV=false hugo
+    # Using the python "html2text" package...
+    find ../public/ -iname '*.html' -exec html2text --ignore-links \
+        --ignore-tables --ignore-emphasis --ignore-images {} \; | wc -w
+
+    The weird divisor is to fudge the number we get here closer to the number we
+    used to get with the older methods of counting the words.
+*/}}
+
+{{- $total := 0 }}
+{{- range site.Pages }}
+    {{- /* Recursion here will hang the build */}}
+    {{- if page.Eq . }}{{ continue }}{{ end }}
+
+    {{- $total = add $total .WordCount }}
+{{- end }}
+
+{{- "" -}}
+{{ div $total 1015.62 | math.Floor | mul 1000 | lang.FormatNumber 0 }}
+{{- "" -}}

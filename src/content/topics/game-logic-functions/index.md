@@ -246,15 +246,15 @@ Once {{< lookup/cref playerY >}} reaches this point off the screen, it no longer
 
 The previous `if` ends and a new one begins. This one handles the animation sequence of the player falling into the bottomless pit.
 
-In the case where the player was just found to have fallen out of the map, {{< lookup/cref playerFallDeadTime >}} will be 1 which then immediately increments to 2 upon entry here. That, in turn, passes the next `if` and {{< lookup/cref StartSound >}} plays {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}}. It also passes the condition in the `for` loop, which takes {{< lookup/cref playerFallDeadTime >}} up to 12 after all iterations finish. Each iteration calls {{< lookup/cref WaitHard >}} for an inescapable 2 timer ticks producing a total delay of 1 &#8725; 7 of a second. This pauses _everything_ in the game -- the [game loop]({{< relref "game-loop-functions" >}}) stops cold while this delay is running -- causing a noticeable "hitch" as the player falls.
+In the case where the player was just found to have fallen out of the map, {{< lookup/cref playerFallDeadTime >}} will be 1 which then immediately increments to 2 upon entry here. That, in turn, passes the next `if` and {{< lookup/cref StartSound >}} plays {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}}. It also passes the condition in the `for` loop, which takes {{< lookup/cref playerFallDeadTime >}} up to 12 after all iterations finish. Each iteration calls {{< lookup/cref WaitHard >}} for an inescapable 2 timer ticks producing a total delay of 1 &frasl; 7 of a second. This pauses _everything_ in the game -- the [game loop]({{< relref "game-loop-functions" >}}) stops cold while this delay is running -- causing a noticeable "hitch" as the player falls.
 
 It's also important to remember that this is occurring during the same game tick where the player first moved off the map. _The video frame for this tick isn't done yet,_ and the screen is still showing the previous frame where the top of the player's head is still in view.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **I liked it better the other way.**
 
 This looks like maybe it was a late addition to speed up the animation. Removing the `for` loop removes the delay hitch and lets the player fall for a little under a second before the speech bubble comes. It actually feels pretty nice that way; I don't know why they hacked it shorter this way.
-{{< /aside >}}
+{{% /aside %}}
 
 Once {{< lookup/cref playerFallDeadTime >}} reaches 12 nothing else in here runs until this function is called on the next game tick.
 
@@ -324,7 +324,7 @@ With the map reloaded, this function needs to `return true` to inform its caller
                 );
             } else {
                 DrawPlayer(
-                    playerPushFrame, playerX, playerY, DRAW_MODE_NORMAL
+                    playerPushForceFrame, playerX, playerY, DRAW_MODE_NORMAL
                 );
             }
         }
@@ -334,18 +334,18 @@ This `else if` body runs whenever {{< lookup/cref playerDeadTime >}} is zero, an
 
 {{< lookup/cref playerHurtCooldown >}} | {{< lookup/cref isPlayerPushed >}} | `DRAW_MODE_`...                                    | Sprite Frame
 ---------------------------------------|------------------------------------|----------------------------------------------------|-------------
-0 &ndash; 40                           | `false`                            | {{< lookup/cref name="DRAW_MODE" text="NORMAL" >}} | {{< lookup/cref playerBaseFrame >}} + {{< lookup/cref playerFrame >}}
-0 &ndash; 40                           | `true`                             | {{< lookup/cref name="DRAW_MODE" text="NORMAL" >}} | {{< lookup/cref playerPushFrame >}}
-41 &ndash; 43                          | &mdash;                            | {{< lookup/cref name="DRAW_MODE" text="NORMAL" >}} | {{< lookup/cref playerBaseFrame >}} + {{< lookup/cref name="PLAYER" text="PLAYER_PAIN" >}}
-44                                     | &mdash;                            | {{< lookup/cref name="DRAW_MODE" text="WHITE" >}}  | {{< lookup/cref playerBaseFrame >}} + {{< lookup/cref name="PLAYER" text="PLAYER_PAIN" >}}
+0--40                                  | `false`                            | {{< lookup/cref name="DRAW_MODE" text="NORMAL" >}} | {{< lookup/cref playerBaseFrame >}} + {{< lookup/cref playerFrame >}}
+0--40                                  | `true`                             | {{< lookup/cref name="DRAW_MODE" text="NORMAL" >}} | {{< lookup/cref playerPushForceFrame >}}
+41--43                                 | ---                                | {{< lookup/cref name="DRAW_MODE" text="NORMAL" >}} | {{< lookup/cref playerBaseFrame >}} + {{< lookup/cref name="PLAYER" text="PLAYER_PAIN" >}}
+44                                     | ---                                | {{< lookup/cref name="DRAW_MODE" text="WHITE" >}}  | {{< lookup/cref playerBaseFrame >}} + {{< lookup/cref name="PLAYER" text="PLAYER_PAIN" >}}
 
 Each path draws the player at {{< lookup/cref playerX >}} and {{< lookup/cref playerY >}} without modification. Any non-zero value in {{< lookup/cref playerHurtCooldown >}} decrements in the process.
 
-{{< note >}}
+{{% note %}}
 The {{< lookup/cref DrawPlayer >}} code considers {{< lookup/cref playerHurtCooldown >}} as a means to flash the player's sprite. The player is only drawn if {{< lookup/cref playerHurtCooldown >}} is even. This means that the non-white {{< lookup/cref name="PLAYER" text="PLAYER_PAIN" >}} frame is only visible for a single game tick, which makes it very easy to miss.
 
 {{< lookup/cref playerHurtCooldown >}} also decrements _in between_ the blocks that check for pain versus regular sprite drawing, which effectively jumps from the visible pain state in "{{< lookup/cref playerHurtCooldown >}} = 42" to the visible normal state in "{{< lookup/cref playerHurtCooldown >}} = 40."
-{{< /note >}}
+{{% /note %}}
 
 ```c
     } else if (playerDeadTime < 10) {

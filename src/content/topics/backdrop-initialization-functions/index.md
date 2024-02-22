@@ -18,7 +18,7 @@ Backdrops can be configured by the map author to scroll horizontally, vertically
 
 Any three-dimensional game with accurate perspective rendering will produce parallax-type effects automatically, but two-dimensional games have to fake it by drawing multiple graphical layers that scroll at different speeds relative to each other. In this game, everything moves and scrolls in eight-pixel increments (due to the way the EGA memory is accessed), but the backdrops scroll in four-pixel increments. This makes the backdrop scroll at half the speed of everything else, and produces an effect where the viewer could plausibly believe that the backdrop was some distance in back of the game world and adding a sense of depth.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **We've all got our reasons.**
 
 This parallax scrolling effect was uncommon in PC games at the time, and the fact that this was able to perform acceptably on a 286 processor was a technical triumph. Most games up until this point drew the map as one solid layer, sometimes (in the case of the first _Duke Nukem_ game) showing a fixed background tile in locations where the map had a transparent window. These all complied with the eight-pixel alignment requirement of the EGA hardware.
@@ -26,7 +26,7 @@ This parallax scrolling effect was uncommon in PC games at the time, and the fac
 Even _Commander Keen_, which was praised for its smooth sub-tile scrolling, still used an eight-pixel grid internally and invoked some EGA trickery to move the starting position of the entire screen buffer to produce its scrolling effect. That technology only worked if the screen scrolled as one monolithic unit, which is something you'll notice in _Keen's_ level designs and gameplay. _Cosmo_-style parallax would not have been possible in _Keen's_ game engine.
 
 Incidentally, the desire to understand these parallax scrolling backdrops was what originally inspired me to start disassembling the game, which ultimately led to the creation of [**Cosmore**](https://github.com/smitelli/cosmore) and then this website.
-{{< /aside >}}
+{{% /aside %}}
 
 Many game consoles of the era had dedicated hardware to do layered parallax effects, but the PC offered nothing to help with this endeavor. The programmer had to figure out how to draw everything, then jam it down a one-byte wide memory window to the video hardware.
 
@@ -38,11 +38,11 @@ Very briefly, the EGA memory is split into four **planes**, with each plane stor
 
 Data is written from the CPU to the EGA memory using byte-wide `mov` instructions, which intrinsically locks the starting position of each write to an eight-pixel boundary _and_ modifies eight horizontal pixels at that position by default. A na&iuml;ve attempt to draw at an unaligned position on the screen would require reading _two_ bytes from the EGA memory (since the write will in essence "straddle" two consecutive bytes), modify the bit positions being drawn while preserving the bits that are not getting modified, and then write those two bytes back. It's certainly doable, but it is a tremendous amount of effort on a system that is already being taxed to its limits.
 
-{{< note >}}In the above example, these reads and writes would need to happen four times, since each memory plane is read and written independently. The programmer selects which planes to read and write by sending I/O writes to the EGA's onboard registers. See the [EGA page]({{< relref "ega-functions" >}}) for all the gritty details.{{< /note >}}
+{{% note %}}In the above example, these reads and writes would need to happen four times, since each memory plane is read and written independently. The programmer selects which planes to read and write by sending I/O writes to the EGA's onboard registers. See the [EGA page]({{< relref "ega-functions" >}}) for all the gritty details.{{% /note %}}
 
 This 8 &times; 8 pixel constraint is not a problem anywhere else in the game. The maps, sprites, movement calculations, font -- everything -- are designed around the 8 &times; 8 pixel grid. All except for the parallax scrolling backdrops, which require 4 &times; 4 pixel granularity instead.
 
-_Duke Nukem &#8545;_ used a similar technique to implement its scrolling backdrops, which is detailed in an excellent blog post[^lethalguitar] by **lethal_guitar**. His post goes into some great details about the performance of different drawing approaches on real vintage hardware.
+_Duke Nukem {{< roman-numeral 2 >}}_ used a similar technique to implement its scrolling backdrops, which is detailed in an excellent blog post[^lethalguitar] by **lethal_guitar**. His post goes into some great details about the performance of different drawing approaches on real vintage hardware.
 
 ## From Eight to Four and Back
 
@@ -68,13 +68,13 @@ Or as a table:
 
 Unit          | Size in Pixels         | Size in Tiles     | EGA Address Space | Physical Memory
 --------------|------------------------|-------------------|-------------------|----------------
-**Pixel**     | 1                      | &mdash;           | 1 bit             | 4 bits
-**Pixel Row** | 8&times;1 (8)          | &mdash;           | 1 byte            | 4 bytes
+**Pixel**     | 1                      | ---               | 1 bit             | 4 bits
+**Pixel Row** | 8&times;1 (8)          | ---               | 1 byte            | 4 bytes
 **Tile**      | 8&times;8 (64)         | 1                 | 8 bytes           | 32 bytes
 **Tile Row**  | 320&times;8 (2,560)    | 40&times;1 (40)   | 320 bytes         | 1,280 bytes
 **Image**     | 320&times;144 (46,080) | 40&times;18 (720) | 5,760 bytes       | 23,040 bytes
 
-{{< note >}}The physical memory size is always four times the EGA address space due to the four-plane memory access patterns of the [EGA hardware]({{< relref "ega-functions" >}}). The program must write one byte-width memory address four times, reprogramming the EGA's color plane selection register between each write, to fill one pixel row of image data.{{< /note >}}
+{{% note %}}The physical memory size is always four times the EGA address space due to the four-plane memory access patterns of the [EGA hardware]({{< relref "ega-functions" >}}). The program must write one byte-width memory address four times, reprogramming the EGA's color plane selection register between each write, to fill one pixel row of image data.{{% /note %}}
 
 With that out of the way, let's tackle the backdrop lookup table first.
 
@@ -338,7 +338,7 @@ At the end of this block, there is only one significant change in state:
 
 Still inside the {{< lookup/cref hasVScrollBackdrop >}} condition, another wrap and install operation occurs. This makes the fourth backdrop variant that is shifted horizontally _and_ vertically. To do this, it re-uses the horizontally shifted copy previously stored in `scratch + `{{< lookup/cref BACKDROP_SIZE >}}.
 
-{{< note >}}In cases where {{< lookup/cref hasHScrollBackdrop >}} is false, the horizontal wrapping block will not have run and the source memory here will contain uninitialized garbage data. This garbage data will get wrapped and loaded into EGA memory, but it is never read due to {{< lookup/cref hasHScrollBackdrop >}} being false when checked later in {{< lookup/cref DrawMapRegion >}}.{{< /note >}}
+{{% note %}}In cases where {{< lookup/cref hasHScrollBackdrop >}} is false, the horizontal wrapping block will not have run and the source memory here will contain uninitialized garbage data. This garbage data will get wrapped and loaded into EGA memory, but it is never read due to {{< lookup/cref hasHScrollBackdrop >}} being false when checked later in {{< lookup/cref DrawMapRegion >}}.{{% /note %}}
 
 This works identically to the previous code, except the source data is pre-shifted in the horizontal direction ( `scratch + `{{< lookup/cref BACKDROP_SIZE >}}) and the destination is {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_BDROP_ODD_XY" >}} in the EGA memory. By vertically shifting an image that has already been horizontally shifted, an image is produced that is shifted by a half-tile on both axes.
 
@@ -497,7 +497,7 @@ Inside that, a pair of `for` loops sets up an iteration over each tile in the ro
 
 Within the innermost loop body, an assignment copies one byte at a time from the `src` data into the `dest` data. Each side of the expression uses (essentially) equivalent calculations: `row * 1280` translates the current tile row number into a skip value, while `offset` targets the individual data bytes within that tile row. The source data is read 16 bytes ahead of the destination data, which has the effect of reading from the bottom half of a tile while writing into the top half of that same tile. This duplicates the bottom half of a tile onto its top half, destroying the content that was there previously.
 
-{{< note >}}The construction of this assignment is undefined behavior, as `offset` is incremented on the right-hand side of the expression while it is being read on the left-hand side. The code is written in this way to maintain parity in the compiled code. The desired behavior is for `offset` to be incremented _after_ the entire expression is completed, resulting in the left-hand side using the not-yet-incremented value.{{< /note >}}
+{{% note %}}The construction of this assignment is undefined behavior, as `offset` is incremented on the right-hand side of the expression while it is being read on the left-hand side. The code is written in this way to maintain parity in the compiled code. The desired behavior is for `offset` to be incremented _after_ the entire expression is completed, resulting in the left-hand side using the not-yet-incremented value.{{% /note %}}
 
 Once a full tile row has been operated on, execution continues to another set of loops.
 
@@ -520,7 +520,7 @@ The assignment is almost the same as well (right down to the admonishment about 
 
 When this assignment is complete, the bottom half of each tile in this row contains a copy of the top half of the tile one row lower in the image. With both half-tiles now written, this tile row is complete and the `row` loop can move on, repeating the procedure for every tile row in the image.
 
-{{< note >}}This code performs an out-of-bounds read on the final tile row, reading garbage data from beyond the conceptual end of the source image. This fills the bottom four rows of pixels in the image with junk, but that doesn't matter because this data gets replaced by the content that had been stashed in `scratch`.{{< /note >}}
+{{% note %}}This code performs an out-of-bounds read on the final tile row, reading garbage data from beyond the conceptual end of the source image. This fills the bottom four rows of pixels in the image with junk, but that doesn't matter because this data gets replaced by the content that had been stashed in `scratch`.{{% /note %}}
 
 ```c
     offset = 0;

@@ -49,7 +49,7 @@ By setting {{< lookup/cref levelNum >}} to zero, the first level is selected for
 
 Finally, the {{< lookup/cref usedCheatCode >}}, {{< lookup/cref sawBombHint >}}, and {{< lookup/cref sawHealthHint >}} flags are set to false. The {{< lookup/cref usedCheatCode >}} flag prevents the cheat key sequence from being used more than once during an episode, and the remaining flags determine if contextual hint dialogs should be shown as different events happen in the game. In this state, the game presumes that the user might not know how to use bombs or how to regain health.
 
-{{< note >}}There is an additional hint variable {{< lookup/cref pounceHintState >}} that is not initialized here; that happened earlier in the "begin new game" branch of {{< lookup/cref TitleLoop >}}.{{< /note >}}
+{{% note %}}There is an additional hint variable {{< lookup/cref pounceHintState >}} that is not initialized here; that happened earlier in the "begin new game" branch of {{< lookup/cref TitleLoop >}}.{{% /note %}}
 
 {{< boilerplate/function-cref InitializeLevel >}}
 
@@ -71,11 +71,11 @@ void InitializeLevel(word level_num)
 
 In the case when the `level_num` being entered is the zeroth level _and_ the {{< lookup/cref isNewGame >}} flag is set, this function knows that the user chose to begin a new game (as opposed to loading a game or starting demo playback that might happen to be on the zeroth level). In this case, the {{< lookup/cref DrawFullscreenImage >}} function displays {{< lookup/cref name="IMAGE" text="IMAGE_ONE_MOMENT" >}} (an image of an alien, who we learn _much_ later is Zonk, saying "One Moment") and {{< lookup/cref WaitSoft >}} inserts an artificial (but partially skippable) delay of 300 game ticks. If the user chooses to skip the delay, the subsequent code will take a perceptible amount of time to load the level data and construct the backdrop image tables, so the image will not immediately disappear on many computers.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **I guess that's growing up.**
 
 All my childhood, I wondered what the game was doing while it was showing this "One Moment" screen. I always figured it was doing some important calculation or data load operation, but it turns out it's just sitting idle. In retrospect, I probably should've realized that it wasn't doing anything critical since demos and saved games loaded without such a delay.
-{{< /aside >}}
+{{% /aside %}}
 
 In all other cases, the screen immediately fades out due to a call to {{< lookup/cref FadeOut >}} and the function continues with the screen blank.
 
@@ -89,7 +89,7 @@ The passed `level_num` is looked up in the {{< lookup/cref mapNames >}} array to
 
 The first two bytes in the [map file format]({{< relref "map-format" >}}) are [map variables]({{< relref "map-format#map-variables-word" >}}) that control a few details about the global environment of the map. These are read with a call to {{< lookup/cref getw >}} and stored in the 16-bit word variable {{< lookup/cref mapVariables >}}. Since this is the only part of the map data that needs to be processed here, `fp` is closed by the call to {{< lookup/cref fclose >}}.
 
-{{< note >}}The map file will be reopened as part of the subsequent {{< lookup/cref LoadMapData >}} call, which is a bit redundant and wasteful.{{< /note >}}
+{{% note %}}The map file will be reopened as part of the subsequent {{< lookup/cref LoadMapData >}} call, which is a bit redundant and wasteful.{{% /note %}}
 
 ```c
     StopMusic();
@@ -160,7 +160,7 @@ Similar to the beginning of the function, a special condition checks for the cas
     }
 ```
 
-This block of code handles UI feedback in the form of the "Now entering level..." text before each level begins. If {{< lookup/cref demoState >}} is {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}, a demo is neither being recorded nor played back and such feedback is appropriate. The `switch` cases mirror the [level progression]({{< relref "level-and-map-functions#maps-vs-levels" >}}) of the game. This ensures that this dialog only appears before maps 1&ndash;10, without appearing before bonus levels or the eleventh level of the first episode.
+This block of code handles UI feedback in the form of the "Now entering level..." text before each level begins. If {{< lookup/cref demoState >}} is {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_NONE" >}}, a demo is neither being recorded nor played back and such feedback is appropriate. The `switch` cases mirror the [level progression]({{< relref "level-and-map-functions#maps-vs-levels" >}}) of the game. This ensures that this dialog only appears before maps 1--10, without appearing before bonus levels or the eleventh level of the first episode.
 
 For these regular levels, the dialog is shown by calling both {{< lookup/cref SelectDrawPage >}} and {{< lookup/cref SelectActivePage >}} with the zeroth video page as the argument. This makes it so that the effect of all draw functions becomes immediately visible without the page-flipping machinery getting in the way. {{< lookup/cref ClearScreen >}} erases this draw page by replacing it with solid black tiles, and {{< lookup/cref FadeIn >}} restores the palette to its normal state, making this solid black screen visible.
 
@@ -363,7 +363,7 @@ void GameLoop(byte demo_state)
 }
 ```
 
-Only the outermost structure of the game loop is shown here for clarity. Almost the entire function is contained inside the body of an infinite `for` loop. On each iteration, the value of {{< lookup/cref gameTickCount >}} is checked, and execution only proceeds once the count reaches 13. (This counter is incremented externally in the {{< lookup/cref PCSpeakerService >}} function, which is called by a timer interrupt 140 times per second.) This busy loop ensures that the game waits _at least_ 13 &#8725; 140 seconds between successive frames, effectively creating a frame-rate limiter a bit shy of 11 frames per second. Once the requisite amount of time has passed, {{< lookup/cref gameTickCount >}} is reset to zero to set up for the delay on the subsequent iteration and the rest of the game loop body runs.
+Only the outermost structure of the game loop is shown here for clarity. Almost the entire function is contained inside the body of an infinite `for` loop. On each iteration, the value of {{< lookup/cref gameTickCount >}} is checked, and execution only proceeds once the count reaches 13. (This counter is incremented externally in the {{< lookup/cref PCSpeakerService >}} function, which is called by a timer interrupt 140 times per second.) This busy loop ensures that the game waits _at least_ 13 &frasl; 140 seconds between successive frames, effectively creating a frame-rate limiter a bit shy of 11 frames per second. Once the requisite amount of time has passed, {{< lookup/cref gameTickCount >}} is reset to zero to set up for the delay on the subsequent iteration and the rest of the game loop body runs.
 
 For a fast computer that can draw a frame quickly, this loop eats up the remaining unused time before another loop iteration is allowed to start. On a very slow computer, it's possible for {{< lookup/cref gameTickCount >}} to be at or above 13 by the time the next game loop iteration is entered, resulting in no busy wait at all. In these cases, the gameplay will appear noticeably sluggish because there are no mechanisms in place to skip frames or adjust the movement speeds of objects.
 
@@ -479,11 +479,11 @@ Immediately after that, {{< lookup/cref activePage >}} is inverted to select the
 
 A conceivably late addition to the game loop is this pounce hint check. If the value in {{< lookup/cref pounceHintState >}} is equal to {{< lookup/cref name="POUNCE_HINT" text="POUNCE_HINT_QUEUED" >}}, something occurred during the current iteration of the game loop to warrant displaying the pounce hint dialog. Update {{< lookup/cref pounceHintState >}} to {{< lookup/cref name="POUNCE_HINT" text="POUNCE_HINT_SEEN" >}} so this cannot recur, then call {{< lookup/cref ShowPounceHint >}} to show the dialog.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Queue you!**
 
 The queuing implementation used here is probably not necessary; the behavior of the health hints in {{< lookup/cref TouchPlayer >}} demonstrates a more direct way to do this. The placement here suggests that maybe an older version of this function interacted badly with the page-flipping, perhaps appearing and pausing gameplay with some of the actors not yet drawn for the current frame.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< boilerplate/function-cref ProcessGameInputHelper >}}
 
@@ -510,11 +510,11 @@ This function is effectively a wrapper around {{< lookup/cref ProcessGameInput >
 
 {{< lookup/cref EGA_MODE_LATCHED_WRITE >}} puts the EGA hardware into "latched" write mode. This is the mode used when drawing solid tile images, since these are stored in the EGA's onboard memory and need to use the latches to copy data onto a video page.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Work harder, not smarter.**
 
 The call to {{< lookup/cref EGA_MODE_LATCHED_WRITE >}} is _arguably_ not needed, since all of the dialog/menu functions that can be invoked during the game ultimately call {{< lookup/cref DrawTextFrame >}} which sets the EGA mode anyway. It could also be argued that, since most of the frames drawn by the game loop never show a menu or dialog in the first place, performing this call on every loop iteration is simply a waste of clock cycles.
-{{< /aside >}}
+{{% /aside %}}
 
 The call to {{< lookup/cref SelectDrawPage >}} sets the draw page -- that is, the area of video memory that is visible on the screen _right now_ -- to `active_page`. This sets it up so that any subsequent drawing operation goes directly and immediately to the screen, visible to the user without page flipping coming into play.
 
@@ -726,7 +726,7 @@ If {{< lookup/cref isJoystickReady >}} is false, the user is not using joystick 
 
 In the opposite case, {{< lookup/cref isJoystickReady >}} is true and joystick input _is_ being used. Don't process keyboard input at all, and instead call {{< lookup/cref ReadJoystickState >}} to read the movement commands from {{< lookup/cref name="JOYSTICK" text="JOYSTICK_A" >}}. Although {{< lookup/cref ReadJoystickState >}} returns a {{< lookup/cref JoystickState >}} structure with button press info, that return value is not used here -- all global variables are set without considering the return value.
 
-{{< note >}}There is a bug here due to {{< lookup/cref blockMovementCmds >}} never being checked. It is possible for the player to walk or jump out of situations when using the joystick that they would not be able to while using the keyboard.{{< /note >}}
+{{% note %}}There is a bug here due to {{< lookup/cref blockMovementCmds >}} never being checked. It is possible for the player to walk or jump out of situations when using the joystick that they would not be able to while using the keyboard.{{% /note %}}
 
 ```c
         if (blockActionCmds) {

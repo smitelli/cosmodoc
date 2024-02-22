@@ -104,7 +104,7 @@ When the loops complete, the entire status bar image has been copied onto the sc
 
 A series of calls to {{< lookup/cref AddScore >}}, {{< lookup/cref UpdateStars >}}, {{< lookup/cref UpdateBombs >}}, and {{< lookup/cref UpdateHealth >}} finish the job. Each of these functions is responsible for (re)drawing one element of the status bar, filling in all of the blanks with whatever values the global state of the program holds.
 
-{{< note >}}{{< lookup/cref AddScore >}} increments the player's score in the process of redrawing it, so passing zero as the argument has the effect of adding zero points but redrawing regardless.{{< /note >}}
+{{% note %}}{{< lookup/cref AddScore >}} increments the player's score in the process of redrawing it, so passing zero as the argument has the effect of adding zero points but redrawing regardless.{{% /note %}}
 
 {{< boilerplate/function-cref AddScore >}}
 
@@ -148,11 +148,11 @@ Since the game uses page flipping, there are always two copies of the screen in 
 
 Before returning, the {{< lookup/cref EGA_MODE_LATCHED_WRITE >}} places the hardware back into latched write mode, which is appropriate for drawing solid tiles. This is arguably the wrong mode to leave the hardware in, because most score changes occur during actor processing and most actor drawing uses transparency masks that require the EGA's default mode. This call does not cause issues, since the other drawing functions set the EGA state appropriately before drawing, but it is a bit of a wasteful call.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Or maybe...**
 
 This could have been a vestige of an earlier state of the game's development. Check out {{< lookup/cref DrawStatusBarBombs >}} for a taste of why this might have been something that was thought to be needed at one time or another.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< boilerplate/function-cref UpdateStars >}}
 

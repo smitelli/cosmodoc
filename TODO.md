@@ -1,20 +1,15 @@
-* Eventually will be more than semi-complete
-* Word count
+* Eventually will be more than semi-complete; remove "and counting" then
 * Important overall concepts/appendix
 * Unused tiles and masktile
 * Design and add a proper definition system
-* Game ticks and timer ticks are two different things
-* canPlayerCling in the debug bar probably only works for east
+* (timer/music/game/???) ticks and frames are really overloaded terms
 
 =============================================================================
 
 * player move
-    * MovePlayer: handle one tick of basically all player input.
+    * MovePlayer: handle one game tick of basically all player input.
     * PounceHelper: imparts the springiness into actor pounces.
-    * SetPlayerPush: set up a push.
-    * ClearPlayerPush: reset push-related vars.
-    * MovePlayerPush: handle one tick of player push movement.
-    * MovePlayerScooter: handle one tick of player movement on the scooter.
+    * MovePlayerScooter: handle one game tick of player movement on the scooter.
 * player/actor
     * TouchPlayer: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
 * actors

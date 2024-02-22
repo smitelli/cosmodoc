@@ -31,7 +31,7 @@ The frame is displayed as a blue/gold border, one tile thick, that surrounds a b
     2x="frame-measurement-1368x.png"
     3x="frame-measurement-2052x.png" >}}
 
-{{< note >}}The inner `xcenter` and `ycenter` variables come into play when frames are drawn through {{< lookup/cref UnfoldTextFrame >}}. They are shown here to give a grand overview of all measurement points in a frame.{{< /note >}}
+{{% note %}}The inner `xcenter` and `ycenter` variables come into play when frames are drawn through {{< lookup/cref UnfoldTextFrame >}}. They are shown here to give a grand overview of all measurement points in a frame.{{% /note %}}
 
 Frames are always drawn horizontally centered in the game, but this is not technically required here. Non-centered frames were apparently not tested thoroughly, and may display strangely under certain scenarios.
 
@@ -115,9 +115,11 @@ Most frames contain a line of text at their top and/or bottom inside edges. This
 
 There are two possible modes that can be chosen: `centered` or not. For all practical purposes, `centered` is always true in the retail game, resulting in horizontally-centered text within the frame. The X position is computed by taking half of the screen width in tiles, and subtracting half of the string length of `top_text` as reported by {{< lookup/cref strlen >}}. The Y position for the top text is the frame's `top`, plus one to clear the top border row. The position for `bottom_text` is computed similarly, using `top + height` to determine the bottom position of the frame and subtracting _two_ to clear the bottom border row and to correct for an off-by-one error. Each line of text is passed to {{< lookup/cref DrawTextLine >}}, which draws the text characters from the font tile data.
 
-{{< note >}}Centered drawing always centers the text horizontally _relative to the screen_, and does not account for combinations of the frame's `left` or `width` values. This means that, if the frame is not positioned in the center of the screen, the centered text will not appear in the center of that frame.
+{{% note %}}
+Centered drawing always centers the text horizontally _relative to the screen_, and does not account for combinations of the frame's `left` or `width` values. This means that, if the frame is not positioned in the center of the screen, the centered text will not appear in the center of that frame.
 
-This does not cause issues in the game, because almost all frames are drawn through {{< lookup/cref UnfoldTextFrame >}} which always centers the frame horizontally.{{< /note >}}
+This does not cause issues in the game, because almost all frames are drawn through {{< lookup/cref UnfoldTextFrame >}} which always centers the frame horizontally.
+{{% /note %}}
 
 If `centered` was false, a simpler pair of {{< lookup/cref DrawTextLine >}} calls places `top_text` and `bottom_text` at the leftmost edge of the frame's interior. This _does_ account for the frame's `left` position, and renders correctly anywhere on the screen. The calculation for the Y positions is identical to the centered variant.
 
@@ -197,13 +199,13 @@ Lastly, the final frame is drawn using the originally requested parameters. Here
 
 The {{< lookup/cref DrawTextLine >}} function draws a single line of `text` with the first character anchored at screen coordinates (`x_origin`, `y_origin`). A limited form of markup is supported to allow insertion of cartoon images, player/actor sprites, and text animation effects. Characters are drawn in left-to-right order. Newlines and text wrapping are not supported, and there are no guarantees about what will happen if the text runs off the edge of the screen.
 
-{{< note >}}
-While most of the font characters in the game have transparent areas and could be layered on top of arbitrary graphics, the digits 0&ndash;9 are completely opaque, drawn on a solid dark gray square. This difference is not normally visible inside text frames, since the frame's fill color matches the color embedded in the font. If an attempt is made to draw a digit outside of this context, however, it will appear with a (possibly undesired) dark gray background.
+{{% note %}}
+While most of the font characters in the game have transparent areas and could be layered on top of arbitrary graphics, the digits 0--9 are completely opaque, drawn on a solid dark gray square. This difference is not normally visible inside text frames, since the frame's fill color matches the color embedded in the font. If an attempt is made to draw a digit outside of this context, however, it will appear with a (possibly undesired) dark gray background.
 
 The reason for this difference, by the way, is for the status bar. As the score/bombs/stars numbers change during gameplay, each new number can be guaranteed to properly overwrite any numbers that were already there. If the font digits had transparent areas, extra effort would be required to erase these areas prior to drawing the new digits, possibly causing flicker.
-{{< /note >}}
+{{% /note %}}
 
-Markup is encoded by including a flag byte in the `text` content, followed by three or six ASCII digits in the range 0&ndash;9. The flag byte patterns, digit parsing, and behavior are as follows:
+Markup is encoded by including a flag byte in the `text` content, followed by three or six ASCII digits in the range 0--9. The flag byte patterns, digit parsing, and behavior are as follows:
 
 Flag Format  | Description
 -------------|------------
@@ -214,7 +216,7 @@ Flag Format  | Description
 
 As an example, to draw player sprite 14, the C string literal encoding would be `"\xFD""014"`, or individual bytes FDh, 30h, 31h, 34h.
 
-{{< note >}}In Turbo C, it is not possible to write the previous example in code as `"\xFD014"` because the parser treats the entire sequence as a single hexadecimal number that doesn't fit into a `char` type.{{< /note >}}
+{{% note %}}In Turbo C, it is not possible to write the previous example in code as `"\xFD014"` because the parser treats the entire sequence as a single hexadecimal number that doesn't fit into a `char` type.{{% /note %}}
 
 The drawing position is not adjusted to compensate for cartoons/sprites embedded in the `text` data. To prevent subsequent characters from overlapping on previously-drawn images, there must be an appropriate number of space characters in the `text` to clear anything that was previously drawn.
 
@@ -270,11 +272,11 @@ The `x` variable holds the current horizontal drawing offset, and combining that
 
 Once the player sprite is drawn, the `text` pointer is advanced by four bytes. This skips the flag byte and the three data bytes that followed it, and sets the read position to the next character following this markup construction.
 
-{{< note >}}
+{{% note %}}
 This fundamentally messes with the indexing of the `text` array. If `text` were to contain the value `"Demonstrate"`, `text[0]` would be the character `D`. After performing `text += 4`, however, `text[0]` becomes `n`.
 
 Earlier it was hinted that the `x` variable is _not necessarily_ the read index in the `text` data. This skipping behavior is the reason for that.
-{{< /note >}}
+{{% /note %}}
 
 ```c
             } else if (text[x] == '\xFB') {
@@ -368,10 +370,10 @@ The remainder of the function draws a single text character and advances the hor
 
 The text content of the game is stored internally using standard ASCII encoding.[^ascii] The [game font's character set]({{< relref "databases/font" >}}), however, uses a different encoding that is sort of like -- but not actually -- ASCII. This discontinuity requires some finesse to handle.
 
-* ASCII codes 32&ndash;90 are mapped to font tiles 10&ndash;68. This covers capital letters, digits, and all of the symbols that the game font can display.
-* ASCII codes 97&ndash;122 are mapped to font tiles 69&ndash;94. This range contains only lowercase letters.
-* These symbols cannot be represented at all: `/` `[` `\` `]` `^` `_` <code>&grave;</code> `{` `|` `}` `~` and control characters. The only character in this list that does anything remotely reasonable is `/`, producing the symbol for the pound sterling (<code>&pound;</code>).
-* The additional codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&uarr;</code>, <code>&darr;</code>, <code>&larr;</code>, and <code>&rarr;</code> respectively. This _almost_ follows the standard, except the rightwards arrow is in the wrong place.
+* ASCII codes 32--90 are mapped to font tiles 10--68. This covers capital letters, digits, and all of the symbols that the game font can display.
+* ASCII codes 97--122 are mapped to font tiles 69--94. This range contains only lowercase letters.
+* These symbols cannot be represented at all: `/` `[` `\` `]` `^` `_` <code>\`</code> `{` `|` `}` `~` and control characters. The only character in this list that does anything remotely reasonable is `/`, producing the symbol for the pound sterling (<code>&pound;</code>).
+* The additional codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&uparrow;</code>, <code>&downarrow;</code>, <code>&leftarrow;</code>, and <code>&rightarrow;</code> respectively. This _almost_ follows the standard, except the rightwards arrow is in the wrong place.
 
 In this light, the first branch of the `if` is fairly straightforward. If the ASCII code of the current character is greater than or equal to that of `'a'` (97), subtract 97 from the code to produce a value between 0 and 25. Combining this with the offset in {{< lookup/cref name="FONT" text="FONT_LOWER_A" >}} produces the offset to the correct character tile in the font data. (The multiplication by 40 is due to the fact that each [masked tile image]({{< relref "tile-image-format#masked-tiles" >}}) is 40 bytes long.) The resulting byte offset is added to {{< lookup/cref fontTileData >}} to compute the memory address of the tile image that should be drawn to display the required character. This pointer, along with `x_origin + x` and `y_origin`, are passed into a {{< lookup/cref DrawSpriteTile >}} call to display the character at the correct location on the screen.
 
@@ -417,7 +419,7 @@ The font tiles are stored as [masked tile graphics]({{< relref "tile-image-forma
 
 Here the individual digits are drawn in a `for` loop, running in _left_ to _right_ order. The calculations involving `x`, `x_origin`, and `length` are needlessly complex for what they're actually doing -- the rightmost digit ends up at `x_origin`, while the leftmost digit appears at `x_origin - length + 1`. The horizontal math could be greatly simplified by either drawing right to left, or by incrementing `x` instead of decrementing it.
 
-Each character of `text` is an ASCII digit in the range 30h&ndash;39h. The ASCII code value is subtracted by `'0'` (30h) to produce a numeric value between 0 and 9. This is multiplied by 40 and added to {{< lookup/cref name="FONT" text="FONT_0" >}} to calculate a byte offset into the font tile image data. Finally, this is combined with the base {{< lookup/cref fontTileData >}} pointer, giving the memory address where the required tile image data for this character resides. This is passed to {{< lookup/cref DrawSpriteTile >}} along with the appropriate X/Y screen position, and a font digit is drawn.
+Each character of `text` is an ASCII digit in the range 30h--39h. The ASCII code value is subtracted by `'0'` (30h) to produce a numeric value between 0 and 9. This is multiplied by 40 and added to {{< lookup/cref name="FONT" text="FONT_0" >}} to calculate a byte offset into the font tile image data. Finally, this is combined with the base {{< lookup/cref fontTileData >}} pointer, giving the memory address where the required tile image data for this character resides. This is passed to {{< lookup/cref DrawSpriteTile >}} along with the appropriate X/Y screen position, and a font digit is drawn.
 
 The `for` loop continues until the entire number has been drawn, then this function returns.
 
@@ -425,7 +427,7 @@ The `for` loop continues until the entire number has been drawn, then this funct
 
 The {{< lookup/cref ReadAndEchoText >}} function presents a wait spinner near (`x_origin`, `y_origin`) that accepts at most `max_length` characters of keyboard input. The typed characters are echoed to the screen and stored in the memory pointed to by `dest`, which should be large enough to hold `max_length` + 1 bytes of data. If the user presses the <kbd>Esc</kbd> key, input will be aborted. The <kbd>Enter</kbd> key accepts the input.
 
-{{< note >}}This function draws everything one tile to the right of the screen column specified by `x_origin`.{{< /note >}}
+{{% note %}}This function draws everything one tile to the right of the screen column specified by `x_origin`.{{% /note %}}
 
 The user cannot arbitrarily move the text insertion cursor around to edit text. New characters are always appended to the end of the text, and any deletions (using the <kbd>Backspace</kbd> key) remove characters from the end of the text as well.
 
@@ -554,7 +556,7 @@ While this function is executing, external interrupts occur asynchronously, some
 
 {{< lookup/cref StepWaitSpinner >}} is called in a `do`...`while` loop, which continually draws each successive step of the wait spinner's animation at (`x`, `y`). {{< lookup/cref StepWaitSpinner >}} returns immediately after each call, returning the most recently-seen keyboard scancode which is saved into the `scancode` variable.
 
-When this function was first entered, there was a slight chance that the user was still holding down the key that brought execution to this point. In that case, the most recently seen scancode would be a "make" code in the range 1&ndash;7Fh. (See the page on [keyboard functions]({{< relref "keyboard-functions" >}}) for more information about make/break states and scancodes in general.)
+When this function was first entered, there was a slight chance that the user was still holding down the key that brought execution to this point. In that case, the most recently seen scancode would be a "make" code in the range 1--7Fh. (See the page on [keyboard functions]({{< relref "keyboard-functions" >}}) for more information about make/break states and scancodes in general.)
 
 This first loop serves to capture that case. As long as the most recent scancode byte represents a make code (with the most significant bit unset), repeat. Once the held key is released, a break code will arrive with the most significant bit set and execution will move on.
 
@@ -565,17 +567,17 @@ This first loop serves to capture that case. As long as the most recent scancode
 ```
 This is identical to the previous loop, except the termination condition is inverted. This is waiting until the next make code arrives. Once the user presses a key, this loop will terminate.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **The PS/2 makes it weird, of course.**
 
 The implementation here seems simple enough to be bulletproof: block until a key release message arrives, then block until a subsequent key press message is seen. There's no obvious way to blaze through wait spinner calls by holding down a key; there must be a deliberate release followed by a press.
 
-But where there's a will there's a way. On the original [84-key PC/AT keyboard]({{< relref "keyboard-functions/#the-relatively-simple-world-of-the-ibm-pcat" >}}), pressing and holding a key -- say <kbd>Num 8 / &uarr;</kbd> -- repeatedly sends that key's "make" code byte (48h) as long as the key is held. `0x48 & 0x80 == 0`, so the first loop will block for as long as the key is down.
+But where there's a will there's a way. On the original [84-key PC/AT keyboard]({{< relref "keyboard-functions/#the-relatively-simple-world-of-the-ibm-pcat" >}}), pressing and holding a key -- say <kbd>Num 8 / &uparrow;</kbd> -- repeatedly sends that key's "make" code byte (48h) as long as the key is held. `0x48 & 0x80 == 0`, so the first loop will block for as long as the key is down.
 
-On the [PS/2 keyboard]({{< relref "keyboard-functions/#youre-gonna-ps2-it" >}}), IBM added a standalone <kbd>&uarr;</kbd> key that uses the same 48h scancode byte, but prefixed with an E0h flag byte to allow the software to differentiate the keys if desired. While _this_ key is held, the keyboard repeatedly sends _two_ bytes (E0h 48h E0h 48h...) and the E0h unintentionally terminates the first loop. Then 48h terminates the second loop, and we've successfully bypassed the release-and-press requirement.
+On the [PS/2 keyboard]({{< relref "keyboard-functions/#youre-gonna-ps2-it" >}}), IBM added a standalone <kbd>&uparrow;</kbd> key that uses the same 48h scancode byte, but prefixed with an E0h flag byte to allow the software to differentiate the keys if desired. While _this_ key is held, the keyboard repeatedly sends _two_ bytes (E0h 48h E0h 48h...) and the E0h unintentionally terminates the first loop. Then 48h terminates the second loop, and we've successfully bypassed the release-and-press requirement.
 
 The effects of this can be seen clearly in some menus: [Ordering Information]({{< relref "dialog-functions/#ShowOrderingInformation" >}}), [Story]({{< relref "dialog-functions/#ShowStory" >}}), and [Test Sound]({{< relref "menu-functions/#test-sound" >}}) are a few clear examples. Holding one of the standalone arrow keys down will rapidly move through the screens/options, while holding the same arrow key on the numeric keypad will not. This certain-key-holding behavior can also occur during the game, causing hint dialogs to disappear as soon as their built-in delays expire.
-{{< /aside >}}
+{{% /aside %}}
 
 ```c
     scancode = lastScancode;
@@ -665,13 +667,13 @@ The actual drawing occurs here, during every call, even if `frameoff` has not ch
 
 Finally, the value held in {{< lookup/cref lastScancode >}} is copied into `scancode`, then returned. All this is fairly unnecessary, since the caller has direct access to {{< lookup/cref lastScancode >}} if it wants.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Be nice.**
 
 There was probably a time when this function did more direct operations with keyboard state, similar to the structure of {{< lookup/cref WaitForAnyKey >}}. In that mindset, it makes a bit more sense why `scancode` is explicitly zeroed at the beginning of the function, and why it gets returned as it does.
 
 At the end of the day, done projects are better than perfect projects.
-{{< /aside >}}
+{{% /aside %}}
 
 [^fencepost]: [https://foldoc.org/fencepost error](https://foldoc.org/fencepost%20error)
 

@@ -68,7 +68,7 @@ If {{< lookup/cref hasHScrollBackdrop >}} is true, this block executes. This con
 
 The odd case (where {{< lookup/cref scrollX >}}` % 2` is nonzero) is handled first. The constant {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_SOLID_TILES" >}} is subtracted from {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_BDROP_ODD_X" >}}, setting `bdsrc` to the constant value 7980h. This points to the first tile of backdrop image data for the horizontally-shifted variant of the backdrop, expressed in the way that {{< lookup/cref DrawSolidTile >}} expects it.
 
-{{< note >}}This warrants a special callout. {{< lookup/cref DrawSolidTile >}} is usually called to draw solid tiles (hence the name), and biases its indexing such that a source offset of zero targets the first solid tile -- _not_ the first byte of the EGA memory segment. Contrarily, the {{< lookup/cref EGA_OFFSET >}} values _**are**_ relative to the start of the EGA memory segment, necessitating a correction here.{{< /note >}}
+{{% note %}}This warrants a special callout. {{< lookup/cref DrawSolidTile >}} is usually called to draw solid tiles (hence the name), and biases its indexing such that a source offset of zero targets the first solid tile -- _not_ the first byte of the EGA memory segment. Contrarily, the {{< lookup/cref EGA_OFFSET >}} values _**are**_ relative to the start of the EGA memory segment, necessitating a correction here.{{% /note %}}
 
 In the case where {{< lookup/cref scrollX >}} is even, `bdsrc` is set based on the value of {{< lookup/cref name="EGA_OFFSET" text="EGA_OFFSET_BDROP_EVEN" >}} instead, producing the constant value 6300h. This is the same value previously stored during `bdsrc`'s declaration earlier, making this a redundant assignment.
 
@@ -201,11 +201,11 @@ The `y` position is fudged to the current {{< lookup/cref scrollY >}} position p
 
 {{< lookup/cref GetMapTile >}} returns the tile value at this (`x`, `y`) position, and if it contains {{< lookup/cref name="TILE" text="TILE_EMPTY" >}} then there is empty space at this location -- a raindrop sprite can fit there. {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_RAINDROP" >}} to the map at this (`x`, `y`) position. The raindrop consists of one frame, always moves in the {{< lookup/cref name="DIR8" text="DIR8_SOUTHWEST" >}} direction, and the decoration persists for a maximum of 20 loops. This is more than enough opportunity for it to reach the bottom of the game window, which is only 18 tiles high.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Umbrellas are futile!**
 
 The physics of rain in this game don't make a lot of sense. Rain will not form where solid tiles occupy the top of the screen, yet existing raindrops will happily pass through any and all solid tiles anywhere below. An solid "umbrella"-type structure would do nothing to shield from the raindrops in this game, unless it happened to occupy the top edge where the raindrops initially spawn.
-{{< /aside >}}
+{{% /aside %}}
 
 There is special-purpose code in {{< lookup/cref MoveAndDrawDecorations >}} that pertains to raindrop movement, causing them to travel faster than any other moving decoration in the game.
 
@@ -221,7 +221,7 @@ Each light is defined _only_ by the upper edges of its cone; the brightening eff
     2x="light-components-1368x.png"
     3x="light-components-2052x.png" >}}
 
-{{< note >}}Pay special attention to the light fixture in the game screenshot on the left above. It does not contribute to the lighting effect; it is merely an arrangement of four solid map tiles, no different from any other decorative element in the game. Only the lightened gray trapezoidal area is part of the lighting system.{{< /note >}}
+{{% note %}}Pay special attention to the light fixture in the game screenshot on the left above. It does not contribute to the lighting effect; it is merely an arrangement of four solid map tiles, no different from any other decorative element in the game. Only the lightened gray trapezoidal area is part of the lighting system.{{% /note %}}
 
 A map designer should be mindful of how many lights are present in the level and how many tiles they can cover. (The example image contains 18 lights: eight west, eight east, and two middle types. There is an additional 70 tiles of flooding.) The game must evaluate the full area flooded by _every light on the map_ to determine if any part of the effect enters the scrolling game window. This is recomputed from scratch every frame. Conceivably this would allow for situations like moving platforms dynamically interrupting the flooded area and casting "shadows," but none of the stock maps do this and the result looks unconvincing in practice:
 
@@ -305,7 +305,7 @@ Regardless of the function selected, the arguments passed are the same each time
 
 The remainder of the loop body handles the downward flood that occurs under each light, which continues until it hits a blocking map tile or {{< lookup/cref LIGHT_CAST_DISTANCE >}} tiles have been covered. The `for` loop starts the `y` iterator variable at `yorigin` _plus one_ because we start flooding immediately below the tile where the light originated. The loop continues incrementing `y` downward on the screen until one of its exit conditions is reached.
 
-{{< note >}}This loop runs for every strip of every light on the map, no matter what is visible on the screen. This is due to the fact that there are scroll positions where the head tile of the light is not in view, but parts of its flood are.{{< /note >}}
+{{% note %}}This loop runs for every strip of every light on the map, no matter what is visible on the screen. This is due to the fact that there are scroll positions where the head tile of the light is not in view, but parts of its flood are.{{% /note %}}
 
 At each step, {{< lookup/cref name="GetMapTile" text="GetMapTile(xorigin, y)" >}} reads the map tile in that position and checks its tile attributes using {{< lookup/cref TILE_BLOCK_SOUTH >}}. If the tile contains an attribute bit that blocks southern movement, the loop `break`s -- the light has reached a solid surface that it should not pass into.
 

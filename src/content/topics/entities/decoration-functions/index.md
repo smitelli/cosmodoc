@@ -52,7 +52,7 @@ When this function returns, all decorations will be reset to their idle state, r
 
 The {{< lookup/cref NewDecoration >}} function creates a new decoration at `x_origin` and `y_origin` consisting of the passed `sprite_type` with an animation duration of `num_frames`. `dir` controls the straight-line direction the decoration will move in, and `num_times` controls how many times the animation sequence will play before ending.
 
-{{< note >}}If there is no room in the {{< lookup/cref decorations >}} array (due to too many decorations already running) this function does nothing.{{< /note >}}
+{{% note %}}If there is no room in the {{< lookup/cref decorations >}} array (due to too many decorations already running) this function does nothing.{{% /note %}}
 
 `dir` should be a {{< lookup/cref DIR8 >}} value. It is possible to set `num_times` to zero for a decoration that persists for as long as it can be seen on the screen. The maximum possible lifetime of the decoration is `num_frames` &times; `num_times`, in ticks. The decoration may end earlier if it totally leaves the scrolling game window.
 
@@ -229,7 +229,7 @@ The outer `for` loop continues running until all decoration slots have been hand
 if (IsSpriteVisible(dec->sprite, dec->numframes, dec->x, dec->y)) { ... }
 ```
 
-Nominally, the second argument to {{< lookup/cref IsSpriteVisible >}} is the frame number within the sprite type to test against. This is needed because some sprite types change size during the course of their animation, and we're interested in the visibility of the sprite frame using its currently-shown dimensions. In actuality, `dec->numframes` is passed. This is not the currently displayed frame, and in fact is not _any_ frame for the sprite. (A sprite with `numframes = 4` should only have frame numbers 0&ndash;3. Frame four is out of bounds.)
+Nominally, the second argument to {{< lookup/cref IsSpriteVisible >}} is the frame number within the sprite type to test against. This is needed because some sprite types change size during the course of their animation, and we're interested in the visibility of the sprite frame using its currently-shown dimensions. In actuality, `dec->numframes` is passed. This is not the currently displayed frame, and in fact is not _any_ frame for the sprite. (A sprite with `numframes = 4` should only have frame numbers 0--3. Frame four is out of bounds.)
 
 The structure of the [tile info data]({{< relref "tile-info-format" >}}) is such that reading past the last frame of one sprite type begins reading into the starting frames of the subsequent sprite type. Essentially the arguments `dec->sprite, dec->numframes` behave as if they were `dec->sprite + 1, 0`. This only becomes a serious memory access violation when the highest sprite type in the game is used (which doesn't occur); instead we simply get the wrong answer to the question.
 

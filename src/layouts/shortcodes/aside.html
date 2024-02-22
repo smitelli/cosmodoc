@@ -1,15 +1,18 @@
 {{/*
-    Wraps the inner markdown content in a <blockquote> tag with an optional class
-    name. Returns HTML containing this wrapped content.
+    Wraps the inner markdown content in a <blockquote> tag with an optional
+    class name. Returns **markdown** containing this wrapped content. The caller
+    needs to use the {{% ... %}} shortcode invocation to make this work
+    correctly.
 
     This should really be <aside>, but that causes the Firefox reader mode (at
     least) to hide the element which skips valuable content. <blockquote> is the
     next-best thing that visually sets the content off in this view.
 
     Named parameters:
-        class (optional): Class value to add to the <blockquote> tag.
+        class (optional): Class attribute value to add to the <blockquote> tag.
 */}}
 
 <blockquote{{ with .Get "class" }} class="{{ . }}"{{ end }}>
-{{ .Inner | markdownify }}
+{{/* Intentional blank line: https://spec.commonmark.org/0.31.2/#html-block */}}
+{{ .Inner }}
 </blockquote>

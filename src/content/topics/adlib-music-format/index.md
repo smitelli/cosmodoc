@@ -64,6 +64,6 @@ Offset (Bytes) | Size | Description
 
 Each file begins with four null bytes, resulting in a write of data `0` to the nonexistent AdLib address `0` with zero delay afterwards. This doesn't appear to cause any harm, but it's definitely an invalid write. It's not clear why it does that.
 
-{{< note >}}Later games with more advanced versions of IMF use a different structure that does not start with four null bytes.{{< /note >}}
+{{% note %}}Later games with more advanced versions of IMF use a different structure that does not start with four null bytes.{{% /note %}}
 
 The OPL2 has well over 120 different registers, and the music in the game uses most of them. It's beyond the scope of this particular section to explain what each of them actually does, but rest assured it is [dark magic]({{< relref "adlib-functions" >}}).

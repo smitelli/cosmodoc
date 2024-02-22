@@ -7,10 +7,10 @@
         <th>Special Actor Type</th>
         <th>Description</th>
     </tr>
-    {{ range $index, $_ := $.Site.Data.description.special_actor }}
+    {{ range $spa_num, $_ := site.Data.description.special_actor }}
         <tr>
-            <th>{{ $index }}</th>
-            <td>{{ . | markdownify }}</td>
+            <th>{{ $spa_num }}</th>
+            <td>{{ . }}</td>
         </tr>
     {{ end }}
 </table>

@@ -14,7 +14,7 @@ Both platforms and mud fountains are initialized during map loading by {{< looku
 
 ## Platform Behavior
 
-Each platform is defined in the actor section of the [map data]({{< relref "map-format" >}}). This sets the initial X/Y position of each platform, but does not provide any means to direct the movement. To support that, each platform's path is defined by a series of invisible map tiles in the map data. While tile index 0 is simply rendered as air, tile indices 1&ndash;8 are rendered as air _and_ determine the next movement step of any platform that touches that tile.
+Each platform is defined in the actor section of the [map data]({{< relref "map-format" >}}). This sets the initial X/Y position of each platform, but does not provide any means to direct the movement. To support that, each platform's path is defined by a series of invisible map tiles in the map data. While tile index 0 is simply rendered as air, tile indices 1--8 are rendered as air _and_ determine the next movement step of any platform that touches that tile.
 
 A reasonable platform path will be constructed as a loop that returns the platform back to its starting position to repeat again. There's no technical reason why the path must be a closed loop, except that such platforms will stop once they reach the end of the path and remain stuck in that position indefinitely -- there is no way to make a platform reverse itself. The only way to support a platform path that crosses itself (or any other platform's path) would be to have both directions cross at a right angle in a diagonal orientation -- think of a figure-eight pattern.
 
@@ -26,7 +26,7 @@ A reasonable platform path will be constructed as a loop that returns the platfo
 
 A platform is a 5 &times; 1 span of blue solid map tiles that can be jumped through and stood on. Its X/Y position is anchored relative to the center tile of the platform (this is different from the way most other objects in the game are anchored). The platform is constructed of true map blocks; there are no sprites drawn to support them.
 
-{{< note >}}The game code makes some firm assumptions that every platform will always be centered on either a path direction tile or air (tile zero). Allowing a platform to run into arbitrary solid or masked tiles will make {{< lookup/cref MovePlatforms >}} read outside of an array, leading to unpredictable and likely violent platform movement.{{< /note >}}
+{{% note %}}The game code makes some firm assumptions that every platform will always be centered on either a path direction tile or air (tile zero). Allowing a platform to run into arbitrary solid or masked tiles will make {{< lookup/cref MovePlatforms >}} read outside of an array, leading to unpredictable and likely violent platform movement.{{% /note %}}
 
 Platform movement is governed by the global {{< lookup/cref arePlatformsActive >}} variable, which is usually true. If the map contains at least one {{< lookup/actor 59 >}}, {{< lookup/cref arePlatformsActive >}} becomes false until the switch is activated.
 
@@ -230,13 +230,13 @@ If the player is in the correct position and the fountain's movement direction (
 
 In the `else` case, the fountain is moving north and the call to {{< lookup/cref MovePlayerPlatform >}} is the same except for {{< lookup/cref name="DIR8" text="DIR8_NORTH" >}} as the vertical direction argument.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **A good sense of indirection.**
 
 There's really no place where the separation of the two direction components in {{< lookup/cref MovePlayerPlatform >}} makes sense. It feels like this code was originally implemented in a different way that genuinely required the separation to coexist with the platforms. That's no longer the case in the current implementation, but it remains.
 
 Similarly, the use of {{< lookup/cref name="DIR4" text="DIR4_NORTH/SOUTH" >}} constants instead of the more constrained {{< lookup/cref name="DIR2" text="DIR2_NORTH/SOUTH" >}} is a consequence of the two systems having a reversed sense of north vs. south.
-{{< /aside >}}
+{{% /aside %}}
 
 Whichever branch is taken, the player's Y position is adjusted to move them into the position where the fountain is going to be.
 
@@ -355,7 +355,7 @@ The `for` loop repeats, incrementing `y` until the full height of the current fo
 
 The {{< lookup/cref MovePlayerPlatform >}} function determines if a platform covering X positions `x_west` to `x_east` is interacting with the player, and if so, modifies the player's position to keep them attached to the platform as it moves. The current movement direction of the platform is passed in horizontal/vertical arguments `x_dir` and `y_dir`. This function **does not** check the player's Y position when determining if they are touching the platform -- the caller must ensure that the player is at a sensible vertical position for a particular platform before attempting to call this function on it.
 
-{{< note >}}It's worth reading that again. This function should not be called for a platform unless the player's Y position has been found to be correct relative to that platform's Y position.{{< /note >}}
+{{% note %}}It's worth reading that again. This function should not be called for a platform unless the player's Y position has been found to be correct relative to that platform's Y position.{{% /note %}}
 
 This function ignores the player if they are currently riding on a scooter. If a platform passes under the player while they are clinging to a wall, the cling is released so the player can "fall onto" the passing platform.
 
@@ -405,13 +405,13 @@ To resolve this condition, the cling is released by setting {{< lookup/cref play
 
 At this point in the execution, none of the calling code has actually checked to determine if the horizontal extents of the platform match those of the player position. This block checks the proximity between the player and the platform, and returns early if they are not close enough for an interaction to occur.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Gotta do it somewhere, I suppose.**
 
 It appears that the main motivator for splitting the horizontal and vertical checks was the dynamic calculation of the player's width. The horizontal calculations need to know the player width, and that width had to be read from {{< lookup/cref playerInfoData >}}. By conditionally skipping that if the vertical position was not appropriate, some unnecessary work was avoided.
 
 Although, if the player happens to be at a vertical position that more than one platform occupies, then multiple calls to this function occur and all the work gets repeated. This is a much rarer occurrence in practice, however.
-{{< /aside >}}
+{{% /aside %}}
 
 The actual test is as follows: If the player's bottom-left tile ({{< lookup/cref playerX >}}) is off either edge of the platform (`x_west`/`x_east`) **AND** the player's bottom-right tile (`playerx2`) is off either edge of the platform, then this platform is not touching the player at all and no further action should be taken, so return. This test would fall apart in the case where a very wide player rides with both edges overhanging a narrow platform, but nothing in this game is proportioned that way.
 
@@ -420,7 +420,7 @@ The actual test is as follows: If the player's bottom-left tile ({{< lookup/cref
     playerY += dir8Y[y_dir];
 ```
 
-The actual movement is short and sweet: Increment {{< lookup/cref playerX >}} with the value from the {{< lookup/cref dir8X >}} table entry for `x_dir`, then do the same thing in the vertical direction. The {{< lookup/cref dir8X >}}/{{< lookup/cref dir8Y >}} values are in the range -1 &ndash; 1, producing zero or one tile of movement in any direction.
+The actual movement is short and sweet: Increment {{< lookup/cref playerX >}} with the value from the {{< lookup/cref dir8X >}} table entry for `x_dir`, then do the same thing in the vertical direction. The {{< lookup/cref dir8X >}}/{{< lookup/cref dir8Y >}} values are in the range -1--1, producing zero or one tile of movement in any direction.
 
 ```c
     if ((cmdNorth || cmdSouth) && !cmdWest && !cmdEast) {

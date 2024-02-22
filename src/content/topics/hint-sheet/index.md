@@ -100,7 +100,7 @@ The Apogee copyright message embedded with the document reads:
 
 The content of the document is substantially the same as the printed sheet, with some of the aforementioned errors fixed. Some of the sections have been expanded as well, indicating that this revision of the hint sheet is probably more recent than the printed sheet.
 
-```plaintext
+```plaintext {class="on-disk-hint-sheet"}
                ░░▒▒▓▓██  THE "COSMO" ON-DISK HINT SHEET  ██▓▓▒▒░░
 
                    Copyright 1992 Apogee Software Productions

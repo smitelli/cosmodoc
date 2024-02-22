@@ -1,10 +1,20 @@
 {{/*
-    Provide a section header (and not much else) from the cref data file.
+    Provide a section header (and not much else) from the cref data file. Should
+    be used on topic pages that describe the implementation of a C function; the
+    result is a consistent H2 element across the site.
+
+    This is important to make sure that the heading ID (and anchor/fragment) get
+    _exactly_ the name that the rest of the pages use to look up the symbol.
+
+    Positional parameters:
+        0 (required): C symbol name to look up for this invocation.
 */}}
 
-{{- $param_name := $.Get 0 -}}
-{{- $text := (index $.Site.Data.cref $param_name).text -}}
+{{ $symbol := .Get 0 }}
 
-<h2 id="{{- $param_name -}}"><code>{{- $text -}}</code></h2>
-
-{{- "" -}}
+{{ with index site.Data.cref $symbol }}
+    <h2 id="{{ $symbol }}"><code>{{ .text }}</code></h2>
+{{ else }}
+    {{ warnf "No definition for %s %v" .Name .Params }}
+    <h2 id="{{ $symbol }}"><code>{{ $symbol }}</code></h2>
+{{ end }}

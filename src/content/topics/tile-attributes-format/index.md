@@ -79,8 +79,8 @@ If a tile has its "clingable" attribute set to `1` and is being used as part of 
 
 ## Unused Data
 
-The masked tile area of the tile attributes file uses 5,000 bytes to store 1,000 meaningful bytes, which means there are 4,000 slack bytes that serve no useful purpose. There is a small archaeological curiosity hidden in there: All the bytes in the range 2,000&ndash;2,999 that are not multiples of five contain legitimate data that nothing ever uses.
+The masked tile area of the tile attributes file uses 5,000 bytes to store 1,000 meaningful bytes, which means there are 4,000 slack bytes that serve no useful purpose. There is a small archaeological curiosity hidden in there: All the bytes in the range 2,000--2,999 that are not multiples of five contain legitimate data that nothing ever uses.
 
-These 800 slack bytes are absolutely identical to those in the range 2,000&ndash;6,999 that _are_ multiples of five. Put another way, it appears as though this file format used only 3,000 bytes at one point, with the solid and masked tiles packed without any slack space, and then later the masked tiles were spread out without zeroing the old data locations.
+These 800 slack bytes are absolutely identical to those in the range 2,000--6,999 that _are_ multiples of five. Put another way, it appears as though this file format used only 3,000 bytes at one point, with the solid and masked tiles packed without any slack space, and then later the masked tiles were spread out without zeroing the old data locations.
 
-The rest of the bytes (3,000&ndash;6,999) that are _not_ multiples of five are all zero.
+The rest of the bytes (3,000--6,999) that are _not_ multiples of five are all zero.

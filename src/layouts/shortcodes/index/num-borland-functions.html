@@ -1,0 +1,18 @@
+{{/*
+    Count up and return the number of functions defined in the cref data file
+    that have the "borland_c" flag set. Only used in the intro text on the
+    "Borland Library" page.
+
+    Inline function; whitespace is critically sensitive here!
+*/}}
+
+{{- $i := 0 }}
+{{- range site.Data.cref }}
+    {{- if and (eq .borland_c true) (hasSuffix .text "()") }}
+        {{- $i = add $i 1 }}
+    {{- end }}
+{{- end }}
+
+{{- "" -}}
+{{ $i }}
+{{- "" -}}

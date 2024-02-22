@@ -1,5 +1,25 @@
 {{/*
     Insert the data table for sounds.
+
+    site.Data.sound:
+        table:
+            - game_index: 1
+              groupent_index: 0
+              groupent_name: SOUNDS
+              length_ms: 450
+              name: GOTSTAR
+              offset_bytes: 400
+              priority: 14
+              size_bytes: 128
+            - game_index: 2
+              groupent_index: 1
+              groupent_name: SOUNDS
+              length_ms: 128
+              name: JUMP
+              offset_bytes: 528
+              priority: 1
+              size_bytes: 38
+            - ...
 */}}
 
 <table>
@@ -14,18 +34,24 @@
         <th>Length (ms)</th>
         <th>Description</th>
     </tr>
-    {{ range $index, $_ := $.Site.Data.sound.table }}
+    {{ range $sound_num, $_ := site.Data.sound.table }}
         <tr>
-            <th>{{ with .game_index }}{{ . }}{{ else }}&mdash;{{ end }}</th>
+            <th>
+                {{ with .game_index }}
+                    {{ . }}
+                {{ else }}
+                    &mdash;
+                {{ end }}
+            </th>
             <td>{{ .groupent_name }}</td>
             <td>{{ .groupent_index }}</td>
             <td>{{ .name }}</td>
-            <td>{{ .offset_bytes | lang.NumFmt 0  }}</td>
-            <td>{{ .size_bytes | lang.NumFmt 0  }}</td>
+            <td>{{ .offset_bytes | lang.FormatNumber 0  }}</td>
+            <td>{{ .size_bytes | lang.FormatNumber 0  }}</td>
             <td>{{ .priority }}</td>
-            <td>{{ .length_ms | lang.NumFmt 0 }}</td>
+            <td>{{ .length_ms | lang.FormatNumber 0 }}</td>
             <td>
-                {{ with index $.Site.Data.description.sound (int $index) }}
+                {{ with index site.Data.description.sound $sound_num }}
                     {{ . | markdownify }}
                 {{ else }}
                     &mdash;

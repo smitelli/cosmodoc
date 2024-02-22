@@ -14,13 +14,11 @@ Individual sound effects are packed together into **sound files**. Each sound fi
 
 Entry Name   | Description
 -------------|------------
-SOUNDS.MNI   | PC speaker sound effects 1&ndash;23.
-SOUNDS2.MNI  | PC speaker sound effects 24&ndash;46.
-SOUNDS3.MNI  | PC speaker sound effects 47&ndash;65. Contains silence data for effects 66&ndash;69, which are loaded (but never used) by the game.
+SOUNDS.MNI   | PC speaker sound effects 1--23.
+SOUNDS2.MNI  | PC speaker sound effects 24--46.
+SOUNDS3.MNI  | PC speaker sound effects 47--65. Contains silence data for effects 66--69, which are loaded (but never used) by the game.
 
-{{< note >}}
-When all three sound files are loaded into the game's memory, the sound effect numbers are 1-indexed. Whenever a sound file is analyzed directly in this document, the sound effect numbers are 0-indexed.
-{{< /note >}}
+{{% note %}}When all three sound files are loaded into the game's memory, the sound effect numbers are 1-indexed. Whenever a sound file is analyzed directly in this document, the sound effect numbers are 0-indexed.{{% /note %}}
 
 Some sources call these **Inverse Frequency Sound Format** files because the data words are inversely related to the frequency of the tone that is played. The format was most likely designed by id Software, first appearing in both _Commander Keen in Invasion of the Vorticons_ for Apogee and _Shadow Knights_ for Softdisk. This format, and variations built from it, was used in Apogee and Softdisk games throughout the early 1990s.
 
@@ -47,27 +45,25 @@ Immediately following the file header, there is a 16-byte structure repeated onc
 Offset (Bytes) | Size     | Description
 ---------------|----------|------------
 0h             | word     | Offset to the sound data relative to the beginning of the file, in bytes.
-2h             | byte     | Priority value for this sound effect, in the range 0&ndash;255. New sounds will interrupt old sounds if the new priority is equal to or greater than the old priority.
+2h             | byte     | Priority value for this sound effect, in the range 0--255. New sounds will interrupt old sounds if the new priority is equal to or greater than the old priority.
 3h             | byte     | Unknown purpose; always 08h. Not used by the game.
 4h             | byte[12] | Name of the sound effect. Maximum 11 characters, plus a terminating null byte. Only SOUNDS.MNI contains meaningful names, the other files use `__UnNamed__\0` for every sound effect. Not used by the game.
 
 The game makes some blind assumptions about the content and structure of the sound files. It assumes, without checking, that the 0th sound effect table entry is at offset 10h, and it reads exactly 23 table entries from every file. Since each sound file actually contains 24 table entries, the last one in each file is never used.
 
-{{< note >}}
-Sound files intended for use with the game _must_ have at least 23 valid table entries. Otherwise the sound loader will begin interpreting unintended data as offset values, which could potentially lead to playing arbitrary memory contents as sounds.
-{{< /note >}}
+{{% note %}}Sound files intended for use with the game _must_ have at least 23 valid table entries. Otherwise the sound loader will begin interpreting unintended data as offset values, which could potentially lead to playing arbitrary memory contents as sounds.{{% /note %}}
 
 ## Sound Data
 
 The actual data for each sound effect is stored as a variable-length sequence of little-endian words. The sound data starts at the offset specified in a sound effect table entry and continues until word value FFFFh is read.
 
-The sound effects service runs at a frequency of 140 **hertz** (Hz), or 140 times each second. Each time the service runs, it consumes one word from the sound data and writes the value to the system's Programmable Interval Timer. This timer is connected to the speaker inside the computer case, which emits an audible tone with a pitch related to the sound data value. Typical values encountered in the stock sound files range from 150&ndash;8,600 (in steps of 50) decimal, which translate roughly to 7,955&ndash;139 Hz, respectively. The rapid changes in pitch over time allows for interesting (albeit monophonic) sound effects to be generated.
+The sound effects service runs at a frequency of 140 **hertz** (Hz), or 140 times each second. Each time the service runs, it consumes one word from the sound data and writes the value to the system's Programmable Interval Timer. This timer is connected to the speaker inside the computer case, which emits an audible tone with a pitch related to the sound data value. Typical values encountered in the stock sound files range from 150--8,600 (in steps of 50) decimal, which translate roughly to 7,955--139 Hz, respectively. The rapid changes in pitch over time allows for interesting (albeit monophonic) sound effects to be generated.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Byte Pincher**
 
-Since the data values in the game's sound files all fit in the range 150&ndash;8,600 in steps of 50, there are only 170 different values the game uses. These could've been encoded in bytes instead of words, halving the size of the sound data at the expense of requiring a multiplication during each run of the sound effects service. Granted, it would only save about 5,000 bytes overall.
-{{< /aside >}}
+Since the data values in the game's sound files all fit in the range 150--8,600 in steps of 50, there are only 170 different values the game uses. These could've been encoded in bytes instead of words, halving the size of the sound data at the expense of requiring a multiplication during each run of the sound effects service. Granted, it would only save about 5,000 bytes overall.
+{{% /aside %}}
 
 If the value 0000h is read in the sound data, the speaker is silenced for that service cycle. If the value FFFFh is read, the speaker is silenced and the sound effects service goes dormant until another sound effect is started.
 
@@ -104,7 +100,7 @@ Following this, there are 950(!) unreachable slack bytes. These appear to be a m
 
 ### SOUNDS3.MNI
 
-The 19th&ndash;23rd sound table entries in this file are all silence, encoded validly.
+The 19th--23rd sound table entries in this file are all silence, encoded validly.
 
 Following this, there are 60 unreachable slack bytes. These contain a semi-regular pattern of 0000h and FFFFh words. These all appear to be pieces of silence -- the 0000h words deactivate the speaker and the FFFFh words terminate the sound effect data. No other audible information appears in this range.
 

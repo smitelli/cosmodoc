@@ -1,10 +1,29 @@
-{{ if $.Site.Params.enableNav }}
-    <nav id="prev-next">
-        <ul>
-            {{/* Hugo's sense of "prev/next" is swapped for this use case! */}}
-            {{ with .NextPage }}<li><a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>&larr; {{ .LinkTitle | markdownify }}</a></li>{{ end }}
-            {{ with .Parent }}<li><a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>{{ .LinkTitle | markdownify }}</a></li>{{ end }}
-            {{ with .PrevPage }}<li><a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>{{ .LinkTitle | markdownify }} &rarr;</a></li>{{ end }}
-        </ul>
-    </nav>
-{{ end }}
+<nav id="prev-next">
+    <ul>
+        {{/* Hugo's sense of "prev/next" is swapped for our use case! */}}
+
+        {{ with .NextPage }}
+            <li>
+                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+                    &leftarrow; {{ .LinkTitle | markdownify }}
+                </a>
+            </li>
+        {{ end }}
+
+        {{ with .Parent }}
+            <li>
+                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+                    {{ .LinkTitle | markdownify }}
+                </a>
+            </li>
+        {{ end }}
+
+        {{ with .PrevPage }}
+            <li>
+                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+                    {{ .LinkTitle | markdownify }} &rightarrow;
+                </a>
+            </li>
+        {{ end }}
+    </ul>
+</nav>

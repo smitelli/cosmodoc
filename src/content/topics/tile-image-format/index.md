@@ -57,9 +57,7 @@ Another diagram is warranted. To display the 1,452nd tile image from ACTORS.MNI,
     2x="row-planar-masked-1368x.png"
     3x="row-planar-masked-2052x.png" >}}
 
-{{< note >}}
-Some tile image files (ACTORS.MNI, CARTOON.MNI, and PLAYER.MNI) are not designed to be accessed using direct indexing alone, and generally require reading a byte offset from a [tile info file]({{< relref "tile-info-format" >}}) to draw anything larger than 8x8 pixels.
-{{< /note >}}
+{{% note %}}Some tile image files (ACTORS.MNI, CARTOON.MNI, and PLAYER.MNI) are not designed to be accessed using direct indexing alone, and generally require reading a byte offset from a [tile info file]({{< relref "tile-info-format" >}}) to draw anything larger than 8x8 pixels.{{% /note %}}
 
 ## ACTORS.MNI Segmentation
 
@@ -70,20 +68,18 @@ The 40-byte masked tile size does not divide evenly into 65,535, which results i
 Offset (Bytes) | Size (Bytes) | Description
 ---------------|--------------|------------
 0              | 40           | Tile 0.
-40             | 65,440       | Tiles 1&ndash;1,636, one every 40 bytes.
+40             | 65,440       | Tiles 1--1,636, one every 40 bytes.
 65,480         | 40           | Tile 1,637.
 65,520         | 15           | Slack space; contains a redundant copy of the first part of tile 1,638.
 65,535         | 40           | Tile 1,638.
-65,575         | 65,440       | Tiles 1,639&ndash;3,274, one every 40 bytes.
+65,575         | 65,440       | Tiles 1,639--3,274, one every 40 bytes.
 131,015        | 40           | Tile 3,275.
 131,055        | 15           | Slack space; contains a redundant copy of the first part of tile _3,292_.
 131,070        | 40           | Tile 3,276.
-131,110        | 60,760       | Tiles 3,277&ndash;4,795, one every 40 bytes.
+131,110        | 60,760       | Tiles 3,277--4,795, one every 40 bytes.
 191,870        | 40           | Tile 4,796.
 
-{{< note >}}
-Several tiles are duplicated around the second segment boundary. Tiles 3,260&ndash;3,275 are unused redundant copies of tiles 3,276&ndash;3,291, and the slack space at the end of the second segment contains a redundant fragment of tile 3,292. This was done to avoid breaking a 2x9-tile actor sprite ({{< lookup/actor 145 >}}, frame 3) across two segments.
-{{< /note >}}
+{{% note %}}Several tiles are duplicated around the second segment boundary. Tiles 3,260--3,275 are unused redundant copies of tiles 3,276--3,291, and the slack space at the end of the second segment contains a redundant fragment of tile 3,292. This was done to avoid breaking a 2x9-tile actor sprite ({{< lookup/actor 145 >}}, frame 3) across two segments.{{% /note %}}
 
 When trying to locate the starting offset of a tile index in ACTORS.MNI, one must add 15 bytes to the offset each time a segment boundary is crossed:
 

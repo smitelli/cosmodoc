@@ -163,10 +163,6 @@ AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
     ActSentryRobot() <void ActSentryRobot () at src/game1.c:4322> (R):
 CanSuctionWalkerFlip() <bbool CanSuctionWalkerFlip () at src/game1.c:3636>:
     ActSuctionWalker() <void ActSuctionWalker () at src/game1.c:3672>:
-ClearPlayerPush() <void ClearPlayerPush () at src/game1.c:8007>:
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
-    MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
-    SwitchLevel() <void SwitchLevel () at src/game1.c:10102>:
 ConstructActor() <void ConstructActor () at src/game1.c:1519>:
     NewActorAtIndex() <bbool NewActorAtIndex () at src/game1.c:5370> (R):
 DestroyBarrel() <void DestroyBarrel () at src/game1.c:6759> (R):
@@ -176,8 +172,6 @@ MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 MovePlayer() <void MovePlayer () at src/game1.c:8114>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
-MovePlayerPush() <void MovePlayerPush () at src/game1.c:8051>:
-    MovePlayer() <void MovePlayer () at src/game1.c:8114>:
 MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
     GameLoop() <void GameLoop () at src/game1.c:9730>:
 NewActor() <void NewActor () at src/game1.c:6128> (R):
@@ -211,9 +205,6 @@ PounceHelper() <bool PounceHelper () at src/game1.c:6578>:
     MovePlayerScooter() <void MovePlayerScooter () at src/game1.c:8631>:
 ProcessActor() <void ProcessActor () at src/game1.c:7573>:
     MoveAndDrawActors() <void MoveAndDrawActors () at src/game1.c:7645>:
-SetPlayerPush() <void SetPlayerPush () at src/game1.c:8028>:
-    ActPusherRobot() <void ActPusherRobot () at src/game1.c:4244> (R):
-    TouchPlayer() <bool TouchPlayer () at src/game1.c:6796>:
 TestSpriteMove() <word TestSpriteMove () at src/game1.c:736>:
     AdjustActorMove() <void AdjustActorMove () at src/game1.c:1564>:
     ActFireball() <void ActFireball () at src/game1.c:1844>:

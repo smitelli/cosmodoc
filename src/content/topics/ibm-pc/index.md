@@ -122,11 +122,11 @@ The IBM PC's Basic Input/Output System (**BIOS**) is a relatively small (on the 
 
 The BIOS in the IBM PC was _primitive_. There was no "Press F2 to run SETUP"-type prompt, nor any built-in utilities to configure or test the machine. To configure the battery-backed CMOS settings for the BIOS, the system needed to boot from a special IBM diagnostics floppy disk.
 
-{{< aside >}}
+{{% aside class="fun-fact" %}}
 **Think about that.**
 
 The fact that the IBM PC, with a dead CMOS battery and default BIOS settings, could boot from a floppy disk and run an interactive setup program was a testament to just how little variation there was in the core hardware of these systems. The BIOS could simply assume that there was a floppy disk drive at a certain I/O address, a keyboard over there, and a usable display adapter at this hard-coded location, and it all _just worked_.
-{{< /aside >}}
+{{% /aside %}}
 
 The primary job of the BIOS is to configure all of the system's hardware into a baseline usable state. Most of the chips on the motherboard are named "Programmable Something-or-Other," and the BIOS is responsible for actually programming them to behave in a PC-like way. The BIOS is also responsible for interrogating the hardware to determine what options the specific computer has -- anyone who has watched one of these start up is well aware that the BIOS counts all of the installed memory each time it boots, so it can provide an accurate number to any programs that may ask for it.
 
@@ -138,11 +138,11 @@ Once the computer is under the operating system's control, the BIOS lays mostly 
 
 While not strictly part of the IBM PC's architecture, Microsoft's Disk Operating System (**MS-DOS** or simply **DOS**) is entrenched enough to warrant a brief discussion. Most IBM PCs doing any sort of useful work ran DOS. (Some other operating systems were available, and the PC could also run the BASIC programming language from a built-in ROM chip without an operating system present.) IBM tended to ship a version of DOS called "IBM PC DOS" that was for the most part just MS-DOS with the names and copyright messages changed.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Live long and prosper.**
 
 Development of MS-DOS and PC DOS eventually diverged, with the two products competing with one another for a time. MS-DOS survived until version 8.0 in September 2000, while PC DOS version 7.1 saw minor incremental updates until the end of 2003.
-{{< /aside >}}
+{{% /aside %}}
 
 From a user's direct interactions with DOS, it was straightforward to see it as a platform to install and execute programs, manage files, and control the computer's hardware on a high level. When some people referred to the PC or "PC compatible" systems, what they actually meant was "something that ran DOS and DOS-based programs correctly."
 

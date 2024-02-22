@@ -1,32 +1,51 @@
+{{ $fav := resources.Get "img/favicon.ico" }}
+{{ $css := resources.Get "scss/main.scss" | toCSS (
+    dict "targetPath" "css/main.css" "outputStyle" "compressed"
+) }}
+{{ $js := resources.Get "js/main.js" | minify }}
+
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}">
+<html lang="{{ .Language.Lang }}">
     <head>
         <meta charset="utf-8">
-        <meta name="generator" content="Hugo {{ hugo.Version }}">
+        {{ hugo.Generator }}
         <meta name="viewport" content="width=device-width, initial-scale=0.85">
-        {{ template "_internal/twitter_cards.html" . }}
         {{ template "_internal/opengraph.html" . }}
-        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
-        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-        {{ $cssOptions := (dict "targetPath" "css/main.css" "outputStyle" "compressed") }}
-        {{ $css := resources.Get "scss/main.scss" | toCSS $cssOptions }}
-        <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-        <title>{{ block "pageTitle" . }}{{ with .Params.Title }}{{ . | markdownify }} | {{ end }}{{ .Site.Title | markdownify }}{{ end }}</title>
-        {{ if ne .RelPermalink "/" }}
-        <style>
-            #main-menu a[href$="{{ .RelPermalink }}"] {
-                color: #b40;
-            }
-        </style>
+        {{ template "_internal/twitter_cards.html" . }}
+        {{ range $size := slice 180 32 16 }}
+            {{ with resources.Get (printf "img/favicon-%d.png" $size) }}
+                {{ if eq $size 180 }}
+                <link rel="apple-touch-icon" sizes="{{ .Width }}x{{ .Height }}" href="{{ .RelPermalink }}">
+                {{ else }}
+                <link rel="icon" type="{{ .MediaType }}" sizes="{{ .Width }}x{{ .Height }}" href="{{ .RelPermalink }}">
+                {{ end }}
+            {{ end }}
         {{ end }}
+        <link rel="shortcut icon" type="{{ $fav.MediaType }}" href="{{ $fav.RelPermalink }}">
+        <link rel="sitemap" type="application/xml" href="{{ relURL .Sitemap.Filename }}">
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+        <script src="{{ $js.RelPermalink }}" async></script>
+        <title>
+            {{ block "pageTitle" . }}
+                {{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}
+            {{ end }}
+        </title>
     </head>
 
     <body>
         <input type="checkbox" style="display: none" id="main-menu-control">
         <main>
-            {{ partial "main-menu" . }}
+            <aside id="main-menu">
+                <nav>
+                    <h2>
+                        <a href="{{ site.Home.RelPermalink }}" title="{{ site.Params.subtitle | markdownify }}">
+                            {{ site.Title }}
+                        </a>
+                    </h2>
+
+                    {{ partial "list-pages-recursive" (site.GetPage "/topics") }}
+                </nav>
+            </aside>
 
             <div id="main-page">
                 <header class="responsive-header">
@@ -38,7 +57,5 @@
                 {{ block "pageContent" . }}{{ end }}
             </div>
         </main>
-        {{ $js := resources.Get "js/main.js" | minify }}
-        <script src="{{ $js.RelPermalink }}" async></script>
     </body>
 </html>

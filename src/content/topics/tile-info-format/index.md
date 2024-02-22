@@ -39,7 +39,7 @@ Offset (Bytes) | Size (Bytes) | Description
 4h             | 2h           | Offset within the tile image file, in bytes.
 6h             | 2h           | Segment within the tile image file. Only has a nonzero value in ACTRINFO.MNI, and only considered when drawing an actor/decoration sprite.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Go Fish**
 
 The tile info files do not directly encode the total number of sprite types or frames that are available, but that information can usually be guessed by analyzing the files carefully:
@@ -49,7 +49,7 @@ The tile info files do not directly encode the total number of sprite types or f
 * The number of frames for a sprite type can be inferred by calculating the byte distance between its frame zero offset and the frame zero offset for the next nearest sprite type. That distance, divided by eight, is the number of available frames.
 
 The game doesn't do any of this; it's simply hard-coded to know what sprite types are available and how many frames each one has.
-{{< /aside >}}
+{{% /aside %}}
 
 ## Building Sprites from Tile Info Data
 
@@ -65,9 +65,7 @@ Tiles are stored in row-major order, with the tile at the top-left stored first.
     2x="sprite-layout-1368x.png"
     3x="sprite-layout-2052x.png" >}}
 
-{{< note >}}
-Drawing for a sprite always begins at the top-left tile, but the actual **origin** of the sprite is the _bottom_-left tile. The game does this to (slightly) reduce the amount of work that needs to be done to test the position of game objects relative to the floors.
-{{< /note >}}
+{{% note %}}Drawing for a sprite always begins at the top-left tile, but the actual **origin** of the sprite is the _bottom_-left tile. The game does this to (slightly) reduce the amount of work that needs to be done to test the position of game objects relative to the floors.{{% /note %}}
 
 To draw the sprite at an arbitrary `x_origin` and `y_origin` position (both in units of tiles), do the following:
 

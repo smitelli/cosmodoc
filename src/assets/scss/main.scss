@@ -10,6 +10,8 @@ $page-max-width: $menu-width + 40rem;
 $sm-breakpoint: $menu-width + 39rem;
 $page-color: #fff;
 $text-color: #1a1a1a;
+$link-color: #04b;
+$menu-active-color: #c60;
 
 html {
     font-family: Roboto, sans-serif;
@@ -21,11 +23,11 @@ code, pre, samp {
     font-family: Cousine, monospace;
     font-size: 0.9em;
     letter-spacing: normal;
+}
 
-    // HACK: So I don't have to re-wrap the "on-disk hint sheet" document
-    &.language-plaintext {
-        font-size: 0.85em;
-    }
+// HACK: So I don't have to re-wrap the "on-disk hint sheet" text
+.on-disk-hint-sheet code {
+    font-size: 0.85em;
 }
 
 kbd {
@@ -49,10 +51,10 @@ body {
 
 a {
     text-decoration: none;
-    color: #04b;
+    color: $link-color;
 
     &:hover {
-        color: rgba(#04b, 0.5);
+        color: rgba($link-color, 0.5);
     }
 }
 
@@ -91,6 +93,11 @@ main {
 
             li {
                 margin: 0.75em 0;
+
+                &.active > a {
+                    color: $menu-active-color;
+                    font-weight: bold;
+                }
             }
 
             ul {
@@ -156,23 +163,27 @@ main {
         overflow-x: auto;
 
         &.armchair-engineer {
-            border-left-color: scale-color(#fc0, $lightness: 80%);
-            background: scale-color(#fc0, $lightness: 95%);
+            $color: #fc0;
+            border-left-color: scale-color($color, $lightness: 80%);
+            background: scale-color($color, $lightness: 95%);
         }
 
         &.fun-fact {
-            border-left-color: scale-color(#0f8, $lightness: 80%);
-            background: scale-color(#0f8, $lightness: 95%);
+            $color: #0f8;
+            border-left-color: scale-color($color, $lightness: 80%);
+            background: scale-color($color, $lightness: 95%);
         }
 
         &.note {
-            border-left-color: scale-color(#f30, $lightness: 80%);
-            background: scale-color(#f30, $lightness: 95%);
+            $color: #f30;
+            border-left-color: scale-color($color, $lightness: 80%);
+            background: scale-color($color, $lightness: 95%);
         }
 
         &.speculation {
-            border-left-color: scale-color(#08f, $lightness: 80%);
-            background: scale-color(#08f, $lightness: 95%);
+            $color: #08f;
+            border-left-color: scale-color($color, $lightness: 80%);
+            background: scale-color($color, $lightness: 95%);
         }
 
         :first-child {
@@ -330,6 +341,10 @@ main {
 .definition {
     cursor: help;
     text-decoration: underline dotted gray-from-lightness(35%);
+}
+
+.centered {
+    text-align: center;
 }
 
 .full-width {

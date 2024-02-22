@@ -12,13 +12,13 @@ If the game receives no input after showing the title sequence for about 25 seco
 
 New demos can be recorded by entering debug mode and using the correct key combinations, although the experience is a bit spartan.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **... prevised demo?**
 
 The name "PREVDEMO" might be a holdover from Duke Nukem 1, where the demo playback option in the main menu was titled "Previews/Main Demo!"
 
 It _could_ also simply mean "previous demo."
-{{< /aside >}}
+{{% /aside %}}
 
 ## File Contents
 
@@ -45,11 +45,11 @@ The level progression during demo recording and playback is hard-coded into the 
 
 Levels can be advanced in the usual way by interacting with an "end level" actor, or they can be forced to end early based on bit 6 in any demo byte. Demo playback stops entirely once the end of the demo data is reached.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **It keeps going, and going, and going...**
 
 Just as when playing the game normally, player variables like score, health, bombs, and stars do not reset when the demo level changes. If the player dies during a demo, that level restarts with the same player state that existed when the level was first entered.
-{{< /aside >}}
+{{% /aside %}}
 
 ## Recording Demos
 
@@ -67,11 +67,11 @@ If the steps were performed correctly, a new game will begin on level 0 (map 1) 
 * Help text for bombs, pouncing, and power-ups will never display.
 * Hint Globes will not auto-activate when touched. (However, they can still be activated manually via use of the "look up" key.)
 
-{{< note >}}
+{{% note %}}
 Do not activate Hint Globes while recording a demo! If a Hint Globe is activated while the demo is being played back later, the game will pause indefinitely waiting for keyboard input to dismiss the message. Quickly striking any key will dismiss the Hint Globe message and resume demo playback. A longer keypress will dismiss the message _and then_ exit the demo entirely.
 
 Cheat codes and debug keys work while recording a demo, but their effects are not stored in the recorded data. This could lead to desynchronization during playback.
-{{< /note >}}
+{{% /note %}}
 
 To move to the next level, either find and use the normal level exit or press the <kbd>X</kbd> key. The game will advance to the next level in the demo progression -- _not_ the usual next level. Once level 16 (map 9) is reached, there are no further levels defined in the sequence. Any attempt to finish level 16 will result in the level simply starting over again. At this point the game must be exited via Esc, Q, or the F1 menu.
 

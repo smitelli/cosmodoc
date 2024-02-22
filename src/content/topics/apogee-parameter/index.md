@@ -1,5 +1,6 @@
 +++
 title = "The apogee Parameter"
+linkTitle = "The `apogee` Parameter"
 description = "What happens when you run the game with the `apogee` parameter, as so many cheat sites suggest."
 weight = 550
 +++
@@ -12,7 +13,7 @@ Many online cheat guides (a notable example being 3D Realms[^3drealms] themselve
 
 > The effects of this are many. One, the game will not recognize your old high scores or saved games. (The high scores will be reset to those of Simpsons' characters until you exit and re-enter the program normally.) In this mode, if you die quickly enough after entering a level, you'll be invincible from then on, to everything but pits on the bottom of each level.
 >
-> &mdash;_3D Realms Site_, "Cosmo's Cosmic Adventure Cheat Codes" [^3drealms]
+> ---_3D Realms Site_, "Cosmo's Cosmic Adventure Cheat Codes" [^3drealms]
 
 For [configuration files]({{< relref "configuration-file-format" >}}), it doesn't matter so much -- the game is designed to handle the case where the file is missing. This is where the default values in the high score table come from.
 

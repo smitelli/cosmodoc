@@ -12,21 +12,21 @@
         alt (optional): Text to use for the alt/title attributes.
         1x (optional): If provided, the "1x" scale file name for the srcset
             attribute.
-        2x (optional): If provided, the "2x" scale file name.
-        3x (optional): If provided, the "3x" scale file name.
+        2x (optional): ... "2x" scale file name ...
+        3x (optional): ... "3x" scale file name ...
 */}}
 
-{{ $src := ($.Page.Resources.GetMatch (.Get "src")).RelPermalink }}
+{{ $src := (.Get "src" | .Page.Resources.Get).RelPermalink }}
 {{ $alt := .Get "alt" }}
 
 {{ $srcset := slice }}
-{{ range $x := (slice "1x" "2x" "3x") }}
-    {{ with $.Get . }}
-        {{ $srcset = $srcset | append (printf "%s %s" ($.Page.Resources.GetMatch .).RelPermalink $x) }}
+{{ range $x := slice "1x" "2x" "3x" }}
+    {{ with $.Get $x | $.Page.Resources.Get }}
+        {{ $srcset = $srcset | append (printf "%s %s" .RelPermalink $x) }}
     {{ end }}
 {{ end }}
 
 <p><a href="{{ $src }}"><img
-    src="{{ $src }}" srcset="{{ delimit $srcset ", " }}"
+    src="{{ $src }}" srcset="{{ delimit $srcset `, ` }}"
     alt="{{ $alt | markdownify }}" title="{{ $alt | markdownify }}"
 ></a></p>

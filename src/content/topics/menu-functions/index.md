@@ -271,7 +271,7 @@ title:
 
 This is the main title loop. At the top, it starts (or restarts) playing {{< lookup/cref name="MUSIC" text="MUSIC_ZZTOP" >}} via a call to {{< lookup/cref StartMenuMusic >}}. The main title screen {{< lookup/cref name="IMAGE" text="IMAGE_TITLE" >}} is shown next via {{< lookup/cref DrawFullscreenImage >}}. `idlecount` is zeroed to start the timer. {{< lookup/cref gameTickCount >}} is also zeroed to ensure subsequent calls to {{< lookup/cref WaitHard >}} count the appropriate number of ticks, but this is not necessary -- {{< lookup/cref WaitHard >}} takes care of that itself. This might be vestigial behavior.
 
-The `while` loop performs the actual repetitive work here. As long as {{< lookup/cref IsAnyKeyDown >}} is false, continue iterating. On each iteration, wait three game ticks with {{< lookup/cref WaitHard >}} and advance the `idlecount`. This limits the execution speed of this loop to 3 &#8725; 140 Hz, or 46.{{< overline >}}6{{< /overline >}} iterations per second. Although these seem like rather arbitrary numbers, they actually divide roughly evenly into the music's approximate tempo of 137 beats per minute. Combining _those_ numbers, we find this loop iterates just about 20 times for each beat in the music. Using this relationship, the menu progression can be synchronized (to an extent) to the music being played.
+The `while` loop performs the actual repetitive work here. As long as {{< lookup/cref IsAnyKeyDown >}} is false, continue iterating. On each iteration, wait three game ticks with {{< lookup/cref WaitHard >}} and advance the `idlecount`. This limits the execution speed of this loop to 3 &frasl; 140 Hz, or 46.{{< overline >}}6{{< /overline >}} iterations per second. Although these seem like rather arbitrary numbers, they actually divide roughly evenly into the music's approximate tempo of 137 beats per minute. Combining _those_ numbers, we find this loop iterates just about 20 times for each beat in the music. Using this relationship, the menu progression can be synchronized (to an extent) to the music being played.
 
 When `idlecount` reaches 600 (30 musical beats, or 7.5 bars) {{< lookup/cref DrawFullscreenImage >}} is called again to replace the screen content with the credits image {{< lookup/cref name="IMAGE" text="IMAGE_CREDITS" >}}. Interestingly, if a key is pressed when the credits are being shown, the main menu will appear drawn over them.
 
@@ -542,7 +542,7 @@ Depending on what the user does in this menu, the caller will take one of three 
 * If the user restores a saved game, the game loop needs to abort what it's doing in preparation to load a different game state into memory. ({{< lookup/cref name="HELP_MENU" text="HELP_MENU_RESTART" >}})
 * If the user quits the game, the game loop needs to stop itself and return control back to its own caller. ({{< lookup/cref name="HELP_MENU" text="HELP_MENU_QUIT" >}})
 
-{{< boilerplate/menu-gameplay >}}
+{{< boilerplate/dialog-gameplay object="menu" >}}
 
 ```c
 byte ShowHelpMenu(void)
@@ -657,7 +657,7 @@ The last case is the <kbd>Esc</kbd> key, which dismisses the menu. This is accom
 
 The {{< lookup/cref ShowGameRedefineMenu >}} function shows a menu labeled "Game Redefine" in response to the user selecting the <kbd>G</kbd> option in either the [main menu]({{< relref "#title-loop" >}}) or the in-game [help menu]({{< relref "#help-menu" >}}). This function simply dispatches one of the submenu functions in response to the user's input.
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 ```c
 void ShowGameRedefineMenu(void)
@@ -722,7 +722,7 @@ The {{< lookup/cref ShowHighScoreTable >}} function shows the top ten scores tha
 
 Depending on the state of the {{< lookup/cref isInGame >}} variable, this function may or may not fade the screen and clear its contents.
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 ```c
 void ShowHighScoreTable(void)
@@ -883,7 +883,7 @@ When the inner `for` loop terminates, the slot at position `i` is ready to recei
 
 The interactive part of the frame is handled separately, in a call to {{< lookup/cref ReadAndEchoText >}}. This presents a wait spinner, processes keyboard input, and returns when the <kbd>Enter</kbd> key is pressed. The {{< lookup/cref name="highScoreNames" text="highScoreNames[i]" >}} pointer is the memory where the input will be stored, and `sizeof(HighScoreName) - 2` sets the maximum length of that value -- 14 characters.
 
-{{< note >}}Subtracting one from the maximum input length is necessary to leave room for the null terminator byte. Subtracting two, however, is likely a stylistic choice to prevent longer names from encroaching on the right-hand border of the high score table.{{< /note >}}
+{{% note %}}Subtracting one from the maximum input length is necessary to leave room for the null terminator byte. Subtracting two, however, is likely a stylistic choice to prevent longer names from encroaching on the right-hand border of the high score table.{{% /note %}}
 
 With the inferior scores shifted down and the new score entered in the table, there is no need to continue scanning through the high score table; `break` out of the outermost `for` loop and proceed below.
 
@@ -907,7 +907,7 @@ This function returns as soon as {{< lookup/cref ShowHighScoreTable >}} does.
 
 The {{< lookup/cref PromptQuitConfirm >}} function displays a window prompting the user to confirm their intention to quit, and blocks until a key is pressed. The return value is true if the <kbd>Y</kbd> key was pressed, or false in the case of any other key. The message "Are you sure you want to quit?" is intentionally vague, to allow this single function to handle confirmations for exiting the game (back to the menu) and exiting the program (back to DOS).
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 ```c
 bbool PromptQuitConfirm(void)
@@ -928,9 +928,9 @@ bbool PromptQuitConfirm(void)
 
 {{< boilerplate/function-cref ShowKeyboardConfiguration >}}
 
-The {{< lookup/cref ShowKeyboardConfiguration >}} function shows and handles the keyboard configuration (sometimes called keyboard _redefine_) menu. By pressing the <kbd>1</kbd>&ndash;<kbd>6</kbd> keys, the user can change the key binding for the "move north/south/west/east," "jump," or "bomb" commands. Almost any key can be bound to any command, and at any stage of the configuration <kbd>Esc</kbd> will exit the menu.
+The {{< lookup/cref ShowKeyboardConfiguration >}} function shows and handles the keyboard configuration (sometimes called keyboard _redefine_) menu. By pressing the <kbd>1</kbd> -- <kbd>6</kbd> keys, the user can change the key binding for the "move north/south/west/east," "jump," or "bomb" commands. Almost any key can be bound to any command, and at any stage of the configuration <kbd>Esc</kbd> will exit the menu.
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 The following keys either _cannot_ or _should not_ be bound:
 
@@ -942,7 +942,7 @@ The following keys either _cannot_ or _should not_ be bound:
 
 Some keys do not have corresponding characters in the [game font]({{< relref "databases/font" >}}), and their key names will display as blanks in this menu. The keys still operate correctly.
 
-{{< note >}}The game does not check or enforce that each command is bound to a unique key. It is possible (and oftentimes fun) to map multiple actions to the same key, which will all occur simultaneously whenever that key is pressed.{{< /note >}}
+{{% note %}}The game does not check or enforce that each command is bound to a unique key. It is possible (and oftentimes fun) to map multiple actions to the same key, which will all occur simultaneously whenever that key is pressed.{{% /note %}}
 
 ```c
 void ShowKeyboardConfiguration(void)
@@ -986,7 +986,7 @@ Thirdly, each time a new key setting is accepted, this menu is rapidly redrawn i
 
 The display/input sequence lives in an infinite `for` loop. On each iteration, the current key configuration is printed and a wait spinner blocks until a new selection (or <kbd>Esc</kbd>) is entered. The message "Select key # to change or[...]" appears directly above the text "Press ESC to quit." that has already been drawn into the frame.
 
-{{< lookup/cref DrawTextLine >}} presents a combination of static text and dynamic key names looked up from the global {{< lookup/cref keyNames >}} array. This translates the numeric keyboard scancode held in the configuration variables ({{< lookup/cref scancodeNorth >}}/{{< lookup/cref scancodeSouth >}}/{{< lookup/cref scancodeWest >}}/{{< lookup/cref scancodeEast >}}/{{< lookup/cref scancodeJump >}}/{{< lookup/cref scancodeBomb >}}) into displayable strings like "&uarr;" or "CTRL".
+{{< lookup/cref DrawTextLine >}} presents a combination of static text and dynamic key names looked up from the global {{< lookup/cref keyNames >}} array. This translates the numeric keyboard scancode held in the configuration variables ({{< lookup/cref scancodeNorth >}}/{{< lookup/cref scancodeSouth >}}/{{< lookup/cref scancodeWest >}}/{{< lookup/cref scancodeEast >}}/{{< lookup/cref scancodeJump >}}/{{< lookup/cref scancodeBomb >}}) into displayable strings like "&uparrow;" or "CTRL".
 
 The call to {{< lookup/cref WaitSpinner >}} blocks until a key is pressed, then the scancode of that key is stored in the local `scancode` byte.
 
@@ -1084,9 +1084,9 @@ Otherwise, replace the content of the memory that `target_var` points to with th
 
 {{< boilerplate/function-cref ShowSoundTest >}}
 
-The {{< lookup/cref ShowSoundTest >}} function presents a menu that allows the user to seek through and preview each sound effect available in the game. Sounds are selected using the <kbd>&darr;</kbd>/<kbd>&uarr;</kbd> keys and played with the <kbd>Enter</kbd> key. At any time, <kbd>Esc</kbd> exits this menu.
+The {{< lookup/cref ShowSoundTest >}} function presents a menu that allows the user to seek through and preview each sound effect available in the game. Sounds are selected using the <kbd>&downarrow;</kbd>/<kbd>&uparrow;</kbd> keys and played with the <kbd>Enter</kbd> key. At any time, <kbd>Esc</kbd> exits this menu.
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 This menu is less of a "test" and more of a "demonstration" of the sound effects -- if any one of them plays correctly they all should. Sound effect priority is respected, meaning some sounds are capable of interrupting others while some cannot. Sounds play from this menu regardless of the global sound on/off configuration.
 
@@ -1112,7 +1112,7 @@ In order to produce sound regardless of the user's current sound effect preferen
     DrawTextLine(x, 5, "   Press Enter to hear sound.");
 ```
 
-An empty frame is drawn with a call to {{< lookup/cref UnfoldTextFrame >}} and instructions are added with {{< lookup/cref DrawTextLine >}}. The escaped bytes `\x18` and `\x19` display as "&uarr;" and "&darr;" respectively.
+An empty frame is drawn with a call to {{< lookup/cref UnfoldTextFrame >}} and instructions are added with {{< lookup/cref DrawTextLine >}}. The escaped bytes `\x18` and `\x19` display as "&uparrow;" and "&downarrow;" respectively.
 
 ```c
     for (;;) {
@@ -1130,9 +1130,9 @@ The main body of this function is an infinite `for` loop that repeats for each k
         if (scancode == SCANCODE_KP_8 && soundnum < 65) soundnum++;
 ```
 
-If the `scancode` received is {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_2" >}} (the numeric keypad <kbd>2 / &darr;</kbd> key) and the `soundnum` is greater than 1, decrement `soundnum`. This handles the "seek down" behavior without allowing the user to scroll earlier then the first sound.
+If the `scancode` received is {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_2" >}} (the numeric keypad <kbd>2 / &downarrow;</kbd> key) and the `soundnum` is greater than 1, decrement `soundnum`. This handles the "seek down" behavior without allowing the user to scroll earlier then the first sound.
 
-If the `scancode` received is {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_8" >}} (the numeric keypad <kbd>8 / &uarr;</kbd> key) and the `soundnum` is less than 65 (the highest sound number used in the game), increment `soundnum`. This is "seek up," without proceeding past the last sound.
+If the `scancode` received is {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_8" >}} (the numeric keypad <kbd>8 / &uparrow;</kbd> key) and the `soundnum` is less than 65 (the highest sound number used in the game), increment `soundnum`. This is "seek up," without proceeding past the last sound.
 
 ```c
         if (scancode == SCANCODE_ESC) {
@@ -1167,13 +1167,13 @@ The final case to handle is <kbd>Enter</kbd> ({{< lookup/cref name="SCANCODE" te
 
 Finally, a bit of visual cleanup: It's possible that the sound number has changed during this loop iteration (as would be the case if an up or down key was pressed). Due to this fact, it's possible that the next iteration will draw numbers with transparent areas on top of the old digits, leaving those screen tiles in an unreadable state. To counter this, {{< lookup/cref EraseWaitSpinner >}} is called in a loop to blank the three(!) tiles where the sound number appears, leaving them clear for their values to be redrawn anew.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Better to clear too much than too little.**
 
 This explicit tile-clearing behavior is only _partially_ necessary -- all of the digits in the game's font are fully opaque on a solid gray background. Simply drawing a new digit directly on top of an old one is enough to accomplish most of the job, and that's exactly what the status bar does during gameplay.
 
 The necessity comes when the counter decrements from e.g. 10 to 9. In that case, absent this clearing loop, nothing redraws the tens place and the resulting display would be "19." A similar thing occurs in the hundreds place going from 100 to 99, resulting in an incorrect "199" being displayed. Rather than try to catch these cases as they occur, the entire number area is wiped and redrawn during every iteration.
-{{< /aside >}}
+{{% /aside %}}
 
 This code would allow a three-digit sound number to be displayed correctly, although this game only goes up to double-digits.
 
@@ -1183,7 +1183,7 @@ The `for` loop repeats, redrawing the current value of `soundnum` and waiting fo
 
 The {{< lookup/cref PromptSaveGame >}} function displays a menu that prompts the user to pick a save game slot (1-9) to save the state of their game into, then the save is carried out. The user may cancel this prompt without saving by pressing <kbd>Esc</kbd>, <kbd>Space</kbd>, or <kbd>Enter</kbd>. Due to the limited structure of the [save file format]({{< relref "save-file-format" >}}), the initial state of the map and all its state variables is used -- all progress made since the level was last (re)started is abandoned when a save is loaded.
 
-{{< boilerplate/menu-gameplay >}}
+{{< boilerplate/dialog-gameplay object="menu" >}}
 
 ```c
 void PromptSaveGame(void)
@@ -1247,13 +1247,13 @@ This "restart at the beginning" bookkeeping is performed during every call to {{
 
 In this function, we aren't interested in restoring the state to restart the level, but rather to produce a save file that has the _effect_ of restarting the level. To accomplish that, {{< lookup/cref LoadGameState >}} restores the temporary save state, which is immediately rewritten via {{< lookup/cref SaveGameState >}} to the specified save slot. The save slot identifier is a character between `1` and `9`, generated by computing the difference between the entered `scancode` and {{< lookup/cref name="SCANCODE" text="SCANCODE_1" >}} and adding that to the numeric value of the `1` byte (31h). This becomes the final character of the save file's extension on disk.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **\<raises hand sheepishly>**
 
 If you're wondering, "couldn't the same thing have been accomplished by simply copying the `.SVT` file on disk to the specified `.SV?` file?" you are absolutely right -- that would accomplish the same thing without messing with the global state of the program.
 
 The main downside to that approach is that the game would then have to implement a "file copy" function of its own. There is no such thing available in the C standard library. Even today, there is no standardized cross-platform way to copy files without reading one file and writing the other in a loop.
-{{< /aside >}}
+{{% /aside %}}
 
 With all of that in context, the `tmp...` variables make more sense: {{< lookup/cref LoadGameState >}} destroys the current player's progress by resetting the game state to the way it was at the start of the level, so each affected variable ({{< lookup/cref playerHealth >}}/{{< lookup/cref playerBombs >}}/{{< lookup/cref gameStars >}}/{{< lookup/cref levelNum >}}/{{< lookup/cref playerHealthCells >}}/{{< lookup/cref gameScore >}}) must be stashed and then restored. As you might imagine, all this rigmarole [creates a bug]({{< relref "#cheat-re-use-bug" >}}).
 
@@ -1297,7 +1297,7 @@ The {{< lookup/cref PromptRestoreGame >}} function displays a menu that prompts 
 * {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}} if a nonexistent slot was picked, or
 * {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_ABORT" >}} if the request was canceled.
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 ```c
 byte PromptRestoreGame(void)
@@ -1336,7 +1336,7 @@ Also similar to {{< lookup/cref PromptSaveGame >}}, the input validation and inp
 
 While the saved game's slot character is computed the same way as in {{< lookup/cref PromptSaveGame >}} (the difference between `scancode` and {{< lookup/cref name="SCANCODE" text="SCANCODE_1" >}}, combined with the numeric value of the `1` character), the similarities end there.
 
-The save slot character (`1`&ndash;`9`) is passed to a {{< lookup/cref LoadGameState >}} call, which carries out the actual load duties. That function returns true if the load completed successfully, or false if the requested save file could not be loaded. These returned values are mapped to either {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_SUCCESS" >}} or {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}} as appropriate, and that value is returned to the caller.
+The save slot character (`1`--`9`) is passed to a {{< lookup/cref LoadGameState >}} call, which carries out the actual load duties. That function returns true if the load completed successfully, or false if the requested save file could not be loaded. These returned values are mapped to either {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_SUCCESS" >}} or {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}} as appropriate, and that value is returned to the caller.
 
 {{< lookup/cref LoadGameState >}} has a side-effect that may occur from time to time: If the save file has been manipulated such that its internal checksum no longer matches, it will show an "altered file error" message and exit to DOS. If that happens, control never returns back here prior to the program exiting.
 
@@ -1357,7 +1357,7 @@ As with {{< lookup/cref PromptSaveGame >}}, validation failure is met with an er
 
 The {{< lookup/cref PromptLevelWarp >}} function prompts the user to select a map number from 1 to 12 (or 13, depending on the episode) and jumps to the start of the chosen map. Returns true if the map changed, or false if the user entered a non-numeric or out-of-range value.
 
-{{< boilerplate/menu-gameplay >}}
+{{< boilerplate/dialog-gameplay object="menu" >}}
 
 ```c
 bbool PromptLevelWarp(void)

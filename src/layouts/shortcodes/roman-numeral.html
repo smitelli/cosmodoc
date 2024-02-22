@@ -1,0 +1,18 @@
+{{/*
+    Returns an HTML numeric character reference that represents the passed value
+    in Roman numeral form.
+
+    Inline function; whitespace is critically sensitive here!
+
+    Positional parameters:
+        0 (required): Integer value to convert.
+*/}}
+
+{{- $ref := add (.Get 0) 8543 }}
+{{- if or (lt $ref 8544) (gt $ref 8555) }}
+    {{- errorf "Value out of range for %s %v" .Name .Params }}
+{{- end }}
+
+{{- "" -}}
+&#{{ $ref }};
+{{- "" -}}

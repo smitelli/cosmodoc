@@ -30,11 +30,11 @@ At the protocol level, the PC/XT and AT keyboards are quite different. The PC/XT
 
 Some third-party keyboards of the era had a configuration switch that allowed the keyboard to be switched from PC/XT to AT mode as needed, and more sophisticated keyboard controllers gained the ability to interrogate the keyboard and "guess" whether it transmits the PC/XT or the AT scancode set.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **Why bother?**
 
 The prevailing theory is that the AT used this scancode mapping to allow a user to plug a 122-key keyboard into the AT and have it work. If a poll was conducted to find out how many users actually did this, my guess would be "not all that many."
-{{< /aside >}}
+{{% /aside %}}
 
 It's important to understand that most keys on the keyboard have at least two functions when interpreted by the software running on the computer. There are the obvious examples like the letter keys which typically type lowercase, while holding one of the <kbd>Shift</kbd> keys switches them to uppercase. If <kbd>Caps Lock</kbd> is on, this behavior is reversed and <kbd>Shift</kbd> changes the letters (and only the letters) to their lower case. <kbd>Shift</kbd> also changes the number keys into punctuation, and it shifts the characters typed by the punctuation-only keys.
 
@@ -44,7 +44,7 @@ The <kbd>\*</kbd> key on the numeric keypad types that character by default, but
 
 The unlabeled key combination <kbd>Ctrl</kbd>+<kbd>Num Lock</kbd> serves as the "Pause" function, which causes the BIOS keyboard handler to (intentionally) hang until any key other than <kbd>Num Lock</kbd> is pressed. <kbd>Ctrl</kbd>+<kbd>Scroll Lock</kbd> causes the "Break" action, triggering interrupt 1Bh for software to handle as it sees fit. Do not confuse this with the general concept of a key break scancode -- "Break" here means "stop program execution."
 
-Pressing <kbd>Ctrl</kbd> along with the keys for <kbd>@</kbd>, <kbd>A</kbd>&ndash;<kbd>Z</kbd>, <kbd>[</kbd>, <kbd>\\</kbd>, <kbd>]</kbd>, <kbd>^</kbd>, or <kbd>_</kbd> generates unprintable control bytes in the range 0h&ndash;1Fh, respectively. <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> generates byte 7Fh.
+Pressing <kbd>Ctrl</kbd> along with the keys for <kbd>@</kbd>, <kbd>A</kbd> -- <kbd>Z</kbd>, <kbd>[</kbd>, <kbd>\\</kbd>, <kbd>]</kbd>, <kbd>^</kbd>, or <kbd>_</kbd> generates unprintable control bytes in the range 0h--1Fh, respectively. <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> generates byte 7Fh.
 
 Pressing the <kbd>Alt</kbd> key while entering a three-digit decimal number on the numeric keypad allows for arbitrary bytes to be entered by value. And finally, the famous three-finger salute to forcibly reboot the system was actually <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Num .</kbd>, since the only <kbd>Del</kbd> key on these keyboard shared a key with that character. Aside from these uses, <kbd>Alt</kbd> is not a commonly seen key for system software on these machines.
 
@@ -150,7 +150,7 @@ This new scancode is parsed to determine if it represents a make, break, or exte
 
 As the keyboard design evolved from the 83-key PC layout to the 101-key PS/2 layout, some new keys were added while others were duplicated from existing keys. The duplicated keys were assigned multi-byte scancodes: The first byte is E0h, and the second byte is the scancode of the older key it duplicates. In this way, regular <kbd>Enter</kbd> is 1Ch, while the <kbd>Enter</kbd> key on the numeric keypad is E0h, 1Ch. This allows software that wishes to differentiate the keys to do so, while older software that isn't aware of the extension would discard the E0h prefix and handle both <kbd>Enter</kbd> keys in the same, presumably reasonable, way. This code is framed with such an E0h ({{< lookup/cref name="SCANCODE" text="SCANCODE_EXTENDED" >}}) check, discarding the byte whenever it appears. This permits (more or less) all of the keys on a 101-key keyboard to do something rational.
 
-Scancodes in the range 0h&ndash;7Fh represent make codes, while scancodes in the range 80h&ndash;FFh represent break codes. The low seven bits of a break code are the same as the make code for that key, so the high bit can be thought of as the make/break flag with the low seven bits uniquely identifying one of the keys.
+Scancodes in the range 0h--7Fh represent make codes, while scancodes in the range 80h--FFh represent break codes. The low seven bits of a break code are the same as the make code for that key, so the high bit can be thought of as the make/break flag with the low seven bits uniquely identifying one of the keys.
 
 In the case where the high bit is 1, the identified key has been released. In that case, mask off the high bit and use the remaining bits to locate the correct element in the {{< lookup/cref isKeyDown >}} array, setting it to false.
 
@@ -169,19 +169,17 @@ This is an interesting find, and something I'm not sure anyone else has discover
 
 Otherwise, the byte 20h is written to I/O port 20h. This I/O port addresses the command register on the system's programmable interrupt controller (PIC), and the value 20h encodes a "nonspecific end-of-interrupt" (EOI) message that is sent to the PIC.
 
-{{< aside class="note" >}}
-**Note:** There are two PICs in the IBM AT: The master PIC is at I/O port 20h, and the (unfortunately named) slave PIC is at port A0h. Since the keyboard is wired directly to one of the interrupt request lines on the master PIC, we can pretend the slave does not exist.
-{{< /aside >}}
+{{% note %}}There are two PICs in the IBM AT: The master PIC is at I/O port 20h, and the (unfortunately named) slave PIC is at port A0h. Since the keyboard is wired directly to one of the interrupt request lines on the master PIC, we can pretend the slave does not exist.{{% /note %}}
 
 The EOI message resets the "interrupt request" line that the keyboard controller is attached to (IRQ 1), arming it for another interrupt. (Actually, because this is a _nonspecific_ EOI, it resets **all** of the interrupt request lines on the PIC, not just the keyboard's. There's probably an opportunity for a race condition in there somewhere.) This is one of the most important things this function actually does -- if the EOI was not received, subsequent keyboard interrupt requests would not be forwarded to the processor and the keyboard would "freeze."
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Hieroglyphics, let me be specific.**
 
 The _specific_ EOI message byte for IRQ 1 is 61h. Sending this would correctly reset the keyboard interrupt without possibly clobbering the other seven IRQ lines on the master PIC.
 
 There's safety in numbers, however. Most software that I've looked at acknowledges keyboard interrupts with nonspecific EOIs, and why fight the trend if it works well for others? This could very well be a case where trying to do things the correct -- but uncommon -- way will expose bugs and misbehavior in some people's oddball computers and configurations.
-{{< /aside >}}
+{{% /aside %}}
 
 Having updated the global keyboard state and reset the hardware for its next event, the function returns. Control passes back to whatever function was running at the time the interrupt was received, leaving it completely unaware that anything had happened.
 
@@ -196,19 +194,19 @@ bbool IsAnyKeyDown(void)
 }
 ```
 
-Similarly to the first line of {{< lookup/cref KeyboardInterruptService >}}, {{< lookup/cref inportb >}} reads one byte from the keyboard controller's output buffer (I/O address 60h). This returns the most recent byte that the keyboard sent -- either 0h&ndash;7Fh for a make code, or 80h&ndash;FFh for a break code. By masking the low bits away, we are left with 0 for make codes, and 80h for break. Negating this returns true for a make code, and false for a break code.
+Similarly to the first line of {{< lookup/cref KeyboardInterruptService >}}, {{< lookup/cref inportb >}} reads one byte from the keyboard controller's output buffer (I/O address 60h). This returns the most recent byte that the keyboard sent -- either 0h--7Fh for a make code, or 80h--FFh for a break code. By masking the low bits away, we are left with 0 for make codes, and 80h for break. Negating this returns true for a make code, and false for a break code.
 
 The more appropriate name for this function would be "was the most recent scancode received a make code?" but that obscures the apparent intent of how this is used -- it's meant to return a reasonable approximation of whether any key is down. It can be tricked by pressing multiple keys simultaneously then releasing one of them, but for most common interactions it works correctly.
 
 This does not handle interrupts, nor does it explicitly reset the keyboard controller the way that {{< lookup/cref KeyboardInterruptService >}} does; it merely snoops the content of the keyboard controller buffer for its own purposes. _Technically_ merely reading from this buffer on the AT keyboard controller has the side-effect of clearing the "buffer full" flag, which _could_ interfere with the keyboard interrupt service's ability to read the value (or vice-versa, depending on which part of the code read the buffer first) but in practice this never seems to cause issues. Still, it's something to be aware of.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **More than one way to do it.**
 
 This function could've based its logic on the scancode value held in the global {{< lookup/cref lastScancode >}} variable, avoiding a redundant {{< lookup/cref inportb >}} call.  It also would've been possible to uniquely determine if a key was down, while accurately considering multiple simultaneous keypresses, by iterating through each element of the global {{< lookup/cref isKeyDown >}} array and returning true after the first true value was encountered.
 
 The fact that neither of these approaches was taken suggests that maybe this function's implementation predates the creation of the keyboard interrupt handler.
-{{< /aside >}}
+{{% /aside %}}
 
 The return value of the function is a boolean value in a byte-sized integer: true if any key is down and false otherwise.
 

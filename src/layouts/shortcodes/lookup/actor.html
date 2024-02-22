@@ -6,6 +6,8 @@
     unmodified, from the database content. Named usage is for cases where the
     context requires pluralization, stripping of parentheticals, or both.
 
+    Inline function; whitespace is critically sensitive here!
+
     Positional usage:
         0 (required): Numeric actor type.
 
@@ -16,20 +18,26 @@
         plural (optional): If set to a truthy value, pluralize the return value.
 */}}
 
-{{- $out := "" -}}
+{{- $out := "" }}
 
-{{- if $.IsNamedParams -}}
-    {{- $out = index $.Site.Data.description.actor (int ($.Get "type")) -}}
+{{- if .IsNamedParams }}
+    {{- $out = index site.Data.description.actor (.Get "type") }}
 
-    {{- if $.Get "strip" -}}
-        {{- $out = (replaceRE "\\s+\\(.*$" "" $out) -}}
-    {{- end -}}
+    {{- if .Get "strip" }}
+        {{- $out = $out | replaceRE `\s+\(.+?$` "" }}
+    {{- end }}
 
-    {{- if $.Get "plural" -}}
-        {{- $out = (pluralize $out) -}}
-    {{- end -}}
-{{- else -}}
-    {{- $out = index $.Site.Data.description.actor (int ($.Get 0)) -}}
-{{- end -}}
+    {{- if .Get "plural" }}
+        {{- $out = $out | pluralize }}
+    {{- end }}
+{{- else }}
+    {{- $out = index site.Data.description.actor (.Get 0) }}
+{{- end }}
 
-{{- $out | markdownify -}}
+{{- if not $out }}
+    {{- warnf "No definition for %s %v" .Name .Params }}
+{{- end }}
+
+{{- "" -}}
+{{ $out }}
+{{- "" -}}

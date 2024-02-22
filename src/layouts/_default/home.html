@@ -1,5 +1,5 @@
 {{ define "pageTitle" }}
-    {{ .Site.Title | markdownify }}: {{ .Site.Params.Subtitle | markdownify }}
+    {{ site.Title }}: {{ site.Params.subtitle | markdownify }}
 {{ end }}
 
 {{ define "pageContent" }}

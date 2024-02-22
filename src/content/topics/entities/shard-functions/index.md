@@ -28,7 +28,7 @@ Most wall and floor tiles have the "in-front" [tile attribute]({{< relref "tile-
 
 Shards do not test for intersection with map tiles as they rise, which can lead to unintuitive behavior: If a shard enters a wall or ceiling where it cannot free-fall out, a sort of pseudo-bounce occurs which ejects the shard three tiles higher on the map, where it tries to fall again. This adjustment could potentially happen an unbounded number of times, even going as far as to bounce the shard into a negative Y position off the top of the map.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **You wanna see?**
 
 This ejection logic is actually apparent in the recorded demo data that ships with episode one. During the playback of E1M8, as the player bombs the {{< lookup/actor type=121 strip=true >}} to get it moving, a {{< lookup/actor 69 >}} is caught in the blast. Its shard leaves the top of the screen, and then almost three seconds later falls back past its starting elevation.
@@ -36,7 +36,7 @@ This ejection logic is actually apparent in the recorded demo data that ships wi
 What happens in that case is, the shard reaches its regular apex inside the ceiling, is further ejected up into the empty space in the room above, falls to the floor of that upper area, audibly bounces, then falls back through the floor again down to the original height where it first came from. The solid tiles it passes through have a random assortment of [block-west/block-east]({{< relref "tile-attributes-format#movement-blocking" >}}) behaviors, which keeps the decoration from moving as far horizontally as it might in clear space.
 
 The timing is fortunate as well, because if the shard were off the screen for one or two more ticks it would've been removed due to being out of view for too long.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< boilerplate/function-cref InitializeShards >}}
 
@@ -63,7 +63,7 @@ When this function returns, all shards will be reset to their idle state, ready 
 
 The {{< lookup/cref NewShard >}} function creates a new shard at `x_origin` and `y_origin` consisting of the passed `sprite_type` and `frame`. The shard will be assigned a random-seeming but predictable horizontal movement mode.
 
-{{< note >}}If there is no room in the {{< lookup/cref shards >}} array (due to too many shards already running) this function does nothing.{{< /note >}}
+{{% note %}}If there is no room in the {{< lookup/cref shards >}} array (due to too many shards already running) this function does nothing.{{% /note %}}
 
 ```c
 void NewShard(word sprite_type, word frame, word x_origin, word y_origin)
@@ -85,7 +85,7 @@ Horizontal movement of a shard is controlled by a cyclical `xmode` value. The fi
 3       | Shard moves to the east at double speed.
 4       | Shard moves to the west at double speed.
 
-{{< note >}}`xmode` is a function-`static` variable that cannot be explicitly reset. This means that it is possible for repeated playbacks of identical demo data to have different shard behavior. To guarantee deterministic playback of a demo's shards, it's necessary to quit to DOS and restart the game before each run.{{< /note >}}
+{{% note %}}`xmode` is a function-`static` variable that cannot be explicitly reset. This means that it is possible for repeated playbacks of identical demo data to have different shard behavior. To guarantee deterministic playback of a demo's shards, it's necessary to quit to DOS and restart the game before each run.{{% /note %}}
 
 ```c
     for (i = 0; i < numShards; i++) {

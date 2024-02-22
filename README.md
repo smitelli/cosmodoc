@@ -80,27 +80,6 @@ ffmpeg -i in.wav -q:a 4 out.m4a
 
 The M4A/AAC files sometimes sound kinda goofy. There's probably a way to correct that with a command option.
 
-## What's the current word count?
-
-It's never going to be exact with this type of writing -- too many symbols and embedded shortcodes. Still, this feels pretty close.
-
-```bash
-find src/content \( -iname '*.md' -o -iname '*.yml' \) -exec cat {} + | \
-    sed "s/[^0-9A-Za-z',]/ /g" | wc -w
-```
-
-or...
-
-```bash
-cd src
-HUGO_PARAMS_ENABLENAV=false hugo
-# Using the python "html2text" package...
-find ../public/ -iname '*.html' -exec html2text --ignore-links \
-    --ignore-tables --ignore-emphasis --ignore-images {} \; | wc -w
-```
-
-Round it down to the nearest 1,000.
-
 ## Diff rendered pages between Hugo versions
 
 Here we went from Hugo v0.90.1 to v0.107.0, which was rather noisy.

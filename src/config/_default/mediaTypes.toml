@@ -1,2 +1,4 @@
+# This is necessary to `resources.GetRemote` the Cosmore ZIP archive from GitHub
 ["application/zip"]
-suffixes = ["zip"]
+  delimiter = "."
+  suffixes = ["zip"]

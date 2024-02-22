@@ -2,10 +2,18 @@
     Takes one numeric argument, which is interpreted as an backdrop ID. Returns
     a formatted string containing the backdrop's description.
 
+    Inline function; whitespace is critically sensitive here!
+
     Positional parameters:
         0 (required): Numeric backdrop ID.
 */}}
 
+{{- $out := index site.Data.description.backdrop (.Get 0) }}
+
+{{- if not $out }}
+    {{- warnf "No definition for %s %v" .Name .Params }}
+{{- end }}
+
 {{- "" -}}
-{{ index $.Site.Data.description.backdrop (int ($.Get 0)) | markdownify }}
+{{ $out }}
 {{- "" -}}

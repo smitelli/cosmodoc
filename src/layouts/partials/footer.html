@@ -1,33 +1,39 @@
-{{ $authorUrl := $.Site.Params.authorUrl }}
-{{ $gitContentUrl := print $.Site.Params.gitContentUrl "/" (replace $.File.Path "\\" "/") }}
-{{ $gitCloneUrl := $.Site.Params.gitCloneUrl }}
-{{ $gitIssuesUrl := $.Site.Params.gitIssuesUrl }}
-{{ $gitHash := $.Page.GitInfo.Hash }}
-{{ $lastMod := $.Page.Lastmod.Format "January 2, 2006" }}
+{{/*
+    Common footer. Note that there is a bit of an abuse of Hugo template comment
+    tags to allow the source template to have newlines for readability without
+    these breaking up the final minified output of the page.
+*/}}
 
-{{ $cosmoreZip := "" }}
-{{ with resources.GetRemote $.Site.Params.cosmoreDownloadUrl }}
-    {{ with .Err }}
-        {{ errorf "%s" . }}
-    {{ else }}
-        {{ $cosmoreZip = .RelPermalink }}
+{{ $p := site.Params }}
+
+<footer>
+    <address>
+        <p>
+            <strong>{{ site.Title }}</strong> is a contrivance by {{/*
+            */}}<a href="{{ $p.authorUrl }}">Scott Smitelli</a>. Found an {{/*
+            */}}<a href="{{ $p.gitIssuesUrl }}" title="...or a bug, or an inaccuracy!">issue</a>?
+        </p>
+    </address>
+
+    {{ with .File }}
+        {{ $lastmod := $.Lastmod | time.Format ":date_long" }}
+        {{ $git_url := urls.JoinPath $p.gitContentUrl (path.Clean .Path) }}
+        <p>
+            This page was <span class="definition" title="Git commit {{ $.GitInfo.Hash }}">{{/*
+            */}}last modified on {{ $lastmod }}</span>. {{/*
+            */}}<a href="{{ $git_url }}">See it on GitHub</a>.
+        </p>
     {{ end }}
-{{ end }}
 
-{{ if $.Site.Params.enableNav }}
-    <footer>
-        <address>
-            <p>
-                <strong>{{ $.Site.Title | markdownify }}</strong> is a contrivance by <a href="{{ $authorUrl }}">Scott Smitelli</a>. Found an <a href="{{ $gitIssuesUrl }}" title="...or a bug, or an inaccuracy!">issue</a>?
-            </p>
-        </address>
+    {{ with resources.GetRemote $p.cosmoreDownloadUrl }}
+        {{ with .Err }}{{ errorf "%s" . }}{{ end }}
+        <p>
+            <a href="{{ .RelPermalink }}">Download <strong>Cosmore</strong></a>, {{/*
+            */}}my reconstruction of the game&rsquo;s source code.
+        </p>
+    {{ end }}
 
-        <p>This page was <span class="definition" title="Git commit {{ $gitHash }}">last modified on {{ $lastMod }}</span>. <a href="{{ $gitContentUrl }}">See it on GitHub</a>.</p>
+    <p><code>git clone {{ $p.gitCloneUrl }}</code></p>
 
-        <p><a href="{{ $cosmoreZip }}">Download <strong>Cosmore</strong></a>, my reconstruction of the game&rsquo;s source code.</p>
-
-        <p><code>git clone {{ $gitCloneUrl }}</code></p>
-
-        <p><code>wget -mkp {{ absURL "/" }}</code></p>
-    </footer>
-{{ end }}
+    <p><code>wget -mkp {{ site.Home.Permalink }}</code></p>
+</footer>

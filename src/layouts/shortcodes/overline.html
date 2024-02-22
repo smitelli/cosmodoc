@@ -1,1 +1,11 @@
-<span class="overline">{{ .Inner | markdownify }}</span>
+{{/*
+    Wraps the inner markdown content in a <span> tag that is styled via CSS to
+    have an overline ("vinculum") drawn on top. This is used to denote repeating
+    decimals in a math context, or active-low signals in electronics.
+
+    Inline function; whitespace is critically sensitive here!
+*/}}
+
+{{- "" -}}
+<span class="overline">{{ .Inner }}</span>
+{{- "" -}}

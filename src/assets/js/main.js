@@ -58,7 +58,7 @@ window.addEventListener('load', function() {
                 shut: 'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA9hAAAPYQGoP6dpAAAA2klEQVRYw+1XwQ3DMAg8qgzCUsmQ9lLexH2kVBEVxYlcGbflE8VICdzBgYmZ0dNKKfWdn5np+H7DYFt6Z54M/7ruwFCmekRifgS8zMVy3qmvCol5EbAyF65b7Xu6QHMNpxvCIPAPYPn0DzTn9KiReZXQU77tpS3oR6bhk2vFsSBWp5+GnvaTkXmaTgckcl2tnmmOk4NQPAS8apXnpriV6Xd2D4hbA9budqEWAADJ+F5cHRAt15FbSFncp8YdcTgCBKBJsSQTa+ez/Ppc68J4BOR27N1qe1uYLrgDZpiA49gEBboAAAAASUVORK5CYII='
             }
         },
-        delayMs = 200,  //game timer is roughly 93ms; way too short for Chrome
+        delayMs = 200,  //game timer is ~93ms; Chrome-y browsers can't do it
         shutPrev = null;
 
     setInterval(function() {
@@ -78,14 +78,9 @@ window.addEventListener('load', function() {
 });
 
 window.addEventListener('load', function() {
-    var docHref = document.location.href;
+    var activeElement = document.querySelector('#main-menu li.active');
 
-    document
-        .getElementById('main-menu')
-        .querySelectorAll('li a')
-        .forEach(function(el) {
-            if (docHref.startsWith(el.href)) {
-                el.scrollIntoView({block: 'center'});
-            }
-        });
+    if (activeElement !== null) {
+        activeElement.scrollIntoView({block: 'center'});
+    }
 });

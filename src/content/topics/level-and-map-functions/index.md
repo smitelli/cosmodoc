@@ -21,8 +21,8 @@ On disk, [map files]({{< relref "map-format" >}}) additionally contain a handful
 Level | Map    | Notes
 ------|--------|------
 0     | A1     | First level played when a new game is started.
-1     | A2     | If the player collected &lt;25 stars, skips to A3 upon completion.
-2     | BONUS1 | Lesser bonus level, occurs after A2 if the player collected 25&ndash;49 stars. When completed, skips to A3.
+1     | A2     | If the player collected <25 stars, skips to A3 upon completion.
+2     | BONUS1 | Lesser bonus level, occurs after A2 if the player collected 25--49 stars. When completed, skips to A3.
 3     | BONUS2 | Better bonus level, occurs after A2 if the player collected &ge;50 stars. When completed, proceeds to A3.
 4     | A3     |
 5     | A4     |
@@ -42,15 +42,15 @@ Level | Map    | Notes
 19    | BONUS2 | Episode one only. Works the same as level 3, but proceeds to A11 on completion.
 20    | A11    | Episode one only.
 
-{{< note >}}These are the map names for episode one. The other episodes use names like B*, C*, and BONUS3&ndash;6.{{< /note >}}
+{{% note %}}These are the map names for episode one. The other episodes use names like B*, C*, and BONUS3--6.{{% /note %}}
 
 The key to understanding this is to remember that there is a "section" intermission after every two levels, which conditionally allows the player to proceed to one of the bonus levels. There are only two bonus maps in the whole game, but they may be played multiple times. The level concept allows the game to keep track of which occurrence of a bonus map has been reached, and to determine which regular map should come next.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **See for yourself.**
 
 An effect of this can be seen by using the {{< lookup/cref PromptLevelWarp >}} cheat. Choose one of the bonus levels and play it to completion, and you will find that the next level is always 4. This is because {{< lookup/cref PromptLevelWarp >}} uses levels 2 and 3 to access these maps, which is the first instance of the bonus maps in the level progression.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< boilerplate/function-cref NextLevel >}}
 
@@ -153,9 +153,9 @@ This is the interesting case, covering level 1 and every fourth level past it. T
 
 This case needs to do one of three things, depending on the number of stars the player collected:
 
-* 25&ndash;49 stars: Increment {{< lookup/cref levelNum >}} by one to advance to the lesser bonus level.
+* 25--49 stars: Increment {{< lookup/cref levelNum >}} by one to advance to the lesser bonus level.
 * &ge;50 stars: Increment {{< lookup/cref levelNum >}} by two to advance to the better bonus level.
-* &lt;25 stars: Increment {{< lookup/cref levelNum >}} by three to skip both of the bonus levels and go directly to the next regular level in the progression.
+* <25 stars: Increment {{< lookup/cref levelNum >}} by three to skip both of the bonus levels and go directly to the next regular level in the progression.
 
 This logic is a bit fragmented, but happens below.
 
@@ -264,7 +264,7 @@ Some might ask what the point of all that hassle is when you could just as easil
 
 Here a `switch` block is employed to match a predefined list of {{< lookup/cref mapWidth >}} values with the appropriate {{< lookup/cref mapYPower >}} to use for this map. Subsequent operations that look up tiles in memory do so by bitwise-left-shifting Y by {{< lookup/cref mapYPower >}} and adding X to the result.
 
-{{< note >}}{{< lookup/cref mapYPower >}} 5 is never used; such maps would be too narrow to cover the full width of the screen. Likewise, {{< lookup/cref mapYPower >}} 11 is never used because the map would not cover the screen's height.{{< /note >}}
+{{% note %}}{{< lookup/cref mapYPower >}} 5 is never used; such maps would be too narrow to cover the full width of the screen. Likewise, {{< lookup/cref mapYPower >}} 11 is never used because the map would not cover the screen's height.{{% /note %}}
 
 ```c
     actorwords = getw(fp);
@@ -416,7 +416,7 @@ The {{< lookup/cref MAP_CELL_ADDR >}} macro converts an `x` and `y` position, me
 
 Whenever a map is loaded (during {{< lookup/cref LoadMapData >}}) the {{< lookup/cref mapYPower >}} variable is set such that **2<sup>mapYPower</sup>** equals the width of the map. Because of this property, **Y \<\< mapYPower** is equivalent to **Y &times; mapWidth**, only the former is much faster to compute. The passed `x` is added to the running total, producing a one-dimensional tile offset that still refers to the intended tile. This is added as an offset to the {{< lookup/cref mapData >}} union, here using its **w**ord member, evaluating to a pointer to the word of map memory that represents the passed `x`, `y` position.
 
-{{< note >}}The `x` in this macro is not parenthesized (although ideally it should be) in order to preserve the order-of-operations in the original game's compiled machine code.{{< /note >}}
+{{% note %}}The `x` in this macro is not parenthesized (although ideally it should be) in order to preserve the order-of-operations in the original game's compiled machine code.{{% /note %}}
 
 {{< boilerplate/function-cref MAP_CELL_DATA >}}
 

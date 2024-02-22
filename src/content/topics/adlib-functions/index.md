@@ -8,7 +8,7 @@ weight = 300
 
 Many players have experienced the music output of the game through a Sound Blaster or other compatible expansion card, but some might not be aware that the programming interface for music playback was originally introduced by a product called the **AdLib Music Synthesizer Card** in 1987. By most accounts, the AdLib was the first mainstream sound card available for the IBM PC platform. Although the AdLib is capable of producing rich audio that puts the [PC speaker]({{< relref "pc-speaker-and-timing-functions" >}}) to shame, it was only designed to produce music and music-like output; there is no hardware to handle arbitrary waveforms for sound effects. Within a year or two, Creative Labs introduced their competing product, the **Sound Blaster**, which boasted perfect compatibility with the AdLib's programming interface. It also included analog waveform recording/playback and an integrated [game port]({{< relref "joystick-functions" >}}) -- at a very attractive price -- making it an absolute smash hit with the gaming public. AdLib (both the product and the company that created it) soon faded away, but its interface lived on for years.
 
-The AdLib card is really nothing more than a bundle of off-the-shelf components stitched together to function with the PC's bus interface. At the heart of the unit is a **Yamaha YM3812** music synthesis chip, which Yamaha called the **FM Operator Type-L&#8545;** or **OPL2**. The AdLib's interface is exactly the same as the OPL2's, and any programming techniques that work on the OPL2 will work on the AdLib (or any AdLib compatible hardware) with suitable I/O address translation.
+The AdLib card is really nothing more than a bundle of off-the-shelf components stitched together to function with the PC's bus interface. At the heart of the unit is a **Yamaha YM3812** music synthesis chip, which Yamaha called the **FM Operator Type-L{{< roman-numeral 2 >}}** or **OPL2**. The AdLib's interface is exactly the same as the OPL2's, and any programming techniques that work on the OPL2 will work on the AdLib (or any AdLib compatible hardware) with suitable I/O address translation.
 
 {{< table-of-contents >}}
 
@@ -24,7 +24,7 @@ All output of the OPL2 is built from a single building block: the **sine functio
     2x="sine-function-1368x.png"
     3x="sine-function-2052x.png" >}}
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Round and Round**
 
 The sine function can be described (albeit a bit imprecisely) by the following physical process:
@@ -32,7 +32,7 @@ The sine function can be described (albeit a bit imprecisely) by the following p
 Go out into a field or other open space, and draw a large circle on the ground. Draw a straight line that splits the circle exactly in half. Stand at the edge of the circle, and start walking around its perimeter. At regular intervals, measure how far you are from the closest point you can reach on the dividing line. Your position along the outside of the circle is the X axis of this chart, your distance from the dividing line at each point is proportional to the Y value, and the Y value's sign indicates which side of the dividing line you are standing on.
 
 Eventually the measurements repeat, because you are walking in circles. Try not to do it for too long or the neighbors will start to wonder if you're okay.
-{{< /aside >}}
+{{% /aside %}}
 
 This is interesting to look at and all, but some concrete connections must be made to produce audible output. In audio synthesis, the input to the sine function is derived from the passage of time. A counter value tracks the cumulative number of clock "ticks" that have occurred since a fixed point in time, which produces a value that increments at a linear rate. Feeding this counter value into the sine function causes the output to repeat (**oscillate**) at a constant and predicable rate. The function's output is connected to an electrical circuit that causes a speaker to physically move in lock-step with the sine wave as it cycles between -1 and 1. This vibration excites the air molecules in the surrounding area, which can be detected by structures in our ears as sound.
 
@@ -94,7 +94,7 @@ With a pure sine function, phase adjustments can vary from -360 degrees (-2&pi; 
     2x="sine-phase-1368x.png"
     3x="sine-phase-2052x.png" >}}
 
-A few interesting properties exist: Adding or subtracting 180 degrees (or &pi; radians) perfectly negates the output of the function, flipping the wave upside-down compared to its unmodified version. Adding 90 degrees (&pi; radians) or subtracting 270 degrees (3&pi; &#8725; 2 radians) turns the sine function into a cosine function.
+A few interesting properties exist: Adding or subtracting 180 degrees (or &pi; radians) perfectly negates the output of the function, flipping the wave upside-down compared to its unmodified version. Adding 90 degrees (&pi; radians) or subtracting 270 degrees (3&pi; &frasl; 2 radians) turns the sine function into a cosine function.
 
 For a single waveform, phase is entirely inaudible -- it is impossible for the human ear to detect the absolute position of an oscillating signal in time. When multiple signals are combined together, however, phase plays a significant role in determining how the individual waves interact to produce a cumulative output.
 
@@ -184,11 +184,11 @@ Some of the oscillators in the OPL2 are capable of **feedback**, where some frac
 
 This example steps through the feedback levels from zero to 4&pi;, playing a note that decays in amplitude once per second. At moderate levels of feedback, the sine wave becomes lopsided like a sawtooth wave -- rising fast and falling slowly -- which adds both sharpness and brightness due to the many harmonics created. As the feedback level is set higher, louder outputs produce more random results, and at extreme levels the sound becomes distinctly percussive.
 
-{{< note >}}
+{{% note %}}
 The noise produced through this technique is almost perfect **white noise**, which is random sound output with equal _power_ across the entire frequency spectrum. The OPL2's output has slightly higher frequency response at the low and high edges of the spectrum, making the result something between white noise and **gray noise**, which is equal _loudness_ across the spectrum.
 
 The relationship between power and loudness is explored in a bit more detail later.
-{{< /note >}}
+{{% /note %}}
 
 Most instruments in common use have some amount of feedback to add distinctiveness to the sound. The exceptions tend to be tonal percussion elements like the bass drum and low tom-toms.
 
@@ -230,7 +230,7 @@ On the subject of simulating real instruments, the OPL2 also supports two slight
     2x="ksr-concepts-1368x.png"
     3x="ksr-concepts-2052x.png" >}}
 
-{{< note >}}The exact definition of a rate "unit" is... complicated. It's explained a little more precisely later on this page.{{< /note >}}
+{{% note %}}The exact definition of a rate "unit" is... complicated. It's explained a little more precisely later on this page.{{% /note %}}
 
 The piano keyboards in this diagram (and the one that follows) are illustrative and not necessarily to scale. It's possible to configure the OPL2 to span a much wider frequency spectrum than the piano is capable of, and the scaling graphs would follow that range accordingly.
 
@@ -276,7 +276,7 @@ The 12th root is because our octave is divided into 12 notes, and 440 Hz is the 
 
 If we wanted to find the frequency of the note that was five steps below A4, we would calculate (<sup>12</sup>&radic;{{< overline >}}2{{< /overline >}})<sup>-5</sup> &times; 440 Hz &approx; 330 Hz. By the same rules, the frequency of the note seven steps above A4 is (<sup>12</sup>&radic;{{< overline >}}2{{< /overline >}})<sup>7</sup> &times; 440 Hz &approx; 660 Hz. It just so happens that "five steps below" plus "seven steps above" equals 12 steps, and the two calculated frequencies are one octave apart, give or take some rounding error.
 
-The formula can be inverted: **Steps to note _n_ = 12 &times; log<sub>2</sub>(_f_ &#8725; 440 Hz).** Here _f_ is some frequency in hertz, and _n_ is the note-step distance (again positive or negative) away from the A4 reference note.
+The formula can be inverted: **Steps to note _n_ = 12 &times; log<sub>2</sub>(_f_ &frasl; 440 Hz).** Here _f_ is some frequency in hertz, and _n_ is the note-step distance (again positive or negative) away from the A4 reference note.
 
 #### Amplitude
 
@@ -308,26 +308,26 @@ There are three kinds of registers: chip-wide registers, per-channel registers, 
 
 The OPL2 contains 18 parameters that influence the behavior of the entire chip. Each of these register values either changes a sub-circuit that the chip only contains one instance of, or controls a setting that applies universally across all channels and/or operators.
 
-Register Address | Bit Position | Acronym  | Range       | Function
------------------|--------------|----------|-------------|----------
-01h              | 5            | WSE      | Off/On      | "Waveform Selection" Enable
-02h              | 7&ndash;0    | TIMER 1  | 0&ndash;255 | Timer 1 Preset Value
-03h              | 7&ndash;0    | TIMER 2  | 0&ndash;255 | Timer 2 Preset Value
-04h              | 7            | RST      | Off/On      | Interrupt Reset Command (must be sent in isolation)
-04h              | 6            | T1 MASK  | Off/On      | Timer 1 Mask
-04h              | 5            | T2 MASK  | Off/On      | Timer 2 Mask
-04h              | 1            | T2 START | Off/On      | Timer 2 Enable
-04h              | 0            | T1 START | Off/On      | Timer 1 Enable
-08h              | 7            | CSM      | Off/On      | Composite Sine Wave Speech Modeling Enable
-08h              | 6            | NOTE SEL | 0&ndash;1   | Note Select (Keyboard Split) Position
-BDh              | 7            | AM DEP   | 0&ndash;1   | Amplitude Modulation (Tremolo) Depth
-BDh              | 6            | VIB DEP  | 0&ndash;1   | Vibrato Depth
-BDh              | 5            | R        | Off/On      | Rhythm (Percussion) Mode Enable
-BDh              | 4            | BD       | Off/On      | Bass Drum Key-On
-BDh              | 3            | SD       | Off/On      | Snare Drum Key-On
-BDh              | 2            | TOM      | Off/On      | Tom-Tom Key-On
-BDh              | 1            | TC       | Off/On      | Top Cymbal Key-On
-BDh              | 0            | HH       | Off/On      | Hi-Hat Key-On
+Register Address | Bit Position | Acronym  | Range  | Function
+-----------------|--------------|----------|--------|----------
+01h              | 5            | WSE      | Off/On | "Waveform Selection" Enable
+02h              | 7--0         | TIMER 1  | 0--255 | Timer 1 Preset Value
+03h              | 7--0         | TIMER 2  | 0--255 | Timer 2 Preset Value
+04h              | 7            | RST      | Off/On | Interrupt Reset Command (must be sent in isolation)
+04h              | 6            | T1 MASK  | Off/On | Timer 1 Mask
+04h              | 5            | T2 MASK  | Off/On | Timer 2 Mask
+04h              | 1            | T2 START | Off/On | Timer 2 Enable
+04h              | 0            | T1 START | Off/On | Timer 1 Enable
+08h              | 7            | CSM      | Off/On | Composite Sine Wave Speech Modeling Enable
+08h              | 6            | NOTE SEL | 0--1   | Note Select (Keyboard Split) Position
+BDh              | 7            | AM DEP   | 0--1   | Amplitude Modulation (Tremolo) Depth
+BDh              | 6            | VIB DEP  | 0--1   | Vibrato Depth
+BDh              | 5            | R        | Off/On | Rhythm (Percussion) Mode Enable
+BDh              | 4            | BD       | Off/On | Bass Drum Key-On
+BDh              | 3            | SD       | Off/On | Snare Drum Key-On
+BDh              | 2            | TOM      | Off/On | Tom-Tom Key-On
+BDh              | 1            | TC       | Off/On | Top Cymbal Key-On
+BDh              | 0            | HH       | Off/On | Hi-Hat Key-On
 
 When a read command is issued to the OPL2, a status byte is returned. Since there is only one single readable register in the entire chip, it is not necessary (or possible) to request a specific register address to read from.
 
@@ -341,39 +341,88 @@ Bit Position | Acronym | Range  | Function
 
 The OPL2 contains nine instances of the following six parameters, one group for each channel in the chip. The values here either adjust both of the channel's operators in tandem, or influence the way the two operators are connected to each other.
 
-Register Address | Bit Position | Acronym | Range       | Function
------------------|--------------|---------|-------------|----------
-A0h + _channel_  | 7&ndash;0    | F NUM L | 0&ndash;255 | Frequency Value (low byte)
-B0h + _channel_  | 5            | KON     | Off/On      | Channel Key-On
-B0h + _channel_  | 4&ndash;2    | BLOCK   | 0&ndash;7   | Octave (Block) Value
-B0h + _channel_  | 1&ndash;0    | F NUM H | 0&ndash;3   | Frequency Value (high 2 bits)
-C0h + _channel_  | 3&ndash;1    | FB      | 0&ndash;7   | Feedback Depth
-C0h + _channel_  | 0            | C       | 0&ndash;1   | Connection Type
+Register Address | Bit Position | Acronym | Range  | Function
+-----------------|--------------|---------|--------|----------
+A0h + _channel_  | 7--0         | F NUM L | 0--255 | Frequency Value (low byte)
+B0h + _channel_  | 5            | KON     | Off/On | Channel Key-On
+B0h + _channel_  | 4--2         | BLOCK   | 0--7   | Octave (Block) Value
+B0h + _channel_  | 1--0         | F NUM H | 0--3   | Frequency Value (high 2 bits)
+C0h + _channel_  | 3--1         | FB      | 0--7   | Feedback Depth
+C0h + _channel_  | 0            | C       | 0--1   | Connection Type
 
 ### Per-Operator Registers
 
 The OPL2 contains 18 instances of the following 12 parameters, one group for each operator in the chip. These allow for independent control of each modulator, carrier, or additive oscillator (depending on how the chip and its channels have been configured).
 
-Register Address | Bit Position | Acronym | Range      | Function
------------------|--------------|---------|------------|----------
-20h + _operator_ | 7            | AM      | Off/On     | Amplitude Modulation (Tremolo) Enable
-20h + _operator_ | 6            | VIB     | Off/On     | Vibrato Enable
-20h + _operator_ | 5            | EG TYPE | 0&ndash;1  | Envelope Generator Type
-20h + _operator_ | 4            | KSR     | 0&ndash;1  | "Key Scaling of Rate" Value
-20h + _operator_ | 3&ndash;0    | MULTI   | 0&ndash;15 | Frequency Multiplier Value
-40h + _operator_ | 7&ndash;6    | KSL     | 0&ndash;3  | "Key Scaling of Level" Value
-40h + _operator_ | 5&ndash;0    | TL      | 0&ndash;63 | Total Level Value
-60h + _operator_ | 7&ndash;4    | AR      | 0&ndash;15 | Attack Rate
-60h + _operator_ | 3&ndash;0    | DR      | 0&ndash;15 | Decay Rate
-80h + _operator_ | 7&ndash;4    | SL      | 0&ndash;15 | Sustain Level Value
-80h + _operator_ | 3&ndash;0    | RR      | 0&ndash;15 | Release Rate
-E0h + _operator_ | 1&ndash;0    | WS      | 0&ndash;3  | Waveform Selection
+Register Address | Bit Position | Acronym | Range  | Function
+-----------------|--------------|---------|--------|----------
+20h + _operator_ | 7            | AM      | Off/On | Amplitude Modulation (Tremolo) Enable
+20h + _operator_ | 6            | VIB     | Off/On | Vibrato Enable
+20h + _operator_ | 5            | EG TYPE | 0--1   | Envelope Generator Type
+20h + _operator_ | 4            | KSR     | 0--1   | "Key Scaling of Rate" Value
+20h + _operator_ | 3--0         | MULTI   | 0--15  | Frequency Multiplier Value
+40h + _operator_ | 7--6         | KSL     | 0--3   | "Key Scaling of Level" Value
+40h + _operator_ | 5--0         | TL      | 0--63  | Total Level Value
+60h + _operator_ | 7--4         | AR      | 0--15  | Attack Rate
+60h + _operator_ | 3--0         | DR      | 0--15  | Decay Rate
+80h + _operator_ | 7--4         | SL      | 0--15  | Sustain Level Value
+80h + _operator_ | 3--0         | RR      | 0--15  | Release Rate
+E0h + _operator_ | 1--0         | WS      | 0--3   | Waveform Selection
 
 The assignments between channels and operators, and between operators and their register offsets, is not contiguous and not straightforward to explain. The table below shows the modulator/carrier operator pairs for each channel, and the offsets used to address them in per-operator register writes:
 
-{{< data-table/opl2-operator-map >}}
+<table class="centered">
+<tr>
+    <th>Channel</td>
+    <td colspan="2">1</td>
+    <td colspan="2">2</td>
+    <td colspan="2">3</td>
+    <td colspan="2">4</td>
+    <td colspan="2">5</td>
+    <td colspan="2">6</td>
+    <td colspan="2">7</td>
+    <td colspan="2">8</td>
+    <td colspan="2">9</td>
+</tr>
+<tr>
+    <th>Channel Register Offset</td>
+    <td colspan="2">0h</td>
+    <td colspan="2">1h</td>
+    <td colspan="2">2h</td>
+    <td colspan="2">3h</td>
+    <td colspan="2">4h</td>
+    <td colspan="2">5h</td>
+    <td colspan="2">6h</td>
+    <td colspan="2">7h</td>
+    <td colspan="2">8h</td>
+</tr>
+<tr>
+    <th>Operators (Modulator/Carrier)</th>
+    <td>1</td> <td>4</td>
+    <td>2</td> <td>5</td>
+    <td>3</td> <td>6</td>
+    <td>7</td> <td>10</td>
+    <td>8</td> <td>11</td>
+    <td>9</td> <td>12</td>
+    <td>13</td><td>16</td>
+    <td>14</td><td>17</td>
+    <td>15</td><td>18</td>
+</tr>
+<tr>
+    <th>Operator Register Offset</th>
+    <td>0h</td> <td>3h</td>
+    <td>1h</td> <td>4h</td>
+    <td>2h</td> <td>5h</td>
+    <td>8h</td> <td>Bh</td>
+    <td>9h</td> <td>Ch</td>
+    <td>Ah</td> <td>Dh</td>
+    <td>10h</td><td>13h</td>
+    <td>11h</td><td>14h</td>
+    <td>12h</td><td>15h</td>
+</tr>
+</table>
 
-{{< note >}}Operator register offsets 6&ndash;7h, E&ndash;Fh, and anything &GreaterEqual; 16h are **undefined** and perform no function.{{< /note >}}
+{{% note %}}Operator register offsets 6--7h, E--Fh, and anything &ge; 16h are **undefined** and perform no function.{{% /note %}}
 
 The arrangement of operators is a consequence of the OPL2's design. The chip only contains one physical instance of an operator circuit, which must be utilized 18 times to generate all of the values that comprise an output sample. The operator index arrangement is related to the order that this operator circuit processes the data internally.
 
@@ -381,19 +430,19 @@ The arrangement of operators is a consequence of the OPL2's design. The chip onl
 
 The OPL2 chip requires an external high-frequency oscillator to govern its operation and to serve as the master clock for all frequency-based calculations. As installed in the AdLib card, the master clock runs at approximately 3.58 MHz and the output sample rate is 49,716 Hz. Any conversions to/from a musical frequency must incorporate this sampling frequency to keep proper tuning.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **The PC's clock strikes again.**
 
-At first glance, 49,716 Hz seems like a pointlessly arbitrary number. But it's actually derived in a surprisingly straightforward way. As detailed on the [Programmable Interval Timer/PC speaker]({{< relref "pc-speaker-and-timing-functions" >}}) page, the PC's clock generator circuitry is based around a 315 &#8725; 22 MHz (14.3 MHz) crystal, which was widely available and cheap due to its use in NTSC color television equipment. The AT bus uses this frequency, unmodified, as the "OSC" signal. The AdLib, lacking any timing circuitry of its own, cleverly passes this signal through a 74LS109 dual flip-flop that divides the frequency by four, yielding 315 &#8725; 88 MHz (3.58 MHz).
+At first glance, 49,716 Hz seems like a pointlessly arbitrary number. But it's actually derived in a surprisingly straightforward way. As detailed on the [Programmable Interval Timer/PC speaker]({{< relref "pc-speaker-and-timing-functions" >}}) page, the PC's clock generator circuitry is based around a 315 &frasl; 22 MHz (14.3 MHz) crystal, which was widely available and cheap due to its use in NTSC color television equipment. The AT bus uses this frequency, unmodified, as the "OSC" signal. The AdLib, lacking any timing circuitry of its own, cleverly passes this signal through a 74LS109 dual flip-flop that divides the frequency by four, yielding 315 &frasl; 88 MHz (3.58 MHz).
 
-The OPL2 chip requires 72 clock cycles to generate one sample of output data. This works out to ([315 &#8725; 88 MHz] &#8725; 72) 49,715.{{< overline >}}90{{</ overline >}} Hz, which is rounded to 49,716 Hz in typical calculations.
-{{< /aside >}}
+The OPL2 chip requires 72 clock cycles to generate one sample of output data. This works out to ([315 &frasl; 88 MHz] &frasl; 72) 49,715.{{< overline >}}90{{</ overline >}} Hz, which is rounded to 49,716 Hz in typical calculations.
+{{% /aside %}}
 
 The OPL2 chip requires a fixed amount of "recovery" time after a write operation. The host must wait for 12 master clock cycles after writing a register address before it can write data, and it must wait 84 cycles after writing a data byte before it can write anything else. At AdLib clock rates, these wait times are about 3.4 &micro;s and 23.5 &micro;s, respectively. If these delays are ignored, there's no guarantee that a write operation will have the intended effect.
 
 ### On-Board Timers
 
-A fair number of the chip-wide writable registers (and the entirety of the readable registers) are there to support a pair of configurable **timers**. Timer 1 increments its counter once every 80 &micro;s and Timer 2 increments one-fourth as fast -- every 320 &micro;s. Each timer counter is eight bits wide, and whenever either of them overflows and wraps back to zero, a flag value is set to indicate the overflow and that timer's Preset Value is reloaded into the counter. Using this arrangement, Timer 1 could be configured to overflow at a rate anywhere between 49 Hz and 12.5 kHz, while Timer 2 could be configured for 12&ndash;3,125 Hz. When either timer overflows, an **interrupt request** is also raised at the hardware level. The AdLib doesn't listen to this signal, however, so there is no way for the host system to know about these timer events without resorting to polling.
+A fair number of the chip-wide writable registers (and the entirety of the readable registers) are there to support a pair of configurable **timers**. Timer 1 increments its counter once every 80 &micro;s and Timer 2 increments one-fourth as fast -- every 320 &micro;s. Each timer counter is eight bits wide, and whenever either of them overflows and wraps back to zero, a flag value is set to indicate the overflow and that timer's Preset Value is reloaded into the counter. Using this arrangement, Timer 1 could be configured to overflow at a rate anywhere between 49 Hz and 12.5 kHz, while Timer 2 could be configured for 12--3,125 Hz. When either timer overflows, an **interrupt request** is also raised at the hardware level. The AdLib doesn't listen to this signal, however, so there is no way for the host system to know about these timer events without resorting to polling.
 
 The **Timer 1/2 Preset Value** registers control the counter value that is reloaded during each overflow, which influences the resulting overflow rate -- higher values produce more frequent overflows. The **Timer 1/2 Mask** settings control whether the chip raises an interrupt when that particular timer overflows. The **Timer 1/2 Enable** settings pause or unpause counting for that timer. If an interrupt has previously occurred, the **Interrupt Reset** command will acknowledge it and reset all flags in preparation for a subsequent interrupt request.
 
@@ -428,8 +477,8 @@ The OPL2's tremolo effect is controlled by two parameters. The **AM/Tremolo Dept
 
 Tremolo Depth | Attenuation Range
 --------------|------------------
-0             | 0 &ndash; -1.1 dB
-1             | 0 &ndash; -4.9 dB
+0             | 0 -- -1.1 dB
+1             | 0 -- -4.9 dB
 
 The **AM/Tremolo Enable** parameter on each operator controls whether tremolo should be applied to that operator. Regardless of the depth setting, the tremolo effect runs at 3.7 Hz and every operator's tremolo phase is locked in sync.
 
@@ -446,13 +495,13 @@ The **Vibrato Enable** parameter on each operator controls whether vibrato is en
 
 ### Frequencies, Octaves, and Notes
 
-To control the actual frequency and enablement of the notes played on a channel, four parameters are involved. The first, **Frequency Value** (or "F NUM") is a 10-bit quantity which is split between a full 8-bit register and two bits of another register. Taken together, the Frequency Value can be in the range of 0&ndash;1,023. Another channel parameter, **Octave** (or "BLOCK"), shifts the binary digits in the Frequency Value to the left by a certain number of positions. The Octave value can be any integer between 0 (meaning no shift occurs) up to 7 (shift to the left by seven binary digits). This has the effect of multiplying the Frequency Value by 2<sup>BLOCK</sup>, which also has the effect of moving the note frequency up by one musical octave for every one Octave Value.
+To control the actual frequency and enablement of the notes played on a channel, four parameters are involved. The first, **Frequency Value** (or "F NUM") is a 10-bit quantity which is split between a full 8-bit register and two bits of another register. Taken together, the Frequency Value can be in the range of 0--1,023. Another channel parameter, **Octave** (or "BLOCK"), shifts the binary digits in the Frequency Value to the left by a certain number of positions. The Octave value can be any integer between 0 (meaning no shift occurs) up to 7 (shift to the left by seven binary digits). This has the effect of multiplying the Frequency Value by 2<sup>BLOCK</sup>, which also has the effect of moving the note frequency up by one musical octave for every one Octave Value.
 
-To convert the Frequency and Octave Values into the frequency they represent, the formula **_f_ = _FNUM_ &times; 49,716 &#8725; 2<sup>20 - _BLOCK_</sup>** can be used. Here _f_ is the audible frequency that will be played (in hertz), _FNUM_ is the Frequency Value as programmed into the OPL2's registers, and _BLOCK_ is the Octave Value. The constant 49,716 is the sampling frequency of the AdLib's OPL2.
+To convert the Frequency and Octave Values into the frequency they represent, the formula **_f_ = _FNUM_ &times; 49,716 &frasl; 2<sup>20 - _BLOCK_</sup>** can be used. Here _f_ is the audible frequency that will be played (in hertz), _FNUM_ is the Frequency Value as programmed into the OPL2's registers, and _BLOCK_ is the Octave Value. The constant 49,716 is the sampling frequency of the AdLib's OPL2.
 
-The inverse of this formula is more commonly seen in documentation for AdLib programming: **_FNUM_ = _f_ &times; 2<sup>20 - _BLOCK_</sup> &#8725; 49,716**. The programmer has to do a bit of work here -- not only is it necessary to translate musical note names into frequencies in hertz before even starting the conversion, but they also need to select a value for _BLOCK_ that won't cause _FNUM_ to overflow on high notes, while also providing enough resolution to get accurate tuning on low notes. It's a bit of a delicate trade-off.
+The inverse of this formula is more commonly seen in documentation for AdLib programming: **_FNUM_ = _f_ &times; 2<sup>20 - _BLOCK_</sup> &frasl; 49,716**. The programmer has to do a bit of work here -- not only is it necessary to translate musical note names into frequencies in hertz before even starting the conversion, but they also need to select a value for _BLOCK_ that won't cause _FNUM_ to overflow on high notes, while also providing enough resolution to get accurate tuning on low notes. It's a bit of a delicate trade-off.
 
-{{< note >}}The value chosen for _FNUM_ also interacts with the Note Select (Keyboard Split) parameter, explained below. The programmer should consider how the chosen _FNUM_ value will propagate through this setting to influence the envelope rates.{{< /note >}}
+{{% note %}}The value chosen for _FNUM_ also interacts with the Note Select (Keyboard Split) parameter, explained below. The programmer should consider how the chosen _FNUM_ value will propagate through this setting to influence the envelope rates.{{% /note %}}
 
 Next, each operator has a **Frequency Multiplier Value** which can further manipulate the frequency being played. This is the only parameter that allows the two operators on a channel to run at different frequencies -- all other frequency-control parameters are set at the channel level and apply to both operators in unison.
 
@@ -500,7 +549,7 @@ Feedback Depth | Phase Offset Range
 
 ### Rhythm Mode
 
-**Rhythm Mode Enable** is a chip-wide setting that, when turned on, rewires channels 7&ndash;9 to function as five separate percussion instruments. Channel 7 uses FM mode, combining its two operators to produce a bass drum sound. Channels 8 and 9 both switch to additive mode to independently produce a snare drum, tom-tom, top cymbal, and hi-hat. Channels 1&ndash;6 continue to operate as usual.
+**Rhythm Mode Enable** is a chip-wide setting that, when turned on, rewires channels 7--9 to function as five separate percussion instruments. Channel 7 uses FM mode, combining its two operators to produce a bass drum sound. Channels 8 and 9 both switch to additive mode to independently produce a snare drum, tom-tom, top cymbal, and hi-hat. Channels 1--6 continue to operate as usual.
 
 Since there are five percussion instruments, but they're packed into just three channels, a different mechanism must be used to control their Key-On states. Five bits in register BDh, one per instrument, control the Key-On for each rhythm sound in this mode. The per-operator registers can still be used to tune the sound of each percussion instrument independently, allowing for some degree of customization.
 
@@ -523,7 +572,7 @@ KSL Value | Attenuation
 2         | 1.5 dB/octave
 3         | 6 dB/octave
 
-{{< note >}}These values are defined in a weird order. What can you do.{{< /note >}}
+{{% note %}}These values are defined in a weird order. What can you do.{{% /note %}}
 
 Rather than go on a long-winded explanation of how the math works, suffice it to say that this setting does what it says it does: Each time the frequency (expressed by "BLOCK" and "F NUM") doubles, the effective output of the operator is reduced by the number of decibels in the table. At the highest frequencies and the strongest KSL setting, the amount of adjustment can reach -42 dB.
 
@@ -597,11 +646,11 @@ Whatever the reason, the relatively limited number of channels and the structura
 
 There are no apparent rules that dictate how channels and their instruments are ordered, other than that the assignments generally don't change mid-song.
 
-{{< aside class="fun-fact" >}}
-**&#8544;-&#8544;-&#8544;-&#8544;, &#8547;-&#8547;-&#8544;-&#8544;, &#8548;-&#8547;-&#8544;-&#8544;.**
+{{% aside class="fun-fact" %}}
+**{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}, {{< roman-numeral 4 >}}-{{< roman-numeral 4 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}, {{< roman-numeral 5 >}}-{{< roman-numeral 4 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}.**
 
 A great many Bobby Prince compositions follow a **twelve-bar blues** progression, built on three chords that change in a repeating pattern every twelve measures of the song. The textbook example of this is the title screen music, a rendition of "Tush" by ZZ Top. Once you train yourself to hear it, you'll find it all over his work from _Commander Keen_ to _Duke Nukem 3D_.
-{{< /aside >}}
+{{% /aside %}}
 
 ## The Id Engine Sound Manager
 
@@ -615,7 +664,7 @@ In this document, I will try to straddle the line between how the Sound Manager 
 
 {{< boilerplate/function-cref SetPIT0Value >}}
 
-The {{< lookup/cref SetPIT0Value >}} function configures channel 0 of the system's Programmable Interval Timer (PIT) with the provided counter `value`. This counter value can be thought of as a divisor -- the larger the value, the longer the counter must run during each timing period, and the slower the resulting timer frequency. [The PIT channels count in descending order at a constant rate of 105 &#8725; 88 MHz]({{< relref "pc-speaker-and-timing-functions#a-taste-of-the-programmable-interval-timer" >}}) or 1,193,181.{{< overline >}}81{{< /overline >}} Hz, firing one period of output each time the counter reaches zero, thus the resulting timer frequency for an arbitrary `value` can be determined by **f = 1,193,181.{{< overline >}}81{{< /overline >}} &#8725; `value`**. Each time this timer fires, interrupt vector 8 (also known as IRQ 0) is raised to the processor.
+The {{< lookup/cref SetPIT0Value >}} function configures channel 0 of the system's Programmable Interval Timer (PIT) with the provided counter `value`. This counter value can be thought of as a divisor -- the larger the value, the longer the counter must run during each timing period, and the slower the resulting timer frequency. [The PIT channels count in descending order at a constant rate of 105 &frasl; 88 MHz]({{< relref "pc-speaker-and-timing-functions#a-taste-of-the-programmable-interval-timer" >}}) or 1,193,181.{{< overline >}}81{{< /overline >}} Hz, firing one period of output each time the counter reaches zero, thus the resulting timer frequency for an arbitrary `value` can be determined by **f = 1,193,181.{{< overline >}}81{{< /overline >}} &frasl; `value`**. Each time this timer fires, interrupt vector 8 (also known as IRQ 0) is raised to the processor.
 
 This function is basically identical to `SDL_SetTimer0()`[^SDL_SetTimer0] from Id Software's Sound Manager as used in _Catacomb 3-D_.
 
@@ -663,7 +712,7 @@ void SetInterruptRate(word ints_second)
 }
 ```
 
-There's not much to explain here that wasn't already explained in {{< lookup/cref SetPIT0Value >}}. The only curiosity is the use of the long value 1,192,030 Hz as the dividend in the calculation. As long established, all of the PIT channels run at one-twelfth of the NTSC 315 &#8725; 22 MHz rate, so the expected value here should be rounded to 1,193,182 Hz instead. The difference in rates is 966 parts per million (PPM), which is roughly the equivalent of drifting one second every 15 minutes. Compared to even the cheapest wall clocks available, this accuracy is dismal.
+There's not much to explain here that wasn't already explained in {{< lookup/cref SetPIT0Value >}}. The only curiosity is the use of the long value 1,192,030 Hz as the dividend in the calculation. As long established, all of the PIT channels run at one-twelfth of the NTSC 315 &frasl; 22 MHz rate, so the expected value here should be rounded to 1,193,182 Hz instead. The difference in rates is 966 parts per million (PPM), which is roughly the equivalent of drifting one second every 15 minutes. Compared to even the cheapest wall clocks available, this accuracy is dismal.
 
 I don't know and can't explain why this value was used. Assuming the 14.3 MHz crystals are true to their markings, this value is simply wrong. Regardless, the value survived into _Wolfenstein 3-D_ and later games by Apogee Software and 3D Realms -- Jim Dos&eacute;'s `TS_SetTimer()` function in both _Rise of the Triad_[^rottclock] and _Duke Nukem 3D_[^dukeclock] have identical values in their equivalent functions. I'm thinking perhaps the value was published inaccurately in some seminal text on PC systems programming that these developers consulted -- if you have any insights on this, [please let me know!](mailto:scott@smitelli.com)
 
@@ -736,9 +785,9 @@ The DX register is set to zero, which doesn't appear to be a significant assignm
 
 A busy loop is entered next. As long as {{< lookup/cref profCountPIT >}} is not 0, jump back to the `wait4zero:` label and try again. We just set {{< lookup/cref profCountPIT >}} to -1, so this loop will spin until the timer interrupt fires and increments {{< lookup/cref profCountPIT >}} to 0. As soon as that happens, execution moves onto the next test.
 
-Another busy loop occurs. As long as {{< lookup/cref profCountPIT >}} is not 1, loop back to the `wait4one:` label and try again. We know that {{< lookup/cref profCountPIT >}} just became 0 in the previous loop; that's what permitted it to enter the current loop. The only way for it to become 1 is to wait until the timer ticks again. The use of `loop` is clever -- each time the `loop` instruction executes, it implicitly decrements the CX register. (If CX decrements to zero, `loop` will terminate, but if that happens here the CPU is running wicked fast and the whole profiling methodology becomes invalid.)
+Another busy loop occurs. As long as {{< lookup/cref profCountPIT >}} is not 1, loop back to the `wait4one:` label and try again. We know that {{< lookup/cref profCountPIT >}} just became 0 in the previous loop; that's what permitted it to enter the current loop. The only way for it to become 1 is to wait until the timer interrupt fires again. The use of `loop` is clever -- each time the `loop` instruction executes, it implicitly decrements the CX register. (If CX decrements to zero, `loop` will terminate, but if that happens here the CPU is running wicked fast and the whole profiling methodology becomes invalid.)
 
-Once the timer ticks again and {{< lookup/cref profCountPIT >}} increments to 1, the jump to the `done:` label is taken and execution moves on. But something else has occurred: The timer interrupt handler copies the value in CX to {{< lookup/cref profCountCPU >}} each time it runs. Since CX holds an indication of how many times the busy loop ran, {{< lookup/cref profCountCPU >}} holds this value now too.
+Once the timer fires again and {{< lookup/cref profCountPIT >}} increments to 1, the jump to the `done:` label is taken and execution moves on. But something else has occurred: The timer interrupt handler copies the value in CX to {{< lookup/cref profCountCPU >}} each time it runs. Since CX holds an indication of how many times the busy loop ran, {{< lookup/cref profCountCPU >}} holds this value now too.
 
 More concretely, the value FFFFh - {{< lookup/cref profCountCPU >}} is the number of times the second busy loop ran, and the second busy loop is tightly governed by two consecutive ticks of a 1,000 Hz clock. Therefore FFFFh - {{< lookup/cref profCountCPU >}} is the number of busy loop iterations that occurred in 1/1,000th of a second (one millisecond). If the most recently measured value is larger than `loops_ms`, that becomes its new value. The highest (i.e. fastest-performing) value for `loops_ms` after ten trials is the final result.
 
@@ -827,13 +876,13 @@ The `out` instruction sends the value in `addr` to I/O port address 388h, which 
 
 The six `in` instructions repeatedly read the AdLib's **status register** at I/O port address 388h into the AL register. The actual value read is irrelevant; the OPL2 chip in the AdLib requires recovery time of about 3.4 &micro;s after writing to the address register before another write can occur, and these instructions provide that delay.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Cycle Pincher**
 
 According to the OPL2 docs, the register address latches its value, meaning that if the programmer intends to perform multiple writes to the same register, it is not necessary to re-send the address byte. The AdLib's design doesn't include anything that would obviously prevent this from working, so it might have been possible to redesign things to save a few cycles if it was known ahead of time that multiple writes to the same register were planned.
 
 Is the added complexity to do that worth it? Eh, maybe not.
-{{< /aside >}}
+{{% /aside %}}
 
 ```c
     asm mov   dx,0x0389
@@ -887,19 +936,19 @@ Another `out` instruction follows, this time sending the value in `data` to I/O 
 
 That's 35 `in`s from the AdLib status register at I/O port address 388h, with the returned values in AL being ignored, generating the 23.5 &micro;s recovery time required by the OPL2 chip. Interrupts are enabled here, so this code could very well take longer to execute due to those interruptions, but the OPL2 is guaranteed to have recovered from the data write by the time this function returns.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Math Hat**
 
 It's not readily apparent how the value of 35 `in`s was selected to delay for 23.5 &micro;s, or how six `in`s earlier achieved 3.4 &micro;s. The speed of the `in` instruction is governed by the bus frequency, not the CPU frequency (although historically they both ran at the same speed until CPUs in PC clones became too fast). The highest frequency that any AT/ISA bus is _supposed_ to go is 8 MHz. My best guess is that these figures were based around an 8 MHz bus that takes 5 clock cycles to write each I/O byte.
 
 The math suggests that it should actually need _38_ `in` instructions to generate the required delay instead of 35, but this code has been working for over thirty years and I'm in no position to second-guess it.
-{{< /aside >}}
+{{% /aside %}}
 
 Based on some commented-out blocks in the original code,[^alOut] it appears the {{< lookup/cref wallclock10us >}} delay was originally intended to produce the address write delay, and {{< lookup/cref wallclock25us >}} was designed for the data write delay. Evidently that approach was abandoned in favor of just whacking the bus a fixed number of times.
 
 {{< boilerplate/function-cref AdLibService >}}
 
-The {{< lookup/cref AdLibService >}} function streams chunks of music data to the AdLib hardware at the appropriate time. This function is called by the {{< lookup/cref TimerInterruptService >}} function at a rate of 560 Hz if the AdLib hardware has been activated. Each execution of this function is called a music **tick**.
+The {{< lookup/cref AdLibService >}} function streams chunks of music data to the AdLib hardware at the appropriate time. This function is called by the {{< lookup/cref TimerInterruptService >}} function at a rate of 560 Hz if the AdLib hardware has been activated. Each execution of this function is called a **music tick**.
 
 As documented in the [IMF file format]({{< relref "adlib-music-format#music-file-format" >}}) section, the music data contains a stream of raw AdLib register/data byte pairs interleaved with 16-bit delay values. The delay is measured in music ticks.
 
@@ -939,7 +988,7 @@ This `while` loop operates on two conditions:
 
 As long as both conditions are true, the AdLib address/data pair is read from {{< lookup/cref musicDataPtr >}} into the local `chunk` variable and the source pointer is advanced. Each of these is an 8-bit value, but they are read and handled as a 16-bit chunk here.
 
-{{< lookup/cref musicDataPtr >}} is read and advanced again, this time to get the delay value that accompanies the music chunk that was just read. This is added to the current value of {{< lookup/cref musicTickCount >}} to determine the deadline tick timestamp for the next iteration of this loop: {{< lookup/cref musicNextDue >}}. The delay value is often zero, which will cause another iteration of this `while` loop before the current music tick completes.
+{{< lookup/cref musicDataPtr >}} is read and advanced again, this time to get the delay value that accompanies the music chunk that was just read. This is added to the current value of {{< lookup/cref musicTickCount >}} to determine the deadline for the next iteration of this loop: {{< lookup/cref musicNextDue >}}. The delay value is often zero, which will cause another iteration of this `while` loop before the current music tick completes.
 
 Following this, a brief dabble of assembly splits the 16-bit `chunk` variable into its 8-bit components, `chunkaddr` and `chunkdata`. These are sent to the AdLib hardware by the call to {{< lookup/cref SetAdLibRegister >}}.
 
@@ -947,11 +996,11 @@ Following this, a brief dabble of assembly splits the 16-bit `chunk` variable in
 
 When there are no more chunks to be sent in the current tick, {{< lookup/cref musicTickCount >}} is incremented to track the passage of time.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **I'm Bored!**
 
 Don't worry about {{< lookup/cref musicTickCount >}} or any related values overflowing. They're 32 bits wide, and would take something like 88 days of uninterrupted playback to wrap back to zero.
-{{< /aside >}}
+{{% /aside %}}
 
 ```c
     if (musicDataLeft == 0) {
@@ -1050,7 +1099,7 @@ xxxxxxx1            | Enable T1 START
 
 Before moving on, the timer configuration is brought back to its initial state. The same {{< lookup/cref SetAdLibRegister >}} writes from the start of this function are performed, causing the same result (deactivating both timers).
 
-To actually determine the presence of an AdLib, the two sampled timer status bytes must be checked. All of the _defined_ status bits (bits 7&ndash;5) in `oplstatus1` are expected to be zero:
+To actually determine the presence of an AdLib, the two sampled timer status bytes must be checked. All of the _defined_ status bits (bits 7--5) in `oplstatus1` are expected to be zero:
 
 Bit Pattern (= 0h) | Interpretation
 -------------------|---------------
@@ -1089,7 +1138,7 @@ The OPL2's register space spans from addresses 1h to F5h, with some gaps in a fe
 
 {{< boilerplate/function-cref TimerInterruptService >}}
 
-The {{< lookup/cref TimerInterruptService >}} function handles interrupts that occur on interrupt vector 8 (IRQ 0), which is wired to channel 0 of the system's Programmable Interval Timer. The timer channel ticks at a rate of 560 Hz (if the AdLib hardware is enabled) or 140 Hz (if the AdLib hardware is not enabled). Each time the timer ticks, this function is called to update the sounds being played by the PC speaker and/or the AdLib.
+The {{< lookup/cref TimerInterruptService >}} function handles interrupts that occur on interrupt vector 8 (IRQ 0), which is wired to channel 0 of the system's Programmable Interval Timer. The timer interrupt fires at a rate of 560 Hz (if the AdLib hardware is enabled) or 140 Hz (if the AdLib hardware is not enabled). Each time the interrupt fires, this function is called to update the sounds being played by the PC speaker and/or the AdLib.
 
 Interrupts enable a primitive form of multitasking. Regardless of what is happening elsewhere in the program -- even if execution is stuck in an infinite loop somewhere -- timer interrupts will still occur and this function will continue running periodically as requested.
 
@@ -1125,7 +1174,7 @@ Execution takes one of two paths here. If {{< lookup/cref isAdLibServiceRunning 
 
 If {{< lookup/cref isAdLibServiceRunning >}} wasn't true, we know we're already running at the PC speaker's 140 Hz rate and the AdLib service should not be called at all. In that case, simply call {{< lookup/cref PCSpeakerService >}} unconditionally.
 
-{{< note >}}{{< lookup/cref PCSpeakerService >}} is also responsible for maintaining the game tick counter, which governs the speed of the entire game.{{< /note >}}
+{{% note %}}{{< lookup/cref PCSpeakerService >}} is also responsible for maintaining the game tick counter, which governs the speed of the entire game.{{% /note %}}
 
 Regardless of the path taken through this code, the `count` value is incremented. Because this is only 16 bits wide, it overflows back to zero every few minutes. This is not a problem in practice, because modulo division by four continues to work as expected in both cases (`65536 % 4 == 0 % 4`).
 
@@ -1143,7 +1192,7 @@ done:
 }
 ```
 
-{{< note >}}Be careful with {{< lookup/cref timerTickCount >}} and {{< lookup/cref pit0Value >}} here; they are both declared as `dword`, but here they are explicitly accessed and treated as 16-bit values. They behave as `word`s in all contexts where they appear.{{< /note >}}
+{{% note %}}Be careful with {{< lookup/cref timerTickCount >}} and {{< lookup/cref pit0Value >}} here; they are both declared as `dword`, but here they are explicitly accessed and treated as 16-bit values. They behave as `word`s in all contexts where they appear.{{% /note %}}
 
 The remaining code drops into assembly for some fun with the CPU flags. {{< lookup/cref timerTickCount >}} and {{< lookup/cref pit0Value >}} are added together, and the result is written back to {{< lookup/cref timerTickCount >}}. This essentially inverts the operation of the PIT. Recall that PIT channel 0 starts at the configured {{< lookup/cref pit0Value >}}, decrements at a fixed reference rate until reaching zero, then this function is called. By adding {{< lookup/cref pit0Value >}} to an accumulator variable each time this function runs, the total number of fixed reference ticks over time can be obtained.
 
@@ -1284,11 +1333,11 @@ If {{< lookup/cref skipDetectAdLib >}} is false, which is always the case, {{< l
 
 The function ends with a _Cosmo_-specific modification: {{< lookup/cref DetectAdLib >}} is called a _second_ time, and the result is stored in a _second_ variable named {{< lookup/cref isAdLibPresent >}}. This will (or should, anyway) hold the same value that {{< lookup/cref isAdLibPresentPrivate >}} does. The difference between the two is that the private variable has internal linkage, and thus isn't visible to anything outside of the C file where it is declared, and the non-private variable can be seen everywhere.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **Whatever works.**
 
 If I had to guess about why this code ended up with two AdLib detection calls saved in two variables... I'd say having the first call to {{< lookup/cref DetectAdLib >}} wrapped in a conditional either confused or scared the author, who didn't fully understand the different paths the code could take. I'm sure they knew they could just chop `static` off the variable declaration and call it a day, but they weren't sure that the detection (and thus the assignment) actually occurred in every circumstance.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< boilerplate/function-cref StopAdLib >}}
 
@@ -1320,9 +1369,9 @@ The function begins with a safety check: If {{< lookup/cref isAdLibStarted >}} i
 
 Otherwise, {{< lookup/cref StopAdLibPlayback >}} is called to silence any notes that may be actively playing through the AdLib's output.
 
-The assembly `pushf` instruction pushes the current state of the CPU flags onto the stack. (Of particular importance is the Interrupt Flag.) Interrupts are disabled with the {{< lookup/cref disable >}} function, which prevents any timer ticks from interfering with the AdLib while we're trying to disarm it.
+The assembly `pushf` instruction pushes the current state of the CPU flags onto the stack. (Of particular importance is the Interrupt Flag.) Interrupts are disabled with the {{< lookup/cref disable >}} function, which prevents any timer interrupts from interfering with the AdLib while we're trying to disarm it.
 
-{{< lookup/cref name="SetPIT0Value" text="SetPIT0Value(0)" >}} writes the value 0 to the Programmable Interval Timer's channel 0, which has the effect of setting the value to _65,536_. This is the lowest frequency the timer can produce given the size of its counter register, and as explained [elsewhere on this page](#TimerInterruptService) the resulting tick rate is the PC's power-on default of 18.2 Hz.
+{{< lookup/cref name="SetPIT0Value" text="SetPIT0Value(0)" >}} writes the value 0 to the Programmable Interval Timer's channel 0, which has the effect of setting the value to _65,536_. This is the lowest frequency the timer can produce given the size of its counter register, and as explained [elsewhere on this page](#TimerInterruptService) the resulting interrupt rate is the PC's power-on default of 18.2 Hz.
 
 {{< lookup/cref setvect >}} restores the interrupt vector 8 handler to {{< lookup/cref savedInt8 >}}, which reinstalls the timer interrupt handler that was present when {{< lookup/cref StartAdLib >}} last ran.
 
@@ -1375,13 +1424,13 @@ First, {{< lookup/cref name="SetAdLibRegister" text="SetAdLibRegister(0xbd, 0)" 
 
 Next, a `for` loop calls {{< lookup/cref SetAdLibRegister >}} on registers B1h through BAh, setting all their values to zero. This loop starts on channel _2_ (which might be desired, as channel 1 is earmarked for sound effects) and ends with two nonexistent registers above channel 9.
 
-OPL2 registers in the BXh range control Key-On, and _also_ control the coarse-grained Octave Value and the highest two bits of the Frequency Value. By setting all of these bits to zero, it's not immediately silencing the notes -- it's forcing each operator's [envelope](#envelope-rates-and-levels) to jump to its release stage while simultaneously setting the sine generator [frequencies](#frequencies-octaves-and-notes) to low -- but not necessarily zero -- values due to the bits still set in the AXh registers. The combined Frequency Value could still be as high as 255, which in this octave can produce a tone anywhere in the range of 0&ndash;12 Hz for as long as it takes the release stage of the envelope to complete. This is the reason why, on a lot of Id games, stopping the music or quitting the game would sometimes leave a low rumbling or almost flatulent tone playing for a brief time.
+OPL2 registers in the BXh range control Key-On, and _also_ control the coarse-grained Octave Value and the highest two bits of the Frequency Value. By setting all of these bits to zero, it's not immediately silencing the notes -- it's forcing each operator's [envelope](#envelope-rates-and-levels) to jump to its release stage while simultaneously setting the sine generator [frequencies](#frequencies-octaves-and-notes) to low -- but not necessarily zero -- values due to the bits still set in the AXh registers. The combined Frequency Value could still be as high as 255, which in this octave can produce a tone anywhere in the range of 0--12 Hz for as long as it takes the release stage of the envelope to complete. This is the reason why, on a lot of Id games, stopping the music or quitting the game would sometimes leave a low rumbling or almost flatulent tone playing for a brief time.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **If you're gonna do it, do the hell out of it.**
 
 To thoroughly silence the AdLib, in addition to the steps taken here, one would need to either zero out _all_ of the Frequency Value bits, or kick the Release Rate on all of the operators up to 15. Both of these would stop the output in very short order.
-{{< /aside >}}
+{{% /aside %}}
 
 Finally, {{< lookup/cref enableAdLib >}} is set false to prevent the AdLib service from sending any additional music chunks to the hardware, thus preventing unwanted reactivation of any of the notes that were just turned off.
 
@@ -1485,13 +1534,13 @@ void StartGameMusic(word music_num)
 
 This function returns early if {{< lookup/cref IsAdLibAbsent >}} is true.
 
-`music_num` is a numeric music identifier in the range of 0&ndash;18, which is passed to {{< lookup/cref LoadMusicData >}} to specify which piece of music should be read from disk. The music data will be loaded into a destination pointer, specified by the second argument to this function. Here it is the {{< lookup/cref miscData >}} memory block, 5,000 bytes from its start. This offset is needed because the first 5,000 bytes of {{< lookup/cref miscData >}} are used during gameplay to store any [demo data]({{< relref "demo-functions" >}}) that may be in use, leaving 30,000 bytes available for the {{< lookup/cref Music >}} structure used here.
+`music_num` is a numeric music identifier in the range of 0--18, which is passed to {{< lookup/cref LoadMusicData >}} to specify which piece of music should be read from disk. The music data will be loaded into a destination pointer, specified by the second argument to this function. Here it is the {{< lookup/cref miscData >}} memory block, 5,000 bytes from its start. This offset is needed because the first 5,000 bytes of {{< lookup/cref miscData >}} are used during gameplay to store any [demo data]({{< relref "demo-functions" >}}) that may be in use, leaving 30,000 bytes available for the {{< lookup/cref Music >}} structure used here.
 
 Once the music data has been loaded into the destination memory, a {{< lookup/cref Music >}} pointer to the data is saved in {{< lookup/cref activeMusic >}}.
 
 {{< lookup/cref isMusicEnabled >}} is the user-controllable preference indicating whether or not music is configured to play. If it is, {{< lookup/cref SwitchMusic >}} is called with {{< lookup/cref activeMusic >}} as its argument, setting the music up to play and enabling the AdLib service.
 
-This function returns immediately, and the new music will begin playing from the beginning the next time the system timer ticks and runs the AdLib service.
+This function returns immediately, and the new music will begin playing from the beginning the next time the system timer interrupt fires and runs the AdLib service.
 
 {{< boilerplate/function-cref StartMenuMusic >}}
 

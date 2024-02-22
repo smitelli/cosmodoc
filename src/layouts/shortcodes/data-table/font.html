@@ -1,5 +1,21 @@
 {{/*
     Insert the data table for the game font.
+
+    site.Data.font:
+        table:
+            - index: 0
+              ascii_code: null
+              c_character: '\\x16'
+              character: Solid Black
+              literal: false
+              offset_bytes: 0
+            - index: 1
+              ascii_code: null
+              c_character: '\\x17'
+              character: Solid Black
+              literal: false
+              offset_bytes: 40
+            - ...
 */}}
 
 <table>
@@ -10,19 +26,31 @@
         <th>Display Glyph</th>
         <th>C Character</th>
     </tr>
-    {{ range $.Site.Data.font.table }}
+    {{ range site.Data.font.table }}
         <tr>
             <th>{{ .index }}</th>
-            <td>{{ printf "%04xh" (int .offset_bytes) }}</td>
-            <td>{{ with .ascii_code }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ int .offset_bytes | printf "%04xh" }}</td>
             <td>
-                {{ if .literal }}
-                    <pre style="display:inline">{{ .character }}</pre>
+                {{ with .ascii_code }}
+                    {{ . }}
                 {{ else }}
-                    {{ .character | markdownify }}
+                    &mdash;
                 {{ end }}
             </td>
-            <td>{{ with .c_character }}<pre style="display:inline">{{ . }}</pre>{{ else }}&mdash;{{ end }}</td>
+            <td>
+                {{ if .literal }}
+                    <pre style="display: inline">{{ .character }}</pre>
+                {{ else }}
+                    {{ .character }}
+                {{ end }}
+            </td>
+            <td>
+                {{ with .c_character }}
+                    <pre style="display: inline">{{ . }}</pre>
+                {{ else }}
+                    &mdash;
+                {{ end }}
+            </td>
         </tr>
     {{ end }}
 </table>

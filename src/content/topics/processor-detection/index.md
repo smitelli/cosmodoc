@@ -12,13 +12,13 @@ By early 1992, there were a few different PC processors available on the market.
 
 The Intel 286 was a big improvement over the 8088, and not just due to clock speed increases. It had a 24-bit address bus, supporting 16 MiB of memory instead of the previous limit of 1 MiB. Additions to the instruction encodings were particularly important to compilers of the era: `enter`, `leave`, and support for immediate operands on `imul`, `push`, and bit shifts were all put to frequent use. The game was compiled with the expectation that these instruction encodings would be available, making it unable to run on an 8088.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **If we're being pedantic...**
 
 These instructions were actually added in the Intel 80186, which never shipped in any IBM PC or mainstream compatible computer.
 
 The 286's other big selling point was the addition of **protected mode** (to replace the **real mode** used by DOS programs), which didn't see much adoption before it was improved for the 386.
-{{< /aside >}}
+{{% /aside %}}
 
 At the time, there was no formal interface a program could use to query the CPU type installed in a system. The conventional way to do it was to try "unusual stuff" and see how the processor responded -- different models handled these cases in different ways.
 
@@ -83,7 +83,7 @@ As soon as the zero is written to FLAGS, the flag state is pushed onto the stack
         mov   dl,CPU_TYPE_80286
 ```
 
-Prior to the 286, bits 12&ndash;15 of the FLAGS register were undefined and conventionally always held a 1 value. Even after explicitly popping a zero value into the flags, these bits will still hold 1.
+Prior to the 286, bits 12--15 of the FLAGS register were undefined and conventionally always held a 1 value. Even after explicitly popping a zero value into the flags, these bits will still hold 1.
 
 If the high four bits of the flags are all 1 (F000h) after being explicitly zeroed, the CPU cannot be a 286 or a 386, so jump to the [tests for lesser processors]({{< relref "#18688-test" >}}). Otherwise, update the DL register with the current status of the test -- the CPU is at least a 286. Fall through to see if it might be a 386.
 

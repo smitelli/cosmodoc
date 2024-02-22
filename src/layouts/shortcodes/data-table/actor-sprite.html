@@ -1,32 +1,53 @@
 {{/*
     Insert the data table for actor sprites.
+
+    site.Data.actor_sprite:
+        table: [
+            [
+                - sprite_type: 2  # first sprite, first frame
+                  sprite_frame: 0
+                  frame_offset_bytes: 1920
+                  height_tiles: 2
+                  width_tiles: 4
+                - sprite_type: 2  # first sprite, second frame
+                  sprite_frame: 1
+                  frame_offset_bytes: 2240
+                  height_tiles: 4
+                  width_tiles: 4
+            ],
+            [ ... ]  # second sprite
+        ]
 */}}
 
-
-{{ $maxFrames := 15 }}
+{{ $max_frames := 0 }}
+{{ range site.Data.actor_sprite.table }}
+    {{ $max_frames = $max_frames | math.Max (len .) }}
+{{ end }}
 
 <table>
-    {{ range $index, $element := $.Site.Data.actor_sprite.table }}
-        {{ if modBool $index $.Site.Params.dataTableHeaderFreq }}
-            <tr>
-                <th>Sprite Type</th>
-                <th>Frames</th>
-                <th colspan="{{ $maxFrames }}">Width&times;Height of Each Frame (0-{{ sub $maxFrames 1 }})</th>
-                <th>Description</th>
-            </tr>
+    {{ range $i, $_ := site.Data.actor_sprite.table }}
+        {{ $n_used := len . }}
+        {{ $n_free := sub $max_frames $n_used }}
+        {{ $frame0 := index . 0 }}
+
+        {{ if modBool $i site.Params.dataTableHeaderFreq }}
+        <tr>
+            <th>Sprite Type</th>
+            <th>Frames</th>
+            <th colspan="{{ $max_frames }}">Width&times;Height of Each Frame (0&ndash;{{ sub $max_frames 1 }})</th>
+            <th>Description</th>
+        </tr>
         {{ end }}
         <tr>
-            {{ $numUsed := len . }}
-            {{ $numFree := sub $maxFrames $numUsed }}
-            <th>{{ (index . 0).sprite_type }}</th>
-            <td>{{ $numUsed }}</td>
+            <th>{{ $frame0.sprite_type }}</th>
+            <td>{{ $n_used }}</td>
             {{ range . }}
                 <td>{{ .width_tiles }}&times;{{ .height_tiles }}</td>
             {{ end }}
-            {{ with $numFree }}
+            {{ with $n_free }}
                 <td colspan="{{ . }}"></td>
             {{ end }}
-            <td>{{ index $.Site.Data.description.actor_sprite (int (index . 0).sprite_type) | markdownify }}</td>
+            <td>{{ index site.Data.description.actor_sprite (int $frame0.sprite_type) | markdownify }}</td>
         </tr>
     {{ end }}
 </table>

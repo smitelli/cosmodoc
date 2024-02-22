@@ -43,13 +43,13 @@ The executable file for episode three is almost twice as large as the executable
 
 COSMO1 and COSMO2 contain the signature `LZ91` in the EXE header, while COSMO3 does not. This is a pretty reliable indication that the executable files for the first two episodes were compressed using a utility called [LZEXE]({{< relref "lzexe" >}}), and the third episode was not.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **Why is the third episode different?**
 
 It's not clear why the third episode was left uncompressed. It's possible there was a bug or limitation in LZEXE that prevented that particular episode from being compressed. Perhaps there was a late change or bug fix in that episode and the compression step was overlooked during the rush.
 
 Given that episode three has the smallest group files of the series, it could've been a simple case of the episode fitting on the installation disks without further compression, so it wasn't attempted in the first place.
-{{< /aside >}}
+{{% /aside %}}
 
 After removing the LZEXE compression, the file sizes are:
 
@@ -83,7 +83,7 @@ Offset (Bytes) | Size  | COSMO1    | COSMO2    | COSMO3    | Description
 
 The differences between the three EXE headers are for predictable and benign reasons. The total number of pages, number of bytes in the last page, number of relocation table entries, header size, and SS value are all different because the executable files all have different amounts of code and data in them.
 
-COSMO3 has a few extra header bytes that precede the relocation table. This appears to be data inserted by Borland TLINK. Since the LZEXE &rarr; UNLZEXE translation of COSMO1 and COSMO2 stripped these values out, they are almost certainly not important to the actual function of the program.
+COSMO3 has a few extra header bytes that precede the relocation table. This appears to be data inserted by Borland TLINK. Since the LZEXE &rightarrow; UNLZEXE translation of COSMO1 and COSMO2 stripped these values out, they are almost certainly not important to the actual function of the program.
 
 Offset (Bytes) | Size | COSMO3 | Description
 ---------------|------|--------|------------
@@ -112,13 +112,13 @@ When DOS loads an executable into memory, it does so at some arbitrary address. 
 
 The relocation table holds a list of positions in the EXE file where such an absolute address appears. The DOS loader visits each position in the file, "fixes up" the address stored there by adding the real starting address to it, and saves the result in the executable's memory image. By patching the every absolute address in the EXE file, the entire program image can be installed at any memory address and still refer to positions within itself in a consistent and correct way.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **EXE vs. COM**
 
 Relocation is not a problem in the older, simpler COM file format. In that model, DOS picks a suitable segment address where the program is to be loaded, and both code and data get stored there without modification. Since the segment address never changes, the program doesn't need to worry about what it is actually set to, and "offset-only" absolute addressing works without any fixups.
 
 All this has the rather unfortunate side effect that the program's code and data -- *combined* -- have to be smaller than 64 KiB.
-{{< /aside >}}
+{{% /aside %}}
 
 The number of relocation entries is loosely correlated with the overall size of each executable:
 
@@ -199,9 +199,7 @@ This code occupies 14,372 bytes in each executable file. The remaining space dir
 
 The final section of the executable file is the static data segment. When the program begins executing, the CPU's DS register is set to point to this area and it does not change over the course of execution.
 
-{{< note >}}
-If we're being pedantic, the DS register *does* change sometimes during data movement operations and the like, but it is always set back to the static data area once the work is done.
-{{< /note >}}
+{{% note %}}If we're being pedantic, the DS register _does_ change sometimes during data movement operations and the like, but it is always set back to the static data area once the work is done.{{% /note %}}
 
 One of the first values in the data is an interesting string:
 
@@ -223,7 +221,7 @@ The majority of the data in here is human-readable text for the menus and UI. Th
 
 Following the game data, there is 1,191 bytes of static data for the C library functions whose purpose is opaque.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 Some of the more interesting string values in the C library include:
 
 * `.$$$` (a temporary file extension?)
@@ -233,7 +231,7 @@ Some of the more interesting string values in the C library include:
 * `COMPAQ`
 
 I do not want to think about what it needs "COMPAQ" for.
-{{< /aside >}}
+{{% /aside %}}
 
 ## And Beyond
 

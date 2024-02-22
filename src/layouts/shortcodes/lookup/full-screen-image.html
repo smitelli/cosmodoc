@@ -2,10 +2,18 @@
     Takes one numeric argument, which is interpreted as an full screen image ID.
     Returns a formatted string containing the full screen image's description.
 
+    Inline function; whitespace is critically sensitive here!
+
     Positional parameters:
         0 (required): Numeric full screen image ID.
 */}}
 
+{{- $out := index site.Data.description.full_screen_image (.Get 0) }}
+
+{{- if not $out }}
+    {{- warnf "No definition for %s %v" .Name .Params }}
+{{- end }}
+
 {{- "" -}}
-{{ index $.Site.Data.description.full_screen_image (int ($.Get 0)) | markdownify }}
+{{ $out | markdownify }}
 {{- "" -}}

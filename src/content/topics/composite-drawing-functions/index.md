@@ -105,13 +105,13 @@ The value for `mode` is considered next, and `drawfn` is set to either {{< looku
 
 A bit of an abuse of `goto` is used to simulate something like a `switch` statement, with all other cases falling through. The labeled code appears later.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Really? Really.**
 
 I stared at the disassembly of this function for a good long while trying to figure out what I missed -- surely this must've been a `switch` and not a bunch of `goto`s, right?
 
 Nope. Every kind of `switch` construction compiles into some variant of machine code where `mode` goes into the AX register, and that's not what happens here. This _had_ to be a bunch of `goto`s -- there's no other way to make the compiler do what it did.
-{{< /aside >}}
+{{% /aside %}}
 
 ```c
     y = (y_origin - height) + 1;
@@ -275,9 +275,7 @@ Each of the local variables here have the same purpose as those in {{< lookup/cr
 
 This function employs a bit of a memory-saving hack, which somewhat limits the places where this function can be called. The {{< lookup/cref isCartoonDataLoaded >}} variable tracks whether the memory contains cartoon data already and, if not, the {{< lookup/cref LoadCartoonData >}} function reads the [group file]({{< relref "group-file-format" >}}) entry named `CARTOON.MNI`.
 
-{{< aside class="note" >}}
-**Note:** `isCartoonDataLoaded` is explicitly compared against `1` in the disassembly, indicating that it was most likely an integer variable in the original code. I made it a boolean to make its intention clear, but it still requires an explicit compare against `true` to keep the original behavior.
-{{< /aside >}}
+{{% note %}}`isCartoonDataLoaded` is explicitly compared against `1` in the disassembly, indicating that it was most likely an integer variable in the original code. I made it a boolean to make its intention clear, but it still requires an explicit compare against `true` to keep the original behavior.{{% /note %}}
 
 {{< lookup/cref LoadCartoonData >}} loads the cartoon data from disk and stores it in the {{< lookup/cref mapData >}} variable. As a consequence of this, any map data held there is overwritten. Due to this memory-sharing, cartoons can only be shown in contexts where the map data is not being used (i.e. in the main menu).
 
@@ -356,7 +354,7 @@ There is no `drawfn` defined for either {{< lookup/cref name="DRAW_MODE" text="D
 
 ```c
     if (mode != DRAW_MODE_ABSOLUTE && (
-        playerPushFrame == PLAYER_HIDDEN ||
+        playerPushForceFrame == PLAYER_HIDDEN ||
         activeTransporter != 0 ||
         playerHurtCooldown % 2 != 0 ||
         blockActionCmds
@@ -365,7 +363,7 @@ There is no `drawfn` defined for either {{< lookup/cref name="DRAW_MODE" text="D
 
 Some special handling is necessary for the player that is not present for any other sprite type. If the draw mode is {{< lookup/cref name="DRAW_MODE" text="DRAW_MODE_ABSOLUTE" >}}, always proceed with drawing. This is generally used in menus, and it would be undesirable for menu decoration to sometimes not appear because of game state. Otherwise, a few conditions could cause an early return, leading to no player being drawn:
 
-* {{< lookup/cref playerPushFrame >}} is set to {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}}. This happens when the player is interacting with pipe systems.
+* {{< lookup/cref playerPushForceFrame >}} is set to {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}}. This happens when the player is interacting with pipe systems.
 * {{< lookup/cref activeTransporter >}} is nonzero. This happens when the player is in the process of disappearing in one transporter and reappearing in another.
 * {{< lookup/cref playerHurtCooldown >}} is odd. This happens for a short duration after the player has been hurt, and results in the player sprite flashing approximately 20 times.
 * {{< lookup/cref blockActionCmds >}} is true. This happens when the player is "removed" from the map, like when interacting with a {{< lookup/actor 152 >}}, {{< lookup/actor type=149 strip=true >}}, {{< lookup/actor 186 >}}, or the {{< lookup/actor type=247 strip=true >}}.

@@ -1,5 +1,8 @@
 ################################################################################
 # C STANDARD LIBRARY                                                           #
+#                                                                              #
+# Note: Suffix function text with "()" to include that entry in the function   #
+# index page.                                                                  #
 ################################################################################
 
 EXIT_SUCCESS:
@@ -55,7 +58,7 @@ fputc:
 fread:
   text: fread()
   def: size_t fread(void *ptr, size_t size, size_t n, FILE *stream);
-  desc: Reads up to `n` objects into the array `ptr` from the given input stream `stream` as if by calling fgetc() `size` times for each object, and storing the results, in the order obtained, into the successive positions of `ptr`, which is reinterpreted as an array of unsigned char. Returns the number of objects read successfully.
+  desc: Reads up to `n` objects into the array `ptr` from the given input stream `stream` as if by calling {{< lookup/cref fgetc >}} `size` times for each object, and storing the results, in the order obtained, into the successive positions of `ptr`, which is reinterpreted as an array of unsigned char. Returns the number of objects read successfully.
   ref: https://en.cppreference.com/w/c/io/fread
 fscanf:
   text: fscanf()
@@ -70,7 +73,7 @@ fseek:
 fwrite:
   text: fwrite()
   def: size_t fwrite(const void *ptr, size_t size, size_t n, FILE *stream);
-  desc: Writes `n` of objects from the given array `ptr` to the output stream `stream`. The objects are written as if by reinterpreting each object as an array of unsigned char and calling fputc() `size` times for each object to write those unsigned chars into `stream`, in order.
+  desc: Writes `n` of objects from the given array `ptr` to the output stream `stream`. The objects are written as if by reinterpreting each object as an array of unsigned char and calling {{< lookup/cref fputc >}} `size` times for each object to write those unsigned chars into `stream`, in order.
   ref: https://en.cppreference.com/w/c/io/fwrite
 malloc:
   text: malloc()
@@ -120,10 +123,14 @@ strncmp:
 
 ################################################################################
 # BORLAND STANDARD LIBRARY                                                     #
+#                                                                              #
+# Note: Suffix function text with "()" to include that entry in the function   #
+# index page.                                                                  #
 ################################################################################
 
 COLORS:
   text: enum COLORS
+  borland_c: true
   def: |-
     #define BLINK 128
     enum COLORS {
@@ -136,6 +143,7 @@ COLORS:
   ref: /topics/borland-c-nonstandard-library/#COLORS
 MK_FP:
   text: MK_FP()
+  borland_c: true
   def: |-
     #define MK_FP(seg, ofs) \
         ((void far *) (((unsigned long)(seg) << 16) | (unsigned)(ofs)))
@@ -143,6 +151,7 @@ MK_FP:
   ref: /topics/borland-c-nonstandard-library/#MK_FP
 REGS:
   text: union REGS
+  borland_c: true
   def: |-
     union REGS {
         struct WORDREGS x;
@@ -152,112 +161,136 @@ REGS:
   ref: /topics/borland-c-nonstandard-library/#REGS
 coreleft:
   text: coreleft()
+  borland_c: true
   def: unsigned long coreleft(void);
   desc: Returns a measure of RAM not in use.
   ref: /topics/borland-c-nonstandard-library/#coreleft
 disable:
   text: disable()
+  borland_c: true
   def: void disable(void);
   desc: Disables hardware interrupts.
   ref: /topics/borland-c-nonstandard-library/#disable
 enable:
   text: enable()
+  borland_c: true
   def: void enable(void);
   desc: Enables hardware interrupts, allowing any device interrupts to occur.
   ref: /topics/borland-c-nonstandard-library/#enable
 farmalloc:
   text: farmalloc()
+  borland_c: true
   def: void far *farmalloc(unsigned long nbytes);
   desc: Allocates a block of memory `nbytes` bytes long from the far heap.
   ref: /topics/borland-c-nonstandard-library/#farmalloc
 filelength:
   text: filelength()
+  borland_c: true
   def: long filelength(int handle);
   desc: Returns the length (in bytes) of the file associated with `handle`.
   ref: /topics/borland-c-nonstandard-library/#filelength
 fileno:
   text: fileno()
+  borland_c: true
   def: '#define fileno(stream) ((stream)->fd)'
   desc: Returns the file handle for the given stream.
   ref: /topics/borland-c-nonstandard-library/#fileno
 getch:
   text: getch()
+  borland_c: true
   def: int getch(void);
   desc: Reads a single character directly from the console (keyboard), without echoing to the screen.
   ref: /topics/borland-c-nonstandard-library/#getch
 getvect:
   text: getvect()
+  borland_c: true
   def: void interrupt (*getvect(int interruptno))();
   desc: Reads the value of the interrupt vector given by `interruptno` and returns that value as a far pointer to an interrupt function.
   ref: /topics/borland-c-nonstandard-library/#getvect
 getw:
   text: getw()
+  borland_c: true
   def: int getw(FILE *stream);
   desc: Returns the next integer (machine word) in the named input stream. It assumes no special alignment in the file.
   ref: /topics/borland-c-nonstandard-library/#getw
 inportb:
   text: inportb()
+  borland_c: true
   def: unsigned char inportb(int portid);
   desc: Reads a byte from the hardware I/O port specified by `portid`.
   ref: /topics/borland-c-nonstandard-library/#inportb
 int86:
   text: int86()
+  borland_c: true
   def: int int86(int intno, union REGS *inregs, union REGS *outregs);
   desc: Executes an 8086 software interrupt specified by the argument `intno`.
   ref: /topics/borland-c-nonstandard-library/#int86
 movmem:
   text: movmem()
+  borland_c: true
   def: void movmem(void *src, void *dest, unsigned length);
   desc: Copies a block of `length` bytes from `src` to `dest`.
   ref: /topics/borland-c-nonstandard-library/#movmem
 outport:
   text: outport()
+  borland_c: true
   def: void outport(int portid, int value);
   desc: Writes the word given by `value` to the hardware I/O port specified by `portid`.
   ref: /topics/borland-c-nonstandard-library/#outport
 outportb:
   text: outportb()
+  borland_c: true
   def: void outportb(int portid, unsigned char value);
   desc: Writes the byte given by `value` to the hardware I/O port specified by `portid`.
   ref: /topics/borland-c-nonstandard-library/#outportb
 putw:
   text: putw()
+  borland_c: true
   def: int putw(int w, FILE *stream);
   desc: Outputs the integer `w` (machine word) to the given stream.
   ref: /topics/borland-c-nonstandard-library/#putw
 random:
   text: random()
+  borland_c: true
   def: '#define random(num) (rand() % (num))'
   desc: Returns a random number between 0 and (`num` - 1).
   ref: /topics/borland-c-nonstandard-library/#random
 setvect:
   text: setvect()
+  borland_c: true
   def: void setvect(int interruptno, void interrupt (*isr)());
   desc: Sets the value of the interrupt vector named by `interruptno` to a new value, `isr`, which is a far pointer containing the address of a new interrupt function.
   ref: /topics/borland-c-nonstandard-library/#setvect
 strupr:
   text: strupr()
+  borland_c: true
   def: char *strupr(char *s);
   desc: Converts lowercase letters (`a`--`z`) in string `s` to uppercase (`A`--`Z`). No other characters are changed.
   ref: /topics/borland-c-nonstandard-library/#strupr
 text_modes:
   text: enum text_modes
+  borland_c: true
   def: enum text_modes {LASTMODE=-1, BW40=0, C40, BW80, C80, MONO=7};
   desc: Defines the available screen text modes.
   ref: /topics/borland-c-nonstandard-library/#text_modes
 textmode:
   text: textmode()
+  borland_c: true
   def: void textmode(int newmode);
   desc: Selects a specific screen text mode.
   ref: /topics/borland-c-nonstandard-library/#textmode
 ultoa:
   text: ultoa()
+  borland_c: true
   def: char *ultoa(unsigned long value, char *string, int radix);
   desc: Converts `value` to a null-terminated string and stores the result in `string`.
   ref: /topics/borland-c-nonstandard-library/#ultoa
 
 ################################################################################
 # GAME FUNCTIONS                                                               #
+#                                                                              #
+# Note: Suffix function text with "()" to include that entry in the function   #
+# index page.                                                                  #
 ################################################################################
 
 #ActArrowPiston:
@@ -344,7 +377,7 @@ AdLibService:
 AddScore:
   text: AddScore()
   def: void AddScore(dword points);
-  desc: Wraps `DrawStatusBarScore()` with the correct X,Y position for display on the screen. It adds `points` to the player's score and updates the status bar with the new value.
+  desc: Wraps {{< lookup/cref DrawStatusBarScore >}} with the correct X,Y position for display on the screen. It adds `points` to the player's score and updates the status bar with the new value.
   ref: /topics/status-bar-functions/#AddScore
 AddScoreForSprite:
   text: AddScoreForSprite()
@@ -365,7 +398,7 @@ CanExplode:
 CheckHighScoreAndShow:
   text: CheckHighScoreAndShow()
   def: void CheckHighScoreAndShow(void);
-  desc: Scans the high score table for a position where the current `gameScore` could be sorted. If a position is located, a prompt is presented asking for a name to be associated with the score at that position, and all inferior scores are shifted one position lower. The tenth score falls off the bottom of the list. Calls `ShowHighScoreTable` unconditionally before returning.
+  desc: Scans the high score table for a position where the current {{< lookup/cref gameScore >}} could be sorted. If a position is located, a prompt is presented asking for a name to be associated with the score at that position, and all inferior scores are shifted one position lower. The tenth score falls off the bottom of the list. Calls {{< lookup/cref ShowHighScoreTable >}} unconditionally before returning.
   ref: /topics/menu-functions/#CheckHighScoreAndShow
 ClearGameScreen:
   text: ClearGameScreen()
@@ -377,6 +410,11 @@ ClearPlayerDizzy:
   def: void ClearPlayerDizzy(void);
   desc: Resets all the global variables related to the player's "dizziness" immobilization, immediately returning the player to normal state.
   ref: /topics/game-logic-functions/#ClearPlayerDizzy
+ClearPlayerPush:
+  text: ClearPlayerPush()
+  def: void ClearPlayerPush(void);
+  desc: Immediately cancels any push the player may be experiencing, and returns the game state back to regular player control.
+  ref: /topics/player-movement-functions/#ClearPlayerPush
 ClearScreen:
   text: ClearScreen()
   def: void ClearScreen(void);
@@ -395,8 +433,11 @@ DetectAdLib:
   ref: /topics/adlib-functions/#DetectAdLib
 DRAW_SOLID_TILE_XY:
   text: DRAW_SOLID_TILE_XY()
-  def: '#define DRAW_SOLID_TILE_XY(src, x, y) { DrawSolidTile((src), (x) + ((y) * 320)); }'
-  desc: Wraps a call to `DrawSolidTile()`, converting `x` and `y` tile coordinates into the linear offset form expected by that function.
+  def: |-
+    #define DRAW_SOLID_TILE_XY(src, x, y) { \
+        DrawSolidTile((src), (x) + ((y) * 320)); \
+    }
+  desc: Wraps a call to {{< lookup/cref DrawSolidTile >}}, converting `x` and `y` tile coordinates into the linear offset form expected by that function.
   ref: /topics/assembly-drawing-functions/#DRAW_SOLID_TILE_XY
 DrawCartoon:
   text: DrawCartoon()
@@ -416,7 +457,7 @@ DrawFountains:
 DrawFullscreenImage:
   text: DrawFullscreenImage()
   def: void DrawFullscreenImage(word image_num);
-  desc: Loads and displays the full-screen image identified by `image_num`, fading the screen contents between what has already been drawn and the new image. If the requested `image_num` is anything other than `IMAGE_TITLE` or `IMAGE_CREDITS`, any playing music is stopped.
+  desc: Loads and displays the full-screen image identified by `image_num`, fading the screen contents between what has already been drawn and the new image. If the requested `image_num` is anything other than {{< lookup/cref name="IMAGE" text="IMAGE_TITLE" >}} or {{< lookup/cref name="IMAGE" text="IMAGE_CREDITS" >}}, any playing music is stopped.
   ref: /topics/c-drawing-functions/#DrawFullscreenImage
 DrawFullscreenText:
   text: DrawFullscreenText()
@@ -426,12 +467,12 @@ DrawFullscreenText:
 DrawLights:
   text: DrawLights()
   def: void DrawLights(void);
-  desc: Iterates through all the lights present on the current map and draws any that are currently scrolled into view. If `areLightsActive` is false, this function does nothing.
+  desc: Iterates through all the lights present on the current map and draws any that are currently scrolled into view. If {{< lookup/cref areLightsActive >}} is false, this function does nothing.
   ref: /topics/map-drawing-functions/#DrawLights
 DrawMainMenu:
   text: DrawMainMenu()
   def: void DrawMainMenu(void);
-  desc: A small helper that draws the main menu frame and text, but does not do any input handling. It is only called from `TitleLoop()`.
+  desc: A small helper that draws the main menu frame and text, but does not do any input handling. It is only called from {{< lookup/cref TitleLoop >}}.
   ref: /topics/menu-functions/#DrawMainMenu
 DrawMapRegion:
   text: DrawMapRegion()
@@ -441,7 +482,7 @@ DrawMapRegion:
 DrawMaskedTile:
   text: DrawMaskedTile()
   def: void DrawMaskedTile(byte *src, word x, word y);
-  desc: Copies an 8x8 pixel masked tile from the byte pointer `src` minus 16,000 to the video memory tile location identified by column `x` and row `y`.
+  desc: Copies an 8&times;8 pixel masked tile from the byte pointer `src` minus 16,000 to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawMaskedTile
 DrawNumberFlushRight:
   text: DrawNumberFlushRight()
@@ -451,7 +492,7 @@ DrawNumberFlushRight:
 DrawPlayer:
   text: DrawPlayer()
   def: void DrawPlayer(byte frame, word x_origin, word y_origin, word mode);
-  desc: Draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
+  desc: Draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`). `mode` is a {{< lookup/cref DRAW_MODE >}} that influences the drawing behavior.
   ref: /topics/composite-drawing-functions/#DrawPlayer
 DrawRandomEffects:
   text: DrawRandomEffects()
@@ -461,7 +502,7 @@ DrawRandomEffects:
 DrawSBarHealthHelper:
   text: DrawSBarHealthHelper()
   def: void DrawSBarHealthHelper(void);
-  desc: Wraps `DrawStatusBarHealth()` with the correct X,Y position for display on the screen.
+  desc: Wraps {{< lookup/cref DrawStatusBarHealth >}} with the correct X,Y position for display on the screen.
   ref: /topics/status-bar-functions/#DrawSBarHealthHelper
 DrawScancodeCharacter:
   text: DrawScancodeCharacter()
@@ -471,32 +512,35 @@ DrawScancodeCharacter:
 DrawSolidTile:
   text: DrawSolidTile()
   def: void DrawSolidTile(word src_offset, word dst_offset);
-  desc: Copies an 8x8 pixel solid tile from the tile storage area byte offset `src_offset` to the video memory byte offset `dst_offset`. Both offsets refer to locations within the EGA's memory space. The EGA hardware must be in "latched write" mode for this function to work correctly.
+  desc: Copies an 8&times;8 pixel solid tile from the tile storage area byte offset `src_offset` to the video memory byte offset `dst_offset`. Both offsets refer to locations within the EGA's memory space. The EGA hardware must be in "latched write" mode for this function to work correctly.
   ref: /topics/assembly-drawing-functions/#DrawSolidTile
 DrawSprite:
   text: DrawSprite()
-  def: void DrawSprite(word sprite_type, word frame, word x_origin, word y_origin, word mode);
+  def: |-
+    void DrawSprite(
+        word sprite_type, word frame, word x_origin, word y_origin, word mode
+    );
   desc: Draws a sprite of the provided `sprite_type` and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance.
   ref: /topics/composite-drawing-functions/#DrawSprite
 DrawSpriteTile:
   text: DrawSpriteTile()
   def: void DrawSpriteTile(byte *src, word x, word y);
-  desc: Copies an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  desc: Copies an 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTile
 DrawSpriteTileFlipped:
   text: DrawSpriteTileFlipped()
   def: void DrawSpriteTileFlipped(byte *src, word x, word y);
-  desc: Copies a vertically-flipped 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  desc: Copies a vertically-flipped 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileFlipped
 DrawSpriteTileTranslucent:
   text: DrawSpriteTileTranslucent()
   def: void DrawSpriteTileTranslucent(byte *src, word x, word y);
-  desc: Copies a translucent outline of an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  desc: Copies a translucent outline of an 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileTranslucent
 DrawSpriteTileWhite:
   text: DrawSpriteTileWhite()
   def: void DrawSpriteTileWhite(byte *src, word x, word y);
-  desc: Copies a solid white outline of an 8x8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
+  desc: Copies a solid white outline of an 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileWhite
 DrawStaticGameScreen:
   text: DrawStaticGameScreen()
@@ -525,8 +569,12 @@ DrawStatusBarStars:
   ref: /topics/status-bar-functions/#DrawStatusBarStars
 DrawTextFrame:
   text: DrawTextFrame()
-  def: word DrawTextFrame(word left, word top, int height, int width, char *top_text, char *bottom_text, bbool centered);
-  desc: Draws an empty text frame to the current draw page with the upper-left corner at tile position (`left`, `top`) and a total size of `width` x `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively, aligned according to the `centered` flag. Returns the X tile coordinate of the inside-left edge of the frame.
+  def: |-
+    word DrawTextFrame(
+        word left, word top, int height, int width, char *top_text,
+        char *bottom_text, bbool centered
+    );
+  desc: Draws an empty text frame to the current draw page with the upper-left corner at tile position (`left`, `top`) and a total size of `width`&times;`height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively, aligned according to the `centered` flag. Returns the X tile coordinate of the inside-left edge of the frame.
   ref: /topics/user-interface-functions/#DrawTextFrame
 DrawTextLine:
   text: DrawTextLine()
@@ -545,7 +593,11 @@ EGA_MODE_DEFAULT:
   ref: /topics/ega-functions/#EGA_MODE_DEFAULT
 EGA_MODE_LATCHED_WRITE:
   text: EGA_MODE_LATCHED_WRITE()
-  def: '#define EGA_MODE_LATCHED_WRITE() { outport(0x03c4, (0x0f << 8) | 0x02); outport(0x03ce, (0x01 << 8) | 0x05); }'
+  def: |-
+    #define EGA_MODE_LATCHED_WRITE() { \
+        outport(0x03c4, (0x0f << 8) | 0x02); \
+        outport(0x03ce, (0x01 << 8) | 0x05); \
+    }
   desc: Resets the EGA's map mask to its default state and enables latched writes from the CPU.
   ref: /topics/ega-functions/#EGA_MODE_LATCHED_WRITE
 EraseWaitSpinner:
@@ -561,7 +613,7 @@ ExitClean:
 FadeIn:
   text: FadeIn()
   def: void FadeIn(void);
-  desc: Calls `FadeInCustom()` with a fixed delay of three game ticks per palette entry.
+  desc: Calls {{< lookup/cref FadeInCustom >}} with a fixed delay of three game ticks per palette entry.
   ref: /topics/c-drawing-functions/#FadeIn
 FadeInCustom:
   text: FadeInCustom()
@@ -571,7 +623,7 @@ FadeInCustom:
 FadeOut:
   text: FadeOut()
   def: void FadeOut(void);
-  desc: Calls `FadeOutCustom()` with a fixed delay of three game ticks per palette entry.
+  desc: Calls {{< lookup/cref FadeOutCustom >}} with a fixed delay of three game ticks per palette entry.
   ref: /topics/c-drawing-functions/#FadeOut
 FadeOutAdLibPlayback:
   text: FadeOutAdLibPlayback()
@@ -591,7 +643,7 @@ FadeWhiteCustom:
 GameLoop:
   text: GameLoop()
   def: void GameLoop(byte demo_state);
-  desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demo_state` argument which should be one of the DEMO_STATE_* constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
+  desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demo_state` argument which should be one of the {{< lookup/cref DEMO_STATE >}} constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
   ref: /topics/game-loop-functions/#GameLoop
 GameRand:
   text: GameRand()
@@ -606,7 +658,7 @@ GetMapTile:
 GetProcessorType:
   text: GetProcessorType()
   def: word GetProcessorType(void);
-  desc: Tests the system processor and returns a value indicating its model. Returns `CPU_TYPE_*`.
+  desc: Tests the system processor and returns a value indicating its model. Returns {{< lookup/cref CPU_TYPE >}}.
   ref: /topics/processor-detection/#GetProcessorType
 GroupEntryFp:
   text: GroupEntryFp()
@@ -626,7 +678,7 @@ HurtPlayer:
 InitializeBackdropTable:
   text: InitializeBackdropTable()
   def: void InitializeBackdropTable(void);
-  desc: Fills the `backdropTable[]` array with four identical copies of backdrop tile offset data.
+  desc: Fills the {{< lookup/cref backdropTable >}} array with four identical copies of backdrop tile offset data.
   ref: /topics/backdrop-initialization-functions/#InitializeBackdropTable
 InitializeDecorations:
   text: InitializeDecorations()
@@ -676,7 +728,7 @@ InnerMain:
 IsAdLibAbsent:
   text: IsAdLibAbsent()
   def: bbool IsAdLibAbsent(void);
-  desc: Returns *TRUE* if an AdLib or compatible card was *NOT* detected in the system.
+  desc: Returns _true_ if an AdLib or compatible card was _NOT_ detected in the system.
   ref: /topics/adlib-functions/#IsAdLibAbsent
 IsAnyKeyDown:
   text: IsAnyKeyDown()
@@ -685,12 +737,19 @@ IsAnyKeyDown:
   ref: /topics/keyboard-functions/#IsAnyKeyDown
 IsIntersecting:
   text: IsIntersecting()
-  def: bool IsIntersecting(word sprite1, word frame1, word x1, word y1, word sprite2, word frame2, word x2, word y2);
+  def: |-
+    bool IsIntersecting(
+        word sprite1, word frame1, word x1, word y1,
+        word sprite2, word frame2, word x2, word y2
+    );
   desc: Returns true if one sprite (consisting of a `sprite` type and a `frame`) located at an `x`/`y` position on the map is intersecting any part of a second sprite passed in the same form.
   ref: /topics/entities/explosion-functions/#IsIntersecting
 IsNearExplosion:
   text: IsNearExplosion()
-  def: bool IsNearExplosion(word sprite_type, word frame, word x_origin, word y_origin);
+  def: |-
+    bool IsNearExplosion(
+        word sprite_type, word frame, word x_origin, word y_origin
+    );
   desc: Returns true if a sprite (consisting of a `sprite_type` and a `frame`) located at (`x_origin`, `y_origin`) is intersecting any active explosion.
   ref: /topics/entities/explosion-functions/#IsNearExplosion
 IsNewBackdrop:
@@ -700,7 +759,10 @@ IsNewBackdrop:
   ref: /topics/backdrop-initialization-functions/#IsNewBackdrop
 IsSpriteVisible:
   text: IsSpriteVisible()
-  def: bool IsSpriteVisible(word sprite_type, word frame, word x_origin, word y_origin);
+  def: |-
+    bool IsSpriteVisible(
+        word sprite_type, word frame, word x_origin, word y_origin
+    );
   desc: Returns true if the provided `sprite_type` and `frame` located at `x_origin` and `y_origin` is at least partially visible within the scrolling game window.
   ref: /topics/composite-drawing-functions/#IsSpriteVisible
 IsTouchingPlayer:
@@ -726,12 +788,12 @@ LightenScreenTile:
 LightenScreenTileEast:
   text: LightenScreenTileEast()
   def: void LightenScreenTileEast(word x, word y);
-  desc: Lightens the lower-left half of an 8x8 tile at the video memory tile location identified by column `x` and row `y`.
+  desc: Lightens the lower-left half of an 8&times;8 tile at the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#LightenScreenTileEast
 LightenScreenTileWest:
   text: LightenScreenTileWest()
   def: void LightenScreenTileWest(word x, word y);
-  desc: Lightens the lower-right half of an 8x8 tile at the video memory tile location identified by column `x` and row `y`.
+  desc: Lightens the lower-right half of an 8&times;8 tile at the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#LightenScreenTileWest
 LoadActorTileData:
   text: LoadActorTileData()
@@ -791,7 +853,7 @@ LoadMaskedTileData:
 LoadMusicData:
   text: LoadMusicData()
   def: Music *LoadMusicData(word music_num, Music *dest);
-  desc: Opens music data from a group file entry (whose name is indexed by a numerical `music_num`), loads the data into the Music structure pointed to by `dest`, and prepares the AdLib service to receive new music data. Returns a pointer to `dest`.
+  desc: Opens music data from a group file entry (whose name is indexed by a numerical `music_num`), loads the data into the {{< lookup/cref Music >}} structure pointed to by `dest`, and prepares the AdLib service to receive new music data. Returns a pointer to `dest`.
   ref: /topics/group-file-functions/#LoadMusicData
 LoadSoundData:
   text: LoadSoundData()
@@ -852,11 +914,20 @@ MovePlayerPlatform:
   def: void MovePlayerPlatform(word x_west, word x_east, word x_dir, word y_dir);
   desc: Determines if a platform covering X positions `x_west` to `x_east` is interacting with the player, and if so, modifies the player's position to keep them attached to the platform as it moves. The current movement direction of the platform is passed in horizontal/vertical arguments `x_dir` and `y_dir`.
   ref: /topics/entities/platform-functions/#MovePlayerPlatform
+MovePlayerPush:
+  text: MovePlayerPush()
+  def: void MovePlayerPush(void);
+  desc: Handles one game tick of player push movement.
+  ref: /topics/player-movement-functions/#MovePlayerPush
 #MovePlayerScooter:
 #NewActor:
 NewDecoration:
   text: NewDecoration()
-  def: void NewDecoration(word sprite_type, word num_frames, word x_origin, word y_origin, word dir, word num_times);
+  def: |-
+    void NewDecoration(
+        word sprite_type, word num_frames, word x_origin, word y_origin,
+        word dir, word num_times
+    );
   desc: Creates a new decoration at `x_origin` and `y_origin` consisting of the passed `sprite_type` with an animation duration of `num_frames`. `dir` controls the straight-line direction the decoration will move in, and `num_times` controls how many times the animation sequence will play before ending.
   ref: /topics/entities/decoration-functions/#NewDecoration
 NewExplosion:
@@ -895,12 +966,12 @@ PCSpeakerService:
 ProcessGameInput:
   text: ProcessGameInput()
   def: byte ProcessGameInput(byte demo_state);
-  desc: Handles all keyboard and joystick input while the game is being played. Depending on the value passed in `demo_state` (which should be one of the `DEMO_STATE_*` values), this behavior is modified to record or play back demo data. Returns one of the `GAME_INPUT_*` values to control the game loop's flow.
+  desc: Handles all keyboard and joystick input while the game is being played. Depending on the value passed in `demo_state` (which should be one of the {{< lookup/cref DEMO_STATE >}} values), this behavior is modified to record or play back demo data. Returns one of the {{< lookup/cref GAME_INPUT >}} values to control the game loop's flow.
   ref: /topics/game-loop-functions/#ProcessGameInput
 ProcessGameInputHelper:
   text: ProcessGameInputHelper()
   def: byte ProcessGameInputHelper(word active_page, byte demo_state);
-  desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the `DEMO_STATE_*` values.
+  desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the {{< lookup/cref DEMO_STATE >}} values.
   ref: /topics/game-loop-functions/#ProcessGameInputHelper
 ProcessPlayer:
   text: ProcessPlayer()
@@ -925,7 +996,7 @@ ProfileCPUService:
 PromptKeyBind:
   text: PromptKeyBind()
   def: bbool PromptKeyBind(byte *target_var, word x, char *message);
-  desc: Displays `message` text at the provided `x` position (and a fixed Y position) on the screen and reads a single scancode into the memory pointed to by `target_var`. Returns true if the user pressed the Esc key and false for all other keys.
+  desc: Displays `message` text at the provided `x` position (and a fixed Y position) on the screen and reads a single scancode into the memory pointed to by `target_var`. Returns true if the user pressed the <kbd>Esc</kbd> key and false for all other keys.
   ref: /topics/menu-functions/#PromptKeyBind
 PromptLevelWarp:
   text: PromptLevelWarp()
@@ -935,21 +1006,24 @@ PromptLevelWarp:
 PromptQuitConfirm:
   text: PromptQuitConfirm()
   def: bbool PromptQuitConfirm(void);
-  desc: Displays a window prompting the user to confirm their intention to quit, and blocks until a key is pressed. The return value is true if the Y key was pressed, or false in the case of any other key.
+  desc: Displays a window prompting the user to confirm their intention to quit, and blocks until a key is pressed. The return value is true if the <kbd>Y</kbd> key was pressed, or false in the case of any other key.
   ref: /topics/menu-functions/#PromptQuitConfirm
 PromptRestoreGame:
   text: PromptRestoreGame()
   def: byte PromptRestoreGame(void);
-  desc: Displays a menu that prompts the user to pick a save game slot (1-9) to load from, and gameplay jumps to that state. The user may cancel this prompt without loading by pressing Esc, Space, or Enter. The return value is one of the `RESTORE_GAME_*` constants.
+  desc: Displays a menu that prompts the user to pick a save game slot (1-9) to load from, and gameplay jumps to that state. The user may cancel this prompt without loading by pressing <kbd>Esc</kbd>, <kbd>Space</kbd>, or <kbd>Enter</kbd>. The return value is one of the {{< lookup/cref RESTORE_GAME >}} constants.
   ref: /topics/menu-functions/#PromptRestoreGame
 PromptSaveGame:
   text: PromptSaveGame()
   def: void PromptSaveGame(void);
-  desc: Displays a menu that prompts the user to pick a save game slot (1-9) to save the state of their game into, then the save is carried out. The user may cancel this prompt without saving by pressing Esc, Space, or Enter.
+  desc: Displays a menu that prompts the user to pick a save game slot (1-9) to save the state of their game into, then the save is carried out. The user may cancel this prompt without saving by pressing <kbd>Esc</kbd>, <kbd>Space</kbd>, or <kbd>Enter</kbd>.
   ref: /topics/menu-functions/#PromptSaveGame
 ReadAndEchoText:
   text: ReadAndEchoText()
-  def: void ReadAndEchoText(word x_origin, word y_origin, char *dest, word max_length);
+  def: |-
+    void ReadAndEchoText(
+        word x_origin, word y_origin, char *dest, word max_length
+    );
   desc: Presents a wait spinner near (`x_origin`, `y_origin`) that accepts at most `max_length` characters of keyboard input. The typed characters are echoed to the screen and stored in the memory pointed to by `dest`, which should be large enough to hold `max_length` + 1 bytes of data.
   ref: /topics/user-interface-functions/#ReadAndEchoText
 ReadJoystickTimes:
@@ -1024,7 +1098,10 @@ SetMapTile:
   ref: /topics/level-and-map-functions/#SetMapTile
 SetMapTile4:
   text: SetMapTile4()
-  def: void SetMapTile4(word val1, word val2, word val3, word val4, word x_origin, word y_origin);
+  def: |-
+    void SetMapTile4(
+        word val1, word val2, word val3, word val4, word x_origin, word y_origin
+    );
   desc: Sets a horizontal span of four map tiles, starting at horizontal position `x_origin` and vertical position `y_origin`, to the values passed in `val1` through `val4`.
   ref: /topics/level-and-map-functions/#SetMapTile4
 SetMapTileRepeat:
@@ -1042,7 +1119,15 @@ SetPaletteRegister:
   def: void SetPaletteRegister(word palette_index, word color_value);
   desc: Configures the display adapter to use `color_value` as the screen display color at positions where the video memory contains `palette_index`, using a BIOS interrupt call.
   ref: /topics/ega-functions/#SetPaletteRegister
-#SetPlayerPush:
+SetPlayerPush:
+  text: SetPlayerPush()
+  def: |-
+    void SetPlayerPush(
+        word dir, word max_time, word speed, word force_frame, bool abortable,
+        bool blockable
+    );
+  desc: Configures the global game state to cause the player to be pushed in a direction `dir` at `speed` tiles per game tick for a total duration of `max_time` game ticks. During this time, the player sprite will be drawn using `force_frame` as the frame number. If the `abortable` flag is set, the player can cancel the effect of the push by jumping. If the `blockable` flag is set, the push will consider and stop at any solid map tiles encountered along the way.
+  ref: /topics/player-movement-functions/#SetPlayerPush
 SetVideoMode:
   text: SetVideoMode()
   def: void SetVideoMode(word mode_num);
@@ -1076,7 +1161,7 @@ ShowCopyright:
 ShowE1CliffhangerMessage:
   text: ShowE1CliffhangerMessage()
   def: void ShowE1CliffhangerMessage(word actor_type);
-  desc: Presents a sequence of two dialogs introducing the "cliffhanger" ending sequence of episode one, followed by ending the game by setting `winGame` to true. During each call, the passed `actor_type` value is used to determine which text to show, or if the game should end.
+  desc: Presents a sequence of two dialogs introducing the "cliffhanger" ending sequence of episode one, followed by ending the game by setting {{< lookup/cref winGame >}} to true. During each call, the passed `actor_type` value is used to determine which text to show, or if the game should end.
   ref: /topics/dialog-functions/#ShowE1CliffhangerMessage
 ShowEnding:
   text: ShowEnding()
@@ -1091,22 +1176,22 @@ ShowForeignOrders:
 ShowGameRedefineMenu:
   text: ShowGameRedefineMenu()
   def: void ShowGameRedefineMenu(void);
-  desc: Shows a menu labeled "Game Redefine" in response to the user selecting the G option in either the main menu or the in-game help menu. This function simply dispatches one of the submenu functions in response to the user's input.
+  desc: Shows a menu labeled "Game Redefine" in response to the user selecting the <kbd>G</kbd> option in either the main menu or the in-game help menu. This function simply dispatches one of the submenu functions in response to the user's input.
   ref: /topics/menu-functions/#ShowGameRedefineMenu
 ShowHealthHint:
   text: ShowHealthHint()
   def: void ShowHealthHint(void);
-  desc: Displays a hint dialog that teaches the player what Power Up modules are and how they affect gameplay.
+  desc: Displays a hint dialog that teaches the player what {{< lookup/actor type=28 strip=true plural=true >}} are and how they affect gameplay.
   ref: /topics/dialog-functions/#ShowHealthHint
 ShowHelpMenu:
   text: ShowHelpMenu()
   def: byte ShowHelpMenu(void);
-  desc: Shows a menu labeled "Help Menu" in response to the user pressing F1 during the game. It gives access to save/restore functions and a subset of options offered by the main menu. Returns one of the `HELP_MENU_*` variables.
+  desc: Shows a menu labeled "Help Menu" in response to the user pressing <kbd>F1</kbd> during the game. It gives access to save/restore functions and a subset of options offered by the main menu. Returns one of the {{< lookup/cref HELP_MENU >}} variables.
   ref: /topics/menu-functions/#ShowHelpMenu
 ShowHighScoreTable:
   text: ShowHighScoreTable()
   def: void ShowHighScoreTable(void);
-  desc: Shows the top ten scores that have been reached and the name of the player who earned each spot. The table can optionally be erased by pressing the F10 key and confirming with the Y key.
+  desc: Shows the top ten scores that have been reached and the name of the player who earned each spot. The table can optionally be erased by pressing the <kbd>F10</kbd> key and confirming with the <kbd>Y</kbd> key.
   ref: /topics/menu-functions/#ShowHighScoreTable
 ShowHintGlobeMessage:
   text: ShowHintGlobeMessage()
@@ -1186,7 +1271,7 @@ ShowSoundTest:
 ShowStarBonus:
   text: ShowStarBonus()
   def: void ShowStarBonus(void);
-  desc: Presents a dialog that tallies up the number of stars collected by the player during the previous section. As a side effect, this function zeroes `gameStars` and increases `gameScore` accordingly.
+  desc: Presents a dialog that tallies up the number of stars collected by the player during the previous section. As a side effect, this function zeroes {{< lookup/cref gameStars >}} and increases {{< lookup/cref gameScore >}} accordingly.
   ref: /topics/dialog-functions/#ShowStarBonus
 ShowStory:
   text: ShowStory()
@@ -1201,7 +1286,7 @@ StartAdLib:
 StartAdLibPlayback:
   text: StartAdLibPlayback()
   def: void StartAdLibPlayback(void);
-  desc: Sets the `enableAdLib` variable to true, permitting the AdLib service to play music.
+  desc: Sets the {{< lookup/cref enableAdLib >}} variable to true, permitting the AdLib service to play music.
   ref: /topics/adlib-functions/#StartAdLibPlayback
 StartGameMusic:
   text: StartGameMusic()
@@ -1226,7 +1311,7 @@ Startup:
 StepPalette:
   text: StepPalette()
   def: void StepPalette(byte *pal_table);
-  desc: During each frame of gameplay, steps through each element of the passed palette table `pal_table` and sets the palette key color accordingly, repeating once the `END_ANIMATION` marker has been reached.
+  desc: During each frame of gameplay, steps through each element of the passed palette table `pal_table` and sets the palette key color accordingly, repeating once the {{< lookup/cref END_ANIMATION >}} marker has been reached.
   ref: /topics/c-drawing-functions/#StepPalette
 StepWaitSpinner:
   text: StepWaitSpinner()
@@ -1296,7 +1381,7 @@ TILE_SLOPED:
 TestPlayerMove:
   text: TestPlayerMove()
   def: word TestPlayerMove(word dir, word x_origin, word y_origin);
-  desc: Tests if the player sprite is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the `MOVE_*` constants is returned.
+  desc: Tests if the player sprite is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the {{< lookup/cref MOVE >}} constants is returned.
   ref: /topics/player-movement-functions/#TestPlayerMove
 #TestSpriteMove:
 TimerInterruptService:
@@ -1307,22 +1392,22 @@ TimerInterruptService:
 TitleLoop:
   text: TitleLoop()
   def: byte TitleLoop(void);
-  desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the `DEMO_STATE_*` variables.
+  desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the {{< lookup/cref DEMO_STATE >}} variables.
   ref: /topics/menu-functions/#TitleLoop
 ToggleGodMode:
   text: ToggleGodMode()
   def: void ToggleGodMode(void);
-  desc: Inverts the state of the global "god mode" debug flag and presents a dialog informing the user of the current setting.
+  desc: Inverts the state of the global {{< lookup/cref isGodMode >}} debug variable and presents a dialog informing the user of the current setting.
   ref: /topics/dialog-functions/#ToggleGodMode
 ToggleMusic:
   text: ToggleMusic()
   def: void ToggleMusic(void);
-  desc: Inverts the setting of the global `isMusicEnabled` variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatible card installed, this function is a no-op.
+  desc: Inverts the setting of the global {{< lookup/cref isMusicEnabled >}} variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatible card installed, this function is a no-op.
   ref: /topics/dialog-functions/#ToggleMusic
 ToggleSound:
   text: ToggleSound()
   def: void ToggleSound(void);
-  desc: Inverts the setting of the global `isSoundEnabled` variable then presents a dialog confirming the resulting state.
+  desc: Inverts the setting of the global {{< lookup/cref isSoundEnabled >}} variable then presents a dialog confirming the resulting state.
   ref: /topics/dialog-functions/#ToggleSound
 UnfoldDNFrame:
   text: UnfoldDNFrame()
@@ -1336,13 +1421,16 @@ UnfoldPlayerFrame:
   ref: /topics/dialog-functions/#UnfoldPlayerFrame
 UnfoldTextFrame:
   text: UnfoldTextFrame()
-  def: word UnfoldTextFrame(int top, int height, int width, char *top_text, char *bottom_text);
-  desc: Draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width` x `height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
+  def: |-
+    word UnfoldTextFrame(
+        int top, int height, int width, char *top_text, char *bottom_text
+    );
+  desc: Draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width`&times;`height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
   ref: /topics/user-interface-functions/#UnfoldTextFrame
 UpdateBombs:
   text: UpdateBombs()
   def: void UpdateBombs(void);
-  desc: Wraps `DrawStatusBarBombs()` with the correct X,Y position for display on the screen. It refreshes the bomb count on the status bar with the current global value.
+  desc: Wraps {{< lookup/cref DrawStatusBarBombs >}} with the correct X,Y position for display on the screen. It refreshes the bomb count on the status bar with the current global value.
   ref: /topics/status-bar-functions/#UpdateBombs
 UpdateDrawPageSegment:
   text: UpdateDrawPageSegment()
@@ -1352,12 +1440,12 @@ UpdateDrawPageSegment:
 UpdateHealth:
   text: UpdateHealth()
   def: void UpdateHealth(void);
-  desc: Wraps `DrawSBarHealthHelper()` and handles draw page selection. It redraws all of the health cells with either filled or empty bars to represent the player's current health.
+  desc: Wraps {{< lookup/cref DrawSBarHealthHelper >}} and handles draw page selection. It redraws all of the health cells with either filled or empty bars to represent the player's current health.
   ref: /topics/status-bar-functions/#UpdateHealth
 UpdateStars:
   text: UpdateStars()
   def: void UpdateStars(void);
-  desc: Wraps `DrawStatusBarStars()` with the correct X,Y position for display on the screen. It refreshes the star count on the status bar with the current global value.
+  desc: Wraps {{< lookup/cref DrawStatusBarStars >}} with the correct X,Y position for display on the screen. It refreshes the star count on the status bar with the current global value.
   ref: /topics/status-bar-functions/#UpdateStars
 ValidateSystem:
   text: ValidateSystem()
@@ -2836,6 +2924,16 @@ isPlayerNearTransporter:
   def: bool isPlayerNearTransporter;
   desc: Holds a true value if the player is currently near any transporter actor, and false otherwise.
   ref: /topics/global-variables-and-constants/#isPlayerNearTransporter
+isPlayerPushAbortable:
+  text: isPlayerPushAbortable
+  def: bbool isPlayerPushAbortable;
+  desc: Holds a true value if the currently active push can be ended early by issuing a jump command.
+  ref: /topics/global-variables-and-constants/#isPlayerPushAbortable
+isPlayerPushBlockable:
+  text: isPlayerPushBlockable
+  def: bool isPlayerPushBlockable;
+  desc: Holds a true value if the currently active push should stop if a map tile is encountered that blocks movement in the pushed direction.
+  ref: /topics/global-variables-and-constants/#isPlayerPushBlockable
 isPlayerPushed:
   text: isPlayerPushed
   def: bool isPlayerPushed;
@@ -3184,11 +3282,26 @@ playerPushDir:
   def: word playerPushDir;
   desc: Specifies the direction in which the player should move during a "push" sequence.
   ref: /topics/global-variables-and-constants/#playerPushDir
-playerPushFrame:
-  text: playerPushFrame
-  def: word playerPushFrame;
+playerPushForceFrame:
+  text: playerPushForceFrame
+  def: word playerPushForceFrame;
   desc: Specifies the frame of player sprite animation to show during a "push" sequence.
-  ref: /topics/global-variables-and-constants/#playerPushFrame
+  ref: /topics/global-variables-and-constants/#playerPushForceFrame
+playerPushMaxTime:
+  text: playerPushMaxTime
+  def: word playerPushMaxTime;
+  desc: Holds the number of game ticks that need to elapse before the currently active "push" sequence completes. This duration (in terms of elapsed time) is unaffected by the speed of the push.
+  ref: /topics/global-variables-and-constants/#playerPushMaxTime
+playerPushSpeed:
+  text: playerPushSpeed
+  def: word playerPushSpeed;
+  desc: Holds the configured speed, in tiles per game tick, of the currently active "push" sequence.
+  ref: /topics/global-variables-and-constants/#playerPushSpeed
+playerPushTime:
+  text: playerPushTime
+  def: word playerPushTime;
+  desc: Holds the number of game ticks that have elapsed since the currently active "push" sequence was started.
+  ref: /topics/global-variables-and-constants/#playerPushTime
 playerTileData:
   text: playerTileData
   def: byte *playerTileData;
@@ -3428,7 +3541,7 @@ stnGroupFilename:
 tileAttributeData:
   text: tileAttributeData
   def: byte *tileAttributeData;
-  desc: If an AdLib card is installed, points to a dedicated 7,000 byte block of memory. If an AdLib card is not installed, points to the address 5,000 bytes into `miscData`.
+  desc: If an AdLib card is installed, points to a dedicated 7,000 byte block of memory. If an AdLib card is not installed, points to the address 5,000 bytes into {{< lookup/cref miscData >}}.
   ref: /topics/global-variables-and-constants/#tileAttributeData
 timerTickCount:
   text: timerTickCount

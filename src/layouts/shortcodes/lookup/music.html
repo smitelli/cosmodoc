@@ -2,10 +2,18 @@
     Takes one numeric argument, which is interpreted as an music ID. Returns a
     formatted string containing the music's title.
 
+    Inline function; whitespace is critically sensitive here!
+
     Positional parameters:
         0 (required): Numeric music ID.
 */}}
 
+{{- $out := index site.Data.description.music (int (.Get 0)) }}
+
+{{- if not $out }}
+    {{- warnf "No definition for %s %v" .Name .Params }}
+{{- end }}
+
 {{- "" -}}
-{{ index $.Site.Data.description.music (int ($.Get 0)) | markdownify }}
+{{ $out | markdownify }}
 {{- "" -}}

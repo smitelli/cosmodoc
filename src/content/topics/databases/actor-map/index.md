@@ -15,9 +15,7 @@ This page contains a pair of tables that cross-reference actor types with the li
 
 {{< data-table/actor-map special_actor >}}
 
-{{< note >}}
-Special actor type 22 does not exist; it is a bug in the map. The game silently ignores it.
-{{< /note >}}
+{{% note %}}Special actor type 22 does not exist; it is a bug in the map. The game silently ignores it.{{% /note %}}
 
 ## Normal Actors
 

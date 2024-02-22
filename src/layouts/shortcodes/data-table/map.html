@@ -1,44 +1,100 @@
 {{/*
     Insert the data table for maps.
+
+    site.Data.map:
+        index:
+            actor:
+                "1": [A1, A2, A3]
+                "265": [C1, C2, C3]
+            backdrop:
+                "1": [A1, A2, A3]
+                "25": [C1, C2, C3]
+            music:
+                "0": [A1, A2, A3]
+                "18": [C1, C2, C3]
+            palette_animation:
+                "0": [A1, A2, A3]
+                "6": [C1, C2, C3]
+            special_actor:
+                "0": [A1, A2, A3]
+                "8": [C1, C2, C3]
+        sort:
+            actor: [1, 2, 265]
+            backdrop: [1, 2, 25]
+            music: [0, 1, 18]
+            palette_animation: [0, 1, 6]
+            special_actor: [0, 1, 8]
+        table:
+            - map_name: A1
+              actor_count: 270
+              backdrop_hscroll_flag: 1
+              backdrop_id: 11
+              backdrop_vscroll_flag: 0
+              fountain_count: 0
+              height_tiles: 64
+              light_count: 0
+              music_id: 8
+              palette_animation_id: 0
+              platform_count: 0
+              player_count: 1
+              rain_flag: 0
+              tile_size_bytes: 65528
+              width_tiles: 512
+            - map_name: A2
+              ...
+
+    site.Data.music:
+        table:
+            - music_name: MCAVES
+              cycles: 39235
+              duration: 1:09.995
+              writes: 4270
+            - music_name: MSCARRY
+              cycles: 63556
+              duration: 1:53.383
+              writes: 4253
+            - ...
 */}}
 
 <table>
-    {{ range $index, $_ := $.Site.Data.map.table }}
-        {{ if modBool $index $.Site.Params.dataTableHeaderFreq }}
-            <tr>
-                <th>Map</th>
-                <th>Width&times;Height</th>
-                <th>Backdrop /<br>Scrolling</th>
-                <th>Palette Animation</th>
-                <th>Rain</th>
-                <th>Music</th>
-                <th>Platforms</th>
-                <th>Fountains</th>
-                <th>Lights</th>
-                <th>Actors</th>
-            </tr>
+    {{ range $i, $_ := site.Data.map.table }}
+        {{ $bd_name := index site.Data.description.backdrop_name (int .backdrop_id) }}
+        {{ $pal_name := index site.Data.description.palette_animation (int .palette_animation_id) }}
+        {{ $music := index site.Data.music.table (int .music_id) }}
+
+        {{ $scrolls := slice }}
+        {{ if .backdrop_hscroll_flag }}{{ $scrolls = $scrolls | append "horizontal" }}{{ end }}
+        {{ if .backdrop_vscroll_flag }}{{ $scrolls = $scrolls | append "vertical" }}{{ end }}
+
+        {{ if modBool $i site.Params.dataTableHeaderFreq }}
+        <tr>
+            <th>Map</th>
+            <th>Width&times;Height</th>
+            <th>
+                Backdrop /
+                <br>
+                Scrolling
+            </th>
+            <th>Palette Animation</th>
+            <th>Rain</th>
+            <th>Music</th>
+            <th>Platforms</th>
+            <th>Fountains</th>
+            <th>Lights</th>
+            <th>Actors</th>
+        </tr>
         {{ end }}
         <tr>
             <th>{{ .map_name }}</th>
             <td>{{ .width_tiles }}&times;{{ .height_tiles }}</td>
             <td>
-                {{ index $.Site.Data.description.backdrop_name (int .backdrop_id) }}&nbsp;({{ .backdrop_id }})<br>
-                {{ if and .backdrop_hscroll_flag .backdrop_vscroll_flag}}
-                    horizontal+vertical
-                {{ else if .backdrop_hscroll_flag }}
-                    horizontal
-                {{ else if .backdrop_vscroll_flag }}
-                    vertical
-                {{ else }}
-                    none
-                {{ end }}
+                {{ $bd_name }}&nbsp;({{ .backdrop_id }})
+                <br>
+                {{ delimit $scrolls "+" | default "none" }}
             </td>
-            <td>
-                {{ index $.Site.Data.description.palette_animation (int .palette_animation_id) | markdownify }}&nbsp;({{ .palette_animation_id }})</td>
-            <td>{{ if .rain_flag }}yes{{ else }}no{{ end }}</td>
-            <td>
-                {{ (index $.Site.Data.music.table (int .music_id)).music_name }}&nbsp;({{ .music_id }})
-            </td>
+            <td>{{ $pal_name }}&nbsp;({{ .palette_animation_id }})</td>
+            <td>{{ cond (not .rain_flag) "no" "yes" }}</td>
+            <td>{{ $music.music_name }}&nbsp;({{ .music_id }})</td>
             <td>{{ .platform_count }}</td>
             <td>{{ .fountain_count }}</td>
             <td>{{ .light_count }}</td>

@@ -10,7 +10,7 @@ weight = 110
 
 The game world is stored across several distinct files called **maps**. These map files define the floors, walls, and ceilings of the world, along with other stationary structures like trees, pipes, and ice formations. Map files also contain a list of all actors that should be inserted into the world, and the starting position for each one. Everything the player encounters while progressing through the levels of each episode is specified in a sequence of map files.
 
-Within the [group files]({{< relref "group-file-format" >}}), individual maps are stored in entries named A1&ndash;11.MNI (for episode one), B1&ndash;10.MNI (for episode two), C1&ndash;10.MNI (for episode three), and BONUS1&ndash;6.MNI (two bonus levels per episode). There are 37 maps across all three episodes, 36 of them unique (A11 and B1 are identical).
+Within the [group files]({{< relref "group-file-format" >}}), individual maps are stored in entries named A1--11.MNI (for episode one), B1--10.MNI (for episode two), C1--10.MNI (for episode three), and BONUS1--6.MNI (two bonus levels per episode). There are 37 maps across all three episodes, 36 of them unique (A11 and B1 are identical).
 
 Each map file contains the following sections:
 
@@ -32,18 +32,16 @@ Offset (Bytes) | Size | Description
 
 The map variables are packed into a single 16-bit little-endian word, with some values interpreted as boolean flags and others as integers:
 
-Bit Position                         | Size (Bits) | Description
--------------------------------------|-------------|------------
-0&ndash;4   (least significant bits) | 5           | Numeric [backdrop ID]({{< relref "databases/backdrop" >}}) (0&ndash;31).
-5                                    | 1           | Rain flag. `0` = no rain, `1` = rain falls in empty map areas.
-6                                    | 1           | Backdrop horizontal scroll flag. `0` = backdrop is fixed in the horizontal direction, `1` = backdrop scrolls horizontally with the world.
-7                                    | 1           | Backdrop vertical scroll flag. `0` = backdrop is fixed in the vertical direction, `1` = backdrop scrolls vertically with the world.
-8&ndash;10                           | 3           | Numeric [palette animation ID]({{< relref "databases/palette-animation" >}}) (0&ndash;7).
-11&ndash;15 (most significant bits)  | 5           | Numeric [music ID]({{< relref "databases/music" >}}) (0&ndash;31).
+Bit Position                    | Size (Bits) | Description
+--------------------------------|-------------|------------
+0--4   (least significant bits) | 5           | Numeric [backdrop ID]({{< relref "databases/backdrop" >}}) (0--31).
+5                               | 1           | Rain flag. `0` = no rain, `1` = rain falls in empty map areas.
+6                               | 1           | Backdrop horizontal scroll flag. `0` = backdrop is fixed in the horizontal direction, `1` = backdrop scrolls horizontally with the world.
+7                               | 1           | Backdrop vertical scroll flag. `0` = backdrop is fixed in the vertical direction, `1` = backdrop scrolls vertically with the world.
+8--10                           | 3           | Numeric [palette animation ID]({{< relref "databases/palette-animation" >}}) (0--7).
+11--15 (most significant bits)  | 5           | Numeric [music ID]({{< relref "databases/music" >}}) (0--31).
 
-{{< note >}}
-The parenthetical number ranges indicate the smallest and largest values that can be encoded in the map format. Not all expressible IDs are defined, and selecting an invalid ID may cause a read outside of array bounds and other unpredictable behavior.
-{{< /note >}}
+{{% note %}}The parenthetical number ranges indicate the smallest and largest values that can be encoded in the map format. Not all expressible IDs are defined, and selecting an invalid ID may cause a read outside of array bounds and other unpredictable behavior.{{% /note %}}
 
 ### Map Width and Height
 
@@ -80,9 +78,7 @@ The actor type read from the map file may represent either of the following:
 
 If the map actor type is less than 32, it is treated as a [special actor]({{< relref "databases/actor#special-actors" >}}) and the type is used unchanged. If the map actor type is 32 or greater, it is treated as a [normal actor]({{< relref "databases/actor#normal-actors" >}}) and the type is decremented by 31 before insertion into the world.
 
-{{< note >}}
-The X/Y coordinates always refer to the leftmost/bottommost tile of multi-tile actors. Some normal actors have a positive or negative "shift" value imposed on their initial X and/or Y positions. If a shift is defined for a particular actor type, the starting position is adjusted by the predefined number of tiles before insertion. The shift value is typically used to compensate for the width or height of an actor's sprite when aligning it to a specific wall or ceiling coordinate.
-{{< /note >}}
+{{% note %}}The X/Y coordinates always refer to the leftmost/bottommost tile of multi-tile actors. Some normal actors have a positive or negative "shift" value imposed on their initial X and/or Y positions. If a shift is defined for a particular actor type, the starting position is adjusted by the predefined number of tiles before insertion. The shift value is typically used to compensate for the width or height of an actor's sprite when aligning it to a specific wall or ceiling coordinate.{{% /note %}}
 
 Due to the limited number of fields available in the actor list format, it's not possible to define any per-actor attributes or characteristics -- all actors of a given type display the same way, take the same amount of damage, and behave identically.
 
@@ -104,7 +100,7 @@ Immediately following the end of the actor list, there are _exactly_ 65,528 byte
 
 The bottom row of tiles is never shown on the screen and the player movement functions disregard anything present there. It is essentially a discarded row of garbage data which protects the undefined tiles from causing visual issues or odd movement behavior. Any "air" or passable tiles immediately above the garbage row may be fallen through to implement bottomless pits.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Weird Numbers**
 
 Each map contains exactly four fewer tiles than it should, for reasons that are only partially apparent.
@@ -112,7 +108,7 @@ Each map contains exactly four fewer tiles than it should, for reasons that are 
 In order to allocate a contiguous block of 65,536 bytes in memory, {{< lookup/cref farmalloc >}} would need to be used due to the constraints of the underlying 16-bit system. It appears as though {{< lookup/cref malloc >}} was used instead, which can only provide up to 65,535 usable bytes in a single call. That reduction in space knocked one tile off the total usable number.
 
 The other three missing tiles, I have no idea about.
-{{< /aside >}}
+{{% /aside %}}
 
 The map data is largely static; once a map tile has been read into memory it does not generally change. (There are a few specific actor types -- mostly those that restrict movement or allow the player/actors to stand on top of them -- that manipulate map tile values during gameplay, but these are relatively rare.) The **attributes** for each map tile value are defined in a [separate file]({{< relref "tile-attributes-format" >}}) and specify how the player/actors interact with each tile during gameplay.
 
@@ -126,7 +122,7 @@ Masked tiles are relatively simple. First, a conversion is performed to convert 
 
 The subtraction by 16,000 is necessary to remove the offset that differentiates the masked tiles from solid tiles. The division by 40 accounts for the in-memory alignment of the actual graphical data. (This is an implementation detail that is discussed in depth in the drawing chapter.) Map tiles in this range are _always_ an even multiple of 40.
 
-The map format allows up to 1,238 distinct masked tile indices to be expressed, but the game graphics only define 1,000 masked tiles. This means that the only indices that should be encountered in practice are 0&ndash;999, corresponding to map tile values 16,000&ndash;55,960.
+The map format allows up to 1,238 distinct masked tile indices to be expressed, but the game graphics only define 1,000 masked tiles. This means that the only indices that should be encountered in practice are 0--999, corresponding to map tile values 16,000--55,960.
 
 Each masked tile graphic is drawn into the game world at the specified position. Transparent areas within a masked tile graphic are filled with the appropriate piece of the backdrop behind it.
 
@@ -138,12 +134,12 @@ Solid tiles work similarly to masked tiles, but they are packed more densely and
 
 The division by 8 accounts for the in-memory alignment of the actual graphical data. (Again, this is an implementation detail that is discussed in depth in the drawing chapter.) Map tiles in this range are _always_ an even multiple of 8.
 
-The map format allows 2,000 distinct solid tile indices to be expressed, and all of them are defined in the game graphics. Each solid tile index from 0&ndash;1,999 (map tile values 0&ndash;15,992) should do _something_, even if the result is not directly visible on the screen.
+The map format allows 2,000 distinct solid tile indices to be expressed, and all of them are defined in the game graphics. Each solid tile index from 0--1,999 (map tile values 0--15,992) should do _something_, even if the result is not directly visible on the screen.
 
-* Indices **10&ndash;1,964** are typical cases, where each solid tile is drawn directly into the game world at the specified position.
-* Indices **1,965&ndash;1,986** are not directly used in any maps, however solid tiles of this type are dynamically created and removed by various actors during the course of the game. These generally display normally in the game world once created, although sometimes sprites are strategically positioned to hide the tiles from view.
-* Indices **1,987&ndash;1,999** are used in menu frames and text display areas, and never display in any part of the game world.
-* Indices **0&ndash;9** are _never drawn_ by the game and the backdrop is shown in their place. Typically these are used to represent empty space or sky. Aside from their invisibility, these tiles have special meanings to the game:
+* Indices **10--1,964** are typical cases, where each solid tile is drawn directly into the game world at the specified position.
+* Indices **1,965--1,986** are not directly used in any maps, however solid tiles of this type are dynamically created and removed by various actors during the course of the game. These generally display normally in the game world once created, although sometimes sprites are strategically positioned to hide the tiles from view.
+* Indices **1,987--1,999** are used in menu frames and text display areas, and never display in any part of the game world.
+* Indices **0--9** are _never drawn_ by the game and the backdrop is shown in their place. Typically these are used to represent empty space or sky. Aside from their invisibility, these tiles have special meanings to the game:
 
 Tile Index | Description
 -----------|------------

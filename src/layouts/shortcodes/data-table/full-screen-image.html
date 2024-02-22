@@ -8,11 +8,11 @@
         <th>Name</th>
         <th>Description</th>
     </tr>
-    {{ range $index, $_ := $.Site.Data.description.full_screen_image_name }}
+    {{ range $image_num, $_ := site.Data.description.full_screen_image_name }}
         <tr>
-            <th>{{ $index }}</th>
+            <th>{{ $image_num }}</th>
             <td>{{ . }}</td>
-            <td>{{ index $.Site.Data.description.full_screen_image (int $index) | markdownify }}</td>
+            <td>{{ index site.Data.description.full_screen_image $image_num | markdownify }}</td>
         </tr>
     {{ end }}
 </table>

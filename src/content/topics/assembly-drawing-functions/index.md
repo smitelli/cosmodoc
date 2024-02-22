@@ -12,7 +12,7 @@ All of the procedures that draw tile image data to the screen were originally wr
 
 The system requirements of the game specify that an ["AT class" computer is required]({{< relref "main-and-outer-loop/#main" >}}) to run the game. The original IBM PC/AT uses a 6 MHz CPU clock, which appears not to be powerful enough to play the game without a noticeable reduction in frame rate.[^equivalent6] The later revisions of the AT use an 8 MHz clock, which runs at an acceptable frame rate but with some minor graphical glitches.[^equivalent8] The Intel 80386 processor had been available for six years by the time the game was released, and the 80486 for three years, therefore it was a tad unlikely that players were actually trying to play this game on a stock eight-year-old PC/AT.
 
-As each frame of gameplay renders, the bulk of execution time is spent in one of the procedures on this page. It's a reasonable estimate to say that there can be as many as one thousand draw calls to generate one frame, and the nominal frame rate is 10&ndash;11 frames per second. Assembly language implementations of the drawing procedures were definitely a necessity to get the game to perform acceptably on the widest range of computers.
+As each frame of gameplay renders, the bulk of execution time is spent in one of the procedures on this page. It's a reasonable estimate to say that there can be as many as one thousand draw calls to generate one frame, and the nominal frame rate is 10--11 frames per second. Assembly language implementations of the drawing procedures were definitely a necessity to get the game to perform acceptably on the widest range of computers.
 
 ## Whodunit?
 
@@ -22,7 +22,7 @@ During my research into the game, other games of the era, and published code exa
 >
 > **Replogle:** No. I'd [sic] be a tempting offer. Again, what is the future of video games? Oh BTW, John deserves credit for helping me code some low level code in Duke Nukem One. I'm not a very good assembly language programmer, and John was kind enough to help make Duke successful with well-written optimal assembly.
 >
-> &mdash;_Strife Streams_, "Todd Replogle Interview (from 2001)" [^toddreplogleinterview]
+> ---_Strife Streams_, "Todd Replogle Interview (from 2001)" [^toddreplogleinterview]
 
 _Cosmo_ and the original _Duke Nukem_ are extremely similar games from a technical standpoint, to the point that it would not be unreasonable to think that some of John Carmack's work is present in both games. Carmack was the undisputed king of squeezing performance out of the EGA hardware, and Replogle certainly had access to Id through their shared relationship with Apogee Software.
 
@@ -40,11 +40,11 @@ The purported connections to Id Software continue in a brief Twitter exchange be
 
 Dumproff is comparing the smooth scrolling techniques of Id's _Commander Keen in Invasion of the Vorticons_ (1990) to the comparatively chunky movement in _Duke Nukem_ (1991). Romero's claim is... suspicious. _Duke_ doesn't really have any hardware scrolling to speak of -- the screen moves in eight-pixel increments and is redrawn from scratch every frame. _Cosmo_ works the same way, with the addition of a parallax scrolling backdrop layer that moves in four-pixel increments. Neither game uses the sub-tile screen panning techniques from the _Keen_ series, so it's unclear exactly what Romero is recalling here.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **Being Fair**
 
 I have no doubt that Romero and Replogle spoke at some point, but I have to wonder if the discussion was around a different topic, or if the discussed techniques ended up not being used in the final game.
-{{< /aside >}}
+{{% /aside %}}
 
 Authorship aside, the final code is a (generally) lean workhorse.
 
@@ -58,7 +58,7 @@ In the video mode used by this game (mode Dh), each 320 &times; 200 screen frame
 
 As an example, to address the 70th pixel from the left of the screen and the 10th pixel down in this 320 &times; 200 mode, the calculation is as follows: Each line contains 320 horizontal pixels (aka 320 bits), which is equivalent to 40 bytes. The 10th line down therefore starts at byte offset 400. Measuring 70 pixels from the left is 70 bits or, more correctly, 8 bytes plus 6 bits. Therefore the final memory offset for this pixel is the 6th bit at byte offset 408. To set this pixel to a specific color, this offset must be written four times, once for each memory (color) plane.
 
-{{< note >}}The EGA lacks any method to directly set a single bit in any of its memory bytes. Before writing data, the programmer must program the EGA's registers to "mask off" the bits that should not change. When the CPU next writes a value, the EGA _rewrites_ the byte in its memory using the content of its latches (see below) for the masked bits and the CPU data for the unmasked bits.{{< /note >}}
+{{% note %}}The EGA lacks any method to directly set a single bit in any of its memory bytes. Before writing data, the programmer must program the EGA's registers to "mask off" the bits that should not change. When the CPU next writes a value, the EGA _rewrites_ the byte in its memory using the content of its latches (see below) for the masked bits and the CPU data for the unmasked bits.{{% /note %}}
 
 The four-bit value held in memory is used as an index into a **palette** table, which converts it into the real color value that is sent to the display. _By default_ the palette is configured so that memory plane 3 can be thought of as the "intensity" plane, plane 2 as "red," plane 1 as "green," and plane 0 as "blue." The hardware does not contain any intrinsic guarantees that color will always behave this way, but this works as long as the default palette table entries are not reconfigured.
 
@@ -120,7 +120,7 @@ The body of this loop performs a surprising amount of work thanks to the propert
 
 This procedure requires the calling code to have placed the EGA into "latched write" mode (aka write mode 1) and this requirement comes into play now. When `dst` is written, the "latched write" mode instructs the EGA to _discard_ the byte from the CPU and instead use the contents of the four latches as the values to be written to the four memory planes. These latches were filled with four bytes of source tile image data previously, so the EGA is essentially doing a four-byte block copy between two offsets within its own memory, without the data actually passing through the CPU at all.
 
-{{< note >}}For several of the procedures described on this page, it's critically important to understand why and how a single-byte `*dst = *src` copies four bytes of memory, without the actual dereferenced value having any importance.{{< /note >}}
+{{% note %}}For several of the procedures described on this page, it's critically important to understand why and how a single-byte `*dst = *src` copies four bytes of memory, without the actual dereferenced value having any importance.{{% /note %}}
 
 Having performed the copy for one row of image data, the `src` pointer is advanced by one byte and `dst` is advanced by 40 bytes. This sets up the next iteration of the loop to operate on the next row of image data for this tile.
 
@@ -128,7 +128,7 @@ Having performed the copy for one row of image data, the `src` pointer is advanc
 
 The {{< lookup/cref DrawSpriteTile >}} procedure copies an 8 &times; 8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}.
 
-`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to draw player and actor sprites, decorations, font characters, and any other transparent tiles that are not part of the game map.
 
@@ -151,7 +151,7 @@ The {{< lookup/cref drawPageSegment >}} value points to the segment address of w
         byte planemask = 1 << plane;
 ```
 
-The outer loop runs four times, once for each memory plane in the EGA. Planes are processed in blue-green-red-intensity order. The `src` and `dst` pointers must be rewound for each plane, so rather than modify them directly, copies in `localsrc` and `localdst` are created for the actual work. `planemask` translates the `plane` being operated on from an integer (0&ndash;3) to a single-plane map mask value (1, 2, 4, or 8).
+The outer loop runs four times, once for each memory plane in the EGA. Planes are processed in blue-green-red-intensity order. The `src` and `dst` pointers must be rewound for each plane, so rather than modify them directly, copies in `localsrc` and `localdst` are created for the actual work. `planemask` translates the `plane` being operated on from an integer (0--3) to a single-plane map mask value (1, 2, 4, or 8).
 
 ```c
         outport(0x03c4, (planemask << 8) | 0x02);
@@ -193,7 +193,7 @@ When each loop iteration begins, `localsrc` is pointing to the 0th byte in the p
 
 By ORing the former by the latter, the masked tile row is overlaid on the existing screen contents. This is written back to the video memory at `localdst`, completing drawing for this plane's row. To prepare for the next iteration, `localsrc` is advanced by five bytes and `localdst` is advanced by 40 bytes. This places both the read and write pointers at the correct location for handling the next pixel row.
 
-{{< note >}}Transparent areas of the tile **must** have zeros for all four of the plane bits at that position, otherwise unintended pixels in `localdst` might be affected.{{< /note >}}
+{{% note %}}Transparent areas of the tile **must** have zeros for all four of the plane bits at that position, otherwise unintended pixels in `localdst` might be affected.{{% /note %}}
 
 Once this process occurs across all four memory planes, the sprite tile has been drawn.
 
@@ -201,7 +201,7 @@ Once this process occurs across all four memory planes, the sprite tile has been
 
 The {{< lookup/cref DrawSpriteTileFlipped >}} procedure copies a vertically-flipped 8 &times; 8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. The flip is achieved by drawing the rows in reversed order, keeping the column ordering intact. This produces a vertical flip, _not_ a rotation.
 
-`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to draw actors that are being destroyed, ceiling-mounted elements, or new items that are spawning into existence.
 
@@ -240,7 +240,7 @@ These two changes are all that is necessary to draw the sprite flipped verticall
 
 The {{< lookup/cref DrawMaskedTile >}} procedure copies an 8 &times; 8 pixel masked tile from the byte pointer `src` _minus 16,000_ to the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. While broadly similar to {{< lookup/cref DrawSpriteTile >}}, they are not interchangeable.
 
-`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to draw transparent areas of the map. Due to manipulations to the `src` pointer and the EGA's write mode setting, this is the only thing it should be used for.
 
@@ -288,7 +288,7 @@ A brief look at the calling function is needed to explain why this is necessary.
 
 Within the outer loop, the `localsrc` pointer is set up to point to the position 16,000 bytes _before_ the provided `src` pointer. This is again a quirk of the way {{< lookup/cref DrawMapRegion >}} calls this procedure: It takes the value from the map data, adds it as an offset to {{< lookup/cref maskedTileData >}}'s address, and that is the value passed in `src`. The caller doesn't consider that the [map file format]({{< relref "map-format#masked-tiles" >}}) uses 16,000 as a split point to differentiate solid tiles from masked tiles, so that offset correction has to be done here.
 
-{{< note >}}This behavior can be quite dangerous if the caller is not expecting it. If the intention is to use the 0th byte of a memory area as the tile source, the caller must use an offset of 16,000 to access it.{{< /note >}}
+{{% note %}}This behavior can be quite dangerous if the caller is not expecting it. If the intention is to use the 0th byte of a memory area as the tile source, the caller must use an offset of 16,000 to access it.{{% /note %}}
 
 ```c
     EGA_MODE_LATCHED_WRITE();
@@ -300,7 +300,7 @@ Before the procedure returns, {{< lookup/cref EGA_MODE_LATCHED_WRITE >}} returns
 
 The {{< lookup/cref DrawSpriteTileTranslucent >}} procedure copies a translucent outline of an 8 &times; 8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}.
 
-`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to draw the {{< lookup/actor 126 >}} sprites. The color effect is achieved by unconditionally turning on the intensity bit for every pixel that the sprite's mask covers. The color effect here fundamentally changes the colors of pixels, meaning that "magenta" areas become "bright magenta" and no longer match for palette animation purposes.
 
@@ -348,11 +348,11 @@ The value FFh is written back to the same location in `dst`, which is subject to
 
 The combined effect of this is, the intensity plane's bits are turned on in positions where the tile is opaque. Uncovered pixels in the transparency mask, and all pixels on the red/green/blue planes, remain unmodified. This has the effect of brightening any pixels covered by the tile.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Goes Both Ways**
 
 Instead of writing FFh to the EGA's memory here, 0h could just as easily be sent. This would turn _off_ the intensity bits that are covered by the tile, making the image appear darker in those areas. As this is a fairly bright game to begin with, the darkening effect is arguably much more impactful.
-{{< /aside >}}
+{{% /aside %}}
 
 ```c
         src += 5;
@@ -367,7 +367,7 @@ Finally, the pointers are advanced to prepare for another iteration of the loop.
 
 The {{< lookup/cref DrawSpriteTileWhite >}} procedure copies a solid white outline of an 8 &times; 8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}.
 
-`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+`src` should point to the first byte of a [masked tile's image data]({{< relref "tile-image-format#masked-tiles" >}}). Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to draw sprites which are "activated," taking damage, or flashing to grab the player's attention.
 
@@ -396,24 +396,24 @@ During the second {{< lookup/cref outport >}}, port 3CEh gets the byte 3h, and p
 
 The data rotate/function select parameter has the following interpretation:
 
-Bit Position                  | Value (= 10h) | Interpretation
-------------------------------|---------------|---------------
-7&ndash;5 (most significant)  | 000b          | Not used.
-4&ndash;3                     | 10b           | Function Select: Written CPU data is OR'd with the latched data.
-2&ndash;0 (least significant) | 000b          | Rotate Count: Unrotated.
+Bit Position             | Value (= 10h) | Interpretation
+-------------------------|---------------|---------------
+7--5 (most significant)  | 000b          | Not used.
+4--3                     | 10b           | Function Select: Written CPU data is OR'd with the latched data.
+2--0 (least significant) | 000b          | Rotate Count: Unrotated.
 
 With the function select parameter set this way, a "1" bit written by the CPU will turn a pixel value on, but a "0" bit will retain the contents in the latches.
 
 Finally, the third {{< lookup/cref outport >}} sends the byte value 5h to I/O port 3CEh, and the byte value 8h to port 3CFh. The port meanings are the same as the previous write, only the index (5h) and data (8h) values change. This programs the value 8h into the EGA's "Mode Register" parameter. The mode has the following interpretation:
 
-Bit Position                  | Value (= 8h) | Interpretation
-------------------------------|--------------|---------------
-7&ndash;6 (most significant)  | 00b          | Not used
-5                             | 0b           | Shift Register: The meaning here is not well-documented, but this is the default state for this parameter.
-4                             | 0b           | Odd/Even: Disables this CGA compatibility addressing mode.
-3                             | 1b           | Read Mode: The CPU reads the results of the comparison of the four memory planes and the color compare register.
-2                             | 0b           | Diagnostic Test Mode: Disabled.
-1&ndash;0 (least significant) | 00b          | Write Mode: Each memory plane is written with the CPU data rotated by the number of counts in the rotate register, unless Set/Reset is enabled for the plane. Planes for which Set/Reset is enabled are written with 8 bits of the value contained in the Set/Reset register for that plane.
+Bit Position             | Value (= 8h) | Interpretation
+-------------------------|--------------|---------------
+7--6 (most significant)  | 00b          | Not used
+5                        | 0b           | Shift Register: The meaning here is not well-documented, but this is the default state for this parameter.
+4                        | 0b           | Odd/Even: Disables this CGA compatibility addressing mode.
+3                        | 1b           | Read Mode: The CPU reads the results of the comparison of the four memory planes and the color compare register.
+2                        | 0b           | Diagnostic Test Mode: Disabled.
+1--0 (least significant) | 00b          | Write Mode: Each memory plane is written with the CPU data rotated by the number of counts in the rotate register, unless Set/Reset is enabled for the plane. Planes for which Set/Reset is enabled are written with 8 bits of the value contained in the Set/Reset register for that plane.
 
 The only non-default setting here is the read mode: When the CPU reads data from the EGA memory in this mode, the color value across all four planes is compared against the "Color Compare" register and the result of this test is returned to the CPU. However, in the original setup of the display hardware in {{< lookup/cref SetVideoMode >}}, all four memory planes were added to the "Color Don't Care" mask, meaning that we don't actually care about the value currently held in any of the planes and _any_ color value should be treated as a match. The combination of these two settings means that _all_ subsequent reads from video memory will return FFh to the CPU regardless of what's actually held there.
 
@@ -446,15 +446,15 @@ Finally, the pointers are advanced to prepare for another iteration of the loop.
 
 Once all eight tile rows have been drawn, {{< lookup/cref outport >}} and {{< lookup/cref EGA_MODE_DEFAULT >}} revert the changes made when the procedure was entered. The graphics controller's "Data Rotate/Function Select" parameter (3h) gets zero. This resets the "function select" value from earlier:
 
-Bit Position                  | Value (= 0h) | Interpretation
-------------------------------|--------------|---------------
-4&ndash;3                     | 00b          | Function Select: Data written from the CPU to memory is not modified.
+Bit Position | Value (= 0h) | Interpretation
+-------------|--------------|---------------
+4--3         | 00b          | Function Select: Data written from the CPU to memory is not modified.
 
 {{< lookup/cref EGA_MODE_DEFAULT >}} resets the "read mode" value that was previously changed.
 
 {{< boilerplate/function-cref LightenScreenTile >}}
 
-The {{< lookup/cref LightenScreenTile >}} procedure lightens the entire area at the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+The {{< lookup/cref LightenScreenTile >}} procedure lightens the entire area at the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to brighten areas of the screen that are completely illuminated beneath {{< lookup/special-actor 6 >}}, {{< lookup/special-actor 7 >}}, and {{< lookup/special-actor 8 >}} actors. The effect is achieved by turning on the intensity bit on every pixel in the screen tile. The color effect here fundamentally changes the colors of pixels, meaning that "magenta" areas become "bright magenta" and no longer match for palette animation purposes.
 
@@ -496,7 +496,7 @@ Once the loop has operated on all eight pixel rows, the procedure returns withou
 
 {{< boilerplate/function-cref LightenScreenTileWest >}}
 
-The {{< lookup/cref LightenScreenTileWest >}} procedure lightens the lower-right half of an 8 &times; 8 tile at the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+The {{< lookup/cref LightenScreenTileWest >}} procedure lightens the lower-right half of an 8 &times; 8 tile at the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to brighten the topmost tile of {{< lookup/special-actor 6 >}} actors. The brightening effect works similarly to that in {{< lookup/cref LightenScreenTile >}}. The color effect here fundamentally changes the colors of pixels, meaning that "magenta" areas become "bright magenta" and no longer match for palette animation purposes.
 
@@ -559,7 +559,7 @@ With everything set up to process another row of tile pixels, the loop continues
 
 {{< boilerplate/function-cref LightenScreenTileEast >}}
 
-The {{< lookup/cref LightenScreenTileEast >}} procedure lightens the lower-left half of an 8 &times; 8 tile at the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. Valid values for `x` are 0&ndash;39, and 0&ndash;24 for `y`.
+The {{< lookup/cref LightenScreenTileEast >}} procedure lightens the lower-left half of an 8 &times; 8 tile at the video memory tile location identified by column `x` and row `y`. The destination draw page address is influenced by {{< lookup/cref drawPageSegment >}}. Valid values for `x` are 0--39, and 0--24 for `y`.
 
 This procedure is used to brighten the topmost tile of {{< lookup/special-actor 8 >}} actors. The brightening effect works similarly to that in {{< lookup/cref LightenScreenTile >}}. The color effect here fundamentally changes the colors of pixels, meaning that "magenta" areas become "bright magenta" and no longer match for palette animation purposes.
 

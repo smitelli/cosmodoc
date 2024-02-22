@@ -34,11 +34,11 @@ Each call to {{< lookup/cref DrawTextLine >}} produces one line of output -- new
 
 Finally, {{< lookup/cref WaitSpinner >}} presents an animated green spinning icon at the requested X,Y position and execution blocks until a key is pressed. Once that happens, the scancode of that key is returned to the dialog function in case it wants to take different actions depending on the chosen key.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **You impetuous young boy.**
 
 Due to a quirk in {{< lookup/cref WaitSpinner >}}'s handling of extended PS/2 scancodes, it's possible to speed through most dialogs (including those that occur during gameplay) by holding one of the extended keys -- a good example is the standalone arrow keys.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< image src="demo-2052x.png"
     alt="Dialog demo."
@@ -85,9 +85,9 @@ There are no provisions to automatically right- or bottom-align any content with
 
 Graphics are inserted by using an escape sequence in the text argument passed to {{< lookup/cref DrawTextLine >}}. The bytes `\xFD027` are interpreted as FDh (this is the command to draw a player sprite) followed by the three-digit fixed decimal number 027. This draws [player sprite]({{< relref "databases/player-sprite" >}}) frame 27 with its bottom-left tile anchored at the position where the sequence was encountered. Similarly, `\xFB003` is a "draw [cartoon image]({{< relref "databases/cartoon-sprite" >}})" command with frame 3 as its three-digit argument. `\xFE029000` is a "draw [actor sprite]({{< relref "databases/actor-sprite" >}})" command, which takes _two_ three-digit arguments: the sprite type is 29, and the frame is 0. These command sequences are split up in the C code to prevent the parser from treating them as hexadecimal values &ge; 256.
 
-The last command is a little different. `\xFC003` is the "draw animated" command, and its three-digit argument sets an inter-character delay of 3. (One delay unit is approximately 1 &#8725; 47 of a second.) This command draws all subsequent characters one-by-one with a delay and a sound effect between each one. Any time such animated text is being drawn, the user can hold <kbd>Space</kbd> to speed through the animation.
+The last command is a little different. `\xFC003` is the "draw animated" command, and its three-digit argument sets an inter-character delay of 3. (One delay unit is approximately 1 &frasl; 47 of a second.) This command draws all subsequent characters one-by-one with a delay and a sound effect between each one. Any time such animated text is being drawn, the user can hold <kbd>Space</kbd> to speed through the animation.
 
-{{< note >}}The "draw animated" command is not persisted after {{< lookup/cref DrawTextLine >}} returns. To draw multiple lines of text with animation, each call needs to re-enable the "draw animated" mode explicitly.{{< /note >}}
+{{% note %}}The "draw animated" command is not persisted after {{< lookup/cref DrawTextLine >}} returns. To draw multiple lines of text with animation, each call needs to re-enable the "draw animated" mode explicitly.{{% /note %}}
 
 The {{< lookup/cref DrawTextLine >}} commentary explains all of the drawing commands in great detail.
 
@@ -167,7 +167,7 @@ In preparation for the [title loop]({{< relref "menu-functions#title-loop" >}}),
 
 The {{< lookup/cref ShowRestoreGameError >}} function shows when the user tries to restore a saved game whose file does not exist. This dialog is shown when {{< lookup/cref PromptRestoreGame >}} returns the {{< lookup/cref name="RESTORE_GAME" text="RESTORE_GAME_NOT_FOUND" >}} status.
 
-{{< boilerplate/menu-gameplay object="dialog" may=true >}}
+{{< boilerplate/dialog-gameplay may=true >}}
 
 {{< image src="restore-game-error-2052x.png"
     alt="Restore Game Error Dialog"
@@ -190,7 +190,7 @@ The bottom text of this dialog ends with a trailing space, perhaps to ensure tha
 
 The {{< lookup/cref ShowAlteredFileError >}} function shows when the user tries to load a manipulated save file whose checksum does not match the expected value. It is called by {{< lookup/cref LoadGameState >}} and is always followed by an unconditional call to {{< lookup/cref ExitClean >}}, quitting the game.
 
-{{< boilerplate/menu-gameplay object="dialog" may=true >}}
+{{< boilerplate/dialog-gameplay may=true >}}
 
 {{< image src="altered-file-error-2052x.png"
     alt="Altered File Error Dialog"
@@ -320,7 +320,7 @@ These dialogs make extensive use of the `\xFB` commands in {{< lookup/cref DrawT
 
 {{< boilerplate/function-cref ShowInstructions >}}
 
-The {{< lookup/cref ShowInstructions >}} function shows a progression of five pages of dialog frames that teach the user how to play the game. The pages may be advanced in either a forward direction (by pressing pretty much any key) or reverse direction by pressing either <kbd>&uarr;</kbd> or <kbd>Page Up</kbd>. The <kbd>Esc</kbd> key exits the instructions entirely. Once the fifth page has been dismissed, the {{< lookup/cref ShowHintsAndKeys >}} function displays additional information.
+The {{< lookup/cref ShowInstructions >}} function shows a progression of five pages of dialog frames that teach the user how to play the game. The pages may be advanced in either a forward direction (by pressing pretty much any key) or reverse direction by pressing either <kbd>&uparrow;</kbd> or <kbd>Page Up</kbd>. The <kbd>Esc</kbd> key exits the instructions entirely. Once the fifth page has been dismissed, the {{< lookup/cref ShowHintsAndKeys >}} function displays additional information.
 
 {{< image src="instructions-2052x.png"
     alt="Instructions Dialog Sequence"
@@ -364,7 +364,7 @@ The instruction dialogs are a little unique because they use {{< lookup/cref Fad
     if (scancode == SCANCODE_ESC) return;
 ```
 
-The {{< lookup/cref WaitSpinner >}} call here is nested inside a `do...while` loop that repeats if the `scancode` entered by the user matches either {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_9" >}} or {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_8" >}}, which are <kbd>Num 9</kbd>/<kbd>Page Up</kbd> and <kbd>Num 8</kbd>/<kbd>&uarr;</kbd> respectively. This absorbs any "previous page" keypresses, causing them to do nothing -- the user is already on the first page.
+The {{< lookup/cref WaitSpinner >}} call here is nested inside a `do...while` loop that repeats if the `scancode` entered by the user matches either {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_9" >}} or {{< lookup/cref name="SCANCODE" text="SCANCODE_KP_8" >}}, which are <kbd>Num 9</kbd>/<kbd>Page Up</kbd> and <kbd>Num 8</kbd>/<kbd>&uparrow;</kbd> respectively. This absorbs any "previous page" keypresses, causing them to do nothing -- the user is already on the first page.
 
 If `scancode` matches {{< lookup/cref name="SCANCODE" text="SCANCODE_ESC" >}}, the user pressed the `Esc` key and the function returns to its caller without presenting any more information.
 
@@ -467,7 +467,7 @@ After page five is dismissed, {{< lookup/cref ClearScreen >}} abruptly erases th
 
 The {{< lookup/cref ShowHintsAndKeys >}} function displays a page of helpful hints, followed by two pages of keyboard help. The `top` parameter influences the vertical position of the frames, to allow the dialogs to be placed higher on the screen while the game is being played.
 
-{{< boilerplate/menu-gameplay object="dialog" may=true >}}
+{{< boilerplate/dialog-gameplay may=true >}}
 
 {{< image src="hints-and-keys-2052x.png"
     alt="Hints and Keys Dialog Sequence"
@@ -778,7 +778,7 @@ void ShowForeignOrders(void)
     DrawTextLine(x, 4,  "Price: /29 + VAT + 2 P&P     \xFE""085000");
 ```
 
-{{< note >}}The [game font]({{< relref "databases/font" >}}) does not contain a `/` character, and instead displays the symbol for the pound sterling (<code>&pound;</code>) in its place.{{< /note >}}
+{{% note %}}The [game font]({{< relref "databases/font" >}}) does not contain a `/` character, and instead displays the symbol for the pound sterling (<code>&pound;</code>) in its place.{{% /note %}}
 
 ```c
     DrawTextLine(x, 6,  "Precision Software Applications");
@@ -867,7 +867,7 @@ void ShowPublisherBBS(void)
 
 The {{< lookup/cref ToggleSound >}} function inverts the setting of the global {{< lookup/cref isSoundEnabled >}} variable then presents a dialog confirming the resulting state.
 
-{{< boilerplate/menu-gameplay object="dialog" may=true >}}
+{{< boilerplate/dialog-gameplay may=true >}}
 
 {{< image src="sound-2052x.png"
     alt="Sound Dialogs"
@@ -904,7 +904,7 @@ There is a layout oversight in the "sound is now OFF" case -- the bottom text of
 
 The {{< lookup/cref ToggleMusic >}} function inverts the setting of the global {{< lookup/cref isMusicEnabled >}} variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatible card installed, this function is a no-op.
 
-{{< boilerplate/menu-gameplay object="dialog" may=true >}}
+{{< boilerplate/dialog-gameplay may=true >}}
 
 {{< image src="music-2052x.png"
     alt="Music Dialogs"
@@ -954,7 +954,7 @@ The {{< lookup/cref ShowLevelIntro >}} function presents the animated message "N
     2x="level-intro-1368x.png"
     3x="level-intro-2052x.png" >}}
 
-{{< note >}}It is not safe to call this function with `level_num` higher than 17.{{< /note >}}
+{{% note %}}It is not safe to call this function with `level_num` higher than 17.{{% /note %}}
 
 The global state of the program differentiates **levels** (each of which is played once in the game's progression) and **maps** (the actual worlds the player moves through, including the bonus maps which can be played multiple times). The text presented to the user is looser with the terminology, here using the word "level" where it's more appropriately referred to as "map."
 
@@ -965,7 +965,7 @@ void ShowLevelIntro(word level_num)
     word x;
 ```
 
-The `mapnums[]` array links the level numbers to the maps. Levels 0&ndash;1 are maps 1&ndash;2, levels 2&ndash;3 are the _first_ occurrences of the two bonus maps, and levels 4&ndash;5 are maps 3&ndash;4. This pattern repeats, with the two bonus maps repeated between every two regular maps, until map 10. Since the bonus maps are not introduced by this dialog function, their positions hold a space-filler zero value.
+The `mapnums[]` array links the level numbers to the maps. Levels 0--1 are maps 1--2, levels 2--3 are the _first_ occurrences of the two bonus maps, and levels 4--5 are maps 3--4. This pattern repeats, with the two bonus maps repeated between every two regular maps, until map 10. Since the bonus maps are not introduced by this dialog function, their positions hold a space-filler zero value.
 
 ```c
     if (demoState != DEMO_STATE_NONE) return;
@@ -992,11 +992,11 @@ The remainder of the function is a regular dialog with some extra flourish. {{< 
 
 The `if` covers up a bit of a hack: If the value read from `mapnums[]` is equal to `10`, the number being drawn is two digits long and needs to be shifted one tile to the _right_ to display correctly. This is because the number is drawn _right-aligned_ via {{< lookup/cref DrawNumberFlushRight >}}, making everything on the horizontal axis behave opposite to how one would expect it to.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Couldn't `mapnums[]` have been an array of fixed-length strings instead, avoiding this issue entirely?**
 
 Shush, you.
-{{< /aside >}}
+{{% /aside %}}
 
 While the first episode of the game has map 11, the caller ({{< lookup/cref InitializeLevel >}}) does not call this function when that map is entered. No other two-digit maps numbers are implemented in the retail game.
 
@@ -1147,7 +1147,7 @@ Every iteration, the area occupied by the score is erased by drawing a span of s
         if (i / 6 < 13) i++;
 ```
 
-The `i` variable is used to determine which rank text should be shown at this time. The array of ranks has thirteen elements numbered 0&ndash;12, and the intention here is to use `i / 6` as the index into this array, thus advancing the displayed rank on every sixth iteration.
+The `i` variable is used to determine which rank text should be shown at this time. The array of ranks has thirteen elements numbered 0--12, and the intention here is to use `i / 6` as the index into this array, thus advancing the displayed rank on every sixth iteration.
 
 As written, `i` stops incrementing once it reaches 78. `78 / 6` is 13, which is past the end of the ranks array, but this does not cause issues due to another condition that happens a bit later.
 
@@ -1205,7 +1205,7 @@ Once all the stars have been tallied, the `for` loop ends and {{< lookup/cref Wa
 
 The {{< lookup/cref ShowPauseMessage >}} function presents a "game paused" dialog, stops music playback, and stops all execution until a key is pressed. Once that happens, the music is restarted and the function returns to its caller.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="pause-message-2052x.png"
     alt="Pause Message Dialog"
@@ -1243,7 +1243,7 @@ When this function returns, normal game execution is allowed to resume and the g
 
 The {{< lookup/cref ShowCheatMessage >}} function displays a static dialog informing the user that they have entered the cheat code successfully and explaining the effect. Aside from pausing gameplay while on screen, this function performs no other actions.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="cheat-message-2052x.png"
     alt="Cheat Message Dialog"
@@ -1267,7 +1267,7 @@ void ShowCheatMessage(void)
 
 The {{< lookup/cref ToggleGodMode >}} function inverts the state of the global "god mode" debug flag and presents a dialog informing the user of the current setting.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="god-mode-2052x.png"
     alt="God Mode Dialogs"
@@ -1300,7 +1300,7 @@ Each time this function is called, it flips the state of the {{< lookup/cref isG
 
 The {{< lookup/cref ShowMemoryUsage >}} function displays a debug dialog with a few live statistics about available system memory and the current number of actors.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="memory-usage-2052x.png"
     alt="Memory Usage Dialog"
@@ -1333,19 +1333,19 @@ The three dynamic fields are:
 
 The remaining **Total Map Memory** value is hard-coded to 65,049 and there is no clear reason why. This cannot refer to the variables in the BSS area, as those use less than 26 KiB of memory per the EXE header. Furthermore, no combination of the dynamic memory allocations add up to anything close to this amount.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **But wait, there's more!**
 
 65,049 is simply a weird number. It's the product of two primes (3 and 21,683) and highly unlikely to be a real measurement of any object in memory. Furthermore, the number is embedded in an ASCII string in the data segment of the compiled code, meaning that its value was known at compile time. Even if we assume the value was a true measurement of something, operators like `sizeof` return integers -- not strings. Without using a `printf()` variant or the non-standard `itoa()` function, there is no way I can figure to construct this string other than typing it directly into the source code.
 
 If you have any thoughts about what else this value could mean or any C preprocessor tricks that could have been used to get it there, [please let me know!](mailto:scott@smitelli.com)
-{{< /aside >}}
+{{% /aside %}}
 
 {{< boilerplate/function-cref ShowBombHint >}}
 
 The {{< lookup/cref ShowBombHint >}} function displays a hint dialog that informs the player that they can't use the bomb key until they have picked up a bomb.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="bomb-hint-2052x.png"
     alt="Bomb Hint Dialog"
@@ -1387,7 +1387,7 @@ The dialog is relatively simple, containing a hint for the player along with a "
 
 {{< lookup/cref WaitHard >}} pauses before presenting the wait spinner, which can absorb any button presses the user might have made that would dismiss the dialog before they realized it was there. Once the delay expires, {{< lookup/cref WaitSpinner >}} allows the player to acknowledge and dismiss the dialog.
 
-{{< note >}}The wait spinner can only be dismissed by pressing a key on the keyboard. If a joystick is being used, pressing a joystick button will _not_ dismiss this hint dialog.{{< /note >}}
+{{% note %}}The wait spinner can only be dismissed by pressing a key on the keyboard. If a joystick is being used, pressing a joystick button will _not_ dismiss this hint dialog.{{% /note %}}
 
 ```c
     SelectDrawPage(!activePage);
@@ -1402,7 +1402,7 @@ When the next frame completes its drawing and the screen pages flip, the old fra
 
 The {{< lookup/cref ShowPounceHint >}} function displays a sequence of two hint dialogs that teach the player how to pounce on enemies for defense.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="pounce-hint-2052x.png"
     alt="Pounce Hint Dialogs"
@@ -1443,7 +1443,7 @@ This works identically to {{< lookup/cref ShowBombHint >}}, except here two dial
 
 The {{< lookup/cref ShowHealthHint >}} function displays a hint dialog that teaches the player what {{< lookup/actor type=28 strip=true plural=true >}} are and how they affect gameplay.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="health-hint-2052x.png"
     alt="Health Hint Dialog"
@@ -1477,11 +1477,11 @@ This works identically to {{< lookup/cref ShowBombHint >}}.
 
 {{< boilerplate/function-cref ShowHintGlobeMessage >}}
 
-The {{< lookup/cref ShowHintGlobeMessage >}} function displays a dialog containing an animated context-appropriate hint message. The message is selected via the numeric `hint_num` argument. Different episodes have different `hint_num` ranges: 0&ndash;18 in episode one, 0&ndash;7 in episode two, and 0&ndash;5 in episode three. These numbers are reused and refer to different messages from episode to episode.
+The {{< lookup/cref ShowHintGlobeMessage >}} function displays a dialog containing an animated context-appropriate hint message. The message is selected via the numeric `hint_num` argument. Different episodes have different `hint_num` ranges: 0--18 in episode one, 0--7 in episode two, and 0--5 in episode three. These numbers are reused and refer to different messages from episode to episode.
 
 Passing an undefined `hint_num` has a different effect depending on the episode being played. In episode 1, the function essentially becomes a no-op. In episodes 2 and 3, the function displays a frame without any inner hint text.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="hint-globe-message-2052x.png"
     alt="Hint Globe Message Dialog"
@@ -1771,7 +1771,7 @@ The {{< lookup/cref ShowRescuedDNMessage >}} function displays a dialog sequence
 
 This function uses two helper functions named {{< lookup/cref UnfoldPlayerFrame >}} and {{< lookup/cref UnfoldDNFrame >}} to simplify repetitive creation of dialog frames with the characters' sprites positioned inside them. Each of these functions takes no parameters, displays a frame with a fixed size and position, and returns the appropriate X position where text should be rendered for that frame.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="rescued-dn-message-2052x.png"
     alt="Rescued Duke Nukem Message Dialogs"
@@ -1859,11 +1859,11 @@ Duke responds in his own set of {{< lookup/cref UnfoldDNFrame >}} dialogs. The w
 
 The player and Duke converse for a bit, then they part ways.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Hey, wait!**
 
 Cosmo never even told Duke his name here.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< lookup/cref SelectDrawPage >}} restores the page-flipping mechanism to how it normally works during gameplay. Here the draw page is set to the page that is _not_ {{< lookup/cref activePage >}}, which is the normal state for the game to be in.
 
@@ -1871,7 +1871,7 @@ Cosmo never even told Duke his name here.
 
 {{< lookup/cref UnfoldPlayerFrame >}} is a helper function that draws the dialog frame that is used when the player is speaking to Duke. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 ```c
 word UnfoldPlayerFrame(void)
@@ -1893,7 +1893,7 @@ This function's body is conditionally compiled based on the `HAS_ACT_FROZEN_DN` 
 
 {{< lookup/cref UnfoldDNFrame >}} is a helper function that draws the dialog frame that is used when Duke is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 ```c
 word UnfoldDNFrame(void)
@@ -1915,7 +1915,7 @@ This function's body is conditionally compiled based on the `HAS_ACT_FROZEN_DN` 
 
 The {{< lookup/cref ShowE1CliffhangerMessage >}} function presents a sequence of two dialogs introducing the "cliffhanger" ending sequence of episode one, followed by ending the game by setting {{< lookup/cref winGame >}} to true. During each call, the passed `actor_type` value is used to determine which text to show, or if the game should end.
 
-{{< boilerplate/menu-gameplay object="dialog" >}}
+{{< boilerplate/dialog-gameplay >}}
 
 {{< image src="e1-cliffhanger-message-2052x.png"
     alt="Episode 1 Cliffhanger Message Dialogs"
@@ -2360,12 +2360,12 @@ Any existing content on the screen is faded out via palette animation in {{< loo
 
 The dialog is constructed out of view with calls to {{< lookup/cref UnfoldTextFrame >}} and {{< lookup/cref DrawTextLine >}}. Once the dialog has been fully drawn, {{< lookup/cref FadeInCustom >}} fades it into view using a rather quick speed setting of 1.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Better late than never.**
 
-Duke Nukem &#8545; ended up being released a year later than the advertised date here. The story also changed somewhat -- rather than _saving_ the alien race, he ended up _conquering_ them to save Earth from enslavement.
+Duke Nukem {{< roman-numeral 2 >}} ended up being released a year later than the advertised date here. The story also changed somewhat -- rather than _saving_ the alien race, he ended up _conquering_ them to save Earth from enslavement.
 
 The canonical spelling of "Nukem" also changed from "Nukum" by the release date as well.
-{{< /aside >}}
+{{% /aside %}}
 
 {{< lookup/cref WaitSpinner >}} blocks until a key is pressed, then this dialog's function returns.

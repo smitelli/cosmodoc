@@ -52,9 +52,7 @@ This translation from position to resistance to time to boolean on/off warrants 
     2x="558-timer-internals-1368x.png"
     3x="558-timer-internals-2052x.png" >}}
 
-{{< aside class="note" >}}
-**Note:** Only one channel is pictured here, and for clarity the "reset" and "control voltage" pins on the chip aren't included since the Game Control Adapter doesn't do anything interesting with them.
-{{< /aside >}}
+{{% note %}}Only one channel is pictured here, and for clarity the "reset" and "control voltage" pins on the chip aren't included since the Game Control Adapter doesn't do anything interesting with them.{{% /note %}}
 
 The {{< overline >}}FIRE{{< /overline >}} line is activated briefly whenever a write occurs on the adapter's I/O port. This line carries what's called an "active low" signal. This means that when the signal is conceptually "active," the voltage is low -- at or near zero volts. High voltage, at or near 5 volts, is considered "inactive." These types of signals are represented by an overline in text, or as unfilled dots on components in the schematic.
 
@@ -62,9 +60,7 @@ The {{< overline >}}FIRE{{< /overline >}} signal enters the 558 timer on its {{<
 
 A set/reset (SR) latch can be thought of as an on/off switch with two separate buttons. Pressing the "set" button turns the latch on, and pressing "reset" turns it off. Pressing "set" while the latch is already on (or "reset" while it's off) causes no change in state. The latch's output is exposed on a line called Q, and the inverse of this output is exposed on {{< overline >}}Q{{< /overline >}}.
 
-{{< aside class="note" >}}
-**Note:** Pressing both "set" and "reset" at the same time puts the latch into a nonsense state where the outputs become meaningless. Don't do that.
-{{< /aside >}}
+{{% note %}}Pressing both "set" and "reset" at the same time puts the latch into a nonsense state where the outputs become meaningless. Don't do that.{{% /note %}}
 
 An active TRIGGER signal turns the latch on, which immediately brings the Q and {{< overline >}}Q{{< /overline >}} lines active. (Eventually the I/O write operation completes, deactivating the TRIGGER signal, which has no effect on the state of the latch.) The Q output is unused, while {{< overline >}}Q{{< /overline >}}, now carrying zero volts, feeds the "base" input on a pair of **transistors**.
 
@@ -86,11 +82,9 @@ _VR1_                     | _R1_       | _C1_  | Time Constant (_VR1_ + _R1_) &t
 75 k&ohm;                 | 2.2 k&ohm; | 10 nF | 772 &micro;s
 100 k&ohm; (bottom/right) | 2.2 k&ohm; | 10 nF | 1.022 ms
 
-Assuming ideal and precise components, each **time constant** describes the amount of time it takes the circuit to charge the capacitor to **63.2%** of the supply voltage. This rather arbitrary-seeming value is due to the logarithmic behavior of a charging capacitor: Voltage climbs rapidly at the start of the charge, but the rate tapers off substantially after the capacitor is charged about 2/3 of the way. (The formal derivation for this constant is 1 - _e_<sup>-1</sup>.) Not every implementation uses these component values -- some sources have reported _C1_ sizes as low as 5.6 nF or as high as 22 nF, which can nearly halve or double the charge times as calculated here.  Fortunately the change in timing always corresponds linearly to the change in joystick position, so the calculations do not require any complicated transformations once the ratio has been determined.
+Assuming ideal and precise components, each **time constant** describes the amount of time it takes the circuit to charge the capacitor to **63.2%** of the supply voltage. This rather arbitrary-seeming value is due to the logarithmic behavior of a charging capacitor: Voltage climbs rapidly at the start of the charge, but the rate tapers off substantially after the capacitor is charged about &frac23; of the way. (The formal derivation for this constant is 1 - _e_<sup>-1</sup>.) Not every implementation uses these component values -- some sources have reported _C1_ sizes as low as 5.6 nF or as high as 22 nF, which can nearly halve or double the charge times as calculated here.  Fortunately the change in timing always corresponds linearly to the change in joystick position, so the calculations do not require any complicated transformations once the ratio has been determined.
 
-{{< aside class="note" >}}
-**Note:** The IBM publication specifies 24.2 + 0.011(r) as the function to convert ohms into microseconds, while our computed ratio is 22 + 0.01(r). IBM's values are _probably_ more correct as they undoubtedly tested them on real hardware instead of a phone calculator.
-{{< /aside >}}
+{{% note %}}The IBM publication specifies 24.2 + 0.011(r) as the function to convert ohms into microseconds, while our computed ratio is 22 + 0.01(r). IBM's values are _probably_ more correct as they undoubtedly tested them on real hardware instead of a phone calculator.{{% /note %}}
 
 As the capacitor _C1_ charges, the voltage as measured between _R1_ and _C1_ climbs. This voltage is fed into the 558 chip on the THRESHOLD pin, where it enters the "+" input on a device called a **comparator**.
 
@@ -122,13 +116,13 @@ This is why practically every game designed for the PC requires the user to go t
 
 In this game's case, the calibration procedure asks the user to place the joystick in the top left corner, followed by the bottom right, to simultaneously capture the minimum intervals across both axes followed by the maximum intervals. The user is _required_ to do this every time the game starts before it will even consider reading game input from the joystick.
 
-The analog inputs of the joystick are infinitely variable, subject to the polling resolution of the software. The game's input, by comparison, is boolean -- there is only one speed in each direction, which can be either on or off with no in-between. The joystick input is translated into this on/off scheme by dividing the joystick's travel area into a 6&times;6 grid. If the stick is in the outer band of this grid (e.g. more than 2/3 from center position) the direction is considered to be active. This creates a generous safety margin around the joystick's center position to keep small "wobbles" from unintentionally moving the player.
+The analog inputs of the joystick are infinitely variable, subject to the polling resolution of the software. The game's input, by comparison, is boolean -- there is only one speed in each direction, which can be either on or off with no in-between. The joystick input is translated into this on/off scheme by dividing the joystick's travel area into a 6&times;6 grid. If the stick is in the outer band of this grid (e.g. more than &frac23; from center position) the direction is considered to be active. This creates a generous safety margin around the joystick's center position to keep small "wobbles" from unintentionally moving the player.
 
 {{< boilerplate/function-cref ShowJoystickConfiguration >}}
 
 The {{< lookup/cref ShowJoystickConfiguration >}} function prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick_num`. It can be accessed from the "Game Redefine" menu in either the main menu or the in-game help menu. This function must run to completion for {{< lookup/cref isJoystickReady >}} to become true. If a key is pressed at any point, the function is aborted.
 
-{{< boilerplate/menu-gameplay may=true >}}
+{{< boilerplate/dialog-gameplay object="menu" may=true >}}
 
 This function bears a striking similarity to `CalibrateJoy()`[^CalibrateJoy] from Id Software's C Library as used in _Hovertank 3-D_.
 
@@ -263,7 +257,7 @@ Here, the calibration values are actually processed into something the game can 
     2x="calibration-grid-1368x.png"
     3x="calibration-grid-2052x.png" >}}
 
-`xthird` and `ythird` are calculated to be one-third of the distance from the stick's center position to one of the edges. These values are used, relative to the minimum and maximum timing values seen during the calibration process, to set the boundary between the "dead zone" where movement is ignored, and the outer band where the movement is honored. The stick needs to be moved 2/3 of the way to an edge (relative to center position) for a move to register.
+`xthird` and `ythird` are calculated to be one-third of the distance from the stick's center position to one of the edges. These values are used, relative to the minimum and maximum timing values seen during the calibration process, to set the boundary between the "dead zone" where movement is ignored, and the outer band where the movement is honored. The stick needs to be moved &frac23; of the way to an edge (relative to center position) for a move to register.
 
 These timing boundary values are stored in {{< lookup/cref joystickBandLeft >}}, {{< lookup/cref joystickBandRight >}}, {{< lookup/cref joystickBandTop >}}, and {{< lookup/cref joystickBandBottom >}}. These variables are each indexed by stick number, even though multiple joystick support is not implemented.
 
@@ -287,7 +281,7 @@ The final prompt asks the user how they would like the buttons to be configured.
 
 The call to {{< lookup/cref WaitSpinner >}} blocks until any make code is received from the keyboard, at which point the scancode is returned in `scancode`. If the <kbd>Esc</kbd> key (or any unexpected key) was pressed, the function returns early. If either <kbd>J</kbd> or <kbd>D</kbd> were pressed, {{< lookup/cref joystickBtn1Bombs >}} is set with the player's wishes. There is a rather blatant bug here -- the behavior for "jump" and "bomb" is handled backwards, meaning the user has to enter the opposite choice from what they actually want to see in the game.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **Opposite Day**
 
 I can see two ways this bug may have occurred. The first possibility is that the original variable name for {{< lookup/cref joystickBtn1Bombs >}} was something like "swap buttons" and the author(s) working on the other parts of the code forgot what "swapped" and "not swapped" meant in the absolute sense.
@@ -295,7 +289,7 @@ I can see two ways this bug may have occurred. The first possibility is that the
 The other possibility is that maybe someone lost track of the fact that joystick buttons are one-based, and figured that the button opposite to "1" was "0" instead of "2" and that messed up their reasoning about which button was the primary. As I write it out, this scenario seems less and less plausible.
 
 Whatever the reason, it's frankly inexcusable that this bug made it past QA.
-{{< /aside >}}
+{{% /aside %}}
 
 Having collected all of the input needed, the function prepares to return.
 
@@ -365,13 +359,13 @@ Next is the happy path test for polling completion: If `xwaiting` _and_ `ywaitin
 
 Otherwise, a fail-safe check is performed: If either `x_time` or `y_time` have gone 500 iterations without the timing interval finishing, further polling is aborted. Either the resistance in the joystick is too high, something became unplugged, or the polling loop is running too fast. Regardless of the reason, it's safer to return a half-baked value than to get stuck in this loop.
 
-{{< aside class="note" >}}
-**Note:** The polling loop is not synchronized to anything that could reliably be called a real-time clock. It runs as fast or as slow as the processor permits it to. There is _a bit_ of a governing factor in the call to {{< lookup/cref inportb >}}, since an AT-compatible bus should never run faster than about 8 MHz and it takes a 286 processor five bus cycles to move data in from the adapter. This provides an upper bound on how many I/O reads the system should be able to do in any given period of time. But older PCs run their bus clock at the same speed as the processor. 4.77, 6, 8 MHz, or really anything.
+{{% note %}}
+The polling loop is not synchronized to anything that could reliably be called a real-time clock. It runs as fast or as slow as the processor permits it to. There is _a bit_ of a governing factor in the call to {{< lookup/cref inportb >}}, since an AT-compatible bus should never run faster than about 8 MHz and it takes a 286 processor five bus cycles to move data in from the adapter. This provides an upper bound on how many I/O reads the system should be able to do in any given period of time. But older PCs run their bus clock at the same speed as the processor. 4.77, 6, 8 MHz, or really anything.
 
 To further complicate things, this function does not suspend interrupt processing. Any time the CPU spends servicing an interrupt is time spent away from incrementing these counters, which can skew the results over time.
 
 All this is to say, the scheme is only effective because the timing characteristics during calibration match the in-game environment. The absolute timing values can and will be different on other systems.
-{{< /aside >}}
+{{% /note %}}
 
 The `do`...`while` loop continues until either termination condition is reached, at which point the function returns. The caller can read the timing values from the `x_time` and `y_time` pointers it originally provided.
 
@@ -475,7 +469,7 @@ The input is translated into the game's player control variables {{< lookup/cref
 
 The control value of the `switch` statement is an ad hoc 3&times;3 grid in Y-major order with (0, 0) in the center. This clever arrangement linearizes the possible `xmove` and `ymove` combinations into a scalar value between -4 and 4. These values correspond to the eight possible input directions, or zero when stationary. The various player control variables are enabled accordingly for each possible direction.
 
-{{< note >}}There is a bug in this code. At no point is the state of the {{< lookup/cref blockMovementCmds >}} variable considered, which (under keyboard input) would cancel any inputs in {{< lookup/cref cmdWest >}}, {{< lookup/cref cmdEast >}}, and {{< lookup/cref cmdJump >}}. This can allow a joystick-controlled player to walk or jump out of certain situations that a keyboard-controller player would not be allowed to.{{< /note >}}
+{{% note %}}There is a bug in this code. At no point is the state of the {{< lookup/cref blockMovementCmds >}} variable considered, which (under keyboard input) would cancel any inputs in {{< lookup/cref cmdWest >}}, {{< lookup/cref cmdEast >}}, and {{< lookup/cref cmdJump >}}. This can allow a joystick-controlled player to walk or jump out of certain situations that a keyboard-controller player would not be allowed to.{{% /note %}}
 
 ```c
     buttons = inportb(0x0201);

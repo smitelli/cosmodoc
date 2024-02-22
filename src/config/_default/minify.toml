@@ -1,5 +1,4 @@
 minifyOutput = true
 
 [tdewolff.html]
-keepQuotes = true
-keepWhitespace = false
+  keepQuotes = true

@@ -1,11 +1,11 @@
 {{ define "pageTitle" }}
-    Page Not Found | {{ .Site.Title | markdownify }}
+    Page Not Found | {{ site.Title }}
 {{ end }}
 
 {{ define "pageContent" }}
     <article class="markdown">
         <img src="/img/404.png" alt="COSMIC HINT! 404 Not Found..." title="COSMIC HINT! 404 Not Found...">
 
-        <p style="text-align: center"><a href="/">Go Home</a></p>
+        <p class="centered"><a href="{{ site.Home.RelPermalink }}">Go Home</a></p>
     </article>
 {{ end }}

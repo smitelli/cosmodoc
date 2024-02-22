@@ -1,5 +1,6 @@
 +++
 title = "main() and Outer Loop"
+linkTitle = "`main()` and Outer Loop"
 description = "An exploration of the outermost main functions of the game."
 weight = 200
 +++
@@ -79,11 +80,11 @@ The startup function is called next:
 
 {{< lookup/cref Startup >}} performs quite a bit of hardware detection, memory allocation and file loading. Once initialization is complete, the [outer loop]({{< relref "#outer-loop" >}}) is entered.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **How'd it get two {{< lookup/cref main >}}s?**
 
 At one point, {{< lookup/cref InnerMain >}} was probably the actual main function. Once it was determined that the game would require a 286 to run, it was probably more straightforward to do the CPU detection in a separate outer function that wrapped the old main function than to try to refactor the existing code to work on an 8088.
-{{< /aside >}}
+{{% /aside %}}
 
 ### Write Path
 

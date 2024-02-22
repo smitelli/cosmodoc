@@ -5,20 +5,63 @@
     Positional parameters:
         0 (required): One of `actor` (show data for regular actors) or
             `special_actor` (show data for special actors).
+
+    site.Data.map:
+        index:
+            actor:
+                "1": [A1, A2, A3]
+                "265": [C1, C2, C3]
+            backdrop:
+                "1": [A1, A2, A3]
+                "25": [C1, C2, C3]
+            music:
+                "0": [A1, A2, A3]
+                "18": [C1, C2, C3]
+            palette_animation:
+                "0": [A1, A2, A3]
+                "6": [C1, C2, C3]
+            special_actor:
+                "0": [A1, A2, A3]
+                "8": [C1, C2, C3]
+        sort:
+            actor: [1, 2, 265]
+            backdrop: [1, 2, 25]
+            music: [0, 1, 18]
+            palette_animation: [0, 1, 6]
+            special_actor: [0, 1, 8]
+        table:
+            - map_name: A1
+              actor_count: 270
+              backdrop_hscroll_flag: 1
+              backdrop_id: 11
+              backdrop_vscroll_flag: 0
+              fountain_count: 0
+              height_tiles: 64
+              light_count: 0
+              music_id: 8
+              palette_animation_id: 0
+              platform_count: 0
+              player_count: 1
+              rain_flag: 0
+              tile_size_bytes: 65528
+              width_tiles: 512
+            - map_name: A2
+              ...
 */}}
 
-{{ $dataSort := index $.Site.Data.map.sort (.Get 0) }}
-{{ $dataIndex := index $.Site.Data.map.index (.Get 0) }}
+{{ $kind := .Get 0 }}
+{{ $act_num_list := index site.Data.map.sort $kind }}
+{{ $act_maps_dict := index site.Data.map.index $kind }}
 
 <table>
     <tr>
-        <th>{{ if eq (.Get 0) "special_actor" }}Special {{ end }}Actor Type</th>
+        <th>{{ cond (eq $kind "special_actor") "Special " "" }}Actor Type</th>
         <th>Present on Maps</th>
     </tr>
-    {{ range $dataSort }}
+    {{ range $act_num_list }}
         <tr>
             <th>{{ . }}</th>
-            <td>{{ delimit (index $dataIndex (string .)) ", " }}</td>
+            <td>{{ delimit (index $act_maps_dict (string .)) ", " }}</td>
         </tr>
     {{ end }}
 </table>

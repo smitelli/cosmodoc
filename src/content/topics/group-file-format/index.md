@@ -21,11 +21,11 @@ COSMO3.VOL | 1,267,305    | April 15, 1992 | `56e30f1949e13875a9b89ce425e3965c`,
 
 The astute will notice that all of the STN files, regardless of the episode they belong to, are bit-for-bit identical. This seems to be a core part of the rationale for the STN/VOL split -- the base functionality that appears in all three games is identical, so the assets that accompany those features can be stored in and fetched from identical STN files. The VOL files, on the other hand, are all very different from episode to episode.
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **What do STN and VOL stand for?**
 
 That's known only to the original designer(s) of the layout. If I were forced to wager a guess, I would say **standard** and **volume**.
-{{< /aside >}}
+{{% /aside %}}
 
 A group file is simply a container that holds one or more **entries**. Each entry is a blob of data, indexed by a DOS-style ("8.3") name. Entries within a group file are analogous to files within a directory on a disk.
 
@@ -61,9 +61,7 @@ The data for all entries starts immediately after the header padding. The data i
 
 To read the data for any entry, first walk the header looking for an entry whose name matches the one needed. Read the `offset` and `size` values from that entry. Seek to `offset`, and read `size` bytes starting from there.
 
-{{< note >}}
-Like most of the data in the game, the integer values for the offset and size are packed in little-endian order.
-{{< /note >}}
+{{% note %}}Like most of the data in the game, the integer values for the offset and size are packed in little-endian order.{{% /note %}}
 
 If the search arrives at an entry with a null name, or if the end of the 4,000 byte header is reached, all entries have been searched without finding a match.
 
@@ -228,11 +226,11 @@ BDMOUNTN.MNI | 1,285,899      | 23,040       | Backdrop image: {{< lookup/backdr
 
 Total entries: 37
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Byte Pincher**
 
 COSMO2.VOL includes entries for MDRUMS.MNI and BDFOREST.MNI, neither of which is actually used by any of the maps in that episode. Omitting them would have shaved almost 43 KiB off the size of the file.
-{{< /aside >}}
+{{% /aside %}}
 
 ### COSMO3.VOL
 
@@ -276,23 +274,23 @@ PREVDEMO.MNI | 1,264,214      | 3,091        | Recorded keyboard input for the d
 
 Total entries: 35
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **What does MNI stand for?**
 
 Why does everybody ask me things I don't know? All I have is an educated guess: **manifest**.
 
 If not that, maybe **moniker** or **mnemonic**.
-{{< /aside >}}
+{{% /aside %}}
 
 Overall the entries are split up in a rational way. MZZTOP.MNI and MTECK4.MNI are the only entries that appear in all three VOL files. They would have been ideal candidates to be stored in the STN files instead, but for whatever reason they ended up where they did.
 
 It appears as though a conscious effort was made to ensure entry names across different episodes were kept unique (for instance, END1/END2/END3 for the end story images and A1/B1/C1 for map one of each episode). If all the group files were extracted into the same directory, the only names that would conflict are identical copies of the same data (and PREVDEMO.MNI).
 
-{{< aside class="speculation" >}}
+{{% aside class="speculation" %}}
 **I see patterns where none exist.**
 
 There may be some archaeological significance to the order of the entries in each group file, with later entries having been changed/added more recently in the game's development and testing. It's also possible that I'm completely wrong about that.
-{{< /aside >}}
+{{% /aside %}}
 
 ## The STN Files Have It All
 

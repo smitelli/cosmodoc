@@ -66,7 +66,7 @@ Symbolic Constant | Value | Description
 
 This is conceptually similar to {{< lookup/cref DIR4 >}}, but the values here should only be used in cases where objects move in one dimension.
 
-{{< note >}}{{< lookup/cref name="DIR2" text="DIR2_SOUTH" >}} equals _{{< lookup/cref name="DIR4" text="DIR4_NORTH" >}}_, while {{< lookup/cref name="DIR2" text="DIR2_NORTH" >}} equals _{{< lookup/cref name="DIR4" text="DIR4_SOUTH" >}}_. They are **not** interchangeable.{{< /note >}}
+{{% note %}}{{< lookup/cref name="DIR2" text="DIR2_SOUTH" >}} equals _{{< lookup/cref name="DIR4" text="DIR4_NORTH" >}}_, while {{< lookup/cref name="DIR2" text="DIR2_NORTH" >}} equals _{{< lookup/cref name="DIR4" text="DIR4_SOUTH" >}}_. They are **not** interchangeable.{{% /note %}}
 
 {{< boilerplate/global-cref DIR4 >}}
 
@@ -354,7 +354,7 @@ This is usually true, except on maps that have a {{< lookup/actor 59 >}}. On the
 
 {{< boilerplate/global-cref backdropNames >}}
 
-{{< note >}}Not all of the names defined here exist in all of the group files. Some of these names do not exist in _any_ group file.{{< /note >}}
+{{% note %}}Not all of the names defined here exist in all of the group files. Some of these names do not exist in _any_ group file.{{% /note %}}
 
 {{< boilerplate/global-cref backdropTable >}}
 
@@ -406,7 +406,7 @@ Each element of this array is a {{< lookup/cref Decoration >}} structure. The ar
 
 {{< boilerplate/global-cref demoState >}}
 
-This variable can hold one of the following values while the game is running:
+This variable can hold one of the following {{< lookup/cref DEMO_STATE >}} values while the game is running:
 
 Symbolic Constant   | Value | Description
 --------------------|-------|------------
@@ -414,7 +414,7 @@ Symbolic Constant   | Value | Description
 `DEMO_STATE_RECORD` | 1     | Game is being played interactively, and demo data is being recorded from the input.
 `DEMO_STATE_PLAY`   | 2     | Game is being controlled by demo data.
 
-When set to `DEMO_STATE_RECORD` or `DEMO_STATE_PLAY`, this suppresses the "Now entering level" message and all in-game hints, and adds a "DEMO" overlay.
+When set to {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_RECORD" >}} or {{< lookup/cref name="DEMO_STATE" text="DEMO_STATE_PLAY" >}}, this suppresses the "Now entering level" message and all in-game hints, and adds a "DEMO" overlay.
 
 {{< boilerplate/global-cref dir8X >}}
 
@@ -464,19 +464,19 @@ The values for {{< lookup/cref TITLE_SCREEN >}} and {{< lookup/cref END_SCREEN >
 
 Most events in the game add points to this variable. Its purpose is purely vanity, the only effect is to earn a spot in the high score table at the end of the game. The smallest score value implemented in the game is worth 100 points, and the score should always be a multiple of 50 unless e.g. a save file was manipulated.
 
-The acceptable range of values for this variable is 0&ndash;9,999,999. Numbers with more than seven characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+The acceptable range of values for this variable is 0--9,999,999. Numbers with more than seven characters must be avoided, otherwise draw overflow issues will occur in the status bar.
 
 {{< boilerplate/global-cref gameStars >}}
 
 Each star represents a 1,000 point bonus which is added to {{< lookup/cref gameScore >}} during the {{< lookup/cref ShowStarBonus >}} sequence. The star count is reset to zero once the bonus has been added. The star count also influences which bonus maps are entered over the course of the game:
 
-Stars       | Bonus Map
-------------|----------
-0&ndash;24  | Skipped.
-25&ndash;49 | BONUS1 (E1), BONUS3 (E2), or BONUS5 (E3).
-&ge;50      | BONUS2 (E1), BONUS4 (E2), or BONUS6 (E3).
+Stars  | Bonus Map
+-------|----------
+0--24  | Skipped.
+25--49 | BONUS1 (E1), BONUS3 (E2), or BONUS5 (E3).
+&ge;50 | BONUS2 (E1), BONUS4 (E2), or BONUS6 (E3).
 
-The acceptable range of values for this variable is 0&ndash;99. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+The acceptable range of values for this variable is 0--99. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
 
 {{< boilerplate/global-cref gameTickCount >}}
 
@@ -546,7 +546,7 @@ Entering the "joystick redefine" menu **and** completing the calibration process
 
 {{< boilerplate/global-cref isKeyDown >}}
 
-This array is twice as large as it needs to be. Due to the high bit being used as the make/break flag, only 128 keys can actually be encoded by the keyboard controller's input buffer. Elements 128&ndash;255 of this array can never hold true values.
+This array is twice as large as it needs to be. Due to the high bit being used as the make/break flag, only 128 keys can actually be encoded by the keyboard controller's input buffer. Elements 128--255 of this array can never hold true values.
 
 {{< boilerplate/global-cref isMusicEnabled >}}
 
@@ -575,6 +575,14 @@ This is used to override the "look up" input command, instead using it to activa
 {{< boilerplate/global-cref isPlayerNearTransporter >}}
 
 This is used to override the "look up" input command, instead using it to activate a transporter. In order for this to be true, the player must specifically be standing "inside" the transporter sprite. Merely touching its edge is not sufficient.
+
+{{< boilerplate/global-cref isPlayerPushAbortable >}}
+
+None of the pushes available in the retail game set up a push that enables this flag. Its effect can never be seen without modification.
+
+{{< boilerplate/global-cref isPlayerPushBlockable >}}
+
+With this flag unset; the player can be pushed through solid walls. This is how the pipe system moves the player.
 
 {{< boilerplate/global-cref isPlayerPushed >}}
 
@@ -609,11 +617,11 @@ Sound effects may play when this is true, and sound effects are silenced when fa
 Generally keys are named using their base (unshifted) case, but all letters are stored capitalized. There are some exceptions and oddities:
 
 * <kbd>NULL</kbd> is not a key, and is generally indicative of an error condition. There shouldn't be any circumstance in the game where this name is shown.
-* The keys <kbd>[</kbd>, <kbd>]</kbd>, <kbd>&grave;</kbd>, and <kbd>&bsol;</kbd> are defined as blank spaces. The [game font]({{< relref "databases/font" >}}) does not contain any tiles for these characters or their shifted companions.
+* The keys <kbd>[</kbd>, <kbd>]</kbd>, <kbd>`</kbd>, and <kbd>\\</kbd> are defined as blank spaces. The [game font]({{< relref "databases/font" >}}) does not contain any tiles for these characters or their shifted companions.
 * The <kbd>'</kbd> key renders as `"`, despite both characters being available in the game font.
 * The <kbd>/</kbd> key renders as `?`.
 * The numeric keypad keys render as their non-numeric functions, if available.
-* The character codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&uarr;</code>, <code>&darr;</code>, <code>&larr;</code>, and <code>&rarr;</code> respectively.
+* The character codes 18h, 19h, 1Bh, and 1Ch produce the symbols <code>&uparrow;</code>, <code>&downarrow;</code>, <code>&leftarrow;</code>, and <code>&rightarrow;</code> respectively.
 
 {{< boilerplate/global-cref lastGroupEntryLength >}}
 
@@ -621,7 +629,7 @@ This value is updated each time {{< lookup/cref GroupEntryFp >}} opens a [group 
 
 {{< boilerplate/global-cref lastScancode >}}
 
-In the case of a key down/"make" code, this will be a value in the range 0h&ndash;7Fh. For key up/"break" codes, this will be a value in the range 80h&ndash;FFh. Break codes can be converted into corresponding make codes by taking the value bitwise-AND 7Fh.
+In the case of a key down/"make" code, this will be a value in the range 0h--7Fh. For key up/"break" codes, this will be a value in the range 80h--FFh. Break codes can be converted into corresponding make codes by taking the value bitwise-AND 7Fh.
 
 In the case of multi-byte scancodes like those added with the 101-key PS/2 keyboard, this will only hold the most recent byte that was received.
 
@@ -772,6 +780,8 @@ Once the end of the palette table has been reached (as indicated by encountering
 
 {{< boilerplate/global-cref pit0Value >}}
 
+This is modified during calls to {{< lookup/cref SetPIT0Value >}}, and takes the `value` that is passed during each call. It is treated as a 16-bit value in all contexts where it appears.
+
 {{< boilerplate/global-cref platforms >}}
 
 Each element of this array is a {{< lookup/cref Platform >}} structure. The array size is bounded by the {{< lookup/cref MAX_PLATFORMS >}} constant.
@@ -784,7 +794,7 @@ Several functions in the game use this to determine the direction the player is 
 
 {{< boilerplate/global-cref playerBombs >}}
 
-The acceptable range of values for this variable is 0&ndash;9. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+The acceptable range of values for this variable is 0--9. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
 
 {{< boilerplate/global-cref playerClingDir >}}
 
@@ -801,10 +811,10 @@ Once the player is dead _from health depletion_, the counter increments by one d
 `playerDeadTime` Value(s) | Death Animation Sequence
 --------------------------|-------------------------
 1                         | {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}} sound effect is started.
-1&ndash;9                 | Player sprite is shown as a stationary angel, with a two-frame "wing flap" animation based on the value `playerDeadTime % 2`.
+1--9                      | Player sprite is shown as a stationary angel, with a two-frame "wing flap" animation based on the value `playerDeadTime % 2`.
 10                        | {{< lookup/cref name="SND" text="SND_PLAYER_DEATH" >}} sound effect is started.
-10&ndash;11               | The game window scrolls up by one tile on each frame.
-10&ndash;37               | Player sprite moves up by one tile on each frame. Regardless of the player's starting position, this moves them far above the top edge of the screen.
+10--11                    | The game window scrolls up by one tile on each frame.
+10--37                    | Player sprite moves up by one tile on each frame. Regardless of the player's starting position, this moves them far above the top edge of the screen.
 37                        | With the player fully off the screen, the level restarts.
 
 Death by falling off the map is handled separately based on {{< lookup/cref playerFallDeadTime >}}.
@@ -829,10 +839,10 @@ Once the player is off the map, the counter increments by one during each frame 
 ------------------------------|-------------------------
 1                             | Skipped; `playerFallDeadTime` is incremented before any comparisons occur.
 2                             | {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}} sound effect is started.
-2&ndash;11                    | Occurs during a single game frame, incrementing `playerFallDeadTime` from 2 to 11 with a hard wait of two ticks between each iteration. This freezes all gameplay for about 1 &#8725; 7 of a second.
+2--11                         | Occurs during a single game frame, incrementing `playerFallDeadTime` from 2 to 11 with a hard wait of two ticks between each iteration. This freezes all gameplay for about 1 &frasl; 7 of a second.
 13                            | {{< lookup/cref name="SND" text="SND_PLAYER_DEATH" >}} sound effect is started.
-13&ndash;18                   | One of the speech bubbles appears above the player, rising by one tile each frame.
-19&ndash;31                   | The speech bubble remains fixed in its final position.
+13--18                        | One of the speech bubbles appears above the player, rising by one tile each frame.
+19--31                        | The speech bubble remains fixed in its final position.
 31                            | The level restarts.
 
 {{< boilerplate/global-cref playerFrame >}}
@@ -855,8 +865,6 @@ The maximum amount of health cells obtainable, once all {{< lookup/actor type=82
 
 {{< boilerplate/global-cref playerHurtCooldown >}}
 
-This is modified during calls to {{< lookup/cref SetPIT0Value >}}, and takes the `value` that is passed during each call. It is treated as a 16-bit value in all contexts where it appears.
-
 {{< boilerplate/global-cref playerInfoData >}}
 
 This points to [tile info data]({{< relref "tile-info-format" >}}) which has been read directly from disk. No processing is done to pre-parse this data.
@@ -865,9 +873,17 @@ This points to [tile info data]({{< relref "tile-info-format" >}}) which has bee
 
 This should be set to one of the {{< lookup/cref DIR8 >}} constants.
 
-{{< boilerplate/global-cref playerPushFrame >}}
+{{< boilerplate/global-cref playerPushForceFrame >}}
 
 When the player is pushed by actors, this will be set to one of the "force-pushed" frames based on the relative position of the actor. In pipe systems, this will be {{< lookup/cref name="PLAYER" text="PLAYER_HIDDEN" >}} to temporarily remove the player from the map.
+
+{{< boilerplate/global-cref playerPushMaxTime >}}
+
+{{< boilerplate/global-cref playerPushSpeed >}}
+
+{{< boilerplate/global-cref playerPushTime >}}
+
+When this value equals {{< lookup/cref playerPushMaxTime >}}, the push has run to its natural point of completion and stops affecting the player.
 
 {{< boilerplate/global-cref playerTileData >}}
 
@@ -998,6 +1014,8 @@ See {{< lookup/cref soundData1 >}}.
 {{< boilerplate/global-cref soundDataPtr >}}
 
 {{< boilerplate/global-cref soundPriority >}}
+
+{{% note %}}`soundPriority[0]` is used to hold the data that underpins the (completely unrelated) {{< lookup/cref playerJumpTime >}} variable. Functions that use `soundPriority[]` should always be aware that the zeroth element should not be touched under any circumstances.{{% /note %}}
 
 {{< boilerplate/global-cref spawners >}}
 

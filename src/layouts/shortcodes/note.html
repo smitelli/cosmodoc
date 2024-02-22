@@ -1,12 +1,22 @@
 {{/*
-    Wraps the inner markdown content in a <blockquote> tag with a "Note:" prefix.
-    Returns HTML containing this wrapped content.
+    Wraps the inner markdown content in a <blockquote> tag with a "Note:"
+    prefix. Returns **markdown** containing this wrapped content. The caller
+    needs to use the {{% ... %}} shortcode invocation to make this work
+    correctly.
 
     This should really be <aside>, but that causes the Firefox reader mode (at
     least) to hide the element which skips valuable content. <blockquote> is the
     next-best thing that visually sets the content off in this view.
+
+    Named parameters:
+        label (optional): The text to lead with, prior to (and not including)
+            the colon. Defaults to the single word "Note".
 */}}
 
+{{ $label := .Get "label" | default "Note" }}
+{{ $delim := cond (gt (strings.Count "\n\n" .Inner) 0) "\n\n" " " }}
+
 <blockquote class="note">
-    <strong>Note:</strong> {{ .Inner | markdownify }}
+{{/* Intentional blank line: https://spec.commonmark.org/0.31.2/#html-block */}}
+**{{ $label }}:**{{ $delim }}{{ .Inner }}
 </blockquote>

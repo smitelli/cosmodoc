@@ -1,5 +1,19 @@
 {{/*
     Insert the data table for player sprites.
+
+    site.Data.player_sprite:
+        table: [
+            [
+                - sprite_type: 0  # first AND ONLY sprite, first frame
+                  sprite_frame: 0
+                  frame_offset_bytes: 0
+                  height_tiles: 5
+                  width_tiles: 3
+                - sprite_type: 0  # ... second frame
+                  sprite_frame: 1
+                  ...
+            ]
+        ]
 */}}
 
 <table>
@@ -9,13 +23,13 @@
         <th>Width&times;Height</th>
         <th>Description</th>
     </tr>
-    {{ range $.Site.Data.player_sprite.table }}
+    {{ range site.Data.player_sprite.table }}
         {{ range . }}
             <tr>
                 <th>{{ .sprite_type }}</th>
                 <td>{{ .sprite_frame }}</td>
                 <td>{{ .width_tiles }}&times;{{ .height_tiles }}</td>
-                <td>{{ index $.Site.Data.description.player_sprite (int .sprite_frame) | markdownify }}</td>
+                <td>{{ index site.Data.description.player_sprite (int .sprite_frame) }}</td>
             </tr>
         {{ end }}
     {{ end }}

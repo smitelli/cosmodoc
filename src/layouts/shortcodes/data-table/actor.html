@@ -1,46 +1,65 @@
 {{/*
     Insert the data table for actors.
+
+    site.Data.actor:
+        table:
+            - actor_type: 0
+              always_active_flag: 1
+              data1: "0"
+              data2: "185"
+              data3: "0"
+              data4: "0"
+              data5: "0"
+              has_gravity_flag: 1
+              ledge_eager_flag: 0
+              remains_active_flag: 0
+              sprite_type: 0
+              tick_function: ActBarrel
+              xshift_tiles: 0
+              yshift_tiles: 0
+            - actor_type: 1
+              ...
 */}}
 
 <table>
-    {{ range $index, $element := $.Site.Data.actor.table }}
-        {{ if modBool $index $.Site.Params.dataTableHeaderFreq }}
-            <tr>
-                <th rowspan="2">Actor Type</th>
-                <th rowspan="2">Sprite Type</th>
-                <th colspan="2">Shift</th>
-                <th rowspan="2">Always Active</th>
-                <th rowspan="2">Remains Active</th>
-                <th rowspan="2">Ledge Eager</th>
-                <th rowspan="2">Has Gravity</th>
-                <th colspan="5">Data</th>
-                <th rowspan="2">Description</th>
-            </tr>
-            <tr>
-                <th>X</th>
-                <th>Y</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-            </tr>
+    {{ range $i, $_ := site.Data.actor.table }}
+        {{ if modBool $i site.Params.dataTableHeaderFreq }}
+        <tr>
+            <th rowspan="2">Actor Type</th>
+            <th rowspan="2">Sprite Type</th>
+            <th colspan="2">Shift</th>
+            <th rowspan="2">Always Active</th>
+            <th rowspan="2">Remains Active</th>
+            <th rowspan="2">Ledge Eager</th>
+            <th rowspan="2">Has Gravity</th>
+            <th colspan="5">Data</th>
+            <th rowspan="2">Description</th>
+        </tr>
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
         {{ end }}
         <tr>
             <th>{{ .actor_type }}</th>
             <td>{{ .sprite_type }}</td>
             <td>{{ .xshift_tiles }}</td>
             <td>{{ .yshift_tiles }}</td>
-            <td>{{ if .always_active_flag }}yes{{ else }}no{{ end }}</td>
-            <td>{{ if .remains_active_flag }}yes{{ else }}no{{ end }}</td>
-            <td>{{ if .ledge_eager_flag }}yes{{ else }}no{{ end }}</td>
-            <td>{{ if .has_gravity_flag }}yes{{ else }}no{{ end }}</td>
+            <td>{{ cond (not .always_active_flag) "no" "yes" }}</td>
+            <td>{{ cond (not .remains_active_flag) "no" "yes" }}</td>
+            <td>{{ cond (not .ledge_eager_flag) "no" "yes" }}</td>
+            <td>{{ cond (not .has_gravity_flag) "no" "yes" }}</td>
             <td>{{ .data1 }}</td>
             <td>{{ .data2 }}</td>
             <td>{{ .data3 }}</td>
             <td>{{ .data4 }}</td>
             <td>{{ .data5 }}</td>
-            <td>{{ index $.Site.Data.description.actor (int .actor_type) | markdownify }}</td>
+            <td>{{ index site.Data.description.actor (int .actor_type) | markdownify }}</td>
         </tr>
     {{ end }}
 </table>

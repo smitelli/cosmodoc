@@ -1,7 +1,6 @@
 authorUrl = "https://www.scottsmitelli.com/"
 cosmoreDownloadUrl = "https://github.com/smitelli/cosmore/archive/refs/heads/main.zip"
 dataTableHeaderFreq = 15
-enableNav = true
 gitCloneUrl = "https://github.com/smitelli/cosmodoc.git"
 gitContentUrl = "https://github.com/smitelli/cosmodoc/tree/main/src/content"
 gitIssuesUrl = "https://github.com/smitelli/cosmodoc/issues"

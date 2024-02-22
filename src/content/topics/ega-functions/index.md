@@ -62,11 +62,11 @@ So, now we can light up every part of the screen, but it's still just a moving d
 
 Now the layer of phosphor covering the screen comes back into play. Pretty much as soon as a chunk of phosphor gets hit by the electron beam, it begins to glow. The glow only persists for about a millisecond before it decays back to darkness, but persistence of human vision makes it appear as though the screen is uniformly lit. Rather than displaying a fast-moving dot, our example screen is showing a bunch of horizontal lines packed so densely that they blend into a bright, solid, stable rectangle. The hard part of getting an image onto a CRT display is done.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Flickers In Time**
 
 Humans might not be able to see the scanning behavior of a CRT display, but cameras sure can. If you've ever pointed a camera at the picture of a CRT screen, you've undoubtedly seen flickering, rolling, strobing, and all kinds of unpleasant visual artifacts. The faster the camera's shutter speed is set, the more severe the artifacts become.
-{{< /aside >}}
+{{% /aside %}}
 
 From here, all that's left to do is flash the output of the electron gun on and off so that we have some control over which pieces of phosphor get hit and which don't. If we wanted to draw, for example, an 8x8 checkerboard pattern on the screen, we'd have to turn the electron gun on and off four times during each horizontal sweep (called a **scan line**), and invert the pattern after every 50th scan line. By writing much more complicated patterns at a much higher frequency, individual points on the screen can be controlled. To create variations in brightness (instead of just a simple on/off switch) we can also vary the amount of energy released by the electron gun over time, producing varying amounts of glow from the phosphor on certain areas of the screen.
 
@@ -84,7 +84,7 @@ The screen of a color display is coated with _three_ different types of phosphor
     2x="primary-colors-1368x.png"
     3x="primary-colors-2052x.png" >}}
 
-{{< note >}}This is contrary to what your art teacher may have taught you in school. When dealing with ink or paint on a surface, those are **subtractive colors** which behave differently than additive colors do.{{< /note >}}
+{{% note %}}This is contrary to what your art teacher may have taught you in school. When dealing with ink or paint on a surface, those are **subtractive colors** which behave differently than additive colors do.{{% /note %}}
 
 In order to facilitate this mixing, there are _three_ separate electron guns in a color CRT display, each responsible for one of the red/green/blue components of the image. All three beams are deflected and focused as a unit by a single deflection yoke, in the same manner as on a monochrome display. In a properly-functioning CRT, running all three electron beams simultaneously will create a white dot that can be placed anywhere on the screen.
 
@@ -96,13 +96,13 @@ To ensure that each color of phosphor only responds to the correct electron gun 
     2x="aperture-grille-1368x.png"
     3x="aperture-grille-2052x.png" >}}
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **Dad's gonna be mad when he sees what we did.**
 
 If you've ever placed a magnet near a color CRT TV or computer display, you've probably noticed that it is possible to "bend" the picture and generate interesting rainbow patterns in the process. This is caused by the magnet deflecting the electron beams in uncontrolled ways, permitting energy from the R/G/B guns to reach positions and phosphor colors that it shouldn't ordinarily be able to.
 
 If you're overzealous in doing this, it's possible to magnetize the metal in the aperture grille or other structural components of the display, making the distortion persistent. This can almost always be resolved by invoking the display's built-in **degauss** functionality, or by turning the unit off and on so it can degauss itself automatically.
-{{< /aside >}}
+{{% /aside %}}
 
 Aside from having three independent electron guns to control, everything else on a color display works the same as it does on a monochrome one.
 
@@ -116,7 +116,7 @@ The MDA's video information is carried on two pins, which can each be either on 
 
 The CGA works practically identically, but it uses 15.7 kHz and 60 Hz for its horizontal and vertical frequencies, respectively. Due to the increased amount of color information, four video pins are required. As with the MDA, each of these pins can either be on or off, producing a total of 16 expressible colors. The pins carry red, green, blue, (each of which does what you would expect it to) and **intensity** -- the intensity signal brightens _all_ of the R/G/B color outputs by about 33% compared to what they would have produced alone.
 
-{{< note >}}The CGA monitor contains a bit of a color hack: If the RGBI signals are ever set to 1100 (i.e. red/green are on and blue/intensity are off) the display will artificially cut the green output in half. This avoids generation of a putrid yellow, replacing it with a more generally useful brown. The computer and CGA adapter are unaware of this modification; it occurs entirely inside the display.{{< /note >}}
+{{% note %}}The CGA monitor contains a bit of a color hack: If the RGBI signals are ever set to 1100 (i.e. red/green are on and blue/intensity are off) the display will artificially cut the green output in half. This avoids generation of a putrid yellow, replacing it with a more generally useful brown. The computer and CGA adapter are unaware of this modification; it occurs entirely inside the display.{{% /note %}}
 
 The EGA begins to complicate things by supporting two different synchronization modes: the 15.7k/60 Hz frequencies from the CGA, and a new EGA-specific horizontal rate of 21.85 kHz (while still using 60 Hz for vertical sync). This higher frequency permits more scan lines to be drawn each frame, which the EGA adapter can use to fit more content inside the bounds of the screen. In order to differentiate between these modes, the adapter reverses the polarity of the _vertical_ sync signal when running in the higher horizontal frequency mode to help the display lock onto the frequency.
 
@@ -132,9 +132,9 @@ Up until now, we've made the conscious choice to only refer to display capabilit
 
 By dividing the screen into rows (one per scan line) and columns (one per distinct addressable position along a scan line), we have declared a **resolution** for this display. Each point on the screen has an X coordinate that addresses its column, and a Y coordinate that addresses its row, uniquely identifying that location. Each of these points is called a picture element, pel, or **pixel**. Conventionally the top-left pixel is referred to as (0, 0) and these numbers increase as the position moves down or to the right.
 
-{{< note >}}This places the screen in quadrant &#8547; of the Cartesian plane, but with a negated Y axis. This can make all kinds of graphical calculations come out with a vertically-flipped result.{{< /note >}}
+{{% note %}}This places the screen in quadrant {{< roman-numeral 4 >}} of the Cartesian plane, but with a negated Y axis. This can make all kinds of graphical calculations come out with a vertically-flipped result.{{% /note %}}
 
-We now have everything needed to start devising a scheme where we can represent the state of a picture on the screen in terms of digital memory. We have a fixed-size grid of pixel positions, and each pixel has a color value selected from a fixed range. So let's invent a display for ourselves. Earlier we used an example display that produced 400 scan lines. It's the 1980s, so all of our TV and computer screens are using a 4:3 **aspect ratio** and we don't want to buck that trend (aspect ratio is the relationship between the width and height of the screen -- 4:3 means the screen is four arbitrary units wide by three units high). Since our screen has 400 lines, the number of columns should be somewhere in the neighborhood of ([4 &#8725; 3] &times; 400) 533.{{< overline >}}3{{< /overline >}}. That's a weird number, so we'll round it up to 600. This display has a resolution of 600 &times; 400 pixels, for a grand total of 240,000 pixels on the screen.
+We now have everything needed to start devising a scheme where we can represent the state of a picture on the screen in terms of digital memory. We have a fixed-size grid of pixel positions, and each pixel has a color value selected from a fixed range. So let's invent a display for ourselves. Earlier we used an example display that produced 400 scan lines. It's the 1980s, so all of our TV and computer screens are using a 4:3 **aspect ratio** and we don't want to buck that trend (aspect ratio is the relationship between the width and height of the screen -- 4:3 means the screen is four arbitrary units wide by three units high). Since our screen has 400 lines, the number of columns should be somewhere in the neighborhood of ([4 &frasl; 3] &times; 400) 533.{{< overline >}}3{{< /overline >}}. That's a weird number, so we'll round it up to 600. This display has a resolution of 600 &times; 400 pixels, for a grand total of 240,000 pixels on the screen.
 
 If this screen only needs to show pure black-and-white images with no color or grayscale information, each pixel could be represented by a single binary digit (**bit**), packed into a series of eight-bit **bytes**, and fit in 30,000 bytes of memory. If, as a different example, we require the ability to choose between 16 colors at each pixel, we would need four bits, or half of a byte, to represent each pixel -- bringing the total amount of memory required to 120,000 bytes. If we go hog-wild and apply modern standards, we'll need ten bits per R/G/B channel or 30 bits per pixel, and at least _900,000_ bytes of memory to represent the screen. This is almost the maximum amount of memory that the PC's 8088 CPU could address! Just for one screen! Clearly there have to be some compromises in display resolution and/or color depth to keep the hardware requirements realistic.
 
@@ -162,11 +162,11 @@ This is not a feature that's commonly used, which is why so many PC and DOS emul
 
 The original MDA card shipped with 4 KiB of memory and could show 80 columns and 25 rows of text on the screen. That's 4,096 bytes to draw 2,000 characters, or two bytes (16 bits) for each character on the screen. Even with 1-bit color, 16 bits is nowhere near enough space to draw a uniquely legible symbol in any font, so clearly the programmer is not drawing anything at a per-pixel level.
 
-{{< aside class="fun-fact" >}}
+{{% aside class="fun-fact" %}}
 **I'm... I'm an action figure!**
 
 There actually _was_ a third-party clone of the MDA called the **Hercules Graphics Card** that supported monochrome graphics (as well as text) on a standard IBM monochrome display.
-{{< /aside >}}
+{{% /aside %}}
 
 In text mode, the video memory contains one byte for each _character_ that appears on the screen, plus one **attribute** byte that contains information about how the character in that space should be drawn (inverted video, emphasized, blinking, and so on). The 80 &times; 25 text grid consists of 2,000 character bytes plus 2,000 attribute bytes, for a grand total of 4,000 bytes which fits comfortably into 4 KiB of memory. The actual information on how to draw each character as a dot pattern is stored elsewhere, on a ROM chip built into the adapter.
 
@@ -205,7 +205,7 @@ Palette Index | Red Intensity | Green Intensity | Blue Intensity | Red | Green |
 
 At first glance, it might seem like all of the "bright" color variants should have a greenish tinge due to the lack of either the red intensity or blue intensity bits being set. When an EGA display is running at its 15.7 kHz horizontal frequency (like it does in mode Dh), it enables a "CGA compatibility" function where it disregards any input on the red intensity or blue intensity pins and only uses green intensity as its global intensity value, limiting the available display colors to 16. Palettes are explained a bit more visually on the [full-screen image format]({{< relref "full-screen-image-format#colors-and-palettes" >}}) page.
 
-{{< note >}}[Compare the EGA connector pinout to the CGA](#SetPaletteRegister) for more context about why green intensity was chosen for this purpose.{{< /note >}}
+{{% note %}}[Compare the EGA connector pinout to the CGA](#SetPaletteRegister) for more context about why green intensity was chosen for this purpose.{{% /note %}}
 
 In this default palette, the 0th bit in the palette index is sent to the blue output pin, the 1st bit is sent to the green pin, the 2nd bit is sent to the red pin, and the 3rd bit is sent to the _green_ intensity pin. The red intensity and blue intensity pins are held at zero at all times. The jump from color value 7 to 16 is caused by the green intensity bit turning on instead of the blue intensity bit.
 
@@ -247,9 +247,11 @@ Within one plane, each consecutive bit maps to one pixel on the screen, and each
 
 The standard EGA card contains at least 64 KiB of memory, enough to hold two different screenfuls (**pages**) of data. This card is upgradable to 256 KiB, which is enough space to store up to eight pages of data, or a combination of screen pages and other graphical elements. The EGA can be commanded to quickly flip its output between these pages (**page flipping** or **ping-pong buffering**) to allow it to display an image from a completely-drawn area of memory while another area is being redrawn in the background. By always flipping to a page that is not being drawn to, the program will never risk displaying a half-updated image to the user. Typically the request to change the active page is handled by the video BIOS, while the code that redraws non-visible pages typically operates directly on memory addresses for speed.
 
-{{< note >}}This game assumes (and does not check!) that the system has 256 KiB of EGA memory. Not all EGA cards do, and the game will not work on such cards.
+{{% note %}}
+This game assumes (and does not check!) that the system has 256 KiB of EGA memory. Not all EGA cards do, and the game will not work on such cards.
 
-The later VGA hardware, fully backwards-compatible with EGA, always has a minimum of 256 KiB of video memory and shouldn't have any difficulties like this.{{< /note >}}
+The later VGA hardware, fully backwards-compatible with EGA, always has a minimum of 256 KiB of video memory and shouldn't have any difficulties like this.
+{{% /note %}}
 
 ## Use the BIOS, Luke
 
@@ -298,13 +300,13 @@ By zeroing out all four bits here, the program is requesting the adapter to enti
 
 {{< lookup/cref outport >}} sends the byte 2h to the I/O port at address 3C4h. This sets up the sequencer address register in preparation for a future write to the "Map Mask" parameter. This does not do anything by itself; this would be expected to be accompanied with a write to the sequencer data register at I/O port 3C5h to actually change the Map Mask parameter value.
 
-{{< aside class="armchair-engineer" >}}
+{{% aside class="armchair-engineer" %}}
 **Pick a paradigm and stick with it.**
 
 As far as I can tell, the thinking was as follows: The only time the sequencer is touched, it's to reprogram the map mask. With that in mind, it makes sense to set the address register once up front and never change it again. With a constant address here, only the data register needs to be changed inside the expensive graphics code.
 
 It didn't always go that way. _Some_ of the graphics procedures run with the assumption that the sequencer address register is configured correctly, and _some_ of the graphics procedures reset it to the map mask explicitly.
-{{< /aside >}}
+{{% /aside %}}
 
 This procedure returns, having placed the EGA hardware into an appropriate state.
 
@@ -337,28 +339,28 @@ The EGA display supports two classes of video modes -- the **350-line** modes an
 
 **Color values in 350-line mode:**
 
-Bit Position                 | Description
------------------------------|------------
-0 (least significant)        | Blue (67% of output level)
-1                            | Green
-2                            | Red
-3                            | Blue Intensity (33% of output level)
-4                            | Green Intensity
-5                            | Red Intensity
-6&ndash;7 (most significant) | Not used
+Bit Position            | Description
+------------------------|------------
+0 (least significant)   | Blue (67% of output level)
+1                       | Green
+2                       | Red
+3                       | Blue Intensity (33% of output level)
+4                       | Green Intensity
+5                       | Red Intensity
+6--7 (most significant) | Not used
 
-{{< note >}}Some sources refer to the Intensity signals as "least significant" due to their overall contribution to the output level, but this is _confusing as heck_ from the perspective of color value bit packing and we will never say it that way here.{{< /note >}}
+{{% note %}}Some sources refer to the Intensity signals as "least significant" due to their overall contribution to the output level, but this is _confusing as heck_ from the perspective of color value bit packing and we will never say it that way here.{{% /note %}}
 
 **Color values in 200-line mode:**
 
-Bit Position                 | Description
------------------------------|------------
-0 (least significant)        | Blue (67% of output level)
-1                            | Green
-2                            | Red
-3                            | Not used
-4                            | Intensity (33% of output level)
-5&ndash;7 (most significant) | Not used
+Bit Position            | Description
+------------------------|------------
+0 (least significant)   | Blue (67% of output level)
+1                       | Green
+2                       | Red
+3                       | Not used
+4                       | Intensity (33% of output level)
+5--7 (most significant) | Not used
 
 The 200-line modes contain only a single intensity signal which affects the red/green/blue channels in unison. This is also the only mode where the dark yellow-to-brown color adjustment occurs.[^ega200]
 
@@ -373,7 +375,7 @@ Pin | CGA           | EGA             | Color Value Bit
 6   | Intensity     | Green Intensity | `00.X....`
 2   | -- (Ground)   | Red Intensity   | `00X.....`
 
-The pins for red intensity and blue intensity did not carry video information on the CGA, hence the _green_ pin must be used to carry the intensity signal in CGA compatibility mode. The consequence of this is that 200-line modes (like the mode used by this game) have canonical color value sequences from 0&ndash;7, which then skip to 16&ndash;23. Values outside of these ranges work, but the red/blue intensity bits are ignored and instead produce aliases of one of the 16 canonical colors. Palettes are explained a bit more visually on the [full-screen image format]({{< relref "full-screen-image-format#colors-and-palettes" >}}) page.
+The pins for red intensity and blue intensity did not carry video information on the CGA, hence the _green_ pin must be used to carry the intensity signal in CGA compatibility mode. The consequence of this is that 200-line modes (like the mode used by this game) have canonical color value sequences from 0--7, which then skip to 16--23. Values outside of these ranges work, but the red/blue intensity bits are ignored and instead produce aliases of one of the 16 canonical colors. Palettes are explained a bit more visually on the [full-screen image format]({{< relref "full-screen-image-format#colors-and-palettes" >}}) page.
 
 It's important to remember that the default palette makes this all come together. By virtue of the way the palette colors are configured, the programmer can think of palette index bits as well as the color planes they map to as I/R/G/B color channels. If the sequence were changed or custom-mixed colors were used, this reasonable mental model would fall apart.
 
@@ -387,7 +389,7 @@ void SetPaletteRegister(word palette_index, word color_value)
 }
 ```
 
-The implementation of the procedure is basically a textbook BIOS video service interrupt call. AX is a 16-bit register, and writing to it also writes to the 8-bit AH and AL registers with the high and low bytes, respectively, from AX. AH=10h is the "Set/Get Palette Registers" subfunction, AL=0h specifies that one individual palette register should be modified, BL contains the index of the register to change (0&ndash;15), and BH contains the color to program into that register (0&ndash;63). Interrupt 10h is the BIOS video service that actually performs the change.
+The implementation of the procedure is basically a textbook BIOS video service interrupt call. AX is a 16-bit register, and writing to it also writes to the 8-bit AH and AL registers with the high and low bytes, respectively, from AX. AH=10h is the "Set/Get Palette Registers" subfunction, AL=0h specifies that one individual palette register should be modified, BL contains the index of the register to change (0--15), and BH contains the color to program into that register (0--63). Interrupt 10h is the BIOS video service that actually performs the change.
 
 Changes to the palette are immediate, requiring no other modifications to any video memory contents. The new color becomes visible the next time a frame is drawn to the screen.
 
@@ -408,7 +410,7 @@ When {{< lookup/cref drawPageNumber >}} is 0, the correct {{< lookup/cref drawPa
 
 {{< boilerplate/function-cref SelectDrawPage >}}
 
-The {{< lookup/cref SelectDrawPage >}} procedure changes the draw page to `page_num` and updates the memory address that subsequent drawing procedures should operate on. Although `page_num` can be 0&ndash;7 on a fully-upgraded EGA card, it should be 0 or 1 for this game to avoid corrupting the tile image storage area. This is essentially a convenience wrapper around {{< lookup/cref UpdateDrawPageSegment >}}.
+The {{< lookup/cref SelectDrawPage >}} procedure changes the draw page to `page_num` and updates the memory address that subsequent drawing procedures should operate on. Although `page_num` can be 0--7 on a fully-upgraded EGA card, it should be 0 or 1 for this game to avoid corrupting the tile image storage area. This is essentially a convenience wrapper around {{< lookup/cref UpdateDrawPageSegment >}}.
 
 ```c
 void SelectDrawPage(word page_num)
@@ -423,7 +425,7 @@ All this procedure really does is store the value from `page_num` into the {{< l
 
 {{< boilerplate/function-cref SelectActivePage >}}
 
-The {{< lookup/cref SelectActivePage >}} procedure switches the actively-displayed video memory page to `page_num`, causing its contents to appear on the screen, using a BIOS interrupt call. Although `page_num` can be 0&ndash;7 on a fully-upgraded EGA card, it should be 0 or 1 for this game to avoid showing gibberish tile data on the screen. If the display is in the middle of displaying a frame, the BIOS code waits until the current frame is complete before switching to the new page.
+The {{< lookup/cref SelectActivePage >}} procedure switches the actively-displayed video memory page to `page_num`, causing its contents to appear on the screen, using a BIOS interrupt call. Although `page_num` can be 0--7 on a fully-upgraded EGA card, it should be 0 or 1 for this game to avoid showing gibberish tile data on the screen. If the display is in the middle of displaying a frame, the BIOS code waits until the current frame is complete before switching to the new page.
 
 ```c
 void SelectActivePage(word page_num)
@@ -462,14 +464,14 @@ The {{< lookup/cref outport >}} call performs two byte-sized I/O writes using a 
 
 Zero is the default value for this register in the game's video mode, so this has the effect of resetting any changes that have been made to the graphics controller's operating parameters. The interpretation of the bits is as follows:
 
-Bit Position                  | Value (= 0h) | Interpretation
-------------------------------|--------------|---------------
-7&ndash;6 (most significant)  | 00b          | Not used
-5                             | 0b           | Shift Register: The meaning here is not well-documented, but this is the default state for this parameter.
-4                             | 0b           | Odd/Even: Disables this CGA compatibility addressing mode.
-3                             | 0b           | Read Mode: The processor reads data from the memory plane selected by the read map select register.
-2                             | 0b           | Diagnostic Test Mode: Disabled.
-1&ndash;0 (least significant) | 00b          | Write Mode: Each memory plane is written with the processor data rotated by the number of counts in the rotate register, unless Set/Reset is enabled for the plane. Planes for which Set/Reset is enabled are written with 8 bits of the value contained in the Set/Reset register for that plane.
+Bit Position             | Value (= 0h) | Interpretation
+-------------------------|--------------|---------------
+7--6 (most significant)  | 00b          | Not used
+5                        | 0b           | Shift Register: The meaning here is not well-documented, but this is the default state for this parameter.
+4                        | 0b           | Odd/Even: Disables this CGA compatibility addressing mode.
+3                        | 0b           | Read Mode: The processor reads data from the memory plane selected by the read map select register.
+2                        | 0b           | Diagnostic Test Mode: Disabled.
+1--0 (least significant) | 00b          | Write Mode: Each memory plane is written with the processor data rotated by the number of counts in the rotate register, unless Set/Reset is enabled for the plane. Planes for which Set/Reset is enabled are written with 8 bits of the value contained in the Set/Reset register for that plane.
 
 Throughout the entire game, only the read mode and write mode are modified, so these are really the only relevant bits being reset here.
 
@@ -494,9 +496,9 @@ On the second write, port 3CEh gets the byte 5h, and port 3CFh gets the byte 1h.
 
 The interpretations of most of the bits in the mode register are the same as explained in {{< lookup/cref EGA_MODE_DEFAULT >}}. The only difference here is the write mode, which is configured as follows:
 
-Bit Position                  | Value (= 1h) | Interpretation
-------------------------------|--------------|---------------
-1&ndash;0 (least significant) | 01b          | Write Mode: Each memory plane is written with the contents of the internal latches. These latches are loaded by a processor read operation.
+Bit Position             | Value (= 1h) | Interpretation
+-------------------------|--------------|---------------
+1--0 (least significant) | 01b          | Write Mode: Each memory plane is written with the contents of the internal latches. These latches are loaded by a processor read operation.
 
 By configuring the mode in this way, the EGA card can leverage its internal latches (a latch is essentially a single-byte memory cell) to write pixel data to memory without requiring it to pass through the CPU. Very broadly, the latches are usually used to move solid tile data around, while direct writes are used when tiles are drawn with transparency.
 

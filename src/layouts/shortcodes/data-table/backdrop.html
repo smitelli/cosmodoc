@@ -1,5 +1,47 @@
 {{/*
     Insert the data table for backdrops.
+
+    site.Data.map:
+        index:
+            actor:
+                "1": [A1, A2, A3]
+                "265": [C1, C2, C3]
+            backdrop:
+                "1": [A1, A2, A3]
+                "25": [C1, C2, C3]
+            music:
+                "0": [A1, A2, A3]
+                "18": [C1, C2, C3]
+            palette_animation:
+                "0": [A1, A2, A3]
+                "6": [C1, C2, C3]
+            special_actor:
+                "0": [A1, A2, A3]
+                "8": [C1, C2, C3]
+        sort:
+            actor: [1, 2, 265]
+            backdrop: [1, 2, 25]
+            music: [0, 1, 18]
+            palette_animation: [0, 1, 6]
+            special_actor: [0, 1, 8]
+        table:
+            - map_name: A1
+              actor_count: 270
+              backdrop_hscroll_flag: 1
+              backdrop_id: 11
+              backdrop_vscroll_flag: 0
+              fountain_count: 0
+              height_tiles: 64
+              light_count: 0
+              music_id: 8
+              palette_animation_id: 0
+              platform_count: 0
+              player_count: 1
+              rain_flag: 0
+              tile_size_bytes: 65528
+              width_tiles: 512
+            - map_name: A2
+              ...
 */}}
 
 <table>
@@ -9,19 +51,16 @@
         <th>Description</th>
         <th>Present on Maps</th>
     </tr>
-    {{ range $index, $_ := $.Site.Data.description.backdrop_name }}
+    {{ range $backdrop_num, $_ := site.Data.description.backdrop_name }}
         <tr>
-            <th>{{ $index }}</th>
+            <th>{{ $backdrop_num }}</th>
             <td>{{ . }}</td>
             <td>
-                {{ with index $.Site.Data.description.backdrop (int $index) }}
-                    {{ . | markdownify }}
-                {{ else }}
-                    (not present in any group files)
-                {{ end }}
+                {{ $desc := index site.Data.description.backdrop $backdrop_num }}
+                {{ $desc | default "(not present in any group files)" }}
             </td>
             <td>
-                {{ with index $.Site.Data.map.index.backdrop (string $index) }}
+                {{ with index site.Data.map.index.backdrop (string $backdrop_num) }}
                     {{ delimit . ", " }}
                 {{ else }}
                     &mdash;
