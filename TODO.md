@@ -6,6 +6,8 @@
     * (timer/music/game/???) ticks and frames are really overloaded terms
 * update descriptions on actors that don't match the code/text
 * look for all maps where the E2M6 bug can happen -- E3M6 is one
+* try to not lazy-load first 1-2 images
+* maybe make JS click on mobile content auto-hide the nav
 
 =============================================================================
 

@@ -1500,7 +1500,7 @@ According to the _Catacomb 3-D_ source code,[^SD_FadeOutMusic] this function was
 
 The only real avenue of control the programmer has to "fade out" music is the Total Level register on each of the OPL2's operators. By ramping these values up to their maximum value, the outputs could be attenuated down to "pretty quiet" (but not silent) before cutting the notes off. This would require keeping track of the Total Level values that have been encountered in the music data and intercepting and scaling down the values as the fade progresses. Each Key-On event tends to come with its own Total Level value to reproduce MIDI velocity information, so any new notes that occur while the fade is progressing would also need to be scaled.
 
-To further complicate this, the Total Level adjustment should only be applied to operators that are functioning as carriers, since modifying modulators would change the character of the output sound in potentially severe ways. The modulator/carrier role is determined by the position of each operator its channel, the channel's Connection mode, and the global setting of Rhythm Mode.
+To further complicate this, the Total Level adjustment should only be applied to operators that are functioning as carriers, since modifying modulators would change the character of the output sound in potentially severe ways. The modulator/carrier role is determined by the position of each operator within its channel, the channel's Connection mode, and the global setting of Rhythm Mode.
 
 Taken together, this is a lot of effort and complexity for a small bit of polish that few really seemed to miss.
 

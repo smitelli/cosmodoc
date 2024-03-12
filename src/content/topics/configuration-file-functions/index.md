@@ -64,7 +64,7 @@ Instead, these functions were available through alternate functions on the numer
 
 Are you currently sitting in front of a full-size PC keyboard? Take a look at the numeric keypad. Does it have arrows and cursor movement keys? Turn Num Lock off and give 'em a whirl.
 
-If your computer uses an OS that responds to <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>, it should also respond the same way to <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>NumPadPeriod</kbd> for similar reasons.
+If your computer uses an OS that responds to <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>, it should also respond the same way to <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Num .</kbd> for similar reasons.
 {{% /aside %}}
 
 This is all a roundabout way of saying, if you want to read the arrow keys using the IBM scancode scheme, you have to read keys <kbd>8</kbd>/<kbd>2</kbd>/<kbd>4</kbd>/<kbd>6</kbd> on the numeric keypad to do it. That's what's being configured here.

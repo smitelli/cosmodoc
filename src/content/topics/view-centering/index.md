@@ -19,7 +19,7 @@ View centering occurs, to various degrees, in each of the following functions:
 
 In general, view centering tries to keep the player in the center third of the scrolling game window. In cases where the edge of the map is reached, scrolling stops and the player is permitted to move to the edges of the screen. Scrolling resumes once they return back to the center. Typically the window will scroll as fast as the player moves, keeping the player fixed on a location on the screen.
 
-The user can usually press the <kbd>Up</kbd> or <kbd>Down</kbd> arrow keys to artificially move the scroll position up or down a bit, allowing for additional visibility into nearby areas. The look distance is constrained so that the player never leaves the view.
+The user can usually press the <kbd>&uparrow;</kbd> or <kbd>&downarrow;</kbd> arrow keys to artificially move the scroll position up or down a bit, allowing for additional visibility into nearby areas. The look distance is constrained so that the player never leaves the view.
 
 {{< table-of-contents >}}
 
@@ -220,9 +220,9 @@ if ((cmdNorth || cmdSouth) && !cmdWest && !cmdEast) {
 }
 ```
 
-The first bit of the view code handles the look up/down behavior, usually mapped to the <kbd>Up</kbd> and <kbd>Down</kbd> arrow keys. When such movement is requested and permitted, {{< lookup/cref cmdNorth >}} or {{< lookup/cref cmdSouth >}} will be true to indicate the requested action.
+The first bit of the view code handles the look up/down behavior, usually mapped to the <kbd>&uparrow;</kbd> and <kbd>&downarrow;</kbd> arrow keys. When such movement is requested and permitted, {{< lookup/cref cmdNorth >}} or {{< lookup/cref cmdSouth >}} will be true to indicate the requested action.
 
-The outer `if` prevents the <kbd>Up</kbd> and <kbd>Down</kbd> keys from being handled if <kbd>Left</kbd> or <kbd>Right</kbd> is simultaneously held ({{< lookup/cref cmdWest >}} and {{< lookup/cref cmdEast >}}). This prevents looking while walking at the same time.
+The outer `if` prevents the <kbd>&uparrow;</kbd> and <kbd>&downarrow;</kbd> keys from being handled if <kbd>&leftarrow;</kbd> or <kbd>&rightarrow;</kbd> is simultaneously held ({{< lookup/cref cmdWest >}} and {{< lookup/cref cmdEast >}}). This prevents looking while walking at the same time.
 
 When {{< lookup/cref cmdNorth >}} is held and {{< lookup/cref scrollY >}} is greater than zero, the player wants to look up and there is enough map data in that direction to avoid scrolling off the top edge. An additional check ensures that the player will not scroll off the bottom of the screen ({{< lookup/cref SCROLLH >}}` - 1`). If everything looks good, {{< lookup/cref scrollY >}} is decremented to shift the map down one tile on the screen.
 

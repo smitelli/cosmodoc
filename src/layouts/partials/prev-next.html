@@ -5,7 +5,7 @@
         {{ with .Next }}
             <li>
                 <a href="{{ .RelPermalink }}" rel="prev"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
-                    &leftarrow; {{ .LinkTitle | markdownify }}
+                    &leftarrow; {{ .Title | markdownify }}
                 </a>
             </li>
         {{ end }}
@@ -13,7 +13,7 @@
         {{ with .Parent }}
             <li>
                 <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
-                    {{ .LinkTitle | markdownify }}
+                    {{ .Title | markdownify }}
                 </a>
             </li>
         {{ end }}
@@ -21,7 +21,7 @@
         {{ with .Prev }}
             <li>
                 <a href="{{ .RelPermalink }}" rel="next"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
-                    {{ .LinkTitle | markdownify }} &rightarrow;
+                    {{ .Title | markdownify }} &rightarrow;
                 </a>
             </li>
         {{ end }}

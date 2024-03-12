@@ -10,8 +10,8 @@ $page-max-width: $menu-width + 40rem;
 $sm-breakpoint: $menu-width + 39rem;
 $page-color: #fff;
 $text-color: #1a1a1a;
-$link-color: #04b;
-$menu-active-color: #c60;
+$link-color: #06f;
+$menu-active-color: #c35600;
 
 html {
     font-family: Roboto, sans-serif;
@@ -296,8 +296,9 @@ main {
 }
 
 .responsive-header {
-    margin-bottom: 1rem;
     display: none;
+    margin-bottom: 1rem;
+    font-size: 0;
 
     label {
         cursor: pointer;
