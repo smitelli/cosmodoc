@@ -1,8 +1,14 @@
 {{ with .Pages.ByWeight }}
     <ul>
         {{ range . }}
-            <li{{ if page.Eq . }} class="active"{{ end }}>
-                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+            {{ $rel := "" }}
+            {{ if .Eq page.Next }}
+                {{ $rel = "prev" }}
+            {{ else if .Eq page.Prev }}
+                {{ $rel = "next" }}
+            {{ end }}
+            <li{{ if .Eq page }} class="active"{{ end }}>
+                <a href="{{ .RelPermalink }}"{{ with $rel }} rel="{{ . }}"{{ end }}{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
                     {{ .LinkTitle | markdownify }}
                 </a>
 

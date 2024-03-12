@@ -2,9 +2,9 @@
     <ul>
         {{/* Hugo's sense of "prev/next" is swapped for our use case! */}}
 
-        {{ with .NextPage }}
+        {{ with .Next }}
             <li>
-                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+                <a href="{{ .RelPermalink }}" rel="prev"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
                     &leftarrow; {{ .LinkTitle | markdownify }}
                 </a>
             </li>
@@ -18,9 +18,9 @@
             </li>
         {{ end }}
 
-        {{ with .PrevPage }}
+        {{ with .Prev }}
             <li>
-                <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
+                <a href="{{ .RelPermalink }}" rel="next"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
                     {{ .LinkTitle | markdownify }} &rightarrow;
                 </a>
             </li>

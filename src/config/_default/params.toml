@@ -5,3 +5,9 @@ gitCloneUrl = "https://github.com/smitelli/cosmodoc.git"
 gitContentUrl = "https://github.com/smitelli/cosmodoc/tree/main/src/content"
 gitIssuesUrl = "https://github.com/smitelli/cosmodoc/issues"
 subtitle = "The semi-complete teardown of Cosmo's Cosmic Adventure"
+
+# Passed directly to each image shortcode for the `<img sizes="...">` attribute.
+# If the overall CSS layout or breakpoints are adjusted, resolve all the
+# involved sizes down to px and reijgger this value.
+# NOTE: 1em == 16px in media queries, and 18px after we mess with it in layout.
+imgSizesValue = "(max-width: 816px) calc(100vw - 36px), 684px"

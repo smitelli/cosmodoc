@@ -17,7 +17,7 @@
 
 {{- "" -}}
 <p>
-    <audio controls>
+    <audio preload="none" controls>
         {{ with $mp3 }}<source src="{{ .RelPermalink }}" type="{{ .MediaType }}">{{ end }}
         {{ with $m4a }}<source src="{{ .RelPermalink }}" type="{{ .MediaType }}">{{ end }}
         {{ with $wav }}<source src="{{ .RelPermalink }}" type="{{ .MediaType }}">{{ end }}

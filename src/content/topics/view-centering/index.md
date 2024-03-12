@@ -29,25 +29,25 @@ There are two situations where the player can "appear" at an arbitrary location 
 
 ### Level Start
 
-In the {{< lookup/cref NewMapActorAtIndex >}} function, in the code responsible for interpreting a {{< lookup/cref name="SPA" text="SPA_PLAYER_START" >}} actor from the map data, a pair of `x`/`y` coordinates is used to place the player. From these values, an appropriate value for {{< lookup/cref scrollX >}} and {{< lookup/cref scrollY >}} is chosen:
+In the {{< lookup/cref NewMapActorAtIndex >}} function, in the code responsible for interpreting a {{< lookup/cref name="SPA" text="SPA_PLAYER_START" >}} actor from the map data, a pair of `x_origin`/`y_origin` coordinates is used to place the player. From these values, an appropriate value for {{< lookup/cref scrollX >}} and {{< lookup/cref scrollY >}} is chosen:
 
 ```c
-if (x > mapWidth - 15) {
+if (x_origin > mapWidth - 15) {
     scrollX = mapWidth - SCROLLW;
-} else if (x - 15 >= 0 && mapYPower > 5) {
-    scrollX = x - 15;
+} else if (x_origin - 15 >= 0 && mapYPower > 5) {
+    scrollX = x_origin - 15;
 } else {
     scrollX = 0;
 }
 
-if (y - 10 >= 0) {
-    scrollY = y - 10;
+if (y_origin - 10 >= 0) {
+    scrollY = y_origin - 10;
 } else {
     scrollY = 0;
 }
 ```
 
-In the horizontal position, the intention is to set {{< lookup/cref scrollX >}} to the position 15 tiles left of the player start position in `x`. If the player is too close to the right edge of the map, {{< lookup/cref scrollX >}} is clamped to {{< lookup/cref mapWidth >}} minus {{< lookup/cref SCROLLW >}} to prevent panning off the right edge of the map. Similarly, negative values for {{< lookup/cref scrollX >}} are clamped to zero, preserving the left limit of the map.
+In the horizontal position, the intention is to set {{< lookup/cref scrollX >}} to the position 15 tiles left of the player start position in `x_origin`. If the player is too close to the right edge of the map, {{< lookup/cref scrollX >}} is clamped to {{< lookup/cref mapWidth >}} minus {{< lookup/cref SCROLLW >}} to prevent panning off the right edge of the map. Similarly, negative values for {{< lookup/cref scrollX >}} are clamped to zero, preserving the left limit of the map.
 
 {{% note %}}The test for {{< lookup/cref mapYPower >}} greater than five is always true. For the map to have a {{< lookup/cref mapYPower >}} of five or less, the map would need to be 32 or fewer tiles wide. This would not be wide enough to fill the width of the screen of this game, and none of the stock maps do this.{{% /note %}}
 

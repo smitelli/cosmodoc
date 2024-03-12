@@ -384,6 +384,11 @@ AddScoreForSprite:
   def: void AddScoreForSprite(word sprite_type);
   desc: Determines how many points should be added to the player's score for defeating an actor of a given `sprite_type`, and adds that amount.
   ref: /topics/game-logic-functions/#AddScoreForSprite
+AdjustActorMove:
+  text: AdjustActorMove()
+  def: void AdjustActorMove(word index, word dir);
+  desc: Verifies the legality of a map position that the actor (identified by slot `index`) has just moved into and reverts/adjusts their position accordingly. `dir` should be either {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} or {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} to match the direction of movement.
+  ref: /topics/actors/movement-functions/#AdjustActorMove
 AnimatePalette:
   text: AnimatePalette()
   def: void AnimatePalette(void);
@@ -420,7 +425,11 @@ ClearScreen:
   def: void ClearScreen(void);
   desc: Overwrites the EGA memory for the current draw page with solid black tiles.
   ref: /topics/c-drawing-functions/#ClearScreen
-#ConstructActor:
+ConstructActor:
+  text: ConstructActor()
+  def: void ConstructActor(word sprite_type, word x_origin, word y_origin, bool force_active, bool stay_active, bool weighted, bool acrophile, ActorTickFunction tick_func, word data1, word data2, word data3, word data4, word data5);
+  desc: Called by {{< lookup/cref NewActorAtIndex >}} as a helper to initialize each member of an {{< lookup/cref Actor >}} structure. The actor slot position is provided in the pass-by-global {{< lookup/cref nextActorIndex >}} variable, and the structure at that position is initialized according to the values passed in the arguments.
+  ref: /topics/actors/initialization-functions/#ConstructActor
 CopyTilesToEGA:
   text: CopyTilesToEGA()
   def: void CopyTilesToEGA(byte *source, word dest_length, word dest_offset);
@@ -714,12 +723,12 @@ InitializeShards:
   text: InitializeShards()
   def: void InitializeShards(void);
   desc: Clears all of the memory slots used to store shard state, immediately terminating all incomplete shard animations and making each slot available for use.
-  ref: /topics/shard-functions/#InitializeShards
+  ref: /topics/entities/shard-functions/#InitializeShards
 InitializeSpawners:
   text: InitializeSpawners()
   def: void InitializeSpawners(void);
   desc: Clears all of the memory slots used to store spawner state, immediately terminating all incomplete spawner animations and making each slot available for use.
-  ref: /topics/spawner-functions/#InitializeSpawners
+  ref: /topics/entities/spawner-functions/#InitializeSpawners
 InnerMain:
   text: InnerMain()
   def: void InnerMain(int argc, char *argv[]);
@@ -882,7 +891,11 @@ MAP_CELL_DATA_SHIFTED:
         (*(mapData.w + (x) + ((y) << mapYPower) + shift_expr))
   desc: Looks up the value of a tile at an `x` and `y` position plus an arbitrary shift expression `shift_expr`, all measured in zero-based tiles, from the map data in memory.
   ref: /topics/level-and-map-functions/#MAP_CELL_DATA_SHIFTED
-#MoveAndDrawActors:
+MoveAndDrawActors:
+  text: MoveAndDrawActors()
+  def: void MoveAndDrawActors(void);
+  desc: Iterates over each actor currently active in the game and calls the per-actor processing function.
+  ref: /topics/actors/movement-functions/#MoveAndDrawActors
 MoveAndDrawDecorations:
   text: MoveAndDrawDecorations()
   def: void MoveAndDrawDecorations(void);
@@ -892,12 +905,12 @@ MoveAndDrawShards:
   text: MoveAndDrawShards()
   def: void MoveAndDrawShards(void);
   desc: Moves and draws the sprites for all shards that are currently active. When a shard animation ends its slot is marked inactive.
-  ref: /topics/shard-functions/#MoveAndDrawShards
+  ref: /topics/entities/shard-functions/#MoveAndDrawShards
 MoveAndDrawSpawners:
   text: MoveAndDrawSpawners()
   def: void MoveAndDrawSpawners(void);
   desc: Moves and draws the sprites for all spawners that are currently active. When a spawner animation ends (either due to finishing the animation or hitting a solid map tile) its slot is marked inactive and a new actor is created in the spawner's final position.
-  ref: /topics/spawner-functions/#MoveAndDrawSpawners
+  ref: /topics/entities/spawner-functions/#MoveAndDrawSpawners
 MoveFountains:
   text: MoveFountains()
   def: void MoveFountains(void);
@@ -920,7 +933,16 @@ MovePlayerPush:
   desc: Handles one game tick of player push movement.
   ref: /topics/player-movement-functions/#MovePlayerPush
 #MovePlayerScooter:
-#NewActor:
+NewActor:
+  text: NewActor()
+  def: void NewActor(word actor_type, word x_origin, word y_origin);
+  desc: Dynamically inserts a new actor having the specified `actor_type` into the game world at the location specified by `x_origin` and `y_origin`.
+  ref: /topics/actors/initialization-functions/#NewActor
+NewActorAtIndex:
+  text: NewActorAtIndex()
+  def: bbool NewActorAtIndex(word index, word actor_type, word x, word y);
+  desc: Inserts an actor of the specified `actor_type` into the {{< lookup/cref actors >}} array at the specified `index` position. The initial origin position is provided in `x` and `y`, and X/Y shifts are applied here. Returns true as long as `actor_type` referred to a defined actor type.
+  ref: /topics/actors/initialization-functions/#NewActorAtIndex
 NewDecoration:
   text: NewDecoration()
   def: |-
@@ -935,7 +957,11 @@ NewExplosion:
   def: void NewExplosion(word x_origin, word y_origin);
   desc: Creates a new instance of an explosion at the passed `x_origin` and `y_origin` map tile coordinates, sets the animation up to run, and plays the explosion sound. The actual location of the explosion sprite will be two tiles lower on the screen than `y_origin` requests.
   ref: /topics/entities/explosion-functions/#NewExplosion
-#NewMapActor:
+NewMapActorAtIndex:
+  text: NewMapActorAtIndex()
+  def: void NewMapActorAtIndex(word index, word map_actor_type, word x_origin, word y_origin);
+  desc: Creates actors and special actors based on the passed `map_actor_type`. For regular actors, `index` controls the position in the actors array where the new actor will be created; for special actors it does nothing. For both actor kinds, `x_origin` and `y_origin` control the actor's initial position within the map.
+  ref: /topics/actors/initialization-functions/#NewMapActorAtIndex
 NewPounceDecoration:
   text: NewPounceDecoration()
   def: void NewPounceDecoration(word x, word y);
@@ -945,12 +971,12 @@ NewShard:
   text: NewShard()
   def: void NewShard(word sprite_type, word frame, word x_origin, word y_origin);
   desc: Creates a new shard at `x_origin` and `y_origin` consisting of the passed `sprite_type` and `frame`.
-  ref: /topics/shard-functions/#NewShard
+  ref: /topics/entities/shard-functions/#NewShard
 NewSpawner:
   text: NewSpawner()
   def: void NewSpawner(word actor_type, word x_origin, word y_origin);
   desc: Creates a new instance of a spawner at the passed `x_origin` and `y_origin` map tile coordinates and sets the animation up to run. `actor_type` controls both the type of actor that will be created when the spawner completes, and the sprite type that will be drawn while the spawner is running.
-  ref: /topics/spawner-functions/#NewSpawner
+  ref: /topics/entities/spawner-functions/#NewSpawner
 NextLevel:
   text: NextLevel()
   def: void NextLevel(void);
@@ -962,7 +988,11 @@ PCSpeakerService:
   desc: Sends a new fragment of sound effect data to the PC speaker.
   ref: /topics/pc-speaker-and-timing-functions/#PCSpeakerService
 #PounceHelper:
-#ProcessActor:
+ProcessActor:
+  text: ProcessActor()
+  def: void ProcessActor(word index);
+  desc: Handles the overall per-tick movement for one actor, identified by its `index` position in the actors array. If the actor is marked as dead, this function is a no-op.
+  ref: /topics/actors/movement-functions/#ProcessActor
 ProcessGameInput:
   text: ProcessGameInput()
   def: byte ProcessGameInput(byte demo_state);
@@ -1383,7 +1413,11 @@ TestPlayerMove:
   def: word TestPlayerMove(word dir, word x_origin, word y_origin);
   desc: Tests if the player sprite is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the {{< lookup/cref MOVE >}} constants is returned.
   ref: /topics/player-movement-functions/#TestPlayerMove
-#TestSpriteMove:
+TestSpriteMove:
+  text: TestSpriteMove()
+  def: word TestSpriteMove(word dir, word sprite_type, word frame, word x_origin, word y_origin);
+  desc: Tests if the sprite identified by `sprite_type` and `frame` is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the {{< lookup/cref MOVE >}} constants is returned.
+  ref: /topics/actors/movement-functions/#TestSpriteMove
 TimerInterruptService:
   text: TimerInterruptService()
   def: void interrupt TimerInterruptService(void);
@@ -1752,6 +1786,20 @@ ACT:
     #define ACT_EP2_END_LINE        265
   desc: Defines meaningful names for each actor type defined in the game.
   ref: /topics/global-variables-and-constants/#ACT
+Actor:
+  text: Actor
+  def: |-
+    typedef struct {
+        word sprite, frame, x, y;
+        bool forceactive, stayactive, acrophile, weighted;
+        word westfree, eastfree, data1, data2, data3, data4, data5;
+        bool dead;
+        word falltime;
+        byte hurtcooldown;
+        ActorTickFunction tickfunc;
+    } Actor;
+  desc: Holds the current `sprite`, `frame`, `x`, and `y` position of one actor. `dead` actors are inactive and may be reclaimed. `hurtcooldown` is a decrementing counter while the actor is recovering from a player attack. Remaining members are either private-use or uncommon.
+  ref: /topics/global-variables-and-constants/#Actor
 BACKDROP_HEIGHT:
   text: BACKDROP_HEIGHT
   def: |-
@@ -2629,6 +2677,11 @@ actorTileData:
   def: byte *actorTileData[3];
   desc: Points to masked tile image data used to draw actors, decorations, spawners, explosions, shards, and miscellaneous UI sprites.
   ref: /topics/global-variables-and-constants/#actorTileData
+actors:
+  text: actors[]
+  def: Actor actors[MAX_ACTORS];
+  desc: Contains a fixed amount of space for all of the actors defined on the current map.
+  ref: /topics/global-variables-and-constants/#actors
 areForceFieldsActive:
   text: areForceFieldsActive
   def: bool areForceFieldsActive;
@@ -3147,6 +3200,21 @@ musicTickCount:
   def: dword musicTickCount;
   desc: Tracks the current timestamp, in music ticks. Increments each time the AdLib service runs.
   ref: /topics/global-variables-and-constants/#musicTickCount
+mysteryWallTime:
+  text: mysteryWallTime
+  def: word mysteryWallTime;
+  desc: Controls activation of each {{< lookup/actor 62 >}} on the current map.
+  ref: /topics/global-variables-and-constants/#mysteryWallTime
+nextActorIndex:
+  text: nextActorIndex
+  def: word nextActorIndex;
+  desc: Used as a pass-by-global variable to communicate the actor array slot that should be filled during construction of one actor.
+  ref: /topics/global-variables-and-constants/#nextActorIndex
+nextDrawMode:
+  text: nextDrawMode
+  def: word nextDrawMode;
+  desc: Used as a pass-by-global variable to communicate the display mode to be used when drawing the actively-processing actor's sprite.
+  ref: /topics/global-variables-and-constants/#nextDrawMode
 numActors:
   text: numActors
   def: word numActors;

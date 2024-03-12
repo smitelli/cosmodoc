@@ -8,6 +8,7 @@ import wave
 
 CLOCK_FREQ = 44100
 TWO_PI = 2 * math.pi
+HALF_PI = math.pi / 2
 
 G3 = 195.9977
 A3 = 220.0000
@@ -306,6 +307,34 @@ def feedback(filename):
                 prev_out = out
 
 
+def waveform_select(filename):
+    osc = Oscillator()
+    osc.output_freq = C5
+
+    with wave.open(filename, 'wb') as out_wav:
+        out_wav.setframerate(CLOCK_FREQ)
+        out_wav.setnchannels(1)
+        out_wav.setsampwidth(2)
+
+        for ws in range(4):
+            osc.phase = 0
+
+            for tick in range(CLOCK_FREQ):
+                amplitude = 1 - (tick / CLOCK_FREQ)
+
+                out = osc.tick() * amplitude
+
+                if ws == 1:
+                    out = max(0, out)
+                elif ws == 2 or ws == 3:
+                    out = abs(out)
+
+                if ws == 3 and osc.phase % math.pi > HALF_PI:
+                    out = 0
+
+                out_wav.writeframesraw(struct.pack('<h', int(out * 32767)))
+
+
 if __name__ == '__main__':
     sine('sine-wave.wav')
     sine_song('sine-song.wav')
@@ -317,3 +346,4 @@ if __name__ == '__main__':
     modulate_up('mod-up.wav')
     modulate_down('mod-down.wav')
     feedback('feedback.wav')
+    waveform_select('waveform-select.wav')

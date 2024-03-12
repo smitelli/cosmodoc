@@ -60,8 +60,8 @@ actor:
   - Barrel (contains jump pad)
   - Foot Switch (activates platforms)
   - null
-  - Foot Switch (activates question mark wall)
-  - Question Mark Block
+  - Foot Switch (activates mystery wall)
+  - Mystery Wall Block
   - Bent Floor Spikes
   - Monument
   - Jumping Baby Ghost
@@ -163,9 +163,9 @@ actor:
   - Yellow/Teal Striped Pear (floating)
   - Bear Trap
   - Falling Floor Block
-  - 'Episode 1 End Trigger Line #1 (horizontal)'
-  - 'Episode 1 End Trigger Line #2 (horizontal)'
-  - 'Episode 1 End Trigger Line #3 (horizontal)'
+  - 'Episode 1 End Trigger Line (#1, horizontal)'
+  - 'Episode 1 End Trigger Line (#2, horizontal)'
+  - 'Episode 1 End Trigger Line (#3, horizontal)'
   - Basket (contains red/pink root)
   - Red/Pink Root
   - Basket (contains red berries/green vine)

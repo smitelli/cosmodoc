@@ -5,7 +5,7 @@
 @import 'syntax';
 
 $menu-width: 12rem;
-$page-min-width: 24rem;
+$page-min-width: 20rem;
 $page-max-width: $menu-width + 40rem;
 $sm-breakpoint: $menu-width + 39rem;
 $page-color: #fff;
@@ -25,6 +25,16 @@ code, pre, samp {
     letter-spacing: normal;
 }
 
+.goat {
+    font-family: Cousine, monospace;
+    font-size: 0.8em;
+    font-weight: bold;
+
+    svg {
+        display: block;
+    }
+}
+
 // HACK: So I don't have to re-wrap the "on-disk hint sheet" text
 .on-disk-hint-sheet code {
     font-size: 0.85em;
@@ -39,7 +49,7 @@ kbd {
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: auto;
     color: $text-color;
     background: $page-color;
 
@@ -74,6 +84,7 @@ main {
         top: 0;
         bottom: 0;
         overflow-x: hidden;
+        background: $page-color;
 
         a {
             font-size: 0.875em;
@@ -110,6 +121,7 @@ main {
 #main-page {
     min-width: $page-min-width;
     padding: 1rem;
+    overflow-wrap: break-word;
 
     footer {
         margin-top: 2rem;
@@ -148,7 +160,6 @@ main {
 
 .markdown {
     line-height: 1.7;
-    overflow-wrap: break-word;
 
     .chroma .line {
         // Reset undesired flexbox layout from Chroma's stylesheet
@@ -214,6 +225,7 @@ main {
 
     img {
         max-width: 100%;
+        height: auto;
         vertical-align: bottom;
     }
 
@@ -230,14 +242,12 @@ main {
     }
 
     table {
-        display: block;
-        max-width: -moz-fit-content;
         max-width: fit-content;
         margin: 1em auto;
         border-collapse: collapse;
         overflow-x: auto;
 
-        tr:nth-child(2n) {
+        tr:nth-child(even) {
             background: gray-from-lightness(90%);
         }
 
@@ -324,8 +334,12 @@ main {
 
     .markdown {
         aside, blockquote {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+
+        table {
+            display: block;
         }
     }
 }

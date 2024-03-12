@@ -76,7 +76,7 @@ The actor type read from the map file may represent either of the following:
 * **Special actor:** Includes {{< lookup/special-actor 0 >}}, {{< lookup/special-actor type=1 plural=true >}}, {{< lookup/special-actor type=2 strip=true plural=true >}}, and {{< lookup/special-actor type=6 strip=true plural=true >}}.
 * **Normal actor:** All other actor types typically encountered.
 
-If the map actor type is less than 32, it is treated as a [special actor]({{< relref "databases/actor#special-actors" >}}) and the type is used unchanged. If the map actor type is 32 or greater, it is treated as a [normal actor]({{< relref "databases/actor#normal-actors" >}}) and the type is decremented by 31 before insertion into the world.
+If the map actor type is less than 31, it is treated as a [special actor]({{< relref "databases/actor#special-actors" >}}) and the type is used unchanged. If the map actor type is 31 or greater, it is treated as a [normal actor]({{< relref "databases/actor#normal-actors" >}}) and the type is decremented by 31 before insertion into the world.
 
 {{% note %}}The X/Y coordinates always refer to the leftmost/bottommost tile of multi-tile actors. Some normal actors have a positive or negative "shift" value imposed on their initial X and/or Y positions. If a shift is defined for a particular actor type, the starting position is adjusted by the predefined number of tiles before insertion. The shift value is typically used to compensate for the width or height of an actor's sprite when aligning it to a specific wall or ceiling coordinate.{{% /note %}}
 

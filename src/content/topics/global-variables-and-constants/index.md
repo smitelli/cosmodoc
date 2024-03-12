@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 520
+weight = 550
 +++
 
 # Global Variables and Constants
@@ -30,6 +30,26 @@ typedef byte bbool;           /* Boolean stored in a byte */
 {{< boilerplate/global-cref ACT >}}
 
 {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} is a special sentinel value for the spawner functions and cannot be expressed in the map format. {{< lookup/cref name="ACT" text="ACT_STAR_FLOAT" >}} has the value 32 in the [map format]({{< relref "map-format" >}}), and all other actor types follow sequentially. Map actor types below 32 are special actors, see {{< lookup/cref SPA >}}.
+
+{{< boilerplate/global-cref Actor >}}
+
+In more detail:
+
+* `sprite`: One of the {{< lookup/cref SPR >}} values, representing the base sprite type that this actor displays as. This is usually the most identifying characteristic of an the actor and the closest representation to the original actor type that was created.
+* `frame`: Holds the current frame number of the sprite that is in view. Some actors with complicated drawing needs will use other mechanisms to make this determination.
+* `x`: The horizontal position on the map where this actor is now located.
+* `y`: Similar to `x`, but in the vertical direction.
+* `forceactive`: An actor is considered "visible" if any portion of its sprite can be seen anywhere inside the scrolling game window. An actor's "active" state controls whether it thinks and moves, versus being paused and frozen in place. By default an actor is only active while it is visible, and activity stops as soon as it leaves the visible area. The "force active" flag overrides the visibility check and makes the actor permanently active.
+* `stayactive`: When enabled, causes an actor to enable its own "force active" flag once it has become visible for the first time.
+* `acrophile`: When enabled, informs the common actor-movement code that this actor should be willing to walk off ledges. Otherwise actors will treat such ledges as impassible terrain and turn around. Not all actors use the common movement code.
+* `weighted`: When enabled, indicates that the actor has "weight" and should automatically be pulled down by the force of gravity. Actors that float in the air (e.g. prizes and ceiling-mounted actors) must have this flag disabled to prevent falling, and actors that have complicated vertical movement behavior _may_ enable this flag to false to prevent the global gravity system from interfering.
+* `westfree`: For actors that use the common walking functionality, this is a flag variable that holds a nonzero value if movement is permitted in the western direction, or zero if that movement is blocked. Some complex/non-walking actors repurpose these as additional `data` fields.
+* `eastfree`: Similar to `westfree`, but in the eastern direction.
+* `data1`--`data5`: Internal data specific to each tick function's needs. There are no simple generalizations about what these members contain or how they should be interpreted; these would be explained on the page specific to the tick function in question.
+* `dead`: When true, indicates that this actor was once active on the map but has since been destroyed or picked up. It will never come back from this state and the processing functions will unconditionally skip it. The slot containing this actor may be overwritten with a newly-created actor.
+* `falltime`: Holds a value that represents how long this actor has been in a falling state. Influences the fall speed and some actors' behavior.
+* `hurtcooldown`: Holds a decrementing, nonzero value after an actor has been injured (but not destroyed) by the player or some other force. Prevents actors from taking too much damage in too short a time, similar to {{< lookup/cref playerHurtCooldown >}} for the player's protection.
+* `tickfunc`: A pointer to one of the C functions that contains the actor's per-tick behavior and movement code. Many actors share tick functions, and generally use the sprite type or one of the data fields to differentiate the underlying actor types.
 
 {{< boilerplate/global-cref BACKDROP_HEIGHT >}}
 
@@ -337,6 +357,10 @@ As a special case, a {{< lookup/cref activeTransporter >}} value of 3 will win t
 {{< boilerplate/global-cref actorTileData >}}
 
 Its allocations are divided into three distinct byte-aligned memory blocks due to the overall size of the data. The first two blocks each hold 65,535 bytes and the final block holds 60,840 bytes.
+
+{{< boilerplate/global-cref actors >}}
+
+Each element of this array is an {{< lookup/cref Actor >}} structure. The array size is bounded by the {{< lookup/cref MAX_ACTORS >}} constant.
 
 {{< boilerplate/global-cref areForceFieldsActive >}}
 
@@ -729,6 +753,14 @@ Each array index matches with a {{< lookup/cref MUSIC >}} constant.
 This is an index to one of the {{< lookup/cref musicNames >}} elements, and matches the numbering of the {{< lookup/cref MUSIC >}} constants.
 
 {{< boilerplate/global-cref musicTickCount >}}
+
+{{< boilerplate/global-cref mysteryWallTime >}}
+
+This is initialized to zero each time {{< lookup/cref NewActorAtIndex >}} creates a {{< lookup/actor 62 >}}. It is also forced to zero at the end of each {{< lookup/cref MoveAndDrawActors >}} call. It is set to _four_ (the actual value has no significance) when a {{< lookup/actor 61 >}} is activated. Any nonzero value activates the {{< lookup/actor type=62 plural=true >}}.
+
+{{< boilerplate/global-cref nextActorIndex >}}
+
+{{< boilerplate/global-cref nextDrawMode >}}
 
 {{< boilerplate/global-cref numActors >}}
 

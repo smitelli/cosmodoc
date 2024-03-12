@@ -2,7 +2,7 @@
 title = "Actor/Map Database"
 linkTitle = "Actors/Maps"
 description = "A table containing a list of all actor types and the maps they appear on."
-weight = 660
+weight = 690
 +++
 
 # Actor/Map Database

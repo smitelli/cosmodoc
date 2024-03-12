@@ -69,16 +69,20 @@ scripts/generate.py sprite -f PLYRINFO.MNI > src/data/player_sprite.json
 scripts/generate.py sprite -f CARTINFO.MNI > src/data/cartoon_sprite.json
 ```
 
-## Audio conversion
+## AdLib examples
 
-Just use whatever FFmpeg generates by default. Quality 4 is "good enough."
+```bash
+scripts/make-adlib-examples.py
+```
+
+The scripts produce WAV files, but MP3/M4A is preferred for the web. Use whatever [FFmpeg](https://ffmpeg.org/) generates by default. Quality 4 is "good enough."
 
 ```bash
 ffmpeg -i in.wav -q:a 4 out.mp3
 ffmpeg -i in.wav -q:a 4 out.m4a
 ```
 
-The M4A/AAC files sometimes sound kinda goofy. There's probably a way to correct that with a command option.
+The M4A/AAC files sometimes sound kinda goofy. There's probably a way to better tune that with a command option.
 
 ## Diff rendered pages between Hugo versions
 

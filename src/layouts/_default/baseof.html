@@ -8,10 +8,11 @@
 <html lang="{{ .Language.Lang }}">
     <head>
         <meta charset="utf-8">
+        {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
         {{ hugo.Generator }}
-        <meta name="viewport" content="width=device-width, initial-scale=0.85">
-        {{ template "_internal/opengraph.html" . }}
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
         {{ template "_internal/twitter_cards.html" . }}
+        {{ template "_internal/opengraph.html" . }}
         {{ range $size := slice 180 32 16 }}
             {{ with resources.Get (printf "img/favicon-%d.png" $size) }}
                 {{ if eq $size 180 }}
@@ -21,10 +22,13 @@
                 {{ end }}
             {{ end }}
         {{ end }}
+        <link rel="canonical" href="{{ .Permalink }}">
+        {{ with .Prev }}<link rel="next" href="{{ .RelPermalink }}">{{ end }}
+        {{ with .Next }}<link rel="prev" href="{{ .RelPermalink }}">{{ end }}
         <link rel="shortcut icon" type="{{ $fav.MediaType }}" href="{{ $fav.RelPermalink }}">
         <link rel="sitemap" type="application/xml" href="{{ relURL .Sitemap.Filename }}">
         <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-        <script src="{{ $js.RelPermalink }}" async></script>
+        <script src="{{ $js.RelPermalink }}" defer></script>
         <title>
             {{ block "pageTitle" . }}
                 {{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}

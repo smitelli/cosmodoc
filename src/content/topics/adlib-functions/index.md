@@ -256,6 +256,8 @@ The OPL2 is only capable of producing sine waves, but it can do a few manipulati
 
 The first wave is the standard sine wave, unmodified. Silencing the negative portions of the wave produces a "half" sine. By instead taking the absolute value of the sine wave, a **rectified** sine is produced. Finally, by taking the rectified sine wave and silencing the areas with negative slope, a "half-rectified" sine is generated. Each of these has a harsher and more harmonically rich sound compared to the sine function they are derived from.
 
+{{< audio "waveform-select" "OPL2 Waveforms: Sine, Half Sine, Rectified, Half-Rectified" >}}
+
 The modified waves do not contain any negative values, which has the effect of reducing the overall travel distance of the speaker and making them sound somewhat quieter than the pure sine wave. The added sonic character, which could be described as "brightness" or "harshness" by some, compensates for this loss.
 
 ### Frequencies and Amplitudes, Mathematically

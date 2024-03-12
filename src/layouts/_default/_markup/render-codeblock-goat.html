@@ -1,0 +1,10 @@
+{{/* https://github.com/gohugoio/hugo/blob/v0.121.0/tpl/tplimpl/embedded/templates/_default/_markup/render-codeblock-goat.html */}}
+
+{{ $class := .Attributes.class | default "" }}
+<div class="goat svg-container {{ $class }}">
+  {{ with diagrams.Goat .Inner }}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ .Width }} {{ .Height }}">
+      {{ .Inner }}
+    </svg>
+  {{ end }}
+</div>

@@ -10,23 +10,27 @@
             <img src="..."> attribute and the target of the <a href="...">
             attribute.
         alt (optional): Text to use for the alt/title attributes.
+        loading (optional): Value for the img loading="..." attribute, defaults
+            to `lazy`.
         1x (optional): If provided, the "1x" scale file name for the srcset
             attribute.
         2x (optional): ... "2x" scale file name ...
         3x (optional): ... "3x" scale file name ...
 */}}
 
-{{ $src := (.Get "src" | .Page.Resources.Get).RelPermalink }}
+{{ $base := .Get "src" | .Page.Resources.Get }}
 {{ $alt := .Get "alt" }}
+{{ $loading := .Get "loading" | default "lazy" }}
 
 {{ $srcset := slice }}
 {{ range $x := slice "1x" "2x" "3x" }}
     {{ with $.Get $x | $.Page.Resources.Get }}
-        {{ $srcset = $srcset | append (printf "%s %s" .RelPermalink $x) }}
+        {{ $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) }}
     {{ end }}
 {{ end }}
 
-<p><a href="{{ $src }}"><img
-    src="{{ $src }}" srcset="{{ delimit $srcset `, ` }}"
-    alt="{{ $alt | markdownify }}" title="{{ $alt | markdownify }}"
+<p><a href="{{ $base.RelPermalink }}"><img
+    src="{{ $base.RelPermalink }}" width="{{ $base.Width }}" height="{{ $base.Height }}"
+    srcset="{{ delimit $srcset `, ` }}" sizes="{{ .Site.Params.imgSizesValue }}"
+    alt="{{ $alt | markdownify }}" title="{{ $alt | markdownify }}" loading="{{ $loading }}"
 ></a></p>

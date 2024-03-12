@@ -35,18 +35,18 @@ The main menu is typically shown over the title screen graphic, although it is p
 
 * <kbd>B</kbd>, <kbd>Enter</kbd>, or <kbd>Space</kbd>: Begin New Game
 * <kbd>R</kbd>: [Restore A Game]({{< relref "#restore-game" >}})
-* <kbd>S</kbd>: [Story]({{< relref "dialog-functions/#ShowStory" >}})
-* <kbd>I</kbd>: [Instructions]({{< relref "dialog-functions/#ShowInstructions" >}}) (then [Hints]({{< relref "dialog-functions/#ShowHintsAndKeys" >}}))
+* <kbd>S</kbd>: [Story]({{< relref "dialog-functions#ShowStory" >}})
+* <kbd>I</kbd>: [Instructions]({{< relref "dialog-functions#ShowInstructions" >}}) (then [Hints]({{< relref "dialog-functions#ShowHintsAndKeys" >}}))
 * <kbd>H</kbd>: [High Scores]({{< relref "#hall-of-fame" >}})
 * <kbd>G</kbd>: [Game Redefine]({{< relref "#game-redefine-menu" >}})
-* <kbd>O</kbd>: [Ordering Information]({{< relref "dialog-functions/#ShowOrderingInformation" >}})
-* <kbd>F</kbd>: [Foreign Orders]({{< relref "dialog-functions/#ShowForeignOrders" >}}) (if shareware episode)
-* <kbd>A</kbd>: [Apogee's BBS]({{< relref "dialog-functions/#ShowPublisherBBS" >}})
+* <kbd>O</kbd>: [Ordering Information]({{< relref "dialog-functions#ShowOrderingInformation" >}})
+* <kbd>F</kbd>: [Foreign Orders]({{< relref "dialog-functions#ShowForeignOrders" >}}) (if shareware episode)
+* <kbd>A</kbd>: [Apogee's BBS]({{< relref "dialog-functions#ShowPublisherBBS" >}})
 * <kbd>D</kbd>: Demo
 * <kbd>C</kbd>: Credits
 * <kbd>T</kbd>: Title Screen
 * <kbd>Q</kbd> or <kbd>Esc</kbd>: [Quit Game]({{< relref "#quit-game" >}})
-* <kbd>F11</kbd>: If debug mode has been activated, starts [recording a demo]({{< relref "demo-format/#recording-demos">}}).
+* <kbd>F11</kbd>: If debug mode has been activated, starts [recording a demo]({{< relref "demo-format#recording-demos">}}).
 
 ### Help Menu
 
@@ -60,7 +60,7 @@ The help menu is accessible by pressing <kbd>F1</kbd> while the game is being pl
 
 * <kbd>S</kbd>: [Save your game]({{< relref "#save-game" >}})
 * <kbd>R</kbd>: [Restore a game]({{< relref "#restore-game" >}})
-* <kbd>H</kbd>: Help (actually [Hints]({{< relref "dialog-functions/#ShowHintsAndKeys" >}}))
+* <kbd>H</kbd>: Help (actually [Hints]({{< relref "dialog-functions#ShowHintsAndKeys" >}}))
 * <kbd>G</kbd>: [Game redefine]({{< relref "#game-redefine-menu" >}})
 * <kbd>V</kbd>: [View High Scores]({{< relref "#hall-of-fame" >}})
 * <kbd>Q</kbd>: [Quit Game]({{< relref "#quit-game" >}})
@@ -80,9 +80,9 @@ The game redefine menu is available from both the main menu and the in-game help
 
 * <kbd>K</kbd>: [Keyboard redefine]({{< relref "#keyboard-redefine" >}})
 * <kbd>J</kbd>: [Joystick redefine]({{< relref "#joystick-redefine" >}})
-* <kbd>S</kbd>: [Sound toggle]({{< relref "dialog-functions/#ToggleSound" >}})
+* <kbd>S</kbd>: [Sound toggle]({{< relref "dialog-functions#ToggleSound" >}})
 * <kbd>T</kbd>: [Test sound]({{< relref "#test-sound" >}})
-* <kbd>M</kbd>: [Music toggle]({{< relref "dialog-functions/#ToggleMusic" >}}))
+* <kbd>M</kbd>: [Music toggle]({{< relref "dialog-functions#ToggleMusic" >}}))
 * <kbd>Esc</kbd>: Dismiss the menu
 
 It is implemented in {{< lookup/cref ShowGameRedefineMenu >}}.
@@ -201,10 +201,10 @@ It is implemented in {{< lookup/cref PromptLevelWarp >}}.
 
 Although not shown as a traditional menu, the following keys are always available during gameplay and perform similar functions to a menu:
 
-* <kbd>P</kbd>: [Pause Game]({{< relref "dialog-functions/#ShowPauseMessage" >}})
+* <kbd>P</kbd>: [Pause Game]({{< relref "dialog-functions#ShowPauseMessage" >}})
 * <kbd>Q</kbd> or <kbd>Esc</kbd>: [Quit Game]({{< relref "#quit-game" >}})
-* <kbd>S</kbd>: [Sound Toggle]({{< relref "dialog-functions/#ToggleSound" >}})
-* <kbd>M</kbd>: [Music Toggle]({{< relref "dialog-functions/#ToggleMusic" >}})
+* <kbd>S</kbd>: [Sound Toggle]({{< relref "dialog-functions#ToggleSound" >}})
+* <kbd>M</kbd>: [Music Toggle]({{< relref "dialog-functions#ToggleMusic" >}})
 * <kbd>F1</kbd>: [Help Menu]({{< relref "#help-menu" >}})
 * <kbd>C</kbd> + <kbd>0</kbd> + <kbd>F10</kbd>: Cheat Code
 * <kbd>Tab</kbd> + <kbd>F12</kbd> + <kbd>Del</kbd>: Debug Mode Toggle
@@ -215,9 +215,9 @@ This handling occurs in {{< lookup/cref ProcessGameInput >}}.
 
 If debug mode is activated, the following key combinations can be pressed during gameplay to access additional functionality. Like the in-game keys, there is no menu shown to enumerate these options; the user must either know they exist or perform a brute-force search for them:
 
-* <kbd>E</kbd> + <kbd>N</kbd> + <kbd>D</kbd>: [End Story]({{< relref "dialog-functions/#ShowEnding" >}})
-* <kbd>F10</kbd> + <kbd>G</kbd>: [God Mode Toggle]({{< relref "dialog-functions/#ToggleGodMode" >}})
-* <kbd>F10</kbd> + <kbd>M</kbd>: [Memory Usage]({{< relref "dialog-functions/#ShowMemoryUsage" >}})
+* <kbd>E</kbd> + <kbd>N</kbd> + <kbd>D</kbd>: [End Story]({{< relref "dialog-functions#ShowEnding" >}})
+* <kbd>F10</kbd> + <kbd>G</kbd>: [God Mode Toggle]({{< relref "dialog-functions#ToggleGodMode" >}})
+* <kbd>F10</kbd> + <kbd>M</kbd>: [Memory Usage]({{< relref "dialog-functions#ShowMemoryUsage" >}})
 * <kbd>F10</kbd> + <kbd>P</kbd>: Debug Pause
 * <kbd>F10</kbd> + <kbd>W</kbd>: [Level Warp]({{< relref "#level-warp" >}})
 * <kbd>Alt</kbd> + <kbd>C</kbd>: Invoke the [original keyboard interrupt handler]({{< relref "keyboard-functions#KeyboardInterruptService" >}})
