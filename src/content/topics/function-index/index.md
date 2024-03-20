@@ -1,7 +1,7 @@
 +++
 title = "Function Index"
 description = "Provides a direct link to every defined function in the game."
-weight = 560
+weight = 580
 +++
 
 # Function Index

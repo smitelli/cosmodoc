@@ -245,7 +245,7 @@ void InitializeMapGlobals(void)
     playerJumpTime = 0;
     playerFallTime = 1;
     isPlayerRecoiling = false;
-    playerMomentumNorth = 0;
+    playerRecoilLeft = 0;
     playerFaceDir = DIR4_EAST;
     playerFrame = PLAYER_WALK_1;
     playerBaseFrame = PLAYER_BASE_EAST;
@@ -298,7 +298,7 @@ This function contains no logic and behaves identically in every context where i
 * {{< lookup/cref playerJumpTime >}} = 0
 * {{< lookup/cref playerFallTime >}} = 1
 * {{< lookup/cref isPlayerRecoiling >}} = false
-* {{< lookup/cref playerMomentumNorth >}} = 0 <!-- END -->
+* {{< lookup/cref playerRecoilLeft >}} = 0 <!-- END -->
 * {{< lookup/cref playerFaceDir >}} is set to {{< lookup/cref name="DIR4" text="DIR4_EAST" >}}, which makes the player start each level facing east. By convention, the player usually starts toward the left side of the map, looking in the direction they need to travel to progress.
 * {{< lookup/cref playerFrame >}} is set to {{< lookup/cref name="PLAYER" text="PLAYER_WALK_1" >}}, but this assignment is not that important since this value will be immediately overwritten with the correct standing/falling frame during the next call to {{< lookup/cref MovePlayer >}}.
 * {{< lookup/cref playerBaseFrame >}} is set to {{< lookup/cref name="PLAYER_BASE" text="PLAYER_BASE_EAST" >}}, following the same motivations as {{< lookup/cref playerFaceDir >}} above.
@@ -321,7 +321,7 @@ This function contains no logic and behaves identically in every context where i
 * {{< lookup/cref playerFallDeadTime >}} is set to zero, indicating that the player has not fallen off the bottom of the map yet.
 * {{< lookup/cref sawHurtBubble >}} is set to false, allowing the "OUCH!" bubble to show once the player is hurt for the first time.
 * {{< lookup/cref sawAutoHintGlobe >}} is set false, which will auto-activate the first hint globe the player happens to touch.
-* {{< lookup/cref numBarrels >}} and {{< lookup/cref numEyePlants >}} are both set to zero. These variables track the number of barrels/baskets and the number of {{< lookup/actor type=95 strip=1 plural=1 >}} on the map, respectively. Since each map initially loads with zero actors of any type, zero is appropriate here.
+* {{< lookup/cref numBarrels >}} and {{< lookup/cref numEyePlants >}} are both set to zero. These variables track the number of {{< lookup/actor type=29 strip=true plural=true >}}/{{< lookup/actor type=0 strip=true plural=true >}} and the number of {{< lookup/actor type=95 strip=1 plural=1 >}} on the map, respectively. Since each map initially loads with zero actors of any type, zero is appropriate here.
 * {{< lookup/cref pounceStreak >}} is set to zero, eliminating any chance of a carryover of the previous map's pounce streak.
 * All of the speech bubble flags -- {{< lookup/cref sawJumpPadBubble >}}, {{< lookup/cref sawMonumentBubble >}}, {{< lookup/cref sawScooterBubble >}}, {{< lookup/cref sawTransporterBubble >}}, {{< lookup/cref sawPipeBubble >}}, {{< lookup/cref sawBossBubble >}}, {{< lookup/cref sawPusherRobotBubble >}}, {{< lookup/cref sawBearTrapBubble >}}, {{< lookup/cref sawMysteryWallBubble >}}, {{< lookup/cref sawTulipLauncherBubble >}}, and {{< lookup/cref sawHamburgerBubble >}} -- are set to false. This re-enables the speech bubbles (generally "WHOA!" but occasionally "UMPH!") that appear when the player first interacts with each of these actor types.
 
@@ -482,7 +482,7 @@ A conceivably late addition to the game loop is this pounce hint check. If the v
 {{% aside class="armchair-engineer" %}}
 **Queue you!**
 
-The queuing implementation used here is probably not necessary; the behavior of the health hints in {{< lookup/cref TouchPlayer >}} demonstrates a more direct way to do this. The placement here suggests that maybe an older version of this function interacted badly with the page-flipping, perhaps appearing and pausing gameplay with some of the actors not yet drawn for the current frame.
+The queuing implementation used here is probably not necessary; the behavior of the health hints in {{< lookup/cref InteractPlayer >}} demonstrates a more direct way to do this. The placement here suggests that maybe an older version of this function interacted badly with the page-flipping, perhaps appearing and pausing gameplay with some of the actors not yet drawn for the current frame.
 {{% /aside %}}
 
 {{< boilerplate/function-cref ProcessGameInputHelper >}}

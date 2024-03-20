@@ -75,7 +75,7 @@ def make_image(source, destination, ver):
 
     cmd = [
         INKSCAPE_BIN,
-        '--export-area-drawing',
+        '--export-area-page',
         '--export-background=#ffffff',
         '--export-background-opacity=255']
 

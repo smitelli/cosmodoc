@@ -19,9 +19,11 @@
 */}}
 
 {{- $out := "" }}
+{{- $type := -1 }}
 
 {{- if .IsNamedParams }}
-    {{- $out = index site.Data.description.actor (.Get "type") }}
+    {{- $type = .Get "type" }}
+    {{- $out = index site.Data.description.actor $type }}
 
     {{- if .Get "strip" }}
         {{- $out = $out | replaceRE `\s+\(.+?$` "" }}
@@ -31,13 +33,16 @@
         {{- $out = $out | pluralize }}
     {{- end }}
 {{- else }}
-    {{- $out = index site.Data.description.actor (.Get 0) }}
+    {{- $type = .Get 0 }}
+    {{- $out = index site.Data.description.actor $type }}
 {{- end }}
 
 {{- if not $out }}
     {{- warnf "No definition for %s %v" .Name .Params }}
 {{- end }}
 
-{{- "" -}}
-{{ $out }}
-{{- "" -}}
+{{- with index (where site.RegularPages "Params.actorTypes" "intersect" (slice $type)) 0 -}}
+    <a href="{{ .RelPermalink }}">{{ $out }}</a>
+{{- else -}}
+    {{ $out }}
+{{- end -}}

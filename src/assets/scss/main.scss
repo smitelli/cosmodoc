@@ -8,6 +8,7 @@ $menu-width: 12rem;
 $page-min-width: 20rem;
 $page-max-width: $menu-width + 40rem;
 $sm-breakpoint: $menu-width + 39rem;
+$float-image-breakpoint: 32rem;
 $page-color: #fff;
 $text-color: #1a1a1a;
 $link-color: #06f;
@@ -139,7 +140,7 @@ main {
     display: inline-block;
     padding-right: 2rem;
     border: 1px solid gray-from-lightness(80%);
-    background: gray-from-lightness(95%);
+    background: gray-from-lightness(97%);
 }
 
 #prev-next {
@@ -268,11 +269,31 @@ main {
             p:last-child {
                 margin-bottom: 0;
             }
+
+            &.sideways {
+                min-width: 1.4rem;
+                vertical-align: bottom;
+
+                div {
+                    writing-mode: vertical-rl;
+                    transform: rotate(180deg);
+                    white-space: nowrap;
+
+                }
+            }
         }
     }
 
     .overline {
         text-decoration-line: overline;
+    }
+
+    @media screen and (min-width: $float-image-breakpoint) {
+        .float-image {
+            float: right;
+            width: 13em;
+            margin: 0 0 0 1rem;
+        }
     }
 
     .footnotes {
@@ -329,6 +350,7 @@ main {
         }
 
         .markdown {
+            pointer-events: none;
             opacity: 0.25;
         }
     }
@@ -364,4 +386,5 @@ main {
 
 .full-width {
     width: 100%;
+    min-width: 100%;
 }

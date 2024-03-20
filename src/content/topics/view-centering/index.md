@@ -125,7 +125,7 @@ if (playerY - scrollY > SCROLLH - 4) {
 if (clingslip && playerY - scrollY > SCROLLH - 4) {
     scrollY++;
 } else {
-    if (playerMomentumNorth > 10 && playerY - scrollY < 7 && scrollY > 0) {
+    if (playerRecoilLeft > 10 && playerY - scrollY < 7 && scrollY > 0) {
         scrollY--;
     }
 
@@ -146,7 +146,7 @@ if (
 
 The vertical band is between 7 and 14 (a.k.a. {{< lookup/cref SCROLLH >}}` - 4`) tiles above the position of the player's feet. If the top edge of the scrolling window ({{< lookup/cref scrollY >}}) is within that range of tiles from {{< lookup/cref playerY >}}, no scrolling adjustment is done. Otherwise {{< lookup/cref scrollY >}} is incremented or decremented by one tile to bring the view closer to center. This may take several frames to resolve, which causes the "elastic" return of the view position once one of the "look up/down" keys is released. {{< lookup/cref scrollY >}} is never permitted to be less than zero, but it may become too high for the map and scroll off the bottom edge. As mentioned earlier, {{< lookup/cref DrawMapRegion >}} has code to protect against this condition.
 
-The `clingslip` variable holds a true value when the player is clinging to a slippery tile and sliding down. In this case {{< lookup/cref scrollY >}} is incremented an additional tile down to allow the player to better see what they are falling towards. In the opposite direction, {{< lookup/cref playerMomentumNorth >}} stores a magnitude that relates to how fast the player is rising vertically -- when this value is greater than ten it indicates a very fast ascent and {{< lookup/cref scrollY >}} is decremented an additional tile to allow the player to better see where they are headed.
+The `clingslip` variable holds a true value when the player is clinging to a slippery tile and sliding down. In this case {{< lookup/cref scrollY >}} is incremented an additional tile down to allow the player to better see what they are falling towards. In the opposite direction, {{< lookup/cref playerRecoilLeft >}} stores a magnitude that relates to how fast the player is rising vertically -- when this value is greater than ten it indicates a very fast ascent and {{< lookup/cref scrollY >}} is decremented an additional tile to allow the player to better see where they are headed.
 
 The horizontal centering occurs next, and follows substantially the same patterns as the earlier code for slippery slopes. The only difference here is a check that {{< lookup/cref mapYPower >}} is larger than five, which is always true for every map included with the game. (See the [Level Start](#level-start) section of this page for an explanation of why this assertion is true.) Taken together, this works to keep the player inside a 12--23 (a.k.a. {{< lookup/cref SCROLLW >}}` - 15`) tile band measured from the left edge of the screen.
 
@@ -184,7 +184,7 @@ During times when the player is riding a scooter, the {{< lookup/cref MovePlayer
 if (playerY - scrollY > SCROLLH - 4) {
     scrollY++;
 } else {
-    if (playerMomentumNorth > 10 && playerY - scrollY < 7 && scrollY > 0) {
+    if (playerRecoilLeft > 10 && playerY - scrollY < 7 && scrollY > 0) {
         scrollY--;
     }
 
@@ -200,7 +200,7 @@ if (playerX - scrollX > SCROLLW - 15 && mapWidth - SCROLLW > scrollX) {
 }
 ```
 
-This is effectively the same as the code in the regular {{< lookup/cref MovePlayer >}}, including the test against {{< lookup/cref playerMomentumNorth >}} which has no purpose here -- its value is forced to zero for the entire time the player is riding on the scooter.
+This is effectively the same as the code in the regular {{< lookup/cref MovePlayer >}}, including the test against {{< lookup/cref playerRecoilLeft >}} which has no purpose here -- its value is forced to zero for the entire time the player is riding on the scooter.
 
 ## Platform Movement
 

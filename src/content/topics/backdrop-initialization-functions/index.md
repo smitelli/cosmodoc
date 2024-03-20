@@ -112,9 +112,9 @@ To shift a backdrop horizontally, the source backdrop is traversed one pixel row
 for (word tilerow = 0; tilerow < BACKDROP_SIZE; tilerow += 1280) {
     for (word i = 0; i < 1280; i++) {
         *(dest + tilerow + i) =
-            // Left half of tile gets right half of the same tile
+            /* Left half of tile gets right half of the same tile */
             (*(src + tilerow + i) << 4) |
-            // Right half of tile gets left half of *subsequent* tile
+            /* Right half of tile gets left half of *subsequent* tile */
             (*(src + tilerow + ((i + 32) % 1280)) >> 4);
     }
 }
@@ -127,10 +127,10 @@ Vertical shifts are _slightly_ simpler because we do not need to operate on sub-
 ```c
 for (word tile = 0; tile < BACKDROP_SIZE; tile += 32) {
     for (word i = 0; i < 16; i++) {
-        // Top half of tile gets bottom half of the same tile
+        /* Top half of tile gets bottom half of the same tile */
         *(dest + tile + i) = *(src + tile + i + 16);
 
-        // Bottom half of tile gets top half of *subsequent* tile
+        /* Bottom half of tile gets top half of *subsequent* tile */
         *(dest + tile + i + 16) =
             *(src + ((tile + i + 1280) % BACKDROP_SIZE));
     }

@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 570
+weight = 590
 +++
 
 # Bugs and Oversights
@@ -32,7 +32,7 @@ This quirk has [its own page]({{< relref "apogee-parameter" >}}).
 
 ## AdLib hardware is not shut down when EGA card is missing.
 
-## Presence of a {{< lookup/actor 152 >}} prevents the 50,000 point barrel/basket bonus from being earned.
+## Presence of a {{< lookup/actor 152 >}} prevents the 50,000 point barrel bonus from being earned.
 
 ## {{< lookup/actor 189 >}} spawns Floating Score effect, but no points are given.
 

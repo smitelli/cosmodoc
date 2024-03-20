@@ -352,7 +352,7 @@ void SetPlayerPush(
     isPlayerPushBlockable = blockable;
 
     isPlayerRecoiling = false;
-    playerMomentumNorth = 0;
+    playerRecoilLeft = 0;
 
     ClearPlayerDizzy();
 }
@@ -369,7 +369,7 @@ The push state is represented by eight global variables:
 * {{< lookup/cref isPlayerPushed >}} (set to true) is the main flag that enables the per-tick pushing logic.
 * {{< lookup/cref isPlayerPushBlockable >}} (set to `blockable`) tracks whether this push should consider any movement-blocking walls it encounters.
 
-Separately from the push-specific variables, this function zeroes the {{< lookup/cref scooterMounted >}} variable to knock the player off any scooter they may be riding on. {{< lookup/cref isPlayerRecoiling >}} and {{< lookup/cref playerMomentumNorth >}} are both cleared to cancel any upward jump/recoil energy the player has amassed, and {{< lookup/cref ClearPlayerDizzy >}} removes any dizzy effects the player is dealing with.
+Separately from the push-specific variables, this function zeroes the {{< lookup/cref scooterMounted >}} variable to knock the player off any scooter they may be riding on. {{< lookup/cref isPlayerRecoiling >}} and {{< lookup/cref playerRecoilLeft >}} are both cleared to cancel any upward jump/recoil energy the player has amassed, and {{< lookup/cref ClearPlayerDizzy >}} removes any dizzy effects the player is dealing with.
 
 {{< boilerplate/function-cref ClearPlayerPush >}}
 
@@ -386,7 +386,7 @@ void ClearPlayerPush(void)
     playerPushForceFrame = 0;
 
     isPlayerRecoiling = false;
-    playerMomentumNorth = 0;
+    playerRecoilLeft = 0;
 
     isPlayerPushAbortable = false;
 
@@ -399,7 +399,7 @@ The push-specific variables {{< lookup/cref isPlayerPushed >}}, {{< lookup/cref 
 
 In order to return the player back to regular control, this function sets {{< lookup/cref isPlayerFalling >}} to true, which causes later movement code in {{< lookup/cref MovePlayer >}} to check if the player needs to fall any distance to contact the ground. In a typical horizontal-only push, it will be apparent that the player is already on the ground and no further adjustment will be required. Otherwise gravity will pull them down as expected.
 
-To ensure sanity of the global state, {{< lookup/cref isPlayerRecoiling >}}, {{< lookup/cref playerMomentumNorth >}}, and {{< lookup/cref playerFallTime >}} are all cleared before returning control to the regular movement code. This is cheap insurance to make sure there are no abrupt movements due to the variables holding stale values.
+To ensure sanity of the global state, {{< lookup/cref isPlayerRecoiling >}}, {{< lookup/cref playerRecoilLeft >}}, and {{< lookup/cref playerFallTime >}} are all cleared before returning control to the regular movement code. This is cheap insurance to make sure there are no abrupt movements due to the variables holding stale values.
 
 {{< boilerplate/function-cref MovePlayerPush >}}
 

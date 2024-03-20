@@ -10,17 +10,21 @@
             <img src="..."> attribute and the target of the <a href="...">
             attribute.
         alt (optional): Text to use for the alt/title attributes.
-        loading (optional): Value for the img loading="..." attribute, defaults
-            to `lazy`.
+        class (optional): If provided, value to use for the <p class="...">
+            attribute.
         1x (optional): If provided, the "1x" scale file name for the srcset
             attribute.
         2x (optional): ... "2x" scale file name ...
         3x (optional): ... "3x" scale file name ...
 */}}
 
+{{ .Page.Scratch.Add "shortcodesImageIndex" 1 }}
+{{ $index := .Page.Scratch.Get "shortcodesImageIndex" }}
+
 {{ $base := .Get "src" | .Page.Resources.Get }}
 {{ $alt := .Get "alt" }}
-{{ $loading := .Get "loading" | default "lazy" }}
+{{ $class := .Get "class" }}
+{{ $loading := cond (gt $index site.Params.eagerImageMaximum) "lazy" "eager" }}
 
 {{ $srcset := slice }}
 {{ range $x := slice "1x" "2x" "3x" }}
@@ -29,7 +33,7 @@
     {{ end }}
 {{ end }}
 
-<p><a href="{{ $base.RelPermalink }}"><img
+<p class="{{ $class }}"><a href="{{ $base.RelPermalink }}"><img
     src="{{ $base.RelPermalink }}" width="{{ $base.Width }}" height="{{ $base.Height }}"
     srcset="{{ delimit $srcset `, ` }}" sizes="{{ .Site.Params.imgSizesValue }}"
     alt="{{ $alt | markdownify }}" title="{{ $alt | markdownify }}" loading="{{ $loading }}"

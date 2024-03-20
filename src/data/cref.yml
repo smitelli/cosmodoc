@@ -296,7 +296,11 @@ ultoa:
 #ActArrowPiston:
 #ActBabyGhost:
 #ActBabyGhostEgg:
-#ActBarrel:
+ActBarrel:
+  text: ActBarrel()
+  def: void ActBarrel(word index);
+  desc: The tick function for every barrel and basket actor. It takes the `index` of the current actor in the actors array.
+  ref: /topics/actors/implementations/barrels-baskets/#ActBarrel
 #ActBeamRobot:
 #ActBearTrap:
 #ActBird:
@@ -435,6 +439,11 @@ CopyTilesToEGA:
   def: void CopyTilesToEGA(byte *source, word dest_length, word dest_offset);
   desc: Reads solid tile image data from the memory pointed to by `source`, and installs it into a block of `dest_length` bytes of the EGA's memory starting at `dest_offset`. Because the destination memory is planar, each byte of address space covered by `dest_length` consumes four bytes from `source`.
   ref: /topics/c-drawing-functions/#CopyTilesToEGA
+DestroyBarrel:
+  text: DestroyBarrel()
+  def: void DestroyBarrel(word index);
+  desc: Handles the animation, sound effects, and lifecycle management at the instant a barrel or basket is destroyed.
+  ref: /topics/actors/implementations/barrels-baskets/#DestroyBarrel
 DetectAdLib:
   text: DetectAdLib()
   def: bool DetectAdLib(void);
@@ -734,6 +743,11 @@ InnerMain:
   def: void InnerMain(int argc, char *argv[]);
   desc: Main game function, once CPU testing has passed.
   ref: /topics/main-and-outer-loop/#InnerMain
+InteractPlayer:
+  text: InteractPlayer()
+  def: bool InteractPlayer(word index, word sprite_type, word frame, word x, word y);
+  desc: Tests for a potential interaction between an actor located at position `index` in the actors array and the player. The actor's `sprite_type`, `frame`, `x`, and `y` must all be passed, and should agree with the values currently held in the actor's memory structure. Returns true if the actor should not be drawn due to being hidden, destroyed, or picked up.
+  ref: /topics/actors/implementations/#InteractPlayer
 IsAdLibAbsent:
   text: IsAdLibAbsent()
   def: bbool IsAdLibAbsent(void);
@@ -987,7 +1001,6 @@ PCSpeakerService:
   def: void PCSpeakerService(void);
   desc: Sends a new fragment of sound effect data to the PC speaker.
   ref: /topics/pc-speaker-and-timing-functions/#PCSpeakerService
-#PounceHelper:
 ProcessActor:
   text: ProcessActor()
   def: void ProcessActor(word index);
@@ -1443,6 +1456,7 @@ ToggleSound:
   def: void ToggleSound(void);
   desc: Inverts the setting of the global {{< lookup/cref isSoundEnabled >}} variable then presents a dialog confirming the resulting state.
   ref: /topics/dialog-functions/#ToggleSound
+#TryPounce:
 UnfoldDNFrame:
   text: UnfoldDNFrame()
   def: word UnfoldDNFrame(void);
@@ -3002,6 +3016,11 @@ isPlayerSlidingWest:
   def: bool isPlayerSlidingWest;
   desc: Holds a true value if the player is standing on a surface that is both slippery and sloped down toward the western direction.
   ref: /topics/global-variables-and-constants/#isPlayerSlidingWest
+isPounceReady:
+  text: isPounceReady
+  def: bool isPounceReady;
+  desc: Holds a true value if the player's horizontal and vertical pounce position are correct relative to the position of the last actor tested by {{< lookup/cref InteractPlayer >}}.
+  ref: /topics/global-variables-and-constants/#isPounceReady
 isSoundEnabled:
   text: isSoundEnabled
   def: bool isSoundEnabled;

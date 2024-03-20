@@ -4,7 +4,12 @@
 
 {{ define "pageContent" }}
     <article class="markdown">
-        <img src="/img/404.png" alt="COSMIC HINT! 404 Not Found..." title="COSMIC HINT! 404 Not Found...">
+        {{ with resources.Get "img/404.png" }}
+            <p><img
+                src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+                alt="COSMIC HINT! 404 Not Found..." title="COSMIC HINT! 404 Not Found..."
+            ></p>
+        {{ end }}
 
         <p class="centered"><a href="{{ site.Home.RelPermalink }}">Go Home</a></p>
     </article>

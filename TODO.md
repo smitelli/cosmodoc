@@ -6,83 +6,84 @@
     * (timer/music/game/???) ticks and frames are really overloaded terms
 * update descriptions on actors that don't match the code/text
 * look for all maps where the E2M6 bug can happen -- E3M6 is one
-* try to not lazy-load first 1-2 images
-* maybe make JS click on mobile content auto-hide the nav
 
 =============================================================================
 
 * really unpleasant functions
     * MovePlayer: handle one game tick of basically all player input.
     * MovePlayerScooter: handle one game tick of player movement on the scooter.
-    * PounceHelper: imparts the springiness into actor pounces.
-    * TouchPlayer: perform actions when a player and an actor touch. this goes both ways (player hurts actor, actor hurts player.)
+    * TryPounce: imparts the springiness into actor pounces.
 * actor tick functions
-    * ActFootSwitch: used for 4 real switches. all other references are no-op.
-    * ActHorizontalMover: big saw blade, robotic spike
-    * ActFloorSpring: floor/ceiling spring
-    * ActArrowPiston: E/W variants
-    * ActFireBallLauncher: E/W variants
-    * ! ActHeadSwitch, ActDoor, UpdateDoors: 4 colors
-    * ActCartSpring
-    * ActRetractingSpikes: in ground or W wall
-    * ActVerticalMover: big saw blade
-    * ActArmedBomb
-    * ! ActBarrel, DestroyBarrel: barrels and baskets, different type depending on contents
-    * ActCabbageBall: 2 types, be careful!
-    * ActCeilingSpear
-    * ActDrips: leaking/dripping red/green acid
-    * ActHailSprite
-    * ActTwoTons
-    * ActJumpingBullet
-    * ActStoneHead
-    * ActPyramidSpike: falling ceiling or fixed floor. (fixed ceiling is different!)
-    * ActGhost
-    * ActFloatingMoon
-    * ActRedHeartPlant
-    * ActBomb
-    * ActQuestionMark
-    * ActBabyGhost
-    * ActFlashingProjectile: 5 types, depending on direction
-    * ActTreasureWorm
-    * ActPipeDirection, ActPipeEnd: four directions, two ends
-    * ActBabyGhostEgg: two types
-    * ActCeilingRobot
-    * ActClamPlant: floor/ceiling variants
-    * ActBlueBall
-    * ActVerticalArcRobot
-    * ActSplittingPlatform
-    * ActSpark
-    * ActEyePlant: floor/ceiling variants
-    * ActRedJumper
-    * ActBoss
-    * ! ActSuctionCupWalker, SuctionCupWalkerCanFlip
-    * ActTransporter: three types
-    * ActSpittingWallPlant: E/W variants
-    * ActSpittingTurret
-    * ActScooter
-    * ActRedChomper
-    * ActForceField: H/V variants
-    * ActPinkWorm, ActPinkWormGoo
-    * ActHintGlobe: 26 of them
-    * ActPusherRobot
-    * ActSecurityRobot
-    * ActDragonfly
-    * ActPinkWormBox
-    * ActSatellite
-    * ActIvyPlant
-    * ActExitJaws, ActExitLineVertical, ActExitLineHorizontal, ActEpisode1EndTrigger, ActExitFlytrap: horiz exit has two variants
-    * ActSmallFlame
-    * ActPrize: 21 of these
-    * ActBearTrap
-    * ActFallingFloor
-    * ActFloatingScore: 8 of these
-    * ActBlueBird
-    * ActRocket
-    * ActPedestal: 3 of these
-    * ActInvincibilityShield
-    * ActMonument
-    * ActSpittingTulip
-    * ActFrozenDN
-    * ActPulsingFlame: E/W variants
-    * ActSpeechBubble: 4 variants
-    * ActSmokeEmitter: 2 variants
+    * 39 ActFootSwitch: no-op
+    * 26 ActHintGlobe
+    * 21 ActPrize
+    * 8 ActScoreEffect
+    * 5 ActProjectile: depending on direction
+    * 4 ActFootSwitch: real
+    * 4x2! ActHeadSwitch, ActDoor, UpdateDoors: 4 colors
+    * 4 ActRedGreenSlime: leaking/dripping red/green acid
+    * 4+2 ActPipeCorner, ActPipeEnd
+    * 4 ActSpeechBubble
+    * 3 ActTransporter
+    * 3-in-1 ActEpisode1End
+    * 3 ActPedestal
+    * 2 ActHorizontalMover: big saw blade, robotic spike
+    * 2 ActJumpPad: floor/ceiling spring
+    * 2 ActArrowPiston: E/W variants
+    * 2 ActFireball: E/W variants
+    * 2 ActReciprocatingSpikes: in ground or W wall
+    * 2 ActCabbage
+    * 2 ActPyramid: falling ceiling or fixed floor. (fixed ceiling is different!)
+    * 2 ActBabyGhostEgg
+    * 2 ActClamPlant: floor/ceiling variants
+    * 2 ActEyePlant: floor/ceiling variants
+    * 2 ActSpittingWallPlant: E/W variants
+    * 2 ActForceField: H/V variants
+    * 2 ActExitLineHorizontal
+    * 2 ActFlamePulse: E/W variants
+    * 2 ActSmokeEmitter
+    * 1+1 ActPinkWorm, ActPinkWormSlime
+    * 1! ActSuctionWalker, SuctionCupWalkerCanFlip
+    * 1 ActJumpPadRobot
+    * 1 ActVerticalMover: big saw blade
+    * 1 ActBombArmed
+    * 1 ActReciprocatingSpear
+    * 1 ActFlyingWisp
+    * 1 ActTwoTonsCrusher
+    * 1 ActJumpingBullet
+    * 1 ActStoneHeadCrusher
+    * 1 ActGhost
+    * 1 ActMoon
+    * 1 ActHeartPlant
+    * 1 ActBombIdle
+    * 1 ActMysteryWall
+    * 1 ActBabyGhost
+    * 1 ActRoamerSlug
+    * 1 ActSharpRobot
+    * 1 ActParachuteBall
+    * 1 ActBeamRobot
+    * 1 ActSplittingPlatform
+    * 1 ActSpark
+    * 1 ActRedJumper
+    * 1 ActBoss
+    * 1 ActSpittingTurret
+    * 1 ActScooter
+    * 1 ActRedChomper
+    * 1 ActPusherRobot
+    * 1 ActSentryRobot
+    * 1 ActDragonfly
+    * 1 ActWormCrate
+    * 1 ActSatellite
+    * 1 ActIvyPlant
+    * 1 ActExitMonsterWest
+    * 1 ActExitLineVertical
+    * 1 ActExitPlant
+    * 1 ActSmallFlame
+    * 1 ActBearTrap
+    * 1 ActFallingFloor
+    * 1 ActBird
+    * 1 ActRocket
+    * 1 ActInvincibilityBubble
+    * 1 ActMonument
+    * 1 ActTulipLauncher
+    * 1 ActFrozenDN

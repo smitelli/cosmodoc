@@ -1,7 +1,7 @@
 +++
 title = "Decoration Functions"
 description = "Describes the functions that create and process decorations that are emitted from many actors."
-weight = 530
+weight = 550
 +++
 
 # Decoration Functions

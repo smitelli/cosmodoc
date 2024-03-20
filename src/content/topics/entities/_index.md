@@ -1,7 +1,7 @@
 +++
 title = "Entities"
 description = "Moving objects that inhabit the map, but are not implemented as actors."
-weight = 490
+weight = 510
 
 [sitemap]
 priority = 1
@@ -25,7 +25,7 @@ In addition to bombs, explosions can occur from {{< lookup/actor type=50 strip=t
 
 ## Spawners
 
-A [**spawner**]({{< relref "spawner-functions" >}}) is a precursor to an actor that is being spawned into existence. When the player destroys a barrel, for example, the barrel releases a spawner that flies up some distance into the air. Once the spawner reaches its maximum height, it is replaced by a full actor of the same type which falls back to the ground using the actor system's sense of gravity.
+A [**spawner**]({{< relref "spawner-functions" >}}) is a precursor to an actor that is being spawned into existence. When the player destroys a {{< lookup/actor type=29 strip=true >}}, for example, the barrel releases a spawner that flies up some distance into the air. Once the spawner reaches its maximum height, it is replaced by a full actor of the same type which falls back to the ground using the actor system's sense of gravity.
 
 Both good things (like prizes from barrels) and bad things (like {{< lookup/actor type=86 plural=true >}} from {{< lookup/actor type=152 plural=true >}}) are added to the map using the spawner system.
 
@@ -38,3 +38,5 @@ The vast majority of decorations in the game are either sparkles or rising smoke
 ## Shards
 
 Groups of [**shards**]({{< relref "shard-functions" >}}) are generated when certain actor types are destroyed. Each shard is either a complete sprite or a fragment of a sprite, which flies away from the point of creation. After at most one "bounce" off the floor, each shard is absorbed into the ground before disappearing.
+
+## Entity Sub-Pages

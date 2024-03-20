@@ -1,7 +1,7 @@
 +++
 title = "Shard Functions"
 description = "Describes the functions that create and process shards that accompany destruction of actors on the map."
-weight = 540
+weight = 560
 +++
 
 # Shard Functions
@@ -12,7 +12,7 @@ A **shard** is a small piece of debris released from a destroyed actor, usually 
 
 ## A Look at Shards
 
-The most direct way to encounter a shard is to make the player pounce on a barrel or basket. When such items are destroyed, four thin shards are released. It's also common to see shards after blowing an actor up with a bomb, which tends to release one or more shards as they die. Shards are created at the point of destruction and move outward from there. Their sprites are always drawn upside-down, except for the very first frame of animation which is a white outline oriented normally.
+The most direct way to encounter a shard is to make the player pounce on a {{< lookup/actor type=29 strip=true >}} or {{< lookup/actor type=0 strip=true >}}. When such items are destroyed, four thin shards are released. It's also common to see shards after blowing an actor up with a bomb, which tends to release one or more shards as they die. Shards are created at the point of destruction and move outward from there. Their sprites are always drawn upside-down, except for the very first frame of animation which is a white outline oriented normally.
 
 A shard has a fixed horizontal movement component called the **X mode** that is chosen at creation time and does not change. Movement along this axis could be zero. As long as the shard is able to move in its assigned horizontal direction without hitting a solid map tile, it will. Vertically, the shard starts moving up at two tiles per game tick until it reaches a point eight tiles above its starting point, at which point it rises one more tile. It then stays suspended in air for two more ticks. Gravity begins to take over, and the shard moves down one tile on the next tick, followed by two tiles on every subsequent tick thereafter.
 

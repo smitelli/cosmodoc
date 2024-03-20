@@ -1,8 +1,11 @@
+{{/* "20" is a bit of a hack to skip the home/topics pages */}}
+{{ $pages := where site.Pages.ByWeight "Weight" "gt" 20 }}
+
 <nav id="prev-next">
     <ul>
         {{/* Hugo's sense of "prev/next" is swapped for our use case! */}}
 
-        {{ with .Next }}
+        {{ with $pages.Next . }}
             <li>
                 <a href="{{ .RelPermalink }}" rel="prev"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
                     &leftarrow; {{ .Title | markdownify }}
@@ -18,7 +21,7 @@
             </li>
         {{ end }}
 
-        {{ with .Prev }}
+        {{ with $pages.Prev . }}
             <li>
                 <a href="{{ .RelPermalink }}" rel="next"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>
                     {{ .Title | markdownify }} &rightarrow;

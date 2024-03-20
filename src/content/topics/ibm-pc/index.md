@@ -45,20 +45,26 @@ The 8086 and 8088 have a 20-bit address bus, meaning there are 20 separate pins 
 
 A segment is a contiguous block of sixteen bytes. An offset is a number of bytes to add to the result. Memory addresses are usually written as _segment:offset_ using hexadecimal numbers. To compute the physical address of `1234:5678` the procedure is:
 
-     Segment       Offset  Physical Address
-     |             |       |
-     V             V       V
-    (1234h * 16) + 5678h = 179B8h
+```
+ Segment       Offset  Physical Address
+ |             |       |
+ V             V       V
+(1234h * 16) + 5678h = 179B8h
+```
 
 or 96,696 bytes in decimal. It's a relatively straightforward concept until it becomes apparent that `179B:0008` works out to:
 
-    (179Bh * 16) + 0008h = 179B8h
+```
+(179Bh * 16) + 0008h = 179B8h
+```
 
 or 96,696 again. The lower 12 bits of the segment affect the same things that the upper 12 bits of the offset do. For every byte of physically addressable memory in the system, there are up to 4,096 different segment:offset pairs that will refer to it.
 
 To further complicate things, it's entirely possible to construct an address that won't fit in the 20-bit address space. Consider `FF00:1000`:
 
-    (FF00h * 16) + 1000h = 100000h
+```
+(FF00h * 16) + 1000h = 100000h
+```
 
 That's a problem. 10 000h requires 21 bits to express, but there are only 20 address lines. The processor's solution is elegant and brutal: strip off the 21st bit, leaving 0000h. `FF00:1000` "wraps around" to point to the very first byte of memory.
 

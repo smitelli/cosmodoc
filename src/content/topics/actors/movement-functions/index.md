@@ -193,12 +193,12 @@ If this actor is not near any active explosion, {{< lookup/cref IsNearExplosion 
 When {{< lookup/cref CanExplode >}} returns true, the actor is indeed explodable and the actor immediately dies, having already released its points to the player. The `dead` flag is enabled and the function immediately `return`s.
 
 ```c
-    if (TouchPlayer(index, act->sprite, act->frame, act->x, act->y)) return;
+    if (InteractPlayer(index, act->sprite, act->frame, act->x, act->y)) return;
 ```
 
-{{< lookup/cref TouchPlayer >}} determines what should happen when the player and an actor touch each other. That function determines if the actor is being touched at all, and if this touch is the result of the player pouncing on the actor or the actor damaging the player.
+{{< lookup/cref InteractPlayer >}} determines what should happen when the player and an actor touch each other. That function determines if the actor is being touched at all, and if this touch is the result of the player pouncing on the actor or the actor damaging the player.
 
-The {{< lookup/cref TouchPlayer >}} return value controls whether this function should continue drawing the sprite for this actor. A true value accompanies conditions like a prize being picked up or an actor suffering a fatal pounce, both of which should remove the sprite from the screen. The early `return` prevents drawing in these situations.
+The {{< lookup/cref InteractPlayer >}} return value controls whether this function should continue drawing the sprite for this actor. A true value accompanies conditions like a prize being picked up or an actor suffering a fatal pounce, both of which should remove the sprite from the screen. The early `return` prevents drawing in these situations.
 
 ```c
     if (nextDrawMode != DRAW_MODE_HIDDEN) {

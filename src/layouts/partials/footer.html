@@ -5,6 +5,7 @@
 */}}
 
 {{ $p := site.Params }}
+{{ $today := now.Format "2006-01-02" }}
 
 <footer>
     <address>
@@ -25,7 +26,7 @@
         </p>
     {{ end }}
 
-    {{ with resources.GetRemote $p.cosmoreDownloadUrl }}
+    {{ with resources.GetRemote $p.cosmoreDownloadUrl (dict "key" $today) }}
         {{ with .Err }}{{ errorf "%s" . }}{{ end }}
         <p>
             <a href="{{ .RelPermalink }}">Download <strong>Cosmore</strong></a>, {{/*

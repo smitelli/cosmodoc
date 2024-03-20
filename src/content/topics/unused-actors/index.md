@@ -1,7 +1,7 @@
 +++
 title = "Unused Actors"
 description = "A list of defined actor types that never appear in the game."
-weight = 590
+weight = 610
 +++
 
 # Unused Actors
@@ -28,7 +28,7 @@ Actor Type | Description              | Usability  | Notes
 142        | {{< lookup/actor 142 >}} | Functional | Barrel is not used, although its contents -- {{< lookup/actor 134 >}} -- are.
 171        | {{< lookup/actor 171 >}} | Functional | Basket is not used, although its contents -- {{< lookup/actor 172 >}} -- are.
 183        | {{< lookup/actor 183 >}} | Functional | Works like all other Floating Scores. Although there are a handful of actor types that award 6,400 points when bombed, none of them create a Floating Score.
-251        | {{< lookup/actor 251 >}} | Buggy      | Works like {{< lookup/actor 25 >}}, however the "always active" flag is set. This is appropriate when hidden inside a Barrel, but probably not for direct inclusion in a map -- the actor will continually hop towards the player's location until it either gets stuck in a corner or falls off the map long before the player encounters the location where it was originally placed.
+251        | {{< lookup/actor 251 >}} | Buggy      | Works like {{< lookup/actor 25 >}}, however the "always active" flag is set. This is appropriate when hidden inside a barrel, but probably not for direct inclusion in a map -- the actor will continually hop towards the player's location until it either gets stuck in a corner or falls off the map long before the player encounters the location where it was originally placed.
 256        | {{< lookup/actor 256 >}} | Buggy      | None of the episodes implement {{< lookup/actor 256 >}}. When the player touches any unimplemented Hint Globe, the notification sound plays, gameplay pauses for a short time, no text window is displayed and then gameplay resumes.
 257        | {{< lookup/actor 257 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
 258        | {{< lookup/actor 258 >}} | Buggy      | Same as {{< lookup/actor 256 >}}.
@@ -39,7 +39,7 @@ Actor Type | Description              | Usability  | Notes
 
 ## Only Appear in Barrels/Baskets
 
-These actor types _can_ appear in the game as the result of destroying a Barrel or Basket, but never directly appear in any of the original map files.
+These actor types _can_ appear in the game as the result of destroying a {{< lookup/actor type=29 strip=true >}} or {{< lookup/actor type=0 strip=true >}}, but never directly appear in any of the original map files.
 
 Actor Type | Description
 -----------|------------

@@ -83,6 +83,18 @@
         // Chrome gives higher priority to "shortcut icon" than "icon"
         document.querySelectorAll('link[rel^="shortcut"]').forEach(el => el.outerHTML = '');
     });
+
+    Install(() => {
+        const control = document.getElementById('main-menu-control');
+        const page = document.getElementById('main-page');
+
+        page.addEventListener('click', (ev) => {
+            if (!control.checked) return;
+
+            ev.preventDefault();
+            control.checked = false;
+        });
+    });
 })();
 
 window.addEventListener('load', () => {

@@ -23,6 +23,7 @@
 
 <table>
     {{ range $i, $_ := site.Data.actor.table }}
+        {{ $page := index (where site.RegularPages "Params.actorTypes" "intersect" (slice .actor_type)) 0 }}
         {{ if modBool $i site.Params.dataTableHeaderFreq }}
         <tr>
             <th rowspan="2">Actor Type</th>
@@ -46,7 +47,13 @@
         </tr>
         {{ end }}
         <tr>
-            <th>{{ .actor_type }}</th>
+            <th>
+                {{ if $page }}
+                    <a href="{{ $page.RelPermalink }}">{{ .actor_type }}</a>
+                {{ else }}
+                    {{ .actor_type }}
+                {{ end }}
+            </th>
             <td>{{ .sprite_type }}</td>
             <td>{{ .xshift_tiles }}</td>
             <td>{{ .yshift_tiles }}</td>

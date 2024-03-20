@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 550
+weight = 570
 +++
 
 # Global Variables and Constants
@@ -300,11 +300,11 @@ Some of the constants use a number instead of a description of the sprite. These
 
 Symbolic Constant | Duplicate Version Of | Description
 ------------------|----------------------|------------
-`SPR_6`           | `SPR_FIREBALL`       | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 6 >}} which now cannot occur anymore.
-`SPR_48`          | `SPR_PYRAMID`        | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 48 >}} which now cannot occur anymore.
-`SPR_50`          | `SPR_GHOST`          | Referenced in {{< lookup/cref TouchPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 50 >}} which now cannot occur anymore.
-`SPR_74`          | `SPR_BABY_GHOST_EGG` | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanExplode >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 74 >}} which now cannot occur anymore.
-`SPR_84`          | `SPR_GRAPES`         | Referenced in {{< lookup/cref TouchPlayer >}}, {{< lookup/cref CanExplode >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 84 >}} which now cannot occur anymore.
+`SPR_6`           | `SPR_FIREBALL`       | Referenced in {{< lookup/cref InteractPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 6 >}} which now cannot occur anymore.
+`SPR_48`          | `SPR_PYRAMID`        | Referenced in {{< lookup/cref InteractPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 48 >}} which now cannot occur anymore.
+`SPR_50`          | `SPR_GHOST`          | Referenced in {{< lookup/cref InteractPlayer >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 50 >}} which now cannot occur anymore.
+`SPR_74`          | `SPR_BABY_GHOST_EGG` | Referenced in {{< lookup/cref InteractPlayer >}}, {{< lookup/cref CanExplode >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 74 >}} which now cannot occur anymore.
+`SPR_84`          | `SPR_GRAPES`         | Referenced in {{< lookup/cref InteractPlayer >}}, {{< lookup/cref CanExplode >}}, and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 84 >}} which now cannot occur anymore.
 `SPR_96`          | `SPR_SMOKE`          | Referenced in {{< lookup/cref CanExplode >}} and {{< lookup/cref AddScoreForSprite >}} as a possible object that could interact with the player. Most likely left over from an older implementation of {{< lookup/actor 96 >}} which now cannot occur anymore.
 `SPR_150`         | `SPR_SMALL_FLAME`    | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actor {{< lookup/actor 150 >}}.
 `SPR_164`         | `SPR_ROOT`           | Referenced in {{< lookup/cref NewActorAtIndex >}} as the sprite type for the invisible actors {{< lookup/actor 164 >}}, {{< lookup/actor 165 >}}, and {{< lookup/actor 166 >}}.
@@ -620,6 +620,10 @@ This value is unconditionally cleared during every call to {{< lookup/cref TestP
 
 This value is unconditionally cleared during every call to {{< lookup/cref TestPlayerMove >}}. It is only possible for it to be reset during cases where {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} was the direction tested.
 
+{{< boilerplate/global-cref isPounceReady >}}
+
+This is also modified during interactions with {{< lookup/actor 114 >}} and {{< lookup/actor 152 >}} actors.
+
 {{< boilerplate/global-cref isSoundEnabled >}}
 
 Sound effects may play when this is true, and sound effects are silenced when false. This setting can be toggled by the user, and the value is persisted in the [configuration file]({{< relref "configuration-file-format" >}}).
@@ -768,7 +772,7 @@ This is used as an insertion cursor as actors are being created, pointing to the
 
 {{< boilerplate/global-cref numBarrels >}}
 
-This value in incremented when {{< lookup/cref ConstructActor >}} adds barrel/basket actors to the map, and it is decremented in {{< lookup/cref DestroyBarrel >}}. When the last remaining barrel is destroyed, the player is given a 50,000 point bonus.
+This value in incremented when {{< lookup/cref ConstructActor >}} adds {{< lookup/actor type=29 strip=true >}}/{{< lookup/actor type=0 strip=true >}} actors to the map, and it is decremented in {{< lookup/cref DestroyBarrel >}}. When the last remaining barrel is destroyed, the player is given a 50,000 point bonus.
 
 {{< boilerplate/global-cref numDecorations >}}
 
@@ -931,7 +935,7 @@ At any time, the value of this variable should be one of the {{< lookup/cref POU
 
 {{< boilerplate/global-cref pounceStreak >}}
 
-This value is incremented and tested in {{< lookup/cref PounceHelper >}}, which also gives a 50,000 bonus point on the tenth consecutive pounce. This counter is reset to zero when the player touches the ground, or when they pounce on an actor who is designed to be used as a platform. Notably, the pounce streak is _not_ reset when the player clings to a wall.
+This value is incremented and tested in {{< lookup/cref TryPounce >}}, which also gives a 50,000 bonus point on the tenth consecutive pounce. This counter is reset to zero when the player touches the ground, or when they pounce on an actor who is designed to be used as a platform. Notably, the pounce streak is _not_ reset when the player clings to a wall.
 
 {{< boilerplate/global-cref profCountCPU >}}
 

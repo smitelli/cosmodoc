@@ -1,3 +1,4 @@
+actors/implementations/barrels-baskets/exhibit.svg 234x 468x 702x
 adlib-functions/adsr-attenuation.svg 684x 1368x 2052x
 adlib-functions/adsr-rates.svg 684x 1368x 2052x
 adlib-functions/envelope-types.svg 684x 1368x 2052x

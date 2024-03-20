@@ -287,9 +287,9 @@ This is the pattern. When the passed `actor_type` matches the {{< lookup/cref na
 12. **Freeform Data #4:** Same as above.
 13. **Freeform Data #5:** Same as above.
 
-Looking at the actual cases highlighted above, {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} uses the {{< lookup/cref name="SPR" text="SPR_BASKET" >}} sprite, has an initial location at `x` and `y` with no shift applied, it is forced active (rendering the "stay active" value irrelevant) and it is weighted. The acrophile flag value is also irrelevant as basket actors do not walk. The tick function is {{< lookup/cref ActBarrel >}} and the five freeform data values are {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}}, {{< lookup/cref name="SPR" text="SPR_BASKET_SHARDS" >}}, 0, 0, and 0. All of these arguments are passed to {{< lookup/cref ConstructActor >}} which does the actual work of creating the actor.
+Looking at the actual cases highlighted above, {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} uses the {{< lookup/cref name="SPR" text="SPR_BASKET" >}} sprite, has an initial location at `x` and `y` with no shift applied, it is forced active (rendering the "stay active" value irrelevant) and it is weighted. The acrophile flag value is also irrelevant as {{< lookup/actor type=0 strip=true >}} actors do not walk. The tick function is {{< lookup/cref ActBarrel >}} and the five freeform data values are {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}}, {{< lookup/cref name="SPR" text="SPR_BASKET_SHARDS" >}}, 0, 0, and 0. All of these arguments are passed to {{< lookup/cref ConstructActor >}} which does the actual work of creating the actor.
 
-For actors that use {{< lookup/cref ActBarrel >}}, `data1` controls the actor type to spawn when the barrel/basket is destroyed, and `data2` dictates which sprite is drawn on the shards that accompany the destruction. `data3`--`data5` are not used and their values are left at zero.
+For actors that use {{< lookup/cref ActBarrel >}}, `data1` controls the actor type to spawn when the {{< lookup/actor type=29 strip=true >}} is destroyed, and `data2` dictates which sprite is drawn on the shards that accompany the destruction. `data3`--`data5` are not used and their values are left at zero.
 
 For the {{< lookup/cref name="ACT" text="ACT_STAR_FLOAT" >}} case, the arguments state that the sprite type will be {{< lookup/cref name="SPR" text="SPR_STAR" >}} with no shift applied to `x` or `y`, the actor is not forced active nor does it stay active, and the actor is _not_ weighted -- this keeps it floating in the air. The acrophile flag is irrelevant as stars do not walk, and {{< lookup/cref ActPrize >}} is the tick function.
 
@@ -430,7 +430,7 @@ The `F` and `T` macros are no longer needed, either.
 
 The {{< lookup/cref ConstructActor >}} function is called by {{< lookup/cref NewActorAtIndex >}} as a helper to initialize each member of an {{< lookup/cref Actor >}} structure. The actor slot position is provided in the pass-by-global {{< lookup/cref nextActorIndex >}} variable, and the structure at that position is initialized according to the values passed in the arguments.
 
-If the actor being constructed looks like a barrel or a basket, the {{< lookup/cref numBarrels >}} counter is incremented.
+If the actor being constructed looks like a {{< lookup/actor type=29 strip=true >}} or a {{< lookup/actor type=0 strip=true >}}, the {{< lookup/cref numBarrels >}} counter is incremented.
 
 ```c
 void ConstructActor(
@@ -446,14 +446,14 @@ void ConstructActor(
     }
 ```
 
-This function has one special-case behavior: If the value in `data2` equals either {{< lookup/cref name="SPR" text="SPR_BARREL_SHARDS" >}} or {{< lookup/cref name="SPR" text="SPR_BASKET_SHARDS" >}}, the actor is assumed to be a barrel or basket. This saves the caller from having to add this test into its 30+ switch cases that cover such actors. In response, {{< lookup/cref numBarrels >}} is incremented. This tracks the number of barrels/baskets the player needs to break open in order to earn the bonus for finding them all.
+This function has one special-case behavior: If the value in `data2` equals either {{< lookup/cref name="SPR" text="SPR_BARREL_SHARDS" >}} or {{< lookup/cref name="SPR" text="SPR_BASKET_SHARDS" >}}, the actor is assumed to be a {{< lookup/actor type=29 strip=true >}} or a {{< lookup/actor type=0 strip=true >}}. This saves the caller from having to add this test into its 30+ switch cases that cover such actors. In response, {{< lookup/cref numBarrels >}} is incremented. This tracks the number of barrels the player needs to break open in order to earn the bonus for finding them all.
 
 {{% aside class="armchair-engineer" %}}
 **Sweet precision and soft collision.**
 
 It would arguably be more bulletproof to test `sprite_type` being equal to either {{< lookup/cref name="SPR" text="SPR_BARREL" >}} or {{< lookup/cref name="SPR" text="SPR_BASKET" >}}, rather than relying on no other actor types happening to have a matching initial `data2` value by chance.
 
-Some may pass this off as an "it's not a problem as long as it works" situation, but it causes a bug: The unrelated {{< lookup/actor 152 >}} happens to be created with a `data2` value of 30, same as {{< lookup/cref name="SPR" text="SPR_BARREL_SHARDS" >}}. This causes each of these actors to be counted as barrels/baskets here, but without being treated as such during destruction. Because of this desynchronization, it is not possible to earn the 50,000 point bonus for destroying all the barrels/baskets on a map where a {{< lookup/actor 152 >}} has ever existed.
+Some may pass this off as an "it's not a problem as long as it works" situation, but it causes a bug: The unrelated {{< lookup/actor 152 >}} happens to be created with a `data2` value of 30, same as {{< lookup/cref name="SPR" text="SPR_BARREL_SHARDS" >}}. This causes each of these actors to be counted as barrels here, but without being treated as such during destruction. Because of this desynchronization, it is not possible to earn the 50,000 point bonus for destroying all the barrels on a map where a {{< lookup/actor 152 >}} has ever existed.
 {{% /aside %}}
 
 ```c

@@ -1,7 +1,7 @@
 +++
 title = "Explosion Functions"
 description = "Describes the functions that create and process explosions that occur during gameplay."
-weight = 510
+weight = 530
 +++
 
 # Explosion Functions
@@ -277,7 +277,7 @@ Similarly, {{< lookup/cref name="SPR" text="SPR_84" >}} and {{< lookup/cref name
 
 At this point, explodability has been confirmed and it's necessary to determine exactly what needs to happen as each actor explodes.
 
-The first special case occurs when the passed `sprite_type` is a {{< lookup/actor type=125 strip=true >}}. Every actor named in this function grants points during destruction (see the {{< lookup/cref AddScoreForSprite >}} call a bit lower in this function) but only the {{< lookup/actor type=125 strip=true >}} produces a floating score effect in the process. This is accomplished with a {{< lookup/cref NewActor >}} call to insert {{< lookup/cref name="ACT" text="ACT_SCORE_EFFECT_12800" >}} at the sprite's `x_origin` and `y_origin`. No score is given at this point.
+The first special case occurs when the passed `sprite_type` is a {{< lookup/actor type=125 strip=true >}}. Every actor named in this function grants points during destruction (see the {{< lookup/cref AddScoreForSprite >}} call a bit lower in this function) but only the {{< lookup/actor type=125 strip=true >}} produces a floating score effect in the process. This is accomplished with a {{< lookup/cref NewActor >}} call to insert a {{< lookup/actor type=184 strip=true >}} ({{< lookup/cref name="ACT" text="ACT_SCORE_EFFECT_12800" >}}) at the sprite's `x_origin` and `y_origin`. No score is given at this point.
 
 ```c
         if (

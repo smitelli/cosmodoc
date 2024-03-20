@@ -1,7 +1,7 @@
 +++
 title = "Platform Functions"
 description = "Describes the functions that maintain the platforms and mud fountains in the game."
-weight = 500
+weight = 520
 +++
 
 # Platform Functions

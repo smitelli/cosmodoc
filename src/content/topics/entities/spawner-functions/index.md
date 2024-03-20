@@ -1,14 +1,14 @@
 +++
 title = "Spawner Functions"
 description = "Describes the functions that create and process spawners that the player encounters throughout the maps."
-weight = 520
+weight = 540
 +++
 
 # Spawner Functions
 
 A **spawner** is an animation effect that ultimately causes a new actor to be created in the game world. Spawners are represented as upside-down sprites that rise from an origin position until either a timer expires or they hit a solid map tile, at which point a true actor of the same type is created in that spot. The actor then falls back to the ground using its own sense of gravity.
 
-The most common spawners the player interacts with are the prizes released from {{< lookup/actor type=69 plural=true >}} and destroyed barrels/baskets. The prize cannot be "grabbed" during the time when it is a spawner; the spawner must complete its lifecycle and become a true actor first. Similar limitations are in place for things like {{< lookup/actor type=86 plural=true >}} spawned from {{< lookup/actor type=152 plural=true >}} -- these do not truly become living actors until each spawner finishes its work.
+The most common spawners the player interacts with are the prizes released from {{< lookup/actor type=69 plural=true >}} and destroyed {{< lookup/actor type=29 strip=true plural=true >}}/{{< lookup/actor type=0 strip=true plural=true >}}. The prize cannot be "grabbed" during the time when it is a spawner; the spawner must complete its lifecycle and become a true actor first. Similar limitations are in place for things like {{< lookup/actor type=86 plural=true >}} spawned from {{< lookup/actor type=152 plural=true >}} -- these do not truly become living actors until each spawner finishes its work.
 
 {{< table-of-contents >}}
 
@@ -30,7 +30,7 @@ The full list of game elements that can produce spawners is:
 * Each {{< lookup/actor type=95 strip=true >}} spawns an {{< lookup/actor 57 >}} when bombed.
 * The {{< lookup/actor type=143 strip=true >}} spawns a {{< lookup/actor 82 >}} when destroyed.
 * {{< lookup/actor 221 >}} spawns a {{< lookup/actor 82 >}} after the player rescues him.
-* When destroyed, each barrel and basket releases its prize using the spawner system.
+* When destroyed, each {{< lookup/actor type=29 strip=true >}} and {{< lookup/actor type=0 strip=true >}} releases its prize using the spawner system.
 
 {{< boilerplate/function-cref InitializeSpawners >}}
 

@@ -1,0 +1,67 @@
+{{/*
+    Builds a <table> containing some actor/player interaction behavior data.
+
+    Named parameters (all are optional and have some reasonable default):
+        harmful: "true" if the player can be hurt by this actor type.
+        pounces: Number >0 indicates actor can be destroyed by that many
+            pounces.
+        pounce-points: Number of points earned for pouncing. Only displayed when
+            pounces > 0.
+        explosions: Number >0 indicates actor can be destroyed by that many
+            explosions and/or bombs.
+        explosion-points Number of points earned for exploding. Only displayed
+            when explosions > 0.
+        name-origin: Brief explanation of the origin of the name, passed
+            unmodified. There are a few special strings for boilerplate:
+            * hint-sheet: Name came from the hint sheet text.
+*/}}
+
+{{ $harmful := .Get "harmful" | default "false" }}
+{{ $pounces := .Get "pounces" | default 0 }}
+{{ $pouncePoints := .Get "pounce-points" | default 0 }}
+{{ $explosions := .Get "explosions" | default 0 }}
+{{ $explosionPoints := .Get "explosion-points" | default 0 }}
+{{ $nameOrigin := .Get "name-origin" }}
+
+<table>
+    <tr>
+        <th>Harmful</th>
+        <td>{{ cond (eq $harmful "true") "yes" "no" }}</td>
+    </tr>
+    <tr>
+        <th>Pounceable</th>
+        <td>{{ cond (gt $pounces 0) "yes" "no" }}</td>
+    </tr>
+    {{ if gt $pounces 0}}
+    <tr>
+        <th>Pounces Required</th>
+        <td>{{ $pounces }}</td>
+    </tr>
+    <tr>
+        <th>Pounce Points</th>
+        <td>{{ $pouncePoints | lang.FormatNumber 0 }}</td>
+    </tr>
+    {{ end }}
+    <tr>
+        <th>Explodable</th>
+        <td>{{ cond (gt $explosions 0) "yes" "no" }}</td>
+    </tr>
+    {{ if gt $explosions 0}}
+    <tr>
+        <th>Explosions Required</th>
+        <td>{{ $explosions }}</td>
+    </tr>
+    <tr>
+        <th>Explosion Points</th>
+        <td>{{ $explosionPoints | lang.FormatNumber 0 }}</td>
+    </tr>
+    {{ end }}
+    <tr>
+        <th>Name Origin</th>
+        {{ if eq $nameOrigin "hint-sheet" }}
+            <td>Canonical; appears in the <a href="/topics/hint-sheet/">hint sheet</a> text.</td>
+        {{ else }}
+            <td>{{ $nameOrigin | markdownify }}</td>
+        {{ end }}
+    </tr>
+</table>
