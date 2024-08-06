@@ -1,7 +1,7 @@
 +++
 title = "Global Variables and Constants"
 description = "Lists and briefly defines all global variables and constants shared between the game's functions."
-weight = 570
+weight = 580
 +++
 
 # Global Variables and Constants
@@ -628,8 +628,6 @@ This is also modified during interactions with {{< lookup/actor 114 >}} and {{< 
 
 Sound effects may play when this is true, and sound effects are silenced when false. This setting can be toggled by the user, and the value is persisted in the [configuration file]({{< relref "configuration-file-format" >}}).
 
-{{< boilerplate/global-cref joinPathBuffer >}}
-
 {{< boilerplate/global-cref joystickBandBottom >}}
 
 {{< boilerplate/global-cref joystickBandLeft >}}
@@ -708,10 +706,6 @@ Maps are interpreted as word-aligned data, and temporary data is byte-aligned. T
 
 {{< boilerplate/global-cref mapNames >}}
 
-{{< boilerplate/global-cref mapVariables >}}
-
-See {{< lookup/cref hasHScrollBackdrop >}}, {{< lookup/cref hasRain >}}, {{< lookup/cref hasVScrollBackdrop >}}, {{< lookup/cref musicNum >}}, {{< lookup/cref paletteAnimationNum >}}, and the [backdrop numbers]({{< relref "databases/backdrop" >}}).
-
 {{< boilerplate/global-cref mapWidth >}}
 
 This is also the number of tiles that must be added or subtracted to reach a given horizontal position in the next or previous row of the map data. This is usually _not_ used to stride over a fixed number of rows; see {{< lookup/cref mapYPower >}} for that.
@@ -751,10 +745,6 @@ When functions modify the contents of the {{< lookup/cref miscData >}} memory bl
 Each array index matches with a {{< lookup/cref MUSIC >}} constant.
 
 {{< boilerplate/global-cref musicNextDue >}}
-
-{{< boilerplate/global-cref musicNum >}}
-
-This is an index to one of the {{< lookup/cref musicNames >}} elements, and matches the numbering of the {{< lookup/cref MUSIC >}} constants.
 
 {{< boilerplate/global-cref musicTickCount >}}
 
@@ -885,7 +875,7 @@ Once the player is off the map, the counter increments by one during each frame 
 
 The value here should always be one of the {{< lookup/cref PLAYER >}} values, which represent the sprite frames described in the lower half of the [player sprite database]({{< relref "databases/player-sprite" >}}).
 
-This variable is changed by {{< lookup/cref MovePlayer >}}, {{< lookup/cref MovePlayerScooter >}}, and {{< lookup/cref ProcessPlayerDizzy >}}. It is read by {{< lookup/cref ProcessPlayer >}}, where it is combined with {{< lookup/cref playerBaseFrame >}} to control the player sprite frame displayed on the screen.
+This variable is changed by {{< lookup/cref MovePlayer >}}, {{< lookup/cref MovePlayerScooter >}}, and {{< lookup/cref ProcessPlayerDizzy >}}. It is read by {{< lookup/cref ProcessAndDrawPlayer >}}, where it is combined with {{< lookup/cref playerBaseFrame >}} to control the player sprite frame displayed on the screen.
 
 {{< boilerplate/global-cref playerHealth >}}
 

@@ -1,7 +1,7 @@
 +++
 title = "Hint Sheet"
 description = "A transcription of the hint sheet provided with registered copies of the game."
-weight = 620
+weight = 630
 +++
 
 # Hint Sheet
@@ -60,7 +60,7 @@ You must first install each of the three volumes before playing. Type INSTALL to
 
 ### How to Earn Extra Points
 
-* There are three secret 50,000 point bonuses you can earn in _Cosmo_: 1) Jump on ten creatures and/or barrels/baskets without touching the ground. 2) Blow up 15 Eye Plants on a level. 3) Jump on all the barrels and baskets on a level.
+* There are three secret 50,000 point bonuses you can earn in _Cosmo_: 1) Jump on ten creatures and/or barrels/baskets [sic; barrels/baskets do not contribute to this bonus] without touching the ground. 2) Blow up 15 Eye Plants on a level. 3) Jump on all the barrels and baskets on a level.
 * Blow up the hint globes to get 12800 points.
 * Grabbing a power up module (which adds to your health) while you are already at full health will earn you 12800 pts.
 * Jumping on a falling parachute creature is 12800 pts.

@@ -513,3 +513,146 @@ After unwinding the move, there is no reason to continue trying to move in the o
 In the more common case, the `for` loop ended naturally without `blocked` getting set. The player is moving freely and they haven't touched anything that should affect the push.
 
 {{< lookup/cref playerPushTime >}} increments once for this game tick (regardless of how many tiles the player actually moved). Once the {{< lookup/cref playerPushMaxTime >}} is reached, the push ends naturally with {{< lookup/cref ClearPlayerPush >}}.
+
+{{< boilerplate/function-cref TryPounce >}}
+
+The {{< lookup/cref TryPounce >}} function checks if all necessary player variables are in the correct state to perform a pounce on an enemy actor. If this state is correct, a caller-provided `recoil` amount is imparted to the player and true is returned.
+
+This function does _not_ care about the X/Y position of the player or any actor -- this function is only concerned with the variables that control things like player rise and fall. The caller is responsible for testing the relative positions of the player and an actor, setting the pass-by-global {{< lookup/cref isPounceReady >}} according to that result.
+
+```c
+bool TryPounce(int recoil)
+{
+    static word lastrecoil;
+
+    if (playerDeadTime != 0 || playerDizzyLeft != 0) return false;
+```
+
+This function maintains a local copy of the last recoil successfully imparted, and stores it in `lastrecoil`. This is occasionally needed by subsequent code.
+
+If the player is either dead (a nonzero {{< lookup/cref playerDeadTime >}}) or dizzy (a nonzero {{< lookup/cref playerDizzyLeft >}}), they are incapable of performing a pounce even if all the other aspects of their movement would have allowed it. An early `return` of false prevents this pounce from producing a recoil, and informs the caller that this pounce was unsuccessful.
+
+```c
+    if ((
+        !isPlayerRecoiling || (isPlayerRecoiling && playerRecoilLeft < 2)
+    ) && (
+        (isPlayerFalling && playerFallTime >= 0) || playerJumpTime > 6
+    ) && isPounceReady) {
+```
+
+Hoo boy.
+
+If the player were already recoiling from a pounce, they would be incapable of pouncing another actor -- therefore {{< lookup/cref isPlayerRecoiling >}} should be false for pouncing to proceed. In the opposite case (needlessly testing that {{< lookup/cref isPlayerRecoiling >}} is true when we already know it must be) a small exception is made for cases where {{< lookup/cref playerRecoilLeft >}} is less than two. The latter case covers the situation where the player has a nonzero {{< lookup/cref playerRecoilLeft >}} but is no longer rising -- they are at the top of the parabola between recoiling and falling. In this case it should be permissible to pounce an actor, even though technically they are not done with the previous recoil.[^recoil-demo]
+
+Separately, the player must either be falling ({{< lookup/cref isPlayerFalling >}}) or rising to near the maximum height they can reach by holding the jump key ({{< lookup/cref playerJumpTime >}}` > 6`). The test for a non-negative {{< lookup/cref playerFallTime >}} is always true and likely a holdover from an older implementation.
+
+Finally, {{< lookup/cref isPounceReady >}} must also be true. The caller sets this based on whether the player is properly positioned above some actor.
+
+```c
+        lastrecoil = playerRecoilLeft = recoil + 1;
+        isPlayerRecoiling = true;
+
+        ClearPlayerDizzy();
+```
+
+To cause the player to recoil, all that's necessary is to write a value to {{< lookup/cref playerRecoilLeft >}} and set the {{< lookup/cref isPlayerRecoiling >}} flag to true. Here the value is `recoil + 1`.
+
+{{% aside class="armchair-engineer" %}}
+**Why? Why not.**
+
+There doesn't seem to be a systemic reason why the `recoil` value needs to be increased by one; the game works correctly without the addition. It's likely that somebody thought that the recoils all needed a bit more _oomph_, and it was easier to do that here rather than go through and adjust the arguments in all the {{< lookup/cref TryPounce >}} calls.
+{{% /aside %}}
+
+The most recent value written to {{< lookup/cref playerRecoilLeft >}} is also stored in the local `lastrecoil` variable for possible later use. This variable is declared `static` and retains its value across calls.
+
+{{< lookup/cref ClearPlayerDizzy >}} has no immediate effect here -- any active dizziness would involve a nonzero {{< lookup/cref playerDizzyLeft >}} which would prevent this `if` body from running in the first place. This does, however, cancel any queued dizziness that might be stored. This means that a player can fall an extreme distance that would normally incur a dizzy immobilization, but land on a pounceable actor before hitting the ground and suffer no dizziness at all.
+
+```c
+        if (recoil > 18) {
+            isPlayerLongJumping = true;
+        } else {
+            isPlayerLongJumping = false;
+        }
+
+        pounceHintState = POUNCE_HINT_SEEN;
+```
+
+If the player is recoiling a long distance (here where `recoil` is greater than 18, but this is not always consistent in other parts of the code) the {{< lookup/cref isPlayerLongJumping >}} flag is set to select an alternate player recoil sprite. This variable has no other effect on gameplay.
+
+The player has clearly demonstrated their knowledge of the pouncing mechanic, so there is no reason to show them the pounce hint dialog anymore. Setting {{< lookup/cref pounceHintState >}} to {{< lookup/cref name="POUNCE_HINT" text="POUNCE_HINT_SEEN" >}} has the same effect as the player having seen and dismissed the dialog.
+
+```c
+        if (recoil == 7) {
+            pounceStreak++;
+            if (pounceStreak == 10) {
+                pounceStreak = 0;
+                NewActor(ACT_SPEECH_WOW_50K, playerX - 1, playerY - 5);
+            }
+        } else {
+            pounceStreak = 0;
+        }
+
+        return true;
+```
+
+If the passed `recoil` is _exactly_ seven, the pounced actor contributes to the "pounce streak" bonus. This is a 50,000 point award that is bestowed anytime the player pounces ten times without touching the ground. Only a handful of actors are set up to impart a `recoil` equal to seven:
+
+* {{< lookup/actor 25 >}}
+* {{< lookup/actor 51 >}}
+* {{< lookup/actor 54 >}}
+* {{< lookup/actor 65 >}}
+* {{< lookup/actor 69 >}}
+* {{< lookup/actor 74 >}}
+* {{< lookup/actor 75 >}}
+* {{< lookup/actor 86 >}}
+* {{< lookup/actor 102 >}}
+* {{< lookup/actor 106 >}}
+* {{< lookup/actor 113 >}}
+* {{< lookup/actor 118 >}}
+* {{< lookup/actor 124 >}}
+* {{< lookup/actor 126 >}}
+* {{< lookup/actor 187 >}}
+* {{< lookup/actor 251 >}}
+
+If an actor with an appropriate `recoil` value is being pounced, {{< lookup/cref pounceStreak >}} is incremented and, upon reaching ten, the bonus is given. {{< lookup/cref NewActor >}} is called to insert a "{{< lookup/actor 246 >}}" ({{< lookup/cref name="ACT" text="ACT_SPEECH_WOW_50K" >}}) directly above the current {{< lookup/cref playerX >}}/{{< lookup/cref playerY >}} position, and this new actor gives the bonus indirectly. {{< lookup/cref pounceStreak >}} is reset to zero as this happens, and the bonus is ready to be earned again if the map's actors permit.
+
+In the `else` case, the non-matching `recoil` spoils the streak and resets the {{< lookup/cref pounceStreak >}} to zero.
+
+Since the player has successfully entered a pounce and the recoil has been imparted, a `return` value of true is provided to the caller.
+
+```c
+    } else if (
+        lastrecoil - 2 < playerRecoilLeft &&
+        isPounceReady && isPlayerRecoiling
+    ) {
+```
+
+For this `else if` to be evaluated, something in the previous `if`'s tests must've failed. This can happen for a variety of reasons, but there is one specific case that this catches: When the player pounces on two similar-height actors at the same time, the first actor that gets processed will be pounced successfully and impart a recoil. By the time the other actor is processed, the player state reflects a pounce already in progress -- there is no reason to start another one.
+
+This `else if` catches that case -- {{< lookup/cref isPlayerRecoiling >}} is true because some other actor was already pounced during this tick, {{< lookup/cref isPounceReady >}} is true because the player is lined up to pounce on this other actor as well, and {{< lookup/cref playerRecoilLeft >}} is very close to the last value that was stashed in `lastrecoil`. (Actually they should be identical, but this adds a bit of a fudge factor.)
+
+```c
+        ClearPlayerDizzy();
+
+        if (playerRecoilLeft > 18) {
+            isPlayerLongJumping = true;
+        } else {
+            isPlayerLongJumping = false;
+        }
+
+        pounceHintState = POUNCE_HINT_SEEN;
+
+        return true;
+    }
+```
+
+This is essentially a duplicate of the previous `if` body with the exception of the pounce streak bonus handling. In fact, everything that is done in here is gratuitous -- the first actor already handled everything. Only the `return true` is significant.
+
+```c
+    return false;
+}
+```
+
+If neither of the above branches were taken, the pounce attempt failed. The `return` value of false informs the caller that no recoil was imparted, and none of the pounce effects should occur.
+
+[^recoil-demo]: This case is rare, but it was captured in one of the stock demo files. In episode one, when the demo reaches map four, there is a sequence of pounces at the start of the level: The player destroys five {{< lookup/actor type=119 strip=true plural=true >}} in four pounces, then continues on to pounce two {{< lookup/actor type=118 plural=true >}} without touching the ground. The first {{< lookup/actor 118 >}} is pounced while the player is still recoiling from the last {{< lookup/actor type=119 strip=true >}}, even though they were no longer rising at that moment.

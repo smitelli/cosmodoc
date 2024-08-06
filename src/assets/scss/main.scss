@@ -285,7 +285,8 @@ main {
     }
 
     .overline {
-        text-decoration-line: overline;
+        text-decoration-line: underline;
+        text-underline-offset: -0.9em;
     }
 
     @media screen and (min-width: $float-image-breakpoint) {

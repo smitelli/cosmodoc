@@ -1,7 +1,7 @@
 +++
 title = "Explosion Functions"
 description = "Describes the functions that create and process explosions that occur during gameplay."
-weight = 530
+weight = 540
 +++
 
 # Explosion Functions

@@ -2,7 +2,7 @@
 title = "The apogee Parameter"
 linkTitle = "The `apogee` Parameter"
 description = "What happens when you run the game with the `apogee` parameter, as so many cheat sites suggest."
-weight = 600
+weight = 610
 +++
 
 # The `apogee` Parameter
@@ -21,7 +21,7 @@ For [saved games]({{< relref "save-file-format" >}}), the behavior is also predi
 
 ## Unintended Invincibility
 
-When a new level is entered ({{< lookup/cref InitializeLevel >}}), a temporary save file named `COSMOx.SVT` is written which contains the game state at that point. When the player dies and the level needs to be restarted ({{< lookup/cref ProcessPlayer >}}), this save file is reloaded to return the player's score, stars, health, and so on back to the state they were in when the level was originally entered. If the save directory is not writable, this file is never written.
+When a new level is entered ({{< lookup/cref InitializeLevel >}}), a temporary save file named `COSMOx.SVT` is written which contains the game state at that point. When the player dies and the level needs to be restarted ({{< lookup/cref ProcessAndDrawPlayer >}}), this save file is reloaded to return the player's score, stars, health, and so on back to the state they were in when the level was originally entered. If the save directory is not writable, this file is never written.
 
 While the game is running, the player's health is tracked in the {{< lookup/cref playerHealth >}} variable that decrements when damage is taken and increments when {{< lookup/actor type=28 strip=true plural=true >}} are collected. When health drops to zero the player dies, but this check only happens at the instant the player is taking damage ({{< lookup/cref HurtPlayer >}}).
 

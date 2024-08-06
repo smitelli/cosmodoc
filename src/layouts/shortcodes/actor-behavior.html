@@ -14,6 +14,7 @@
         name-origin: Brief explanation of the origin of the name, passed
             unmodified. There are a few special strings for boilerplate:
             * hint-sheet: Name came from the hint sheet text.
+            * invented: Name was made up during Cosmore development.
 */}}
 
 {{ $harmful := .Get "harmful" | default "false" }}
@@ -29,7 +30,7 @@
         <td>{{ cond (eq $harmful "true") "yes" "no" }}</td>
     </tr>
     <tr>
-        <th>Pounceable</th>
+        <th>Vulnerable (Pounces)</th>
         <td>{{ cond (gt $pounces 0) "yes" "no" }}</td>
     </tr>
     {{ if gt $pounces 0}}
@@ -43,7 +44,7 @@
     </tr>
     {{ end }}
     <tr>
-        <th>Explodable</th>
+        <th>Vulnerable (Explosions)</th>
         <td>{{ cond (gt $explosions 0) "yes" "no" }}</td>
     </tr>
     {{ if gt $explosions 0}}
@@ -60,6 +61,8 @@
         <th>Name Origin</th>
         {{ if eq $nameOrigin "hint-sheet" }}
             <td>Canonical; appears in the <a href="/topics/hint-sheet/">hint sheet</a> text.</td>
+        {{ else if eq $nameOrigin "invented" }}
+            <td>Invented by the <a href="https://github.com/smitelli/cosmore">Cosmore</a>/Cosmodoc projects.</td>
         {{ else }}
             <td>{{ $nameOrigin | markdownify }}</td>
         {{ end }}

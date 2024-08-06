@@ -12,14 +12,12 @@
 * really unpleasant functions
     * MovePlayer: handle one game tick of basically all player input.
     * MovePlayerScooter: handle one game tick of player movement on the scooter.
-    * TryPounce: imparts the springiness into actor pounces.
 * actor tick functions
-    * 39 ActFootSwitch: no-op
+    * 39 ActFootSwitch: no-op (31 prizes, 8 hazards + exits)
     * 26 ActHintGlobe
     * 21 ActPrize
     * 8 ActScoreEffect
     * 5 ActProjectile: depending on direction
-    * 4 ActFootSwitch: real
     * 4x2! ActHeadSwitch, ActDoor, UpdateDoors: 4 colors
     * 4 ActRedGreenSlime: leaking/dripping red/green acid
     * 4+2 ActPipeCorner, ActPipeEnd

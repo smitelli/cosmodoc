@@ -58,6 +58,7 @@ The {{< lookup/cref InitializeLevel >}} function initializes all of the global v
 ```c
 void InitializeLevel(word level_num)
 {
+    static word mapVariables, musicNum;
     FILE *fp;
     word bdnum;
 
@@ -68,6 +69,8 @@ void InitializeLevel(word level_num)
         FadeOut();
     }
 ```
+
+The `mapVariables` word holds the raw, packed set of map variables and flags as they were read from the map data. The game does not use this value directly; it is unpacked into several other variables for use. It maintains its value between calls due to the `static` storage class, but the game does not actually make any use of this property. `musicNum` is declared similarly, and it holds the music number that should be played for the current map.
 
 In the case when the `level_num` being entered is the zeroth level _and_ the {{< lookup/cref isNewGame >}} flag is set, this function knows that the user chose to begin a new game (as opposed to loading a game or starting demo playback that might happen to be on the zeroth level). In this case, the {{< lookup/cref DrawFullscreenImage >}} function displays {{< lookup/cref name="IMAGE" text="IMAGE_ONE_MOMENT" >}} (an image of an alien, who we learn _much_ later is Zonk, saying "One Moment") and {{< lookup/cref WaitSoft >}} inserts an artificial (but partially skippable) delay of 300 game ticks. If the user chooses to skip the delay, the subsequent code will take a perceptible amount of time to load the level data and construct the backdrop image tables, so the image will not immediately disappear on many computers.
 
@@ -87,7 +90,7 @@ In all other cases, the screen immediately fades out due to a call to {{< lookup
 
 The passed `level_num` is looked up in the {{< lookup/cref mapNames >}} array to translate it into a group entry name. This name is passed to {{< lookup/cref GroupEntryFp >}} which looks up the correct data in the [group files]({{< relref "group-file-format" >}}) and returns a file stream pointer to this data in `fp`.
 
-The first two bytes in the [map file format]({{< relref "map-format" >}}) are [map variables]({{< relref "map-format#map-variables-word" >}}) that control a few details about the global environment of the map. These are read with a call to {{< lookup/cref getw >}} and stored in the 16-bit word variable {{< lookup/cref mapVariables >}}. Since this is the only part of the map data that needs to be processed here, `fp` is closed by the call to {{< lookup/cref fclose >}}.
+The first two bytes in the [map file format]({{< relref "map-format" >}}) are [map variables]({{< relref "map-format#map-variables-word" >}}) that control a few details about the global environment of the map. These are read with a call to {{< lookup/cref getw >}} and stored in the 16-bit variable `mapVariables`. Since this is the only part of the map data that needs to be processed here, `fp` is closed by the call to {{< lookup/cref fclose >}}.
 
 {{% note %}}The map file will be reopened as part of the subsequent {{< lookup/cref LoadMapData >}} call, which is a bit redundant and wasteful.{{% /note %}}
 
@@ -104,7 +107,9 @@ The first two bytes in the [map file format]({{< relref "map-format" >}}) are [m
 
 {{< lookup/cref StopMusic >}} stops any menu or in-game music that might be playing. It has to happen somewhere, may as well be here.
 
-Next, the {{< lookup/cref mapVariables >}} are decoded. The 16-bit value is packed according to the [map variables]({{< relref "map-format#map-variables-word" >}}) table, and its bit fields are extracted into the boolean {{< lookup/cref hasRain >}}, {{< lookup/cref hasHScrollBackdrop >}}, and {{< lookup/cref hasVScrollBackdrop >}} variables, while the numeric fields are stored in `bdnum`, {{< lookup/cref paletteAnimationNum >}}, and {{< lookup/cref musicNum >}}. The `bdnum` variable contains the map's backdrop number, which is handled locally and does not get stored in any global variables here.
+Next, the `mapVariables` value is decoded. The 16-bit value is packed according to the [map variables]({{< relref "map-format#map-variables-word" >}}) table, and its bit fields are extracted into the boolean {{< lookup/cref hasRain >}}, {{< lookup/cref hasHScrollBackdrop >}}, and {{< lookup/cref hasVScrollBackdrop >}} variables. The numeric fields are stored in `bdnum`, {{< lookup/cref paletteAnimationNum >}}, and `musicNum`.
+
+`bdnum` contains the map's backdrop number. `musicNum` is an index to one of the {{< lookup/cref musicNames >}} elements, which matches the numbering of the {{< lookup/cref MUSIC >}} constants. Both of these variables are handled locally and do not get stored in any global variables here.
 
 ```c
     InitializeMapGlobals();
@@ -200,7 +205,7 @@ Visually this does not do anything at this point in the execution, since both pa
 
 {{< lookup/cref SaveGameState >}} saves a snapshot of the current level's global variables into the temporary save slot (identified by the character `'T'`), which defines the restore point that will be subsequently used if the player dies and the level needs to restart with the score/health/etc. that the player had when they initially entered.
 
-{{< lookup/cref StartGameMusic >}} loads and begins playing the map's chosen music (identified by {{< lookup/cref musicNum >}}) from the beginning. If there is no AdLib hardware installed or the music is disabled, this function skips doing some of that work.
+{{< lookup/cref StartGameMusic >}} loads and begins playing the map's chosen music (identified by `musicNum`) from the beginning. If there is no AdLib hardware installed or the music is disabled, this function skips doing some of that work.
 
 ```c
     if (!isAdLibPresent) {
@@ -422,13 +427,13 @@ The combination of {{< lookup/cref MovePlatforms >}} and {{< lookup/cref MoveFou
 
 ```c
         DrawMapRegion();
-        if (ProcessPlayer()) continue;
+        if (ProcessAndDrawPlayer()) continue;
         DrawFountains();
 ```
 
 This is the first point during a regular iteration of the game loop where something is drawn to the screen. {{< lookup/cref DrawMapRegion >}} draws the _entire_ map visible map area -- solid tiles, masked tiles, and the backdrop behind empty areas -- over the game window based on the current X and Y scroll position. This fully erases everything that was left over in the video memory on the draw page. Platforms are regular solid tiles in the map memory that move around, so they are drawn as part of this function. Fountains contain no visible map tiles, so they are hidden at this point. (The player can still stand on these invisible tiles, however.)
 
-The {{< lookup/cref ProcessPlayer >}} ultimately draws the player sprite onto the screen, but also does some per-frame checks to handle the player's response to being hurt. Most notably, if the player dies or falls off the map, {{< lookup/cref ProcessPlayer >}} reloads the current level and returns true to request a game loop restart (`continue`). Anything drawn after this point can cover the player sprite, including all actors and visual effects.
+The {{< lookup/cref ProcessAndDrawPlayer >}} ultimately draws the player sprite onto the screen, but also does some per-frame checks to handle the player's response to being hurt. Most notably, if the player dies or falls off the map, {{< lookup/cref ProcessAndDrawPlayer >}} reloads the current level and returns true to request a game loop restart (`continue`). Anything drawn after this point can cover the player sprite, including all actors and visual effects.
 
 {{< lookup/cref DrawFountains >}} draws the necessary sprite tiles onto the screen to show any fountains within the scrolling game window, even if the player is not currently interacting with any.
 

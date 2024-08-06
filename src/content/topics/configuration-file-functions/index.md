@@ -189,6 +189,7 @@ This function is used when loading and saving both [configuration files]({{< rel
 ```c
 char *JoinPath(char *dir, char *file)
 {
+    static char joinPathBuffer[80];
     int dstoff;
     word srcoff;
 
@@ -210,14 +211,14 @@ char *JoinPath(char *dir, char *file)
 
 The first test handles an edge case: If `dir` is an empty string, the path is treated as a relative one, and `file` is returned unmodified.
 
-A `for` loop copies bytes, one at a time, from `dir` into the global {{< lookup/cref joinPathBuffer >}}. The loop ends once the null byte at the end of `dir` is reached.
+A `for` loop copies bytes, one at a time, from `dir` into the `joinPathBuffer[]`, an 80-byte scratch area used for joining directory and file names into full path names. The loop ends once the null byte at the end of `dir` is reached.
 
-The `dstoff` variable now indicates the point in {{< lookup/cref joinPathBuffer >}} where the directory copy finished. A single backslash character is placed at that position and `dstoff` is incremented.
+The `dstoff` variable now indicates the point in `joinPathBuffer[]` where the directory copy finished. A single backslash character is placed at that position and `dstoff` is incremented.
 
-Another `for` loop again copies bytes, this time from `file`. The read position starts at the beginning of `file`, but the write position within {{< lookup/cref joinPathBuffer >}} starts after the backshash that was just inserted. As before, copying stops once the null byte in `file` is reached.
+Another `for` loop again copies bytes, this time from `file`. The read position starts at the beginning of `file`, but the write position within `joinPathBuffer[]` starts after the backshash that was just inserted. As before, copying stops once the null byte in `file` is reached.
 
-There is an insidious bug in this code: The copy from `file` to {{< lookup/cref joinPathBuffer >}} stops at `file`'s null terminator byte, but _it does not copy that terminator into the destination._ This leaves an improperly-terminated string in the destination, which would usually cause obvious misbehavior. The reason it works correctly here is due to a series of happy accidents. {{< lookup/cref joinPathBuffer >}} is in BSS, which is explicitly initialized to zero on startup, and all calls to {{< lookup/cref JoinPath >}} happen to have `dir` and `file` lengths of consistent size. The zero bytes in BSS end up accidentally (but correctly) terminating the string without any ghosts of longer values showing through.
+There is an insidious bug in this code: The copy from `file` to `joinPathBuffer[]` stops at `file`'s null terminator byte, but _it does not copy that terminator into the destination._ This leaves an improperly-terminated string in the destination, which would usually cause obvious misbehavior. The reason it works correctly here is due to a series of happy accidents. `joinPathBuffer[]` is in BSS, which is explicitly initialized to zero on startup, and all calls to {{< lookup/cref JoinPath >}} happen to have `dir` and `file` lengths of consistent size. The zero bytes in BSS end up accidentally (but correctly) terminating the string without any ghosts of longer values showing through.
 
-A pointer to {{< lookup/cref joinPathBuffer >}} is returned, which contains the combination of the provided directory and file names.
+A pointer to `joinPathBuffer[]` is returned, which contains the combination of the provided directory and file names.
 
 [^model-f]: https://en.wikipedia.org/wiki/Model_F_keyboard

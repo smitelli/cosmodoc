@@ -186,9 +186,9 @@ If {{< lookup/cref playerHealth >}} became zero, the player died and {{< lookup/
 
 Otherwise, the damage was not fatal, and {{< lookup/cref UpdateHealth >}} is called to redraw the health area in the status bar with the new health count. {{< lookup/cref playerHurtCooldown >}} is set to 44, giving the player some time to retreat from the danger before getting hurt again. {{< lookup/cref StartSound >}} also occurs here, queuing the {{< lookup/cref name="SND" text="SND_PLAYER_HURT" >}} warning.
 
-{{< boilerplate/function-cref ProcessPlayer >}}
+{{< boilerplate/function-cref ProcessAndDrawPlayer >}}
 
-The {{< lookup/cref ProcessPlayer >}} function determines the player's reaction to pain or death and draws the player sprite accordingly. This function is also responsible for determining if the player has fallen to their death in a bottomless pit. If the player has died and completed the relevant death animation sequence, this function reloads the game state to the way it was when the level was last started and returns true. If the level has not been restarted, this function returns false.
+The {{< lookup/cref ProcessAndDrawPlayer >}} function determines the player's reaction to pain or death and draws the player sprite accordingly. This function is also responsible for determining if the player has fallen to their death in a bottomless pit. If the player has died and completed the relevant death animation sequence, this function reloads the game state to the way it was when the level was last started and returns true. If the level has not been restarted, this function returns false.
 
 The player can die in two distinct ways:
 
@@ -198,7 +198,7 @@ The player can die in two distinct ways:
 This function is conceptually a wrapper around {{< lookup/cref DrawPlayer >}} and makes the final decision about which sprite frame to show at any given time. Once the player dies, this function becomes responsible for controlling the position -- regular keyboard/joystick input and movement rules no longer apply.
 
 ```c
-bbool ProcessPlayer(void)
+bbool ProcessAndDrawPlayer(void)
 {
     static byte speechframe = 0;
 ```

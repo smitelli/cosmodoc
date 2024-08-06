@@ -321,7 +321,11 @@ ActBarrel:
 #ActFireball:
 #ActFlamePulse:
 #ActFlyingWisp:
-#ActFootSwitch:
+ActFootSwitch:
+  text: ActFootSwitch()
+  def: void ActFootSwitch(word index);
+  desc: The tick function for every foot switch actor. It takes the `index` of the current actor in the actors array.
+  ref: /topics/actors/implementations/foot-switches/#ActFootSwitch
 #ActForceField:
 #ActFrozenDN:
 #ActGhost:
@@ -1016,11 +1020,11 @@ ProcessGameInputHelper:
   def: byte ProcessGameInputHelper(word active_page, byte demo_state);
   desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the {{< lookup/cref DEMO_STATE >}} values.
   ref: /topics/game-loop-functions/#ProcessGameInputHelper
-ProcessPlayer:
-  text: ProcessPlayer()
-  def: bbool ProcessPlayer(void);
+ProcessAndDrawPlayer:
+  text: ProcessAndDrawPlayer()
+  def: bbool ProcessAndDrawPlayer(void);
   desc: Determines the player's reaction to pain or death and draws the player sprite accordingly. If the player has died and completed the relevant death animation sequence, this function reloads the game state to the way it was when the level was last started and returns true. If the level has not been restarted, this function returns false.
-  ref: /topics/game-logic-functions/#ProcessPlayer
+  ref: /topics/game-logic-functions/#ProcessAndDrawPlayer
 ProcessPlayerDizzy:
   text: ProcessPlayerDizzy()
   def: void ProcessPlayerDizzy(void);
@@ -1456,7 +1460,11 @@ ToggleSound:
   def: void ToggleSound(void);
   desc: Inverts the setting of the global {{< lookup/cref isSoundEnabled >}} variable then presents a dialog confirming the resulting state.
   ref: /topics/dialog-functions/#ToggleSound
-#TryPounce:
+TryPounce:
+  text: TryPounce()
+  def: bool TryPounce(int recoil);
+  desc: Checks if all necessary player variables are in the correct state to perform a pounce on an enemy actor. If this state is correct, a caller-provided `recoil` amount is imparted to the player and true is returned.
+  ref: /topics/player-movement-functions/#TryPounce
 UnfoldDNFrame:
   text: UnfoldDNFrame()
   def: word UnfoldDNFrame(void);
@@ -2467,7 +2475,7 @@ SPR:
     #define SPR_MOON               54
     #define SPR_HEART_PLANT        55
     #define SPR_BOMB_IDLE          57
-    #define SPR_FOOT_SWITCH        60
+    #define SPR_FOOT_SWITCH_KNOB   60
     #define SPR_MYSTERY_WALL       62
     #define SPR_SPIKES_FLOOR_BENT  63
     #define SPR_MONUMENT           64
@@ -3026,11 +3034,6 @@ isSoundEnabled:
   def: bool isSoundEnabled;
   desc: Controls whether or not the PC speaker sound effects should be sent to the hardware.
   ref: /topics/global-variables-and-constants/#isSoundEnabled
-joinPathBuffer:
-  text: joinPathBuffer[]
-  def: char joinPathBuffer[80];
-  desc: Holds an 80-byte scratch area used for joining directory and file names into full path names.
-  ref: /topics/global-variables-and-constants/#joinPathBuffer
 joystickBandBottom:
   text: joystickBandBottom[]
   def: int joystickBandBottom[3];
@@ -3137,11 +3140,6 @@ mapNames:
     char *mapNames[] = MAP_NAMES;
   desc: Defines a list of the map file names corresponding to each level number in the game. Each episode includes higher-numbered maps that do not exist and cannot be reached.
   ref: /topics/global-variables-and-constants/#mapNames
-mapVariables:
-  text: mapVariables
-  def: word mapVariables;
-  desc: Holds the raw, packed set of map variables and flags as they were read from the map data. The game does not use this value directly; it is unpacked into several other variables for use.
-  ref: /topics/global-variables-and-constants/#mapVariables
 mapWidth:
   text: mapWidth
   def: word mapWidth;
@@ -3209,11 +3207,6 @@ musicNextDue:
   def: dword musicNextDue;
   desc: Tracks the timestamp, in music ticks, when the next chunk of music is scheduled to be sent to the AdLib hardware.
   ref: /topics/global-variables-and-constants/#musicNextDue
-musicNum:
-  text: musicNum
-  def: word musicNum;
-  desc: Holds the music number that should be played for the current map.
-  ref: /topics/global-variables-and-constants/#musicNum
 musicTickCount:
   text: musicTickCount
   def: dword musicTickCount;

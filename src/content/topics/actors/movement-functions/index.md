@@ -40,6 +40,12 @@ The `for` loop iterates over every actor slot that has been used (up to {{< look
 
 If the player activated a {{< lookup/actor 61 >}} during this game tick, the switch actor's tick function will have set the global {{< lookup/cref mysteryWallTime >}} variable to a nonzero value. This is detected by each {{< lookup/actor 62 >}} actor on the map and they awaken themselves in response. Because there could be more than one mystery wall on the map, {{< lookup/cref mysteryWallTime >}} is not reset by any of the actors that respond to its value. Instead, this function waits until the loop completes handling all of the actors, then it resets {{< lookup/cref mysteryWallTime >}} on their behalf.
 
+{{% note %}}
+This {{< lookup/cref mysteryWallTime >}}-resetting behavior enables a _possible_ map design trick, but one that might be painfully difficult to get right. Because the actors are processed in array order, only the mystery walls inserted _after_ a switch will respond to that switch's activation. If a map designer were to interleave switches and mystery walls, and ensure that the player could only encounter the switches in strictly last-to-first order, one could build a progression of mystery walls that activate one at a time, relying on this reset.
+
+This could also lead to interesting bugs if a mystery wall was inserted into the map before its switch -- it would never activate properly.
+{{% /note %}}
+
 {{< boilerplate/function-cref ProcessActor >}}
 
 The {{< lookup/cref ProcessActor >}} function handles the overall per-tick movement for one actor, identified by its `index` position in the actors array. If the actor is marked as dead, this function is a no-op.

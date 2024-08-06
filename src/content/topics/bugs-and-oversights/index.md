@@ -1,7 +1,7 @@
 +++
 title = "Bugs and Oversights"
 description = "A listing of all the bugs, quirks, mistakes, and edge cases I discovered during my research."
-weight = 590
+weight = 600
 +++
 
 # Bugs and Oversights
@@ -57,6 +57,10 @@ The sprite visibility check in {{< lookup/cref MoveAndDrawDecorations >}} calcul
 ## {{< lookup/actor 102 >}} floor/wall impact sounds are preempted.
 
 ## Fountain stream overlaps bottom of spray sprite.
+
+## {{< lookup/actor type=59 strip=true plural=true >}} flash a white line for one frame after their initial movement.
+
+This is investigated in detail on the [actor implementation page]({{< relref "foot-switches#visual-construction" >}}) for the switches.
 
 ## Scooter is invisible for one frame after touching bottom edge of the screen.
 

@@ -327,7 +327,7 @@ Several actors (e.g. {{< lookup/cref name="ACT" text="ACT_GRN_TOMATO" >}} here) 
 ```c
     case ACT_SWITCH_PLATFORMS:
         ConstructActor(
-            SPR_FOOT_SWITCH, x, y, F, F, F, F, ActFootSwitch,
+            SPR_FOOT_SWITCH_KNOB, x, y, F, F, F, F, ActFootSwitch,
             0, 0, 0, 0, ACT_SWITCH_PLATFORMS);
         arePlatformsActive = false;
         break;
@@ -360,7 +360,7 @@ Each {{< lookup/cref name="ACT" text="ACT_EYE_PLANT_FLOOR" >}} (but not {{< look
 ```c
     case ACT_SWITCH_LIGHTS:
         ConstructActor(
-            SPR_FOOT_SWITCH, x, y, F, F, F, F, ActFootSwitch,
+            SPR_FOOT_SWITCH_KNOB, x, y, F, F, F, F, ActFootSwitch,
             0, 0, 0, 0, ACT_SWITCH_LIGHTS);
         areLightsActive = false;
         hasLightSwitch = true;
