@@ -614,7 +614,7 @@ Each pixel row on the screen uses 40 bytes, and each tile row is eight pixels hi
 
 [^romero]: https://twitter.com/romero/status/679769135681826817
 
-[^cosmoreasm]: https://github.com/smitelli/cosmore/blob/main/src/lowlevel.asm
+[^cosmoreasm]: https://github.com/smitelli/cosmore/blob/master/src/lowlevel.asm
 
 [^equivalent6]: Interpolated from values given by several sources; this was tested on DOSBox with `cycles=840`.
 

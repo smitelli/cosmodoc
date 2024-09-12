@@ -502,7 +502,7 @@ Bit Position             | Value (= 1h) | Interpretation
 
 By configuring the mode in this way, the EGA card can leverage its internal latches (a latch is essentially a single-byte memory cell) to write pixel data to memory without requiring it to pass through the CPU. Very broadly, the latches are usually used to move solid tile data around, while direct writes are used when tiles are drawn with transparency.
 
-[^cosmoreasm]: https://github.com/smitelli/cosmore/blob/main/src/lowlevel.asm
+[^cosmoreasm]: https://github.com/smitelli/cosmore/blob/master/src/lowlevel.asm
 
 [^egacdc]: [http://minuszerodegrees.net/oa/OA - IBM Enhanced Graphics Adapter.pdf](http://minuszerodegrees.net/oa/OA%20-%20IBM%20Enhanced%20Graphics%20Adapter.pdf) (page 54)
 

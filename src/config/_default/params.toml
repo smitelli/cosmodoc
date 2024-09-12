@@ -1,9 +1,9 @@
 authorUrl = "https://www.scottsmitelli.com/"
-cosmoreDownloadUrl = "https://github.com/smitelli/cosmore/archive/refs/heads/main.zip"
+cosmoreDownloadUrl = "https://github.com/smitelli/cosmore/archive/refs/heads/master.zip"
 dataTableHeaderFreq = 15
 eagerImageMaximum = 2
 gitCloneUrl = "https://github.com/smitelli/cosmodoc.git"
-gitContentUrl = "https://github.com/smitelli/cosmodoc/tree/main/src/content"
+gitContentUrl = "https://github.com/smitelli/cosmodoc/tree/master/src/content"
 gitIssuesUrl = "https://github.com/smitelli/cosmodoc/issues"
 subtitle = "The semi-complete teardown of Cosmo's Cosmic Adventure"
 
