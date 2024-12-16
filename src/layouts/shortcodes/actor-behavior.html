@@ -3,6 +3,8 @@
 
     Named parameters (all are optional and have some reasonable default):
         harmful: "true" if the player can be hurt by this actor type.
+        prize-points: Number of points earned when this actor is picked up or
+            othwise used. Only displayed when nonzero.
         pounces: Number >0 indicates actor can be destroyed by that many
             pounces.
         pounce-points: Number of points earned for pouncing. Only displayed when
@@ -15,14 +17,17 @@
             unmodified. There are a few special strings for boilerplate:
             * hint-sheet: Name came from the hint sheet text.
             * invented: Name was made up during Cosmore development.
+        notes: If present, added as a freeform row at the end of the table.
 */}}
 
 {{ $harmful := .Get "harmful" | default "false" }}
+{{ $prizePoints := .Get "prize-points" | default 0 }}
 {{ $pounces := .Get "pounces" | default 0 }}
 {{ $pouncePoints := .Get "pounce-points" | default 0 }}
 {{ $explosions := .Get "explosions" | default 0 }}
 {{ $explosionPoints := .Get "explosion-points" | default 0 }}
 {{ $nameOrigin := .Get "name-origin" }}
+{{ $notes := .Get "notes" }}
 
 <table>
     <tr>
@@ -57,6 +62,12 @@
         <td>{{ $explosionPoints | lang.FormatNumber 0 }}</td>
     </tr>
     {{ end }}
+    {{ if gt $prizePoints 0}}
+    <tr>
+        <th>Prize Pick-Up Points</th>
+        <td>{{ $prizePoints | lang.FormatNumber 0 }}</td>
+    </tr>
+    {{ end }}
     <tr>
         <th>Name Origin</th>
         {{ if eq $nameOrigin "hint-sheet" }}
@@ -67,4 +78,10 @@
             <td>{{ $nameOrigin | markdownify }}</td>
         {{ end }}
     </tr>
+    {{ with $notes }}
+    <tr>
+        <th>Notes</th>
+        <td>{{ . | markdownify }}</td>
+    </tr>
+    {{ end }}
 </table>

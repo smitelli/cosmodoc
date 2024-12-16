@@ -1,7 +1,7 @@
 +++
 title = "Entities"
 description = "Moving objects that inhabit the map, but are not implemented as actors."
-weight = 520
+weight = 530
 
 [sitemap]
 priority = 1

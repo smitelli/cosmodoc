@@ -1,32 +1,29 @@
 {{/*
-    Takes one numeric argument, which is interpreted as an actor type. Returns a
-    formatted string containing the actor's name.
+    Takes one numeric argument, which is interpreted as a sprite type. Returns a
+    formatted string containing the sprite's description.
 
-    Positional usage is for simple cases where the actor's name is inserted,
+    Positional usage is for simple cases where the sprite's name is inserted,
     unmodified, from the database content. Named usage is for cases where the
     context requires pluralization, stripping of parentheticals, or both.
 
     Inline function; whitespace is critically sensitive here!
 
     Positional usage:
-        0 (required): Numeric actor type.
+        0 (required): Numeric sprite type.
 
     Named usage:
-        type (required): Numeric actor type.
+        type (required): Numeric sprite type.
         strip (optional): If set to a truthy value, strips any parenthetical
             details off the trailing end of the return value.
         plural (optional): If set to a truthy value, pluralize the return value.
-        link (optional): If set to a falsy value, disables linking the text to
-            the target page. Defaults to true.
 */}}
 
 {{- $out := "" }}
 {{- $type := -1 }}
-{{- $link := true }}
 
 {{- if .IsNamedParams }}
     {{- $type = .Get "type" }}
-    {{- $out = index site.Data.description.actor $type }}
+    {{- $out = index site.Data.description.actor_sprite $type }}
 
     {{- if .Get "strip" }}
         {{- $out = $out | replaceRE `\s+\(.+?$` "" }}
@@ -35,21 +32,13 @@
     {{- if .Get "plural" }}
         {{- $out = $out | pluralize }}
     {{- end }}
-
-    {{- $link = .Get "link" | default true }}
 {{- else }}
     {{- $type = .Get 0 }}
-    {{- $out = index site.Data.description.actor $type }}
+    {{- $out = index site.Data.description.actor_sprite $type }}
 {{- end }}
 
 {{- if not $out }}
     {{- warnf "No definition for %s %v" .Name .Params }}
 {{- end }}
 
-{{- with index (where site.RegularPages "Params.actorTypes" "intersect" (slice $type)) 0 -}}
-    {{- if $link }}<a href="{{ .RelPermalink }}">{{ end }}
-        {{- $out }}
-    {{- if $link }}</a>{{ end }}
-{{- else -}}
-    {{- $out }}
-{{- end -}}
+{{- $out -}}

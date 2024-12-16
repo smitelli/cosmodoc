@@ -1,7 +1,7 @@
 +++
 title = "Explosion Functions"
 description = "Describes the functions that create and process explosions that occur during gameplay."
-weight = 540
+weight = 550
 +++
 
 # Explosion Functions
@@ -137,7 +137,7 @@ This code is conditionally compiled based on the presence of the `EXPLOSION_PALE
         }
 ```
 
-During the very first frame of an explosion's existence, when its `age` is one, a "sparkle" decoration is added near the center of the explosion's fireball to add a bit of visual interest. This is accomplished with {{< lookup/cref NewDecoration >}}, using a sprite type of {{< lookup/cref name="SPR" text="SPR_SPARKLE_LONG" >}} with an animation consisting of eight frames. The sparkle is 2 &times; 2 tiles, centered within the 6 &times; 6 explosion fireball, so the decoration position is modified to be two tiles right and two tiles above the explosion, which centers it. This decoration does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}) and it plays one time.
+During the very first frame of an explosion's existence, when its `age` is one, a "{{< lookup/sprite 23 >}}" is added near the center of the explosion's fireball to add a bit of visual interest. This is accomplished with {{< lookup/cref NewDecoration >}}, using a sprite type of {{< lookup/cref name="SPR" text="SPR_SPARKLE_LONG" >}} with an animation consisting of eight frames. The sparkle is 2 &times; 2 tiles, centered within the 6 &times; 6 explosion fireball, so the decoration position is modified to be two tiles right and two tiles above the explosion, which centers it. This decoration does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}) and it plays one time.
 
 ```c
         DrawSprite(
@@ -167,7 +167,7 @@ During the very first frame of an explosion's existence, when its `age` is one, 
 }
 ```
 
-The loop body ends with lifecycle maintenance code. During every frame of the explosion, `age` increments. Once `age` reaches 9, it is immediately zeroed (deactivating the explosion in this slot) and a large puff of smoke is released. The smoke comes from {{< lookup/cref NewDecoration >}}, requesting {{< lookup/cref name="SPR" text="SPR_SMOKE_LARGE" >}} as the sprite type with a six frame animation. The smoke is a bit smaller than the explosion (4 &times; 3 tiles) so the `x` and `y` positions are adjusted a bit to keep it centered relative to where the explosion was. Smoke rises in the {{< lookup/cref name="DIR8" text="DIR8_NORTH" >}} direction and plays one time.
+The loop body ends with lifecycle maintenance code. During every frame of the explosion, `age` increments. Once `age` reaches 9, it is immediately zeroed (deactivating the explosion in this slot) and a "{{< lookup/sprite 98 >}}" is released. The smoke comes from {{< lookup/cref NewDecoration >}}, requesting {{< lookup/cref name="SPR" text="SPR_SMOKE_LARGE" >}} as the sprite type with a six frame animation. The smoke is a bit smaller than the explosion (4 &times; 3 tiles) so the `x` and `y` positions are adjusted a bit to keep it centered relative to where the explosion was. Smoke rises in the {{< lookup/cref name="DIR8" text="DIR8_NORTH" >}} direction and plays one time.
 
 The outer `for` loop continues running until all explosion slots have been examined, and then the function returns.
 
@@ -316,7 +316,7 @@ Points awarded for bombed objects do not, in the general case, spawn floating sc
 
 Another special case block handles the situation where the passed `sprite_type` represents one of the {{< lookup/actor type=95 strip=true >}} types. The {{< lookup/cref numEyePlants >}} variable tracks the number of eye plants currently inhabiting the map and, when this value decrements to 1, it means that the player is currently bombing the last surviving one. Exterminating all of them is worth a large point bonus, which is eventually awarded by the "{{< lookup/actor 246 >}}" that {{< lookup/cref NewActor >}} creates here. This new speech bubble is inserted relative to {{< lookup/cref playerX >}}/{{< lookup/cref playerY >}}, _not_ the eye plant that was bombed.
 
-At the explosion site, {{< lookup/cref NewDecoration >}} adds an eight-frame sparkle effect ({{< lookup/cref name="SPR" text="SPR_SPARKLE_LONG" >}}) at `x_origin`/`y_origin` which does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}) and plays one time.
+At the explosion site, {{< lookup/cref NewDecoration >}} adds an eight-frame "{{< lookup/sprite 23 >}}" ({{< lookup/cref name="SPR" text="SPR_SPARKLE_LONG" >}}) at `x_origin`/`y_origin` which does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}) and plays one time.
 
 Sill at `x_origin` and `y_origin`, {{< lookup/cref NewSpawner >}} pops a new {{< lookup/actor 57 >}} out of the spot where the plant was bombed, rewarding the player's insatiable bloodlust. {{< lookup/cref numEyePlants >}} is solemnly decremented to zero.
 

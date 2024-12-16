@@ -1869,7 +1869,7 @@ Cosmo never even told Duke his name here.
 
 {{< boilerplate/function-cref UnfoldPlayerFrame >}}
 
-{{< lookup/cref UnfoldPlayerFrame >}} is a helper function that draws the dialog frame that is used when the player is speaking to Duke. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
+{{< lookup/cref UnfoldPlayerFrame >}} is a helper function that draws the dialog frame that is used when the player is speaking to Duke Nukem. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
 
 {{< boilerplate/dialog-gameplay >}}
 
@@ -1891,7 +1891,7 @@ This function's body is conditionally compiled based on the `HAS_ACT_FROZEN_DN` 
 
 {{< boilerplate/function-cref UnfoldDNFrame >}}
 
-{{< lookup/cref UnfoldDNFrame >}} is a helper function that draws the dialog frame that is used when Duke is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
+{{< lookup/cref UnfoldDNFrame >}} is a helper function that draws the dialog frame that is used when Duke Nukem is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
 
 {{< boilerplate/dialog-gameplay >}}
 

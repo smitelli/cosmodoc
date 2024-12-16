@@ -20,6 +20,8 @@ Each player pounce moves the switch down by one position with an associated "bee
 
 The **tracks** of the switch are built using a careful arrangement of map tiles. The **knob** of the switch is a sprite. When the player interacts with the knob--either by standing on it or trying to walk into it--the movement-blocking behavior is due to [tile attributes]({{< relref "tile-attributes-format" >}}) on the _track_ tiles. The switch activation, however, is based on an intersection test between the player sprite and the knob sprite. Each switch actor must ensure that its map tiles and knob position remain in sync with each other.
 
+{{< table-of-contents >}}
+
 {{< actor-behavior name-origin="invented" >}}
 
 ## Data Fields
@@ -44,33 +46,24 @@ The **tracks** of the switch are built using a careful arrangement of map tiles.
 
 ## Initial Values
 
-<table>
-    <tr>
-        <th>Actor Type</th>
-        <th>{{< lookup/cref name="ACT" text="ACT_SWITCH_PLATFORMS" >}} (29)</th>
-        <th>{{< lookup/cref name="ACT" text="ACT_SWITCH_MYSTERY_WALL" >}} (35)</th>
-        <th>{{< lookup/cref name="ACT" text="ACT_SWITCH_LIGHTS" >}} (37)</th>
-        <th>{{< lookup/cref name="ACT" text="ACT_SWITCH_FORCE_FIELD" >}} (58)</th>
-    </tr>
-    <tr><th>Sprite Type</th><td colspan="4">{{< lookup/cref name="SPR" text="SPR_FOOT_SWITCH_KNOB" >}}</td></tr>
-    <tr><th>X Shift</th><td colspan="4">0</td></tr>
-    <tr><th>Y Shift</th><td colspan="4">0</td></tr>
-    <tr><th>Force Active</th><td colspan="4">no</td></tr>
-    <tr><th>Stay Active</th><td colspan="4">no</td></tr>
-    <tr><th>Weighted</th><td colspan="4">no</td></tr>
-    <tr><th>Acrophile</th><td colspan="4">no</td></tr>
-    <tr><th>Data 1</th><td colspan="4">0</td></tr>
-    <tr><th>Data 2</th><td colspan="4">0</td></tr>
-    <tr><th>Data 3</th><td colspan="4">0</td></tr>
-    <tr><th>Data 4</th><td colspan="4">0</td></tr>
-    <tr>
-        <th>Data 5</th>
-        <td>{{< lookup/cref name="ACT" text="ACT_SWITCH_PLATFORMS" >}}</td>
-        <td>{{< lookup/cref name="ACT" text="ACT_SWITCH_MYSTERY_WALL" >}}</td>
-        <td>{{< lookup/cref name="ACT" text="ACT_SWITCH_LIGHTS" >}}</td>
-        <td>{{< lookup/cref name="ACT" text="ACT_SWITCH_FORCE_FIELD" >}}</td>
-    </tr>
-</table>
+{{< data-table/actor-initial-values
+    types="59; 61; 120; 121"
+    sideways="actor_type; data5"
+    augmentActorTypes=`
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_PLATFORMS" >}};
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_MYSTERY_WALL" >}};
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_LIGHTS" >}};
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_FORCE_FIELD" >}}`
+    augmentSpriteTypes=`
+        {{< lookup/cref name=SPR text=SPR_FOOT_SWITCH_KNOB >}};
+        {{< lookup/cref name=SPR text=SPR_FOOT_SWITCH_KNOB >}};
+        {{< lookup/cref name=SPR text=SPR_FOOT_SWITCH_KNOB >}};
+        {{< lookup/cref name=SPR text=SPR_FOOT_SWITCH_KNOB >}}`
+    augmentData5=`
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_PLATFORMS" >}};
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_MYSTERY_WALL" >}};
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_LIGHTS" >}};
+        {{< lookup/cref name="ACT" text="ACT_SWITCH_FORCE_FIELD" >}}` >}}
 
 ## Visual Construction
 
@@ -143,7 +136,7 @@ void ActFootSwitch(word index)
 
 The passed `index` is added to the {{< lookup/cref actors >}} array, locating the {{< lookup/cref Actor >}} structure for the switch being processed. `act` is the pointer to this actor.
 
-This function is used for a number of unrelated actors that do not have specific per-frame behavior defined. (It's not known why those actors didn't use a dedicated no-op function.) To differentiate real switches from other actors that don't need to be serviced, the `act->sprite` member is tested. If it doesn't match {{< lookup/cref name="SPR" text="SPR_FOOT_SWITCH_KNOB" >}}, this actor is not actually a switch and doesn't need to run further. An early `return` skips the rest of the function.
+This function is used for a number of unrelated actors that do not have specific per-frame behavior defined. (It's not known why those actors didn't use a dedicated no-op function.) To differentiate real switches from other actors that don't need to be serviced, the `act->sprite` member is tested. If it doesn't match {{< lookup/cref name="SPR" text="SPR_FOOT_SWITCH_KNOB" >}}, this actor is not actually a switch and doesn't need to run further (see [passive hazards and prizes]({{< relref "passive-hazards-and-prizes" >}})). An early `return` skips the rest of the function.
 
 ```c
     if (act->westfree == 0) {

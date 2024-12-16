@@ -16,6 +16,8 @@ actorTypes = [0, 29, 31, 33, 35, 37, 52, 53, 56, 58, 81, 93, 100, 115, 116, 117,
 
 The **Barrels** and **Baskets** (shortened to just "barrels" when repetition gets tedious) are two visually distinct types of object that function identically. In their initial state, they sit on the ground and appear as static, motionless metallic drums or woven fabric squares. Each barrel releases a different predefined actor when destroyed, either as a result of the player pouncing on it or due to an [explosion]({{< relref "explosion-functions" >}}) in close proximity. All of the barrels encountered in an unmodified game will release a prize of some sort, although unusual and [unused]({{< relref "unused-actors" >}}) barrel types do exist.
 
+{{< table-of-contents >}}
+
 {{< actor-behavior name-origin="hint-sheet"
     pounces=1 pounce-points=100
     explosions=1 explosion-points=1600 >}}
@@ -32,119 +34,101 @@ The **Barrels** and **Baskets** (shortened to just "barrels" when repetition get
 
 ### Barrels
 
-<table>
-    <tr>
-        <th>Actor Type</th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_POWER_UP" >}} (29)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_YEL_PEAR" >}} (35)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_ONION" >}} (37)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_JUMP_PAD_FL" >}} (58)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_BOMB" >}} (56)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_CABB_HARDER" >}} (100)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_BOTL_DRINK" >}} (142)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_HORN" >}} (117)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_RT_ORNAMENT" >}} (156)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_BLU_CRYSTAL" >}} (157)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_RED_CRYSTAL" >}} (158)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_GRN_EMERALD" >}} (173)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_CLR_DIAMOND" >}} (175)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_CYA_DIAMOND" >}} (193)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_RED_DIAMOND" >}} (195)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_GRY_OCTAHED" >}} (197)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_BLU_EMERALD" >}} (199)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BARREL_HEADPHONES" >}} (218)</div></th>
-    </tr>
-    <tr><th>Sprite Type</th><td colspan="18">{{< lookup/cref name="SPR" text="SPR_BARREL" >}}</td></tr>
-    <tr><th>X Shift</th><td colspan="18">0</td></tr>
-    <tr><th>Y Shift</th><td colspan="18">0</td></tr>
-    <tr><th>Force Active</th><td colspan="18">yes</td></tr>
-    <tr><th>Stay Active</th><td colspan="18">no</td></tr>
-    <tr><th>Weighted</th><td colspan="18">yes</td></tr>
-    <tr><th>Acrophile</th><td colspan="3">no</td><td>yes</td><td colspan="14">no</td></tr>
-    <tr>
-        <th>Data 1</th>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_POWER_UP_FLOAT" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_YEL_PEAR" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_ONION" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_JUMP_PAD_FLOOR" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BOMB_IDLE" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_CABBAGE_HARDER" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BOTTLE_DRINK" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_HORN" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_ROTATING_ORNAMENT" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BLU_CRYSTAL" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_RED_CRYSTAL_FLOOR" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_GRN_EMERALD" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_CLR_DIAMOND" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_CYA_DIAMOND" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_RED_DIAMOND" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_GRY_OCTAHEDRON" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BLU_EMERALD" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_HEADPHONES" >}}</div></td>
-    </tr>
-    <tr><th>Data 2</th><td colspan="18">{{< lookup/cref name="SPR" text="SPR_BARREL_SHARDS" >}}</td></tr>
-    <tr><th>Data 3</th><td colspan="18">0 (not used)</td></tr>
-    <tr><th>Data 4</th><td colspan="18">0 (not used)</td></tr>
-    <tr><th>Data 5</th><td colspan="18">0 (not used)</td></tr>
-</table>
+{{< data-table/actor-initial-values
+    types="29; 35; 37; 58; 56; 100; 142; 117; 156; 157; 158; 173; 175; 193; 195; 197; 199; 218"
+    sideways="actor_type; data1"
+    augmentActorTypes=`
+        {{< lookup/cref name="ACT" text="ACT_BARREL_POWER_UP" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_YEL_PEAR" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_ONION" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_JUMP_PAD_FL" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_BOMB" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_CABB_HARDER" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_BOTL_DRINK" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_HORN" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_RT_ORNAMENT" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_BLU_CRYSTAL" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_RED_CRYSTAL" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_GRN_EMERALD" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_CLR_DIAMOND" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_CYA_DIAMOND" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_RED_DIAMOND" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_GRY_OCTAHED" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_BLU_EMERALD" >}};
+        {{< lookup/cref name="ACT" text="ACT_BARREL_HEADPHONES" >}}`
+    augmentSpriteTypes=`{{< lookup/cref name="SPR" text="SPR_BARREL" >}}`
+    augmentData1=`
+        {{< lookup/cref name="ACT" text="ACT_POWER_UP_FLOAT" >}};
+        {{< lookup/cref name="ACT" text="ACT_YEL_PEAR" >}};
+        {{< lookup/cref name="ACT" text="ACT_ONION" >}};
+        {{< lookup/cref name="ACT" text="ACT_JUMP_PAD_FLOOR" >}};
+        {{< lookup/cref name="ACT" text="ACT_BOMB_IDLE" >}};
+        {{< lookup/cref name="ACT" text="ACT_CABBAGE_HARDER" >}};
+        {{< lookup/cref name="ACT" text="ACT_BOTTLE_DRINK" >}};
+        {{< lookup/cref name="ACT" text="ACT_HORN" >}};
+        {{< lookup/cref name="ACT" text="ACT_ROTATING_ORNAMENT" >}};
+        {{< lookup/cref name="ACT" text="ACT_BLU_CRYSTAL" >}};
+        {{< lookup/cref name="ACT" text="ACT_RED_CRYSTAL_FLOOR" >}};
+        {{< lookup/cref name="ACT" text="ACT_GRN_EMERALD" >}};
+        {{< lookup/cref name="ACT" text="ACT_CLR_DIAMOND" >}};
+        {{< lookup/cref name="ACT" text="ACT_CYA_DIAMOND" >}};
+        {{< lookup/cref name="ACT" text="ACT_RED_DIAMOND" >}};
+        {{< lookup/cref name="ACT" text="ACT_GRY_OCTAHEDRON" >}};
+        {{< lookup/cref name="ACT" text="ACT_BLU_EMERALD" >}};
+        {{< lookup/cref name="ACT" text="ACT_HEADPHONES" >}}`
+    augmentData2=`{{< lookup/cref name="SPR" text="SPR_BARREL_SHARDS" >}}`
+    augmentData3="not used"
+    augmentData4="not used"
+    augmentData5="not used" >}}
 
 {{% note %}}The differences in the `acrophile` flag do not matter since barrels do not walk.{{% /note %}}
 
 ### Baskets
 
-<table>
-    <tr>
-        <th>Actor Type</th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}} (0)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_GRN_TOMATO" >}} (31)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_RED_TOMATO" >}} (33)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_HAMBURGER" >}} (81)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_DANCE_MUSH" >}} (93)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_GRN_GOURD" >}} (52)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_BLU_SPHERES" >}} (53)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_POD" >}} (119)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_PEA_PILE" >}} (115)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_LUMPY_FRUIT" >}} (116)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_HEADDRESS" >}} (148)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_ROOT" >}} (167)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_RG_BERRIES" >}} (169)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_RED_GOURD" >}} (171)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_RED_LEAFY" >}} (224)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_BRN_PEAR" >}} (227)</div></th>
-        <th class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_CANDY_CORN" >}} (230)</div></th>
-    </tr>
-    <tr><th>Sprite Type</th><td colspan="17">{{< lookup/cref name="SPR" text="SPR_BASKET" >}}</td></tr>
-    <tr><th>X Shift</th><td colspan="17">0</td></tr>
-    <tr><th>Y Shift</th><td colspan="17">0</td></tr>
-    <tr><th>Force Active</th><td colspan="17">yes</td></tr>
-    <tr><th>Stay Active</th><td colspan="17">no</td></tr>
-    <tr><th>Weighted</th><td colspan="9">yes</td><td>no</td><td colspan="7">yes</td></tr>
-    <tr><th>Acrophile</th><td colspan="17">no</td></tr>
-    <tr>
-        <th>Data 1</th>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_GRN_TOMATO" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_RED_TOMATO" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_HAMBURGER" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_DANCING_MUSHROOM" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_GRN_GOURD" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BLU_SPHERES" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_POD" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_PEA_PILE" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_LUMPY_FRUIT" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_HEADDRESS" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_ROOT" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_REDGRN_BERRIES" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_RED_GOURD" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_RED_LEAFY" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_BRN_PEAR" >}}</div></td>
-        <td class="sideways"><div>{{< lookup/cref name="ACT" text="ACT_CANDY_CORN" >}}</div></td>
-    </tr>
-    <tr><th>Data 2</th><td colspan="17">{{< lookup/cref name="SPR" text="SPR_BASKET_SHARDS" >}}</td></tr>
-    <tr><th>Data 3</th><td colspan="17">0 (not used)</td></tr>
-    <tr><th>Data 4</th><td colspan="17">0 (not used)</td></tr>
-    <tr><th>Data 5</th><td colspan="17">0 (not used)</td></tr>
-</table>
+{{< data-table/actor-initial-values
+    types="0; 31; 33; 81; 93; 52; 53; 119; 115; 116; 148; 167; 169; 171; 224; 227; 230"
+    sideways="actor_type; data1"
+    augmentActorTypes=`
+        {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_GRN_TOMATO" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_RED_TOMATO" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_HAMBURGER" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_DANCE_MUSH" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_GRN_GOURD" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_BLU_SPHERES" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_POD" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_PEA_PILE" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_LUMPY_FRUIT" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_HEADDRESS" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_ROOT" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_RG_BERRIES" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_RED_GOURD" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_RED_LEAFY" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_BRN_PEAR" >}};
+        {{< lookup/cref name="ACT" text="ACT_BASKET_CANDY_CORN" >}}`
+    augmentSpriteTypes=`{{< lookup/cref name="SPR" text="SPR_BASKET" >}}`
+    augmentData1=`
+        {{< lookup/cref name="ACT" text="ACT_BASKET_NULL" >}};
+        {{< lookup/cref name="ACT" text="ACT_GRN_TOMATO" >}};
+        {{< lookup/cref name="ACT" text="ACT_RED_TOMATO" >}};
+        {{< lookup/cref name="ACT" text="ACT_HAMBURGER" >}};
+        {{< lookup/cref name="ACT" text="ACT_DANCING_MUSHROOM" >}};
+        {{< lookup/cref name="ACT" text="ACT_GRN_GOURD" >}};
+        {{< lookup/cref name="ACT" text="ACT_BLU_SPHERES" >}};
+        {{< lookup/cref name="ACT" text="ACT_POD" >}};
+        {{< lookup/cref name="ACT" text="ACT_PEA_PILE" >}};
+        {{< lookup/cref name="ACT" text="ACT_LUMPY_FRUIT" >}};
+        {{< lookup/cref name="ACT" text="ACT_HEADDRESS" >}};
+        {{< lookup/cref name="ACT" text="ACT_ROOT" >}};
+        {{< lookup/cref name="ACT" text="ACT_REDGRN_BERRIES" >}};
+        {{< lookup/cref name="ACT" text="ACT_RED_GOURD" >}};
+        {{< lookup/cref name="ACT" text="ACT_RED_LEAFY" >}};
+        {{< lookup/cref name="ACT" text="ACT_BRN_PEAR" >}};
+        {{< lookup/cref name="ACT" text="ACT_CANDY_CORN" >}}`
+    augmentData2=`{{< lookup/cref name="SPR" text="SPR_BASKET_SHARDS" >}}`
+    augmentData3="not used"
+    augmentData4="not used"
+    augmentData5="not used" >}}
 
 {{% note %}}The differences in the `weighted` flag could have a visible effect, in the case of e.g. a {{< lookup/actor 116 >}} sitting on a [moving platform]({{< relref "platform-functions" >}}) -- it would not descend along with the platform. This is a moot issue in practice since this actor type is [unused]({{< relref "unused-actors" >}}).{{% /note %}}
 

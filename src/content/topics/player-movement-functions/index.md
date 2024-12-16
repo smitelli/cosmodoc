@@ -8,7 +8,7 @@ weight = 440
 
 Player movement in this game is _complicated._ The usual two-dimensional side-scrolling controls are present -- walk left/right, jump, fall, and the player can usually look up and down to scroll the screen some distance. Some map tiles permit passage if they are jumped through, but prevent movement if something falls onto them. Some surfaces are sloped at a 45&deg; angle, and other surfaces can move and carry the player along with them. The player may find a {{< lookup/actor 114 >}} that allows them to fly freely to any area of the map.
 
-On top of all that, the player has an unusual movement ability in that they can cling to certain vertical walls by pushing into them while jumping or falling, and repeatedly jump and re-cling to climb great distances. Various surfaces in the game are slippery and work against efforts to cling or walk uphill.
+On top of all that, the player has an unusual movement ability in that they can cling to certain vertical walls by pushing into them while jumping or falling, then repeatedly jump and re-cling to climb great distances. Various surfaces in the game are slippery and work against efforts to cling or walk uphill.
 
 The player's primary defense mechanism is movement-based, and involves falling onto the top of an enemy actor (an action called **pouncing**). Actors that have been pounced cause the player to **recoil** some distance back up into the air. Other actors may **push** the player around the map with a force that cannot be counteracted by user input.
 
@@ -18,7 +18,7 @@ The player's primary defense mechanism is movement-based, and involves falling o
 
 The regular walk speed of the player is one tile per game tick. The rise and fall speeds may be either one or two tiles per game tick, depending on how much "momentum" the move has. The player moves one tile in both horizontal and vertical directions while walking over sloped tiles, making the effective speed over those areas &radic;{{< overline >}}2{{< /overline >}} tiles per game tick. Look up/down moves one tile per game tick, while [view centering]({{< relref "view-centering" >}}) typically moves at a speed that matches what the player is doing.
 
-The player may enter any empty space of the map provided the leading edge of all the player sprite tiles move into clear space. The player may also move into areas occupied by map tiles provided the [tile attributes]({{< relref "tile-attributes-format" >}}) specify that all the involved tiles are passable in that direction.
+The player may enter any empty space of the map provided the leading edges of all the player sprite tiles move into clear space. The player may also move into areas occupied by map tiles provided the [tile attributes]({{< relref "tile-attributes-format" >}}) specify that all the involved tiles are passable in that direction.
 
 ## Begging Permission and Asking Forgiveness
 

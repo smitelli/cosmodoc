@@ -1,7 +1,7 @@
 +++
 title = "Hint Sheet"
 description = "A transcription of the hint sheet provided with registered copies of the game."
-weight = 630
+weight = 640
 +++
 
 # Hint Sheet
@@ -252,8 +252,6 @@ A sincere thanks for purchasing this software package.  Much time, effort, and
 expense goes into the development of our software, and your support helps
 ensure that we will be able to continue bringing you high quality, enjoyable
 software.   Enjoy the game!
-
-[ END OF FILE ]
 ```
 
 [^hackernews]: https://news.ycombinator.com/item?id=12949114

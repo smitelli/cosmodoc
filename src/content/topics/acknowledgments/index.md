@@ -1,7 +1,7 @@
 +++
 title = "Acknowledgments"
 description = "A listing of all resources consulted while researching and writing this site."
-weight = 780
+weight = 790
 +++
 
 # Acknowledgments
@@ -31,6 +31,10 @@ No man is an island, if I have seen further it is by standing on the shoulders o
 The layout of this site was inspired by the [Hugo Book](https://themes.gohugo.io/hugo-book/) theme by Alex Shpak, heavily stripped down and reworked. The display fonts are [Roboto](https://www.fontsquirrel.com/fonts/roboto) by Christian Robertson and [Cousine](https://www.fontsquirrel.com/fonts/cousine) by Ascender Fonts. Diagrams were created using [Inkscape](https://inkscape.org/).
 
 Content management is handled by [Hugo](https://gohugo.io/), and the pages are served by [nginx](https://nginx.org/) on [Debian](https://www.debian.org/).
+
+## AI Pledge
+
+Nothing on this site was produced through the use of AI. All of the text content, images, sounds, and software code that went into this project was conceived and executed by a human's brain.
 
 [^pr6]: https://github.com/smitelli/cosmore/pull/6
 

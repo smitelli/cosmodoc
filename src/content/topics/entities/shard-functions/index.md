@@ -1,7 +1,7 @@
 +++
 title = "Shard Functions"
 description = "Describes the functions that create and process shards that accompany destruction of actors on the map."
-weight = 570
+weight = 580
 +++
 
 # Shard Functions

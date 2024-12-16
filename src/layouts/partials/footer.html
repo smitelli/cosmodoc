@@ -11,7 +11,8 @@
     <address>
         <p>
             <strong>{{ site.Title }}</strong> is a contrivance by {{/*
-            */}}<a href="{{ $p.authorUrl }}" rel="author">Scott Smitelli</a>. Found an {{/*
+            */}}<a href="{{ $p.authorUrl }}" rel="author">Scott Smitelli</a> with {{/*
+            */}}<a href='{{ ref . "acknowledgments#ai-pledge" }}'>no AI</a>. Found an {{/*
             */}}<a href="{{ $p.gitIssuesUrl }}" title="...or a bug, or an inaccuracy!">issue</a>?
         </p>
     </address>

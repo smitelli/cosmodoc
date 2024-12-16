@@ -1468,12 +1468,12 @@ TryPounce:
 UnfoldDNFrame:
   text: UnfoldDNFrame()
   def: word UnfoldDNFrame(void);
-  desc: Draws the dialog frame that is used when Duke is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
+  desc: Draws the dialog frame that is used when Duke Nukem is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
   ref: /topics/dialog-functions/#UnfoldDNFrame
 UnfoldPlayerFrame:
   text: UnfoldPlayerFrame()
   def: word UnfoldPlayerFrame(void);
-  desc: Draws the dialog frame that is used when the player is speaking with Duke. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
+  desc: Draws the dialog frame that is used when the player is speaking with Duke Nukem. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
   ref: /topics/dialog-functions/#UnfoldPlayerFrame
 UnfoldTextFrame:
   text: UnfoldTextFrame()
@@ -2514,8 +2514,8 @@ SPR:
     #define SPR_BOSS               102
     #define SPR_PIPE_END           105
     #define SPR_SUCTION_WALKER     106
-    #define SPR_TRANSPORTER_107    107
-    #define SPR_TRANSPORTER_108    108
+    #define SPR_TRANSPORTER_COPY   107
+    #define SPR_TRANSPORTER        108
     #define SPR_SPIT_WALL_PLANT_E  111
     #define SPR_SPIT_WALL_PLANT_W  112
     #define SPR_SPITTING_TURRET    113

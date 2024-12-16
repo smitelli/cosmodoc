@@ -180,7 +180,7 @@ These coordinates are passed to {{< lookup/cref GetMapTile >}} to read the tile 
     }
 ```
 
-{{< lookup/cref random >}} sets up a 50/50 chance that this block will execute, along with a test for {{< lookup/cref TILE_SLIPPERY >}} on the `maptile` that was chosen earlier. If both conditions are true, {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_SPARKLE_SLIPPERY" >}} to the map at this (`x`, `y`) position. The sparkle animation consists of five frames, does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}), and the effect plays only once per call.
+{{< lookup/cref random >}} sets up a 50/50 chance that this block will execute, along with a test for {{< lookup/cref TILE_SLIPPERY >}} on the `maptile` that was chosen earlier. If both conditions are true, the chosen tile becomes temporarily decorated with a "{{< lookup/sprite type=99 strip=true >}}" animation to convey its slippery nature. To accomplish this, {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_SPARKLE_SLIPPERY" >}} to the map at this (`x`, `y`) position. The sparkle animation consists of five frames, does not move ({{< lookup/cref name="DIR8" text="DIR8_NONE" >}}), and the effect plays only once per call.
 
 Only one position on the map is considered per frame. If the chosen tile is not slippery, no decoration is added during that frame.
 
@@ -199,7 +199,7 @@ Additionally, if the {{< lookup/cref hasRain >}} flag is true, the map has rain 
 
 The `y` position is fudged to the current {{< lookup/cref scrollY >}} position plus one. It is unclear why this addition is done, since it (incorrectly) prevents rain from appearing in the topmost tile row of the game window. The `x` position remains the random horizontal position selected at the top of the function.
 
-{{< lookup/cref GetMapTile >}} returns the tile value at this (`x`, `y`) position, and if it contains {{< lookup/cref name="TILE" text="TILE_EMPTY" >}} then there is empty space at this location -- a raindrop sprite can fit there. {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_RAINDROP" >}} to the map at this (`x`, `y`) position. The raindrop consists of one frame, always moves in the {{< lookup/cref name="DIR8" text="DIR8_SOUTHWEST" >}} direction, and the decoration persists for a maximum of 20 loops. This is more than enough opportunity for it to reach the bottom of the game window, which is only 18 tiles high.
+{{< lookup/cref GetMapTile >}} returns the tile value at this (`x`, `y`) position, and if it contains {{< lookup/cref name="TILE" text="TILE_EMPTY" >}} then there is empty space at this location -- a "{{< lookup/sprite 27 >}}" sprite can fit there. {{< lookup/cref NewDecoration >}} is called to add {{< lookup/cref name="SPR" text="SPR_RAINDROP" >}} to the map at this (`x`, `y`) position. The raindrop consists of one frame, always moves in the {{< lookup/cref name="DIR8" text="DIR8_SOUTHWEST" >}} direction, and the decoration persists for a maximum of 20 loops. This is more than enough opportunity for it to reach the bottom of the game window, which is only 18 tiles high.
 
 {{% aside class="fun-fact" %}}
 **Umbrellas are futile!**

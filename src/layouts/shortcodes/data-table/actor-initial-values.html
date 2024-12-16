@@ -1,0 +1,185 @@
+{{/*
+    It was either this, or construct one-off actor tables on 70+ pages. Don't
+    look too long or think too hard about anything in here.
+
+    Named usage:
+        types (required): List of actor type IDs separated by semicolons.
+        sideways (optional): Defaults to empty. If set, a semicolon-delimited
+            list of row names to display in sideways orientation. Only some of
+            the rows bother to implement this, mostly ones that take variables.
+        augmentActorTypes (optional): Semicolon-delimited list of text strings,
+            one per actor type, to display in the actor type row. Markdown is
+            supported.
+        augmentSpriteTypes (optional): Semicolon-delimited list of text strings,
+            one per actor type, to display in the sprite type row. Markdown is
+            supported.
+        augmentData1 (optional): Semicolon-delimited list of text strings, one
+            per actor type, to display in the Data 1 row. Markdown is supported.
+        augmentData2 (optional): Semicolon-delimited list of text strings, one
+            per actor type, to display in the Data 2 row. Markdown is supported.
+        augmentData3 (optional): Semicolon-delimited list of text strings, one
+            per actor type, to display in the Data 3 row. Markdown is supported.
+        augmentData4 (optional): Semicolon-delimited list of text strings, one
+            per actor type, to display in the Data 4 row. Markdown is supported.
+        augmentData5 (optional): Semicolon-delimited list of text strings, one
+            per actor type, to display in the Data 5 row. Markdown is supported.
+*/}}
+
+{{- $types := apply (split (.Get "types") ";") "trim" "." " \n\t" }}
+{{- $sideways := apply (split (.Get "sideways") ";") "trim" "." " \n\t" }}
+{{- $augmentActorTypes := split (.Get "augmentActorTypes") ";" }}
+{{- $augmentSpriteTypes := split (.Get "augmentSpriteTypes") ";" }}
+{{- $augmentData1 := split (.Get "augmentData1") ";" }}
+{{- $augmentData2 := split (.Get "augmentData2") ";" }}
+{{- $augmentData3 := split (.Get "augmentData3") ";" }}
+{{- $augmentData4 := split (.Get "augmentData4") ";" }}
+{{- $augmentData5 := split (.Get "augmentData5") ";" }}
+
+{{- $trActorType := slice }}
+{{- $trSpriteType := slice }}
+{{- $trXShift := slice }}
+{{- $trYShift := slice }}
+{{- $trForceActive := slice }}
+{{- $trStayActive := slice }}
+{{- $trWeighted := slice }}
+{{- $trAcrophile := slice }}
+{{- $trData1 := slice }}
+{{- $trData2 := slice }}
+{{- $trData3 := slice }}
+{{- $trData4 := slice }}
+{{- $trData5 := slice }}
+
+{{- range $i, $type := $types }}
+    {{- $actData := index (where site.Data.actor.table "actor_type" "eq" (int $type)) 0 }}
+    {{- $v := "" }}
+
+    {{- $v = string $type }}
+    {{- with index $augmentActorTypes $i }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trActorType = $trActorType | append $v }}
+
+    {{- $v = string $actData.sprite_type }}
+    {{- with index $augmentSpriteTypes $i | default (index $augmentSpriteTypes 0) }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trSpriteType = $trSpriteType | append $v }}
+
+    {{- $trXShift = $trXShift | append $actData.xshift_tiles }}
+    {{- $trYShift = $trYShift | append $actData.yshift_tiles }}
+    {{- $trForceActive = $trForceActive | append (ne 0 (int $actData.always_active_flag)) }}
+    {{- $trStayActive = $trStayActive | append (ne 0 (int $actData.remains_active_flag)) }}
+    {{- $trWeighted = $trWeighted | append (ne 0 (int $actData.has_gravity_flag)) }}
+    {{- $trAcrophile = $trAcrophile | append (ne 0 (int $actData.ledge_eager_flag)) }}
+
+    {{- $v = string $actData.data1 }}
+    {{- with (index $augmentData1 $i) | default (index $augmentData1 0) }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trData1 = $trData1 | append $v }}
+
+    {{- $v = string $actData.data2 }}
+    {{- with (index $augmentData2 $i) | default (index $augmentData2 0) }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trData2 = $trData2 | append $v }}
+
+    {{- $v = string $actData.data3 }}
+    {{- with (index $augmentData3 $i) | default (index $augmentData3 0) }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trData3 = $trData3 | append $v }}
+
+    {{- $v = string $actData.data4 }}
+    {{- with (index $augmentData4 $i) | default (index $augmentData4 0) }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trData4 = $trData4 | append $v }}
+
+    {{- $v = string $actData.data5 }}
+    {{- with (index $augmentData5 $i) | default (index $augmentData5 0) }}
+        {{- $v = printf "%s (%s)" (trim . " \n\t") $v | markdownify }}
+    {{- end }}
+    {{- $trData5 = $trData5 | append $v }}
+{{- end }}
+
+{{- "" -}}
+<table class="actor-initial-values">
+    <tr>
+        <th>Actor Type</th>
+        {{- range $trActorType }}
+            {{- if "actor_type" | in $sideways }}
+                <th class="sideways"><div>{{ . }}</div></th>
+            {{- else }}
+                <th>{{ . }}</th>
+            {{- end }}
+        {{- end }}
+    </tr>
+    <tr>
+        <th>Sprite Type</th>
+        {{- range $trSpriteType }}
+            {{- if "sprite_type" | in $sideways }}
+                <td class="sideways"><div>{{ . }}</div></td>
+            {{- else }}
+                <td>{{ . }}</td>
+            {{- end }}
+        {{- end }}
+    </tr>
+    <tr><th>X Shift</th>{{- range $trXShift }}<td>{{ . }}</td>{{ end }}</tr>
+    <tr><th>Y Shift</th>{{- range $trYShift }}<td>{{ . }}</td>{{ end }}</tr>
+    <tr><th>Force Active</th>{{- range $trForceActive }}<td>{{ cond . "yes" "no" }}</td>{{ end }}</tr>
+    <tr><th>Stay Active</th>{{- range $trStayActive }}<td>{{ cond . "yes" "no" }}</td>{{ end }}</tr>
+    <tr><th>Weighted</th>{{- range $trWeighted }}<td>{{ cond . "yes" "no" }}</td>{{ end }}</tr>
+    <tr><th>Acrophile</th>{{- range $trAcrophile }}<td>{{ cond . "yes" "no" }}</td>{{ end }}</tr>
+    <tr>
+        <th>Data 1</th>
+        {{- range $trData1 }}
+            {{- if "data1" | in $sideways }}
+                <td class="sideways"><div>{{ . }}</div></td>
+            {{- else }}
+                <td>{{ . }}</td>
+            {{- end }}
+        {{- end }}
+    </tr>
+    <tr>
+        <th>Data 2</th>
+        {{- range $trData2 }}
+            {{- if "data2" | in $sideways }}
+                <td class="sideways"><div>{{ . }}</div></td>
+            {{- else }}
+                <td>{{ . }}</td>
+            {{- end }}
+        {{- end }}
+    </tr>
+    <tr>
+        <th>Data 3</th>
+        {{- range $trData3 }}
+            {{- if "data3" | in $sideways }}
+                <td class="sideways"><div>{{ . }}</div></td>
+            {{- else }}
+                <td>{{ . }}</td>
+            {{- end }}
+        {{- end }}
+    </tr>
+    <tr>
+        <th>Data 4</th>
+        {{- range $trData4 }}
+            {{- if "data4" | in $sideways }}
+                <td class="sideways"><div>{{ . }}</div></td>
+            {{- else }}
+                <td>{{ . }}</td>
+            {{- end }}
+        {{- end }}
+    </tr>
+    <tr>
+        <th>Data 5</th>
+        {{- range $trData5 }}
+            {{- if "data5" | in $sideways }}
+                <td class="sideways"><div>{{ . }}</div></td>
+            {{- else }}
+                <td>{{ . }}</td>
+            {{- end }}
+        {{- end }}
+    </tr>
+</table>
+{{- "" -}}

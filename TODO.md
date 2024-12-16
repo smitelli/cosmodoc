@@ -13,7 +13,6 @@
     * MovePlayer: handle one game tick of basically all player input.
     * MovePlayerScooter: handle one game tick of player movement on the scooter.
 * actor tick functions
-    * 39 ActFootSwitch: no-op (31 prizes, 8 hazards + exits)
     * 26 ActHintGlobe
     * 21 ActPrize
     * 8 ActScoreEffect

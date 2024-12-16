@@ -95,6 +95,19 @@
             control.checked = false;
         });
     });
+
+    Install(() => {
+        document.querySelectorAll('table.actor-initial-values tr').forEach((tr) => {
+            const rowCells = tr.querySelectorAll('th, td');
+
+            for (let i = rowCells.length - 1; i > 0; i--) {
+                if (rowCells[i].innerHTML === rowCells[i - 1].innerHTML) {
+                    rowCells[i - 1].colSpan += rowCells[i].colSpan;
+                    tr.removeChild(rowCells[i]);
+                }
+            }
+        });
+    });
 })();
 
 window.addEventListener('load', () => {
