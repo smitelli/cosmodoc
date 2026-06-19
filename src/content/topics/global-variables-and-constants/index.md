@@ -500,7 +500,7 @@ Stars  | Bonus Map
 25--49 | BONUS1 (E1), BONUS3 (E2), or BONUS5 (E3).
 &ge;50 | BONUS2 (E1), BONUS4 (E2), or BONUS6 (E3).
 
-The acceptable range of values for this variable is 0--99. Numbers with two or more characters must be avoided, otherwise draw overflow issues will occur in the status bar.
+The acceptable range of values for this variable is 0--99. Numbers longer than than two characters must be avoided, otherwise draw overflow issues will occur in the status bar.
 
 {{< boilerplate/global-cref gameTickCount >}}
 

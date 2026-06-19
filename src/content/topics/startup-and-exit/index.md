@@ -249,6 +249,12 @@ Earlier in the program's execution, during {{< lookup/cref Startup >}}, the vide
 
 Rather than use inline assembly, the {{< lookup/cref int86 >}} function and its closely-related {{< lookup/cref REGS >}} structure are used. Interrupt 10h is the BIOS interrupt handler for video services. Calling this interrupt with the AH register set to Fh issues a request to get the current video mode. BIOS responds to this by placing the video mode number into AL, the width of the screen in text columns into AH, and the active display page number into BH.
 
+{{% note %}}
+This game assumes (and does not check!) that the system has 256 KiB of EGA memory. Not all EGA cards do, and the game will not work on such cards.
+
+The later VGA hardware, fully backwards-compatible with EGA, always has a minimum of 256 KiB of video memory and shouldn't have any difficulties like this.
+{{% /note %}}
+
 The expectation is that the value in AL should be Dh to match the setting we requested earlier during {{< lookup/cref Startup >}}. If this is not true, the only reasonable interpretation is that the system does not contain a graphics adapter that is capable of displaying this mode. This is a fatal condition, so the program has to exit.
 
 {{< lookup/cref textmode >}} returns the display to the standard 80-column color text mode ({{< lookup/cref name="text_modes" text="C80" >}}). {{< lookup/cref printf >}} shows a brief message, and {{< lookup/cref exit >}} returns to DOS. The exit status _should_ be nonzero instead of {{< lookup/cref EXIT_SUCCESS >}}, but this is a DOS game and realistically I doubt anyone has ever cared.
