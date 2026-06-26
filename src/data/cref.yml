@@ -15,16 +15,40 @@ atoi:
   def: int atoi(const char *s);
   desc: Interprets an integer value in a byte string pointed to by `s`.
   ref: https://en.cppreference.com/w/c/string/byte/atoi
+  symbol_address:
+    E1: 180C:0078
+    E2: 175A:0079
+    E3: 17CC:0082
+  size:
+    E1: 19
+    E2: 19
+    E3: 19
 exit:
   text: exit()
   def: void exit(int status);
   desc: Causes normal program termination to occur.
   ref: https://en.cppreference.com/w/c/program/exit
+  symbol_address:
+    E1: 1524:000F
+    E2: 1472:0010
+    E3: 14E5:0009
+  size:
+    E1: 51
+    E2: 51
+    E3: 51
 fclose:
   text: fclose()
   def: int fclose(FILE *stream);
   desc: Closes the given file `stream`. Returns 0 on success, `EOF` otherwise.
   ref: https://en.cppreference.com/w/c/io/fclose
+  symbol_address:
+    E1: 1611:0000
+    E2: 155F:0001
+    E3: 15D1:000A
+  size:
+    E1: 208
+    E2: 208
+    E3: 208
 feof:
   text: feof()
   def: int feof(FILE *stream);
@@ -40,61 +64,157 @@ fgetc:
   def: int fgetc(FILE *stream);
   desc: Reads the next character from the given input stream.
   ref: https://en.cppreference.com/w/c/io/fgetc
+  symbol_address:
+    E1: 15D3:00F4
+    E2: 1521:00F5
+    E3: 1594:00EE
+  size:
+    E1: 343
+    E2: 343
+    E3: 343
 fopen:
   text: fopen()
   def: FILE *fopen(const char *path, const char *mode);
   desc: Opens a file indicated by `path` and returns a pointer to the file stream associated with that file. `mode` is used to determine the file access mode.
   ref: https://en.cppreference.com/w/c/io/fopen
+  symbol_address:
+    E1: 1573:021B
+    E2: 14C1:021C
+    E3: 1533:0225
+  size:
+    E1: 54
+    E2: 54
+    E3: 54
 fprintf:
   text: fprintf()
   def: int fprintf(FILE *stream, const char *format, ...);
   desc: Loads the data from the given locations, converts them to character string equivalents and writes the results to the output stream `stream`.
   ref: https://en.cppreference.com/w/c/io/fprintf
+  symbol_address:
+    E1: 177C:000E
+    E2: 16CA:000F
+    E3: 173D:0008
+  size:
+    E1: 37
+    E2: 37
+    E3: 37
 fputc:
   text: fputc()
   def: int fputc(int c, FILE *stream);
   desc: Writes a character `c` to the given output stream `stream`.
   ref: https://en.cppreference.com/w/c/io/fputc
+  symbol_address:
+    E1: 16C2:0022
+    E2: 1610:0023
+    E3: 1682:002C
+  size:
+    E1: 418
+    E2: 418
+    E3: 418
 fread:
   text: fread()
   def: size_t fread(void *ptr, size_t size, size_t n, FILE *stream);
   desc: Reads up to `n` objects into the array `ptr` from the given input stream `stream` as if by calling {{< lookup/cref fgetc >}} `size` times for each object, and storing the results, in the order obtained, into the successive positions of `ptr`, which is reinterpreted as an array of unsigned char. Returns the number of objects read successfully.
   ref: https://en.cppreference.com/w/c/io/fread
+  symbol_address:
+    E1: 162A:0113
+    E2: 1578:0114
+    E3: 15EB:010D
+  size:
+    E1: 132
+    E2: 132
+    E3: 132
 fscanf:
   text: fscanf()
   def: int fscanf(FILE *stream, const char *format, ...);
   desc: Reads the data from file stream `stream`, interprets it according to `format` and stores the results into given locations.
   ref: https://en.cppreference.com/w/c/io/fscanf
+  symbol_address:
+    E1: 177F:0003
+    E2: 16CD:0004
+    E3: 173F:000D
+  size:
+    E1: 47
+    E2: 47
+    E3: 47
 fseek:
   text: fseek()
   def: int fseek(FILE *stream, long offset, int whence);
   desc: Sets the file position indicator for the file stream `stream` to the value pointed to by `offset`.
   ref: https://en.cppreference.com/w/c/io/fseek
+  symbol_address:
+    E1: 15BE:0059
+    E2: 150C:005A
+    E3: 157F:0053
+  size:
+    E1: 142
+    E2: 142
+    E3: 142
 fwrite:
   text: fwrite()
   def: size_t fwrite(const void *ptr, size_t size, size_t n, FILE *stream);
   desc: Writes `n` of objects from the given array `ptr` to the output stream `stream`. The objects are written as if by reinterpreting each object as an array of unsigned char and calling {{< lookup/cref fputc >}} `size` times for each object to write those unsigned chars into `stream`, in order.
   ref: https://en.cppreference.com/w/c/io/fwrite
+  symbol_address:
+    E1: 1651:000C
+    E2: 159F:000D
+    E3: 1612:0006
+  size:
+    E1: 138
+    E2: 138
+    E3: 138
 malloc:
   text: malloc()
   def: void *malloc(size_t size);
   desc: Allocates `size` bytes of uninitialized storage.
   ref: https://en.cppreference.com/w/c/memory/malloc
+  symbol_address:
+    E1: 152B:0001
+    E2: 1479:0002
+    E3: 14EB:000B
+  size:
+    E1: 21
+    E2: 21
+    E3: 21
 memmove:
   text: memmove()
   def: void *memmove(void *dest, const void *src, size_t n);
   desc: Copies `n` characters from the object pointed to by `src` to the object pointed to by `dest`.
   ref: https://en.cppreference.com/w/c/string/byte/memmove
+  symbol_address:
+    E1: 16A1:0056
+    E2: 15EF:0057
+    E3: 1661:0060
+  size:
+    E1: 32
+    E2: 32
+    E3: 32
 printf:
   text: printf()
   def: int printf(const char *format, ...);
   desc: Loads the data from the given locations, converts them to character string equivalents and writes the results to the output stream `stdout`. Returns the number of characters transmitted to the output stream or negative value if an error occurred.
   ref: https://en.cppreference.com/w/c/io/fprintf
+  symbol_address:
+    E1: 16BF:000F
+    E2: 160E:0000
+    E3: 1680:0009
+  size:
+    E1: 36
+    E2: 36
+    E3: 36
 rand:
   text: rand()
   def: int rand(void);
   desc: Returns a pseudorandom integer value between 0 and `RAND_MAX` (0 and `RAND_MAX` included).
   ref: https://en.cppreference.com/w/c/numeric/random/rand
+  symbol_address:
+    E1: 184A:0013
+    E2: 1798:0014
+    E3: 180A:001D
+  size:
+    E1: 40
+    E2: 40
+    E3: 40
 remove:
   text: remove()
   def: int remove(const char *path);
@@ -110,16 +230,40 @@ strcpy:
   def: char strcpy(char *dest, const char *src);
   desc: Copies the null-terminated byte string pointed to by `src`, including the null terminator, to the character array whose first element is pointed to by `dest`.
   ref: https://en.cppreference.com/w/c/string/byte/strcpy
+  symbol_address:
+    E1: 169E:0009
+    E2: 15EC:000A
+    E3: 165F:0003
+  size:
+    E1: 41
+    E2: 41
+    E3: 41
 strlen:
   text: strlen()
   def: size_t strlen(const char *s);
   desc: Returns the length of the given null-terminated byte string, that is, the number of characters in a character array whose first element is pointed to by `s` up to and not including the first null character.
   ref: https://en.cppreference.com/w/c/string/byte/strlen
+  symbol_address:
+    E1: 169C:000E
+    E2: 15EA:000F
+    E3: 165D:0008
+  size:
+    E1: 27
+    E2: 27
+    E3: 27
 strncmp:
   text: strncmp()
   def: int strncmp(const char *s1, const char *s2, size_t maxlen);
   desc: Compares at most `maxlen` characters of two possibly null-terminated arrays.
   ref: https://en.cppreference.com/w/c/string/byte/strncmp
+  symbol_address:
+    E1: 1886:0009
+    E2: 17D4:000A
+    E3: 1847:0003
+  size:
+    E1: 58
+    E2: 58
+    E3: 58
 
 ################################################################################
 # BORLAND STANDARD LIBRARY                                                     #
@@ -165,6 +309,14 @@ coreleft:
   def: unsigned long coreleft(void);
   desc: Returns a measure of RAM not in use.
   ref: /topics/borland-c-nonstandard-library/#coreleft
+  symbol_address:
+    E1: 1744:0000
+    E2: 1692:0001
+    E3: 1704:000A
+  size:
+    E1: 8
+    E2: 8
+    E3: 8
 disable:
   text: disable()
   borland_c: true
@@ -183,12 +335,28 @@ farmalloc:
   def: void far *farmalloc(unsigned long nbytes);
   desc: Allocates a block of memory `nbytes` bytes long from the far heap.
   ref: /topics/borland-c-nonstandard-library/#farmalloc
+  symbol_address:
+    E1: 152B:0202
+    E2: 1479:0203
+    E3: 14EB:020C
+  size:
+    E1: 271
+    E2: 271
+    E3: 271
 filelength:
   text: filelength()
   borland_c: true
   def: long filelength(int handle);
   desc: Returns the length (in bytes) of the file associated with `handle`.
   ref: /topics/borland-c-nonstandard-library/#filelength
+  symbol_address:
+    E1: 1778:0009
+    E2: 16C6:000A
+    E3: 1739:0003
+  size:
+    E1: 69
+    E2: 69
+    E3: 69
 fileno:
   text: fileno()
   borland_c: true
@@ -201,18 +369,42 @@ getch:
   def: int getch(void);
   desc: Reads a single character directly from the console (keyboard), without echoing to the screen.
   ref: /topics/borland-c-nonstandard-library/#getch
+  symbol_address:
+    E1: 1798:0009
+    E2: 16E6:000A
+    E3: 1759:0003
+  size:
+    E1: 27
+    E2: 27
+    E3: 27
 getvect:
   text: getvect()
   borland_c: true
   def: void interrupt (*getvect(int interruptno))();
   desc: Reads the value of the interrupt vector given by `interruptno` and returns that value as a far pointer to an interrupt function.
   ref: /topics/borland-c-nonstandard-library/#getvect
+  symbol_address:
+    E1: 1814:000B
+    E2: 1762:000C
+    E3: 17D5:0005
+  size:
+    E1: 18
+    E2: 18
+    E3: 18
 getw:
   text: getw()
   borland_c: true
   def: int getw(FILE *stream);
   desc: Returns the next integer (machine word) in the named input stream. It assumes no special alignment in the file.
   ref: /topics/borland-c-nonstandard-library/#getw
+  symbol_address:
+    E1: 1816:000E
+    E2: 1764:000F
+    E3: 17D7:0008
+  size:
+    E1: 124
+    E2: 124
+    E3: 124
 inportb:
   text: inportb()
   borland_c: true
@@ -225,30 +417,70 @@ int86:
   def: int int86(int intno, union REGS *inregs, union REGS *outregs);
   desc: Executes an 8086 software interrupt specified by the argument `intno`.
   ref: /topics/borland-c-nonstandard-library/#int86
+  symbol_address:
+    E1: 1827:000F
+    E2: 1776:0000
+    E3: 17E8:0009
+  size:
+    E1: 52
+    E2: 52
+    E3: 52
 movmem:
   text: movmem()
   borland_c: true
   def: void movmem(void *src, void *dest, unsigned length);
   desc: Copies a block of `length` bytes from `src` to `dest`.
   ref: /topics/borland-c-nonstandard-library/#movmem
+  symbol_address:
+    E1: 16A1:0002
+    E2: 15EF:0003
+    E3: 1661:000C
+  size:
+    E1: 84
+    E2: 84
+    E3: 84
 outport:
   text: outport()
   borland_c: true
   def: void outport(int portid, int value);
   desc: Writes the word given by `value` to the hardware I/O port specified by `portid`.
   ref: /topics/borland-c-nonstandard-library/#outport
+  symbol_address:
+    E1: 183F:000C
+    E2: 178D:000D
+    E3: 1800:0006
+  size:
+    E1: 12
+    E2: 12
+    E3: 12
 outportb:
   text: outportb()
   borland_c: true
   def: void outportb(int portid, unsigned char value);
   desc: Writes the byte given by `value` to the hardware I/O port specified by `portid`.
   ref: /topics/borland-c-nonstandard-library/#outportb
+  symbol_address:
+    E1: 183F:0018
+    E2: 178D:0019
+    E3: 1800:0012
+  size:
+    E1: 12
+    E2: 12
+    E3: 12
 putw:
   text: putw()
   borland_c: true
   def: int putw(int w, FILE *stream);
   desc: Outputs the integer `w` (machine word) to the given stream.
   ref: /topics/borland-c-nonstandard-library/#putw
+  symbol_address:
+    E1: 1842:000D
+    E2: 1790:000E
+    E3: 1803:0007
+  size:
+    E1: 117
+    E2: 117
+    E3: 117
 random:
   text: random()
   borland_c: true
@@ -261,12 +493,28 @@ setvect:
   def: void setvect(int interruptno, void interrupt (*isr)());
   desc: Sets the value of the interrupt vector named by `interruptno` to a new value, `isr`, which is a far pointer containing the address of a new interrupt function.
   ref: /topics/borland-c-nonstandard-library/#setvect
+  symbol_address:
+    E1: 1814:001D
+    E2: 1762:001E
+    E3: 17D5:0017
+  size:
+    E1: 17
+    E2: 17
+    E3: 17
 strupr:
   text: strupr()
   borland_c: true
   def: char *strupr(char *s);
   desc: Converts lowercase letters (`a`--`z`) in string `s` to uppercase (`A`--`Z`). No other characters are changed.
   ref: /topics/borland-c-nonstandard-library/#strupr
+  symbol_address:
+    E1: 188A:0003
+    E2: 17D8:0004
+    E3: 184A:000D
+  size:
+    E1: 37
+    E2: 37
+    E3: 37
 text_modes:
   text: enum text_modes
   borland_c: true
@@ -279,12 +527,28 @@ textmode:
   def: void textmode(int newmode);
   desc: Selects a specific screen text mode.
   ref: /topics/borland-c-nonstandard-library/#textmode
+  symbol_address:
+    E1: 188C:0008
+    E2: 17DA:0009
+    E3: 184D:0002
+  size:
+    E1: 48
+    E2: 48
+    E3: 48
 ultoa:
   text: ultoa()
   borland_c: true
   def: char *ultoa(unsigned long value, char *string, int radix);
   desc: Converts `value` to a null-terminated string and stores the result in `string`.
   ref: /topics/borland-c-nonstandard-library/#ultoa
+  symbol_address:
+    E1: 167C:00B5
+    E2: 15CA:00B6
+    E3: 163C:00BF
+  size:
+    E1: 32
+    E2: 32
+    E3: 32
 
 ################################################################################
 # GAME FUNCTIONS                                                               #
@@ -301,6 +565,14 @@ ActBarrel:
   def: void ActBarrel(word index);
   desc: The tick function for every barrel and basket actor. It takes the `index` of the current actor in the actors array.
   ref: /topics/actors/implementations/barrels-baskets/#ActBarrel
+  symbol_address:
+    E1: 0104:28AB
+    E2: 0104:28AB
+    E3: 0104:28B5
+  size:
+    E1: 93
+    E2: 93
+    E3: 93
 #ActBeamRobot:
 #ActBearTrap:
 #ActBird:
@@ -326,6 +598,14 @@ ActFootSwitch:
   def: void ActFootSwitch(word index);
   desc: The tick function for every foot switch actor. It takes the `index` of the current actor in the actors array.
   ref: /topics/actors/implementations/foot-switches/#ActFootSwitch
+  symbol_address:
+    E1: 0104:1F9C
+    E2: 0104:1F9C
+    E3: 0104:1FA6
+  size:
+    E1: 418
+    E2: 418
+    E3: 418
 #ActForceField:
 #ActFrozenDN:
 #ActGhost:
@@ -382,77 +662,197 @@ AdLibService:
   def: void AdLibService(void);
   desc: Streams chunks of music data to the AdLib hardware at the appropriate time.
   ref: /topics/adlib-functions/#AdLibService
+  symbol_address:
+    E1: 1095:0153
+    E2: 107F:0158
+    E3: 10C5:0156
+  size:
+    E1: 174
+    E2: 174
+    E3: 174
 AddScore:
   text: AddScore()
   def: void AddScore(dword points);
   desc: Wraps {{< lookup/cref DrawStatusBarScore >}} with the correct X,Y position for display on the screen. It adds `points` to the player's score and updates the status bar with the new value.
   ref: /topics/status-bar-functions/#AddScore
+  symbol_address:
+    E1: 1095:0FAC
+    E2: 107F:0FB1
+    E3: 10C5:0FAF
+  size:
+    E1: 21
+    E2: 21
+    E3: 21
 AddScoreForSprite:
   text: AddScoreForSprite()
   def: void AddScoreForSprite(word sprite_type);
   desc: Determines how many points should be added to the player's score for defeating an actor of a given `sprite_type`, and adds that amount.
   ref: /topics/game-logic-functions/#AddScoreForSprite
+  symbol_address:
+    E1: 1095:436A
+    E2: 107F:39BB
+    E3: 10C5:3C84
+  size:
+    E1: 369
+    E2: 369
+    E3: 369
 AdjustActorMove:
   text: AdjustActorMove()
   def: void AdjustActorMove(word index, word dir);
   desc: Verifies the legality of a map position that the actor (identified by slot `index`) has just moved into and reverts/adjusts their position accordingly. `dir` should be either {{< lookup/cref name="DIR4" text="DIR4_WEST" >}} or {{< lookup/cref name="DIR4" text="DIR4_EAST" >}} to match the direction of movement.
   ref: /topics/actors/movement-functions/#AdjustActorMove
+  symbol_address:
+    E1: 0104:1C32
+    E2: 0104:1C32
+    E3: 0104:1C3C
+  size:
+    E1: 874
+    E2: 874
+    E3: 874
 AnimatePalette:
   text: AnimatePalette()
   def: void AnimatePalette(void);
   desc: Cycles through any palette animations that have been requested by the map.
   ref: /topics/c-drawing-functions/#AnimatePalette
+  symbol_address:
+    E1: 0104:00BB
+    E2: 0104:00BB
+    E3: 0104:00BB
+  size:
+    E1: 189
+    E2: 189
+    E3: 199
 CanExplode:
   text: CanExplode()
   def: bool CanExplode(word sprite_type, word frame, word x_origin, word y_origin);
   desc: Returns true if a sprite (consisting of a `sprite_type` and a `frame`) is able to be destroyed by any explosion. If so, destruction shards and effects are inserted at (`x_origin`, `y_origin`) and points are awarded to the score, but the target actor is not destroyed.
   ref: /topics/entities/explosion-functions/#CanExplode
+  symbol_address:
+    E1: 0104:AA6D
+    E2: 0104:A8B9
+    E3: 0104:AD6A
+  size:
+    E1: 337
+    E2: 337
+    E3: 337
 #CanSuctionWalkerFlip:
 CheckHighScoreAndShow:
   text: CheckHighScoreAndShow()
   def: void CheckHighScoreAndShow(void);
   desc: Scans the high score table for a position where the current {{< lookup/cref gameScore >}} could be sorted. If a position is located, a prompt is presented asking for a name to be associated with the score at that position, and all inferior scores are shifted one position lower. The tenth score falls off the bottom of the list. Calls {{< lookup/cref ShowHighScoreTable >}} unconditionally before returning.
   ref: /topics/menu-functions/#CheckHighScoreAndShow
+  symbol_address:
+    E1: 1095:12F1
+    E2: 107F:12F6
+    E3: 10C5:12F4
+  size:
+    E1: 288
+    E2: 288
+    E3: 288
 ClearGameScreen:
   text: ClearGameScreen()
   def: void ClearGameScreen(void);
   desc: Clears all content from both draw pages of the EGA's memory and redraws a fresh status bar.
   ref: /topics/status-bar-functions/#ClearGameScreen
+  symbol_address:
+    E1: 0104:C9A7
+    E2: 0104:C858
+    E3: 0104:CCA4
+  size:
+    E1: 27
+    E2: 27
+    E3: 27
 ClearPlayerDizzy:
   text: ClearPlayerDizzy()
   def: void ClearPlayerDizzy(void);
   desc: Resets all the global variables related to the player's "dizziness" immobilization, immediately returning the player to normal state.
   ref: /topics/game-logic-functions/#ClearPlayerDizzy
+  symbol_address:
+    E1: 0104:0022
+    E2: 0104:0022
+    E3: 0104:0022
+  size:
+    E1: 13
+    E2: 13
+    E3: 13
 ClearPlayerPush:
   text: ClearPlayerPush()
   def: void ClearPlayerPush(void);
   desc: Immediately cancels any push the player may be experiencing, and returns the game state back to regular player control.
   ref: /topics/player-movement-functions/#ClearPlayerPush
+  symbol_address:
+    E1: 0104:C9C2
+    E2: 0104:C873
+    E3: 0104:CCBF
+  size:
+    E1: 65
+    E2: 65
+    E3: 65
 ClearScreen:
   text: ClearScreen()
   def: void ClearScreen(void);
   desc: Overwrites the EGA memory for the current draw page with solid black tiles.
   ref: /topics/c-drawing-functions/#ClearScreen
+  symbol_address:
+    E1: 1095:068D
+    E2: 107F:0692
+    E3: 10C5:0690
+  size:
+    E1: 69
+    E2: 69
+    E3: 69
 ConstructActor:
   text: ConstructActor()
   def: void ConstructActor(word sprite_type, word x_origin, word y_origin, bool force_active, bool stay_active, bool weighted, bool acrophile, ActorTickFunction tick_func, word data1, word data2, word data3, word data4, word data5);
   desc: Called by {{< lookup/cref NewActorAtIndex >}} as a helper to initialize each member of an {{< lookup/cref Actor >}} structure. The actor slot position is provided in the pass-by-global {{< lookup/cref nextActorIndex >}} variable, and the structure at that position is initialized according to the values passed in the arguments.
   ref: /topics/actors/initialization-functions/#ConstructActor
+  symbol_address:
+    E1: 0104:1B83
+    E2: 0104:1B83
+    E3: 0104:1B8D
+  size:
+    E1: 175
+    E2: 175
+    E3: 175
 CopyTilesToEGA:
   text: CopyTilesToEGA()
   def: void CopyTilesToEGA(byte *source, word dest_length, word dest_offset);
   desc: Reads solid tile image data from the memory pointed to by `source`, and installs it into a block of `dest_length` bytes of the EGA's memory starting at `dest_offset`. Because the destination memory is planar, each byte of address space covered by `dest_length` consumes four bytes from `source`.
   ref: /topics/c-drawing-functions/#CopyTilesToEGA
+  symbol_address:
+    E1: 0104:0620
+    E2: 0104:0620
+    E3: 0104:062A
+  size:
+    E1: 95
+    E2: 95
+    E3: 95
 DestroyBarrel:
   text: DestroyBarrel()
   def: void DestroyBarrel(word index);
   desc: Handles the animation, sound effects, and lifecycle management at the instant a barrel or basket is destroyed.
   ref: /topics/actors/implementations/barrels-baskets/#DestroyBarrel
+  symbol_address:
+    E1: 0104:ABBE
+    E2: 0104:AA0A
+    E3: 0104:AEBB
+  size:
+    E1: 223
+    E2: 223
+    E3: 223
 DetectAdLib:
   text: DetectAdLib()
   def: bool DetectAdLib(void);
   desc: Interrogates the default AdLib I/O address to check if one is installed, and initializes the hardware if it is there. Returns true if an AdLib is installed, and false otherwise.
   ref: /topics/adlib-functions/#DetectAdLib
+  symbol_address:
+    E1: 1095:0201
+    E2: 107F:0206
+    E3: 10C5:0204
+  size:
+    E1: 166
+    E2: 166
+    E3: 166
 DRAW_SOLID_TILE_XY:
   text: DRAW_SOLID_TILE_XY()
   def: |-
@@ -466,76 +866,196 @@ DrawCartoon:
   def: void DrawCartoon(byte frame, word x_origin, word y_origin);
   desc: Draws a cartoon having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`).
   ref: /topics/composite-drawing-functions/#DrawCartoon
+  symbol_address:
+    E1: 0104:1470
+    E2: 0104:1470
+    E3: 0104:147A
+  size:
+    E1: 186
+    E2: 186
+    E3: 186
 DrawExplosions:
   text: DrawExplosions()
   def: void DrawExplosions(void);
   desc: Draws the animation sequence for each active explosion, along with the starting/ending decorations and the flashing palette effect if enabled. This function will cause the player to become hurt if they are in close proximity to any active explosions.
   ref: /topics/entities/explosion-functions/#DrawExplosions
+  symbol_address:
+    E1: 0104:A3F4
+    E2: 0104:A240
+    E3: 0104:A6BA
+  size:
+    E1: 200
+    E2: 200
+    E3: 255
 DrawFountains:
   text: DrawFountains()
   def: void DrawFountains(void);
   desc: Iterates through every fountain active on the map and draws the sprites that they are built from. If the player is touching any part of the stream beneath the spray at the top of the fountain, damage is inflicted on the player.
   ref: /topics/entities/platform-functions/#DrawFountains
+  symbol_address:
+    E1: 0104:1963
+    E2: 0104:1963
+    E3: 0104:196D
+  size:
+    E1: 176
+    E2: 176
+    E3: 176
 DrawFullscreenImage:
   text: DrawFullscreenImage()
   def: void DrawFullscreenImage(word image_num);
   desc: Loads and displays the full-screen image identified by `image_num`, fading the screen contents between what has already been drawn and the new image. If the requested `image_num` is anything other than {{< lookup/cref name="IMAGE" text="IMAGE_TITLE" >}} or {{< lookup/cref name="IMAGE" text="IMAGE_CREDITS" >}}, any playing music is stopped.
   ref: /topics/c-drawing-functions/#DrawFullscreenImage
+  symbol_address:
+    E1: 0104:03B6
+    E2: 0104:03B6
+    E3: 0104:03C0
+  size:
+    E1: 232
+    E2: 232
+    E3: 232
 DrawFullscreenText:
   text: DrawFullscreenText()
   def: void DrawFullscreenText(char *entry_name);
   desc: Draws a page of B800 text to the screen and clears space for the DOS prompt.
   ref: /topics/c-drawing-functions/#DrawFullscreenText
+  symbol_address:
+    E1: 0104:C4AB
+    E2: 0104:C35C
+    E3: 0104:C7A8
+  size:
+    E1: 89
+    E2: 89
+    E3: 89
 DrawLights:
   text: DrawLights()
   def: void DrawLights(void);
   desc: Iterates through all the lights present on the current map and draws any that are currently scrolled into view. If {{< lookup/cref areLightsActive >}} is false, this function does nothing.
   ref: /topics/map-drawing-functions/#DrawLights
+  symbol_address:
+    E1: 0104:1A33
+    E2: 0104:1A33
+    E3: 0104:1A3D
+  size:
+    E1: 336
+    E2: 336
+    E3: 336
 DrawMainMenu:
   text: DrawMainMenu()
   def: void DrawMainMenu(void);
   desc: A small helper that draws the main menu frame and text, but does not do any input handling. It is only called from {{< lookup/cref TitleLoop >}}.
   ref: /topics/menu-functions/#DrawMainMenu
+  symbol_address:
+    E1: 1095:4531
+    E2: 107F:3B82
+    E3: 10C5:3E4B
+  size:
+    E1: 236
+    E2: 220
+    E3: 220
 DrawMapRegion:
   text: DrawMapRegion()
   def: void DrawMapRegion(void);
   desc: Draws one complete frame of the static game world to the current draw page. This includes the solid and masked tiles read from the map data and the scrolling backdrop.
   ref: /topics/map-drawing-functions/#DrawMapRegion
+  symbol_address:
+    E1: 0104:06BA
+    E2: 0104:06BA
+    E3: 0104:06C4
+  size:
+    E1: 396
+    E2: 396
+    E3: 396
 DrawMaskedTile:
   text: DrawMaskedTile()
   def: void DrawMaskedTile(byte *src, word x, word y);
   desc: Copies an 8&times;8 pixel masked tile from the byte pointer `src` minus 16,000 to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawMaskedTile
+  symbol_address:
+    E1: 0000:063B
+    E2: 0000:063B
+    E3: 0000:063B
+  size:
+    E1: 580
+    E2: 580
+    E3: 580
 DrawNumberFlushRight:
   text: DrawNumberFlushRight()
   def: void DrawNumberFlushRight(word x_origin, word y_origin, dword value);
   desc: Draws a numeric `value` with the rightmost (least significant) digit anchored at screen coordinates (`x_origin`, `y_origin`). `value` is interpreted as an unsigned long integer.
   ref: /topics/user-interface-functions/#DrawNumberFlushRight
+  symbol_address:
+    E1: 1095:0EC6
+    E2: 107F:0ECB
+    E3: 10C5:0EC9
+  size:
+    E1: 120
+    E2: 120
+    E3: 120
 DrawPlayer:
   text: DrawPlayer()
   def: void DrawPlayer(byte frame, word x_origin, word y_origin, word mode);
   desc: Draws a player sprite having the provided `frame` number, with the lower-left tile at coordinates (`x_origin`, `y_origin`). `mode` is a {{< lookup/cref DRAW_MODE >}} that influences the drawing behavior.
   ref: /topics/composite-drawing-functions/#DrawPlayer
+  symbol_address:
+    E1: 0104:1231
+    E2: 0104:1231
+    E3: 0104:123B
+  size:
+    E1: 504
+    E2: 504
+    E3: 504
 DrawRandomEffects:
   text: DrawRandomEffects()
   def: void DrawRandomEffects(void);
   desc: Adds random decorative effects to the game world based on what is currently visible on the screen. It randomly applies a sparkling effect to map tiles that have the "slippery" attribute, and adds raindrops (if rain is enabled on the map) in any unoccupied areas at the top edge of the screen.
   ref: /topics/map-drawing-functions/#DrawRandomEffects
+  symbol_address:
+    E1: 0104:A054
+    E2: 0104:9EA0
+    E3: 0104:A31A
+  size:
+    E1: 143
+    E2: 143
+    E3: 143
 DrawSBarHealthHelper:
   text: DrawSBarHealthHelper()
   def: void DrawSBarHealthHelper(void);
   desc: Wraps {{< lookup/cref DrawStatusBarHealth >}} with the correct X,Y position for display on the screen.
   ref: /topics/status-bar-functions/#DrawSBarHealthHelper
+  symbol_address:
+    E1: 1095:1170
+    E2: 107F:1175
+    E3: 10C5:1173
+  size:
+    E1: 11
+    E2: 11
+    E3: 11
 DrawScancodeCharacter:
   text: DrawScancodeCharacter()
   def: void DrawScancodeCharacter(word x, word y, byte scancode);
   desc: Draws a single-character representation of `scancode` at screen tile position (`x`, `y`).
   ref: /topics/user-interface-functions/#DrawScancodeCharacter
+  symbol_address:
+    E1: 1095:2084
+    E2: 107F:1CCE
+    E3: 10C5:1DE6
+  size:
+    E1: 51
+    E2: 51
+    E3: 51
 DrawSolidTile:
   text: DrawSolidTile()
   def: void DrawSolidTile(word src_offset, word dst_offset);
   desc: Copies an 8&times;8 pixel solid tile from the tile storage area byte offset `src_offset` to the video memory byte offset `dst_offset`. Both offsets refer to locations within the EGA's memory space. The EGA hardware must be in "latched write" mode for this function to work correctly.
   ref: /topics/assembly-drawing-functions/#DrawSolidTile
+  symbol_address:
+    E1: 0000:0206
+    E2: 0000:0206
+    E3: 0000:0206
+  size:
+    E1: 87
+    E2: 87
+    E3: 87
 DrawSprite:
   text: DrawSprite()
   def: |-
@@ -544,51 +1064,131 @@ DrawSprite:
     );
   desc: Draws a sprite of the provided `sprite_type` and `frame`, with the lower-left tile at coordinates (`x_origin`, `y_origin`). The `mode` influences the origin calculations and visual appearance.
   ref: /topics/composite-drawing-functions/#DrawSprite
+  symbol_address:
+    E1: 0104:0F95
+    E2: 0104:0F95
+    E3: 0104:0F9F
+  size:
+    E1: 668
+    E2: 668
+    E3: 668
 DrawSpriteTile:
   text: DrawSpriteTile()
   def: void DrawSpriteTile(byte *src, word x, word y);
   desc: Copies an 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTile
+  symbol_address:
+    E1: 0000:0410
+    E2: 0000:0410
+    E3: 0000:0410
+  size:
+    E1: 555
+    E2: 555
+    E3: 555
 DrawSpriteTileFlipped:
   text: DrawSpriteTileFlipped()
   def: void DrawSpriteTileFlipped(byte *src, word x, word y);
   desc: Copies a vertically-flipped 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileFlipped
+  symbol_address:
+    E1: 0000:087F
+    E2: 0000:087F
+    E3: 0000:087F
+  size:
+    E1: 556
+    E2: 556
+    E3: 556
 DrawSpriteTileTranslucent:
   text: DrawSpriteTileTranslucent()
   def: void DrawSpriteTileTranslucent(byte *src, word x, word y);
   desc: Copies a translucent outline of an 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileTranslucent
+  symbol_address:
+    E1: 0000:0287
+    E2: 0000:0287
+    E3: 0000:0287
+  size:
+    E1: 89
+    E2: 89
+    E3: 89
 DrawSpriteTileWhite:
   text: DrawSpriteTileWhite()
   def: void DrawSpriteTileWhite(byte *src, word x, word y);
   desc: Copies a solid white outline of an 8&times;8 pixel masked tile from the byte pointer `src` to the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#DrawSpriteTileWhite
+  symbol_address:
+    E1: 0000:0AAB
+    E2: 0000:0AAB
+    E3: 0000:0AAB
+  size:
+    E1: 131
+    E2: 131
+    E3: 131
 DrawStaticGameScreen:
   text: DrawStaticGameScreen()
   def: void DrawStaticGameScreen(void);
   desc: Initializes the static components of the game screen by clearing everything from the current draw page and redrawing the status bar on the freshly-cleared screen. The current score, health, bombs, and stars values are drawn onto the status bar in the process.
   ref: /topics/status-bar-functions/#DrawStaticGameScreen
+  symbol_address:
+    E1: 1095:44DB
+    E2: 107F:3B2C
+    E3: 10C5:3DF5
+  size:
+    E1: 86
+    E2: 86
+    E3: 86
 DrawStatusBarBombs:
   text: DrawStatusBarBombs()
   def: void DrawStatusBarBombs(word x_origin, word y_origin);
   desc: Updates the "bombs" counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the single digit at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarBombs
+  symbol_address:
+    E1: 1095:102A
+    E2: 107F:102F
+    E3: 10C5:102D
+  size:
+    E1: 154
+    E2: 154
+    E3: 154
 DrawStatusBarHealth:
   text: DrawStatusBarHealth()
   def: void DrawStatusBarHealth(word x_origin, word y_origin);
   desc: Updates the health bars in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the top of the rightmost bar at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarHealth
+  symbol_address:
+    E1: 1095:10CF
+    E2: 107F:10D4
+    E3: 10C5:10D2
+  size:
+    E1: 161
+    E2: 161
+    E3: 161
 DrawStatusBarScore:
   text: DrawStatusBarScore()
   def: void DrawStatusBarScore(dword add_points, word x_origin, word y_origin);
   desc: Increments the player's score by `add_points` then updates the score counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarScore
+  symbol_address:
+    E1: 1095:0F3E
+    E2: 107F:0F43
+    E3: 10C5:0F41
+  size:
+    E1: 110
+    E2: 110
+    E3: 110
 DrawStatusBarStars:
   text: DrawStatusBarStars()
   def: void DrawStatusBarStars(word x_origin, word y_origin);
   desc: Updates the "stars" counter in the status bar. Requires `x_origin` and `y_origin` for positioning, which anchors the rightmost (least significant) digit at an absolute tile position on the screen.
   ref: /topics/status-bar-functions/#DrawStatusBarStars
+  symbol_address:
+    E1: 1095:0FC1
+    E2: 107F:0FC6
+    E3: 10C5:0FC4
+  size:
+    E1: 94
+    E2: 94
+    E3: 94
 DrawTextFrame:
   text: DrawTextFrame()
   def: |-
@@ -598,11 +1198,27 @@ DrawTextFrame:
     );
   desc: Draws an empty text frame to the current draw page with the upper-left corner at tile position (`left`, `top`) and a total size of `width`&times;`height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively, aligned according to the `centered` flag. Returns the X tile coordinate of the inside-left edge of the frame.
   ref: /topics/user-interface-functions/#DrawTextFrame
+  symbol_address:
+    E1: 1095:08ED
+    E2: 107F:08F2
+    E3: 10C5:08F0
+  size:
+    E1: 470
+    E2: 470
+    E3: 470
 DrawTextLine:
   text: DrawTextLine()
   def: void DrawTextLine(word x_origin, word y_origin, char *text);
   desc: Draws a single line of `text` with the first character anchored at screen coordinates (`x_origin`, `y_origin`). A limited form of markup is supported to allow insertion of cartoon images, player/actor sprites, and text animation effects.
   ref: /topics/user-interface-functions/#DrawTextLine
+  symbol_address:
+    E1: 0104:0178
+    E2: 0104:0178
+    E3: 0104:0182
+  size:
+    E1: 489
+    E2: 489
+    E3: 489
 EGA_BIT_MASK_DEFAULT:
   text: EGA_BIT_MASK_DEFAULT()
   def: '#define EGA_BIT_MASK_DEFAULT() { outport(0x03ce, (0xff << 8) | 0x08); }'
@@ -627,141 +1243,365 @@ EraseWaitSpinner:
   def: void EraseWaitSpinner(word x, word y);
   desc: Erases an area previously occupied by a wait spinner by drawing a tile of solid dark gray at screen tile position (`x`, `y`).
   ref: /topics/user-interface-functions/#EraseWaitSpinner
+  symbol_address:
+    E1: 1095:0570
+    E2: 107F:0575
+    E3: 10C5:0573
+  size:
+    E1: 52
+    E2: 52
+    E3: 52
 ExitClean:
   text: ExitClean()
   def: void ExitClean(void);
   desc: Cleans up game state and exits back to DOS.
   ref: /topics/startup-and-exit/#ExitClean
+  symbol_address:
+    E1: 0104:C504
+    E2: 0104:C3B5
+    E3: 0104:C801
+  size:
+    E1: 106
+    E2: 106
+    E3: 106
 FadeIn:
   text: FadeIn()
   def: void FadeIn(void);
   desc: Calls {{< lookup/cref FadeInCustom >}} with a fixed delay of three game ticks per palette entry.
   ref: /topics/c-drawing-functions/#FadeIn
+  symbol_address:
+    E1: 1095:05C7
+    E2: 107F:05CC
+    E3: 10C5:05CA
+  size:
+    E1: 8
+    E2: 8
+    E3: 8
 FadeInCustom:
   text: FadeInCustom()
   def: void FadeInCustom(word delay);
   desc: "\"Fades\" the screen image into view by rebuilding the EGA's default palette, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeInCustom
+  symbol_address:
+    E1: 1095:051B
+    E2: 107F:0520
+    E3: 10C5:051E
+  size:
+    E1: 50
+    E2: 50
+    E3: 50
 FadeOut:
   text: FadeOut()
   def: void FadeOut(void);
   desc: Calls {{< lookup/cref FadeOutCustom >}} with a fixed delay of three game ticks per palette entry.
   ref: /topics/c-drawing-functions/#FadeOut
+  symbol_address:
+    E1: 1095:05CF
+    E2: 107F:05D4
+    E3: 10C5:05D2
+  size:
+    E1: 8
+    E2: 8
+    E3: 8
 FadeOutAdLibPlayback:
   text: FadeOutAdLibPlayback()
   def: void FadeOutAdLibPlayback(void);
   desc: Nominally fades any playing music to silence over a period of time, but as implemented it simply cuts the music off immediately.
   ref: /topics/adlib-functions/#FadeOutAdLibPlayback
+  symbol_address:
+    E1: 1095:04E0
+    E2: 107F:04E5
+    E3: 10C5:04E3
+  size:
+    E1: 15
+    E2: 15
+    E3: 15
 FadeOutCustom:
   text: FadeOutCustom()
   def: void FadeOutCustom(word delay);
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to black, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeOutCustom
+  symbol_address:
+    E1: 1095:05A4
+    E2: 107F:05A9
+    E3: 10C5:05A7
+  size:
+    E1: 35
+    E2: 35
+    E3: 35
 FadeWhiteCustom:
   text: FadeWhiteCustom()
   def: void FadeWhiteCustom(word delay);
   desc: "\"Fades\" the screen image away by incrementally blanking the EGA's palette to white, one entry at a time, pausing `delay` game ticks between each entry."
   ref: /topics/c-drawing-functions/#FadeWhiteCustom
+  symbol_address:
+    E1: 1095:054D
+    E2: 107F:0552
+    E3: 10C5:0550
+  size:
+    E1: 35
+    E2: 35
+    E3: 35
 GameLoop:
   text: GameLoop()
   def: void GameLoop(byte demo_state);
   desc: Runs once for each frame of gameplay and is responsible for running the appropriate sub-functions for timing, input, player/actor movement, world drawing, and level exit conditions. This function takes a `demo_state` argument which should be one of the {{< lookup/cref DEMO_STATE >}} constants -- this controls the presence of the "DEMO" overlay sprite and is passed through to the input handling functions.
   ref: /topics/game-loop-functions/#GameLoop
+  symbol_address:
+    E1: 0104:EF42
+    E2: 0104:EDE7
+    E3: 0104:F233
+  size:
+    E1: 262
+    E2: 262
+    E3: 262
 GameRand:
   text: GameRand()
   def: word GameRand(void);
   desc: Returns a pseudorandom number based on a fixed table of randomness combined with influence from the player and scrolling game window positions. The output sequence from this function is deterministic for a given sequence of player and scroll positions.
   ref: /topics/game-logic-functions/#GameRand
+  symbol_address:
+    E1: 0104:002F
+    E2: 0104:002F
+    E3: 0104:002F
+  size:
+    E1: 48
+    E2: 48
+    E3: 48
 GetMapTile:
   text: GetMapTile()
   def: word GetMapTile(word x, word y);
   desc: Returns the data for a single map tile positioned at horizontal position `x` and vertical position `y`.
   ref: /topics/level-and-map-functions/#GetMapTile
+  symbol_address:
+    E1: 0104:1A13
+    E2: 0104:1A13
+    E3: 0104:1A1D
+  size:
+    E1: 32
+    E2: 32
+    E3: 32
 GetProcessorType:
   text: GetProcessorType()
   def: word GetProcessorType(void);
   desc: Tests the system processor and returns a value indicating its model. Returns {{< lookup/cref CPU_TYPE >}}.
   ref: /topics/processor-detection/#GetProcessorType
+  symbol_address:
+    E1: 0000:0B2E
+    E2: 0000:0B2E
+    E3: 0000:0B2E
+  size:
+    E1: 101
+    E2: 101
+    E3: 101
 GroupEntryFp:
   text: GroupEntryFp()
   def: FILE *GroupEntryFp(char *entry_name);
   desc: Returns a file stream pointer to the data that a group file's `entry_name` refers to.
   ref: /topics/group-file-functions/#GroupEntryFp
+  symbol_address:
+    E1: 1095:1411
+    E2: 107F:1416
+    E3: 10C5:1414
+  size:
+    E1: 452
+    E2: 452
+    E3: 452
 GroupEntryLength:
   text: GroupEntryLength()
   def: dword GroupEntryLength(char *entry_name);
   desc: Locates a group file `entry_name` and returns the size of its data in bytes.
   ref: /topics/group-file-functions/#GroupEntryLength
+  symbol_address:
+    E1: 0104:0000
+    E2: 0104:0000
+    E3: 0104:0000
+  size:
+    E1: 34
+    E2: 34
+    E3: 34
 HurtPlayer:
   text: HurtPlayer()
   def: void HurtPlayer(void);
   desc: Deducts a bar of health from the player, and kills them if they have lost enough health.
   ref: /topics/game-logic-functions/#HurtPlayer
+  symbol_address:
+    E1: 0104:A931
+    E2: 0104:A77D
+    E3: 0104:AC2E
+  size:
+    E1: 158
+    E2: 158
+    E3: 158
 InitializeBackdropTable:
   text: InitializeBackdropTable()
   def: void InitializeBackdropTable(void);
   desc: Fills the {{< lookup/cref backdropTable >}} array with four identical copies of backdrop tile offset data.
   ref: /topics/backdrop-initialization-functions/#InitializeBackdropTable
+  symbol_address:
+    E1: 0104:C316
+    E2: 0104:C1C7
+    E3: 0104:C613
+  size:
+    E1: 125
+    E2: 125
+    E3: 125
 InitializeDecorations:
   text: InitializeDecorations()
   def: void InitializeDecorations(void);
   desc: Clears all of the memory slots used to store decoration state, immediately terminating all incomplete decoration animations and making each slot available for use.
   ref: /topics/entities/decoration-functions/#InitializeDecorations
+  symbol_address:
+    E1: 0104:A685
+    E2: 0104:A4D1
+    E3: 0104:A982
+  size:
+    E1: 32
+    E2: 32
+    E3: 32
 InitializeEpisode:
   text: InitializeEpisode()
   def: void InitializeEpisode(void);
   desc: Sets up the initial values for a few of the episode-related global variables tracked by the game. This sets up the initial score, health, level number, etc. when a new game is started.
   ref: /topics/game-loop-functions/#InitializeEpisode
+  symbol_address:
+    E1: 0104:F839
+    E2: 0104:F6DE
+    E3: 0104:FB3C
+  size:
+    E1: 79
+    E2: 79
+    E3: 79
 InitializeExplosions:
   text: InitializeExplosions()
   def: void InitializeExplosions(void);
   desc: Clears all of the memory slots used to store explosion state, immediately terminating all incomplete explosion animations and making each slot available for use.
   ref: /topics/entities/explosion-functions/#InitializeExplosions
+  symbol_address:
+    E1: 0104:A38A
+    E2: 0104:A1D6
+    E3: 0104:A650
+  size:
+    E1: 32
+    E2: 32
+    E3: 32
 InitializeInterruptRate:
   text: InitializeInterruptRate()
   def: void InitializeInterruptRate(void);
   desc: Sets up the system timer interrupt rate depending on whether or not the AdLib hardware is enabled.
   ref: /topics/adlib-functions/#InitializeInterruptRate
+  symbol_address:
+    E1: 1095:033A
+    E2: 107F:033F
+    E3: 10C5:033D
+  size:
+    E1: 24
+    E2: 24
+    E3: 24
 InitializeLevel:
   text: InitializeLevel()
   def: void InitializeLevel(word level_num);
   desc: Initializes all of the global variables and related subsystems for the start (or restart) of the level identified by `level_num`.
   ref: /topics/game-loop-functions/#InitializeLevel
+  symbol_address:
+    E1: 0104:F677
+    E2: 0104:F51C
+    E3: 0104:F968
+  size:
+    E1: 450
+    E2: 450
+    E3: 468
 InitializeMapGlobals:
   text: InitializeMapGlobals()
   def: void InitializeMapGlobals();
   desc: Resets many of the global variables pertaining to player movement and map/actor interactivity.
   ref: /topics/game-loop-functions/#InitializeMapGlobals
+  symbol_address:
+    E1: 0104:F58C
+    E2: 0104:F431
+    E3: 0104:F87D
+  size:
+    E1: 235
+    E2: 235
+    E3: 235
 InitializeShards:
   text: InitializeShards()
   def: void InitializeShards(void);
   desc: Clears all of the memory slots used to store shard state, immediately terminating all incomplete shard animations and making each slot available for use.
   ref: /topics/entities/shard-functions/#InitializeShards
+  symbol_address:
+    E1: 0104:A0E3
+    E2: 0104:9F2F
+    E3: 0104:A3A9
+  size:
+    E1: 33
+    E2: 33
+    E3: 33
 InitializeSpawners:
   text: InitializeSpawners()
   def: void InitializeSpawners(void);
   desc: Clears all of the memory slots used to store spawner state, immediately terminating all incomplete spawner animations and making each slot available for use.
   ref: /topics/entities/spawner-functions/#InitializeSpawners
+  symbol_address:
+    E1: 0104:A51A
+    E2: 0104:A366
+    E3: 0104:A817
+  size:
+    E1: 30
+    E2: 30
+    E3: 30
 InnerMain:
   text: InnerMain()
   def: void InnerMain(int argc, char *argv[]);
   desc: Main game function, once CPU testing has passed.
   ref: /topics/main-and-outer-loop/#InnerMain
+  symbol_address:
+    E1: 0104:F888
+    E2: 0104:F72D
+    E3: 0104:FB8B
+  size:
+    E1: 136
+    E2: 136
+    E3: 136
 InteractPlayer:
   text: InteractPlayer()
   def: bool InteractPlayer(word index, word sprite_type, word frame, word x, word y);
   desc: Tests for a potential interaction between an actor located at position `index` in the actors array and the player. The actor's `sprite_type`, `frame`, `x`, and `y` must all be passed, and should agree with the values currently held in the actor's memory structure. Returns true if the actor should not be drawn due to being hidden, destroyed, or picked up.
   ref: /topics/actors/implementations/#InteractPlayer
+  symbol_address:
+    E1: 0104:AC9D
+    E2: 0104:AAE9
+    E3: 0104:AF9A
+  size:
+    E1: 5149
+    E2: 5250
+    E3: 5149
 IsAdLibAbsent:
   text: IsAdLibAbsent()
   def: bbool IsAdLibAbsent(void);
   desc: Returns _true_ if an AdLib or compatible card was _NOT_ detected in the system.
   ref: /topics/adlib-functions/#IsAdLibAbsent
+  symbol_address:
+    E1: 1095:15D5
+    E2: 107F:15DA
+    E3: 10C5:15D8
+  size:
+    E1: 9
+    E2: 9
+    E3: 9
 IsAnyKeyDown:
   text: IsAnyKeyDown()
   def: bbool IsAnyKeyDown(void);
   desc: Returns true if any key is currently pressed, without regard to which key it is.
   ref: /topics/keyboard-functions/#IsAnyKeyDown
+  symbol_address:
+    E1: 0104:E004
+    E2: 0104:DEB5
+    E3: 0104:E301
+  size:
+    E1: 12
+    E2: 12
+    E3: 12
 IsIntersecting:
   text: IsIntersecting()
   def: |-
@@ -771,6 +1611,14 @@ IsIntersecting:
     );
   desc: Returns true if one sprite (consisting of a `sprite` type and a `frame`) located at an `x`/`y` position on the map is intersecting any part of a second sprite passed in the same form.
   ref: /topics/entities/explosion-functions/#IsIntersecting
+  symbol_address:
+    E1: 0104:0EB8
+    E2: 0104:0EB8
+    E3: 0104:0EC2
+  size:
+    E1: 221
+    E2: 221
+    E3: 221
 IsNearExplosion:
   text: IsNearExplosion()
   def: |-
@@ -779,11 +1627,27 @@ IsNearExplosion:
     );
   desc: Returns true if a sprite (consisting of a `sprite_type` and a `frame`) located at (`x_origin`, `y_origin`) is intersecting any active explosion.
   ref: /topics/entities/explosion-functions/#IsNearExplosion
+  symbol_address:
+    E1: 0104:A4BC
+    E2: 0104:A308
+    E3: 0104:A7B9
+  size:
+    E1: 94
+    E2: 94
+    E3: 94
 IsNewBackdrop:
   text: IsNewBackdrop()
   def: bbool IsNewBackdrop(word backdrop_num);
   desc: Tracks the most recently used backdrop number and horizontal/vertical scroll flags. The scroll flags are read from global variables, but the backdrop number being tested must be passed in `backdrop_num`. Returns true if these have changed since the previous call, or false if none of the tracked variables have changed.
   ref: /topics/backdrop-initialization-functions/#IsNewBackdrop
+  symbol_address:
+    E1: 0104:F422
+    E2: 0104:F2C7
+    E3: 0104:F713
+  size:
+    E1: 56
+    E2: 56
+    E3: 56
 IsSpriteVisible:
   text: IsSpriteVisible()
   def: |-
@@ -792,106 +1656,274 @@ IsSpriteVisible:
     );
   desc: Returns true if the provided `sprite_type` and `frame` located at `x_origin` and `y_origin` is at least partially visible within the scrolling game window.
   ref: /topics/composite-drawing-functions/#IsSpriteVisible
+  symbol_address:
+    E1: 0104:0846
+    E2: 0104:0846
+    E3: 0104:0850
+  size:
+    E1: 150
+    E2: 150
+    E3: 150
 IsTouchingPlayer:
   text: IsTouchingPlayer()
   def: IsTouchingPlayer(word sprite_type, word frame, word x_origin, word y_origin);
   desc: Returns true if the passed `sprite_type` and `frame` located at `x_origin` and `y_origin` is touching any part of the player sprite at its current position.
   ref: /topics/game-logic-functions/#IsTouchingPlayer
+  symbol_address:
+    E1: 0104:0E03
+    E2: 0104:0E03
+    E3: 0104:0E0D
+  size:
+    E1: 181
+    E2: 181
+    E3: 181
 JoinPath:
   text: JoinPath()
   def: char *JoinPath(char *dir, char *file);
   desc: Combines a string `dir` with a string `file`, creating and returning an absolute pathname.
   ref: /topics/configuration-file-functions/#JoinPath
+  symbol_address:
+    E1: 0104:E010
+    E2: 0104:DEC1
+    E3: 0104:E30D
+  size:
+    E1: 86
+    E2: 86
+    E3: 86
 KeyboardInterruptService:
   text: KeyboardInterruptService()
   def: void interrupt KeyboardInterruptService(void);
   desc: Maintains the state of the keyboard variables. Called in response to the keyboard interrupt event.
   ref: /topics/keyboard-functions/#KeyboardInterruptService
+  symbol_address:
+    E1: 0104:C393
+    E2: 0104:C244
+    E3: 0104:C690
+  size:
+    E1: 117
+    E2: 117
+    E3: 117
 LightenScreenTile:
   text: LightenScreenTile()
   def: void LightenScreenTile(word x, word y);
   desc: Lightens the entire area at the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#LightenScreenTile
+  symbol_address:
+    E1: 0000:034A
+    E2: 0000:034A
+    E3: 0000:034A
+  size:
+    E1: 80
+    E2: 80
+    E3: 80
 LightenScreenTileEast:
   text: LightenScreenTileEast()
   def: void LightenScreenTileEast(word x, word y);
   desc: Lightens the lower-left half of an 8&times;8 tile at the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#LightenScreenTileEast
+  symbol_address:
+    E1: 0000:039A
+    E2: 0000:039A
+    E3: 0000:039A
+  size:
+    E1: 106
+    E2: 106
+    E3: 106
 LightenScreenTileWest:
   text: LightenScreenTileWest()
   def: void LightenScreenTileWest(word x, word y);
   desc: Lightens the lower-right half of an 8&times;8 tile at the video memory tile location identified by column `x` and row `y`.
   ref: /topics/assembly-drawing-functions/#LightenScreenTileWest
+  symbol_address:
+    E1: 0000:02E0
+    E2: 0000:02E0
+    E3: 0000:02E0
+  size:
+    E1: 106
+    E2: 106
+    E3: 106
 LoadActorTileData:
   text: LoadActorTileData()
   def: void LoadActorTileData(char *entry_name);
   desc: Loads actor tile data into system memory.
   ref: /topics/group-file-functions/#LoadActorTileData
+  symbol_address:
+    E1: 0104:05A4
+    E2: 0104:05A4
+    E3: 0104:05AE
+  size:
+    E1: 124
+    E2: 124
+    E3: 124
 LoadBackdropData:
   text: LoadBackdropData()
   def: void LoadBackdropData(char *entry_name, byte *scratch);
   desc: Reads backdrop data from the passed group file `entry_name` and installs it into the appropriate location in the EGA memory. If horizontal and/or vertical scrolling is enabled in the map variables, additional copies are loaded into the EGA memory to facilitate sub-tile parallax scrolling. A `scratch` buffer is required, which must be large enough to hold two complete copies of backdrop data plus an additional 640 bytes.
   ref: /topics/backdrop-initialization-functions/#LoadBackdropData
+  symbol_address:
+    E1: 0104:F45A
+    E2: 0104:F2FF
+    E3: 0104:F74B
+  size:
+    E1: 306
+    E2: 306
+    E3: 306
 LoadCartoonData:
   text: LoadCartoonData()
   def: void LoadCartoonData(char *entry_name);
   desc: Loads the cartoon masked tile image data from the group file `entry_name`.
   ref: /topics/group-file-functions/#LoadCartoonData
+  symbol_address:
+    E1: 0104:1429
+    E2: 0104:1429
+    E3: 0104:1433
+  size:
+    E1: 71
+    E2: 71
+    E3: 71
 LoadConfigurationData:
   text: LoadConfigurationData()
   def: void LoadConfigurationData(char *filename);
   desc: Loads and parses the contents of the configuration file named `filename` into several global variables.
   ref: /topics/configuration-file-functions/#LoadConfigurationData
+  symbol_address:
+    E1: 1095:3970
+    E2: 107F:32E7
+    E3: 10C5:316C
+  size:
+    E1: 592
+    E2: 592
+    E3: 592
 LoadDemoData:
   text: LoadDemoData()
   def: void LoadDemoData(void);
   desc: Copies the data from the PREVDEMO.MNI group file entry into system memory.
   ref: /topics/demo-functions/#LoadDemoData
+  symbol_address:
+    E1: 0104:E936
+    E2: 0104:E7DB
+    E3: 0104:EC27
+  size:
+    E1: 102
+    E2: 102
+    E3: 102
 LoadFontTileData:
   text: LoadFontTileData()
   def: void LoadFontTileData(char *entry_name, byte *dest, word length);
   desc: Loads font data into system memory.
   ref: /topics/group-file-functions/#LoadFontTileData
+  symbol_address:
+    E1: 0104:0361
+    E2: 0104:0361
+    E3: 0104:036B
+  size:
+    E1: 85
+    E2: 85
+    E3: 85
 LoadGameState:
   text: LoadGameState()
   def: bbool LoadGameState(char slot_char);
   desc: Reads the current state of the most important player variables from a file on disk, whose filename extension is influenced by the character provided in `slot_char`. If the file cannot be loaded, returns false. If the file's internal anti-tampering checksum does not match, an error message is displayed and the program exits. Otherwise, returns true.
   ref: /topics/save-file-functions/#LoadGameState
+  symbol_address:
+    E1: 0104:E066
+    E2: 0104:DF17
+    E3: 0104:E363
+  size:
+    E1: 313
+    E2: 313
+    E3: 313
 LoadGroupEntryData:
   text: LoadGroupEntryData()
   def: void LoadGroupEntryData(char *entry_name, byte *dest, word length);
   desc: Reads data from an `entry_name` inside a group file and stores it in the memory block pointed to by `dest`. `length` controls how much data is copied.
   ref: /topics/group-file-functions/#LoadGroupEntryData
+  symbol_address:
+    E1: 0104:0569
+    E2: 0104:0569
+    E3: 0104:0573
+  size:
+    E1: 59
+    E2: 59
+    E3: 59
 LoadInfoData:
   text: LoadInfoData()
   def: void LoadInfoData(char *entry_name, word *dest, word length);
   desc: Reads a group file `entry_name` containing "info" data into the memory block pointed to by `dest`.
   ref: /topics/group-file-functions/#LoadInfoData
+  symbol_address:
+    E1: 0104:067F
+    E2: 0104:067F
+    E3: 0104:0689
+  size:
+    E1: 59
+    E2: 59
+    E3: 59
 LoadMapData:
   text: LoadMapData()
   def: void LoadMapData(word level_num);
   desc: Reads the map file associated with the passed `level_num` and initializes the global variables that are most affected by a map file's contents.
   ref: /topics/level-and-map-functions/#LoadMapData
+  symbol_address:
+    E1: 0104:F209
+    E2: 0104:F0AE
+    E3: 0104:F4FA
+  size:
+    E1: 537
+    E2: 537
+    E3: 537
 LoadMaskedTileData:
   text: LoadMaskedTileData()
   def: void LoadMaskedTileData(char *entry_name);
   desc: Loads data from the group file entry named `entry_name` and stores it in the masked tile data block.
   ref: /topics/group-file-functions/#LoadMaskedTileData
+  symbol_address:
+    E1: 0104:C5AB
+    E2: 0104:C45C
+    E3: 0104:C8A8
+  size:
+    E1: 61
+    E2: 61
+    E3: 61
 LoadMusicData:
   text: LoadMusicData()
   def: Music *LoadMusicData(word music_num, Music *dest);
   desc: Opens music data from a group file entry (whose name is indexed by a numerical `music_num`), loads the data into the {{< lookup/cref Music >}} structure pointed to by `dest`, and prepares the AdLib service to receive new music data. Returns a pointer to `dest`.
   ref: /topics/group-file-functions/#LoadMusicData
+  symbol_address:
+    E1: 1095:15DE
+    E2: 107F:15E3
+    E3: 10C5:15E1
+  size:
+    E1: 110
+    E2: 110
+    E3: 110
 LoadSoundData:
   text: LoadSoundData()
   def: void LoadSoundData(char *entry_name, word *dest, int skip);
   desc: Reads data from the group file entry named by `entry_name` and stores it in the `dest` memory block along with index structures.
   ref: /topics/group-file-functions/#LoadSoundData
+  symbol_address:
+    E1: 0104:049E
+    E2: 0104:049E
+    E3: 0104:04A8
+  size:
+    E1: 154
+    E2: 154
+    E3: 154
 LoadTileAttributeData:
   text: LoadTileAttributeData()
   def: void LoadTileAttributeData(char *entry_name);
   desc: Loads data from the group file entry named `entry_name` and stores it in the tile attribute data block.
   ref: /topics/group-file-functions/#LoadTileAttributeData
+  symbol_address:
+    E1: 0104:C56E
+    E2: 0104:C41F
+    E3: 0104:C86B
+  size:
+    E1: 61
+    E2: 61
+    E3: 61
 MAP_CELL_ADDR:
   text: MAP_CELL_ADDR()
   def: '#define MAP_CELL_ADDR(x, y) (mapData.w + ((y) << mapYPower) + x)'
@@ -914,53 +1946,133 @@ MoveAndDrawActors:
   def: void MoveAndDrawActors(void);
   desc: Iterates over each actor currently active in the game and calls the per-actor processing function.
   ref: /topics/actors/movement-functions/#MoveAndDrawActors
+  symbol_address:
+    E1: 0104:C2A8
+    E2: 0104:C159
+    E3: 0104:C5A5
+  size:
+    E1: 39
+    E2: 39
+    E3: 39
 MoveAndDrawDecorations:
   text: MoveAndDrawDecorations()
   def: void MoveAndDrawDecorations(void);
   desc: Draws, advances the animation step, and moves each decoration currently running, and handles looping and ending conditions.
   ref: /topics/entities/decoration-functions/#MoveAndDrawDecorations
+  symbol_address:
+    E1: 0104:A70C
+    E2: 0104:A558
+    E3: 0104:AA09
+  size:
+    E1: 302
+    E2: 302
+    E3: 302
 MoveAndDrawShards:
   text: MoveAndDrawShards()
   def: void MoveAndDrawShards(void);
   desc: Moves and draws the sprites for all shards that are currently active. When a shard animation ends its slot is marked inactive.
   ref: /topics/entities/shard-functions/#MoveAndDrawShards
+  symbol_address:
+    E1: 0104:A172
+    E2: 0104:9FBE
+    E3: 0104:A438
+  size:
+    E1: 536
+    E2: 536
+    E3: 536
 MoveAndDrawSpawners:
   text: MoveAndDrawSpawners()
   def: void MoveAndDrawSpawners(void);
   desc: Moves and draws the sprites for all spawners that are currently active. When a spawner animation ends (either due to finishing the animation or hitting a solid map tile) its slot is marked inactive and a new actor is created in the spawner's final position.
   ref: /topics/entities/spawner-functions/#MoveAndDrawSpawners
+  symbol_address:
+    E1: 0104:A57E
+    E2: 0104:A3CA
+    E3: 0104:A87B
+  size:
+    E1: 263
+    E2: 263
+    E3: 263
 MoveFountains:
   text: MoveFountains()
   def: void MoveFountains(void);
   desc: Iterates through each fountain defined on the current map and adjusts their position by one tile.
   ref: /topics/entities/platform-functions/#MoveFountains
+  symbol_address:
+    E1: 0104:1840
+    E2: 0104:1840
+    E3: 0104:184A
+  size:
+    E1: 291
+    E2: 291
+    E3: 291
 MovePlatforms:
   text: MovePlatforms()
   def: void MovePlatforms(void);
   desc: Iterates through each platform defined on the current map and adjusts their position by one tile.
   ref: /topics/entities/platform-functions/#MovePlatforms
+  symbol_address:
+    E1: 0104:16A4
+    E2: 0104:16A4
+    E3: 0104:16AE
+  size:
+    E1: 296
+    E2: 296
+    E3: 296
 #MovePlayer:
 MovePlayerPlatform:
   text: MovePlayerPlatform()
   def: void MovePlayerPlatform(word x_west, word x_east, word x_dir, word y_dir);
   desc: Determines if a platform covering X positions `x_west` to `x_east` is interacting with the player, and if so, modifies the player's position to keep them attached to the platform as it moves. The current movement direction of the platform is passed in horizontal/vertical arguments `x_dir` and `y_dir`.
   ref: /topics/entities/platform-functions/#MovePlayerPlatform
+  symbol_address:
+    E1: 0104:152A
+    E2: 0104:152A
+    E3: 0104:1534
+  size:
+    E1: 378
+    E2: 378
+    E3: 378
 MovePlayerPush:
   text: MovePlayerPush()
   def: void MovePlayerPush(void);
   desc: Handles one game tick of player push movement.
   ref: /topics/player-movement-functions/#MovePlayerPush
+  symbol_address:
+    E1: 0104:CA4E
+    E2: 0104:C8FF
+    E3: 0104:CD4B
+  size:
+    E1: 385
+    E2: 385
+    E3: 385
 #MovePlayerScooter:
 NewActor:
   text: NewActor()
   def: void NewActor(word actor_type, word x_origin, word y_origin);
   desc: Dynamically inserts a new actor having the specified `actor_type` into the game world at the location specified by `x_origin` and `y_origin`.
   ref: /topics/actors/initialization-functions/#NewActor
+  symbol_address:
+    E1: 0104:9FC3
+    E2: 0104:9E0F
+    E3: 0104:A289
+  size:
+    E1: 145
+    E2: 145
+    E3: 145
 NewActorAtIndex:
   text: NewActorAtIndex()
   def: bbool NewActorAtIndex(word index, word actor_type, word x, word y);
   desc: Inserts an actor of the specified `actor_type` into the {{< lookup/cref actors >}} array at the specified `index` position. The initial origin position is provided in `x` and `y`, and X/Y shifts are applied here. Returns true as long as `actor_type` referred to a defined actor type.
   ref: /topics/actors/initialization-functions/#NewActorAtIndex
+  symbol_address:
+    E1: 0104:793C
+    E2: 0104:7788
+    E3: 0104:7C02
+  size:
+    E1: 9863
+    E2: 9863
+    E3: 9863
 NewDecoration:
   text: NewDecoration()
   def: |-
@@ -970,101 +2082,261 @@ NewDecoration:
     );
   desc: Creates a new decoration at `x_origin` and `y_origin` consisting of the passed `sprite_type` with an animation duration of `num_frames`. `dir` controls the straight-line direction the decoration will move in, and `num_times` controls how many times the animation sequence will play before ending.
   ref: /topics/entities/decoration-functions/#NewDecoration
+  symbol_address:
+    E1: 0104:A6A5
+    E2: 0104:A4F1
+    E3: 0104:A9A2
+  size:
+    E1: 103
+    E2: 103
+    E3: 103
 NewExplosion:
   text: NewExplosion()
   def: void NewExplosion(word x_origin, word y_origin);
   desc: Creates a new instance of an explosion at the passed `x_origin` and `y_origin` map tile coordinates, sets the animation up to run, and plays the explosion sound. The actual location of the explosion sprite will be two tiles lower on the screen than `y_origin` requests.
   ref: /topics/entities/explosion-functions/#NewExplosion
+  symbol_address:
+    E1: 0104:A3AA
+    E2: 0104:A1F6
+    E3: 0104:A670
+  size:
+    E1: 74
+    E2: 74
+    E3: 74
 NewMapActorAtIndex:
   text: NewMapActorAtIndex()
   def: void NewMapActorAtIndex(word index, word map_actor_type, word x_origin, word y_origin);
   desc: Creates actors and special actors based on the passed `map_actor_type`. For regular actors, `index` controls the position in the actors array where the new actor will be created; for special actors it does nothing. For both actor kinds, `x_origin` and `y_origin` control the actor's initial position within the map.
   ref: /topics/actors/initialization-functions/#NewMapActorAtIndex
+  symbol_address:
+    E1: 0104:F048
+    E2: 0104:EEED
+    E3: 0104:F339
+  size:
+    E1: 449
+    E2: 449
+    E3: 449
 NewPounceDecoration:
   text: NewPounceDecoration()
   def: void NewPounceDecoration(word x, word y);
   desc: Inserts six decorations representing pieces of pounce debris into the game world, radiating away from the origin point specified in `x` and `y`.
   ref: /topics/entities/decoration-functions/#NewPounceDecoration
+  symbol_address:
+    E1: 0104:A9CF
+    E2: 0104:A81B
+    E3: 0104:ACCC
+  size:
+    E1: 158
+    E2: 158
+    E3: 158
 NewShard:
   text: NewShard()
   def: void NewShard(word sprite_type, word frame, word x_origin, word y_origin);
   desc: Creates a new shard at `x_origin` and `y_origin` consisting of the passed `sprite_type` and `frame`.
   ref: /topics/entities/shard-functions/#NewShard
+  symbol_address:
+    E1: 0104:A104
+    E2: 0104:9F50
+    E3: 0104:A3CA
+  size:
+    E1: 110
+    E2: 110
+    E3: 110
 NewSpawner:
   text: NewSpawner()
   def: void NewSpawner(word actor_type, word x_origin, word y_origin);
   desc: Creates a new instance of a spawner at the passed `x_origin` and `y_origin` map tile coordinates and sets the animation up to run. `actor_type` controls both the type of actor that will be created when the spawner completes, and the sprite type that will be drawn while the spawner is running.
   ref: /topics/entities/spawner-functions/#NewSpawner
+  symbol_address:
+    E1: 0104:A538
+    E2: 0104:A384
+    E3: 0104:A835
+  size:
+    E1: 70
+    E2: 70
+    E3: 70
 NextLevel:
   text: NextLevel()
   def: void NextLevel(void);
   desc: Selects the next level to be played in the progression. Depending on the number of stars collected, it conditionally takes the player to or from one of the bonus levels at regular intervals. If a demo is being recorded or played back, a fixed (and discontinuous) progression of levels is selected instead.
   ref: /topics/level-and-map-functions/#NextLevel
+  symbol_address:
+    E1: 0104:EE32
+    E2: 0104:ECD7
+    E3: 0104:F123
+  size:
+    E1: 272
+    E2: 272
+    E3: 272
 PCSpeakerService:
   text: PCSpeakerService()
   def: void PCSpeakerService(void);
   desc: Sends a new fragment of sound effect data to the PC speaker.
   ref: /topics/pc-speaker-and-timing-functions/#PCSpeakerService
+  symbol_address:
+    E1: 0104:C408
+    E2: 0104:C2B9
+    E3: 0104:C705
+  size:
+    E1: 163
+    E2: 163
+    E3: 163
 ProcessActor:
   text: ProcessActor()
   def: void ProcessActor(word index);
   desc: Handles the overall per-tick movement for one actor, identified by its `index` position in the actors array. If the actor is marked as dead, this function is a no-op.
   ref: /topics/actors/movement-functions/#ProcessActor
+  symbol_address:
+    E1: 0104:C0BA
+    E2: 0104:BF6B
+    E3: 0104:C3B7
+  size:
+    E1: 494
+    E2: 494
+    E3: 494
 ProcessGameInput:
   text: ProcessGameInput()
   def: byte ProcessGameInput(byte demo_state);
   desc: Handles all keyboard and joystick input while the game is being played. Depending on the value passed in `demo_state` (which should be one of the {{< lookup/cref DEMO_STATE >}} values), this behavior is modified to record or play back demo data. Returns one of the {{< lookup/cref GAME_INPUT >}} values to control the game loop's flow.
   ref: /topics/game-loop-functions/#ProcessGameInput
+  symbol_address:
+    E1: 0104:E99C
+    E2: 0104:E841
+    E3: 0104:EC8D
+  size:
+    E1: 574
+    E2: 574
+    E3: 574
 ProcessGameInputHelper:
   text: ProcessGameInputHelper()
   def: byte ProcessGameInputHelper(word active_page, byte demo_state);
   desc: Prepares the video hardware for the possibility of showing a menu or dialog during the game loop. `active_page` should contain the "active" (i.e. currently displayed) video page number, and `demo_state` should hold one of the {{< lookup/cref DEMO_STATE >}} values.
   ref: /topics/game-loop-functions/#ProcessGameInputHelper
+  symbol_address:
+    E1: 0104:C2CF
+    E2: 0104:C180
+    E3: 0104:C5CC
+  size:
+    E1: 71
+    E2: 71
+    E3: 71
 ProcessAndDrawPlayer:
   text: ProcessAndDrawPlayer()
   def: bbool ProcessAndDrawPlayer(void);
   desc: Determines the player's reaction to pain or death and draws the player sprite accordingly. If the player has died and completed the relevant death animation sequence, this function reloads the game state to the way it was when the level was last started and returns true. If the level has not been restarted, this function returns false.
   ref: /topics/game-logic-functions/#ProcessAndDrawPlayer
+  symbol_address:
+    E1: 0104:DDC2
+    E2: 0104:DC73
+    E3: 0104:E0BF
+  size:
+    E1: 560
+    E2: 560
+    E3: 560
 ProcessPlayerDizzy:
   text: ProcessPlayerDizzy()
   def: void ProcessPlayerDizzy(void);
   desc: Determines when a queued bout of dizziness should become effective, and handles the cases where dizziness wears off naturally or is abruptly canceled.
   ref: /topics/game-logic-functions/#ProcessPlayerDizzy
+  symbol_address:
+    E1: 0104:DD56
+    E2: 0104:DC07
+    E3: 0104:E053
+  size:
+    E1: 108
+    E2: 108
+    E3: 108
 ProfileCPU:
   text: ProfileCPU()
   def: void ProfileCPU(void);
   desc: Measures the execution speed of the CPU relative to the system's Programmable Interval Timer, and records the number of busy loop iterations the CPU requires to generate various delay times.
   ref: /topics/adlib-functions/#ProfileCPU
+  symbol_address:
+    E1: 1095:0062
+    E2: 107F:0067
+    E3: 10C5:0065
+  size:
+    E1: 151
+    E2: 151
+    E3: 151
 ProfileCPUService:
   text: ProfileCPUService()
   def: void interrupt ProfileCPUService(void);
   desc: Benchmarks the timing characteristics of the CPU relative to the system's Programmable Interval Timer.
   ref: /topics/adlib-functions/#ProfileCPUService
+  symbol_address:
+    E1: 1095:003E
+    E2: 107F:0043
+    E3: 10C5:0041
+  size:
+    E1: 36
+    E2: 36
+    E3: 36
 PromptKeyBind:
   text: PromptKeyBind()
   def: bbool PromptKeyBind(byte *target_var, word x, char *message);
   desc: Displays `message` text at the provided `x` position (and a fixed Y position) on the screen and reads a single scancode into the memory pointed to by `target_var`. Returns true if the user pressed the <kbd>Esc</kbd> key and false for all other keys.
   ref: /topics/menu-functions/#PromptKeyBind
+  symbol_address:
+    E1: 1095:20B7
+    E2: 107F:1D01
+    E3: 10C5:1E19
+  size:
+    E1: 92
+    E2: 92
+    E3: 92
 PromptLevelWarp:
   text: PromptLevelWarp()
   def: bbool PromptLevelWarp(void);
   desc: Prompts the user to select a map number from 1 to 12 (or 13, depending on the episode) and jumps to the start of the chosen map. Returns true if the map changed, or false if the user entered a non-numeric or out-of-range value.
   ref: /topics/menu-functions/#PromptLevelWarp
+  symbol_address:
+    E1: 0104:E4D1
+    E2: 0104:E382
+    E3: 0104:E7CE
+  size:
+    E1: 134
+    E2: 134
+    E3: 134
 PromptQuitConfirm:
   text: PromptQuitConfirm()
   def: bbool PromptQuitConfirm(void);
   desc: Displays a window prompting the user to confirm their intention to quit, and blocks until a key is pressed. The return value is true if the <kbd>Y</kbd> key was pressed, or false in the case of any other key.
   ref: /topics/menu-functions/#PromptQuitConfirm
+  symbol_address:
+    E1: 1095:354E
+    E2: 107F:2EC5
+    E3: 10C5:2D4A
+  size:
+    E1: 62
+    E2: 62
+    E3: 62
 PromptRestoreGame:
   text: PromptRestoreGame()
   def: byte PromptRestoreGame(void);
   desc: Displays a menu that prompts the user to pick a save game slot (1-9) to load from, and gameplay jumps to that state. The user may cancel this prompt without loading by pressing <kbd>Esc</kbd>, <kbd>Space</kbd>, or <kbd>Enter</kbd>. The return value is one of the {{< lookup/cref RESTORE_GAME >}} constants.
   ref: /topics/menu-functions/#PromptRestoreGame
+  symbol_address:
+    E1: 0104:E2BA
+    E2: 0104:E16B
+    E3: 0104:E5B7
+  size:
+    E1: 182
+    E2: 182
+    E3: 182
 PromptSaveGame:
   text: PromptSaveGame()
   def: void PromptSaveGame(void);
   desc: Displays a menu that prompts the user to pick a save game slot (1-9) to save the state of their game into, then the save is carried out. The user may cancel this prompt without saving by pressing <kbd>Esc</kbd>, <kbd>Space</kbd>, or <kbd>Enter</kbd>.
   ref: /topics/menu-functions/#PromptSaveGame
+  symbol_address:
+    E1: 0104:E370
+    E2: 0104:E221
+    E3: 0104:E66D
+  size:
+    E1: 353
+    E2: 353
+    E3: 353
 ReadAndEchoText:
   text: ReadAndEchoText()
   def: |-
@@ -1073,21 +2345,53 @@ ReadAndEchoText:
     );
   desc: Presents a wait spinner near (`x_origin`, `y_origin`) that accepts at most `max_length` characters of keyboard input. The typed characters are echoed to the screen and stored in the memory pointed to by `dest`, which should be large enough to hold `max_length` + 1 bytes of data.
   ref: /topics/user-interface-functions/#ReadAndEchoText
+  symbol_address:
+    E1: 1095:0B81
+    E2: 107F:0B86
+    E3: 10C5:0B84
+  size:
+    E1: 196
+    E2: 196
+    E3: 196
 ReadJoystickTimes:
   text: ReadJoystickTimes()
   def: void ReadJoystickTimes(word stick_num, int *x_time, int *y_time);
   desc: Triggers a timing interval on the joystick hardware and returns the raw interval lengths for the one joystick, identified by `stick_num`, in `x_time` and `y_time`.
   ref: /topics/joystick-functions/#ReadJoystickTimes
+  symbol_address:
+    E1: 1095:06D2
+    E2: 107F:06D7
+    E3: 10C5:06D5
+  size:
+    E1: 137
+    E2: 137
+    E3: 137
 ReadDemoFrame:
   text: ReadDemoFrame()
   def: bbool ReadDemoFrame(void);
   desc: Reads the next byte from the demo data and updates the global input command state. Returns true on end of data.
   ref: /topics/demo-functions/#ReadDemoFrame
+  symbol_address:
+    E1: 0104:E7F4
+    E2: 0104:E699
+    E3: 0104:EAE5
+  size:
+    E1: 135
+    E2: 135
+    E3: 135
 ReadJoystickState:
   text: ReadJoystickState()
   def: JoystickState ReadJoystickState(word stick_num);
   desc: Polls the joystick identified by `stick_num` for its current position and button state, and updates the player control variables accordingly.
   ref: /topics/demo-functions/#ReadJoystickState
+  symbol_address:
+    E1: 1095:075B
+    E2: 107F:0760
+    E3: 10C5:075E
+  size:
+    E1: 402
+    E2: 402
+    E3: 402
 SET_PLAYER_DIZZY:
   text: SET_PLAYER_DIZZY()
   def: '#define SET_PLAYER_DIZZY() { queuePlayerDizzy = true; }'
@@ -1098,51 +2402,131 @@ SaveConfigurationData:
   def: void SaveConfigurationData(char *filename);
   desc: Saves the state of the global game configuration variables to the configuration file named `filename`.
   ref: /topics/configuration-file-functions/#SaveConfigurationData
+  symbol_address:
+    E1: 1095:3BC0
+    E2: 107F:3537
+    E3: 10C5:33BC
+  size:
+    E1: 288
+    E2: 288
+    E3: 288
 SaveDemoData:
   text: SaveDemoData()
   def: void SaveDemoData(void);
   desc: Flushes all of the in-memory demo data to the PREVDEMO.MNI file on disk -- it does not modify any group file contents.
   ref: /topics/demo-functions/#SaveDemoData
+  symbol_address:
+    E1: 0104:E8DB
+    E2: 0104:E780
+    E3: 0104:EBCC
+  size:
+    E1: 91
+    E2: 91
+    E3: 91
 SaveGameState:
   text: SaveGameState()
   def: void SaveGameState(char slot_char);
   desc: Writes the current state of the most important player variables to a file on disk, whose filename extension is influenced by the character provided in `slot_char`.
   ref: /topics/save-file-functions/#SaveGameState
+  symbol_address:
+    E1: 0104:E19F
+    E2: 0104:E050
+    E3: 0104:E49C
+  size:
+    E1: 283
+    E2: 283
+    E3: 283
 SelectActivePage:
   text: SelectActivePage()
   def: void SelectActivePage(word page_num);
   desc: Switches the actively-displayed video memory page to `page_num`, causing its contents to appear on the screen, using a BIOS interrupt call.
   ref: /topics/ega-functions/#SelectActivePage
+  symbol_address:
+    E1: 0000:0404
+    E2: 0000:0404
+    E3: 0000:0404
+  size:
+    E1: 12
+    E2: 12
+    E3: 12
 SelectDrawPage:
   text: SelectDrawPage()
   def: void SelectDrawPage(word page_num);
   desc: Changes the draw page to `page_num` and updates the memory address that subsequent drawing procedures should operate on.
   ref: /topics/ega-functions/#SelectDrawPage
+  symbol_address:
+    E1: 0000:0276
+    E2: 0000:0276
+    E3: 0000:0276
+  size:
+    E1: 17
+    E2: 17
+    E3: 17
 SetPIT0Value:
   text: SetPIT0Value()
   def: void SetPIT0Value(word value);
   desc: Configures channel 0 of the system's Programmable Interval Timer with the provided counter `value`.
   ref: /topics/adlib-functions/#SetPIT0Value
+  symbol_address:
+    E1: 1095:0000
+    E2: 107F:0005
+    E3: 10C5:0003
+  size:
+    E1: 34
+    E2: 34
+    E3: 34
 SetAdLibRegister:
   text: SetAdLibRegister()
   def: void SetAdLibRegister(byte addr, byte data);
   desc: Writes one `data` byte to the AdLib register at address `addr`, assuming the hardware is present at the standard I/O ports.
   ref: /topics/adlib-functions/#SetAdLibRegister
+  symbol_address:
+    E1: 1095:0111
+    E2: 107F:0116
+    E3: 10C5:0114
+  size:
+    E1: 66
+    E2: 66
+    E3: 66
 SetBorderColorRegister:
   text: SetBorderColorRegister()
   def: void SetBorderColorRegister(word color_value);
   desc: Configures the display adapter to use `color_value` to fill the overscan area at the edges of the screen, using a BIOS interrupt call.
   ref: /topics/ega-functions/#SetBorderColorRegister
+  symbol_address:
+    E1: 0000:01E6
+    E2: 0000:01E6
+    E3: 0000:01E6
+  size:
+    E1: 16
+    E2: 16
+    E3: 16
 SetInterruptRate:
   text: SetInterruptRate()
   def: void SetInterruptRate(word ints_second);
   desc: Configures channel 0 of the system's Programmable Interval Timer with an interrupts-per-second value specified by `ints_second`.
   ref: /topics/adlib-functions/#SetInterruptRate
+  symbol_address:
+    E1: 1095:0022
+    E2: 107F:0027
+    E3: 10C5:0025
+  size:
+    E1: 28
+    E2: 28
+    E3: 28
 SetMapTile:
   text: SetMapTile()
   def: void SetMapTile(word value, word x, word y);
   desc: Sets one map tile at horizontal position `x` and vertical position `y` to the value passed in `value`.
   ref: /topics/level-and-map-functions/#SetMapTile
+  symbol_address:
+    E1: 0104:3374
+    E2: 0104:3374
+    E3: 0104:337E
+  size:
+    E1: 35
+    E2: 35
+    E3: 35
 SetMapTile4:
   text: SetMapTile4()
   def: |-
@@ -1151,21 +2535,53 @@ SetMapTile4:
     );
   desc: Sets a horizontal span of four map tiles, starting at horizontal position `x_origin` and vertical position `y_origin`, to the values passed in `val1` through `val4`.
   ref: /topics/level-and-map-functions/#SetMapTile4
+  symbol_address:
+    E1: 0104:17F1
+    E2: 0104:17F1
+    E3: 0104:17FB
+  size:
+    E1: 79
+    E2: 79
+    E3: 79
 SetMapTileRepeat:
   text: SetMapTileRepeat()
   def: void SetMapTileRepeat(word value, word count, word x_origin, word y_origin);
   desc: Sets a horizontal span of `count` map tiles, starting at horizontal position `x_origin` and vertical position `y_origin`, to the value passed in `value`.
   ref: /topics/level-and-map-functions/#SetMapTileRepeat
+  symbol_address:
+    E1: 0104:17CC
+    E2: 0104:17CC
+    E3: 0104:17D6
+  size:
+    E1: 37
+    E2: 37
+    E3: 37
 SetMusicState:
   text: SetMusicState()
   def: bool SetMusicState(bool state);
   desc: Enables or disables AdLib output based on the value of `state`.
   ref: /topics/adlib-functions/#SetMusicState
+  symbol_address:
+    E1: 1095:0352
+    E2: 107F:0357
+    E3: 10C5:0355
+  size:
+    E1: 77
+    E2: 77
+    E3: 77
 SetPaletteRegister:
   text: SetPaletteRegister()
   def: void SetPaletteRegister(word palette_index, word color_value);
   desc: Configures the display adapter to use `color_value` as the screen display color at positions where the video memory contains `palette_index`, using a BIOS interrupt call.
   ref: /topics/ega-functions/#SetPaletteRegister
+  symbol_address:
+    E1: 0000:01F6
+    E2: 0000:01F6
+    E3: 0000:01F6
+  size:
+    E1: 16
+    E2: 16
+    E3: 16
 SetPlayerPush:
   text: SetPlayerPush()
   def: |-
@@ -1175,216 +2591,554 @@ SetPlayerPush:
     );
   desc: Configures the global game state to cause the player to be pushed in a direction `dir` at `speed` tiles per game tick for a total duration of `max_time` game ticks. During this time, the player sprite will be drawn using `force_frame` as the frame number. If the `abortable` flag is set, the player can cancel the effect of the push by jumping. If the `blockable` flag is set, the push will consider and stop at any solid map tiles encountered along the way.
   ref: /topics/player-movement-functions/#SetPlayerPush
+  symbol_address:
+    E1: 0104:CA03
+    E2: 0104:C8B4
+    E3: 0104:CD00
+  size:
+    E1: 75
+    E2: 75
+    E3: 75
 SetVideoMode:
   text: SetVideoMode()
   def: void SetVideoMode(word mode_num);
   desc: Changes the system's video mode to the mode number specified by `mode_num`, using a BIOS interrupt call.
   ref: /topics/ega-functions/#SetVideoMode
+  symbol_address:
+    E1: 0000:01CD
+    E2: 0000:01CD
+    E3: 0000:01CD
+  size:
+    E1: 25
+    E2: 25
+    E3: 25
 ShowAlteredFileError:
   text: ShowAlteredFileError()
   def: void ShowAlteredFileError(void);
   desc: Shows when the user tries to load a manipulated save file whose checksum does not match the expected value.
   ref: /topics/dialog-functions/#ShowAlteredFileError
+  symbol_address:
+    E1: 1095:3439
+    E2: 107F:2BF8
+    E3: 10C5:2D10
+  size:
+    E1: 42
+    E2: 42
+    E3: 42
 ShowBombHint:
   text: ShowBombHint()
   def: void ShowBombHint(void);
   desc: Displays a hint dialog that informs the player that they can't use the bomb key until they have picked up a bomb.
   ref: /topics/dialog-functions/#ShowBombHint
+  symbol_address:
+    E1: 1095:461D
+    E2: 107F:3C5E
+    E3: 10C5:3F27
+  size:
+    E1: 156
+    E2: 156
+    E3: 156
 ShowCheatMessage:
   text: ShowCheatMessage()
   def: void ShowCheatMessage(void);
   desc: Displays a static dialog informing the user that they have entered the cheat code successfully and explaining the effect.
   ref: /topics/dialog-functions/#ShowCheatMessage
+  symbol_address:
+    E1: 1095:4310
+    E2: 107F:3961
+    E3: 10C5:3C2A
+  size:
+    E1: 90
+    E2: 90
+    E3: 90
 ShowCongratulations:
   text: ShowCongratulations()
   def: void ShowCongratulations(void);
   desc: Shows a brief page of post-ending story and a pitch for another upcoming game.
   ref: /topics/dialog-functions/#ShowCongratulations
+  symbol_address:
+    E2: 107F:174A
+    E3: 10C5:1748
+  size:
+    E2: 1
+    E3: 283
 ShowCopyright:
   text: ShowCopyright()
   def: void ShowCopyright(void);
   desc: Shows an abbreviated list of credits, the copyright year, and the game version.
   ref: /topics/dialog-functions/#ShowCopyright
+  symbol_address:
+    E1: 1095:33CC
+    E2: 107F:2B8B
+    E3: 10C5:2CA3
+  size:
+    E1: 109
+    E2: 109
+    E3: 109
 ShowE1CliffhangerMessage:
   text: ShowE1CliffhangerMessage()
   def: void ShowE1CliffhangerMessage(word actor_type);
   desc: Presents a sequence of two dialogs introducing the "cliffhanger" ending sequence of episode one, followed by ending the game by setting {{< lookup/cref winGame >}} to true. During each call, the passed `actor_type` value is used to determine which text to show, or if the game should end.
   ref: /topics/dialog-functions/#ShowE1CliffhangerMessage
+  symbol_address:
+    E1: 1095:346C
+    E2: 107F:2EBE
+    E3: 10C5:2D43
+  size:
+    E1: 226
+    E2: 7
+    E3: 7
 ShowEnding:
   text: ShowEnding()
   def: void ShowEnding(void);
   desc: Presents a sequence of dialogs when an episode of the game has been played to completion.
   ref: /topics/dialog-functions/#ShowEnding
+  symbol_address:
+    E1: 1095:3CE0
+    E2: 107F:3657
+    E3: 10C5:34DC
+  size:
+    E1: 472
+    E2: 455
+    E3: 1556
 ShowForeignOrders:
   text: ShowForeignOrders()
   def: void ShowForeignOrders(void);
   desc: Displays five consecutive pages of ordering information for international customers.
   ref: /topics/dialog-functions/#ShowForeignOrders
+  symbol_address:
+    E1: 1095:2F17
+  size:
+    E1: 1163
 ShowGameRedefineMenu:
   text: ShowGameRedefineMenu()
   def: void ShowGameRedefineMenu(void);
   desc: Shows a menu labeled "Game Redefine" in response to the user selecting the <kbd>G</kbd> option in either the main menu or the in-game help menu. This function simply dispatches one of the submenu functions in response to the user's input.
   ref: /topics/menu-functions/#ShowGameRedefineMenu
+  symbol_address:
+    E1: 1095:38A1
+    E2: 107F:3218
+    E3: 10C5:309D
+  size:
+    E1: 207
+    E2: 207
+    E3: 207
 ShowHealthHint:
   text: ShowHealthHint()
   def: void ShowHealthHint(void);
   desc: Displays a hint dialog that teaches the player what {{< lookup/actor type=28 strip=true plural=true >}} are and how they affect gameplay.
   ref: /topics/dialog-functions/#ShowHealthHint
+  symbol_address:
+    E1: 1095:481D
+    E2: 107F:3E5E
+    E3: 10C5:4127
+  size:
+    E1: 166
+    E2: 166
+    E3: 166
 ShowHelpMenu:
   text: ShowHelpMenu()
   def: byte ShowHelpMenu(void);
   desc: Shows a menu labeled "Help Menu" in response to the user pressing <kbd>F1</kbd> during the game. It gives access to save/restore functions and a subset of options offered by the main menu. Returns one of the {{< lookup/cref HELP_MENU >}} variables.
   ref: /topics/menu-functions/#ShowHelpMenu
+  symbol_address:
+    E1: 0104:E6EA
+    E2: 0104:E58F
+    E3: 0104:E9DB
+  size:
+    E1: 266
+    E2: 266
+    E3: 266
 ShowHighScoreTable:
   text: ShowHighScoreTable()
   def: void ShowHighScoreTable(void);
   desc: Shows the top ten scores that have been reached and the name of the player who earned each spot. The table can optionally be erased by pressing the <kbd>F10</kbd> key and confirming with the <kbd>Y</kbd> key.
   ref: /topics/menu-functions/#ShowHighScoreTable
+  symbol_address:
+    E1: 1095:11A9
+    E2: 107F:11AE
+    E3: 10C5:11AC
+  size:
+    E1: 328
+    E2: 328
+    E3: 328
 ShowHintGlobeMessage:
   text: ShowHintGlobeMessage()
   def: void ShowHintGlobeMessage(word hint_num);
   desc: Displays a dialog containing an animated context-appropriate hint message. The message is selected via the numeric `hint_num` argument.
   ref: /topics/dialog-functions/#ShowHintGlobeMessage
+  symbol_address:
+    E1: 1095:3EB8
+    E2: 107F:381E
+    E3: 10C5:3AF0
+  size:
+    E1: 1112
+    E2: 323
+    E3: 314
 ShowHintsAndKeys:
   text: ShowHintsAndKeys()
   def: void ShowHintsAndKeys(word top);
   desc: Displays a page of helpful hints, followed by two pages of keyboard help. The `top` parameter influences the vertical position of the frames, to allow the dialogs to be placed higher on the screen while the game is being played.
   ref: /topics/dialog-functions/#ShowHintsAndKeys
+  symbol_address:
+    E1: 1095:258D
+    E2: 107F:21D7
+    E3: 10C5:22EF
+  size:
+    E1: 857
+    E2: 857
+    E3: 857
 ShowInstructions:
   text: ShowInstructions()
   def: void ShowInstructions(void);
   desc: Shows a progression of five pages of dialog frames that teach the user how to play the game.
   ref: /topics/dialog-functions/#ShowInstructions
+  symbol_address:
+    E1: 1095:28E6
+    E2: 107F:2530
+    E3: 10C5:2648
+  size:
+    E1: 1045
+    E2: 1045
+    E3: 1045
 ShowJoystickConfiguration:
   text: ShowJoystickConfiguration()
   def: void ShowJoystickConfiguration(word stick_num);
   desc: Prompts the user to calibrate the joystick timings and button configuration for the joystick identified by `stick_num`.
   ref: /topics/joystick-functions/#ShowJoystickConfiguration
+  symbol_address:
+    E1: 1095:0C45
+    E2: 107F:0C4A
+    E3: 10C5:0C48
+  size:
+    E1: 641
+    E2: 641
+    E3: 641
 ShowKeyboardConfiguration:
   text: ShowKeyboardConfiguration()
   def: void ShowKeyboardConfiguration(void);
   desc: Shows and handles the keyboard configuration (sometimes called keyboard redefine) menu.
   ref: /topics/menu-functions/#ShowKeyboardConfiguration
+  symbol_address:
+    E1: 1095:2113
+    E2: 107F:1D5D
+    E3: 10C5:1E75
+  size:
+    E1: 560
+    E2: 560
+    E3: 560
 ShowLevelIntro:
   text: ShowLevelIntro()
   def: void ShowLevelIntro(word level_num);
   desc: Presents the animated message "Now entering level..." followed by the map number of the passed `level_num`.
   ref: /topics/dialog-functions/#ShowLevelIntro
+  symbol_address:
+    E1: 1095:4797
+    E2: 107F:3DD8
+    E3: 10C5:40A1
+  size:
+    E1: 134
+    E2: 134
+    E3: 134
 ShowMemoryUsage:
   text: ShowMemoryUsage()
   def: void ShowMemoryUsage(void);
   desc: Displays a debug dialog with a few live statistics about available system memory and the current number of actors.
   ref: /topics/dialog-functions/#ShowMemoryUsage
+  symbol_address:
+    E1: 1095:37E1
+    E2: 107F:3158
+    E3: 10C5:2FDD
+  size:
+    E1: 192
+    E2: 192
+    E3: 192
 ShowOrderingInformation:
   text: ShowOrderingInformation()
   def: void ShowOrderingInformation(void);
   desc: Displays five sequential pages of ordering information in the shareware episode of the game, or a single page thanking the user for purchasing one of the registered episodes in other cases.
   ref: /topics/dialog-functions/#ShowOrderingInformation
+  symbol_address:
+    E1: 1095:164E
+    E2: 107F:1651
+    E3: 10C5:164F
+  size:
+    E1: 1204
+    E2: 249
+    E3: 249
 ShowPauseMessage:
   text: ShowPauseMessage()
   def: void ShowPauseMessage(void);
   desc: Presents a "game paused" dialog, stops music playback, and stops all execution until a key is pressed. Once that happens, the music is restarted and the function returns to its caller.
   ref: /topics/dialog-functions/#ShowPauseMessage
+  symbol_address:
+    E1: 1095:3746
+    E2: 107F:30BD
+    E3: 10C5:2F42
+  size:
+    E1: 71
+    E2: 71
+    E3: 71
 ShowPounceHint:
   text: ShowPounceHint()
   def: void ShowPounceHint(void);
   desc: Displays a sequence of two hint dialogs that teach the player how to pounce on enemies for defense.
   ref: /topics/dialog-functions/#ShowPounceHint
+  symbol_address:
+    E1: 1095:46B9
+    E2: 107F:3CFA
+    E3: 10C5:3FC3
+  size:
+    E1: 222
+    E2: 222
+    E3: 222
 ShowPublisherBBS:
   text: ShowPublisherBBS()
   def: void ShowPublisherBBS(void);
   desc: Displays two consecutive pages of information on how to access Apogee's official channels on popular bulletin board systems (BBSes) of the day.
   ref: /topics/dialog-functions/#ShowPublisherBBS
+  symbol_address:
+    E1: 1095:2CFB
+    E2: 107F:2945
+    E3: 10C5:2A5D
+  size:
+    E1: 540
+    E2: 540
+    E3: 540
 ShowRescuedDNMessage:
   text: ShowRescuedDNMessage()
   def: void ShowRescuedDNMessage(void);
   desc: Displays a dialog sequence between the player and Duke Nukem (here using the short-lived but canonical spelling "Nukum").
   ref: /topics/dialog-functions/#ShowRescuedDNMessage
+  symbol_address:
+    E1: 1095:3469
+    E2: 107F:2C8A
+    E3: 10C5:2D40
+  size:
+    E1: 3
+    E2: 564
+    E3: 3
 ShowRestoreGameError:
   text: ShowRestoreGameError()
   def: void ShowRestoreGameError(void);
   desc: Shows when the user tries to restore a saved game whose file does not exist.
   ref: /topics/dialog-functions/#ShowRestoreGameError
+  symbol_address:
+    E1: 1095:33A2
+    E2: 107F:2B61
+    E3: 10C5:2C79
+  size:
+    E1: 42
+    E2: 42
+    E3: 42
 ShowSectionIntermission:
   text: ShowSectionIntermission()
   def: void ShowSectionIntermission(char *top_text, char *bottom_text);
   desc: Ties different "sections" of the level progression together by showing a completion dialog and presenting the star bonus. Sections are two levels long, followed by a conditional bonus level. Depending on the context (section complete, or bonus level complete) different values may be passed in `top_text` and `bottom_text`.
   ref: /topics/dialog-functions/#ShowSectionIntermission
+  symbol_address:
+    E1: 0104:EDD3
+    E2: 0104:EC78
+    E3: 0104:F0C4
+  size:
+    E1: 95
+    E2: 95
+    E3: 95
 ShowSoundTest:
   text: ShowSoundTest()
   def: void ShowSoundTest(void);
   desc: Presents a menu that allows the user to seek through and preview each sound effect available in the game.
   ref: /topics/menu-functions/#ShowSoundTest
+  symbol_address:
+    E1: 1095:3655
+    E2: 107F:2FCC
+    E3: 10C5:2E51
+  size:
+    E1: 241
+    E2: 241
+    E3: 241
 ShowStarBonus:
   text: ShowStarBonus()
   def: void ShowStarBonus(void);
   desc: Presents a dialog that tallies up the number of stars collected by the player during the previous section. As a side effect, this function zeroes {{< lookup/cref gameStars >}} and increases {{< lookup/cref gameScore >}} accordingly.
   ref: /topics/dialog-functions/#ShowStarBonus
+  symbol_address:
+    E1: 0104:EBDA
+    E2: 0104:EA7F
+    E3: 0104:EECB
+  size:
+    E1: 505
+    E2: 505
+    E3: 505
 ShowStory:
   text: ShowStory()
   def: void ShowStory(void);
   desc: Shows a progression of six pages of dialog frames that explain the basic premise of the game.
   ref: /topics/dialog-functions/#ShowStory
+  symbol_address:
+    E1: 1095:1B02
+    E2: 107F:174C
+    E3: 10C5:1864
+  size:
+    E1: 1289
+    E2: 1289
+    E3: 1289
 StartAdLib:
   text: StartAdLib()
   def: void StartAdLib(void);
   desc: Detects and initializes the AdLib hardware if it is present, installs the interrupt handler necessary to run the AdLib and PC speaker services, and measures values for CPU-based time delays.
   ref: /topics/adlib-functions/#StartAdLib
+  symbol_address:
+    E1: 1095:039F
+    E2: 107F:03A4
+    E3: 10C5:03A2
+  size:
+    E1: 128
+    E2: 128
+    E3: 128
 StartAdLibPlayback:
   text: StartAdLibPlayback()
   def: void StartAdLibPlayback(void);
   desc: Sets the {{< lookup/cref enableAdLib >}} variable to true, permitting the AdLib service to play music.
   ref: /topics/adlib-functions/#StartAdLibPlayback
+  symbol_address:
+    E1: 1095:044E
+    E2: 107F:0453
+    E3: 10C5:0451
+  size:
+    E1: 7
+    E2: 7
+    E3: 7
 StartGameMusic:
   text: StartGameMusic()
   def: void StartGameMusic(word music_num);
   desc: Starts playing the music identified by the numeric `music_num` if the AdLib hardware is available. This function is only safe to use while gameplay is occurring.
   ref: /topics/adlib-functions/#StartGameMusic
+  symbol_address:
+    E1: 1095:200B
+    E2: 107F:1C55
+    E3: 10C5:1D6D
+  size:
+    E1: 56
+    E2: 56
+    E3: 56
 StartMenuMusic:
   text: StartMenuMusic()
   def: void StartMenuMusic(word music_num);
   desc: Starts playing the music identified by the numeric `music_num` if the AdLib hardware is available. This function is only safe to use on the title screens, main menu, and its submenus.
   ref: /topics/adlib-functions/#StartMenuMusic
+  symbol_address:
+    E1: 1095:2043
+    E2: 107F:1C8D
+    E3: 10C5:1DA5
+  size:
+    E1: 52
+    E2: 52
+    E3: 52
 StartSound:
   text: StartSound()
   def: void StartSound(word sound_num);
   desc: Queues the new sound effect identified by `sound_num` for playback and immediately returns.
   ref: /topics/pc-speaker-and-timing-functions/#StartSound
+  symbol_address:
+    E1: 0104:0538
+    E2: 0104:0538
+    E3: 0104:0542
+  size:
+    E1: 49
+    E2: 49
+    E3: 49
 Startup:
   text: Startup()
   def: void Startup(void);
   desc: Initializes the game environment and shows pre-title/copyright screens.
   ref: /topics/startup-and-exit/#Startup
+  symbol_address:
+    E1: 0104:C67C
+    E2: 0104:C52D
+    E3: 0104:C979
+  size:
+    E1: 811
+    E2: 811
+    E3: 811
 StepPalette:
   text: StepPalette()
   def: void StepPalette(byte *pal_table);
   desc: During each frame of gameplay, steps through each element of the passed palette table `pal_table` and sets the palette key color accordingly, repeating once the {{< lookup/cref END_ANIMATION >}} marker has been reached.
   ref: /topics/c-drawing-functions/#StepPalette
+  symbol_address:
+    E1: 0104:005F
+    E2: 0104:005F
+    E3: 0104:005F
+  size:
+    E1: 92
+    E2: 92
+    E3: 92
 StepWaitSpinner:
   text: StepWaitSpinner()
   def: byte StepWaitSpinner(word x, word y);
   desc: Draws one frame of the wait spinner, immediately returning the most recent scancode seen by the keyboard hardware (even if that scancode is stale).
   ref: /topics/user-interface-functions/#StepWaitSpinner
+  symbol_address:
+    E1: 1095:05D7
+    E2: 107F:05DC
+    E3: 10C5:05DA
+  size:
+    E1: 101
+    E2: 101
+    E3: 101
 StopAdLib:
   text: StopAdLib()
   def: void StopAdLib(void);
   desc: Stops all playback from the AdLib card and restores the original system timer interrupt handler.
   ref: /topics/adlib-functions/#StopAdLib
+  symbol_address:
+    E1: 1095:041F
+    E2: 107F:0424
+    E3: 10C5:0422
+  size:
+    E1: 47
+    E2: 47
+    E3: 47
 StopAdLibPlayback:
   text: StopAdLibPlayback()
   def: void StopAdLibPlayback(void);
   desc: Clears all the AdLib parameter values that could produce note sounds.
   ref: /topics/adlib-functions/#StopAdLibPlayback
+  symbol_address:
+    E1: 1095:0455
+    E2: 107F:045A
+    E3: 10C5:0458
+  size:
+    E1: 59
+    E2: 59
+    E3: 59
 StopMusic:
   text: StopMusic()
   def: void StopMusic(void);
   desc: Silences any active music and prevents the AdLib service from processing any new chunks of music.
   ref: /topics/adlib-functions/#StopMusic
+  symbol_address:
+    E1: 1095:2077
+    E2: 107F:1CC1
+    E3: 10C5:1DD9
+  size:
+    E1: 13
+    E2: 13
+    E3: 13
 SwitchMusic:
   text: SwitchMusic()
   def: void SwitchMusic(Music *music);
   desc: Stops any currently playing music and starts playing the music specified by `music`.
   ref: /topics/adlib-functions/#SwitchMusic
+  symbol_address:
+    E1: 1095:0490
+    E2: 107F:0495
+    E3: 10C5:0493
+  size:
+    E1: 80
+    E2: 80
+    E3: 80
 TILE_BLOCK_EAST:
   text: TILE_BLOCK_EAST()
   def: '#define TILE_BLOCK_EAST(val) (*(tileAttributeData + ((val) / 8)) & 0x08)'
@@ -1430,51 +3184,131 @@ TestPlayerMove:
   def: word TestPlayerMove(word dir, word x_origin, word y_origin);
   desc: Tests if the player sprite is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the {{< lookup/cref MOVE >}} constants is returned.
   ref: /topics/player-movement-functions/#TestPlayerMove
+  symbol_address:
+    E1: 0104:0B14
+    E2: 0104:0B14
+    E3: 0104:0B1E
+  size:
+    E1: 751
+    E2: 751
+    E3: 751
 TestSpriteMove:
   text: TestSpriteMove()
   def: word TestSpriteMove(word dir, word sprite_type, word frame, word x_origin, word y_origin);
   desc: Tests if the sprite identified by `sprite_type` and `frame` is permitted to move in the direction specified by `dir` and enter the map tiles around `x_origin` and `y_origin`. Depending on the result of the test, one of the {{< lookup/cref MOVE >}} constants is returned.
   ref: /topics/actors/movement-functions/#TestSpriteMove
+  symbol_address:
+    E1: 0104:08DC
+    E2: 0104:08DC
+    E3: 0104:08E6
+  size:
+    E1: 568
+    E2: 568
+    E3: 568
 TimerInterruptService:
   text: TimerInterruptService()
   def: void interrupt TimerInterruptService(void);
   desc: Handles interrupts that occur on interrupt vector 8 (IRQ 0), which is wired to channel 0 of the system's Programmable Interval Timer. Each time the timer ticks, this function updates the sounds being played by the PC speaker and/or the AdLib.
   ref: /topics/adlib-functions/#TimerInterruptService
+  symbol_address:
+    E1: 1095:02A7
+    E2: 107F:02AC
+    E3: 10C5:02AA
+  size:
+    E1: 147
+    E2: 147
+    E3: 147
 TitleLoop:
   text: TitleLoop()
   def: byte TitleLoop(void);
   desc: Runs at the start of the program and is responsible for showing the title screen, credits, demo, and main menu. Additionally, this function reads the keyboard input for the main menu selection and calls the appropriate function in response. Returns one of the {{< lookup/cref DEMO_STATE >}} variables.
   ref: /topics/menu-functions/#TitleLoop
+  symbol_address:
+    E1: 0104:E557
+    E2: 0104:E408
+    E3: 0104:E854
+  size:
+    E1: 403
+    E2: 391
+    E3: 391
 ToggleGodMode:
   text: ToggleGodMode()
   def: void ToggleGodMode(void);
   desc: Inverts the state of the global {{< lookup/cref isGodMode >}} debug variable and presents a dialog informing the user of the current setting.
   ref: /topics/dialog-functions/#ToggleGodMode
+  symbol_address:
+    E1: 1095:378D
+    E2: 107F:3104
+    E3: 10C5:2F89
+  size:
+    E1: 84
+    E2: 84
+    E3: 84
 ToggleMusic:
   text: ToggleMusic()
   def: void ToggleMusic(void);
   desc: Inverts the setting of the global {{< lookup/cref isMusicEnabled >}} variable then presents a dialog confirming the resulting state. If the system does not have an AdLib compatible card installed, this function is a no-op.
   ref: /topics/dialog-functions/#ToggleMusic
+  symbol_address:
+    E1: 1095:35E0
+    E2: 107F:2F57
+    E3: 10C5:2DDC
+  size:
+    E1: 117
+    E2: 117
+    E3: 117
 ToggleSound:
   text: ToggleSound()
   def: void ToggleSound(void);
   desc: Inverts the setting of the global {{< lookup/cref isSoundEnabled >}} variable then presents a dialog confirming the resulting state.
   ref: /topics/dialog-functions/#ToggleSound
+  symbol_address:
+    E1: 1095:358C
+    E2: 107F:2F03
+    E3: 10C5:2D88
+  size:
+    E1: 84
+    E2: 84
+    E3: 84
 TryPounce:
   text: TryPounce()
   def: bool TryPounce(int recoil);
   desc: Checks if all necessary player variables are in the correct state to perform a pounce on an enemy actor. If this state is correct, a caller-provided `recoil` amount is imparted to the player and true is returned.
   ref: /topics/player-movement-functions/#TryPounce
+  symbol_address:
+    E1: 0104:A83A
+    E2: 0104:A686
+    E3: 0104:AB37
+  size:
+    E1: 247
+    E2: 247
+    E3: 247
 UnfoldDNFrame:
   text: UnfoldDNFrame()
   def: word UnfoldDNFrame(void);
   desc: Draws the dialog frame that is used when Duke Nukem is speaking to the player. It contains no inner content aside from a Duke sprite image on the left side. Returns the X coordinate where text should be placed to appear within the frame.
   ref: /topics/dialog-functions/#UnfoldDNFrame
+  symbol_address:
+    E1: 1095:3466
+    E2: 107F:2C56
+    E3: 10C5:2D3D
+  size:
+    E1: 3
+    E2: 52
+    E3: 3
 UnfoldPlayerFrame:
   text: UnfoldPlayerFrame()
   def: word UnfoldPlayerFrame(void);
   desc: Draws the dialog frame that is used when the player is speaking with Duke Nukem. It contains no inner content aside from a player sprite image on the right side. Returns the X coordinate where text should be placed to appear within the frame.
   ref: /topics/dialog-functions/#UnfoldPlayerFrame
+  symbol_address:
+    E1: 1095:3463
+    E2: 107F:2C22
+    E3: 10C5:2D3A
+  size:
+    E1: 3
+    E2: 52
+    E3: 3
 UnfoldTextFrame:
   text: UnfoldTextFrame()
   def: |-
@@ -1483,76 +3317,196 @@ UnfoldTextFrame:
     );
   desc: Draws an animated, empty text frame to the current draw page with the top edge at tile position `top` and a total size of `width`&times;`height` tiles. The top and bottom edges of the frame are prefilled with `top_text` and `bottom_text` respectively. The frame and its top/bottom texts are always centered horizontally on the screen. The return value is the X tile coordinate of the left edge of the inner text area.
   ref: /topics/user-interface-functions/#UnfoldTextFrame
+  symbol_address:
+    E1: 1095:0AC3
+    E2: 107F:0AC8
+    E3: 10C5:0AC6
+  size:
+    E1: 190
+    E2: 190
+    E3: 190
 UpdateBombs:
   text: UpdateBombs()
   def: void UpdateBombs(void);
   desc: Wraps {{< lookup/cref DrawStatusBarBombs >}} with the correct X,Y position for display on the screen. It refreshes the bomb count on the status bar with the current global value.
   ref: /topics/status-bar-functions/#UpdateBombs
+  symbol_address:
+    E1: 1095:10C4
+    E2: 107F:10C9
+    E3: 10C5:10C7
+  size:
+    E1: 11
+    E2: 11
+    E3: 11
 UpdateDrawPageSegment:
   text: UpdateDrawPageSegment()
   def: void UpdateDrawPageSegment(void);
   desc: Recalculates the segment address of the video memory where drawing should occur.
   ref: /topics/ega-functions/#UpdateDrawPageSegment
+  symbol_address:
+    E1: 0000:025D
+    E2: 0000:025D
+    E3: 0000:025D
+  size:
+    E1: 25
+    E2: 25
+    E3: 25
 UpdateHealth:
   text: UpdateHealth()
   def: void UpdateHealth(void);
   desc: Wraps {{< lookup/cref DrawSBarHealthHelper >}} and handles draw page selection. It redraws all of the health cells with either filled or empty bars to represent the player's current health.
   ref: /topics/status-bar-functions/#UpdateHealth
+  symbol_address:
+    E1: 1095:117B
+    E2: 107F:1180
+    E3: 10C5:117E
+  size:
+    E1: 46
+    E2: 46
+    E3: 46
 UpdateStars:
   text: UpdateStars()
   def: void UpdateStars(void);
   desc: Wraps {{< lookup/cref DrawStatusBarStars >}} with the correct X,Y position for display on the screen. It refreshes the star count on the status bar with the current global value.
   ref: /topics/status-bar-functions/#UpdateStars
+  symbol_address:
+    E1: 1095:101F
+    E2: 107F:1024
+    E3: 10C5:1022
+  size:
+    E1: 11
+    E2: 11
+    E3: 11
 ValidateSystem:
   text: ValidateSystem()
   def: void ValidateSystem(void);
   desc: Ensures the system has an EGA adapter, and verifies there is enough free memory. If either are not true, exits back to DOS.
   ref: /topics/startup-and-exit/#ValidateSystem
+  symbol_address:
+    E1: 0104:C5E8
+    E2: 0104:C499
+    E3: 0104:C8E5
+  size:
+    E1: 148
+    E2: 148
+    E3: 148
 WaitForAnyKey:
   text: WaitForAnyKey()
   def: byte WaitForAnyKey(void);
   desc: Waits indefinitely for any key to be pressed and released, then returns the scancode of that key.
   ref: /topics/keyboard-functions/#WaitForAnyKey
+  symbol_address:
+    E1: 0104:DFF2
+    E2: 0104:DEA3
+    E3: 0104:E2EF
+  size:
+    E1: 18
+    E2: 18
+    E3: 18
 WaitHard:
   text: WaitHard()
   def: void WaitHard(word delay);
   desc: Pauses execution for `delay` game ticks with no provision for the user to skip the wait.
   ref: /topics/pc-speaker-and-timing-functions/#WaitHard
+  symbol_address:
+    E1: 1095:04EF
+    E2: 107F:04F4
+    E3: 10C5:04F2
+  size:
+    E1: 19
+    E2: 19
+    E3: 19
 WaitSoft:
   text: WaitSoft()
   def: void WaitSoft(word delay);
   desc: Pauses execution for `delay` game ticks, returning early if the user presses a key.
   ref: /topics/pc-speaker-and-timing-functions/#WaitSoft
+  symbol_address:
+    E1: 1095:0502
+    E2: 107F:0507
+    E3: 10C5:0505
+  size:
+    E1: 25
+    E2: 25
+    E3: 25
 WaitSpinner:
   text: WaitSpinner()
   def: byte WaitSpinner(word x, word y);
   desc: Draws a rotating green icon at tile position (`x`, `y`) on the screen, blocking until a key is pressed. Once that occurs, the scancode of the pressed key is returned.
   ref: /topics/user-interface-functions/#WaitSpinner
+  symbol_address:
+    E1: 1095:063C
+    E2: 107F:0641
+    E3: 10C5:063F
+  size:
+    E1: 81
+    E2: 81
+    E3: 81
 WaitWallclock:
   text: WaitWallclock()
   def: void WaitWallclock(word loops);
   desc: Creates an artificial delay using a CPU busy loop, controlled by the iteration count specified in `loops`.
   ref: /topics/adlib-functions/#WaitWallclock
+  symbol_address:
+    E1: 1095:00F9
+    E2: 107F:00FE
+    E3: 10C5:00FC
+  size:
+    E1: 24
+    E2: 24
+    E3: 24
 WrapBackdropHorizontal:
   text: WrapBackdropHorizontal()
   def: void WrapBackdropHorizontal(byte *src, byte *dest);
   desc: Creates a modified copy of the backdrop image pointed to by `src` and stores it in the location pointed to by `dest`. The new copy of the image is shifted horizontally toward the left by four pixels, and the four columns of pixels that shift off the left edge are wrapped into the empty space created at the right edge.
   ref: /topics/backdrop-initialization-functions/#WrapBackdropHorizontal
+  symbol_address:
+    E1: 1095:2473
+    E2: 107F:20BD
+    E3: 10C5:21D5
+  size:
+    E1: 282
+    E2: 282
+    E3: 282
 WrapBackdropVertical:
   text: WrapBackdropVertical()
   def: void WrapBackdropVertical(byte *src, byte *dest, byte *scratch);
   desc: Creates a modified copy of the backdrop image pointed to by `src` and stores it in the location pointed to by `dest` using a `scratch` buffer of at least 640 bytes. The new copy of the image is shifted vertically toward the top by four pixels, and the four rows of pixels that shift off the top edge are wrapped into the empty space created at the bottom edge.
   ref: /topics/backdrop-initialization-functions/#WrapBackdropVertical
+  symbol_address:
+    E1: 1095:2343
+    E2: 107F:1F8D
+    E3: 10C5:20A5
+  size:
+    E1: 304
+    E2: 304
+    E3: 304
 WriteDemoFrame:
   text: WriteDemoFrame()
   def: bbool WriteDemoFrame(void);
   desc: Captures a snapshot of the global input command state (from the keyboard or joystick) and encodes it into a stream of demo data bytes. Returns true on error.
   ref: /topics/demo-functions/#WriteDemoFrame
+  symbol_address:
+    E1: 0104:E87B
+    E2: 0104:E720
+    E3: 0104:EB6C
+  size:
+    E1: 96
+    E2: 96
+    E3: 96
 main:
   text: main()
   def: void main(int argc, char *argv[]);
   desc: Main entry point for the program.
   ref: /topics/main-and-outer-loop/#main
+  symbol_address:
+    E1: 00FA:000B
+    E2: 00FA:000B
+    E3: 00FA:000B
+  size:
+    E1: 149
+    E2: 149
+    E3: 149
 
 ################################################################################
 # GAME GLOBALS                                                                 #
@@ -2669,56 +4623,144 @@ activeMusic:
   def: Music *activeMusic;
   desc: Holds a pointer to the structure containing the length and data bytes of the most recent piece of music that has been started.
   ref: /topics/global-variables-and-constants/#activeMusic
+  symbol_address:
+    E1: 18A4:8A3A
+    E2: 17F2:7BAC
+    E3: 1865:7E5A
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 activePage:
   text: activePage
   def: word activePage;
   desc: Holds the zero-indexed number (0 or 1) of the graphics page that is currently being shown on the screen.
   ref: /topics/global-variables-and-constants/#activePage
+  symbol_address:
+    E1: 18A4:01D2
+    E2: 17F2:01D2
+    E3: 1865:01D2
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 activeSoundIndex:
   text: activeSoundIndex
   def: word activeSoundIndex;
   desc: Holds the zero-indexed sound number of the PC speaker sound effect that is currently playing.
   ref: /topics/global-variables-and-constants/#activeSoundIndex
+  symbol_address:
+    E1: 18A4:415A
+    E2: 17F2:32CC
+    E3: 1865:357A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 activeSoundPriority:
   text: activeSoundPriority
   def: word activeSoundPriority;
   desc: Holds the priority value of the PC speaker sound effect that is currently playing.
   ref: /topics/global-variables-and-constants/#activeSoundPriority
+  symbol_address:
+    E1: 18A4:4192
+    E2: 17F2:3304
+    E3: 1865:35B2
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 activeTransporter:
   text: activeTransporter
   def: word activeTransporter;
   desc: Holds the number of the destination transporter when one is in use, or zero during normal gameplay.
   ref: /topics/global-variables-and-constants/#activeTransporter
+  symbol_address:
+    E1: 18A4:4162
+    E2: 17F2:32D4
+    E3: 1865:3582
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 actorInfoData:
   text: actorInfoData
   def: word *actorInfoData;
   desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for actor sprites.
   ref: /topics/global-variables-and-constants/#actorInfoData
+  symbol_address:
+    E1: 18A4:8BA2
+    E2: 17F2:7D14
+    E3: 1865:7FC2
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 actorTileData:
   text: actorTileData[]
   def: byte *actorTileData[3];
   desc: Points to masked tile image data used to draw actors, decorations, spawners, explosions, shards, and miscellaneous UI sprites.
   ref: /topics/global-variables-and-constants/#actorTileData
+  symbol_address:
+    E1: 18A4:8B96
+    E2: 17F2:7D08
+    E3: 1865:7FB6
+  size:
+    E1: 12
+    E2: 12
+    E3: 12
 actors:
   text: actors[]
   def: Actor actors[MAX_ACTORS];
   desc: Contains a fixed amount of space for all of the actors defined on the current map.
   ref: /topics/global-variables-and-constants/#actors
+  symbol_address:
+    E1: 18A4:41B8
+    E2: 17F2:332A
+    E3: 1865:35D8
+  size:
+    E1: 16400
+    E2: 16400
+    E3: 16400
 areForceFieldsActive:
   text: areForceFieldsActive
   def: bool areForceFieldsActive;
   desc: When true, any force fields present on the map are enabled.
   ref: /topics/global-variables-and-constants/#areForceFieldsActive
+  symbol_address:
+    E1: 18A4:4176
+    E2: 17F2:32E8
+    E3: 1865:3596
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 areLightsActive:
   text: areLightsActive
   def: bool areLightsActive;
   desc: When true, any lights present on the map are enabled.
   ref: /topics/global-variables-and-constants/#areLightsActive
+  symbol_address:
+    E1: 18A4:A436
+    E2: 17F2:95A8
+    E3: 1865:9856
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 arePlatformsActive:
   text: arePlatformsActive
   def: bool arePlatformsActive;
   desc: When true, any platforms present on the map are enabled.
   ref: /topics/global-variables-and-constants/#arePlatformsActive
+  symbol_address:
+    E1: 18A4:4152
+    E2: 17F2:32C4
+    E3: 1865:3572
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 backdropNames:
   text: backdropNames[]
   def: |-
@@ -2733,131 +4775,339 @@ backdropNames:
     };
   desc: Holds a list of all group file entry names that refer to backdrop image data.
   ref: /topics/global-variables-and-constants/#backdropNames
+  symbol_address:
+    E1: 18A4:01F8
+    E2: 17F2:01F8
+    E3: 1865:01F8
+  size:
+    E1: 104
+    E2: 104
+    E3: 104
 backdropTable:
   text: backdropTable[]
   def: word backdropTable[BACKDROP_WIDTH * BACKDROP_HEIGHT * 4];
   desc: A lookup table containing 2,880 words of precalculated offset data used for drawing the in-game parallax scrolling backdrop. It contains four identical copies of the backdrop's tile offsets, which allows for efficient wrapping without using modulo division.
   ref: /topics/global-variables-and-constants/#backdropTable
+  symbol_address:
+    E1: 18A4:8C36
+    E2: 17F2:7DA8
+    E3: 1865:8056
+  size:
+    E1: 5760
+    E2: 5760
+    E3: 5760
 blockActionCmds:
   text: blockActionCmds
   def: bool blockActionCmds;
   desc: When true, prevents the player from moving, being hurt, or being drawn.
   ref: /topics/global-variables-and-constants/#blockActionCmds
+  symbol_address:
+    E1: 18A4:4116
+    E2: 17F2:3288
+    E3: 1865:3536
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 blockMovementCmds:
   text: blockMovementCmds
   def: bbool blockMovementCmds;
   desc: When true, prevents the player from walking or jumping.
   ref: /topics/global-variables-and-constants/#blockMovementCmds
+  symbol_address:
+    E1: 18A4:4164
+    E2: 17F2:32D6
+    E3: 1865:3584
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 canPlayerCling:
   text: canPlayerCling
   def: bool canPlayerCling;
   desc: Holds a true value if the player is able to cling to the most recently tested east/west surface.
   ref: /topics/global-variables-and-constants/#canPlayerCling
+  symbol_address:
+    E1: 18A4:A420
+    E2: 17F2:9592
+    E3: 1865:9840
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 cartoonInfoData:
   text: cartoonInfoData
   def: word *cartoonInfoData;
   desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for cartoon sprites.
   ref: /topics/global-variables-and-constants/#cartoonInfoData
+  symbol_address:
+    E1: 18A4:A42E
+    E2: 17F2:95A0
+    E3: 1865:984E
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 cmdBomb:
   text: cmdBomb
   def: bbool cmdBomb;
   desc: Controls the state of the player's "drop bomb" action command.
   ref: /topics/global-variables-and-constants/#cmdBomb
+  symbol_address:
+    E1: 18A4:41B0
+    E2: 17F2:3322
+    E3: 1865:35D0
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 cmdEast:
   text: cmdEast
   def: bbool cmdEast;
   desc: Controls the state of the player's "walk east" movement command.
   ref: /topics/global-variables-and-constants/#cmdEast
+  symbol_address:
+    E1: 18A4:88F7
+    E2: 17F2:7A69
+    E3: 1865:7D17
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 cmdJump:
   text: cmdJump
   def: bbool cmdJump;
   desc: Controls the state of the player's "jump" movement command.
   ref: /topics/global-variables-and-constants/#cmdJump
+  symbol_address:
+    E1: 18A4:88F0
+    E2: 17F2:7A62
+    E3: 1865:7D10
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 cmdNorth:
   text: cmdNorth
   def: bbool cmdNorth;
   desc: Controls the state of the player's "look north" action command.
   ref: /topics/global-variables-and-constants/#cmdNorth
+  symbol_address:
+    E1: 18A4:88EE
+    E2: 17F2:7A60
+    E3: 1865:7D0E
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 cmdSouth:
   text: cmdSouth
   def: bbool cmdSouth;
   desc: Controls the state of the player's "look south" action command.
   ref: /topics/global-variables-and-constants/#cmdSouth
+  symbol_address:
+    E1: 18A4:88EF
+    E2: 17F2:7A61
+    E3: 1865:7D0F
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 cmdWest:
   text: cmdWest
   def: bbool cmdWest;
   desc: Controls the state of the player's "walk west" movement command.
   ref: /topics/global-variables-and-constants/#cmdWest
+  symbol_address:
+    E1: 18A4:88F6
+    E2: 17F2:7A68
+    E3: 1865:7D16
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 decorationFrame:
   text: decorationFrame[]
   def: word decorationFrame[MAX_DECORATIONS];
   desc: Contains the current frame number being displayed by each decoration slot.
   ref: /topics/global-variables-and-constants/#decorationFrame
+  symbol_address:
+    E1: 18A4:A43E
+    E2: 17F2:95B0
+    E3: 1865:985E
+  size:
+    E1: 20
+    E2: 20
+    E3: 20
 decorations:
   text: decorations[]
   def: Decoration decorations[MAX_DECORATIONS];
   desc: Contains a fixed amount of space for all of the decoration entities defined on the current map.
   ref: /topics/global-variables-and-constants/#decorations
+  symbol_address:
+    E1: 18A4:8BAA
+    E2: 17F2:7D1C
+    E3: 1865:7FCA
+  size:
+    E1: 140
+    E2: 140
+    E3: 140
 demoDataLength:
   text: demoDataLength
   def: word demoDataLength;
   desc: Holds the size, in bytes, of the demo data currently loaded into memory.
   ref: /topics/global-variables-and-constants/#demoDataLength
+  symbol_address:
+    E1: 18A4:A426
+    E2: 17F2:9598
+    E3: 1865:9846
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 demoDataPos:
   text: demoDataPos
   def: word demoDataPos;
   desc: Holds the byte offset of the current read/write position within the demo data while playing/recording a demo.
   ref: /topics/global-variables-and-constants/#demoDataPos
+  symbol_address:
+    E1: 18A4:8BA8
+    E2: 17F2:7D1A
+    E3: 1865:7FC8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 demoState:
   text: demoState
   def: byte demoState;
   desc: Indicates the current state of input handling for gameplay.
   ref: /topics/global-variables-and-constants/#demoState
+  symbol_address:
+    E1: 18A4:88F8
+    E2: 17F2:7A6A
+    E3: 1865:7D18
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 dir8X:
   text: dir8X[]
   def: int dir8X[] = {0,  0,  1,  1,  1,  0, -1, -1, -1};
   desc: Defines the horizontal movement components for the game's eight-way direction system.
   ref: /topics/global-variables-and-constants/#dir8X
+  symbol_address:
+    E1: 18A4:01AE
+    E2: 17F2:01AE
+    E3: 1865:01AE
+  size:
+    E1: 18
+    E2: 18
+    E3: 18
 dir8Y:
   text: dir8Y[]
   def: int dir8Y[] = {0, -1, -1,  0,  1,  1,  1,  0, -1};
   desc: Defines the vertical movement components for the game's eight-way direction system.
   ref: /topics/global-variables-and-constants/#dir8Y
+  symbol_address:
+    E1: 18A4:01C0
+    E2: 17F2:01C0
+    E3: 1865:01C0
+  size:
+    E1: 18
+    E2: 18
+    E3: 18
 drawPageNumber:
   text: drawPageNumber
   def: word drawPageNumber;
   desc: Holds the zero-indexed number (0 or 1) of the graphics page that the drawing procedures will operate on.
   ref: /topics/global-variables-and-constants/#drawPageNumber
+  symbol_address:
+    E1: 0000:01C9
+    E2: 0000:01C9
+    E3: 0000:01C9
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 drawPageSegment:
   text: drawPageSegment
   def: word drawPageSegment;
   desc: Holds the memory segment address of the graphics page that the drawing procedures will operate on.
   ref: /topics/global-variables-and-constants/#drawPageSegment
+  symbol_address:
+    E1: 0000:01CB
+    E2: 0000:01CB
+    E3: 0000:01CB
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 enableAdLib:
   text: enableAdLib
   def: bool enableAdLib;
   desc: When true, this permits the AdLib service to actually send music data to the AdLib hardware. When false, this inhibits these transfers, holding the AdLib hardware "frozen" in its current state.
   ref: /topics/global-variables-and-constants/#enableAdLib
+  symbol_address:
+    E1: 18A4:A5AC
+    E2: 17F2:971E
+    E3: 1865:99CC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 enableSpeaker:
   text: enableSpeaker
   def: bool enableSpeaker;
   desc: When true, this permits the PC speaker hardware to actually emit sounds. When false, this unconditionally silences the speaker output.
   ref: /topics/global-variables-and-constants/#enableSpeaker
+  symbol_address:
+    E1: 18A4:A434
+    E2: 17F2:95A6
+    E3: 1865:9854
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 explosions:
   text: explosions[]
   def: Explosion explosions[MAX_EXPLOSIONS];
   desc: Contains a fixed amount of space for all of the explosion entities defined on the current map.
   ref: /topics/global-variables-and-constants/#explosions
+  symbol_address:
+    E1: 18A4:8B64
+    E2: 17F2:7CD6
+    E3: 1865:7F84
+  size:
+    E1: 42
+    E2: 42
+    E3: 42
 fontTileData:
   text: fontTileData
   def: byte *fontTileData;
   desc: Points to a 4,000 byte block of memory used to hold masked tile image data for the UI font.
   ref: /topics/global-variables-and-constants/#fontTileData
+  symbol_address:
+    E1: 18A4:8B60
+    E2: 17F2:7CD2
+    E3: 1865:7F80
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 fountains:
   text: fountains[]
   def: Fountain fountains[MAX_FOUNTAINS];
   desc: Contains a fixed amount of space for all of the fountain entities defined on the current map.
   ref: /topics/global-variables-and-constants/#fountains
+  symbol_address:
+    E1: 18A4:8A3E
+    E2: 17F2:7BB0
+    E3: 1865:7E5E
+  size:
+    E1: 140
+    E2: 140
+    E3: 140
 fullscreenImageNames:
   text: fullscreenImageNames[]
   def: |-
@@ -2867,41 +5117,105 @@ fullscreenImageNames:
     };
   desc: Holds a list of all group file entry names that refer to full-screen image data.
   ref: /topics/global-variables-and-constants/#fullscreenImageNames
+  symbol_address:
+    E1: 18A4:01E0
+    E2: 17F2:01E0
+    E3: 1865:01E0
+  size:
+    E1: 24
+    E2: 24
+    E3: 24
 gameScore:
   text: gameScore
   def: dword gameScore;
   desc: Holds the number of points that the player has earned over the course of the current game.
   ref: /topics/global-variables-and-constants/#gameScore
+  symbol_address:
+    E1: 18A4:88FA
+    E2: 17F2:7A6C
+    E3: 1865:7D1A
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 gameStars:
   text: gameStars
   def: dword gameStars;
   desc: Holds the number of stars that the player has collected.
   ref: /topics/global-variables-and-constants/#gameStars
+  symbol_address:
+    E1: 18A4:8ACA
+    E2: 17F2:7C3C
+    E3: 1865:7EEA
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 gameTickCount:
   text: gameTickCount
   def: word gameTickCount;
   desc: Holds a running counter that increments precisely 140 times per second, regardless of the state of program execution.
   ref: /topics/global-variables-and-constants/#gameTickCount
+  symbol_address:
+    E1: 18A4:A438
+    E2: 17F2:95AA
+    E3: 1865:9858
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 hasHScrollBackdrop:
   text: hasHScrollBackdrop
   def: bool hasHScrollBackdrop;
   desc: When true, indicates that the current map has a backdrop that should scroll horizontally as the player moves through the game world.
   ref: /topics/global-variables-and-constants/#hasHScrollBackdrop
+  symbol_address:
+    E1: 18A4:4172
+    E2: 17F2:32E4
+    E3: 1865:3592
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 hasLightSwitch:
   text: hasLightSwitch
   def: bool hasLightSwitch;
   desc: When true, indicates that the current map has a switch that can control the lights.
   ref: /topics/global-variables-and-constants/#hasLightSwitch
+  symbol_address:
+    E1: 18A4:A432
+    E2: 17F2:95A4
+    E3: 1865:9852
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 hasRain:
   text: hasRain
   def: bool hasRain;
   desc: When true, indicates that the current map should spawn random raindrops in uncovered areas.
   ref: /topics/global-variables-and-constants/#hasRain
+  symbol_address:
+    E1: 18A4:88EC
+    E2: 17F2:7A5E
+    E3: 1865:7D0C
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 hasVScrollBackdrop:
   text: hasVScrollBackdrop
   def: bool hasVScrollBackdrop;
   desc: When true, indicates that the current map has a backdrop that should scroll vertically as the player moves through the game world.
   ref: /topics/global-variables-and-constants/#hasVScrollBackdrop
+  symbol_address:
+    E1: 18A4:4174
+    E2: 17F2:32E6
+    E3: 1865:3594
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 highScoreNames:
   text: highScoreNames[]
   def: |-
@@ -2909,156 +5223,404 @@ highScoreNames:
     HighScoreName highScoreNames[11];
   desc: Points to the first element of an 11-element fixed-length string array. Each element is 16 bytes long, and holds one of the names on the high score table.
   ref: /topics/global-variables-and-constants/#highScoreNames
+  symbol_address:
+    E1: 18A4:A460
+    E2: 17F2:95D2
+    E3: 1865:9880
+  size:
+    E1: 176
+    E2: 176
+    E3: 176
 highScoreValues:
   text: highScoreValues[]
   def: dword highScoreValues[11];
   desc: Points to the first element of an 11-element numeric array. Each element is a doubleword value, and holds one of the scores on the high score table.
   ref: /topics/global-variables-and-constants/#highScoreValues
+  symbol_address:
+    E1: 18A4:4118
+    E2: 17F2:328A
+    E3: 1865:3538
+  size:
+    E1: 44
+    E2: 44
+    E3: 44
 isAdLibPresent:
   text: isAdLibPresent
   def: bbool isAdLibPresent;
   desc: Holds a true value if an AdLib card was detected in the system, and false otherwise.
   ref: /topics/global-variables-and-constants/#isAdLibPresent
+  symbol_address:
+    E1: 18A4:A5D4
+    E2: 17F2:9746
+    E3: 1865:99F4
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isAdLibPresentPrivate:
   text: isAdLibPresentPrivate
   def: bool isAdLibPresentPrivate;
   desc: Holds a true value if an AdLib card was detected in the system, and false otherwise.
   ref: /topics/global-variables-and-constants/#isAdLibPresentPrivate
+  symbol_address:
+    E1: 18A4:A588
+    E2: 17F2:96FA
+    E3: 1865:99A8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isAdLibServiceRunning:
   text: isAdLibServiceRunning
   def: bool isAdLibServiceRunning;
   desc: Holds a true value if the system timer is running at the faster AdLib rate and the AdLib service is being called. Otherwise, holds false to indicate that the timer is running slowly and only the PC speaker service is being called.
   ref: /topics/global-variables-and-constants/#isAdLibServiceRunning
+  symbol_address:
+    E1: 18A4:A58A
+    E2: 17F2:96FC
+    E3: 1865:99AA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isAdLibStarted:
   text: isAdLibStarted
   def: bool isAdLibStarted;
   desc: Holds a true value if the AdLib startup code has executed, and false if the AdLib has either never been started or was explicitly stopped.
   ref: /topics/global-variables-and-constants/#isAdLibStarted
+  symbol_address:
+    E1: 18A4:A5C8
+    E2: 17F2:973A
+    E3: 1865:99E8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isCartoonDataLoaded:
   text: isCartoonDataLoaded
   def: bbool isCartoonDataLoaded;
   desc: Holds a true value if the cartoon tile image data has been loaded into the shared memory. When false, this memory is either uninitialized or contains map data.
   ref: /topics/global-variables-and-constants/#isCartoonDataLoaded
+  symbol_address:
+    E1: 18A4:01A3
+    E2: 17F2:01A3
+    E3: 1865:01A3
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 isDebugMode:
   text: isDebugMode
   def: bbool isDebugMode;
   desc: Holds a true value if the debug mode has been activated by the player, and false during normal gameplay.
   ref: /topics/global-variables-and-constants/#isDebugMode
+  symbol_address:
+    E1: 18A4:01AC
+    E2: 17F2:01AC
+    E3: 1865:01AC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isGodMode:
   text: isGodMode
   def: bool isGodMode;
   desc: Holds a true value if the god mode has been activated by using the debug keys, and false during normal gameplay.
   ref: /topics/global-variables-and-constants/#isGodMode
+  symbol_address:
+    E1: 18A4:01D4
+    E2: 17F2:01D4
+    E3: 1865:01D4
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isInGame:
   text: isInGame
   def: bbool isInGame;
   desc: Holds a true value if a game is currently being played, and false if the main menu is being shown.
   ref: /topics/global-variables-and-constants/#isInGame
+  symbol_address:
+    E1: 18A4:01A2
+    E2: 17F2:01A2
+    E3: 1865:01A2
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 isJoystickReady:
   text: isJoystickReady
   def: bool isJoystickReady;
   desc: Controls whether game input should come from the keyboard or the joystick.
   ref: /topics/global-variables-and-constants/#isJoystickReady
+  symbol_address:
+    E1: 18A4:4150
+    E2: 17F2:32C2
+    E3: 1865:3570
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isKeyDown:
   text: isKeyDown[]
   def: bbool isKeyDown[255];
   desc: Holds the down/up state of each keyboard key. Elements are indexed by the key's "make" code, and each element holds a true value if the key is down and false if it is up.
   ref: /topics/global-variables-and-constants/#isKeyDown
+  symbol_address:
+    E1: 18A4:893A
+    E2: 17F2:7AAC
+    E3: 1865:7D5A
+  size:
+    E1: 256
+    E2: 256
+    E3: 256
 isMusicEnabled:
   text: isMusicEnabled
   def: bool isMusicEnabled;
   desc: Controls whether or not the AdLib music should be sent to the hardware.
   ref: /topics/global-variables-and-constants/#isMusicEnabled
+  symbol_address:
+    E1: 18A4:A2D2
+    E2: 17F2:9444
+    E3: 1865:96F2
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isNewGame:
   text: isNewGame
   def: bbool isNewGame;
   desc: Holds a true value if the game loop was started via the "Begin New Game" menu option, and false in all other cases (load game or demo mode).
   ref: /topics/global-variables-and-constants/#isNewGame
+  symbol_address:
+    E1: 18A4:88FE
+    E2: 17F2:7A70
+    E3: 1865:7D1E
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isNewSound:
   text: isNewSound
   def: bool isNewSound;
   desc: Indicates that the currently-playing PC speaker sound effect has been changed.
   ref: /topics/global-variables-and-constants/#isNewSound
+  symbol_address:
+    E1: 18A4:8908
+    E2: 17F2:7A7A
+    E3: 1865:7D28
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerInPipe:
   text: isPlayerInPipe
   def: bbool isPlayerInPipe;
   desc: Holds a true value if the player is currently inside the pipe system and false during normal gameplay.
   ref: /topics/global-variables-and-constants/#isPlayerInPipe
+  symbol_address:
+    E1: 18A4:A41E
+    E2: 17F2:9590
+    E3: 1865:983E
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerInvincible:
   text: isPlayerInvincible
   def: bbool isPlayerInvincible;
   desc: When true, makes the player immune to all actors that would normally cause damage. Does not protect from falling off the bottom of the map.
   ref: /topics/global-variables-and-constants/#isPlayerInvincible
+  symbol_address:
+    E1: 18A4:4154
+    E2: 17F2:32C6
+    E3: 1865:3574
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerNearHintGlobe:
   text: isPlayerNearHintGlobe
   def: bool isPlayerNearHintGlobe;
   desc: Holds a true value if the player is currently near any hint globe actor, and false otherwise.
   ref: /topics/global-variables-and-constants/#isPlayerNearHintGlobe
+  symbol_address:
+    E1: 18A4:418A
+    E2: 17F2:32FC
+    E3: 1865:35AA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerNearTransporter:
   text: isPlayerNearTransporter
   def: bool isPlayerNearTransporter;
   desc: Holds a true value if the player is currently near any transporter actor, and false otherwise.
   ref: /topics/global-variables-and-constants/#isPlayerNearTransporter
+  symbol_address:
+    E1: 18A4:4196
+    E2: 17F2:3308
+    E3: 1865:35B6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerPushAbortable:
   text: isPlayerPushAbortable
   def: bbool isPlayerPushAbortable;
   desc: Holds a true value if the currently active push can be ended early by issuing a jump command.
   ref: /topics/global-variables-and-constants/#isPlayerPushAbortable
+  symbol_address:
+    E1: 18A4:418C
+    E2: 17F2:32FE
+    E3: 1865:35AC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerPushBlockable:
   text: isPlayerPushBlockable
   def: bool isPlayerPushBlockable;
   desc: Holds a true value if the currently active push should stop if a map tile is encountered that blocks movement in the pushed direction.
   ref: /topics/global-variables-and-constants/#isPlayerPushBlockable
+  symbol_address:
+    E1: 18A4:418E
+    E2: 17F2:3300
+    E3: 1865:35AE
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerPushed:
   text: isPlayerPushed
   def: bool isPlayerPushed;
   desc: Holds a true value if the player is currently immobilized in a "pushed" state, moving in a fixed direction without considering user input.
   ref: /topics/global-variables-and-constants/#isPlayerPushed
+  symbol_address:
+    E1: 18A4:A2D6
+    E2: 17F2:9448
+    E3: 1865:96F6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerSlidingEast:
   text: isPlayerSlidingEast
   def: bool isPlayerSlidingEast;
   desc: Holds a true value if the player is standing on a surface that is both slippery and sloped down toward the eastern direction.
   ref: /topics/global-variables-and-constants/#isPlayerSlidingEast
+  symbol_address:
+    E1: 18A4:4186
+    E2: 17F2:32F8
+    E3: 1865:35A6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPlayerSlidingWest:
   text: isPlayerSlidingWest
   def: bool isPlayerSlidingWest;
   desc: Holds a true value if the player is standing on a surface that is both slippery and sloped down toward the western direction.
   ref: /topics/global-variables-and-constants/#isPlayerSlidingWest
+  symbol_address:
+    E1: 18A4:4188
+    E2: 17F2:32FA
+    E3: 1865:35A8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isPounceReady:
   text: isPounceReady
   def: bool isPounceReady;
   desc: Holds a true value if the player's horizontal and vertical pounce position are correct relative to the position of the last actor tested by {{< lookup/cref InteractPlayer >}}.
   ref: /topics/global-variables-and-constants/#isPounceReady
+  symbol_address:
+    E1: 18A4:A45E
+    E2: 17F2:95D0
+    E3: 1865:987E
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 isSoundEnabled:
   text: isSoundEnabled
   def: bool isSoundEnabled;
   desc: Controls whether or not the PC speaker sound effects should be sent to the hardware.
   ref: /topics/global-variables-and-constants/#isSoundEnabled
+  symbol_address:
+    E1: 18A4:A2D4
+    E2: 17F2:9446
+    E3: 1865:96F4
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 joystickBandBottom:
   text: joystickBandBottom[]
   def: int joystickBandBottom[3];
   desc: Holds the timer values for the bottom edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
   ref: /topics/global-variables-and-constants/#joystickBandBottom
+  symbol_address:
+    E1: 18A4:A582
+    E2: 17F2:96F4
+    E3: 1865:99A2
+  size:
+    E1: 6
+    E2: 6
+    E3: 6
 joystickBandLeft:
   text: joystickBandLeft[]
   def: int joystickBandLeft[3];
   desc: Holds the timer values for the left edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
   ref: /topics/global-variables-and-constants/#joystickBandLeft
+  symbol_address:
+    E1: 18A4:A574
+    E2: 17F2:96E6
+    E3: 1865:9994
+  size:
+    E1: 6
+    E2: 6
+    E3: 6
 joystickBandRight:
   text: joystickBandRight[]
   def: int joystickBandRight[3];
   desc: Holds the timer values for the right edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
   ref: /topics/global-variables-and-constants/#joystickBandRight
+  symbol_address:
+    E1: 18A4:A57C
+    E2: 17F2:96EE
+    E3: 1865:999C
+  size:
+    E1: 6
+    E2: 6
+    E3: 6
 joystickBandTop:
   text: joystickBandTop[]
   def: int joystickBandTop[3];
   desc: Holds the timer values for the top edge of each joystick's dead zone. Index 0 is unused; index 1 and 2 are for joystick 1 and 2, respectively.
   ref: /topics/global-variables-and-constants/#joystickBandTop
+  symbol_address:
+    E1: 18A4:A56E
+    E2: 17F2:96E0
+    E3: 1865:998E
+  size:
+    E1: 6
+    E2: 6
+    E3: 6
 joystickBtn1Bombs:
   text: joystickBtn1Bombs
   def: bool joystickBtn1Bombs;
   desc: Controls which action the primary joystick button performs. When true, this button places a bomb. When false, this button makes the player jump. In either case, the secondary button takes the opposite action.
   ref: /topics/global-variables-and-constants/#joystickBtn1Bombs
+  symbol_address:
+    E1: 18A4:A57A
+    E2: 17F2:96EC
+    E3: 1865:999A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 keyNames:
   text: keyNames[]
   def: |-
@@ -3075,26 +5637,66 @@ keyNames:
     };
   desc: Defines short (5 character or less) key name strings for the most common scancodes on the 84-key IBM PC/AT keyboard.
   ref: /topics/global-variables-and-constants/#keyNames
+  symbol_address:
+    E1: 18A4:0C44
+    E2: 17F2:0C42
+    E3: 1865:0C4C
+  size:
+    E1: 540
+    E2: 540
+    E3: 540
 lastGroupEntryLength:
   text: lastGroupEntryLength
   def: dword lastGroupEntryLength;
   desc: Holds the file size, in bytes, of the most recent group file entry that was opened.
   ref: /topics/global-variables-and-constants/#lastGroupEntryLength
+  symbol_address:
+    E1: 18A4:4182
+    E2: 17F2:32F4
+    E3: 1865:35A2
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 lastScancode:
   text: lastScancode
   def: byte lastScancode;
   desc: Holds the most recent byte of data received by the system's keyboard controller.
   ref: /topics/global-variables-and-constants/#lastScancode
+  symbol_address:
+    E1: 18A4:8B91
+    E2: 17F2:7D03
+    E3: 1865:7FB1
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 levelNum:
   text: levelNum
   def: word levelNum;
   desc: Holds the current level number being played.
   ref: /topics/global-variables-and-constants/#levelNum
+  symbol_address:
+    E1: 18A4:8900
+    E2: 17F2:7A72
+    E3: 1865:7D20
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 lights:
   text: lights[]
   def: Light lights[MAX_LIGHTS];
   desc: Contains a fixed amount of space for all of the light actors defined on the current map.
   ref: /topics/global-variables-and-constants/#lights
+  symbol_address:
+    E1: 18A4:81CC
+    E2: 17F2:733E
+    E3: 1865:75EC
+  size:
+    E1: 1600
+    E2: 1600
+    E3: 1600
 mapData:
   text: mapData
   def: |-
@@ -3104,6 +5706,14 @@ mapData:
     } mapData;
   desc: Points to a 65,535 byte block of memory used to hold map data during the game OR temporary data in the main menu.
   ref: /topics/global-variables-and-constants/#mapData
+  symbol_address:
+    E1: 18A4:41B2
+    E2: 17F2:3324
+    E3: 1865:35D2
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 mapNames:
   text: mapNames[]
   def: |-
@@ -3140,56 +5750,144 @@ mapNames:
     char *mapNames[] = MAP_NAMES;
   desc: Defines a list of the map file names corresponding to each level number in the game. Each episode includes higher-numbered maps that do not exist and cannot be reached.
   ref: /topics/global-variables-and-constants/#mapNames
+  symbol_address:
+    E1: 18A4:0260
+    E2: 17F2:0260
+    E3: 1865:0260
+  size:
+    E1: 120
+    E2: 120
+    E3: 120
 mapWidth:
   text: mapWidth
   def: word mapWidth;
   desc: Holds the width of the currently-loaded map, in tiles.
   ref: /topics/global-variables-and-constants/#mapWidth
+  symbol_address:
+    E1: 18A4:88F2
+    E2: 17F2:7A64
+    E3: 1865:7D12
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 mapYPower:
   text: mapYPower
   def: word mapYPower;
   desc: Holds the width of the currently-loaded map, in tiles, expressed as 2 to the Nth power.
   ref: /topics/global-variables-and-constants/#mapYPower
+  symbol_address:
+    E1: 18A4:8ACE
+    E2: 17F2:7C40
+    E3: 1865:7EEE
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 maskedTileData:
   text: maskedTileData
   def: byte *maskedTileData;
   desc: Points to a 40,000 byte block of memory used to hold masked tile image data during the game OR music data in the main menu.
   ref: /topics/global-variables-and-constants/#maskedTileData
+  symbol_address:
+    E1: 18A4:A2C2
+    E2: 17F2:9434
+    E3: 1865:96E2
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 maxScrollY:
   text: maxScrollY
   def: word maxScrollY;
   desc: Holds the largest allowable Y scroll position value for the current map.
   ref: /topics/global-variables-and-constants/#maxScrollY
+  symbol_address:
+    E1: 18A4:88F4
+    E2: 17F2:7A66
+    E3: 1865:7D14
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 miscData:
   text: miscData
   def: byte *miscData;
   desc: Points to a 35,000 byte block of memory used to hold a variety of different unrelated things.
   ref: /topics/global-variables-and-constants/#miscData
+  symbol_address:
+    E1: 18A4:81C8
+    E2: 17F2:733A
+    E3: 1865:75E8
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 miscDataContents:
   text: miscDataContents
   def: word miscDataContents;
   desc: Provides an indication of the last data that was loaded into the miscellaneous data block.
   ref: /topics/global-variables-and-constants/#miscDataContents
+  symbol_address:
+    E1: 18A4:01A4
+    E2: 17F2:01A4
+    E3: 1865:01A4
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 musicDataHead:
   text: musicDataHead
   def: word *musicDataHead;
   desc: Holds the memory address of the first word of the current music data. Used to rewind the music playback pointer each time the music loops.
   ref: /topics/global-variables-and-constants/#musicDataHead
+  symbol_address:
+    E1: 18A4:A5C0
+    E2: 17F2:9732
+    E3: 1865:99E0
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 musicDataLeft:
   text: musicDataLeft
   def: word musicDataLeft;
   desc: Tracks the number of bytes of music data that still remain to be played. Once this value reaches zero, the music must restart from the beginning.
   ref: /topics/global-variables-and-constants/#musicDataLeft
+  symbol_address:
+    E1: 18A4:A5CC
+    E2: 17F2:973E
+    E3: 1865:99EC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 musicDataLength:
   text: musicDataLength
   def: word musicDataLength;
   desc: Tracks the total length of the current music data, in bytes.
   ref: /topics/global-variables-and-constants/#musicDataLength
+  symbol_address:
+    E1: 18A4:A5D2
+    E2: 17F2:9744
+    E3: 1865:99F2
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 musicDataPtr:
   text: musicDataPtr
   def: word *musicDataPtr;
   desc: Points to the next word of music data that is going to be sent to the AdLib hardware.
   ref: /topics/global-variables-and-constants/#musicDataPtr
+  symbol_address:
+    E1: 18A4:A5C4
+    E2: 17F2:9736
+    E3: 1865:99E4
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 musicNames:
   text: musicNames[]
   def: |-
@@ -3202,231 +5900,599 @@ musicNames:
     };
   desc: Holds a list of all group file entry names that refer to music data.
   ref: /topics/global-variables-and-constants/#musicNames
+  symbol_address:
+    E1: 18A4:02D8
+    E2: 17F2:02D8
+    E3: 1865:02D8
+  size:
+    E1: 76
+    E2: 76
+    E3: 76
 musicNextDue:
   text: musicNextDue
   def: dword musicNextDue;
   desc: Tracks the timestamp, in music ticks, when the next chunk of music is scheduled to be sent to the AdLib hardware.
   ref: /topics/global-variables-and-constants/#musicNextDue
+  symbol_address:
+    E1: 18A4:A5BC
+    E2: 17F2:972E
+    E3: 1865:99DC
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 musicTickCount:
   text: musicTickCount
   def: dword musicTickCount;
   desc: Tracks the current timestamp, in music ticks. Increments each time the AdLib service runs.
   ref: /topics/global-variables-and-constants/#musicTickCount
+  symbol_address:
+    E1: 18A4:A5D6
+    E2: 17F2:9748
+    E3: 1865:99F6
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 mysteryWallTime:
   text: mysteryWallTime
   def: word mysteryWallTime;
   desc: Controls activation of each {{< lookup/actor 62 >}} on the current map.
   ref: /topics/global-variables-and-constants/#mysteryWallTime
+  symbol_address:
+    E1: 18A4:A454
+    E2: 17F2:95C6
+    E3: 1865:9874
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 nextActorIndex:
   text: nextActorIndex
   def: word nextActorIndex;
   desc: Used as a pass-by-global variable to communicate the actor array slot that should be filled during construction of one actor.
   ref: /topics/global-variables-and-constants/#nextActorIndex
+  symbol_address:
+    E1: 18A4:4114
+    E2: 17F2:3286
+    E3: 1865:3534
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 nextDrawMode:
   text: nextDrawMode
   def: word nextDrawMode;
   desc: Used as a pass-by-global variable to communicate the display mode to be used when drawing the actively-processing actor's sprite.
   ref: /topics/global-variables-and-constants/#nextDrawMode
+  symbol_address:
+    E1: 18A4:8B92
+    E2: 17F2:7D04
+    E3: 1865:7FB2
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numActors:
   text: numActors
   def: word numActors;
   desc: Holds the current number of utilized elements in the actors array.
   ref: /topics/global-variables-and-constants/#numActors
+  symbol_address:
+    E1: 18A4:8AD0
+    E2: 17F2:7C42
+    E3: 1865:7EF0
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numBarrels:
   text: numBarrels
   def: word numBarrels;
   desc: Holds the current number of barrel and basket actors (combined) that are alive on the map.
   ref: /topics/global-variables-and-constants/#numBarrels
+  symbol_address:
+    E1: 18A4:8B8E
+    E2: 17F2:7D00
+    E3: 1865:7FAE
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numDecorations:
   text: numDecorations
   def: word numDecorations;
   desc: Holds the current number of elements in the decorations array, regardless of the number of elements in actual use.
   ref: /topics/global-variables-and-constants/#numDecorations
+  symbol_address:
+    E1: 18A4:0532
+    E2: 17F2:0532
+    E3: 1865:053C
+  size:
+    E1: 1760
+    E2: 1758
+    E3: 1758
 numExplosions:
   text: numExplosions
   def: word numExplosions;
   desc: Holds the current number of elements in the explosions array, regardless of the number of elements in actual use.
   ref: /topics/global-variables-and-constants/#numExplosions
+  symbol_address:
+    E1: 18A4:052E
+    E2: 17F2:052E
+    E3: 1865:052E
+  size:
+    E1: 2
+    E2: 2
+    E3: 12
 numEyePlants:
   text: numEyePlants
   def: word numEyePlants;
   desc: Holds the current number of eye plant actors that are alive on the map.
   ref: /topics/global-variables-and-constants/#numEyePlants
+  symbol_address:
+    E1: 18A4:A2DC
+    E2: 17F2:944E
+    E3: 1865:96FC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numFountains:
   text: numFountains
   def: word numFountains;
   desc: Holds the current number of utilized elements in the fountains array.
   ref: /topics/global-variables-and-constants/#numFountains
+  symbol_address:
+    E1: 18A4:A2DA
+    E2: 17F2:944C
+    E3: 1865:96FA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numLights:
   text: numLights
   def: word numLights;
   desc: Holds the current number of utilized elements in the lights array.
   ref: /topics/global-variables-and-constants/#numLights
+  symbol_address:
+    E1: 18A4:8AD2
+    E2: 17F2:7C44
+    E3: 1865:7EF2
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numPlatforms:
   text: numPlatforms
   def: word numPlatforms;
   desc: Holds the current number of utilized elements in the platforms array.
   ref: /topics/global-variables-and-constants/#numPlatforms
+  symbol_address:
+    E1: 18A4:A2D8
+    E2: 17F2:944A
+    E3: 1865:96F8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 numShards:
   text: numShards
   def: word numShards;
   desc: Holds the current number of elements in the shards array, regardless of the number of elements in actual use.
   ref: /topics/global-variables-and-constants/#numShards
+  symbol_address:
+    E1: 18A4:052A
+    E2: 17F2:052A
+    E3: 1865:052A
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 numSpawners:
   text: numSpawners
   def: word numSpawners;
   desc: Holds the current number of elements in the spawners array, regardless of the number of elements in actual use.
   ref: /topics/global-variables-and-constants/#numSpawners
+  symbol_address:
+    E1: 18A4:0530
+    E2: 17F2:0530
+    E3: 1865:053A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 paletteAnimationNum:
   text: paletteAnimationNum
   def: byte paletteAnimationNum;
   desc: Holds the current palette animation number that was specified by the map being played.
   ref: /topics/global-variables-and-constants/#paletteAnimationNum
+  symbol_address:
+    E1: 18A4:417A
+    E2: 17F2:32EC
+    E3: 1865:359A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 paletteStepCount:
   text: paletteStepCount
   def: dword paletteStepCount;
   desc: Holds the current position within the palette animation table.
   ref: /topics/global-variables-and-constants/#paletteStepCount
+  symbol_address:
+    E1: 18A4:4156
+    E2: 17F2:32C8
+    E3: 1865:3576
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 pit0Value:
   text: pit0Value
   def: dword pit0Value;
   desc: Holds a copy of the most recent value used to reconfigure channel 0 of the system's Programmable Interval Timer.
   ref: /topics/global-variables-and-constants/#pit0Value
+  symbol_address:
+    E1: 18A4:A5A4
+    E2: 17F2:9716
+    E3: 1865:99C4
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 platforms:
   text: platforms[]
   def: Platform platforms[MAX_PLATFORMS];
   desc: Contains a fixed amount of space for all of the platform entities defined on the current map.
   ref: /topics/global-variables-and-constants/#platforms
+  symbol_address:
+    E1: 18A4:8AD4
+    E2: 17F2:7C46
+    E3: 1865:7EF4
+  size:
+    E1: 140
+    E2: 140
+    E3: 140
 playerBaseFrame:
   text: playerBaseFrame
   def: word playerBaseFrame;
   desc: Tracks the direction the player is currently facing, either east or west, as a base frame offset in the player sprite data.
   ref: /topics/global-variables-and-constants/#playerBaseFrame
+  symbol_address:
+    E1: 18A4:01A6
+    E2: 17F2:01A6
+    E3: 1865:01A6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerBombs:
   text: playerBombs
   def: word playerBombs;
   desc: Holds the number of bombs the player is currently carrying.
   ref: /topics/global-variables-and-constants/#playerBombs
+  symbol_address:
+    E1: 18A4:A2B6
+    E2: 17F2:9428
+    E3: 1865:96D6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerClingDir:
   text: playerClingDir
   def: byte playerClingDir;
   desc: Holds a direction value that tracks if the player is clinging to a wall, and which side that wall is on.
   ref: /topics/global-variables-and-constants/#playerClingDir
+  symbol_address:
+    E1: 18A4:A561
+    E2: 17F2:96D3
+    E3: 1865:9981
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 playerDeadTime:
   text: playerDeadTime
   def: word playerDeadTime;
   desc: Holds a zero while the player is alive, and an incrementing value greater than zero while the player is dead and progressing through the death animation.
   ref: /topics/global-variables-and-constants/#playerDeadTime
+  symbol_address:
+    E1: 18A4:A428
+    E2: 17F2:959A
+    E3: 1865:9848
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerDizzyLeft:
   text: playerDizzyLeft
   def: word playerDizzyLeft;
   desc: When nonzero, indicates that the player is immobilized due to being dizzy from an extreme movement. This counter will decrement to zero, at which point the dizzy condition wears off and the player can move again.
   ref: /topics/global-variables-and-constants/#playerDizzyLeft
+  symbol_address:
+    E1: 18A4:4148
+    E2: 17F2:32BA
+    E3: 1865:3568
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerFaceDir:
   text: playerFaceDir
   def: word playerFaceDir;
   desc: Tracks the direction the player is currently facing, either east or west, as a direction value.
   ref: /topics/global-variables-and-constants/#playerFaceDir
+  symbol_address:
+    E1: 18A4:A43A
+    E2: 17F2:95AC
+    E3: 1865:985A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerFallDeadTime:
   text: playerFallDeadTime
   def: byte playerFallDeadTime;
   desc: Holds a zero while the player is alive, and an incrementing value greater than zero while the player has fallen off the bottom of the map and is progressing through the death animation.
   ref: /topics/global-variables-and-constants/#playerFallDeadTime
+  symbol_address:
+    E1: 18A4:01D6
+    E2: 17F2:01D6
+    E3: 1865:01D6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerFrame:
   text: playerFrame
   def: word playerFrame;
   desc: Holds the current sprite frame that should be used to represent the player, disregarding east/west-facing variations.
   ref: /topics/global-variables-and-constants/#playerFrame
+  symbol_address:
+    E1: 18A4:01A8
+    E2: 17F2:01A8
+    E3: 1865:01A8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerHealth:
   text: playerHealth
   def: word playerHealth;
   desc: Holds the current amount of health the player has. Zero represents the immediate death of the player.
   ref: /topics/global-variables-and-constants/#playerHealth
+  symbol_address:
+    E1: 18A4:8BA6
+    E2: 17F2:7D18
+    E3: 1865:7FC6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerHealthCells:
   text: playerHealthCells
   def: word playerHealthCells;
   desc: Holds the number of health bar cells that are shown on the status bar. The player always has one unit of health more than the number of bar cells (i.e. the player is still alive if all the cells are unfilled).
   ref: /topics/global-variables-and-constants/#playerHealthCells
+  symbol_address:
+    E1: 18A4:4168
+    E2: 17F2:32DA
+    E3: 1865:3588
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerHurtCooldown:
   text: playerHurtCooldown
   def: word playerHurtCooldown;
   desc: When greater than zero, makes the player temporarily invincible and flashes the sprite. Decrements toward zero during every frame of gameplay.
   ref: /topics/global-variables-and-constants/#playerHurtCooldown
+  symbol_address:
+    E1: 18A4:4170
+    E2: 17F2:32E2
+    E3: 1865:3590
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerInfoData:
   text: playerInfoData
   def: word *playerInfoData;
   desc: Points to a block of memory containing tile info data (widths, heights, and offsets) for player sprites.
   ref: /topics/global-variables-and-constants/#playerInfoData
+  symbol_address:
+    E1: 18A4:A2CE
+    E2: 17F2:9440
+    E3: 1865:96EE
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 playerPushDir:
   text: playerPushDir
   def: word playerPushDir;
   desc: Specifies the direction in which the player should move during a "push" sequence.
   ref: /topics/global-variables-and-constants/#playerPushDir
+  symbol_address:
+    E1: 18A4:A43C
+    E2: 17F2:95AE
+    E3: 1865:985C
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerPushForceFrame:
   text: playerPushForceFrame
   def: word playerPushForceFrame;
   desc: Specifies the frame of player sprite animation to show during a "push" sequence.
   ref: /topics/global-variables-and-constants/#playerPushForceFrame
+  symbol_address:
+    E1: 18A4:4178
+    E2: 17F2:32EA
+    E3: 1865:3598
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerPushMaxTime:
   text: playerPushMaxTime
   def: word playerPushMaxTime;
   desc: Holds the number of game ticks that need to elapse before the currently active "push" sequence completes. This duration (in terms of elapsed time) is unaffected by the speed of the push.
   ref: /topics/global-variables-and-constants/#playerPushMaxTime
+  symbol_address:
+    E1: 18A4:414A
+    E2: 17F2:32BC
+    E3: 1865:356A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerPushSpeed:
   text: playerPushSpeed
   def: word playerPushSpeed;
   desc: Holds the configured speed, in tiles per game tick, of the currently active "push" sequence.
   ref: /topics/global-variables-and-constants/#playerPushSpeed
+  symbol_address:
+    E1: 18A4:A452
+    E2: 17F2:95C4
+    E3: 1865:9872
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerPushTime:
   text: playerPushTime
   def: word playerPushTime;
   desc: Holds the number of game ticks that have elapsed since the currently active "push" sequence was started.
   ref: /topics/global-variables-and-constants/#playerPushTime
+  symbol_address:
+    E1: 18A4:A42C
+    E2: 17F2:959E
+    E3: 1865:984C
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerTileData:
   text: playerTileData
   def: byte *playerTileData;
   desc: Points to a block of memory matching the size and content of the PLAYERS.MNI group file entry, nominally 30,000 bytes.
   ref: /topics/global-variables-and-constants/#playerTileData
+  symbol_address:
+    E1: 18A4:A2CA
+    E2: 17F2:943C
+    E3: 1865:96EA
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 playerX:
   text: playerX
   def: word playerX;
   desc: Represents the current horizontal position of the player within the map. The origin tile is on the left edge of the player's sprite.
   ref: /topics/global-variables-and-constants/#playerX
+  symbol_address:
+    E1: 18A4:41A8
+    E2: 17F2:331A
+    E3: 1865:35C8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 playerY:
   text: playerY
   def: word playerY;
   desc: Represents the current vertical position of the player within the map. The origin tile is on the bottom edge of the player's sprite.
   ref: /topics/global-variables-and-constants/#playerY
+  symbol_address:
+    E1: 18A4:41AC
+    E2: 17F2:331E
+    E3: 1865:35CC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 pounceHintState:
   text: pounceHintState
   def: word pounceHintState;
   desc: Holds a flag that tracks whether the user has been shown the "jump on top of creatures..." hint dialog.
   ref: /topics/global-variables-and-constants/#pounceHintState
+  symbol_address:
+    E1: 18A4:A45A
+    E2: 17F2:95CC
+    E3: 1865:987A
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 pounceStreak:
   text: pounceStreak
   def: word pounceStreak;
   desc: Holds a counter that tracks the number of times the player has pounced on any enemy actor without touching the ground.
   ref: /topics/global-variables-and-constants/#pounceStreak
+  symbol_address:
+    E1: 18A4:A2B8
+    E2: 17F2:942A
+    E3: 1865:96D8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 profCountCPU:
   text: profCountCPU
   def: word profCountCPU;
   desc: Used temporarily during CPU profiling to track the number of busy loop iterations the CPU has performed so far.
   ref: /topics/global-variables-and-constants/#profCountCPU
+  symbol_address:
+    E1: 18A4:A5AA
+    E2: 17F2:971C
+    E3: 1865:99CA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 profCountPIT:
   text: profCountPIT
   def: word profCountPIT;
   desc: Used temporarily during CPU profiling to track the number of timer interrupts that have been raised by the Programmable Interval Timer so far.
   ref: /topics/global-variables-and-constants/#profCountPIT
+  symbol_address:
+    E1: 18A4:A5A8
+    E2: 17F2:971A
+    E3: 1865:99C8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 queuePlayerDizzy:
   text: queuePlayerDizzy
   def: bool queuePlayerDizzy;
   desc: When true, indicates that a condition has been reached that will cause the player to become "dizzy" upon touching the ground -- that is, temporarily immobilized due to an extreme amount of movement.
   ref: /topics/global-variables-and-constants/#queuePlayerDizzy
+  symbol_address:
+    E1: 18A4:4166
+    E2: 17F2:32D8
+    E3: 1865:3586
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 randStepCount:
   text: randStepCount
   def: word randStepCount;
   desc: Holds an index value between 0 and 35 that is used by the game's pseudorandom number generator to produce deterministic random numbers for the game's actors.
   ref: /topics/global-variables-and-constants/#randStepCount
+  symbol_address:
+    E1: 18A4:A456
+    E2: 17F2:95C8
+    E3: 1865:9876
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 savedInt8:
   text: savedInt8
   def: |-
@@ -3434,6 +6500,14 @@ savedInt8:
     InterruptFunction savedInt8;
   desc: Holds a reference to the old interrupt service routine for interrupt vector 8.
   ref: /topics/global-variables-and-constants/#savedInt8
+  symbol_address:
+    E1: 18A4:A5A0
+    E2: 17F2:9712
+    E3: 1865:99C0
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 savedInt9:
   text: savedInt9
   def: |-
@@ -3441,166 +6515,430 @@ savedInt9:
     InterruptFunction savedInt9;
   desc: Holds a reference to the old interrupt service routine for interrupt vector 9.
   ref: /topics/global-variables-and-constants/#savedInt9
+  symbol_address:
+    E1: 18A4:4198
+    E2: 17F2:330A
+    E3: 1865:35B8
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 sawAutoHintGlobe:
   text: sawAutoHintGlobe
   def: bbool sawAutoHintGlobe;
   desc: Holds a true value once the user has touched a hint globe, resulting in auto-activation without needing to press the "look up" key. Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawAutoHintGlobe
+  symbol_address:
+    E1: 18A4:410E
+    E2: 17F2:3280
+    E3: 1865:352E
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawBearTrapBubble:
   text: sawBearTrapBubble
   def: bool sawBearTrapBubble;
   desc: Holds a true value once the user has encountered a bear trap actor for the first time, resulting in an "UMPH!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawBearTrapBubble
+  symbol_address:
+    E1: 18A4:414E
+    E2: 17F2:32C0
+    E3: 1865:356E
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawBombHint:
   text: sawBombHint
   def: bool sawBombHint;
   desc: Holds a true value once the user has seen the hint dialog teaching them about finding and using bombs. Defaults to false when a new game is started.
   ref: /topics/global-variables-and-constants/#sawBombHint
+  symbol_address:
+    E1: 18A4:A2BA
+    E2: 17F2:942C
+    E3: 1865:96DA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawBossBubble:
   text: sawBossBubble
   def: bool sawBossBubble;
   desc: Holds a true value once the user has encountered a boss actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawBossBubble
+  symbol_address:
+    E1: 18A4:A2BE
+    E2: 17F2:9430
+    E3: 1865:96DE
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawHamburgerBubble:
   text: sawHamburgerBubble
   def: bool sawHamburgerBubble;
   desc: Holds a true value once the user has picked up a hamburger for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawHamburgerBubble
+  symbol_address:
+    E1: 18A4:415C
+    E2: 17F2:32CE
+    E3: 1865:357C
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawHealthHint:
   text: sawHealthHint
   def: bool sawHealthHint;
   desc: Holds a true value once the user has seen the hint dialog teaching them about Power Up modules and their effect on player health. Defaults to false when a new game is started.
   ref: /topics/global-variables-and-constants/#sawHealthHint
+  symbol_address:
+    E1: 18A4:A458
+    E2: 17F2:95CA
+    E3: 1865:9878
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawHurtBubble:
   text: sawHurtBubble
   def: bool sawHurtBubble;
   desc: Holds a true value once the user has seen the "OUCH!" bubble that appears when they get hurt for the first time. Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawHurtBubble
+  symbol_address:
+    E1: 18A4:01AA
+    E2: 17F2:01AA
+    E3: 1865:01AA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawJumpPadBubble:
   text: sawJumpPadBubble
   def: bool sawJumpPadBubble;
   desc: Holds a true value once the user has encountered a jump pad actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawJumpPadBubble
+  symbol_address:
+    E1: 18A4:4110
+    E2: 17F2:3282
+    E3: 1865:3530
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawMonumentBubble:
   text: sawMonumentBubble
   def: bool sawMonumentBubble;
   desc: Holds a true value once the user has encountered a monument actor for the first time, resulting in an "UMPH!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawMonumentBubble
+  symbol_address:
+    E1: 18A4:414C
+    E2: 17F2:32BE
+    E3: 1865:356C
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawMysteryWallBubble:
   text: sawMysteryWallBubble
   def: bool sawMysteryWallBubble;
   desc: Holds a true value once the user has encountered the switch that activates the mystery wall for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawMysteryWallBubble
+  symbol_address:
+    E1: 18A4:4180
+    E2: 17F2:32F2
+    E3: 1865:35A0
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawPipeBubble:
   text: sawPipeBubble
   def: bool sawPipeBubble;
   desc: Holds a true value once the user has exited the pipe system for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawPipeBubble
+  symbol_address:
+    E1: 18A4:A2BC
+    E2: 17F2:942E
+    E3: 1865:96DC
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawPusherRobotBubble:
   text: sawPusherRobotBubble
   def: bool sawPusherRobotBubble;
   desc: Holds a true value once the user has encountered a pusher robot actor for the first time, resulting in an "UMPH!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawPusherRobotBubble
+  symbol_address:
+    E1: 18A4:417E
+    E2: 17F2:32F0
+    E3: 1865:359E
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawScooterBubble:
   text: sawScooterBubble
   def: bool sawScooterBubble;
   desc: Holds a true value once the user has encountered a scooter actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawScooterBubble
+  symbol_address:
+    E1: 18A4:4112
+    E2: 17F2:3284
+    E3: 1865:3532
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawTransporterBubble:
   text: sawTransporterBubble
   def: bool sawTransporterBubble;
   desc: Holds a true value once the user has exited a transporter for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawTransporterBubble
+  symbol_address:
+    E1: 18A4:417C
+    E2: 17F2:32EE
+    E3: 1865:359C
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 sawTulipLauncherBubble:
   text: sawTulipLauncherBubble
   def: bool sawTulipLauncherBubble;
   desc: Holds a true value once the user has been ejected by a tulip launcher actor for the first time, resulting in a "WHOA!" speech bubble Defaults to false each time a level is started.
   ref: /topics/global-variables-and-constants/#sawTulipLauncherBubble
+  symbol_address:
+    E1: 18A4:4194
+    E2: 17F2:3306
+    E3: 1865:35B4
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 scancodeBomb:
   text: scancodeBomb
   def: byte scancodeBomb;
   desc: Holds the keyboard scancode that the user has selected for the player's "bomb" action.
   ref: /topics/global-variables-and-constants/#scancodeBomb
+  symbol_address:
+    E1: 18A4:8B90
+    E2: 17F2:7D02
+    E3: 1865:7FB0
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 scancodeEast:
   text: scancodeEast
   def: byte scancodeEast;
   desc: Holds the keyboard scancode that the user has selected for the player's "walk east" movement command.
   ref: /topics/global-variables-and-constants/#scancodeEast
+  symbol_address:
+    E1: 18A4:A423
+    E2: 17F2:9595
+    E3: 1865:9843
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 scancodeJump:
   text: scancodeJump
   def: byte scancodeJump;
   desc: Holds the keyboard scancode that the user has selected for the player's "jump" movement command.
   ref: /topics/global-variables-and-constants/#scancodeJump
+  symbol_address:
+    E1: 18A4:A2C8
+    E2: 17F2:943A
+    E3: 1865:96E8
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 scancodeNorth:
   text: scancodeNorth
   def: byte scancodeNorth;
   desc: Holds the keyboard scancode that the user has selected for the player's "look north" action.
   ref: /topics/global-variables-and-constants/#scancodeNorth
+  symbol_address:
+    E1: 18A4:A2C6
+    E2: 17F2:9438
+    E3: 1865:96E6
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 scancodeSouth:
   text: scancodeSouth
   def: byte scancodeSouth;
   desc: Holds the keyboard scancode that the user has selected for the player's "look south" action.
   ref: /topics/global-variables-and-constants/#scancodeSouth
+  symbol_address:
+    E1: 18A4:A2C7
+    E2: 17F2:9439
+    E3: 1865:96E7
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 scancodeWest:
   text: scancodeWest
   def: byte scancodeWest;
   desc: Holds the keyboard scancode that the user has selected for the player's "walk west" movement command.
   ref: /topics/global-variables-and-constants/#scancodeWest
+  symbol_address:
+    E1: 18A4:A422
+    E2: 17F2:9594
+    E3: 1865:9842
+  size:
+    E1: 1
+    E2: 1
+    E3: 1
 scooterMounted:
   text: scooterMounted
   def: word scooterMounted;
   desc: Holds a combination state flag/counter that tracks if the player is currently riding a scooter and for how long that has been the case.
   ref: /topics/global-variables-and-constants/#scooterMounted
+  symbol_address:
+    E1: 18A4:A424
+    E2: 17F2:9596
+    E3: 1865:9844
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 scrollX:
   text: scrollX
   def: word scrollX;
   desc: Holds the X coordinate of the map column currently positioned at the leftmost edge of the screen.
   ref: /topics/global-variables-and-constants/#scrollX
+  symbol_address:
+    E1: 18A4:41AA
+    E2: 17F2:331C
+    E3: 1865:35CA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 scrollY:
   text: scrollY
   def: word scrollY;
   desc: Holds the Y coordinate of the map row currently positioned at the topmost edge of the screen.
   ref: /topics/global-variables-and-constants/#scrollY
+  symbol_address:
+    E1: 18A4:41AE
+    E2: 17F2:3320
+    E3: 1865:35CE
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 shards:
   text: shards[]
   def: Shard shards[MAX_SHARDS];
   desc: Contains a fixed amount of space for all of the shard entities defined on the current map.
   ref: /topics/global-variables-and-constants/#shards
+  symbol_address:
+    E1: 18A4:880C
+    E2: 17F2:797E
+    E3: 1865:7C2C
+  size:
+    E1: 224
+    E2: 224
+    E3: 224
 skipDetectAdLib:
   text: skipDetectAdLib
   def: bool skipDetectAdLib;
   desc: Always false; part of an unused piece of code that would allow AdLib detection to be skipped based on a command-line switch.
   ref: /topics/global-variables-and-constants/#skipDetectAdLib
+  symbol_address:
+    E1: 18A4:A5CA
+    E2: 17F2:973C
+    E3: 1865:99EA
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 soundData1:
   text: soundData1
   def: word *soundData1;
   desc: Points to a block of memory matching the size and content of the SOUNDS.MNI group file entry, nominally 3,332 bytes.
   ref: /topics/global-variables-and-constants/#soundData1
+  symbol_address:
+    E1: 18A4:419C
+    E2: 17F2:330E
+    E3: 1865:35BC
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 soundData2:
   text: soundData2
   def: word *soundData2;
   desc: Points to a block of memory matching the size and content of the SOUNDS2.MNI group file entry, nominally 3,876 bytes.
   ref: /topics/global-variables-and-constants/#soundData2
+  symbol_address:
+    E1: 18A4:41A0
+    E2: 17F2:3312
+    E3: 1865:35C0
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 soundData3:
   text: soundData3
   def: word *soundData3;
   desc: Points to a block of memory matching the size and content of the SOUNDS3.MNI group file entry, nominally 4,020 bytes.
   ref: /topics/global-variables-and-constants/#soundData3
+  symbol_address:
+    E1: 18A4:41A4
+    E2: 17F2:3316
+    E3: 1865:35C4
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 soundDataPtr:
   text: soundDataPtr[]
   def: word *soundDataPtr[80];
   desc: Zero-indexed array of 80 elements, although not all are used. Each element points to the first data word of a PC speaker sound effect. Unused elements are null pointers.
   ref: /topics/global-variables-and-constants/#soundDataPtr
+  symbol_address:
+    E1: 18A4:A2DE
+    E2: 17F2:9450
+    E3: 1865:96FE
+  size:
+    E1: 320
+    E2: 320
+    E3: 320
 soundPriority:
   text: soundPriority[]
   def: byte soundPriority[81];
   desc: One-indexed array of 81 elements, although not all are used. Each element holds the priority value of a PC speaker sound effect. Unused elements are zero.
   ref: /topics/global-variables-and-constants/#soundPriority
+  symbol_address:
+    E1: 18A4:A510
+    E2: 17F2:9682
+    E3: 1865:9930
+  size:
+    E1: 81
+    E2: 81
+    E3: 81
 spawners:
   text: spawners[]
   def: Spawner spawners[MAX_SPAWNERS];
   desc: Contains a fixed amount of space for all of the spawner entities defined on the current map.
   ref: /topics/global-variables-and-constants/#spawners
+  symbol_address:
+    E1: 18A4:890A
+    E2: 17F2:7A7C
+    E3: 1865:7D2A
+  size:
+    E1: 48
+    E2: 48
+    E3: 48
 starBonusRanks:
   text: starBonusRanks[]
   def: |-
@@ -3613,76 +6951,196 @@ starBonusRanks:
     };
   desc: Contains a sequence of thirteen fixed-length ranks which are shown as the player earns more stars.
   ref: /topics/global-variables-and-constants/#starBonusRanks
+  symbol_address:
+    E1: 18A4:0324
+    E2: 17F2:0324
+    E3: 1865:0324
+  size:
+    E1: 52
+    E2: 52
+    E3: 52
 stnGroupFilename:
   text: stnGroupFilename
   def: char *stnGroupFilename = FILENAME_BASE ".STN";
   desc: Holds the name of the STN group file; this is a value like COSMOx.STN.
   ref: /topics/global-variables-and-constants/#stnGroupFilename
+  symbol_address:
+    E1: 18A4:01D8
+    E2: 17F2:01D8
+    E3: 1865:01D8
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 tileAttributeData:
   text: tileAttributeData
   def: byte *tileAttributeData;
   desc: If an AdLib card is installed, points to a dedicated 7,000 byte block of memory. If an AdLib card is not installed, points to the address 5,000 bytes into {{< lookup/cref miscData >}}.
   ref: /topics/global-variables-and-constants/#tileAttributeData
+  symbol_address:
+    E1: 18A4:4144
+    E2: 17F2:32B6
+    E3: 1865:3564
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 timerTickCount:
   text: timerTickCount
   def: dword timerTickCount;
   desc: Holds a computed running tally of how many 1.1931818... MHz timer ticks have occurred so far. Its range is artificially limited to 16 bits.
   ref: /topics/global-variables-and-constants/#timerTickCount
+  symbol_address:
+    E1: 18A4:A56A
+    E2: 17F2:96DC
+    E3: 1865:998A
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 totalMemFreeAfter:
   text: totalMemFreeAfter
   def: dword totalMemFreeAfter;
   desc: Captures the amount of free memory, in bytes, after all allocations have been completed.
   ref: /topics/global-variables-and-constants/#totalMemFreeAfter
+  symbol_address:
+    E1: 18A4:416A
+    E2: 17F2:32DC
+    E3: 1865:358A
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 totalMemFreeBefore:
   text: totalMemFreeBefore
   def: dword totalMemFreeBefore;
   desc: Captures the amount of free memory, in bytes, immediately after the program started running.
   ref: /topics/global-variables-and-constants/#totalMemFreeBefore
+  symbol_address:
+    E1: 18A4:415E
+    E2: 17F2:32D0
+    E3: 1865:357E
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 transporterTimeLeft:
   text: transporterTimeLeft
   def: word transporterTimeLeft;
   desc: Holds a zero value while the player is not using any transporter, and a nonzero decrementing counter while a transporter is in use.
   ref: /topics/global-variables-and-constants/#transporterTimeLeft
+  symbol_address:
+    E1: 18A4:4190
+    E2: 17F2:3302
+    E3: 1865:35B0
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 usedCheatCode:
   text: usedCheatCode
   def: bool usedCheatCode;
   desc: Holds a flag that indicates that the user has used the cheat code.
   ref: /topics/global-variables-and-constants/#usedCheatCode
+  symbol_address:
+    E1: 18A4:A2C0
+    E2: 17F2:9432
+    E3: 1865:96E0
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 volGroupFilename:
   text: volGroupFilename
   def: char *volGroupFilename = FILENAME_BASE ".VOL";
   desc: Holds the name of the VOL group file; this is a value like COSMOx.VOL.
   ref: /topics/global-variables-and-constants/#volGroupFilename
+  symbol_address:
+    E1: 18A4:01DC
+    E2: 17F2:01DC
+    E3: 1865:01DC
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 wallclock10us:
   text: wallclock10us
   def: word wallclock10us;
   desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 10 microseconds.
   ref: /topics/global-variables-and-constants/#wallclock10us
+  symbol_address:
+    E1: 18A4:A5CE
+    E2: 17F2:9740
+    E3: 1865:99EE
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 wallclock25us:
   text: wallclock25us
   def: word wallclock25us;
   desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 25 microseconds.
   ref: /topics/global-variables-and-constants/#wallclock25us
+  symbol_address:
+    E1: 18A4:A5D0
+    E2: 17F2:9742
+    E3: 1865:99F0
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 wallclock100us:
   text: wallclock100us
   def: word wallclock100us;
   desc: Holds the calculated number of busy loop iterations that must be performed by the system's CPU to produce a delay of 100 microseconds.
   ref: /topics/global-variables-and-constants/#wallclock100us
+  symbol_address:
+    E1: 18A4:A568
+    E2: 17F2:96DA
+    E3: 1865:9988
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 winGame:
   text: winGame
   def: bool winGame;
   desc: Indicates if the conditions have been met for the entire game to be "won," terminating the game loop and showing the ending story.
   ref: /topics/global-variables-and-constants/#winGame
+  symbol_address:
+    E1: 18A4:41B6
+    E2: 17F2:3328
+    E3: 1865:35D6
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 winLevel:
   text: winLevel
   def: bool winLevel;
   desc: Indicates if the conditions have been met for the current level to be "won," allowing the player to advance to the next level in the progression.
   ref: /topics/global-variables-and-constants/#winLevel
+  symbol_address:
+    E1: 18A4:8902
+    E2: 17F2:7A74
+    E3: 1865:7D22
+  size:
+    E1: 2
+    E2: 2
+    E3: 2
 writePath:
   text: writePath
   def: char *writePath;
   desc: Holds the value of the write path.
   ref: /topics/global-variables-and-constants/#writePath
+  symbol_address:
+    E1: 18A4:8904
+    E2: 17F2:7A76
+    E3: 1865:7D24
+  size:
+    E1: 4
+    E2: 4
+    E3: 4
 yOffsetTable:
   text: yOffsetTable[]
   def: |-
@@ -3692,3 +7150,11 @@ yOffsetTable:
     };
   desc: Holds a list of the first 25 multiples of 320, used to translate a tile's Y coordinate on the screen to a video memory address offset.
   ref: /topics/global-variables-and-constants/#yOffsetTable
+  symbol_address:
+    E1: 18A4:0C12
+    E2: 17F2:0C10
+    E3: 1865:0C1A
+  size:
+    E1: 50
+    E2: 50
+    E3: 50

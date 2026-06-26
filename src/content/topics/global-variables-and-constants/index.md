@@ -10,6 +10,8 @@ This page contains a listing of every global variable defined in the game, along
 
 For our purposes, a global variable is anything that is defined outside of a function, whether it is declared `static` (private to its compilation unit) or not. This page also includes `enum`s, `#define`s, and really anything else that seems useful to document.
 
+{{% note %}}Due to the extraction technique used, symbols with non-external visibility will not show address or size information. Each symbol's size is a best-effort guess based on the distance to the next known symbol, and in some cases this may overestimate the size due to either non-visible symbols or padding inserted by the compiler/linker.{{% /note %}}
+
 {{< table-of-contents >}}
 
 ---

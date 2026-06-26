@@ -12,6 +12,7 @@
 */}}
 
 {{ $symbol := .Get 0 }}
+{{ $episodes := slice "E1" "E2" "E3" }}
 
 <hr>
 
@@ -19,6 +20,40 @@
     <h2 id="{{ $symbol }}"><code>{{ .text }}</code></h2>
     {{ highlight .def "c" }}
     <p>{{ .desc | markdownify }}</p>
+    {{ if or (index site.Data.cref $symbol).symbol_address (index site.Data.cref $symbol).size}}
+        <table>
+            <tr>
+                <th></th>
+                {{ range $episodes }}
+                    <th>Cosmore {{ . }}</th>
+                {{ end }}
+            </tr>
+            <tr>
+                <th>Symbol Address</th>
+                {{ range $episodes }}
+                    <td>
+                        {{ with index (index site.Data.cref $symbol).symbol_address . }}
+                            {{ . }}h
+                        {{ else }}
+                            &mdash;
+                        {{ end }}
+                    </td>
+                {{ end }}
+            </tr>
+            <tr>
+                <th>Size (Bytes)</th>
+                {{ range $episodes }}
+                    <td>
+                        {{ with index (index site.Data.cref $symbol).size . }}
+                            {{ . | lang.FormatNumber 0 }}
+                        {{ else }}
+                            &mdash;
+                        {{ end }}
+                    </td>
+                {{ end }}
+            </tr>
+        </table>
+    {{ end }}
 {{ else }}
     {{ warnf "No definition for %s %v" .Name .Params }}
     <h2 id="{{ $symbol }}"><code>{{ $symbol }}</code></h2>

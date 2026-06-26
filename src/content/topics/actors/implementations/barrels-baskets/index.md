@@ -203,7 +203,7 @@ Setting the barrel's `dead` to true effectively removes it from the map and from
     NewShard(act->data2, 3, act->x + 2, act->y + 2);
 ```
 
-Four shards are released around the barrel's final `x`/`y` position with {{< lookup/cref NewShard >}}, using the value in `data2` to select between barrel or basket shards as appropriate for the actor type. Frames 0&ndash;3 of these sprite types contain different "strips" of debris rather than anything that could be considered an animation.
+Four shards are released around the barrel's final `x`/`y` position with {{< lookup/cref NewShard >}}, using the value in `data2` to select between barrel or basket shards as appropriate for the actor type. Frames 0--3 of these sprite types contain different "strips" of debris rather than anything that could be considered an animation.
 
 ```c
     if (GameRand() % 2 != 0) {

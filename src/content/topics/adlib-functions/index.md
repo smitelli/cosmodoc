@@ -651,7 +651,7 @@ There are no apparent rules that dictate how channels and their instruments are 
 {{% aside class="fun-fact" %}}
 **{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}, {{< roman-numeral 4 >}}-{{< roman-numeral 4 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}, {{< roman-numeral 5 >}}-{{< roman-numeral 4 >}}-{{< roman-numeral 1 >}}-{{< roman-numeral 1 >}}.**
 
-A great many Bobby Prince compositions follow a **twelve-bar blues** progression, built on three chords that change in a repeating pattern every twelve measures of the song. The textbook example of this is the title screen music, a rendition of "Tush" by ZZ Top. Once you train yourself to hear it, you'll find it all over his work from _Commander Keen_ to _Duke Nukem 3D_.
+A great many Bobby Prince compositions follow a **twelve-bar blues** progression, built on three chords that change in a repeating pattern every twelve measures of the song. The textbook example of this is the title screen music, a riff on "Tush" by ZZ Top. Once you train yourself to hear it, you'll find it all over his work from _Commander Keen_ to _Duke Nukem 3D_.
 {{% /aside %}}
 
 ## The Id Engine Sound Manager
