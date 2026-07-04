@@ -86,6 +86,7 @@ main {
         top: 0;
         bottom: 0;
         overflow-x: hidden;
+        scrollbar-width: thin;
         background: $page-color;
 
         a {
@@ -95,6 +96,7 @@ main {
 
         h2 {
             position: sticky;
+            z-index: 10;
             top: -1rem;
             margin: 0 0 1.25rem;
             background: $page-color;
