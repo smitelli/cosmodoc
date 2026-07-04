@@ -1,3 +1,4 @@
+* In the project root: `pagefind --site public --verbose [--serve]`
 * Eventually will be more than semi-complete; remove "and counting" then
 * Important overall concepts/appendix
     * Map format page really needs an explainer on how sloped tiles are laid out

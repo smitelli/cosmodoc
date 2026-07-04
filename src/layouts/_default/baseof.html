@@ -45,6 +45,8 @@
                         </a>
                     </h2>
 
+                    {{ partial "pagefind" }}
+
                     {{ partial "list-pages-recursive" (site.GetPage "/topics") }}
                 </nav>
             </aside>
