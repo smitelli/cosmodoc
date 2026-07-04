@@ -19,6 +19,17 @@ A valid absolute path (with protocol) should be provided for `--baseURL` in prod
 
 Output files are stored in the top-level `public/` directory. This is an appropriate place to point an HTTP server's document root.
 
+### Update the Pagefind database
+
+Once the site has been built, run:
+
+```bash
+cd src
+pagefind --site ../public --verbose
+```
+
+You can append `--serve` to the command to make Pagefind serve the content with the live search database. View the site at `http://localhost:1414/` or check out the debug view at `http://localhost:1414/pagefind/playground/`
+
 ## Regenerate the syntax highlighter CSS
 
 ```bash
