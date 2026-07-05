@@ -1,5 +1,5 @@
 {{ with .Pages.ByWeight }}
-    <ul>
+    <ul data-pagefind-ignore="all">
         {{ range . }}
             <li{{ if .Eq page }} class="active"{{ end }}>
                 <a href="{{ .RelPermalink }}"{{ with .Description }} title="{{ . | markdownify }}"{{ end }}>

@@ -1,7 +1,7 @@
 {{/* "20" is a bit of a hack to skip the home/topics pages */}}
 {{ $pages := where site.Pages.ByWeight "Weight" "gt" 20 }}
 
-<nav id="prev-next">
+<nav id="prev-next" data-pagefind-ignore="all">
     <ul>
         {{/* Hugo's sense of "prev/next" is swapped for our use case! */}}
 

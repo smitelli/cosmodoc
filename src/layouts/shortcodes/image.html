@@ -37,4 +37,5 @@
     src="{{ $base.RelPermalink }}" width="{{ $base.Width }}" height="{{ $base.Height }}"
     srcset="{{ delimit $srcset `, ` }}" sizes="{{ .Site.Params.imgSizesValue }}"
     alt="{{ $alt | markdownify }}" title="{{ $alt | markdownify }}" loading="{{ $loading }}"
+    data-pagefind-index-attrs="alt"
 ></a></p>
