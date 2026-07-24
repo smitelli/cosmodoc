@@ -135,6 +135,10 @@ main {
         p {
             text-align: center;
             font-style: italic;
+
+            &.dim {
+                color: #aaa;
+            }
         }
     }
 }
