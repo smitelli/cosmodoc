@@ -6,7 +6,9 @@ weight = 450
 
 # Game Logic Functions
 
-Some time ago I heard a quote that went something like: "In game development, all concerns are cross-cutting." I've long since lost the exact quote and have no way of tracking down the source, but it's a statement that's stuck with me. This game has a number of functions that don't fit neatly into a particular subsystem, and don't implement a specific enough functionality to be an entire topic of examination. Rather, this page contains a jumble of functions that I couldn't think of a better home for.
+Some time ago I heard a quote that went something like: "In game development, all concerns are cross-cutting." I've long since lost the exact quote and have no way of tracking down the source,[^young] but it's a statement that's stuck with me. This game has a number of functions that don't fit neatly into a particular subsystem, and don't implement a specific enough functionality to be an entire topic of examination. Rather, this page contains a jumble of functions that I couldn't think of a better home for.
+
+[^young]: I do have a tenuous link to the source from a post by [Shamus Young](https://www.patreon.com/shamusyoung) titled _[Game Programming Vexations Part 2: The Four Challenges of Game Development](https://www.shamusyoung.com/twentysidedtale/?p=47906)_: "In strict OOP, systems that interfere with the ideal of encapsulation are referred to as cross-cutting concerns. The problem is that modern game design pushes us towards situations where **nearly everything is a cross-cutting concern.**" (Emphasis mine.) This post was published in September 2019, but I'm almost positive I encountered the sentiment somewhere on Twitter prior to that date.
 
 {{< table-of-contents >}}
 
